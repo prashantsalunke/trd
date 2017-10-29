@@ -1,0 +1,1105 @@
+<link href="<?php echo asset_url();?>css/pages/home.css" rel="stylesheet">
+<!--script src="<?php echo asset_url(); ?>js/jquery-1.11.1.min.js"></script-->
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wb.slideshow.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wb.carousel.effects.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.core.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.widget.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.position.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.tooltip.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-blind.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-bounce.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-clip.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-drop.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-explode.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fold.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-highlight.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-pulsate.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-scale.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-shake.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-slide.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
+<script src="<?php echo asset_url();?>js/custom/home.js"></script>
+<link href="<?php echo asset_url();?>css/jquery.booklet.1.1.0.css?1.1" rel="stylesheet">
+<script src="<?php echo asset_url();?>js/jquery.booklet.1.1.0.min.js?1.1"></script>
+<script src="<?php echo asset_url();?>js/jquery.easing.1.3.js?1.1"></script>
+
+<style>
+
+.catalog_c_img {
+	border: none;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-image: url(../../../assets/images/img2096.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+.catalogue_modal_body {
+	background-color:transparent;background-image:url('.../../assets/images/vcat_insider.png');background-size:cover;padding-top: 110px;
+}
+.catalogue_outer_body {
+	width: 700px;
+    margin-left: 100px;
+}
+.catalogue_page_item_name {
+	color:#303030;font-family:Georgia;font-size:13px;padding-bottom:5px;padding-top:8px;
+}
+.catalogue_page_item_details {
+	color:#787878;font-family:Arial;font-size:11px;padding-bottom:10px;
+}
+.catalogue_page_item_quantity {
+	color:#1E90FF;font-family:Arial;font-size:11px;padding-bottom:25px;
+}
+.catalogue_page_item_price_div {
+	text-align: center;
+	margin-bottom: -10px;
+    z-index: 1;
+}
+.catalogue_page_item_price {
+	background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:17px;padding: 2px 10px;
+}
+.catalogue_page_item_mimg {
+	width:303px;height:268px;padding-bottom:5px;
+}
+.catalogue_page_left_num {
+	padding-top: 10px;
+	background-color:#fff;
+}
+.catalogue_page_no_text {
+	color:#D3D3D3;font-family:Arial;font-size:11px;
+}
+.catalogue_page_no_num {
+	color:#FF6347;font-family:'Arial Black';font-size:16px;
+}
+.catalogue_page_item_mimg-sm {
+	width:150px;height:115px;margin-top: 10px;
+}
+.catalogue_page_right_num {
+	padding-top: 10px;
+	background-color:#fff;
+}
+.catalogue_main_img {
+	border: 1px solid #eee;
+	width: 303px;
+    height: 268px;
+}
+.catalogue_sub_img {
+	border: 1px solid #eee;
+	width: 150px;
+    height: 115px;
+}
+.catalogue_modal_close {
+	width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff !important;
+    font-size: 19px;
+    opacity: 1;
+}
+li.share-button a{
+	font-size:20px;
+	color:#fa5c43;
+	border :2px solid;
+	margin-top: 20px;
+	border-radius :50%;
+	padding: 4px;
+	width:25px;
+	height :25px;
+}
+li.share-button a:hover{
+	font-size:20px;
+	color:#ffffff;
+	border :2px solid;
+	margin-top: 20px;
+	border-radius :50%;
+	padding: 4px;
+	width:30px;
+	height :30px;
+}
+ul.share{
+	list-style-type: none;
+	margin-top:  100%;
+	line-height: 50px;
+}
+.carousel_img {
+	padding: 0% 23% !important; 
+}
+.hover-menu {
+    position: absolute;
+    height: 50px;
+    width: 100%;
+    bottom: 7px;
+/*     background: rgba(0,0,0,0.70); */
+    left: 0;
+    display: none;
+}
+</style>
+<div class="container-fluid" style="background: #f1f1f1; padding: 30px 0px">
+	<div class="row">
+		<div class="" style="margin-bottom: 20px;">
+			<div class="col-lg-2">
+				<div class="panel">
+					<div class="panel-heading" style="background: #ffffff; border: none;color: #3C3C3C; font-family: Georgia; font-size: 16px;">
+						<b>Categories</b>
+					</div>
+					<div class="list-group categary">
+						<?php //print_r($procategories);
+						foreach($procategories as $product)
+							{  ?>
+							<a href="#" class="list-group-item"><?php echo $product['name']; ?> </a> 
+				   		 <?php 	} ?>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-10">
+			<div class="search-div"> 
+				<form method="post" action="search">
+					<div class="col-sm-7 col-xs-11" style="padding: 0px;">
+						<input type="text" class="search-box" required="required" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
+					</div>
+					<div class="col-sm-2 col-xs-3 " style="padding: 0px;">
+						<div class="dropdown">
+							<select class="search-box" onchange ="validate();" class="required" required name='type'>
+								<option value="" >Search for</option>
+								<option value="1">Sellers</option>
+								<option value="2">Shippers</option>
+								<option value="3">Buyers</option>
+								<option value="4">Products</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-2 col-xs-3 " style="padding: 0px;">
+						<div class="dropdown">
+							<select class="search-box" name='country'>
+								<option value="0_0">Country</option>
+								<?php foreach ($Country as $country){?>
+									<option value="<?php echo $country['id'].'_'.$country['name'];?> "><?php echo $country['name'];?></option>
+								<?php }?>
+							</select>
+							
+						</div>
+					</div>
+					<div class="col-sm-1 col-xs-1" style="padding: 0px;">
+						<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+					</div>
+					</form>
+				</div>
+			
+				<div id="carousel-example-generic" class="carousel  carousel1 slide" data-ride="carousel" style="background: #fff; padding-bottom: 50px;height:550px;">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+					<?php
+					 $i='0';
+					 foreach ($homeAds as $banner) { 
+					 $i++;
+					 ?>
+						<li data-target="#carousel-example-generic" data-slide-to="<?php echo $i;?>" class="<?php if($i==1){echo 'active'; }?>" style="border-color: #F05235;"></li>
+					<?php }?>	
+					</ol>
+	
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						<?php
+						$i='0';
+						foreach ($homeAds as $banner) {
+						$i++;
+							?>
+						<div class="item <?php if($i==1){echo 'active'; }?>">
+							<a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id']?>"><img src="<?php echo asset_url().$banner['main_banner']; ?>" alt="..."> </a>
+						</div>
+						<?php }?>
+					</div>
+					<!-- Controls -->
+					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="background: none;"> 
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> 
+					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="background: none;"> 
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12">
+			<div class="row">
+				
+					<div class="col-sm-12 col-lg-4">
+					<div class="panel disk-tab">
+						<div class="panel-heading">
+							<h2 class="font2">DESKSITES</h2>
+							<p>
+								<small class="font3">Experience A New Vision Of Websites Techniques With Quick
+									Access, Rich Information And Much More..</small>
+							</p>
+						</div>
+						<div class="panel-body discoverbtn" style="position: relative;">
+							<div id="tab-slider" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner section1" role="listbox">
+								<?php
+								$i ="0";
+								foreach($desksites as $desksite){ 
+									$i++;
+									
+									?>
+									<div class="item <?php if($i == 1){ echo "active"; } ?>">
+										<h4 class="text-center uppercase"><?php echo $desksite['company_name']?></h4>
+										<p class="text-center">
+											<small><?php echo substr($desksite['company_introduction'],0,100);?></small>
+										</p>
+										<p class="text-center uppercase"><?php echo $desksite['company_country']?> | <?php echo $desksite['company_province']?></p>
+										<div class="col-xs-12 text-center">
+											<?php if($desksite['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width: 40px; display: inline-block;"> <?php }?>
+											<?php if($desksite['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width: 40px; display: inline-block;"> <?php }?>
+											<?php if($desksite['is_logo_verified'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" style="width: 30px; display: inline-block;"> <?php }?>
+											<?php if($desksite['plan_id'] > '1' && $desksite['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" style="width: 30px; display: inline-block;"><?php }?>
+										</div>
+										<div class="col-xs-12" style="margin-top: 15px; height: 300px;">
+											<a href="#" class=""><img src="<?php echo asset_url().$desksite['desksite_bg1']; ?>" class="img-responsive carousel_img"></a>
+										</div>
+										<div class="discover">
+											<a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" class="btn btn-danger btn-lg">Discover</a>
+										</div>
+									</div>
+									<?php  }?>
+								</div>
+							</div>
+							<div style="position: relative;">
+								<a class="left carousel-control control" href="#tab-slider" role="button"
+									data-slide="prev" ">Previous
+								</a> <a class="right carousel-control control" href="#tab-slider"
+									role="button" data-slide="next">Next
+								</a>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-lg-4">
+					<div class="panel disk-tab">
+						<div class="panel-heading">
+							<h2 class="font2">PRODUCTS IN 3D</h2>
+							<p>
+								<small class="font3">Hold On The Product And Swipe Righ Or Left</small><br>
+								&nbsp;
+							</p>
+						</div>
+						<div class="panel-body mytab">
+							<div id="tab-slider2" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner section2" role="listbox" style="height:552px;">
+								 
+									<?php 
+									$i ="0";
+									foreach ($products3D as $product3D) {
+										$i++;
+										?>
+									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:543px;">
+										<h4 class="text-center"><?php echo $product3D['name']?></h4>
+										<p class="text-center">
+											<a href="<?php echo base_url().'desksite/'.$product3D['busi_id'];?>"><?php echo $product3D['company_name']?></a>
+										</p>
+										<p class="text-center"><?php echo $product3D['company_country']?> | <?php echo $product3D['company_province']?></p>
+										<div class="col-xs-12 text-center">
+											<?php if($product3D['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width: 40px; display: inline-block;"> <?php }?>
+											<?php if($product3D['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width: 40px; display: inline-block;"> <?php }?>
+											<?php if($product3D['is_logo_verified'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" style="width: 30px; display: inline-block;"> <?php }?>
+											<?php if($product3D['plan_id'] > '1' && $product3D['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" style="width: 30px; display: inline-block;"><?php }?>
+										
+										</div>
+										<div class="col-xs-12"
+											style="margin-top: 15px; text-align: center; margin-bottom: 5px; height: 300px;">
+											<img src="<?php echo asset_url().$product3D['main_image']; ?>" class="img-responsive carousel_img" style="display: inline-block">
+										</div>
+										<div class="text-center">
+											<h4><?php echo 'USD'.$product3D['unit_price']?></h4>
+											<p><?php echo 'Min. Qty. 1 '.$product3D['unit']?></p>
+										</div>
+										<div class="hover-menu text-center">
+											<a href="<?php echo base_url().'products/details/'.$product3D['id'];?>" class="btn">
+												<img src="<?php echo asset_url(); ?>images/ts/view2.png" style="width: 40px;"></a>
+											 <a href="#" class="btn">
+												<img src="<?php echo asset_url(); ?>images/ts/from-sameblack.png" style="width: 40px;">
+											</a> 
+											<a href="javascript:addToMyFavourite(<?php echo $product3D['id'];?>, 6);" class="btn">
+												<img src="<?php echo asset_url(); ?>images/ts/favoriteclick.png" style="width: 40px;">
+											</a> 
+											<a href="#" class="btn">
+												<img src="<?php echo asset_url(); ?>images/ts/aert.png" style="width: 40px;">
+											</a>
+										</div>
+									</div>
+									<?php  }?>
+									<a class="left carousel-control" href="#tab-slider2"
+										role="button" data-slide="prev" style="background: none;"> <span
+										class="glyphicon glyphicon-chevron-left" aria-hidden="true"
+										style="color: #696969"></span> <span class="sr-only">Previous</span>
+									</a> <a class="right carousel-control" href="#tab-slider2"
+										role="button" data-slide="next" style="background: none;"> <span
+										class="glyphicon glyphicon-chevron-right" aria-hidden="true"
+										style="color: #696969"></span> <span class="sr-only">Next</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-lg-4">
+					<div class="panel disk-tab">
+						<div class="panel-heading">
+							<h2 class="font2">V-CATALOGUES</h2>
+							<p>
+								<small class="font3">Follow The Latest Collection Of Global Sellers And Famouse
+									<br>Brands..</small>
+							</p>
+						</div>
+						<div class="panel-body mytab">
+							<div id="tab-slider3" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner section3" role="listbox" style="height:552px;">
+								<?php 
+									$i ="0";
+									foreach ($vCatalogues as $vCatalogue) {
+										$i++;
+										?>
+									<div class="row item <?php if($i == 1){ echo "active"; } ?>" style="height:552px;">
+										<h4 class="text-center">Auto-mobile & Spare Parts Catalouge BY</h4>
+										<p class="text-center">
+											<a href="#"><?php echo $vCatalogue['company_name'];?></a>
+										</p>
+										<div class="col-xs-12" style="margin-top: 15px; text-align: center; margin-bottom: 5px; height: 340px;">
+											<img src="<?php echo asset_url().$vCatalogue['catalogue_cover']; ?>"
+												class="img-responsive carousel_img" style="display: inline-block">
+										</div>
+										<div class="col-xs-12 text-center">
+											<p class="text-center"><?php echo $vCatalogue['company_country'];?> | <?php echo $vCatalogue['company_province'];?></p>
+											<div class="col-xs-12 text-center">
+												<?php if($vCatalogue['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width: 40px; display: inline-block;"> <?php }?>
+												<?php if($vCatalogue['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width: 40px; display: inline-block;"> <?php }?>
+												<?php if($vCatalogue['is_logo_verified'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" style="width: 30px; display: inline-block;"> <?php }?>
+												<?php if($vCatalogue['plan_id'] > '1' && $product3D['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" style="width: 30px; display: inline-block;"><?php }?>
+										
+											</div>
+										</div>
+										<div class="col-xs-12 hover-menu text-center blue">
+											<a href="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);"  class="btn">
+												<img src="<?php echo asset_url(); ?>images/vacticonwhite.png" style="width: 40px;">
+											</a> 
+											<a href="#" class="btn">
+												<img src="<?php echo asset_url(); ?>images/deskiste_white.png" style="width: 40px;">
+											</a> 
+											<a href="#" class="btn">
+												<img src="<?php echo asset_url(); ?>images/from-same-user.png" style="width: 40px;">
+											</a> 
+											<a href="javascript:addToMyFavourite(<?php echo $vCatalogue['id'];?>, 7);" class="btn">
+												<img src="<?php echo asset_url(); ?>images/addtofav.png" style="width: 40px;">
+											</a>
+										</div>
+									</div>
+									<?php } ?>
+									<a class="left carousel-control" href="#tab-slider3"
+										role="button" data-slide="prev" style="background: none;"> <span
+										class="glyphicon glyphicon-chevron-left" aria-hidden="true"
+										style="color: #696969"></span> <span class="sr-only">Previous</span>
+									</a> <a class="right carousel-control" href="#tab-slider3"
+										role="button" data-slide="next" style="background: none;"> <span
+										class="glyphicon glyphicon-chevron-right" aria-hidden="true"
+										style="color: #696969"></span> <span class="sr-only">Next</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12 margintop">
+			<div class="row"> 
+				<div class="col-sm-12 tab-slider maxheight1">
+					<div class="col-sm-3 col-lg-2 product1">
+						<div class="row" style="margin: 0px">
+							<h3 style="color: #fff; text-align: center;">
+								<span class="product-feature">FEATURED</span><br> 
+								<span class="product-feature-title">PRODUCTS</span>
+							</h3>
+							<div class="text-center displaydesktop">
+								<img src="<?php echo asset_url(); ?>/images/ts/dice0.png"
+									class="img-responsive">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
+						<section class="center slider" style="margin: 10px 0px;">
+							<?php
+							$i ="0";
+							
+							foreach($FeaturedProducts as $FeaturedProduct){
+								$i++;
+								
+							?>
+							<div class="col-md-3" style="padding:0px 15px;">
+							<div style="position: relative;">
+								<h4 class="text-center product-strong-text" style="margin-top: 0px;">
+									<strong><?php echo $FeaturedProduct['name']; ?></strong>
+								</h4>
+								<p class="text-center product-text ptext" ><?php echo $FeaturedProduct['description']; ?></p>
+								<div class="tumb-slide">
+									<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive">
+									<div class="hover-thumb text-center">
+										<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>)">
+											<img src="<?php echo asset_url(); ?>images/ts/window0.png" style="width: 40px;">
+										</a> 
+										<a href="#">
+											<img src="<?php echo asset_url(); ?>images/ts/view.png" style="width: 40px;">
+										</a>
+									</div>
+								</div>
+								<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedProduct['unit_price']?></span></h4>
+								<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedProduct['quantity'].' '.$FeaturedProduct['unit']?></p>
+							</div>
+							</div>
+							<?php } ?>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12 margintop" >
+			<div class="row">
+				<div class="col-sm-12 tab-slider maxheight1" >
+					<div class="col-sm-3 col-lg-2 product2">
+						<div class="row" style="margin: 0px">
+							<h3 style="color: #fff; text-align: center;">
+								<span class="product-feature">FEATURED</span><br>
+								<span class="product-feature-title">PRODUCTS VIDEOS</span>
+							</h3>
+							<div class="text-center displaydesktop">
+								<img src="<?php echo asset_url(); ?>/images/ts/porcube.png"
+									class="img-responsive">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
+						<section class="center slider" style="margin: 10px 0px;">
+						<?php //print_r($FeaturedVideos);
+						foreach($FeaturedVideos as  $FeaturedVideo){?>
+							<div class="col-md-3">
+							<div class="imgsection">
+								<h4 class="text-center product-strong-text" style="margin-top: 0px;">
+									<strong><?php echo $FeaturedVideo['name']; ?></strong>
+								</h4>
+								<p class="text-center product-text"><?php echo $FeaturedVideo['description']; ?>.</p>
+								<div class="tumb-slide">
+									<div id="wb_MediaPlayer1" style="width:218px;height:142px;z-index:677;" class="imgresponsive">
+										<video src="<?php echo asset_url().$FeaturedVideo['vedio_file']; ?>" id="MediaPlayer1"></video>
+									</div>
+									<div class="hover-thumb text-center">
+										<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/playblk.png" id="Image34" alt=""></a> 
+										<a href="#">
+											<img src="<?php echo asset_url(); ?>/images/ts/view.png" >
+										</a>
+									</div>
+								</div>
+								<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedVideo['unit_price']?></span></h4>
+								<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedVideo['quantity'].' '.$FeaturedVideo['unit']?></p>
+							</div>
+							</div>
+							<?php }?>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12 margintop" >
+			<div class="row">
+				<div class="col-sm-12 tab-slider">
+					<div class="col-sm-3 col-lg-2 maxheight1 product3">
+						<div class="row" style="margin: 0px">
+							<h3 style="color: #fff; text-align: center;">
+								<span class="product-feature">FEATURED WORLD</span><br> 
+								<span class="product-feature-title"> SELLERS</span>
+							</h3>
+							<div class="text-center displaydesktop">
+								<img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
+									class="img-responsive">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9 col-lg-10"
+						style="background: #fff; min-height: 272px;">
+						<div >
+						<section class="center slider">
+						<?php
+							$i ="0";
+							
+							foreach($FWSellers as $FWSeller){
+								$i++;
+								
+							?>
+							<div  class="col-md-3" style="position: relative;">
+								<div class="tumb-slide">
+									<img src="<?php echo asset_url().$FWSeller['picture']; ?>" class="imgresponsive">
+									<div class="hover-thumb text-center">
+										<a href="javascript:openSeller(<?php echo $FWSeller['id']; ?>)">
+											<img src="<?php echo asset_url(); ?>images/ts/window0.png" style="width: 40px;">
+										</a> 
+										<a href="#">
+											<img src="<?php echo asset_url(); ?>images/desktopicon.gif" style="width: 40px;">
+										</a>
+									</div>
+								</div>
+								<img src="<?php echo asset_url(); ?>images/img0099.png" id="Shape38" alt=""  class="imgcountry">
+								<h4 class="text-center product-money-symbol core1"><?php echo $FWSeller['contact_person']?></h4>
+								<p class="text-center product-money-text core2"><?php echo $FWSeller['position']?></p>
+								<p class="text-center author">test text</p>
+							</div>
+							<?php }?>
+						</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12 margintop" >
+			<div class="row">
+				<div class="col-sm-12 tab-slider">
+					<div class="col-sm-3 col-lg-2 maxheight1 product4">
+						<div class="row" style="margin: 0px">
+							<h3 style="color: #fff; text-align: center;">
+								<small>REAL-TIME</small><br> <b>BUSINESS STATION</b>
+							</h3>
+							<div class="text-center displaydesktop">
+								<img src="<?php echo asset_url(); ?>images/ts/trade-satation.png"
+									class="img-responsive">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-9 col-lg-10">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="row">
+									<div class="col-sm-12" style="background: #FF8C00; height: 60px; padding-top: 15px; text-align: center; color: #fff;">
+									<div id="wb_Text244" style="position:absolute;left:13px;top:24px;width:84px;height:15px;z-index:896;text-align:left;">
+									<span style="color:#FFFFFF;font-family:Arial;font-size:12px;"><strong>REAL-TIME</strong></span></div>
+										<h3 class="head1">WORLD NEW ARRIVALS</h3>
+									</div>
+									<?php foreach ($NewArrivals as $NewArrival){?>
+									<div class="col-sm-12 margins">
+										<div class="sectionrow">
+											<div class="row" style="margin: 0px;">
+												<div class="col-xs-2" style="padding: 1% 0px">
+													<img src="<?php echo asset_url().$NewArrival['main_image']; ?>"
+														class="img-responsive">
+													<img src="<?php echo asset_url(); ?>images/img0099.png" class="roundflag">
+														
+												</div>
+												<div class="col-xs-9 text-left">
+													<h5>
+														<b><?php echo $NewArrival['name']?></b>
+													</h5>
+													<p>
+														<small><?php echo substr($NewArrival['description'], 0, 125)?></small>
+													</p>
+												</div>
+												<div class="col-xs-1 orange" >
+												<a href="">Go</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<?php }?>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="row">
+									<div class="col-sm-12" style="background: #1E90FF; height: 60px; padding-top: 15px; text-align: center; color: #fff;">
+									<div id="wb_Text244" style="position:absolute;left:13px;top:24px;width:84px;height:15px;z-index:896;text-align:left;">
+									<span style="color:#FFFFFF;font-family:Arial;font-size:12px;"><strong>REAL-TIME</strong></span></div>
+										<h3 class="head1">WORLD PURCHASE REQUESTS</h3>
+									</div>
+									<?php  foreach ($NewOrders as $NewOrder){?>
+									<div class="col-sm-12 margins">
+										<div class="sectionrow"><div class="row" style="margin: 0px;">
+												<div class="col-xs-2" style="padding: 1% 0px">
+													<img src="<?php echo asset_url().$NewOrder['main_image']; ?>"
+														class="img-responsive">
+													<img src="<?php echo asset_url(); ?>images/img0099.png" class="roundflag">
+												</div>
+												<div class="col-xs-9 text-left">
+													<h5>
+														<b><?php echo $NewOrder['name']?></b>
+													</h5>
+													<p>
+														<small><?php echo substr($NewOrder['description'], 0, 125);?></small>
+													</p>
+												</div>
+												<div class="col-xs-1 blue1" >
+												<a href="">Go</a>
+												</div>
+											</div>
+										</div>
+										
+									</div>
+									<?php }?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-12 margintop" >
+			<div class="row">
+				<div class="col-sm-12 tab-slider">
+					<div class="col-sm-3 col-lg-2 maxheight1 product1 productb">
+						<div class="row" style="margin: 0px">
+							<h3 style="color: #fff; text-align: center;">
+								<span class="product-feature">FEATURED WORLD</span><br> 
+								<span class="product-feature-title"> BUYERS</span>
+							</h3>
+							<div class="text-center displaydesktop">
+								<img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
+									class="img-responsive">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9 col-lg-10"
+						style="background: #fff; min-height: 272px;">
+						
+						<section class="center slider">
+						<?php
+							$i ="0";
+							
+							foreach($FWBuyers as $FWBuyer){
+								$i++;
+							?>
+							<div class="col-md-3">
+								<div style="position: relative;">
+									<div class="tumb-slide">
+										<img src="<?php echo asset_url().$FWBuyer['picture']; ?>" class="imgresponsive">
+										<div class="hover-thumb text-center">
+											<a href="javascript:openBuyer(<?php echo $FWBuyer['id']; ?>)">
+												<img src="<?php echo asset_url(); ?>images/ts/window0.png" style="width: 40px;">
+											</a> 
+											<a href="#">
+												<img src="<?php echo asset_url(); ?>images/ts/view.png" style="width: 40px;">
+											</a>
+										</div>
+									</div>
+									<img src="<?php echo asset_url(); ?>images/img0099.png" id="Shape38" alt="" class="imgcountry">
+									<h4 class="text-center product-money-symbol core1"><?php echo $FWBuyer['contact_person_name']?></h4>
+									<p class="text-center product-money-text core2"><?php echo $FWBuyer['position']?></p>
+									<p class="text-center author">text</p>
+								</div>
+							</div>
+							<?php }?>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="vcatalogue_overlay" class="modal fade" style="background-color:#404040;">
+	<div class="modal-dialog" style="background-color:#404040;width:990px;">
+		<div class="modal-content" style="background: transparent;box-shadow:none;-webkit-box-shadow:none;border: 0px;">
+			<div class="modal-header" style="border:0px;">
+				<button type="button" class="close catalogue_modal_close" data-dismiss="modal" aria-hidden="true">x</button>
+			</div>
+			<div class="modal-body catalogue_modal_body" style="width:960px;height:603px;">
+				<input type="hidden" id="pcatalogue_id" value="" />
+				<div class="row">
+					<div class="col-md-10">
+						<div id="catalogue_page_content" class="catalogue_outer_body">
+						</div>
+					</div>
+					<div class="col-md-2 " style="float:left">
+						<ul class="share pull-right">
+							<li class="share-button"><a href=""><i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a></li>
+							<li class="share-button"><a href=""><i class="fa fa-comments" aria-hidden="true">&nbsp;</i></a></li>
+							<li class="share-button"><a href=""><i class="fa fa-share-alt" aria-hidden="true">&nbsp;</i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+   <!-- Add to catalogue -->
+<div id="Layer_catalogue" class="catalogue1">
+    <div id="Layer_catalogue_Container" class="catalogue2">
+    </div>
+</div>   
+   <!-- add to catalogue end -->
+<div id="Layer_details" class="class1">
+        <div id="Layer_details_Container" class="class2">
+        </div>
+    </div>
+    <div id="Layer_details2" class="class1">
+        <div id="Layer_details_Container2" class="class2">
+        </div>
+    </div>
+    <div id="Layer_sellers" class="class1">
+        <div id="Layer_details_Container4" class="class2">
+        </div>
+    </div>
+    <div id="Layer_buyers" class="class1">
+        <div id="Layer_details_Container5" class="class2">
+        </div>
+    </div>
+<script src="<?php echo asset_url(); ?>js/slick.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+ 
+    $(document).on('ready', function() {
+      $(".center").slick({
+  infinite: false,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+      });
+    });
+    
+    $(document).ready(function(){
+        var boxWidth = $(".open-div1").width();
+        $(".menu-arrow").click(function(){
+            $(".reminder-div").animate({
+                width: boxWidth
+            });
+            $(".menu-arrow").hide();
+            $(".menu-arrow2").show();
+            $(".myalert").show();
+        });
+         $(".menu-arrow2").click(function(){
+            $(".reminder-div").animate({
+                width:60
+            });
+            $(".menu-arrow").show();
+            $(".menu-arrow2").hide();
+            $(".myalert").hide();
+        }); 
+    });
+
+    $("div.product-text").text(function(index, currentText) {
+        return currentText.substr(0, 30);
+    });
+
+    // Added by suraj for open popup box
+    function openVideo(id) {
+	$.get(base_url+"seller/video/view/"+id,{},function(data) {
+			$("#Layer_details_Container").html(data);
+			ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
+		},'html');
+	}
+	function openProduct(id) {
+		//alert('hello');
+		$.get(base_url+"seller/product/view/"+id,{},function(data) {
+			$("#Layer_details_Container2").html(data);
+			ShowObjectWithEffect('Layer_details2', 1, 'scale', 500, 'swing');
+		},'html');
+	}
+	function openCatalogue(id) {
+		//alert('hello');
+		$.get(base_url+"catalogue/popup/"+id,{},function(data) {
+			$("#Layer_catalogue_Container").html(data);
+			ShowObjectWithEffect('Layer_catalogue', 1, 'scale', 500, 'swing');
+		},'html');
+	}
+	function openSeller(id) {
+		$.get(base_url+"seller/popup/"+id,{},function(data) {
+			$("#Layer_details_Container4").html(data);
+			ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
+		},'html');
+	}
+	function openBuyer(id) {
+		$.get(base_url+"buyer/popup/"+id,{},function(data) {
+			$("#Layer_details_Container5").html(data);
+			ShowObjectWithEffect('Layer_buyers', 1, 'scale', 500, 'swing');
+		},'html');
+	}
+	
+	function viewCatalogueBook(id) {
+		$.get(base_url+"catalogue/popup/"+id,{},function(data){
+			$("#catalogue_page_content").html(data);
+			$("#pcatalogue_id").val(id);
+			$("#vcatalogue_overlay").modal('show');
+			var $mybook 		= $('#mybook');
+			var $bttn_next		= $('#next_page_button');
+			var $bttn_prev		= $('#prev_page_button');
+			var $loading		= $('#loading');
+			var $mybook_images	= $mybook.find('img');
+			var cnt_images		= $mybook_images.length;
+			var loaded			= 0;
+			$mybook_images.each(function(){
+				var $img 	= $(this);
+				var source	= $img.attr('src');
+				$('<img/>').load(function(){
+					++loaded;
+					if(loaded == cnt_images){
+						$loading.hide();
+						$bttn_next.show();
+						$bttn_prev.show();
+						$mybook.show().booklet({
+							name:               null,                            // name of the booklet to display in the document title bar
+							width:              740,                             // container width
+							height:             450,                             // container height
+							speed:              600,                             // speed of the transition between pages
+							direction:          'LTR',                           // direction of the overall content organization, default LTR, left to right, can be RTL for languages which read right to left
+							startingPage:       0,                               // index of the first page to be displayed
+							easing:             'easeInOutQuad',                 // easing method for complete transition
+							easeIn:             'easeInQuad',                    // easing method for first half of transition
+							easeOut:            'easeOutQuad',                   // easing method for second half of transition
+
+							closed:             false,                           // start with the book "closed", will add empty pages to beginning and end of book
+							closedFrontTitle:   null,                            // used with "closed", "menu" and "pageSelector", determines title of blank starting page
+							closedFrontChapter: null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank starting page
+							closedBackTitle:    null,                            // used with "closed", "menu" and "pageSelector", determines chapter name of blank ending page
+							closedBackChapter:  null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank ending page
+							covers:             false,                           // used with  "closed", makes first and last pages into covers, without page numbers (if enabled)
+
+							pagePadding:        10,                              // padding for each page wrapper
+							pageNumbers:        false,                            // display page numbers on each page
+
+							hovers:             false,                            // enables preview pageturn hover animation, shows a small preview of previous or next page on hover
+							overlays:           false,                            // enables navigation using a page sized overlay, when enabled links inside the content will not be clickable
+							tabs:               false,                           // adds tabs along the top of the pages
+							tabWidth:           60,                              // set the width of the tabs
+							tabHeight:          20,                              // set the height of the tabs
+							arrows:             true,                           // adds arrows overlayed over the book edges
+							cursor:             'pointer',                       // cursor css setting for side bar areas
+
+							hash:               false,                           // enables navigation using a hash string, ex: #/page/1 for page 1, will affect all booklets with 'hash' enabled
+							keyboard:           true,                            // enables navigation with arrow keys (left: previous, right: next)
+							next:               $bttn_next,          			// selector for element to use as click trigger for next page
+							prev:               $bttn_prev,          			// selector for element to use as click trigger for previous page
+
+							menu:               null,                            // selector for element to use as the menu area, required for 'pageSelector'
+							pageSelector:       false,                           // enables navigation with a dropdown menu of pages, requires 'menu'
+							chapterSelector:    false,                           // enables navigation with a dropdown menu of chapters, determined by the "rel" attribute, requires 'menu'
+
+							shadows:            true,                            // display shadows on page animations
+							shadowTopFwdWidth:  166,                             // shadow width for top forward anim
+							shadowTopBackWidth: 166,                             // shadow width for top back anim
+							shadowBtmWidth:     50,                              // shadow width for bottom shadow
+
+							before:             function(){},                    // callback invoked before each page turn animation
+							after:              function(){}                     // callback invoked after each page turn animation
+						});
+						//Cufon.refresh();
+					}
+				}).attr('src',source);
+			});
+		},'html');
+	}
+ </script>
+ <script>
+$(document).ready(function() {
+    $("#SlideShow1").slideshow({
+        interval: 3000,
+        type: 'sequence',
+        effect: 'none',
+        direction: '',
+        pagination: false,
+        effectlength: 1000 
+    });
+    searchParseURL();
+    var $autocomplete = $('<ul class="autocomplete"></ul>').hide().insertAfter('#SiteSearch4');
+    var selectedItem = null;
+    var setSelectedItem = function(item) {
+        selectedItem = item;
+        if (selectedItem === null) {
+            $autocomplete.hide();
+            return;
+        }
+        if (selectedItem < 0) {
+            selectedItem = 0;
+        }
+        if (selectedItem >= $autocomplete.find('li').length) {
+            selectedItem = $autocomplete.find('li').length - 1;
+        }
+        $autocomplete.find('li').removeClass('selected').eq(selectedItem).addClass('selected');
+        $autocomplete.css('left', $('#SiteSearch4').position().left);
+        $autocomplete.css('top', $('#SiteSearch4').position().top + $('#SiteSearch4').outerHeight());
+        $autocomplete.show();
+    };
+    var populateSearchField = function() {
+        $('#SiteSearch4').val($autocomplete.find('li').eq(selectedItem).text());
+        setSelectedItem(null);
+    };
+    $('#SiteSearch4').attr('autocomplete', 'off').keyup(function(event) {
+        if (event.keyCode > 40 || event.keyCode == 8) {
+            var data = new Array();
+            var keywordVal = $('#SiteSearch4').val();
+            keywordVal = keywordVal.toLowerCase();
+            for (i = 0; i < database_length; i++) {
+                var words = (searchDatabase[i].title + " " + searchDatabase[i].description + " " + searchDatabase[i].keywords).toLowerCase();
+                var array = words.split(" ");
+                data = $.merge(data, array);
+            }
+
+            var unique = new Array();
+            o: for (var i = 0; i < data.length; i++) {
+                for (var j = 0; j < unique.length; j++) {
+                    if (unique[j] == data[i]) continue o;
+                }
+                unique[unique.length] = data[i];
+            }
+
+            unique.sort();
+            if (keywordVal.length && unique.length) {
+                $autocomplete.empty();
+                var item = 0;
+                $.each(unique, function(index, term) {
+                    term = term.toLowerCase();
+                    if (term.indexOf(keywordVal) == 0) {
+                        $('<li></li>').text(term).data('item', item).appendTo($autocomplete).mouseover(function() {
+                            var item = $(this).data('item');
+                            setSelectedItem(item);
+                        }).click(populateSearchField);
+                        item++;
+                    }
+                });
+                setSelectedItem(0);
+            } else {
+                setSelectedItem(null);
+            }
+        } else
+        if (event.keyCode == 38 && selectedItem !== null) {
+            setSelectedItem(selectedItem - 1);
+            event.preventDefault();
+        } else
+        if (event.keyCode == 40 && selectedItem !== null) {
+            setSelectedItem(selectedItem + 1);
+            event.preventDefault();
+        } else
+        if (event.keyCode == 27 && selectedItem !== null) {
+            setSelectedItem(null);
+        }
+    }).keypress(function(event) {
+        if (event.keyCode == 13 && selectedItem !== null) {
+            populateSearchField();
+            event.preventDefault();
+        }
+    }).blur(function(event) {
+        setTimeout(function() {
+            setSelectedItem(null);
+        }, 250);
+    });
+    var Carousel2Opts = {
+        delay: 4000,
+        duration: 500,
+        easing: 'easeInOutBounce',
+        mode: 'fade',
+        direction: '',
+        pagination: false,
+        start: 0
+    };
+    $("#Carousel2").carouseleffects(Carousel2Opts);
+    $("#Carousel2_back a").click(function() {
+        $('#Carousel2').carouseleffects('prev');
+    });
+    $("#Carousel2_next a").click(function() {
+        $('#Carousel2').carouseleffects('next');
+    });
+    var Carousel1Opts = {
+        delay: 4000,
+        duration: 500,
+        easing: 'easeInOutBounce',
+        mode: 'fade',
+        direction: '',
+        pagination: false,
+        start: 0
+    };
+    $("#Carousel1").carouseleffects(Carousel1Opts);
+    $("#Carousel1_back a").click(function() {
+        $('#Carousel1').carouseleffects('prev');
+    });
+    $("#Carousel1_next a").click(function() {
+        $('#Carousel1').carouseleffects('next');
+    });
+    $("#Layer_details").stickylayer({
+        orientation: 9,
+        position: [0, 0],
+        delay: 300
+    });
+    $("#Layer_details3").stickylayer({
+        orientation: 9,
+        position: [0, 0],
+        delay: 300
+    });
+    $("#Layer_details2").stickylayer({
+        orientation: 9,
+        position: [0, 0],
+        delay: 300
+    });
+    var Carousel4Opts = {
+        delay: 4000,
+        duration: 500,
+        easing: 'easeInOutBounce',
+        mode: 'fade',
+        direction: '',
+        pagination: false,
+        start: 0
+    };
+    $("#Carousel4").carouseleffects(Carousel4Opts);
+    $("#Carousel4_back a").click(function() {
+        $('#Carousel4').carouseleffects('prev');
+    });
+    $("#Carousel4_next a").click(function() {
+        $('#Carousel4').carouseleffects('next');
+    });
+});
+function openVideo(id) {
+	$.get(base_url+"seller/video/view/"+id,{},function(data) {
+		$("#Layer_details_Container").html(data);
+		ShowObjectWithEffect('Layer_details3', 1, 'scale', 500, 'swing');
+	},'html');
+}
+function openProduct(id) {
+	//alert('hello');
+	$.get(base_url+"seller/product/view/"+id,{},function(data) {
+		$("#Layer_details_Container2").html(data);
+		ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
+	},'html');
+}
+
+function addToMyFavourite(fav_id,type) {
+	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(data) {
+		alert(data.msg);
+	},'json');
+}
+function validate(){
+if($('select').val()=='default'){
+    alert('Please, choose an option');
+    return false;
+}}
+</script>
