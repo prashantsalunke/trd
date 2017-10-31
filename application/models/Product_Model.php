@@ -757,20 +757,24 @@ class Product_Model extends CI_Model {
     }
     
     public function getDesksiteByBusiId($map) {
-    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, d.company_introduction, b.company_name,
-		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
-		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image');
+    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size, b.company_name,
+		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank,  g.*,
+		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image,e.sub_category as user_subcategory,GROUP_CONCAT(f.name) as mainproducts,h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id');
     	$this->db->from(TABLES::$USER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
     	$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
     	$this->db->join(TABLES::$COMPANY_INFO.' AS d','a.id=d.busi_id','left');
+    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','e.id=a.user_subcategory_id','inner');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS f','f.busi_id=a.busi_id','left');
+    	$this->db->join(TABLES::$FACTORY_INFO.' AS h','h.busi_id=a.busi_id','left');
     	$this->db->where('a.account_activated', 1);
     	$this->db->where('a.is_suspend', 0);
     	$this->db->where('a.is_deleted', 0);
     	$this->db->where('b.is_disable', 0);
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('b.id', $map['id']);
+    	$this->db->where("(f.status != 0)",'',false);
     	$this->db->order_by('a.created_date','DESC');
     	$this->db->group_by('a.id');
     	//echo $this->db->last_query();
@@ -1899,6 +1903,51 @@ class Product_Model extends CI_Model {
     	$this->db->order_by('h.created_date','DESC');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
+    public function getCategoryVideodetailsById($id) {
+    	$this->db->select('a.*,c.name as mainproduct,e.name as maincategory,f.name as subcategory');
+    	$this->db->from(TABLES::$MAINSUBPRODUCTVEDIO.' AS a');
+    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mainproduct_id=c.id','inner');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->where('a.id',$id);
+    	$query = $this->db->get();
+    	return $result = $query->result_array();
+    }
+    
+    public function getMainProductBySubproductId($id) {
+    	$this->db->select('a.name as subproduct,c.id as mainproduct_id,c.name as mainproduct,e.name as maincategory,f.name as subcategory,c.busi_id');
+    	$this->db->from(TABLES::$SUB_PRODUCT.' AS a');
+    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->where('a.id',$id);
+    	$query = $this->db->get();
+    	return $result = $query->result_array();
+    }
+    
+    public function getProductListByMainSubId($map) {
+    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id,h.company_name');
+    	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
+    	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+    	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_VIDEO. ' AS g','g.product_item_id=a.id','inner');
+    	$this->db->join(TABLES::$BUSINESS_INFO. ' AS h','h.id=a.busi_id','inner');
+    	if(!empty($map['mainproduct_id']))
+    		$this->db->where('a.mproduct_id',$map['mainproduct_id']);
+    	//if(!empty($map['subproduct_id']))
+    		//$this->db->where('a.sproduct_id',$map['subproduct_id']);
+    	$this->db->where('a.status',1);
+    	$this->db->order_by('a.id','ASC');
+    	$this->db->group_by('a.id');
+    	$query = $this->db->get();
+    	//echo $this->db->last_query();
     	$result = $query->result_array();
     	return $result;
     }
