@@ -26,6 +26,7 @@ class Global_config {
 			$this->CI->template->set('tssubcategory',$tsuserdata['subcategory']);
 			$this->CI->template->set('tsuser_role',$tsuserdata['user_role']);
 			$this->CI->template->set('tsplanid',$tsuserdata['plan_id']);
+			$this->CI->template->set('google_map_key',$fb_config['google_api_key']);
 			if(!empty($tsuserdata['reg_date'])) { 
 				$this->CI->template->set('tsreg_date',$tsuserdata['reg_date']);
 			} else {

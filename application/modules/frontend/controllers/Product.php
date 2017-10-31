@@ -361,6 +361,33 @@ class Product extends MX_Controller {
 		echo $html;
 	}
 	
+	public function getProductCategoryPage($sproduct_id) {
+		$this->load->model('Product_Model', 'product' );
+		$video = $this->product->getMainProductBySubproductId($sproduct_id);
+		$map =array();
+		$map['id'] = $video[0]['busi_id'];
+		$Desksites = $this->product->getDesksiteByBusiId($map);
+		$this->template->set ( 'business', $Desksites);
+		$this->template->set ( 'video', $video);
+		$map = array();
+		$map['mainproduct_id'] = $video[0]['mainproduct_id'];
+		$map['subproduct_id'] = $sproduct_id;
+		$products = $this->product->getProductListByMainSubId($map);
+		$this->template->set ( 'productList', $products);
+		$sellers = $this->product->getSellerInfo($video[0]['busi_id']);
+		$this->load->library('mylib/FactoryLib');
+		$user_rnd = $this->factorylib->getUserRNDtype($Desksites[0]['factory_id']);
+		$this->template->set('user_rnd',$user_rnd);
+		$this->template->set ( 'sellers', $sellers);
+		$this->template->set ( 'page', 'products_category');
+		$this->template->set ( 'userId', '' );
+		$this->template->set_layout ('default')
+		->title ( 'Seller Products' )
+		->set_partial ( 'header', 'default/floating-header' )
+		->set_partial ( 'footer', 'default/footer' );
+		$html= $this->template->build ('product/product-category');
+	}
+	
 	
 }
 ?>

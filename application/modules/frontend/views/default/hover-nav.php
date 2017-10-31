@@ -433,6 +433,8 @@
 				<?php } elseif($pagename == 'buyer') { ?>
 					<img src="<?php echo asset_url();?>images/buyerrheader.jpg" id="Image45" alt="">
 				<?php } ?>				
+			<?php } else if($page == 'products_category') { ?>
+			<img src="<?php echo asset_url();?>images/sellerheader0.jpg" id="Image45" alt="">
 			<?php } else { ?>
 			<img src="<?php echo asset_url();?>images/homeheader0.jpg" id="Image45" alt="">
 			<?php } ?>

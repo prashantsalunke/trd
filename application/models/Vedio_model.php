@@ -185,7 +185,7 @@ class Vedio_model extends CI_Model {
     			}
     		}
     		if(!empty($params['keyword'])) {
-    			$this->db->where("(c.company_name like '%".trim($params['keyword'])."%' OR b.title like'%".trim($params['keyword'])."%')",'',false);
+    			$this->db->where("(c.company_name like '%".trim($params['keyword'])."%' OR b.vedio_title like'%".trim($params['keyword'])."%')",'',false);
     		}
     	} else {
     		if(!empty($params['cat_id'])) {
@@ -302,7 +302,7 @@ class Vedio_model extends CI_Model {
     			}
     		}
     		if(!empty($params['keyword'])) {
-    			$this->db->where("(c.company_name like '%".trim($params['keyword'])."%' OR b.title like'%".trim($params['keyword'])."%')",'',false);
+    			$this->db->where("(c.company_name like '%".trim($params['keyword'])."%' OR b.vedio_title like'%".trim($params['keyword'])."%')",'',false);
     		}
     	} else {
     		if(!empty($params['cat_id'])) {
@@ -481,6 +481,6 @@ class Vedio_model extends CI_Model {
     		return 0;
     	}
     }
-   
+    
    
 }

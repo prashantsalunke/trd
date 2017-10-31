@@ -363,6 +363,7 @@ $route['seller/popup/([0-9]+)'] = 'frontend/Home/getSellerById/$1';
 $route['buyer/popup/([0-9]+)'] = 'frontend/Home/getBuyerById/$1';
 $route['item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/itemDetailById/$1/$2';
 $route['video/item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/videoItemDetailById/$1/$2';
+$route['product/category/([0-9]+)'] = 'frontend/Product/getProductCategoryPage/$1';
 
 $route['pro-video'] = 'frontend/Vedio/productVideoList';
 $route['video/details/([0-9]+)'] = 'frontend/Product/videoDetailById/$1';

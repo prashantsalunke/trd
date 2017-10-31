@@ -180,7 +180,7 @@ text-align:center;
 			   		<div class="col-md-2 sm-image-border text-center">
 				    	<div class="row">
 				    		<a href="#" onmouseenter="SetImage('Shapeview','<?php echo asset_url()."".$product["main_image"];?>');ShowObject('Layer35', 1);return false;">
-				    			<video class="sm sm-border" controls>
+				    			<video class="sm sm-border" controls="controls" controlsList="nodownload">
 									  <source src="<?php echo asset_url().$product['video_file'];?>" type="video/mp4">
 								</video>
 				    		</a>
@@ -208,7 +208,7 @@ text-align:center;
 		    		</div>
 				    <div class="col-md-9">
 				    	<div class="row main-image" style="position: absolute; text-align: left; left:20px; top: 5px; width: 370px; height: 332px; z-index: 65; visibility: visible;padding-top:59px;padding-left:5px;background-color: #1E1E1E;border: 1px #808080 solid;-moz-border-radius: 9px;-webkit-border-radius: 9px;border-radius: 9px;" id="Layer35">
-			    			<video class="main" controls>
+			    			<video class="main" controls="controls" controlsList="nodownload">
 								<source src="<?php echo asset_url().$product['video_file'];?>" type="video/mp4">
 							</video>
 				    	</div>
@@ -415,5 +415,8 @@ function productListBySubProduct(id, busi_id) {
 		$('#product_details').show("slide", {direction: "left" }, 500, 'swing');
 	},'html');
 }
+jQuery(document).ready(function(){
+    jQuery('video').bind('contextmenu',function() { return false; });
+});
 
 </script>

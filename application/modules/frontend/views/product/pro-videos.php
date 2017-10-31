@@ -40,13 +40,13 @@
 							<?php if($video['type'] == 0) { ?>
 							<strong><a href="<?php echo base_url();?>video/details/<?php echo $video['vid'];?>" target="_blank" class="style16"><?php echo substr($video['name'],0,28);?></a></strong>
 							<?php } else { ?>
-							<strong><a href="<?php echo base_url();?>video/mainproduct/<?php echo $video['vid'];?>" target="_blank" class="style16"><?php echo substr($video['name'],0,28);?></a></strong>
+							<strong><a href="<?php echo base_url();?>product/category/<?php echo $video['product_id'];?>" target="_blank" class="style16"><?php echo substr($video['name'],0,28);?></a></strong>
 							<?php } ?>
 						</span>
-						<label class="text-muted pull-right"><img src="<?php echo asset_url(); ?>images/items_like0.png" id="Image21" alt="Like" style="width:25px;height:25px;margin-bottom: 5px;"> <span id="likeid-<?php echo $video['vid'];?>-<?php echo $video['type'];?>"><?php echo $video['video_likes'];?></span></label>
+						<label class="text-muted pull-right" style="margin-top:-5px;"><img src="<?php echo asset_url(); ?>images/items_like0.png" id="Image21" alt="Like" style="width:25px;height:25px;margin-bottom: 5px;"> <span id="likeid-<?php echo $video['vid'];?>-<?php echo $video['type'];?>"><?php echo $video['video_likes'];?></span></label>
 					</div>
 					<div class="padding-top-5">
-						<span class="text-muted"><?php echo substr($video['description'], 0,42);?><?php if(strlen($video['description']) > 42) { ?> ...<?php } ?></span>
+						<span class="text-muted"><?php echo substr($video['description'], 0,35);?><?php if(strlen($video['description']) > 35) { ?> ...<?php } ?></span>
 					</div>
 					<div class="text-center">
 						<span class="spanusd">USD</span>
@@ -126,9 +126,10 @@
 									<span><img alt="" src="<?php echo asset_url(); ?>images/add-favoritea.png"></span>
 								</a>
 							</div>
-							<div id="wb_Image4"	class="rollovershare">
+							<div id="RollOver12"	class="rollovershare">
 								<a href="#"	onclick="ShowObjectWithEffect('Layer223', 1, 'fade', 500);return false;">
-									<img src="<?php echo asset_url(); ?>images/share-videoa.png" id="Image4" alt="">
+									<img src="<?php echo asset_url(); ?>images/share-videob.png" id="Image4" alt="">
+									<span><img src="<?php echo asset_url(); ?>images/share-videoa.png" id="Image4" alt=""></span>
 								</a>
 							</div>
 						</div>									
