@@ -1,10 +1,25 @@
+<link href="<?php echo asset_url(); ?>css/typeahead.css"  rel="stylesheet">
+<style>
+<!--
+ul.typeahead li a {
+	background-color: #337ab7 !important;
+	opacity:1;
+	filter: alpha(opacity=100);
+}
+ul.typeahead li a:hover {
+	background-color: #1E90FF !important;
+	opacity:1;
+	filter: alpha(opacity=100);
+}
+-->
+</style>
 <div class="col-md-3 col-sm-3 col-xs-3 hash">
 	<img src="<?php echo asset_url(); ?>images/img0041.png" id="Image59" alt="" class="img191">
 </div>
 <form id="addPostContent" name="addPostContent" action="" method="post" enctype="multipart/form-data">
 	<div class="col-md-9 col-sm-9 col-xs-9">
 		<input type="hidden" name="usertype" value="<?php echo $tscategory_id;?>"> 
-		<a href="#" onclick="ShowObjectWithEffect('Layer74', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeNewPost();return false;" class="pull-right"> 
+		<a href="#" onclick="ShowObjectWithEffect('Layer74', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeNewPost();return false;" class="pull-right" style="margin-right:-25px;margin-top:-10px;"> 
 			<img src="<?php echo asset_url(); ?>images/close.png" id="Image2" alt="" class="img35">
 		</a>
 		<div id="postdatacontent">
@@ -35,13 +50,15 @@
 							<input type="radio" name="gender" value="productimage" checked />
 						</div>
 						<label class="label-text col-sm-2" style="padding:0px;">From my products</label>
-						<div class="col-sm-6" style="padding:0px;">
+						<div class="col-sm-6" style="padding:0px;margin-top:-5px;">
 							<div>
-							<select id="select_product_id" onchange="getval(this);" name="product_id" style="width: 160px;padding-top:4px;display:inline;" class="form-control post-input-control">
+							<input type="hidden" name="product_id" id="select_product_id" value=""/>
+							<!-- select id="select_product_id" onchange="getval(this);" name="product_id" style="width: 160px;padding-top:4px;display:inline;" class="form-control post-input-control">
 			                    <?php foreach($items as $item) { ?>
 								  <option value="<?php echo $item['id'];?>"><?php echo $item['name'];?></option>
 							    <?php } ?>	
-							</select>
+							</select-->
+							<input type="text" style="width: 190px;padding-top:4px;display:inline;" id="product_select" class="form-control post-input-control" placeholder="Type the product name or No."/>
 							<button id="buttonselect" style="width:60px;height:25px;" type="button" onclick="getProductImages();">Link</button>
 							</div>
 							<div class="messageContainer"></div>
@@ -50,8 +67,9 @@
 					<br>
 					<div class="row">
 						<label class="label-text col-sm-3">&nbsp;</label>
-						<p class="hh label-text col-sm-9">Upload 4 jpg images, Each image with Max. size 75KB</p>
-						<div class="col-sm-offset-3 col-sm-9">
+						<div class="hh label-text col-sm-4"><div class="col-sm-1" style="padding-left:0px;"><input type="radio" name="gender" value="uproductimage" /></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR choose files below.</div>
+						<div class="col-sm-3"><span style="color:#696969;font-family:Arial;font-size:9.3px;">4 jpg images, Each image with Max. size 75KB</span></div>
+						<div class="col-sm-offset-3 col-sm-9" style="margin-top:10px;">
 							<div>
 								<input type="file" name="postphoto1" id="postphoto1" class="post-background" onchange="setBackgroundSize('postphoto1',this,75);" style="display:inline;"/>
 								<input type="file" name="postphoto2" id="postphoto2" class="post-background" onchange="setBackgroundSize('postphoto2',this,75);" style="display:inline;"/>
@@ -111,7 +129,7 @@
 		</div>
 		<div id="view_Product_image"></div>
 		<div id="loading-image" class="post-loading-layer">
-			<a href="#" onclick="ShowObjectWithEffect('Layer74', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeNewPost();return false;" class="pull-right"> 
+			<a href="#" onclick="ShowObjectWithEffect('Layer74', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeNewPost();return false;" class="pull-right" style="margin-right:-13px;margin-top:-10px;"> 
 				<img src="<?php echo asset_url(); ?>images/close.png" id="Image2" alt="" class="img35">
 			</a>
 			<div class="loading-image">
@@ -121,7 +139,7 @@
 			</div>
 		</div>
 		<div id="post-success-result" class="post-success-layer">
-			<a href="#" onclick="ShowObjectWithEffect('Layer74', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeNewPostResult();return false;" class="pull-right"> 
+			<a href="#" onclick="ShowObjectWithEffect('Layer74', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeNewPostResult();return false;" class="pull-right" style="margin-right:-13px;margin-top:-10px;"> 
 				<img src="<?php echo asset_url(); ?>images/close.png" id="Image2" alt="" class="img35">
 			</a>
 			<div class="loading-result-text">
@@ -136,3 +154,33 @@
 		</div>
 	</div>
 </form>
+<script>
+$(document).ready(function () {
+	$("#product_select").typeahead({
+	    onSelect: function(item) {
+	        itemvalue = item.value;
+	        $("#select_product_id").val(itemvalue);
+	    },
+	    ajax: {
+	        url: base_url+"product/item/search",
+	        timeout: 500,
+	        displayField: "name",
+	        triggerLength: 3,
+	        method: "get",
+	        loadingClass: "loading-circle",
+	        preDispatch: function (query) {
+	            return {
+	            	name: query
+	            }
+	        },
+	        preProcess: function (data) {
+	            if (data.success === false) {
+	                return false;
+	            }
+	            return data;
+	        }
+	    }
+	    
+	});	
+});
+</script>

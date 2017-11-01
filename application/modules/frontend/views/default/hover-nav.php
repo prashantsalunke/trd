@@ -288,113 +288,106 @@
 			style="position: absolute; text-align: right; left: 49%; top: 0px; width: 645px; height: 235px; z-index: 365;">
 			<div id="Layer53_Container"
 				style="width: 645px; position: relative; margin-left: auto; margin-right: 0; text-align: left;">
-				<div id="wb_Text109" style="position: absolute; left: 86px; top: 80px; width: 81px; height: 16px; text-align: center; z-index: 332;">
+				<div id="wb_Text109" style="position: absolute; left: 75px; top: 80px; width: 95px; height: 16px; text-align: center; z-index: 332;">
 					<span style="color: #696969; font-family: Georgia; font-size: 13px;">Home</span>
 				</div>
-				<div id="wb_Text110" style="position: absolute; left: 162px; top: 80px; width: 81px; height: 16px; text-align: center; z-index: 333;">
+				<div id="wb_Text110" style="position: absolute; left: 170px; top: 80px; width: 95px; height: 16px; text-align: center; z-index: 333;">
 					<span style="color: #696969; font-family: Georgia; font-size: 13px;">Sellers</span>
 				</div>
-				<div id="wb_Text111" style="position: absolute; left: 164px; top: 176px; width: 81px; height: 16px; text-align: center; z-index: 334;">
+				<div id="wb_Text111" style="position: absolute; left: 170px; top: 176px; width: 95px; height: 16px; text-align: center; z-index: 334;">
 					<span style="color: #696969; font-family: Georgia; font-size: 13px;">Shippers</span>
 				</div>
-				<div id="wb_Text112" style="position: absolute; left: 86px; top: 176px; width: 81px; height: 16px; text-align: center; z-index: 335;">
+				<div id="wb_Text112" style="position: absolute; left: 75px; top: 176px; width: 95px; height: 16px; text-align: center; z-index: 335;">
 					<span style="color: #696969; font-family: Georgia; font-size: 13px;">Buyers</span>
 				</div>
-				<div id="wb_Text113" style="position: absolute; left: 259px; top: 176px; width: 95px; height: 16px; text-align: center; z-index: 336;">
+				<div id="wb_Text113" style="position: absolute; left: 265px; top: 176px; width: 95px; height: 16px; text-align: center; z-index: 336;">
 					<span style="color: #696969; font-family: Georgia; font-size: 13px;" <?php if($page == 'stock_market'){?>class="blue-color"<?php }?>>Stocks Market</span>
 				</div>
-				<div id="wb_Text115" style="position: absolute; left: 266px; top: 79px; width: 81px; height: 16px; text-align: center; z-index: 337;">
+				<div id="wb_Text115" style="position: absolute; left: 265px; top: 80px; width: 95px; height: 16px; text-align: center; z-index: 337;">
 					<span style="color: #696969; font-family: Georgia; font-size: 13px;">Products</span>
 				</div>
-				<div id="wb_Text116" style="position: absolute; left: 348px; top: 176px; width: 95px; height: 16px; text-align: center; z-index: 338;">
+				<div id="wb_Text116" style="position: absolute; left: 360px; top: 176px; width: 95px; height: 16px; text-align: center; z-index: 338;">
 					<span style="color: #696969; font-family: Georgia; font-size: 13px;" <?php if($page == 'community'){?>class="blue-color"<?php }?>>Community</span>
 				</div>
-				<div id="wb_Shape9"
-					style="position: absolute; left: 485px; top: 134px; width: 17px; height: 38px; z-index: 339;">
-					<!-- a href="#" onclick="ShowObjectWithEffect('Layer53', 0, 'slideright', 500);ShowObjectWithEffect('Layer107', 1, 'slideleft', 500);return false;"-->
-					<a href="#" onclick="ShowObjectWithEffect('Layer83', 1, 'slideright', 500, 'swing');return false;">
-						<img src="<?php echo asset_url();?>images/img0185.png" id="Shape9" alt="" style="width: 17px; height: 38px;">
+				<div id="wb_Shape9" style="position: absolute; left: 476px; top: 123px; width: 50px; height: 50px;text-align: center; z-index: 339;">
+					<a href="" data-toggle="modal" data-target="#myalertModal" onclick="getAlerts();">
+						<img src="<?php echo asset_url(); ?>/images/ts/Alerts1.png" style="width: 50px;">
 					</a>
 				</div>
 				<div id="wb_Text309"
-					style="position: absolute; left: 445px; top: 176px; width: 95px; height: 16px; text-align: center; z-index: 340;">
+					style="position: absolute; left: 455px; top: 176px; width: 95px; height: 16px; text-align: center; z-index: 340;">
 					<span
 						style="color: #696969; font-family: Georgia; font-size: 13px;">My
-						Tools</span>
+						Alerts</span>
 				</div>
 				<div id="RollOver7"
-					style="position: absolute; left: 100px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 341">
-					<a href="<?php echo base_url();?>" target="_blank"> <img
-						class="hover" alt=""
-						src="<?php echo asset_url();?>images/Homekitblue.png"> <span><img
-							alt="" src="<?php echo asset_url();?>images/Homekit.png"></span>
+					style="position: absolute; left: 97px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 341">
+					<a href="<?php echo base_url();?>" target="_blank"> 
+						<img class="hover" alt="" src="<?php echo asset_url();?>images/Homekitblue.png"> 
+						<span><img alt="" src="<?php echo asset_url();?>images/Homekit.png"></span>
 					</a>
 				</div>
 				<div id="RollOver43"
-					style="position: absolute; left: 281px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 342">
+					style="position: absolute; left: 285px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 342">
 					<a href="<?php echo base_url();?>products"> <img class="hover" alt=""
 						src="<?php echo asset_url();?>images/Produvtgray.png"> <span><img alt=""
 							src="<?php echo asset_url();?>images/products.png"></span>
 					</a>
 				</div>
 				<div id="RollOver44"
-					style="position: absolute; left: 465px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 343">
+					style="position: absolute; left: 476px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 343">
 					<a href="<?php echo base_url();?>pro-video"> <img class="hover" alt=""
 						src="<?php echo asset_url();?>images/vidtubcolore0.png"> <span><img
 							alt="" src="<?php echo asset_url();?>images/vidtube0.png"></span>
 					</a>
 				</div>
 				<div id="RollOver45"
-					style="position: absolute; left: 100px; top: 122px; overflow: hidden; width: 50px; height: 50px; z-index: 344">
+					style="position: absolute; left: 96px; top: 122px; overflow: hidden; width: 50px; height: 50px; z-index: 344">
 					<a href="<?php echo base_url();?>buyer"> <img class="hover" alt=""
 						src="<?php echo asset_url();?>images/buyerbrown0.png"> <span><img
 							alt="" src="<?php echo asset_url();?>images/buyer.png"></span>
 					</a>
 				</div>
 				<div id="RollOver46"
-					style="position: absolute; left: 178px; top: 123px; overflow: hidden; width: 50px; height: 50px; z-index: 345">
+					style="position: absolute; left: 192px; top: 123px; overflow: hidden; width: 50px; height: 50px; z-index: 345">
 					<a href="<?php echo base_url();?>shipper"> <img class="hover" alt=""
 						src="<?php echo asset_url();?>images/shipperblue.png"> <span><img
 							alt="" src="<?php echo asset_url();?>images/shipper.png"></span>
 					</a>
 				</div>
 				<div id="RollOver47"
-					style="position: absolute; left: 365px; top: 123px; overflow: hidden; width: 50px; height: 50px; z-index: 346">
+					style="position: absolute; left: 382px; top: 123px; overflow: hidden; width: 50px; height: 50px; z-index: 346">
 					<a href="<?php echo base_url();?>community"> <img class="hover" alt=""
 						src="<?php echo asset_url();?>images/communitgreen2.png"> <span><img
 							alt="" src="<?php echo asset_url();?>images/community.png"></span>
 					</a>
 				</div>
 				<div id="RollOver48"
-					style="position: absolute; left: 364px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 347">
+					style="position: absolute; left: 382px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 347">
 					<a href="<?php echo base_url();?>b-station"> <img class="hover" alt=""
 						src="<?php echo asset_url();?>images/tradeglod.png"> <span><img
 							alt="" src="<?php echo asset_url();?>images/trade.png"></span>
 					</a>
 				</div>
 				<div id="RollOver49"
-					style="position: absolute; left: 282px; top: 123px; overflow: hidden; width: 50px; height: 50px; z-index: 348">
+					style="position: absolute; left: 285px; top: 123px; overflow: hidden; width: 50px; height: 50px; z-index: 348">
 					<a href="<?php echo base_url();?>stock-goods"> <img class="hover" alt=""
 						src="<?php echo asset_url();?>images/stockorange.png"> <span><img
 							alt="" src="<?php echo asset_url();?>images/stock.png"></span>
 					</a>
 				</div>
 				<div id="RollOver42"
-					style="position: absolute; left: 177px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 349">
+					style="position: absolute; left: 192px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 349">
 					<a href="<?php echo base_url();?>seller"> <img class="hover" alt=""
 						src="<?php echo asset_url();?>images/sellerred.png"> <span><img
 							alt="" src="<?php echo asset_url();?>images/seller.png"></span>
 					</a>
 				</div>
-				<div id="wb_Text114"
-					style="position: absolute; left: 343px; top: 80px; width: 95px; height: 16px; text-align: center; z-index: 350;">
-					<span
-						style="color: #696969; font-family: Georgia; font-size: 13px;" <?php if($page == 'bstation'){?>class="blue-color"<?php }?>>B-Station</span>
+				<div id="wb_Text114" style="position: absolute; left: 360px; top: 80px; width: 95px; height: 16px; text-align: center; z-index: 350;">
+					<span style="color: #696969; font-family: Georgia; font-size: 13px;" <?php if($page == 'bstation'){?>class="blue-color"<?php }?>>B-Station</span>
 				</div>
-				<div id="wb_Text117"
-					style="position: absolute; left: 442px; top: 80px; width: 95px; height: 16px; text-align: center; z-index: 351;">
-					<span
-						style="color: #696969; font-family: Georgia; font-size: 13px;">Pro-Videos</span>
+				<div id="wb_Text117" style="position: absolute; left: 455px; top: 80px; width: 95px; height: 16px; text-align: center; z-index: 351;">
+					<span style="color: #696969; font-family: Georgia; font-size: 13px;">Pro-Videos</span>
 				</div>
 			</div>
 		</div>

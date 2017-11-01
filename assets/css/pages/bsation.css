@@ -19,12 +19,13 @@
 	}
 .bluebg button{
 	padding: 6px;
-	
 	width:100%;
-	background:#1E90FF !important;
-    border-radius: 0px;
-    color: white;;
-    border:1px solid grey;
+	border: 1px #808080 solid;
+    background-color: #FAEBD7;
+    color: #4B4B4B;
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 15px;
     
 } 
 .mj5
@@ -5861,10 +5862,12 @@ body
 	padding: 6px;
 	
 	width:100%;
-	background: #00C9D0 !important;
-    border-radius: 0px;
-    color: white;;
-    border:1px solid grey;
+	border: 1px #808080 solid;
+    background-color: #FAEBD7;
+    color: #4B4B4B;
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 15px;
     
 } 
 .mj5

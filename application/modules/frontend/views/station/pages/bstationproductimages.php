@@ -44,7 +44,8 @@
   </div>
   <br><br>
   <div class="row text-center">
-  		 <button type="button" id="buttonuse" name="" value="Use" onclick="selectProductImage();">Use</button>
+  		 <button type="button" id="Button4" name="" value="Use" onclick="selectProductImage();">Use</button>
+  		 <button type="button" id="Button4" name="" value="Cancel" onclick="cancelProductImage();">Cancel</button>
   </div>
   
   </div>

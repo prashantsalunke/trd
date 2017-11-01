@@ -1551,7 +1551,7 @@ class Product_Model extends CI_Model {
     /* ***************** B-Station Posts ********************* */
     
     public function searchBusinessStationPosts($params) {
-    	$start_date = date('Y-m-d',strtotime("-7 days"));
+    	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$end_date = date('Y-m-d H:i:s');
     	$this->db->select('a.*,b.name as subproduct,c.name as mainproduct,d.company_name, d.company_country, 
     			d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, 
@@ -1577,9 +1577,9 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR a.model_no like '".trim($params['keyword'])."')",'',false);
+    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
     	}
-    	$this->db->where("h.created_date >= CONCAT(".$start_date.",' 00:00:00')",'',false);
+    	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
@@ -1601,7 +1601,7 @@ class Product_Model extends CI_Model {
     }
     
     public function getMyBusinessStationPosts($busi_id) {
-    	$start_date = date('Y-m-d',strtotime("-7 days"));
+    	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$end_date = date('Y-m-d H:i:s');
     	$this->db->select('a.*,b.name as subproduct,c.name as mainproduct,d.company_name, d.company_country, 
     			d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, 
@@ -1623,7 +1623,9 @@ class Product_Model extends CI_Model {
     	$this->db->where('c.status',1);
     	$this->db->where('h.status',1);
     	$this->db->where('h.is_deleted',0);
+    	$this->db->where('h.created_date >',$start_date);
     	$this->db->where('h.busi_id',$busi_id);
+    	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
@@ -1646,7 +1648,7 @@ class Product_Model extends CI_Model {
     }
     
     public function searchBuyerBusinessStationPosts($params) {
-    	$start_date = date('Y-m-d',strtotime("-7 days"));
+    	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$end_date = date('Y-m-d H:i:s');
     	$this->db->select('d.company_name, d.company_country,d.company_province, d.company_email, d.business_logo, 
     			d.annual_trad_volume, d.plan_id, d.gaurantee_period,d.is_logo_verified, d.rank, e.*,
@@ -1668,9 +1670,9 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '".trim($params['keyword'])."')",'',false);
+    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
     	}
-    	$this->db->where("h.created_date >= CONCAT(".$start_date.",' 00:00:00')",'',false);
+    	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
@@ -1692,7 +1694,7 @@ class Product_Model extends CI_Model {
     }
     
     public function getMyBuyerBusinessStationPosts($busi_id) {
-    	$start_date = date('Y-m-d',strtotime("-7 days"));
+    	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$end_date = date('Y-m-d H:i:s');
     	$this->db->select('d.company_name, d.company_country,d.company_province, d.company_email, d.business_logo, 
     			d.annual_trad_volume, d.plan_id, d.gaurantee_period,d.is_logo_verified, d.rank, e.*,
@@ -1711,6 +1713,7 @@ class Product_Model extends CI_Model {
     	$this->db->where('h.status',1);
     	$this->db->where('h.is_deleted',0);
     	$this->db->where('h.busi_id',$busi_id);
+    	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
@@ -1766,9 +1769,9 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR a.model_no like '".trim($params['keyword'])."')",'',false);
+    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
     	}
-    	$this->db->where("h.created_date >= CONCAT(".$start_date.",' 00:00:00')",'',false);
+    	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
@@ -1813,6 +1816,7 @@ class Product_Model extends CI_Model {
     	$this->db->where('h.status',1);
     	$this->db->where('h.is_deleted',0);
     	$this->db->where('h.busi_id',$busi_id);
+    	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
@@ -1857,9 +1861,9 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '".trim($params['keyword'])."')",'',false);
+    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
     	}
-    	$this->db->where("h.created_date >= CONCAT(".$start_date.",' 00:00:00')",'',false);
+    	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
@@ -1900,6 +1904,7 @@ class Product_Model extends CI_Model {
     	$this->db->where('h.status',1);
     	$this->db->where('h.is_deleted',0);
     	$this->db->where('h.busi_id',$busi_id);
+    	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
@@ -1948,6 +1953,22 @@ class Product_Model extends CI_Model {
     	$this->db->group_by('a.id');
     	$query = $this->db->get();
     	//echo $this->db->last_query();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
+    public function getMyProductItemList($busi_id,$query) {
+    	$this->db->select('a.id,a.name');
+    	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
+    	$this->db->join(TABLES::$SUB_PRODUCT.' AS b','a.sproduct_id=b.id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS c','b.mproduct_id=c.id','inner');
+    	$this->db->where('a.status',1);
+    	$this->db->where('(b.status = 1 OR b.status IS NULL)','',false);
+    	$this->db->where('c.status',1);
+    	$this->db->where('a.busi_id',$busi_id);
+    	$this->db->where("a.name like '%".$query."%' ",'',false);
+    	$this->db->order_by('name','ASC');
+    	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
     }

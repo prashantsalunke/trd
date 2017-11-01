@@ -4,7 +4,7 @@
 <form id="addPostBuyerContent" name="addPostBuyerContent" action="" method="post" enctype="multipart/form-data">
 	<div class="col-md-9 col-sm-9 col-xs-9">
 		<input type="hidden" name="usertype" value="<?php echo $tscategory_id;?>"> 
-		<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPost();return false;" class="pull-right"> 
+		<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPost();return false;" class="pull-right" style="margin-right:-25px;margin-top:-15px;"> 
 			<img src="<?php echo asset_url(); ?>images/close.png" id="Image2" alt="" class="img35">
 		</a>
 		<div id="bpostdatacontent">
@@ -76,7 +76,7 @@
 			</div>
 		</div>
 		<div id="bloading-image" class="post-loading-layer" style="width: 705px; height: 410px;">
-			<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPost();return false;" class="pull-right"> 
+			<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPost();return false;" class="pull-right" style="margin-right:-13px;margin-top:-15px;"> 
 				<img src="<?php echo asset_url(); ?>images/close.png" id="Image2" alt="" class="img35">
 			</a>
 			<div class="loading-image">
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 		<div id="bpost-success-result" class="post-success-layer" style="width: 705px; height: 410px;">
-			<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPostResult();return false;" class="pull-right"> 
+			<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPostResult();return false;" class="pull-right" style="margin-right:-13px;margin-top:-15px;"> 
 				<img src="<?php echo asset_url(); ?>images/close.png" id="Image2" alt="" class="img35">
 			</a>
 			<div class="loading-result-text">
