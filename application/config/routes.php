@@ -468,6 +468,7 @@ $route['stockmarket/addbuyerpost'] = 'frontend/StockMarket/stockPostInsertBuyer'
 
 $route['business/likecomment/([0-9]+)'] = 'frontend/Business/likeComment/$1';
 $route['mystation/getloginstatus'] = "frontend/Station/getLoginStatus";
+$route['product/item/search'] = "frontend/Product/getMyProductList";
 
 
 

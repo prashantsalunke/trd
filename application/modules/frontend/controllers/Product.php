@@ -388,6 +388,14 @@ class Product extends MX_Controller {
 		$html= $this->template->build ('product/product-category');
 	}
 	
+	public function getMyProductList() {
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$query = $this->input->get('name');
+		$this->load->model('Product_Model', 'product' );
+		$result = $this->product->getMyProductItemList($busi_id,$query);
+		echo json_encode($result);
+	}
+	
 	
 }
 ?>
