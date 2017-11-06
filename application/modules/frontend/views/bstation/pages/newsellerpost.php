@@ -44,6 +44,7 @@ ul.typeahead li a:hover {
 							<div class="messageContainer"></div>
 						</div>
 					</div>
+					<?php if($tscategory_id == 1) { ?>
 					<div class="row">
 						<label class="label-text col-sm-3">Upload Images</label>
 						<div class="col-sm-1">
@@ -79,6 +80,23 @@ ul.typeahead li a:hover {
 							<div class="messageContainer"></div>
 						</div>
 					</div>
+					<?php } else { ?>
+					<div class="row">
+						<label class="label-text col-sm-3">Upload Images</label>
+						<input type="hidden" name="product_id" id="select_product_id" value="0"/>
+						<div class="hh label-text col-sm-4">Choose files below.</div>
+						<div class="col-sm-3"><span style="color:#696969;font-family:Arial;font-size:9.3px;">4 jpg images, Each image with Max. size 75KB</span></div>
+						<div class="col-sm-offset-3 col-sm-9" style="margin-top:10px;">
+							<div>
+								<input type="file" name="postphoto1" id="postphoto1" class="post-background" onchange="setBackgroundSize('postphoto1',this,75);" style="display:inline;"/>
+								<input type="file" name="postphoto2" id="postphoto2" class="post-background" onchange="setBackgroundSize('postphoto2',this,75);" style="display:inline;"/>
+								<input type="file" name="postphoto3" id="postphoto3" class="post-background" onchange="setBackgroundSize('postphoto3',this,75);" style="display:inline;"/>
+								<input type="file" name="postphoto4" id="postphoto4" class="post-background" onchange="setBackgroundSize('postphoto4',this,75);" style="display:inline;"/>
+							</div>
+							<div class="messageContainer"></div>
+						</div>
+					</div>
+					<?php } ?>
 					<input type="hidden" name="cimg[]" id="cimg1"/>
 					<input type="hidden" name="cimg[]" id="cimg2"/>
 					<input type="hidden" name="cimg[]" id="cimg3"/>
@@ -93,6 +111,7 @@ ul.typeahead li a:hover {
 						</div>
 					</div>
 					<br>
+					<?php if($tscategory_id == 1) { ?>
 					<div class="row">
 						<label class="label-text col-sm-3">USD Price</label>
 						<div class="col-sm-2">
@@ -110,12 +129,17 @@ ul.typeahead li a:hover {
 						</div>
 					</div>
 					<br>
+					<?php } else { ?>
+					<input type="hidden" id="usd-price" name="usd_price" value="0"/>
+					<input type="hidden" name="quantity" value="1"/>
+					<br><br>
+					<?php } ?>
 					<div class="row">
 						<div class="col-sm-3">&nbsp;</div>
 						<div class="col-sm-9">
 							<div class="inline">
 								<input type="checkbox" name="profilecheck" value="1" style="margin-left:0px;">
-								<p class="leftbox2">Keep My Profile Info. Locked For Other Sellers..</p>
+								<p class="leftbox2">Keep My Profile Info. Locked For Other <?php if($tscategory_id == 1) { ?>Sellers<?php } else {?>Shippers<?php } ?>..</p>
 							</div>
 							<div class="inline">
 								<button id="Button4">RESET</button>
@@ -124,6 +148,9 @@ ul.typeahead li a:hover {
 						</div>
 					</div>
 					<br>
+					<?php if($tscategory_id == 2) { ?>
+					<br><br><br><br>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

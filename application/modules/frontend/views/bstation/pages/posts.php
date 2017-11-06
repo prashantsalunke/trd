@@ -54,7 +54,7 @@ if(count($posts) > 0) {
 							<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
 								<span style="color:#1E90FF;font-family:Georgia;font-size:12px;"><strong>Company name is not available for <?php if($tscategory_id == 1) { ?>sellers<?php } elseif($tscategory_id == 2) { ?>shippers<?php } else { ?>buyers<?php } ?></strong></span>
 							<?php } else { ?>
-							<?php if($tscategory_id == 1) { ?>
+							<?php if($product['catid'] == 1) { ?>
 							<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" class="style5" target="_blank">
 							<?php } else { ?> 
 							<a href="<?php echo base_url();?>shipper/profile/<?php echo $product['busi_id'];?>" class="style5" target="_blank">
@@ -95,7 +95,7 @@ if(count($posts) > 0) {
 			</div>
 			<div class="col-md-4 col-sm-12" style="padding-right:0px;width:227px;">
 				<div class="tumb-slide" style="padding-top:1px;">
-					<img src="<?php echo asset_url(); ?><?php echo $product['main_image'];?>" class="imgresponsive img211">
+					<img src="<?php echo asset_url(); ?><?php echo $product['image1'];?>" class="imgresponsive img211">
 					<div class="hover-thumb text-center" id="hover-thumb-<?php echo $key;?>">
 						<?php if($product['is_locked']) { ?>
 						<img src="<?php echo asset_url(); ?>images/img1706.png" id="Shape3" alt="" style="width:92px; height:68px;margin-left:30px;">
@@ -117,29 +117,29 @@ if(count($posts) > 0) {
 					<div class="row" style="margin: 0px; padding: 6px;">
 						<div class="col-md-6 col-xs-6 col-sm-6" style="padding: 3px;">
 							<?php if(!empty($product['image1'])) { ?>
-							<a href="<?php echo asset_url(); ?><?php echo $product['image1'];?>" data-rel="myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]" title="<?php echo $product['name'];?>" rel="myprettyPhoto_SlideShow<?php echo $key;?>"> 
-								<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url(); ?><?php echo $product['image1'];?>" title="<?php echo $product['name'];?>" style="border: 1px solid #ccc; width: 77px; height: 63px;" />
+							<a href="<?php echo asset_url(); ?><?php echo $product['image1'];?>" data-rel="myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]" title="<?php echo $product['title'];?>" rel="myprettyPhoto_SlideShow<?php echo $key;?>"> 
+								<img alt="<?php echo $product['title'];?>" src="<?php echo asset_url(); ?><?php echo $product['image1'];?>" title="<?php echo $product['title'];?>" style="border: 1px solid #ccc; width: 77px; height: 63px;" />
 							</a>
 							<?php } ?>
 						</div>
 						<div class="col-md-6 col-xs-6 col-sm-6" style="padding: 3px;">
 							<?php if(!empty($product['image2'])) { ?>
-							<a href="<?php echo asset_url(); ?><?php echo $product['image2'];?>" data-rel="myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]" title="<?php echo $product['name'];?>" rel="myprettyPhoto_SlideShow<?php echo $key;?>">
-								<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url(); ?><?php echo $product['image2'];?>" title="babytoy1" style="border: 1px solid #ccc; width: 77px; height: 63px;" />
+							<a href="<?php echo asset_url(); ?><?php echo $product['image2'];?>" data-rel="myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]" title="<?php echo $product['title'];?>" rel="myprettyPhoto_SlideShow<?php echo $key;?>">
+								<img alt="<?php echo $product['title'];?>" src="<?php echo asset_url(); ?><?php echo $product['image2'];?>" title="<?php echo $product['title'];?>" style="border: 1px solid #ccc; width: 77px; height: 63px;" />
 							</a>
 							<?php } ?>
 						</div>
 						<div class="col-md-6 col-xs-6 col-sm-6" style="padding: 3px;">
 							<?php if(!empty($product['image3'])) { ?>
-							<a href="<?php echo asset_url(); ?><?php echo $product['image3'];?>" data-rel="myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]" title="<?php echo $product['name'];?>" rel="myprettyPhoto_SlideShow<?php echo $key;?>">
-								<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url(); ?><?php echo $product['image3'];?>" title="babytoy1" style="border: 1px solid #ccc; width: 77px; height: 63px;" />
+							<a href="<?php echo asset_url(); ?><?php echo $product['image3'];?>" data-rel="myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]" title="<?php echo $product['title'];?>" rel="myprettyPhoto_SlideShow<?php echo $key;?>">
+								<img alt="<?php echo $product['title'];?>" src="<?php echo asset_url(); ?><?php echo $product['image3'];?>" title="<?php echo $product['title'];?>" style="border: 1px solid #ccc; width: 77px; height: 63px;" />
 							</a>
 							<?php } ?>
 						</div>
 						<div class="col-md-6 col-xs-6 col-sm-6" style="padding: 3px;">
 							<?php if(!empty($product['image4'])) { ?>
-							<a href="<?php echo asset_url(); ?><?php echo $product['image4'];?>" data-rel="myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]" title="<?php echo $product['name'];?>" rel="myprettyPhoto_SlideShow<?php echo $key;?>">
-								<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url(); ?><?php echo $product['image4'];?>" title="babytoy1" style="border: 1px solid #ccc; width: 77px; height: 63px;" />
+							<a href="<?php echo asset_url(); ?><?php echo $product['image4'];?>" data-rel="myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]" title="<?php echo $product['title'];?>" rel="myprettyPhoto_SlideShow<?php echo $key;?>">
+								<img alt="<?php echo $product['title'];?>" src="<?php echo asset_url(); ?><?php echo $product['image4'];?>" title="<?php echo $product['title'];?>" style="border: 1px solid #ccc; width: 77px; height: 63px;" />
 							</a>
 							<?php } ?>
 						</div>
@@ -171,21 +171,21 @@ if(count($posts) > 0) {
 				</div>
 				<div class="col-md-2 p1" style="padding-left: 40px;">
 					<div id="RollOver2" class="img45">
-						<a href="javascript:popupwnd('<?php echo base_url();?>b-station/buyer_request/<?php echo $product['post_id'];?>','no','no','no','yes','yes','no','600','50','555','750')" target="_self"> 
+						<a href="javascript:openBuyerRequestForm(<?php echo $product['post_id'];?>);" target="_self"> 
 							<img class="hover" alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Active/inquirytomato.png" /> <span>
 							<img alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Link/inquirytomato.png"></span>
 						</a>
 					</div>
 					<div id="RollOver2" class="img45">
-						<a href="javascript:popupwnd('./chat_window.php','no','no','no','no','no','no','750','50','430','720')" target="_self"> 
+						<a href="javascript:openChat(<?php echo $product['post_id'];?>,<?php echo $product['busi_id'];?>);" target="_self"> 
 							<img class="hover" alt="Chat" src="<?php echo asset_url(); ?>images/Active/chat_button2.png" /> <span>
 							<img alt="Chat" src="<?php echo asset_url(); ?>images/Link/chat_button2.png" /></span>
 						</a>
 					</div>
 					<div id="RollOver5" class="img45">
-						<?php if($tscategory_id == 1) { ?>
+						<?php if($product['catid'] == 1) { ?>
 							<a href="<?php echo base_url();?>seller/website/<?php echo $product['busi_id'];?>" target="_blank"> 
-						<?php } else if($tscategory_id == 2) { ?>
+						<?php } else if($product['catid'] == 2) { ?>
 							<a href="<?php echo base_url();?>shipper/website/<?php echo $busi_id;?>" target="_blank">
 						<?php } else { ?>
 							<a href="<?php echo base_url();?>buyer/website/<?php echo $busi_id;?>" target="_blank">
@@ -195,9 +195,9 @@ if(count($posts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver1" class="img45">
-						<?php if($tscategory_id == 1) { ?>
+						<?php if($product['catid'] == 1) { ?>
 						<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" target="_blank"> 
-						<?php } else if($tscategory_id == 2) { ?>
+						<?php } else if($product['catid'] == 2) { ?>
 							<a href="<?php echo base_url();?>shipper/profile/<?php echo $busi_id;?>" target="_blank">
 						<?php } else { ?>
 							<a href="<?php echo base_url();?>buyer/profile/<?php echo $busi_id;?>" target="_blank">
@@ -214,6 +214,28 @@ if(count($posts) > 0) {
 <script>
 $("a[data-rel='myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]']").attr('rel', 'myprettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]');
 $("a[rel^='myprettyPhoto_SlideShow<?php echo $key;?>']").prettyPhoto({theme:'facebook',social_tools:false});
+function openBuyerRequestForm(postid) {
+	<?php if($tscategory_id != 3) { ?>
+	customAlert("Sorry.. Only buyers have access to send enquiry to seller/shipper posts.");
+	<?php } else { ?>
+	<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
+		popupwnd('<?php echo base_url();?>b-station/buyer_request/'+postid,'no','no','no','yes','yes','no','600','50','555','750');
+	<?php } else if($contact_details[0]['step'] < 2) { ?>
+		customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+	<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
+		customAlert('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+	<?php } ?>
+	<?php } ?>
+}
+
+function openChat(postid,seller_id) {
+	<?php if($contact_details[0]['accept_chat'] == 1) { ?>
+		popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+	<?php } else { ?>
+		customAlert('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
+	<?php } ?>
+}
+
 </script>
 <?php 
 	} 

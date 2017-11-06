@@ -1,6 +1,5 @@
 <link href="<?php echo asset_url(); ?>css/pages/sellers.css"  rel="stylesheet">
 <link href="<?php echo asset_url(); ?>js/slimbox/css/slimbox2.css"  rel="stylesheet">
-<script src="<?php echo asset_url(); ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-blind.min.js"></script>
@@ -311,6 +310,11 @@ div.pp_pic_holder {
 	<script src="<?php echo asset_url();?>js/bootstrapValidator.min.js"></script>
 	<script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 <script>
+var is_offer_accepts = <?php echo $contact_details[0]['accept_offer'];?>;
+var is_contact_accepts = <?php echo $contact_details[0]['accept_email'];?>;
+var plan_id = <?php echo $contact_details[0]['plan_id'];?>;
+var desk_step = <?php echo $contact_details[0]['step'];?>;
+var usr_cat_id = <?php echo $tscategory_id;?>;
 $("#SiteSearch3").change(function() {
   	$('[name=keyword]').val($(this).val());
 });
@@ -336,68 +340,80 @@ $('#buttonuse').click(function() {
 });
 
 function openNewPostForm() {
-	$.get(base_url+"bstation/seller/newpost/form",{},function(data){
-		$("#newsellerpostfrm").html(data);
-		ShowObjectWithEffect('Layer74', 1, 'cliphorizontal', 500);
-		$('#addPostContent').bootstrapValidator({
-			container: function($field, validator) {
-				return $field.parent().next('.messageContainer');
-		   	},
-		    feedbackIcons: {
-		        validating: 'glyphicon glyphicon-refresh'
-		    },
-		    excluded: ':disabled',
-		    fields: {
-		    	title: {
-		            validators: {
-		                notEmpty: {
-		                    message: 'Post Title is required'
-		                },
-		                stringLength: {
-				            max: 45,
-				            min: 6,
-				            message: 'Minimum 6 and maximum 45 characters required'
-				        }
-		            }
-		        },
-		        description: {
-		            validators: {
-		                notEmpty: {
-		                    message: 'Post Description is required'
-		                },
-		                stringLength: {
-				            max: 1500,
-				            min: 150,
-				            message: 'Minimum 150 and maximum 1500 characters required'
-				        }
-		            }
-		        },
-		        usd_price: {
-		            validators: {
-		                notEmpty: {
-		                    message: 'USD Price is required'
-		                },
-		                numeric: {
-		                 	message: 'Item Price is invalid',
-		                    thousandsSeparator: '',
-		                    decimalSeparator: '.'
-		              	}
-		            }
-		        },
-		        quantity: {
-		            validators: {
-		                notEmpty: {
-		                    message: 'Quantity is required'
-		                }
-		            }
-		        }
-		    }
-		}).on('success.form.bv', function(event,data) {
-			// Prevent form submission
-			event.preventDefault();
-			addPostContent();
-		});
-	},'html');
+	if(plan_id > 1) {
+		if((usr_cat_id == 1 && desk_step == 4) || (usr_cat_id == 2 && desk_step == 2)) {
+			$.get(base_url+"bstation/seller/newpost/form",{},function(data){
+				if(data == '11') {
+					customAlert('Oops.. You have been reached to the maximum number of sending posts per day… See you tomorrow.');
+				} else {
+					$("#newsellerpostfrm").html(data);
+					ShowObjectWithEffect('Layer74', 1, 'cliphorizontal', 500);
+					$('#addPostContent').bootstrapValidator({
+						container: function($field, validator) {
+							return $field.parent().next('.messageContainer');
+					   	},
+					    feedbackIcons: {
+					        validating: 'glyphicon glyphicon-refresh'
+					    },
+					    excluded: ':disabled',
+					    fields: {
+					    	title: {
+					            validators: {
+					                notEmpty: {
+					                    message: 'Post Title is required'
+					                },
+					                stringLength: {
+							            max: 45,
+							            min: 6,
+							            message: 'Minimum 6 and maximum 45 characters required'
+							        }
+					            }
+					        },
+					        description: {
+					            validators: {
+					                notEmpty: {
+					                    message: 'Post Description is required'
+					                },
+					                stringLength: {
+							            max: 1500,
+							            min: 150,
+							            message: 'Minimum 150 and maximum 1500 characters required'
+							        }
+					            }
+					        },
+					        usd_price: {
+					            validators: {
+					                notEmpty: {
+					                    message: 'USD Price is required'
+					                },
+					                numeric: {
+					                 	message: 'Item Price is invalid',
+					                    thousandsSeparator: '',
+					                    decimalSeparator: '.'
+					              	}
+					            }
+					        },
+					        quantity: {
+					            validators: {
+					                notEmpty: {
+					                    message: 'Quantity is required'
+					                }
+					            }
+					        }
+					    }
+					}).on('success.form.bv', function(event,data) {
+						// Prevent form submission
+						event.preventDefault();
+						addPostContent();
+					});
+				}
+			},'html');
+		} else {
+			customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+		}
+	} else {
+		customAlert("Sorry.. Only Black Horse members can send posts and deal with global buyers, Do you like to upgrade your account.");
+	}
 }
 
 
@@ -430,49 +446,61 @@ function showAddResponse(resp, statusText, xhr, $form){
 }
 
 function openNewBuyerPostForm() {
-	$.get(base_url+"bstation/buyer/newpost/form",{},function(data){
-		$("#newbuyerpostfrm").html(data);
-		ShowObjectWithEffect('Layer744', 1, 'cliphorizontal', 500);
-		$('#addPostBuyerContent').bootstrapValidator({
-			container: function($field, validator) {
-				return $field.parent().next('.messageContainer');
-		   	},
-		    feedbackIcons: {
-		        validating: 'glyphicon glyphicon-refresh'
-		    },
-		    excluded: ':disabled',
-		    fields: {
-		    	btitle: {
-		            validators: {
-		                notEmpty: {
-		                    message: 'Post Title is required'
-		                },
-		                stringLength: {
-				            max: 45,
-				            min: 6,
-				            message: 'Minimum 6 and maximum 45 characters required'
-				        }
-		            }
-		        },
-		        bdescription: {
-		            validators: {
-		                notEmpty: {
-		                    message: 'Post Description is required'
-		                },
-		                stringLength: {
-				            max: 1500,
-				            min: 150,
-				            message: 'Minimum 150 and maximum 1500 characters required'
-				        }
-		            }
-		        },
-		    }
-		}).on('success.form.bv', function(event,data) {
-			// Prevent form submission
-			event.preventDefault();
-			addPostContentbuyer();
-		});
-	},'html');
+	if(is_offer_accepts == 1 && is_contact_accepts == 1 && desk_step == 2) {
+		$.get(base_url+"bstation/buyer/newpost/form",{},function(data){
+			if(data == '11') {
+				customAlert('Oops.. You have been reached to the maximum number of sending posts per day… See you tomorrow.');
+			} else {
+				$("#newbuyerpostfrm").html(data);
+				ShowObjectWithEffect('Layer744', 1, 'cliphorizontal', 500);
+				$('#addPostBuyerContent').bootstrapValidator({
+					container: function($field, validator) {
+						return $field.parent().next('.messageContainer');
+				   	},
+				    feedbackIcons: {
+				        validating: 'glyphicon glyphicon-refresh'
+				    },
+				    excluded: ':disabled',
+				    fields: {
+				    	btitle: {
+				            validators: {
+				                notEmpty: {
+				                    message: 'Post Title is required'
+				                },
+				                stringLength: {
+						            max: 45,
+						            min: 6,
+						            message: 'Minimum 6 and maximum 45 characters required'
+						        }
+				            }
+				        },
+				        bdescription: {
+				            validators: {
+				                notEmpty: {
+				                    message: 'Post Description is required'
+				                },
+				                stringLength: {
+						            max: 1500,
+						            min: 150,
+						            message: 'Minimum 150 and maximum 1500 characters required'
+						        }
+				            }
+				        },
+				    }
+				}).on('success.form.bv', function(event,data) {
+					// Prevent form submission
+					event.preventDefault();
+					addPostContentbuyer();
+				});
+			}
+		},'html');
+	} else {
+		if(desk_step < 2) {
+			customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+		} else {
+			customAlert('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+		}
+	}
 }
 
 function addPostContentbuyer() {

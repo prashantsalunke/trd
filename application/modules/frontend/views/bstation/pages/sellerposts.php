@@ -86,7 +86,7 @@
 				</div>
 			</div>
 			<div id="Layer7" class="" style="height: 172px;">
-				<img src="<?php echo asset_url(); ?><?php echo $product['main_image'];?>" class="imgresponsive img211" style="margin-left: 10px;">
+				<img src="<?php echo asset_url(); ?><?php echo $product['image1'];?>" class="imgresponsive img211" style="margin-left: 10px;">
 			</div>
 		</div>
 	</div>

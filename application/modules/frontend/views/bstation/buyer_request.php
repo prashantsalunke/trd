@@ -244,14 +244,14 @@ function showAddResponse(resp, statusText, xhr, $form){
 <form name="Offer_for_you_post_in_RT_Business" method="post" action="" enctype="multipart/form-data" id="bstbuyerrequest" onsubmit="return ValidateOffer_for_you_post_in_RT_Business(this);">
 <input type="hidden" name="post_id" value="<?php echo $post[0]['id'];?>" />
 <input type="hidden" name="seller_id" value="<?php echo $post[0]['busi_id'];?>" />
-<input type="text" id="Editbox1" style="position:absolute;left:289px;top:288px;width:194px;height:19px;line-height:19px;z-index:0;" name="name" value="" maxlength="20">
-<input type="text" id="Editbox2" style="position:absolute;left:289px;top:318px;width:194px;height:19px;line-height:19px;z-index:1;" name="Company" value="" maxlength="20">
-<input type="number" id="Editbox6" style="position:absolute;left:290px;top:380px;width:194px;height:19px;line-height:19px;z-index:2;" name="phone" value="" maxlength="20">
+<input type="text" id="Editbox1" style="position:absolute;left:289px;top:288px;width:194px;height:19px;line-height:19px;z-index:0;" name="name" value="<?php echo $contact_details[0]['name'];?>" maxlength="20">
+<input type="text" id="Editbox2" style="position:absolute;left:289px;top:318px;width:194px;height:19px;line-height:19px;z-index:1;" name="Company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
+<input type="number" id="Editbox6" style="position:absolute;left:290px;top:380px;width:194px;height:19px;line-height:19px;z-index:2;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
 <input type="email" id="Editbox7" style="position:absolute;left:290px;top:349px;width:194px;height:19px;line-height:19px;z-index:3;" name="email" value="" maxlength="30">
 <select name="country" size="1" id="Combobox2" style="position:absolute;left:290px;top:411px;width:200px;height:25px;z-index:4;">
 <option selected value="Select">Select your country</option>
 <?php foreach ($Country as $country){?>
-<option value="<?php echo $country['name'];?> "><?php echo $country['name'];?></option>
+<option value="<?php echo $country['name'];?>" <?php if($contact_details[0]['company_country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
 <?php }?>
 </select>
 <input type="button" id="Button1" name="" value="Send" style="position:absolute;left:393px;top:455px;width:96px;height:25px;z-index:5;" onclick="saveRequest();">
@@ -268,11 +268,11 @@ function showAddResponse(resp, statusText, xhr, $form){
 <span style="color:#696969;font-family:Arial;font-size:11px;">Phone</span></div>
 <div id="wb_Text4" style="position:absolute;left:27px;top:218px;width:180px;height:14px;z-index:12;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">Attachement</span></div>
-<div id="wb_Text5" style="position:absolute;left:27px;top:142px;width:180px;height:14px;z-index:13;text-align:left;">
+<div id="wb_Text5" style="position:absolute;left:27px;top:100px;width:180px;height:14px;z-index:13;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">More Details</span></div>
 <input type="file" id="FileUpload1" style="position:absolute;left:284px;top:215px;width:200px;height:25px;line-height:25px;z-index:14;" name="FileUpload3">
-<textarea name="TextArea4" id="TextArea1" style="position:absolute;left:222px;top:141px;width:257px;height:44px;z-index:15;" rows="2" cols="34" maxlength="4000"></textarea>
-<textarea name="TextArea3" id="TextArea2" style="position:absolute;left:222px;top:34px;width:258px;height:85px;z-index:16;" rows="5" cols="34" maxlength="4000"></textarea>
+<textarea name="TextArea4" id="TextArea1" style="position:absolute;left:222px;top:100px;width:257px;height:84px;z-index:15;" rows="2" cols="34" maxlength="4000"></textarea>
+<textarea name="TextArea3" id="TextArea2" style="position:absolute;left:222px;top:34px;width:258px;height:18px;z-index:16;" rows="5" cols="34" maxlength="4000"></textarea>
 <div id="wb_Text6" style="position:absolute;left:29px;top:33px;width:180px;height:14px;z-index:17;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">Message to the seller:</span></div>
 </form>
