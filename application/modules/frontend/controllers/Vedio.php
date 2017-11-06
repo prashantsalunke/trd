@@ -322,6 +322,10 @@ class Vedio extends MX_Controller {
 		if(empty($keyword)) {
 			unset($params['keyword']);
 		}
+		if(!empty($params['country'])) {
+			$city= $this->sellers->getCityByCountry($params['country'],1);
+			$this->template->set ( 'cities', $city);
+		}
 		$url = base_url()."pro-video?".http_build_query($params);
 		$this->template->set('url',$url);
 		$this->template->set ( 'mcats', $maincats );

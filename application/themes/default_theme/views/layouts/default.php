@@ -41,6 +41,12 @@ a:focus,.btn:active {
 </script>
 <script src="<?php echo asset_url(); ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/bootstrap.js"></script>
+<script>
+function customAlert(msg) {
+	$("#customAlertText").html(msg);
+	$('#customAlertBox').modal({show:true,backdrop: 'static',keyboard: false});
+}
+</script>
 </head>
 <body>
     <?php echo $template['partials']['header']; ?>
@@ -48,6 +54,33 @@ a:focus,.btn:active {
 	<?php echo $template['partials']['footer']; ?>
 </body>
 </html>
+<div id="customAlertBox" class="modal fade" role="dialog" style="z-index:13000;">
+  	<div class="modal-dialog" style="width:500px;">
+    	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
+      		<div class="modal-body">
+      			<div class="row" style="padding-top:10px;">
+      				<div class="col-sm-1"></div>
+      				<div class="col-sm-10">
+	      				<div style="text-align: center;">
+	      					<br>
+							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;">WARNING</span>
+						</div>
+						<br>
+						<div style="text-align: left;font-size:13px;font-family:Arial;" id="customAlertText">
+							My Alert
+						</div>
+					</div>
+					<div class="col-sm-1"></div>
+      			</div>
+      			<br>
+      			<div class="row text-center">
+      				<a href="" class="btn btn-sm btn-danger-custom" data-dismiss="modal" style="width:100px;">OK</a>
+      			</div>
+      			<br><br>
+      		</div>
+    	</div>
+  	</div>
+</div>
 <script src="<?php echo asset_url(); ?>js/custom/account.js"></script>
 <script>
 function ajaxindicatorstart(text)

@@ -904,5 +904,20 @@ class Account_Model extends CI_Model {
 		$result = $query->result_array();
 		return $result;
 	}
+	
+	public function getBusinessContactDetails($busi_id) {
+		$this->db->select('a.id,a.company_name,a.company_country,a.company_province,a.company_city,a.accept_chat,a.accept_offer,a.accept_community,a.accept_email,a.plan_id,b.name_prefix,b.name,b.account_activated,b.user_category_id,c.mobile_number,d.step');
+		$this->db->from(TABLES::$BUSINESS_INFO.' AS a');
+		$this->db->join(TABLES::$USER.' AS b','a.id=b.busi_id','left');
+		$this->db->join(TABLES::$USER_INFO.' AS c','b.id=c.user_id','left');
+		$this->db->join(TABLES::$PRODUCT_STAGE.' AS d','a.id=d.busi_id','left');
+		$this->db->where('a.id',$busi_id);
+		$this->db->where('b.is_suspend',0);
+		$this->db->where('b.is_deleted',0);
+		$this->db->where('b.is_contactperson',1);
+		$query = $this->db->get();
+		$result = $query->result_array();
+		return $result;
+	}
  
 }

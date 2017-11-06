@@ -167,13 +167,13 @@ if(count($bposts) > 0) {
 				</div>
 				<div class="col-md-2 p1" style="padding-left: 40px;">
 					<div id="RollOver2" class="img45">
-						<a href="javascript:popupwnd('<?php echo base_url();?>b-station/seller_offer/<?php echo $product['post_id'];?>','no','no','no','yes','yes','no','600','50','555','750')" target="_self"> 
+						<a href="javascript:openSellerOfferForm(<?php echo $product['post_id'];?>,<?php echo $contact_details[0]['plan_id'];?>);" target="_self"> 
 							<img class="hover" alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Active/sendoffertomato.png" /> <span>
 							<img alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Link/sendofferblack.png"></span>
 						</a>
 					</div>
 					<div id="RollOver2" class="img45">
-						<a href="javascript:popupwnd('./chat_window.php','no','no','no','no','no','no','750','50','430','720')" target="_self"> 
+						<a href="javascript:openChatWithBuyer(<?php echo $product['post_id'];?>,<?php echo $product['busi_id'];?>,<?php echo $product['accept_chat'];?>);" target="_self"> 
 							<img class="hover" alt="Chat" src="<?php echo asset_url(); ?>images/Active/chat_button2.png" /> <span>
 							<img alt="Chat" src="<?php echo asset_url(); ?>images/Link/chat_button2.png" /></span>
 						</a>
@@ -210,6 +210,29 @@ if(count($bposts) > 0) {
 <script>
 $("a[data-rel='prettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]']").attr('rel', 'prettyPhoto_SlideShow<?php echo $key;?>[SlideShow<?php echo $key;?>]');
 $("a[rel^='prettyPhoto_SlideShow<?php echo $key;?>']").prettyPhoto({theme:'facebook',social_tools:false});
+function openSellerOfferForm(postid,plan_id) {
+	<?php if($tscategory_id == 3) { ?>
+	customAlert("Sorry.. Only sellers/shippers have access to send offer/enquiry to buyer posts.");
+	<?php } else { ?>
+	if(plan_id > 1) {
+		<?php if(($tscategory_id == 1 && $contact_details[0]['step'] == 4) || ($tscategory_id == 2 && $contact_details[0]['step'] == 2)) { ?>
+		popupwnd('<?php echo base_url();?>b-station/seller_offer/'+postid,'no','no','no','yes','yes','no','600','50','555','750');
+		<?php } else { ?>
+		customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+		<?php } ?>
+	} else {
+		customAlert("Sorry.. Only Black Horse members can send posts and deal with global buyers, Do you like to upgrade your account.");
+	}
+	<?php } ?>
+}
+
+function openChatWithBuyer(postid,buyer_id,accept_chat) {
+	if(accept_chat == 1) {
+		popupwnd('<?php echo base_url();?>global/chat/'+buyer_id,'no','no','no','no','no','no','750','50','430','720');
+	} else {
+		customAlert('Sorry.. Buyer status is " Don\'t Disturb".. Please try again on other time, status may be changed soon.');
+	}
+}
 </script>
 <?php 
 	} 
