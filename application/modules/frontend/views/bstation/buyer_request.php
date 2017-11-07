@@ -247,7 +247,7 @@ function showAddResponse(resp, statusText, xhr, $form){
 <input type="text" id="Editbox1" style="position:absolute;left:289px;top:288px;width:194px;height:19px;line-height:19px;z-index:0;" name="name" value="<?php echo $contact_details[0]['name'];?>" maxlength="20">
 <input type="text" id="Editbox2" style="position:absolute;left:289px;top:318px;width:194px;height:19px;line-height:19px;z-index:1;" name="Company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
 <input type="number" id="Editbox6" style="position:absolute;left:290px;top:380px;width:194px;height:19px;line-height:19px;z-index:2;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
-<input type="email" id="Editbox7" style="position:absolute;left:290px;top:349px;width:194px;height:19px;line-height:19px;z-index:3;" name="email" value="" maxlength="30">
+<input type="email" id="Editbox7" style="position:absolute;left:290px;top:349px;width:194px;height:19px;line-height:19px;z-index:3;" name="email" value="<?php echo $contact_details[0]['email'];?>" maxlength="30">
 <select name="country" size="1" id="Combobox2" style="position:absolute;left:290px;top:411px;width:200px;height:25px;z-index:4;">
 <option selected value="Select">Select your country</option>
 <?php foreach ($Country as $country){?>
@@ -257,7 +257,7 @@ function showAddResponse(resp, statusText, xhr, $form){
 <input type="button" id="Button1" name="" value="Send" style="position:absolute;left:393px;top:455px;width:96px;height:25px;z-index:5;" onclick="saveRequest();">
 <input type="reset" id="Button2" name="" value="Cancel" style="position:absolute;left:289px;top:455px;width:96px;height:25px;z-index:6;" onclick="window.close();">
 <div id="wb_Text1" style="position:absolute;left:27px;top:355px;width:180px;height:14px;z-index:7;text-align:left;">
-<span style="color:#696969;font-family:Arial;font-size:11px;">Additional Email</span></div>
+<span style="color:#696969;font-family:Arial;font-size:11px;">Contact Email</span></div>
 <div id="wb_Text3" style="position:absolute;left:27px;top:418px;width:180px;height:14px;z-index:8;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">Country</span></div>
 <div id="wb_Text7" style="position:absolute;left:27px;top:295px;width:180px;height:14px;z-index:9;text-align:left;">

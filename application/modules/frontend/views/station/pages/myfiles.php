@@ -155,8 +155,8 @@ div.pp_pic_holder {
 											<div class="col-md-6">
 												<div class="col-sm-5">
 													<input type="checkbox" id="Checkbox98" name="filearray[]" value="<?php echo $myfilelist[$i]['id'];?>" >
-													<a href="#" <?php if($myfilelist[$i]['file_access_type'] == 1) { ?> 
-													download="<?php  echo base_url();?>mystation/myfile/download/<?php echo $myfilelist[$i]['id'];?>" onclick="recordFileDownload(<?php echo $myfilelist[$i]['id'];?>);" <?php } else { ?> data-toggle="modal" data-target="#filepassword_modal" 
+													<a <?php if($myfilelist[$i]['file_access_type'] == 1) { ?> href="<?php  echo base_url();?>mystation/myfile/download/<?php echo $myfilelist[$i]['id'];?>" 
+													download="<?php  echo base_url();?>mystation/myfile/download/<?php echo $myfilelist[$i]['id'];?>" onclick="recordFileDownload(<?php echo $myfilelist[$i]['id'];?>);" <?php } else { ?> href="#" data-toggle="modal" data-target="#filepassword_modal" 
 													 backdrop="static" onclick="passwordpoup(<?php echo $myfilelist[$i]['id'];?>);" <?php } ?>>
 														<?php if($myfilelist[$i]['file_type'] == "pdf") { ?>
 															<img src="<?php echo asset_url();?>images/pdfimg.png" id="" alt="" style="width:80px;" height="80px">

@@ -103,7 +103,7 @@ div.pp_pic_holder {
 							</div>
 							<div class="row" style="margin: 0px;">
 								<div class="greystyle" style="background-color: #FAEBD7;">
-									* Each post will get expired automatically after 7 days, to view the
+									* Each post will get expired automatically after 15 days, to view the
 									remains days or delete posts click " View My Posts". <br> * Don't
 									repeat, duplicate or send the same post twice, so as you not affect
 									the storage of your Stock Market Box.
@@ -116,7 +116,7 @@ div.pp_pic_holder {
 							</div>
 							<div class="row" style="margin: 0px;">
 								<div class="greystyle" style="background-color: #E9F4FF;padding-left:200px;">
-									* Each post will get expired automatically after 1 month, to view the remain days or to delete posts, click on " View My Posts".<br>
+									* Each post will get expired automatically after 15 days, to view the remain days or to delete posts, click on " View My Posts".<br>
 									* Don't repeat, duplicate or send the same post twice, so as you not affect the storage of your (Business Station Box ).
 								</div>
 							</div>
@@ -412,7 +412,7 @@ function openNewPostForm() {
 			customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
 		}
 	} else {
-		customAlert("Sorry.. Only Black Horse members can send posts and deal with global buyers, Do you like to upgrade your account.");
+		customAlert("Sorry.. Only Black Horse members can send posts and deal with global buyers, <strong>Please upgrade your membership</strong>.");
 	}
 }
 
@@ -568,7 +568,9 @@ function searchBusinessStation() {
 	var keyword = $("#SiteSearch3").val();
 	var country = $("#top_country_id").val();
 	if(keyword != "" && country != "") {
+		ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
+			ajaxindicatorstop();
 			$("#Layer28").html(data.posts);
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
@@ -600,7 +602,9 @@ function filterBusinessStation() {
 	var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
 	if(keyword != "" && country != "") {
+		ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
+			ajaxindicatorstop();
 			$("#Layer28").html(data.posts);
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
@@ -662,7 +666,9 @@ function closeNewPostResult() {
 }
 
 function viewMyPosts() {
+	ajaxindicatorstart("");
 	$.get(base_url+"bstation/seller/myposts",{},function(data){
+		ajaxindicatorstop();
 		ShowObjectWithEffect('Layer28', 0, 'fade', 500);
 		ShowObjectWithEffect('Layer32', 1, 'fade', 500);
 		$("#Layer32").html(data);
@@ -718,7 +724,9 @@ function deleteBuyerPost(id) {
 	}
 }
 function viewBuyerPosts() {
+	ajaxindicatorstart("");
 	$.get(base_url+"bstation/buyer/myposts",{},function(data){
+		ajaxindicatorstop();
 		ShowObjectWithEffect('Layer288', 0, 'fade', 500);
 		ShowObjectWithEffect('Layer322', 1, 'fade', 500);
 		$("#Layer322").html(data);
@@ -741,7 +749,9 @@ $(document).ready(function() {
 var keyword = '<?php echo $_COOKIE['bstation-keyword'];?>';
 var country = '<?php echo $_COOKIE['bstation-country'];?>';
 $("#Layer46").hide();
+ajaxindicatorstart("");
 $.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
+	ajaxindicatorstop();
 	$("#Layer28").html(data.posts);
 	$("#Layer288").html(data.requests);
 	ShowObjectWithEffect('Layer2', 1, 'fade', 100, 'swing');

@@ -131,30 +131,6 @@ function filterData(&$str)
 	if(strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
 }
 
-
-
-/**
- * Get Invoice Code
- * @param integer invoice ID
- * @return string invoice code
- */
-function getInvoiceCode($invoice_id) {
-	$invoiceid = str_pad($invoice_id, 5, '0', STR_PAD_LEFT);
-	$invoiceid = "IN".$invoice_id;
-	return $invoiceid;
-}
-
-/**
- * Get Econfirmation Code
- * @param integer Econfirmation ID
- * @return string Econfirmation code
- */
-function getEconfirmCode($econfirm_id) {
-	$econfirmid = str_pad($econfirm_id, 5, '0', STR_PAD_LEFT);
-	$econfirmid = "C".$econfirmid;
-	return $econfirmid;
-}
-
 /**
  * Get Ineteger ID
  * @param string ID
@@ -165,16 +141,6 @@ function getIntId($id) {
 	return $intid;
 }
 
-/**
- * Get Truck Booking Code
- * @param integer Booking ID
- * @return string Booking code
- */
-function getBookingCode($booking_id) {
-	$bookingid = str_pad($booking_id, 5, '0', STR_PAD_LEFT);
-	$bookingid = "BR".$bookingid;
-	return $bookingid;
-}
 
 function getLatLong($string) {
 	$latlng = array();

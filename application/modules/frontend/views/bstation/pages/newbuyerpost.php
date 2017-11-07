@@ -19,11 +19,14 @@
 				<div>
 					<div class="row">
 						<label class="label-text col-sm-3">Post Title</label>
-						<div class="form-group col-sm-9">
+						<div class="form-group col-sm-5">
 							<div>
-								<input type="text" id="post-title" class="form-control post-input-control" placeholder="Buying Post Title" name="btitle" value="" maxlength="45" style="width:332px;margin-left: 0px;" />
+								<input type="text" id="post-title" class="form-control post-input-control" placeholder="Buying Post Title" name="btitle" value="" maxlength="45" style="width:285px;margin-left: 0px;" />
 							</div>
 							<div class="messageContainer"></div>
+						</div>
+						<div class="col-sm-4">
+							<span style="color:#696969;font-family:Arial;font-size:9.3px;">Title should include the keywords members may type to find your post above all.</span>
 						</div>
 					</div>
 					<!-- div class="row">

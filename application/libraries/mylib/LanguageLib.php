@@ -151,10 +151,18 @@ class LanguageLib {
 		$this->CI->load->model ( 'Language_model', 'language' );
 		return $res = $this->CI->language->getLanguageProductsByProid($pro_id);
 	}
+	public function getLanguageProductsByProidAndLangId($pro_id,$lang_id) {
+		$this->CI->load->model ( 'Language_model', 'language' );
+		return $res = $this->CI->language->getLanguageProductsByProidAndLangId($pro_id,$lang_id);
+	}
 	public function getLanguageProductSpecificationByProid($pro_id)
 	{
 		$this->CI->load->model ( 'Language_model', 'language' );
 		return $res = $this->CI->language->getLanguageProductSpecificationByProid($pro_id);
+	}
+	public function getLanguageProductSpecificationByProidAndLangId($pro_id,$lang_id) {
+		$this->CI->load->model ( 'Language_model', 'language' );
+		return $res = $this->CI->language->getLanguageProductSpecificationByProidAndLangId($pro_id,$lang_id);
 	}
 	public function updateLangProductinfo($data)
 	{

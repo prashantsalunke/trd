@@ -228,6 +228,16 @@ class Language_model extends CI_Model {
     	$result = $query->result_array();
     	return $result;
     }
+    public function  getLanguageProductsByProidAndLangId($pro_id,$lang_id)
+    {
+    	$this->db->select('a.*');
+    	$this->db->from(TABLES::$LANGUAGEPRODUCT. ' AS a');
+    	$this->db->where('a.product_id',$pro_id);
+    	$this->db->where('a.language_id',$lang_id);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
     public function  getLanguageProductSpecificationByProid($pro_id)
     {
     	$this->db->select('a.*');
@@ -237,9 +247,19 @@ class Language_model extends CI_Model {
     	$result = $query->result_array();
     	return $result;
     }
+    public function  getLanguageProductSpecificationByProidAndLangId($pro_id,$lang_id)
+    {
+    	$this->db->select('a.*');
+    	$this->db->from(TABLES::$LANGUAGEPRODUCTSPECIFICATION. ' AS a');
+    	$this->db->where('a.product_id',$pro_id);
+    	$this->db->where('a.language_id',$lang_id);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
     public function updateLangProductinfo($data)
     {
-    	$this->db->where('product_id', $data['product_id']);
+    	$this->db->where('id', $data['id']);
     	$this->db->update(TABLES::$LANGUAGEPRODUCT, $data);
     	return $this->db->affected_rows();
     }
@@ -251,7 +271,7 @@ class Language_model extends CI_Model {
     }
     public function updateLangProductSpecinfo($data)
     {
-    	$this->db->where('product_id', $data['product_id']);
+    	$this->db->where('id', $data['id']);
     	$this->db->update(TABLES::$LANGUAGEPRODUCTSPECIFICATION, $data);
     	return $this->db->affected_rows();
     }

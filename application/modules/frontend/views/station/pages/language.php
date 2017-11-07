@@ -141,7 +141,7 @@
 									<a href="javascript:ShowObjectWithEffect('Layer335', 0, 'dropup', 500, 'easeInBounce');ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');"><div id="Shape291"><div id="Shape291_text"><span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Ok</span></div></div></a>
 								</div>
 								<div id="wb_Text760" style="position:absolute;left:565px;top:206px;width:333px;height:52px;text-align:left;">
-									<span style="color:#2D2D2D;font-family:Arial;font-size:15px;">To add <strong>More Languages</strong>, you first have to complete <?php if($tscategory_id == 1) { ?>creating your products directories and adding your products details in english.<?php } else { ?>your desksite first.<?php }?></span>
+									<span style="color:#2D2D2D;font-family:Arial;font-size:15px;">To add <strong>More Languages</strong>, you first have to complete <?php if($tscategory_id == 1) { ?>creating your products directories and adding your products details in english.<?php } else { ?>your Desksite <strong>information</strong>.<?php }?></span>
 								</div>
 								<div id="wb_Text761" style="position:absolute;left:563px;top:174px;width:333px;height:22px;text-align:left;">
 									<span style="color:#FF6347;font-family:Arial;font-size:19px;"><strong>Oops..</strong></span>
@@ -150,7 +150,7 @@
 									<img src="<?php echo asset_url();?>images/businessman-toons.png" id="Image42" alt="">
 								</div>
 								<div id="wb_Text762" style="position:absolute;left:567px;top:271px;width:333px;height:28px;text-align:left;">
-									<span style="color:#2D2D2D;font-family:Arial;font-size:11px;">Start with " <strong>My Desksite</strong>" icon to </span><span style="color:#808080;font-family:Arial;font-size:11px;">build </span><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">you site and add your products.</span>
+									<span style="color:#2D2D2D;font-family:Arial;font-size:11px;">Start with " <strong>My Desksite</strong>" to </span><span style="color:#808080;font-family:Arial;font-size:11px;">build </span><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">your <strong>profile</strong> and add your <strong>information</strong>.</span>
 								</div>
 							</div>
 						</div>
@@ -242,18 +242,21 @@ function publishlanguage()
 }
 function deletelanguage()
 {
-	var e = document.getElementById("language");
-	var languagename = e.options[e.selectedIndex].text;
-	var languagevalue = e.options[e.selectedIndex].value;
-	$.post('<?php echo base_url();?>mystation/deletelanguage' , { language_id:languagevalue},function(data) {
-			 alert(data.msg);
-			 document.getElementById('langstatus').textContent = "Language Deleted";
-			 document.getElementById('langstatus').style.color = "red";
-			 $('#progressicon').html('<i class="fa fa-2x fa-times-circle" style="color:#ac2a0a;" aria-hidden="true" style="padding-left:22px;color: #AC2A0A;" ></i>');
-			 document.getElementById('btnpublish').style.display = "none";
-			 document.getElementById('btndelete').style.display = "none";
-			 getLanguage();
-	},'json');
+	var ans = confirm("Are you sure want to delete this language ?");
+	if(ans) {
+		var e = document.getElementById("language");
+		var languagename = e.options[e.selectedIndex].text;
+		var languagevalue = e.options[e.selectedIndex].value;
+		$.post('<?php echo base_url();?>mystation/deletelanguage' , { language_id:languagevalue},function(data) {
+				 //alert(data.msg);
+				 document.getElementById('langstatus').textContent = "Language Deleted";
+				 document.getElementById('langstatus').style.color = "red";
+				 $('#progressicon').html('<i class="fa fa-2x fa-times-circle" style="color:#ac2a0a;" aria-hidden="true" style="padding-left:22px;color: #AC2A0A;" ></i>');
+				 document.getElementById('btnpublish').style.display = "none";
+				 document.getElementById('btndelete').style.display = "none";
+				 getLanguage();
+		},'json');
+	}
 }
 function addlanguage()
 {

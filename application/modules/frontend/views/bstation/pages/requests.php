@@ -9,7 +9,9 @@ if(count($bposts) > 0) {
 			<img src="<?php echo asset_url(); ?>images/img1699.png" alt="" class="bstation-profile-pic" style="border:0px;"/> 
 			<?php } else { ?>
 			<img src="<?php echo asset_url(); ?><?php echo $product['profile_image'];?>" alt="" class="bstation-profile-pic" /> 
-			<img src="<?php echo asset_url(); ?>images/china0.png" id="Image297" alt="" class="flag"> <br>
+			<?php if(!empty($product['flag'])) { ?>
+			<img src="<?php echo asset_url(); ?>images/flags/<?php echo $product['flag'];?>" id="Image297" alt="" class="flag">
+			<?php } ?> <br>
 			<?php } ?>
 			<div>
 				<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
@@ -35,7 +37,7 @@ if(count($bposts) > 0) {
 							<span class="style5"><?php echo $product['title'];?></span>
 						</strong>
 					</span>
-					<p class="font5">  <?php echo substr($product['stockdesc'],0,200);?> <?php if(strlen($product['stockdesc']) > 280) { ?>...<?php } ?></p>
+					<p class="font5">  <?php echo substr($product['stockdesc'],0,270);?> <?php if(strlen($product['stockdesc']) > 270) { ?>...<?php } ?></p>
 					<div class="inline">
 						<!-- span class="usd">&nbsp; USD <?php echo $product['stockprice'];?>&nbsp;&nbsp;&nbsp; </span>
 						<span class="minorder">&nbsp; Min. Order: <?php echo $product['stockqty'];?>&nbsp;&nbsp;&nbsp; </span-->
@@ -76,7 +78,7 @@ if(count($bposts) > 0) {
 					<?php } else { ?>
 						<img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image49" alt="" class="img25" style="opacity: 0.15;" />
 					<?php } ?>
-					<?php if($product['is_active'] == 4) { ?>
+					<?php if($product['is_active'] > 2) { ?>
 						<img src="<?php echo asset_url(); ?>images/Active.png" id="Image49" alt="" class="img25" />
 					<?php } else { ?>
 						<img src="<?php echo asset_url(); ?>images/Active.png" id="Image49" alt="" class="img25" style="opacity: 0.15;" />
@@ -104,7 +106,7 @@ if(count($bposts) > 0) {
 				</div>
 			</div>
 		</div>
-		<div class="col-md-10 col-md-offset-1" id="BLayer_sell_post_<?php echo $key;?>" style="position: absolute; width: 872px; height: 359px; display: none; top: <?php echo (29+$key*204);?>px; padding: 0px;background-color: #FFFFFF;border: 1px #D3D3D3 solid;z-index:1;">
+		<div class="col-md-10 col-md-offset-2" id="BLayer_sell_post_<?php echo $key;?>" style="position: absolute; width: 835px; height: 385px; display: none; top: <?php echo (29+$key*204);?>px; padding: 0px;background-color: #FFFFFF;border: 1px #D3D3D3 solid;z-index:1;">
 			<a href="#" onclick="ShowObjectWithEffect('BLayer_sell_post_<?php echo $key;?>',0,'slideup',500);return false;" class="pull-right"> 
 				<img src="<?php echo asset_url();?>images/close.png" id="Image16" alt="" style="width: 33px; height: 33px; float: right;">
 			</a>
@@ -166,6 +168,7 @@ if(count($bposts) > 0) {
 					<br> <span class="color1"><br><?php echo $product['stockdesc'];?></span>
 				</div>
 				<div class="col-md-2 p1" style="padding-left: 40px;">
+				<?php if($product['busi_id'] != $busi_id) { ?>
 					<div id="RollOver2" class="img45">
 						<a href="javascript:openSellerOfferForm(<?php echo $product['post_id'];?>,<?php echo $contact_details[0]['plan_id'];?>);" target="_self"> 
 							<img class="hover" alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Active/sendoffertomato.png" /> <span>
@@ -202,6 +205,28 @@ if(count($bposts) > 0) {
 							<span><img alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Link/randbuyerblack.png" /></span>
 						</a>
 					</div>
+					<?php } else { ?>
+					<div id="RollOver2" class="img45">
+						<a href="javascript:noAccessAlert();" target="_self"> 
+							<img alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Link/sendofferblack.png" style="opacity:0.15;"/>
+						</a>
+					</div>
+					<div id="RollOver2" class="img45">
+						<a href="javascript:noAccessAlert();" target="_self"> 
+							<img alt="Chat" src="<?php echo asset_url(); ?>images/Link/chat_button2.png" style="opacity:0.15;"/>
+						</a>
+					</div>
+					<div id="RollOver5" class="img45">
+						<a href="javascript:noAccessAlert();" target="_blank">
+							<img alt="Add To My Community" src="<?php echo asset_url(); ?>images/Link/addcommunity_button2.png" style="opacity:0.15;"/>
+						</a>
+					</div>
+					<div id="RollOver1" class="img45">
+						<a href="javascript:noAccessAlert();" target="_blank">
+							<img alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Link/randbuyerblack.png" style="opacity:0.15;"/>
+						</a>
+					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -232,6 +257,9 @@ function openChatWithBuyer(postid,buyer_id,accept_chat) {
 	} else {
 		customAlert('Sorry.. Buyer status is " Don\'t Disturb".. Please try again on other time, status may be changed soon.');
 	}
+}
+function noAccessAlert() {
+	customAlert("Oops… You are not supposed to reply your own post..!!");
 }
 </script>
 <?php 

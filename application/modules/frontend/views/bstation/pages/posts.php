@@ -9,7 +9,14 @@ if(count($posts) > 0) {
 			<img src="<?php echo asset_url(); ?>images/img1699.png" alt="" class="bstation-profile-pic" style="border:0px;"/> 
 			<?php } else { ?>
 			<img src="<?php echo asset_url(); ?><?php echo $product['profile_image'];?>" alt="" class="bstation-profile-pic" /> 
-			<img src="<?php echo asset_url(); ?>images/china0.png" id="Image297" alt="" class="flag"> <br>
+			<?php 
+			$country_flag = preg_replace('/[^A-Za-z0-9]+/', '-', strtolower($product['company_country']));
+			$country_flag = $country_flag."-flag-round-xs.png";
+			?>
+			<?php if(!empty($product['flag'])) { ?>
+			<img src="<?php echo asset_url(); ?>images/flags/<?php echo $product['flag'];?>" id="Image297" alt="" class="flag">
+			<?php } ?>
+			 <br>
 			<?php } ?>
 			<div>
 				<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
@@ -35,7 +42,7 @@ if(count($posts) > 0) {
 							<span class="style5"><?php echo $product['title'];?></span>
 						</strong>
 					</span>
-					<p class="font5">  <?php echo substr($product['stockdesc'],0,280);?> <?php if(strlen($product['stockdesc']) > 280) { ?>...<?php } ?></p>
+					<p class="font5">  <?php echo substr($product['stockdesc'],0,270);?> <?php if(strlen($product['stockdesc']) > 270) { ?>...<?php } ?></p>
 					<div class="inline">
 						<span class="usd">&nbsp; USD <?php echo $product['unit_price'];?>&nbsp;&nbsp;&nbsp; </span>
 						<span class="minorder">&nbsp; Min. Order: <?php echo $product['stockqty'];?>&nbsp;&nbsp;&nbsp; </span>
@@ -70,10 +77,10 @@ if(count($posts) > 0) {
 					<?php } else { ?>
 						<img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image49" alt="" class="img25" style="opacity: 0.15;" /> 
 					<?php } ?>
-					<?php if($product['plan_id'] > 1 || $product['gaurantee_period'] !='') { ?>
-						<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image49" alt="" class="img25" />
+					<?php if($product['plan_id'] > 1 && !empty($product['gaurantee_period'])) { ?>
+						<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image49" alt="" class="img25" style="width:34px !important;"/>
 					<?php } else { ?>
-						<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image49" alt="" class="img25" style="opacity: 0.15;" />
+						<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image49" alt="" class="img25" style="opacity: 0.15;width:34px !important;" />
 					<?php } ?>
 					<?php if($product['is_logo_verified'] > 1) { ?>
 						<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image49" alt="" class="img25" />
@@ -108,7 +115,7 @@ if(count($posts) > 0) {
 				</div>
 			</div>
 		</div>
-		<div class="col-md-10 col-md-offset-1" id="Layer_sell_post_<?php echo $key;?>" style="position: absolute; width: 872px; height: 359px; display: none; top: <?php echo (29+$key*206);?>px; padding: 0px;background-color: #FFFFFF;border: 1px #D3D3D3 solid;z-index:1;">
+		<div class="col-md-10 col-md-offset-2" id="Layer_sell_post_<?php echo $key;?>" style="position: absolute; width: 835px; height: 385px; display: none; top: <?php echo (29+$key*206);?>px; padding: 0px;background-color: #FFFFFF;border: 1px #D3D3D3 solid;z-index:1;">
 			<a href="#" onclick="ShowObjectWithEffect('Layer_sell_post_<?php echo $key;?>',0,'slideup',500);return false;" class="pull-right"> 
 				<img src="<?php echo asset_url();?>images/close.png" id="Image16" alt="" style="width: 33px; height: 33px; float: right;">
 			</a>
@@ -170,6 +177,7 @@ if(count($posts) > 0) {
 					<br> <span class="color1"><br><?php echo $product['stockdesc'];?></span>
 				</div>
 				<div class="col-md-2 p1" style="padding-left: 40px;">
+				<?php if($product['busi_id'] != $busi_id) { ?>
 					<div id="RollOver2" class="img45">
 						<a href="javascript:openBuyerRequestForm(<?php echo $product['post_id'];?>);" target="_self"> 
 							<img class="hover" alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Active/inquirytomato.png" /> <span>
@@ -206,6 +214,28 @@ if(count($posts) > 0) {
 							<span><img alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Link/desksite-dorange.png" /></span>
 						</a>
 					</div>
+				<?php } else { ?>
+					<div id="RollOver2" class="img45">
+						<a href="javascript:noAccessAlert();" target="_self"> 
+							<img alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Link/inquirytomato.png" style="opacity:0.15;"/>
+						</a>
+					</div>
+					<div id="RollOver2" class="img45">
+						<a href="javascript:noAccessAlert();" target="_self"> 
+							<img alt="Chat" src="<?php echo asset_url(); ?>images/Link/chat_button2.png" style="opacity:0.15;"/>
+						</a>
+					</div>
+					<div id="RollOver5" class="img45">
+						<a href="javascript:noAccessAlert();" target="_blank">
+							<img alt="Add To My Community" src="<?php echo asset_url(); ?>images/Link/addcommunity_button2.png" style="opacity:0.15;"/>
+						</a>
+					</div>
+					<div id="RollOver1" class="img45">
+						<a href="javascript:noAccessAlert();" target="_blank">
+							<img alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Link/desksite-dorange.png" style="opacity:0.15;"/>
+						</a>
+					</div>
+				<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -218,12 +248,14 @@ function openBuyerRequestForm(postid) {
 	<?php if($tscategory_id != 3) { ?>
 	customAlert("Sorry.. Only buyers have access to send enquiry to seller/shipper posts.");
 	<?php } else { ?>
-	<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
+	<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['accept_chat'] == 1 && $contact_details[0]['accept_community'] == 1 && $contact_details[0]['step'] == 2) { ?>
 		popupwnd('<?php echo base_url();?>b-station/buyer_request/'+postid,'no','no','no','yes','yes','no','600','50','555','750');
 	<?php } else if($contact_details[0]['step'] < 2) { ?>
 		customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
 	<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
 		customAlert('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+	<?php } else if($contact_details[0]['accept_chat'] == 0 || $contact_details[0]['accept_community'] == 0) { ?>
+		customAlert('Oops.. It seems that you have turned this feature OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Panel", then Turn it ON.');
 	<?php } ?>
 	<?php } ?>
 }
