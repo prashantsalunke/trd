@@ -267,6 +267,9 @@ function openChat(postid,seller_id) {
 		customAlert('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
 	<?php } ?>
 }
+function noAccessAlert() {
+	customAlert("Oops… You are not supposed to reply your own post..!!");
+}
 
 </script>
 <?php 
