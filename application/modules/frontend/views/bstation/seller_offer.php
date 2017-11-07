@@ -294,7 +294,7 @@ function showAddResponse(resp, statusText, xhr, $form){
 <input type="text" id="Editbox3" style="position:absolute;left:225px;top:235px;width:146px;height:19px;line-height:19px;z-index:3;" name="Price" value="" maxlength="20">
 <input type="text" id="Editbox5" style="position:absolute;left:286px;top:269px;width:194px;height:19px;line-height:19px;z-index:4;" name="Qty" value="" maxlength="20">
 <input type="number" id="Editbox6" style="position:absolute;left:290px;top:416px;width:194px;height:19px;line-height:19px;z-index:5;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
-<input type="email" id="Editbox7" style="position:absolute;left:290px;top:385px;width:194px;height:19px;line-height:19px;z-index:6;" name="email" value="" maxlength="30">
+<input type="email" id="Editbox7" style="position:absolute;left:290px;top:385px;width:194px;height:19px;line-height:19px;z-index:6;" name="email" value="<?php echo $contact_details[0]['email'];?>" maxlength="30">
 <select name="country" size="1" id="Combobox2" style="position:absolute;left:290px;top:447px;width:200px;height:25px;z-index:7;">
 <option selected value="Select">Select your country</option>
 <?php foreach ($Country as $country){?>
@@ -306,7 +306,7 @@ function showAddResponse(resp, statusText, xhr, $form){
 <div id="wb_Text149" style="position:absolute;left:27px;top:239px;width:180px;height:14px;z-index:10;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">USD Price </span></div>
 <div id="wb_Text150" style="position:absolute;left:27px;top:391px;width:180px;height:14px;z-index:11;text-align:left;">
-<span style="color:#696969;font-family:Arial;font-size:11px;">Additional Email</span></div>
+<span style="color:#696969;font-family:Arial;font-size:11px;">Contact Email</span></div>
 <div id="wb_Text3" style="position:absolute;left:27px;top:454px;width:180px;height:14px;z-index:12;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">Country</span></div>
 <div id="wb_Text7" style="position:absolute;left:27px;top:331px;width:180px;height:14px;z-index:13;text-align:left;">

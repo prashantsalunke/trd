@@ -345,7 +345,7 @@ class MyFiles extends MX_Controller {
 	public function downloadFile($id) {
 		$this->load->library('mylib/MyfileLib');
 		$myfilelist = $this->myfilelib->getFileById($id);
-		$path = asset_url().$myfilelist[0]['file'];
+		$path = FCPATH."assets/".$myfilelist[0]['file'];
 		header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="'.basename($path).'"');

@@ -20,17 +20,17 @@
 	   </div>
 	   <div class="col-md-2 col-sm-2 col-xs-2">
 	      <input type="checkbox" id="Checkbox3" name="cimgchk[]" value="<?php echo $prodata[0]['sub_image2'];?>" style="margin: 0px !important;">
-	  	  <img src="<?php echo asset_url()?><?php echo $prodata[0]['sub_image1'];?>" id="Image31" alt="" style="width:70px;height:50px;">
+	  	  <img src="<?php echo asset_url()?><?php echo $prodata[0]['sub_image2'];?>" id="Image31" alt="" style="width:70px;height:50px;">
 	      
 	   </div>
 	   <div class="col-md-2 col-sm-2 col-xs-2">
 	      <input type="checkbox" id="Checkbox4" name="cimgchk[]" value="<?php echo $prodata[0]['sub_image3'];?>" style="margin: 0px !important;">
-	  	  <img src="<?php echo asset_url()?><?php echo $prodata[0]['sub_image1'];?>" id="Image31" alt="" style="width:70px;height:50px;">
+	  	  <img src="<?php echo asset_url()?><?php echo $prodata[0]['sub_image3'];?>" id="Image31" alt="" style="width:70px;height:50px;">
 	      
 	   </div>
 	   <div class="col-md-2 col-sm-2 col-xs-2">
 	      <input type="checkbox" id="Checkbox5" name="cimgchk[]" value="<?php echo $prodata[0]['sub_image4'];?>" style="margin: 0px !important;">
-	  	  <img src="<?php echo asset_url()?><?php echo $prodata[0]['sub_image1'];?>" id="Image31" alt="" style="width:70px;height:50px;">
+	  	  <img src="<?php echo asset_url()?><?php echo $prodata[0]['sub_image4'];?>" id="Image31" alt="" style="width:70px;height:50px;">
 	   </div>
       
   </div>

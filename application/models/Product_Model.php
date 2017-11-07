@@ -1554,16 +1554,17 @@ class Product_Model extends CI_Model {
     	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$end_date = date('Y-m-d H:i:s');
     	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, 
-    			d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank, e.*,
+    			d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,d.accept_chat,d.accept_offer,d.accept_community,d.accept_email, e.*,
     			g.profile_image as profile_image,f.user_category_id as catid, g.*,h.title as title,
     			h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,h.usd_price as unit_price,h.quantity,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
-    			f.name as contact_name,f.name_prefix as contact_prefix');
+    			f.name as contact_name,f.name_prefix as contact_prefix,i.flag');
     	$this->db->from(TABLES::$BSTATION_POST.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id = d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id = d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id = d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id = f.id','inner');
+    	$this->db->join(TABLES::$COUNTRY.' AS i','d.company_country=i.name','left');
     	$this->db->where('f.user_category_id IN(1,2)','',false);
     	$this->db->where('f.is_contactperson',1);
     	$this->db->where('h.status',1);
@@ -1645,12 +1646,13 @@ class Product_Model extends CI_Model {
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
     			f.name as contact_name,f.name_prefix as contact_prefix,
-    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active');
+    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag');
     	$this->db->from(TABLES::$BSTATION_POST.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
+    	$this->db->join(TABLES::$COUNTRY.' AS i','d.company_country=i.name','left');
     	$this->db->where('f.user_category_id',3);
     	$this->db->where('f.is_contactperson',1);
     	$this->db->where('h.status',1);

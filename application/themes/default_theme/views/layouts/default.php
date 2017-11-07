@@ -63,7 +63,7 @@ function customAlert(msg) {
       				<div class="col-sm-10">
 	      				<div style="text-align: center;">
 	      					<br>
-							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;">WARNING</span>
+							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;">ALERT</span>
 						</div>
 						<br>
 						<div style="text-align: left;font-size:13px;font-family:Arial;" id="customAlertText">

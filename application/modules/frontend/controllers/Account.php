@@ -686,10 +686,9 @@ class Account extends MX_Controller {
 		} 
 		if($usercategory == 3) {
 			$data = array();
-			$data['id'] = $user_id;
+			$data['busi_id'] = $this->session->userdata('busi_id');
 			$data['account_activated'] = 1;
 			$data['registration_step'] = 5;
-			$this->load->library('mylib/UserLib');
 			$this->userlib->updateUser($data);
 			
 			$activstatus= $this->session->userdata('activstatus');
@@ -819,11 +818,11 @@ class Account extends MX_Controller {
 		
 		if ($lastInsertIdFactoryInfo > 0) {
 			
-			$userstepdata = array();
-			$userstepdata['id'] = $user_id;
-			$userstepdata['registration_step'] = 3;
-			$this->userlib->updateUser($userstepdata);
-			
+			$data = array();
+			$data['busi_id'] = $this->session->userdata('busi_id');
+			$data['registration_step'] = 3;
+			$this->userlib->updateUser($data);
+			unset($data);
 			$rndtype = $this->input->post('rndtype');
 			$data = array();
 			for($i=0;$i<count($rndtype);$i++) {
@@ -1007,10 +1006,10 @@ class Account extends MX_Controller {
 			
 			// end contact person update
 			
-			$userstepdata = array();
-			$userstepdata['id'] = $user_id;
-			$userstepdata['registration_step'] = 4;
-			$this->userlib->updateUser($userstepdata);
+			$data = array();
+			$data['busi_id'] = $this->session->userdata('busi_id');
+			$data['registration_step'] = 4;
+			$this->userlib->updateUser($data);
 			
 			$this->session->unset_userdata('registration_step');
 			$this->session->set_userdata('registration_step',4);

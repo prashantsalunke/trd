@@ -346,7 +346,7 @@ class Language extends MX_Controller {
 			$mainproductinfo[$i] = $temp;
 		}
 		$all_mps = true;
-		$mainproductlangdata = $this->languagelib->getLangMainproductinfoBusiId($busi_id);
+		$mainproductlangdata = $this->languagelib->getMainproductInfoByLanguageId($language_id,$busi_id);
 		if(count($mainproductlangdata) >0 )
 		{
 			foreach ($mainproductinfo as $row) {
@@ -381,7 +381,7 @@ class Language extends MX_Controller {
 				
 		}
 		$all_subps = true;
-		$subprolangdata = $this->languagelib->getLanguageSubProductsByBusiId($busi_id);
+		$subprolangdata = $this->languagelib->getSubProductInfoByLanguageId($language_id,$busi_id);
 		if(count($subprolangdata) >0 )
 		{
 			foreach ($subproductinfo as $row) {
@@ -460,12 +460,13 @@ class Language extends MX_Controller {
 		
 		
 		
-		$prolangdata = $this->languagelib->getLanguageProductsByProid($product_id);
+		$prolangdata = $this->languagelib->getLanguageProductsByProidAndLangId($product_id,$language_id);
 		
 		if(count($prolangdata) >0 )
 		{
 			//foreach ($param as $row) {
 				$updateprodata = array();
+				$updateprodata['id'] = $prolangdata[0]['id'];
 				$updateprodata['product_id'] = $param['product_id'];
 				$updateprodata['product_name'] = $param['product_name'];
 				$updateprodata['about_product'] = $param['about_product'];
@@ -493,11 +494,12 @@ class Language extends MX_Controller {
 			$temp['created_date'] = date('Y-m-d H:i:s');
 			$prospecification[$i] = $temp;
 		}
-		$prospeclangdata = $this->languagelib->getLanguageProductSpecificationByProid($product_id);
+		$prospeclangdata = $this->languagelib->getLanguageProductSpecificationByProidAndLangId($product_id,$language_id);
 		if(count($prospeclangdata) >0 )
 		{
 			foreach ($prospecification as $row) {
 				$updateprospecdata = array();
+				$updateprospecdata['id'] = $prospeclangdata[0]['id'];
 				$updateprospecdata['product_id'] = $row['product_id'];
 				$updateprospecdata['spec_name'] = $row['spec_name'];
 				$updateprospecdata['spec_value'] = $row['spec_value'];
