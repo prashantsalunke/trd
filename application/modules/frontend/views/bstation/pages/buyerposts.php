@@ -18,10 +18,7 @@
 			<div id="wb_Text8" class="section3">
 				<span><strong class="font1"><span class="style5"><?php echo $product['title'];?></span></strong>
 				</span>
-				<p class="font5">Required Specifications in details,
-					Required Specifications in details, Required
-					Specifications in details, Required Specifications in
-					details, Specifications in details.</p>
+				<p class="font5"><?php echo substr($product['stockdesc'],0,265);?> <?php if(strlen($product['stockdesc']) > 265) { ?>...<?php } ?></p>
 				<div class="inline pp">
 					<!-- span class="usd y" style="background-color: #FFA500;">&nbsp; USD <?php echo $product['stockprice'];?>&nbsp;&nbsp;&nbsp; </span>
 					<span class="minorder g">&nbsp; Min. Order: <?php echo $product['stockqty'];?>&nbsp;&nbsp;&nbsp; </span-->

@@ -138,7 +138,9 @@ div.pp_pic_holder {
 						                    </a>
 					                    </span>
 				                    <?php } else { ?>
-				                    	<a href="#"><h4 class="whitetext1">Add New Post</h4></a>
+				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                    	<a href="#">Add New Post</a>
+				                    	</span>
 				                    <?php } ?>
 				                	</div>
 									<div class="whitebox">
@@ -195,7 +197,9 @@ div.pp_pic_holder {
 					                    	</a>
 				                    	</span>
 				                		<?php } else { ?>
-				                		<a href="#"><h4 class="whitetext1">Add New Post</h4></a>
+				                		<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                		<a href="#">Add New Post</a>
+				                		</span>
 				                		<?php } ?>
 				                	</div>
 									<div class="whitebox">
@@ -575,12 +579,12 @@ function searchBusinessStation() {
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
 			ShowObjectWithEffect('Layer2', 1, 'slidedown', 500, 'swing');
-			$("a[data-rel='PhotoGallery1']").attr('rel', 'PhotoGallery1');
+			/*$("a[data-rel='PhotoGallery1']").attr('rel', 'PhotoGallery1');
 		    $("a[rel^='PhotoGallery1']").slimbox({
 		        overlayOpacity: 0.8
 		    }, null, function(el) {
 		        return (this == el) || ((this.rel.length > 8) && (this.rel == el.rel));
-		    });
+		    });*/
 		    $.cookie('bstation-landing', '1', { expires: 365 });
 		    $.cookie('bstation-keyword', keyword, { expires: 365 });
 		    $.cookie('bstation-country', country, { expires: 365 });
@@ -610,12 +614,12 @@ function filterBusinessStation() {
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
 			ShowObjectWithEffect('Layer2', 1, 'slidedown', 500, 'swing');
 			ShowObjectWithEffect('Layer28', 1, 'fade', 500);ShowObjectWithEffect('Layer32', 0, 'fade', 500);
-			$("a[data-rel='PhotoGallery1']").attr('rel', 'PhotoGallery1');
+			/*$("a[data-rel='PhotoGallery1']").attr('rel', 'PhotoGallery1');
 		    $("a[rel^='PhotoGallery1']").slimbox({
 		        overlayOpacity: 0.8
 		    }, null, function(el) {
 		        return (this == el) || ((this.rel.length > 8) && (this.rel == el.rel));
-		    });
+		    });*/
 		    $.cookie('bstation-landing', '1', { expires: 365 });
 		    $.cookie('bstation-keyword', keyword, { expires: 365 });
 		    $.cookie('bstation-country', country, { expires: 365 });

@@ -1749,24 +1749,20 @@ class Product_Model extends CI_Model {
     public function searchStockMarketPosts($params) {
     	$start_date = date('Y-m-d',strtotime("-7 days"));
     	$end_date = date('Y-m-d H:i:s');
-    	$this->db->select('a.*,b.name as subproduct,c.name as mainproduct,d.company_name, d.company_country,
-    			d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period,
-    			d.is_logo_verified, d.rank, e.*,IFNULL(n.picture,g.profile_image) as profile_image,f.user_subcategory_id as catid,
+    	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, 
+    			d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,d.accept_chat,d.accept_offer,
+    			d.accept_community,d.accept_email, e.*,g.profile_image as profile_image,f.user_subcategory_id as catid,
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
-    			IFNULL(n.name,f.name) as contact_name,IFNULL(n.name_prefix,f.name_prefix) as contact_prefix');
+    			f.name as contact_name,f.name_prefix as contact_prefix,i.flag');
     	$this->db->from(TABLES::$STOCK_GOODS.' AS h');
-    	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS a', 'h.product_item_id = a.id','left' );
-    	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
-    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id = c.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id = d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id = d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id = d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id = f.id','inner');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','h.busi_id = n.busi_id ','left');
-    	$this->db->where('a.status',1);
-    	$this->db->where('(b.status = 1 OR b.status IS NULL)','',false);
-    	$this->db->where('c.status',1);
+    	$this->db->join(TABLES::$COUNTRY.' AS i','d.company_country=i.name','left');
+    	$this->db->where('f.is_contactperson',1);
+    	$this->db->where('f.user_category_id IN(1,2)','',false);
     	$this->db->where('h.status',1);
     	$this->db->where('h.is_deleted',0);
     	if(!empty($params['country'])) {
@@ -1799,24 +1795,18 @@ class Product_Model extends CI_Model {
     public function getMyStockMarketPosts($busi_id) {
     	$start_date = date('Y-m-d',strtotime("-7 days"));
     	$end_date = date('Y-m-d H:i:s');
-    	$this->db->select('a.*,b.name as subproduct,c.name as mainproduct,d.company_name, d.company_country,
-    			d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period,
-    			d.is_logo_verified, d.rank,e.*,IFNULL(n.picture,g.profile_image) as profile_image,f.user_subcategory_id as catid,
+    	$this->db->select('d.company_name, d.company_country, h.usd_price as unit_price,h.quantity,
+    			d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, 
+    			d.is_logo_verified, d.rank,e.*,g.profile_image as profile_image,f.user_subcategory_id as catid,
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
-    			IFNULL(n.name,f.name) as contact_name,IFNULL(n.name_prefix,f.name_prefix) as contact_prefix');
+    			f.name as contact_name,f.name_prefix as contact_prefix');
     	$this->db->from(TABLES::$STOCK_GOODS.' AS h');
-    	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS a', 'h.product_item_id = a.id','left' );
-    	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
-    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id = c.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id = d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id = d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id = d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id = f.id','inner');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','h.busi_id = n.busi_id ','left');
-    	$this->db->where('a.status',1);
-    	$this->db->where('(b.status = 1 OR b.status IS NULL)','',false);
-    	$this->db->where('c.status',1);
+    	$this->db->where('f.is_contactperson',1);
     	$this->db->where('h.status',1);
     	$this->db->where('h.is_deleted',0);
     	$this->db->where('h.busi_id',$busi_id);
@@ -1846,19 +1836,20 @@ class Product_Model extends CI_Model {
     	$start_date = date('Y-m-d',strtotime("-7 days"));
     	$end_date = date('Y-m-d H:i:s');
     	$this->db->select('d.company_name, d.company_country,d.company_province, d.company_email, d.business_logo,
-    			d.annual_trad_volume, d.plan_id, d.gaurantee_period,d.is_logo_verified, d.rank, e.*,
-    			IFNULL(n.picture,g.profile_image) as profile_image,f.user_subcategory_id as catid,
+    			d.annual_trad_volume, d.plan_id, d.gaurantee_period,d.is_logo_verified, d.rank,d.accept_chat,d.accept_offer,d.accept_community,d.accept_email, e.*,
+    			g.profile_image as profile_image,f.user_subcategory_id as catid,
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
-    			IFNULL(n.name,f.name) as contact_name,IFNULL(n.name_prefix,f.name_prefix) as contact_prefix,
-    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active');
+    			f.name as contact_name,f.name_prefix as contact_prefix,
+    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag');
     	$this->db->from(TABLES::$STOCK_GOODS.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','h.busi_id = n.busi_id ','left');
+    	$this->db->join(TABLES::$COUNTRY.' AS i','d.company_country=i.name','left');
     	$this->db->where('f.user_category_id',3);
+    	$this->db->where('f.is_contactperson',1);
     	$this->db->where('h.status',1);
     	$this->db->where('h.is_deleted',0);
     	if(!empty($params['country'])) {
@@ -1892,19 +1883,19 @@ class Product_Model extends CI_Model {
     	$start_date = date('Y-m-d',strtotime("-7 days"));
     	$end_date = date('Y-m-d H:i:s');
     	$this->db->select('d.company_name, d.company_country,d.company_province, d.company_email, d.business_logo,
-    			d.annual_trad_volume, d.plan_id, d.gaurantee_period,d.is_logo_verified, d.rank, e.*,
-    			IFNULL(n.picture,g.profile_image) as profile_image,f.user_subcategory_id as catid,
+    			d.annual_trad_volume, d.plan_id, d.gaurantee_period,d.is_logo_verified, d.rank,d.accept_chat,d.accept_offer,d.accept_community,d.accept_email, e.*,
+    			g.profile_image as profile_image,f.user_subcategory_id as catid,
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
-    			IFNULL(n.name,f.name) as contact_name,IFNULL(n.name_prefix,f.name_prefix) as contact_prefix,
+    			f.name as contact_name,f.name_prefix as contact_prefix,
     			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active');
     	$this->db->from(TABLES::$STOCK_GOODS.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','h.busi_id = n.busi_id ','left');
     	$this->db->where('f.user_category_id',3);
+    	$this->db->where('f.is_contactperson',1);
     	$this->db->where('h.status',1);
     	$this->db->where('h.is_deleted',0);
     	$this->db->where('h.busi_id',$busi_id);
@@ -1915,6 +1906,21 @@ class Product_Model extends CI_Model {
     	$result = $query->result_array();
     	return $result;
     }
+    
+    public function getTodaysStockMarketPosts($busi_id) {
+    	$today_date = date('Y-m-d');
+    	$this->db->select('count(id) as posts');
+    	$this->db->from(TABLES::$STOCK_GOODS);
+    	$this->db->where('status',1);
+    	$this->db->where('is_deleted',0);
+    	$this->db->where('busi_id',$busi_id);
+    	$this->db->where("DATE(created_date) = '".$today_date."'",'',false);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
+    /* ******** Stock Market ************ */
     
     public function getCategoryVideodetailsById($id) {
     	$this->db->select('a.*,c.name as mainproduct,e.name as maincategory,f.name as subcategory');

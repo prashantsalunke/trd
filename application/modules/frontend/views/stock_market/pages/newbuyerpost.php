@@ -4,7 +4,7 @@
 <form id="addPostBuyerContent" name="addPostBuyerContent" action="" method="post" enctype="multipart/form-data">
 	<div class="col-md-9 col-sm-9 col-xs-9">
 		<input type="hidden" name="usertype" value="<?php echo $tscategory_id;?>"> 
-		<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPost();return false;" class="pull-right"> 
+		<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPost();return false;" class="pull-right" style="margin-right:-25px;margin-top:-15px;"> 
 			<img src="<?php echo asset_url(); ?>images/close.png" id="Image2" alt="" class="img35">
 		</a>
 		<div id="bpostdatacontent">
@@ -19,11 +19,14 @@
 				<div>
 					<div class="row">
 						<label class="label-text col-sm-3">Post Title</label>
-						<div class="form-group col-sm-9">
+						<div class="form-group col-sm-5">
 							<div>
-								<input type="text" id="post-title" class="form-control post-input-control" placeholder="Buying Post Title" name="btitle" value="" maxlength="45" style="width:332px;margin-left: 0px;" />
+								<input type="text" id="post-title" class="form-control post-input-control" placeholder="Buying Post Title" name="btitle" value="" maxlength="45" style="width:285px;margin-left: 0px;" />
 							</div>
 							<div class="messageContainer"></div>
+						</div>
+						<div class="col-sm-4">
+							<span style="color:#696969;font-family:Arial;font-size:9.3px;">Title should include the keywords members may type to find your post above all.</span>
 						</div>
 					</div>
 					<!-- div class="row">
@@ -76,7 +79,7 @@
 			</div>
 		</div>
 		<div id="bloading-image" class="post-loading-layer" style="width:705px; height:390px;">
-			<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPost();return false;" class="pull-right"> 
+			<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPost();return false;" class="pull-right" style="margin-right:-13px;margin-top:-15px;"> 
 				<img src="<?php echo asset_url(); ?>images/close.png" id="Image2" alt="" class="img35">
 			</a>
 			<div class="loading-image">
@@ -86,7 +89,7 @@
 			</div>
 		</div>
 		<div id="bpost-success-result" class="post-success-layer" style="width:705px; height:390px;">
-			<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPostResult();return false;" class="pull-right"> 
+			<a href="#" onclick="ShowObjectWithEffect('Layer744', 0, 'clipvertical', 500);ShowObject('Layer75', 0);closeBNewPostResult();return false;" class="pull-right" style="margin-right:-13px;margin-top:-15px;"> 
 				<img src="<?php echo asset_url(); ?>images/close.png" id="Image2" alt="" class="img35">
 			</a>
 			<div class="loading-result-text">

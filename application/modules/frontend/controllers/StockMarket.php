@@ -28,8 +28,10 @@ class StockMarket extends MX_Controller {
 		$this->template->set ('usertype', $usertype);
 		$products = $this->product->stockProductListBySellerId($busi_id);
 		$this->template->set ( 'productList', $products);
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$productslist = $this->product->getProductlist($busi_id);
 		$this->template->set ( 'products', $productslist);
+		$this->template->set('contact_details',$contact_details);
 		$this->template->set ( 'page', 'stock_market' );
 		$this->template->set ( 'browser_icon', 'stock.ico' );
 		$this->template->set ( 'userId', '' );
@@ -159,8 +161,10 @@ class StockMarket extends MX_Controller {
 		$this->load->model('Product_Model', 'product' );
 		$this->load->model('Product_Model', 'product' );
 		$post = $this->product->getStockMarketPostById($id);
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);
+		$this->template->set('contact_details',$contact_details);
 		$this->template->set('post',$post);
 		$this->template->set('buyer_id',$post);
 		$this->template->set('busi_id',$busi_id);
@@ -206,9 +210,11 @@ class StockMarket extends MX_Controller {
 		$busi_id = $this->session->userdata('busi_id');
 		$this->load->model('Product_Model', 'product' );
 		$this->load->model('Product_Model', 'product' );
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$post = $this->product->getStockMarketPostById($id);
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);
+		$this->template->set('contact_details',$contact_details);
 		$this->template->set('post',$post);
 		$this->template->set('buyer_id',$post);
 		$this->template->set('busi_id',$busi_id);
@@ -259,8 +265,10 @@ class StockMarket extends MX_Controller {
 		$this->load->model('Product_Model', 'product' );
 		$posts = $this->product->searchStockMarketPosts($params);
 		$bposts = $this->product->searchBuyerStockMarketPosts($params);
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'posts', $posts);
 		$this->template->set ( 'bposts', $bposts);
+		$this->template->set('contact_details',$contact_details);
 		$this->template->set ( 'page', 'bstation' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
@@ -304,12 +312,17 @@ class StockMarket extends MX_Controller {
 		$busi_id = $this->session->userdata('busi_id');
 		$this->load->model('Product_Model', 'product' );
 		$items = $this->product->getActiveProductItems($busi_id);
-		$this->template->set ( 'items', $items);
-		$this->template->set ( 'page', 'bstation' );
-		$this->template->set_theme('default_theme');
-		$this->template->set_layout (false);
-		$html = $this->template->build ('stock_market/pages/newsellerpost','',true);
-		echo $html;
+		$todaysposts = $this->product->getTodaysStockMarketPosts($busi_id);
+		if(count($todaysposts) > 0 && $todaysposts[0]['posts'] < 10) {
+			$this->template->set ( 'items', $items);
+			$this->template->set ( 'page', 'bstation' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout (false);
+			$html = $this->template->build ('stock_market/pages/newsellerpost','',true);
+			echo $html;
+		} else {
+			echo 11;
+		}
 	}
 	
 	public function closeSellerPost($id) {
@@ -334,11 +347,17 @@ class StockMarket extends MX_Controller {
 	
 	public function buyerNewPost() {
 		$busi_id = $this->session->userdata('busi_id');
-		$this->template->set ( 'page', 'bstation' );
-		$this->template->set_theme('default_theme');
-		$this->template->set_layout (false);
-		$html = $this->template->build ('stock_market/pages/newbuyerpost','',true);
-		echo $html;
+		$this->load->model('Product_Model', 'product' );
+		$todaysposts = $this->product->getTodaysStockMarketPosts($busi_id);
+		if(count($todaysposts) > 0 && $todaysposts[0]['posts'] < 10) {
+			$this->template->set ( 'page', 'bstation' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout (false);
+			$html = $this->template->build ('stock_market/pages/newbuyerpost','',true);
+			echo $html;
+		} else {
+			echo 11;
+		}
 	}
 	
 	
