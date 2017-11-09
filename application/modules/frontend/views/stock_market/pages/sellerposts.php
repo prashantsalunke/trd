@@ -1,4 +1,5 @@
 <?php if (count ( $posts ) > 0 && $posts [0] ['id'] != '') {
+	$exp_date = date('Y-m-d',strtotime('-7 days'));
 	foreach ( $posts as $key=>$product ) {
 ?>
                 
@@ -10,15 +11,15 @@
 			<p class="date"><?php echo date("d-M-Y", strtotime($product['create'])); ?></p>
 			<input type="checkbox" id="delete_chk<?php echo $product['post_id'];?>" />
 			<button type="button" id="Button4" class="m2" onclick="deleteMyPost(<?php echo $product['post_id'];?>);">Delete</button>
+			<div style="padding-top:5px;">
+				<span style="color:#FF0000;font-family:Arial;font-size:11px;"><?php echo floor((7*60*60*24-(time() - strtotime($product['create']))) / (60 * 60 * 24));?> Days Remain </span>
+			</div>
 		</div>
 		<div class="col-md-7 col-sm-12 space1" style="background-color:#fff;height: 174px;">
 			<div id="wb_Text8" class="section3">
 				<span><strong class="font1"><a href="buyer_profile.html" target="_blank" class="style5"><?php echo $product['title'];?></a></strong>
 				</span>
-				<p class="font5">Required Specifications in details,
-					Required Specifications in details, Required
-					Specifications in details, Required Specifications in
-					details, Specifications in details.</p>
+				<p class="font5"><?php echo substr($product['stockdesc'],0,265);?> <?php if(strlen($product['stockdesc']) > 265) { ?>...<?php } ?></p>
 				<div class="inline pp">
 					<span class="usd y" style="background-color: #FFA500;">&nbsp; USD <?php echo $product['stockprice'];?>&nbsp;&nbsp;&nbsp; </span>
 					<span class="minorder g">&nbsp; Min. Order: <?php echo $product['stockqty'];?>&nbsp;&nbsp;&nbsp; </span>
@@ -43,7 +44,7 @@
 				</div>
 				<div class="col-sm-4 center"></div>
 			</div>
-			<div id="Layer5_<?php echo $key;?>" class="section10 row" style="background-color:#fff;">
+			<div id="Layer5_<?php echo $key;?>" class="section10 row" style="background-color:#fff;" onmouseenter="ShowObject('Layer8_<?php echo $key;?>', 0);">
 				<div class="col-md-3">
 					<?php if(!empty($product['image1'])) { ?>
 					<div style="padding-top:15px;">
@@ -81,7 +82,7 @@
 				</div>
 			</div>
 			<div id="Layer7" class="">
-				<img src="<?php echo asset_url(); ?><?php echo $product['main_image'];?>" class="imgresponsive img211">
+				<img src="<?php echo asset_url(); ?><?php echo $product['image1'];?>" class="imgresponsive img211">
 			</div>
 		</div>
 	</div>
