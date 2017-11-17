@@ -28,6 +28,20 @@ function addvedio()
 	var max_vedio = document.getElementById('max_vedio').value;
 	var totalvedio = document.getElementById('totalvedio').value;
 	if(totalvedio < max_vedio) {
+		var product_id = document.getElementById('product_id').value;
+		if(product_id != "") {
+			 if($('#uploadonepvedio').val().length < 0) {
+				 alert("Please select Vedio File"); 
+			 } else {
+				 publishvedio();
+			 }
+		} else {
+			alert("Please select Product");
+		}
+	} else {
+		alert("You can not upload more than "+max_vedio+' vedio.');
+	}
+	/*if(totalvedio < max_vedio) {
 			var values = new Array();
 		    $.each($("input[name='chkproduct[]']:checked"), function(){            
 		    	values.push($(this).val());
@@ -90,7 +104,7 @@ function addvedio()
 			}
 	} else {
 		alert("You can not upload more than "+max_vedio+' vedio.');
-	}
+	}*/
 }
 function publishvedio()
 {

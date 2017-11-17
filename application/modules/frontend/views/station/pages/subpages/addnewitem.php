@@ -264,16 +264,15 @@
 										</div>
 										<div class="messageContainer"></div>
 									</div>
-									<div class="col-sm-2 right-align-col">
-										<div class="form-text-label">Lead Time</div>
+									<div class="col-sm-2 right-align-col" style="text-align:center;">
+										<div class="form-text-label">Per</div>
 									</div>
-									<div class="col-sm-4 right-align-col">
+									<div class="col-sm-2 right-align-col">
 										<div class="">
-											<input type="text" name="lead_time" class="ds-product-input-0x" placeholder="Production Time"/>
+											<input type="text" name="unit" class="ds-product-input-0-5x" placeholder="Unit"/>
 										</div>
 										<div class="messageContainer"></div>
 									</div>
-									<div class="col-sm-2 right-align-col" style="text-align:center;"><div class="form-text-label">Days</div></div>
 								</div>
 							</div>
 						</div>
@@ -295,11 +294,15 @@
 										<div class="messageContainer"></div>
 									</div>
 									<div class="col-sm-2 right-align-col">
+										<div class="form-text-label">Lead Time</div>
+									</div>
+									<div class="col-sm-4 right-align-col">
 										<div class="">
-											<input type="text" name="unit" class="ds-product-input-0-5x" placeholder="Unit"/>
+											<input type="text" name="lead_time" class="ds-product-input-0x" placeholder="Production Time"/>
 										</div>
 										<div class="messageContainer"></div>
 									</div>
+									<div class="col-sm-2 right-align-col" style="text-align:center;"><div class="form-text-label">Days</div></div>
 								</div>
 							</div>
 						</div>

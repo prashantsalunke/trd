@@ -53,10 +53,10 @@ $route['default_controller'] = 'frontend/home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE; 
 
+$route['intro'] = 'frontend/home/intro';
 $route['stationhome'] = 'frontend/SellerStation';
 $route['sellerstation/my_account'] = 'frontend/SellerStation/myAccount';
 $route['homepage/setcookie'] = 'frontend/Home/setHomePageCookie';
-
 $route['account/stepone'] = 'frontend/Account/stepOne';
 $route['account/check_email'] = 'frontend/Account/check_email';
 $route['captcha'] = 'frontend/Account/captcha';
@@ -321,6 +321,7 @@ $route['mystation/savelangpersonalinfo'] = 'frontend/Language/saveLangPersonalin
 $route['mystation/savelangcompanyinfo'] = 'frontend/Language/savelangCompanyInfo';
 $route['mystation/savelangmainproductinfo'] = 'frontend/Language/saveLangMainProductInfo';
 $route['mystation/getlanguageproduct'] = 'frontend/Language/getLanguageProduct';
+$route['mystation/getlanguageservice'] = 'frontend/Language/getLanguageService';
 $route['mystation/savelangproductinfo'] = 'frontend/Language/saveLangProductInfo';
 $route['mystation/savelangserviceinfo'] = 'frontend/Language/savelangServiceInfo';
 $route['mystation/addnewlanguage'] = 'frontend/Language/saveNewLanguage';

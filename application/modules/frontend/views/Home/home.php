@@ -238,7 +238,7 @@ ul.share{
 						</div>
 						<div class="panel-body discoverbtn" style="position: relative;">
 							<div id="tab-slider" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner section1" role="listbox">
+								<div class="carousel-inner section1" role="listbox" style="padding-top:30px;">
 								<?php
 								$i ="0";
 								foreach($desksites as $desksite){ 
@@ -246,32 +246,35 @@ ul.share{
 									
 									?>
 									<div class="item <?php if($i == 1){ echo "active"; } ?>">
-										<h4 class="text-center uppercase"><?php echo $desksite['company_name']?></h4>
-										<p class="text-center">
-											<small><?php echo substr($desksite['company_introduction'],0,100);?></small>
-										</p>
-										<p class="text-center uppercase"><?php echo $desksite['company_country']?> | <?php echo $desksite['company_province']?></p>
+										<div class="col-sm-12 text-center" style="padding:5px 0px;">
+											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" target="_blank" class="hstyle19"><?php echo $desksite['company_name']?></a></span>
+										</div>
+										<div class="col-sm-offset-1 col-sm-10 text-center">
+											<small style="color:#2D2D2D;font-family:Arial;font-size:11px;"><?php echo substr($desksite['company_introduction'],0,100);?></small>
+										</div>
+										<div class="col-sm-12 text-center uppercase" style="padding:8px 0px;"><?php echo $desksite['company_country']?> | <?php echo $desksite['company_province']?></div>
 										<div class="col-xs-12 text-center">
-											<?php if($desksite['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width: 40px; display: inline-block;"> <?php }?>
-											<?php if($desksite['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width: 40px; display: inline-block;"> <?php }?>
-											<?php if($desksite['is_logo_verified'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" style="width: 30px; display: inline-block;"> <?php }?>
-											<?php if($desksite['plan_id'] > '1' && $desksite['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" style="width: 30px; display: inline-block;"><?php }?>
+											<?php if(!empty($desksite['in_community'])){?><img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;"> <?php }?>
+											<?php if($desksite['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }?>
+											<?php if($desksite['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php }?>
+											<?php if($desksite['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 										</div>
-										<div class="col-xs-12" style="margin-top: 15px; height: 300px;">
-											<a href="#" class=""><img src="<?php echo asset_url().$desksite['desksite_bg1']; ?>" class="img-responsive carousel_img"></a>
+										<div class="col-xs-12" style="margin-top: 80px;">
+											<a href="#" class=""><img src="<?php echo asset_url().$desksite['desksite_bg1']; ?>" class="img-responsive" style="padding: 0px !important;"></a>
 										</div>
-										<div class="discover">
+										<div class="discover" style="padding-top: 67%;">
 											<a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" class="btn btn-danger btn-lg">Discover</a>
 										</div>
 									</div>
-									<?php  }?>
+									<?php }?>
 								</div>
 							</div>
-							<div style="position: relative;">
-								<a class="left carousel-control control" href="#tab-slider" role="button"
-									data-slide="prev" ">Previous
-								</a> <a class="right carousel-control control" href="#tab-slider"
-									role="button" data-slide="next">Next
+							<div style="position: relative;top: -72px;width: 345px;left: 35px;">
+								<a class="left carousel-control control" href="#tab-slider" role="button" data-slide="prev" ">
+									<img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previoustxt0blk.png">
+								</a> 
+								<a class="right carousel-control control" href="#tab-slider" role="button" data-slide="next">
+									<img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nexttxt0blk.png">
 								</a>
 							</div>
 							
@@ -289,7 +292,7 @@ ul.share{
 						</div>
 						<div class="panel-body mytab">
 							<div id="tab-slider2" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner section2" role="listbox" style="height:552px;">
+								<div class="carousel-inner section2" role="listbox" style="height:552px;padding-top:30px;">
 								 
 									<?php 
 									$i ="0";
@@ -297,27 +300,28 @@ ul.share{
 										$i++;
 										?>
 									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:543px;">
-										<h4 class="text-center"><?php echo $product3D['name']?></h4>
-										<p class="text-center">
-											<a href="<?php echo base_url().'desksite/'.$product3D['busi_id'];?>"><?php echo $product3D['company_name']?></a>
-										</p>
+										<div class="text-center">
+											<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $product3D['name']?></strong></span>
+										</div>
+										<div class="col-sm-12 text-center" style="padding:5px 0px;">
+											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$product3D['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $product3D['company_name']?></a></span>
+										</div>
 										<p class="text-center"><?php echo $product3D['company_country']?> | <?php echo $product3D['company_province']?></p>
 										<div class="col-xs-12 text-center">
-											<?php if($product3D['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width: 40px; display: inline-block;"> <?php }?>
-											<?php if($product3D['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width: 40px; display: inline-block;"> <?php }?>
-											<?php if($product3D['is_logo_verified'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" style="width: 30px; display: inline-block;"> <?php }?>
-											<?php if($product3D['plan_id'] > '1' && $product3D['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" style="width: 30px; display: inline-block;"><?php }?>
-										
+											<?php if(!empty($product3D['in_community'])){?><img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;"> <?php }?>
+											<?php if($product3D['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }?>
+											<?php if($product3D['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php }?>
+											<?php if($product3D['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 										</div>
 										<div class="col-xs-12"
-											style="margin-top: 15px; text-align: center; margin-bottom: 5px; height: 300px;">
-											<img src="<?php echo asset_url().$product3D['main_image']; ?>" class="img-responsive carousel_img" style="display: inline-block">
+											style="margin-top: 15px; text-align: center; margin-bottom: 5px; height: 300px;padding: 25px;">
+											<img src="<?php echo asset_url().$product3D['main_image']; ?>" class="img-responsive" style="display: inline-block">
 										</div>
 										<div class="text-center">
-											<h4><?php echo 'USD'.$product3D['unit_price']?></h4>
-											<p><?php echo 'Min. Qty. 1 '.$product3D['unit']?></p>
+											<div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo $product3D['unit_price'];?> / <?php echo $product3D['unit']?></span></div>
+											<p><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity']?></span> </p>
 										</div>
-										<div class="hover-menu text-center">
+										<div class="hover-menu text-center" style="bottom:28px;">
 											<a href="<?php echo base_url().'products/details/'.$product3D['id'];?>" class="btn">
 												<img src="<?php echo asset_url(); ?>images/ts/view2.png" style="width: 40px;"></a>
 											 <a href="#" class="btn">
@@ -331,15 +335,12 @@ ul.share{
 											</a>
 										</div>
 									</div>
-									<?php  }?>
-									<a class="left carousel-control" href="#tab-slider2"
-										role="button" data-slide="prev" style="background: none;"> <span
-										class="glyphicon glyphicon-chevron-left" aria-hidden="true"
-										style="color: #696969"></span> <span class="sr-only">Previous</span>
-									</a> <a class="right carousel-control" href="#tab-slider2"
-										role="button" data-slide="next" style="background: none;"> <span
-										class="glyphicon glyphicon-chevron-right" aria-hidden="true"
-										style="color: #696969"></span> <span class="sr-only">Next</span>
+									<?php }?>
+									<a class="left carousel-control" href="#tab-slider2" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
+										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previous0.png"></span> 
+									</a> 
+									<a class="right carousel-control" href="#tab-slider2" role="button" data-slide="next" style="background: none;padding-top:70%;text-align:center;"> 
+										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/next0.png"></span> 
 									</a>
 								</div>
 							</div>
@@ -357,32 +358,37 @@ ul.share{
 						</div>
 						<div class="panel-body mytab">
 							<div id="tab-slider3" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner section3" role="listbox" style="height:552px;">
+								<div class="carousel-inner section3" role="listbox" style="height:552px;padding-top:30px;">
 								<?php 
 									$i ="0";
 									foreach ($vCatalogues as $vCatalogue) {
 										$i++;
 										?>
 									<div class="row item <?php if($i == 1){ echo "active"; } ?>" style="height:552px;">
-										<h4 class="text-center">Auto-mobile & Spare Parts Catalouge BY</h4>
-										<p class="text-center">
-											<a href="#"><?php echo $vCatalogue['company_name'];?></a>
-										</p>
-										<div class="col-xs-12" style="margin-top: 15px; text-align: center; margin-bottom: 5px; height: 340px;">
-											<img src="<?php echo asset_url().$vCatalogue['catalogue_cover']; ?>"
-												class="img-responsive carousel_img" style="display: inline-block">
+										<div class="text-center"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span></div>
+										<div class="text-center"><span style="color:#696969;font-family:Arial;font-size:12px;"><strong>BY</strong></span></div>
+										<div class="col-sm-12 text-center" style="padding:5px 0px;">
+											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $vCatalogue['company_name']?></a></span>
+										</div>
+										<div class="col-xs-12" style="margin-top: 15px; text-align: center; margin-bottom: 5px; height: 320px;">
+											<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block">
+											<div style="position:absolute;width: 140px;top: 120px;left: 140px;">
+												<img src="<?php echo asset_url().$vCatalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
+											</div>
+											<div style="position:absolute;width: 140px;top:245px;left: 140px;">
+												<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span>
+											</div>
 										</div>
 										<div class="col-xs-12 text-center">
 											<p class="text-center"><?php echo $vCatalogue['company_country'];?> | <?php echo $vCatalogue['company_province'];?></p>
 											<div class="col-xs-12 text-center">
-												<?php if($vCatalogue['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width: 40px; display: inline-block;"> <?php }?>
-												<?php if($vCatalogue['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width: 40px; display: inline-block;"> <?php }?>
-												<?php if($vCatalogue['is_logo_verified'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" style="width: 30px; display: inline-block;"> <?php }?>
-												<?php if($vCatalogue['plan_id'] > '1' && $product3D['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" style="width: 30px; display: inline-block;"><?php }?>
-										
+												<?php if(!empty($vCatalogue['in_community'])){?><img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;"> <?php }?>
+												<?php if($vCatalogue['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }?>
+												<?php if($vCatalogue['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php }?>
+												<?php if($vCatalogue['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 											</div>
 										</div>
-										<div class="col-xs-12 hover-menu text-center blue">
+										<div class="col-xs-12 hover-menu text-center blue" style="bottom:36px;">
 											<a href="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);"  class="btn">
 												<img src="<?php echo asset_url(); ?>images/vacticonwhite.png" style="width: 40px;">
 											</a> 
@@ -398,14 +404,11 @@ ul.share{
 										</div>
 									</div>
 									<?php } ?>
-									<a class="left carousel-control" href="#tab-slider3"
-										role="button" data-slide="prev" style="background: none;"> <span
-										class="glyphicon glyphicon-chevron-left" aria-hidden="true"
-										style="color: #696969"></span> <span class="sr-only">Previous</span>
-									</a> <a class="right carousel-control" href="#tab-slider3"
-										role="button" data-slide="next" style="background: none;"> <span
-										class="glyphicon glyphicon-chevron-right" aria-hidden="true"
-										style="color: #696969"></span> <span class="sr-only">Next</span>
+									<a class="left carousel-control" href="#tab-slider2" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
+										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previous0.png"></span> 
+									</a> 
+									<a class="right carousel-control" href="#tab-slider2" role="button" data-slide="next" style="background: none;padding-top:70%;text-align:center;"> 
+										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/next0.png"></span> 
 									</a>
 								</div>
 							</div>
@@ -445,14 +448,19 @@ ul.share{
 								</h4>
 								<p class="text-center product-text ptext" ><?php echo $FeaturedProduct['description']; ?></p>
 								<div class="tumb-slide">
-									<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive">
+									<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive" style="width:218px;height:177px;">
 									<div class="hover-thumb text-center">
-										<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>)">
-											<img src="<?php echo asset_url(); ?>images/ts/window0.png" style="width: 40px;">
-										</a> 
-										<a href="#">
-											<img src="<?php echo asset_url(); ?>images/ts/view.png" style="width: 40px;">
-										</a>
+										<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;z-index:851;">
+											<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>);">
+												<img src="<?php echo asset_url(); ?>images/window0.png" id="Image13" alt="View">
+											</a>
+										</div>
+										<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;z-index:770;">
+											<a href="<?php echo base_url();?>desksite/<?php echo $FeaturedProduct['busi_id'];?>" target="_blank">
+												<img class="hover" alt="View Desksite" src="<?php echo asset_url(); ?>images/vieworang.png">
+												<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view-detailsb.png"></span>
+											</a>
+										</div>
 									</div>
 								</div>
 								<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedProduct['unit_price']?></span></h4>
@@ -461,6 +469,10 @@ ul.share{
 							</div>
 							<?php } ?>
 						</section>
+					</div>
+					<div id="Layer_details" class="class1">
+					  	<div id="Layer_details_Container" class="class2">
+					    </div>
 					</div>
 				</div>
 			</div>
@@ -529,35 +541,58 @@ ul.share{
 					<div class="col-sm-9 col-lg-10"
 						style="background: #fff; min-height: 272px;">
 						<div >
-						<section class="center slider">
+						<section class="center slider" style="margin:8px auto;">
 						<?php
 							$i ="0";
 							
-							foreach($FWSellers as $FWSeller){
+							foreach($FWSellers as $key=>$FWSeller){
 								$i++;
 								
 							?>
-							<div  class="col-md-3" style="position: relative;">
-								<div class="tumb-slide">
-									<img src="<?php echo asset_url().$FWSeller['picture']; ?>" class="imgresponsive">
-									<div class="hover-thumb text-center">
-										<a href="javascript:openSeller(<?php echo $FWSeller['id']; ?>)">
-											<img src="<?php echo asset_url(); ?>images/ts/window0.png" style="width: 40px;">
-										</a> 
-										<a href="#">
-											<img src="<?php echo asset_url(); ?>images/desktopicon.gif" style="width: 40px;">
+							<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;" onmouseenter="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 0, 'fade', 10, 'swing');return false;">
+								<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
+									<img src="<?php echo asset_url().$FWSeller['picture']; ?>" id="Shape24" alt="" style="width:218px;height:218px;">
+								</div>
+								<div id="Layer141" style="position:absolute;text-align:left;left:0px;top:202px;width:218px;height:65px;z-index:510;">
+									<div id="wb_Text204" style="position:absolute;left:55px;top:25px;width:116px;height:16px;z-index:503;text-align:left;">
+										<span style="color:#000000;font-family:Arial;font-size:11px;"><strong><?php echo $FWSeller['contact_person']?></strong></span>
+									</div>
+									<div id="wb_Text205" style="position:absolute;left:55px;top:40px;width:130px;height:16px;z-index:504;text-align:left;">
+										<span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWSeller['position']?>CTO</span>
+									</div>
+									<div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:19px;z-index:505;background-color: #A9A9A9;">
+										<div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:16px;text-align:center;z-index:502;">
+											<span style="color:#000000;font-family:Arial;font-size:11px;">Applicance, Lighting lamp</span>
+										</div>
+									</div>
+									<div id="wb_Shape25" style="position:absolute;left:11px;top:24px;width:35px;height:26px;z-index:506;">
+										<img src="<?php echo asset_url(); ?>images/flags/<?php echo $FWSeller['flag'];?>" id="Shape25" alt="" style="width:35px;height:35px;">
+									</div>
+								</div>
+								<div id="Layer143-<?php echo $key;?>" class="Layer143" style="position: absolute; text-align: left; visibility: visible; left: 0px; top: 0px; width: 218px; height: 218px; z-index: 511; display: none;">
+								</div>
+								<div id="Layer144-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
+									<div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
+										<a href="javascript:openSeller(<?php echo $FWSeller['id']; ?>);" >
+											<img src="<?php echo asset_url(); ?>images/window0.png" id="Image96" alt="">
+										</a>
+									</div>
+									<div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:35px;height:35px;z-index:508">
+										<a href="<?php echo base_url(); ?>desksite/<?php echo $FWSeller['busi_id'];?>" target="_blank">
+											<img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
+											<span><img alt="" src="<?php echo asset_url(); ?>images/desktopicon.gif"></span>
 										</a>
 									</div>
 								</div>
-								<img src="<?php echo asset_url(); ?>images/img0099.png" id="Shape38" alt=""  class="imgcountry">
-								<h4 class="text-center product-money-symbol core1"><?php echo $FWSeller['contact_person']?></h4>
-								<p class="text-center product-money-text core2"><?php echo $FWSeller['position']?></p>
-								<p class="text-center author">test text</p>
 							</div>
 							<?php }?>
 						</section>
 						</div>
 					</div>
+					<div id="Layer_sellers" class="class1">
+				        <div id="Layer_details_Container4" class="class2">
+				        </div>
+				    </div>
 				</div>
 			</div>
 		</div>
@@ -736,16 +771,8 @@ ul.share{
     </div>
 </div>   
    <!-- add to catalogue end -->
-<div id="Layer_details" class="class1">
-        <div id="Layer_details_Container" class="class2">
-        </div>
-    </div>
     <div id="Layer_details2" class="class1">
         <div id="Layer_details_Container2" class="class2">
-        </div>
-    </div>
-    <div id="Layer_sellers" class="class1">
-        <div id="Layer_details_Container4" class="class2">
         </div>
     </div>
     <div id="Layer_buyers" class="class1">
@@ -820,13 +847,12 @@ ul.share{
 			ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
 		},'html');
 	}
-	function openProduct(id) {
-		//alert('hello');
+	/*function openProduct(id) {
 		$.get(base_url+"seller/product/view/"+id,{},function(data) {
-			$("#Layer_details_Container2").html(data);
-			ShowObjectWithEffect('Layer_details2', 1, 'scale', 500, 'swing');
+			$("#Layer_details_Container").html(data);
+			ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
 		},'html');
-	}
+	}*/
 	function openCatalogue(id) {
 		//alert('hello');
 		$.get(base_url+"catalogue/popup/"+id,{},function(data) {
@@ -1087,7 +1113,7 @@ function openVideo(id) {
 function openProduct(id) {
 	//alert('hello');
 	$.get(base_url+"seller/product/view/"+id,{},function(data) {
-		$("#Layer_details_Container2").html(data);
+		$("#Layer_details_Container").html(data);
 		ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
 	},'html');
 }
@@ -1102,4 +1128,9 @@ if($('select').val()=='default'){
     alert('Please, choose an option');
     return false;
 }}
+function addToItemToCart(id) {
+	$.post(base_url+"additemtocart",{product_id: id},function(data) {
+		alert(data.msg);
+	},'json');
+}
 </script>

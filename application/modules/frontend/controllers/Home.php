@@ -56,6 +56,13 @@ class Home extends MX_Controller {
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('Home/home');
 	}
+	
+	public function intro() {
+		$this->template->set ( 'page', 'home' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$this->template->build ('Home/intro.php');
+	}
 	public function afterloginHome()
 	{
 		$this->load->library('mylib/General');

@@ -15,14 +15,14 @@ if(count($posts) > 0) {
 				<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
 				<strong class="country"><br> </strong>
 				<?php } else { ?>
-				<strong class="country"><?php echo $product['country'];?></strong>
+				<strong class="country"><?php echo $product['company_country'];?></strong>
 				<?php } ?>
 			</div>
 			<div>
 				<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
 				<span class=""><br></span>
 				<?php } else { ?>
-				<span class=""><?php echo $product['province'];?></span>
+				<span class=""><?php echo $product['company_province'];?></span>
 				<?php } ?>
 			</div>
 			<!-- p class="date"><?php echo date("d M, Y", strtotime($product['create'])); ?></p-->
@@ -37,8 +37,10 @@ if(count($posts) > 0) {
 					</span>
 					<p class="font5" style="height: 55px;"><?php echo substr($product['stockdesc'],0,270);?> <?php if(strlen($product['stockdesc']) > 270) { ?>...<?php } ?></p>
 					<div class="inline">
+					<?php if($product['catid'] == 1) { ?>
 						<span class="usd">&nbsp; USD <?php echo $product['stockprice'];?>&nbsp;&nbsp;&nbsp; </span>
 						<span class="minorder">&nbsp; Min. Order: <?php echo $product['stockqty'];?>&nbsp;&nbsp;&nbsp; </span>
+					<?php } ?>
 					</div>
 				</div>
 				<div class="row">
@@ -70,10 +72,12 @@ if(count($posts) > 0) {
 					<?php } else { ?>
 						<img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image49" alt="" class="img25" style="opacity: 0.15;" /> 
 					<?php } ?>
+					<?php if($product['catid'] == 1) { ?>
 					<?php if($product['plan_id'] > 1 && !empty($product['gaurantee_period'])) { ?>
 						<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image49" alt="" class="img25" style="width:34px !important;"/>
 					<?php } else { ?>
 						<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image49" alt="" class="img25" style="opacity: 0.15;width:34px !important;" />
+					<?php } ?>
 					<?php } ?>
 					<?php if($product['is_logo_verified'] > 1) { ?>
 						<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image49" alt="" class="img25" />
@@ -184,9 +188,9 @@ if(count($posts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver5" class="img45">
-						<?php if($tscategory_id == 1) { ?>
+						<?php if($product['catid'] == 1) { ?>
 							<a href="<?php echo base_url();?>seller/website/<?php echo $product['busi_id'];?>" target="_blank"> 
-						<?php } else if($tscategory_id == 2) { ?>
+						<?php } else if($product['catid'] == 2) { ?>
 							<a href="<?php echo base_url();?>shipper/website/<?php echo $busi_id;?>" target="_blank">
 						<?php } else { ?>
 							<a href="<?php echo base_url();?>buyer/website/<?php echo $busi_id;?>" target="_blank">
@@ -196,12 +200,12 @@ if(count($posts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver1" class="img45">
-						<?php if($tscategory_id == 1) { ?>
-						<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" target="_blank"> 
-						<?php } else if($tscategory_id == 2) { ?>
-							<a href="<?php echo base_url();?>shipper/profile/<?php echo $busi_id;?>" target="_blank">
+						<?php if($product['catid'] == 1) { ?>
+						<a href="<?php if($contact_details[0]['accept_community'] == 1) { ?><?php echo base_url();?>desksite/<?php echo $product['busi_id'];?><?php } else { ?>javascript:addToMyCommunityAlert();<?php } ?>" target="_blank"> 
+						<?php } else if($product['catid'] == 2) { ?>
+							<a href="<?php if($contact_details[0]['accept_community'] == 1) { ?><?php echo base_url();?>shipper/profile/<?php echo $busi_id;?><?php } else { ?>javascript:addToMyCommunityAlert();<?php } ?>" target="_blank">
 						<?php } else { ?>
-							<a href="<?php echo base_url();?>buyer/profile/<?php echo $busi_id;?>" target="_blank">
+							<a href="<?php if($contact_details[0]['accept_community'] == 1) { ?><?php echo base_url();?>buyer/profile/<?php echo $busi_id;?><?php } else { ?>javascript:addToMyCommunityAlert();<?php } ?>" target="_blank">
 						<?php } ?>
 							<img class="hover" alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Active/desksite-dorange.png" /> 
 							<span><img alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Link/desksite-dorange.png" /></span>
@@ -241,14 +245,12 @@ function openBuyerRequestForm(postid) {
 	<?php if($tscategory_id != 3) { ?>
 	customAlert("Sorry.. Only buyers have access to send enquiry to seller/shipper posts.");
 	<?php } else { ?>
-	<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['accept_chat'] == 1 && $contact_details[0]['accept_community'] == 1 && $contact_details[0]['step'] == 2) { ?>
+	<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
 		popupwnd('<?php echo base_url();?>stockmarket/buyer_request/<?php echo $product['post_id'];?>','no','no','no','yes','yes','no','600','50','555','750')
 	<?php } else if($contact_details[0]['step'] < 2) { ?>
 		customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
 	<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
 		customAlert('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
-	<?php } else if($contact_details[0]['accept_chat'] == 0 || $contact_details[0]['accept_community'] == 0) { ?>
-		customAlert('Oops.. It seems that you have turned this feature OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Panel", then Turn it ON.');
 	<?php } ?>
 	<?php } ?>
 }
@@ -259,6 +261,9 @@ function openChat(postid,seller_id) {
 	<?php } else { ?>
 		customAlert('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
 	<?php } ?>
+}
+function addToMyCommunityAlert() {
+	customAlert('Oops.. It seems that you have turned this feature OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Panel", then Turn it ON.');
 }
 function noAccessAlert() {
 	customAlert("Oops… You are not supposed to reply your own post..!!");

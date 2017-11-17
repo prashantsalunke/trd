@@ -288,7 +288,7 @@ input.imgInp {
                         			<?php if($tsplanid == 1) {  ?>
                         				<span class="myaccount_titlevalue"><strong>Free Memeber</strong></span>
                         			<?php } else { ?>	
-	                        			<span class="myaccount_titlevalue"><strong>BLACK HOURSE</strong></span>
+	                        			<span class="myaccount_titlevalue"><strong>BLACK HOURSE</strong></span><br>
 	                        			<span style="color: #FF8C00; font-family: Arial; font-size: 12px;"><strong>
 	                        				<?php if($tsplanid == 2) {  echo "Basic"; } else if($tsplanid == 3) { echo "VIP"; } else { echo "Elite"; }?>
 	                        			</strong></span>

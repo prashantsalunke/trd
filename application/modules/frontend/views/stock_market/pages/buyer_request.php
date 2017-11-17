@@ -83,7 +83,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
       theForm.Editbox1.focus();
       return false;
    }
-   if (theForm.Editbox1.value.length > 20)
+   if (theForm.Editbox1.value.length > 100)
    {
       alert("Please Enter The Contact Name");
       theForm.Editbox1.focus();
@@ -101,7 +101,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
       theForm.Editbox2.focus();
       return false;
    }
-   if (theForm.Editbox2.value.length > 20)
+   if (theForm.Editbox2.value.length > 100)
    {
       alert("Please Enter Your Company Name");
       theForm.Editbox2.focus();
@@ -137,7 +137,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
       theForm.Editbox7.focus();
       return false;
    }
-   if (theForm.Editbox7.value.length > 30)
+   if (theForm.Editbox7.value.length > 128)
    {
       alert("Please Enter A Valid Email");
       theForm.Editbox7.focus();
@@ -169,7 +169,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
    }
    if (theForm.TextArea1.value.length > 4000)
    {
-      alert("Please Enter Enough Description");
+      alert("Please Enter max Description of 4000 characters");
       theForm.TextArea1.focus();
       return false;
    }
@@ -187,7 +187,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
    }
    if (theForm.TextArea2.value.length > 4000)
    {
-      alert("Please Enter Enough Introduction");
+      alert("Please Enter max Introduction of 4000 characters");
       theForm.TextArea2.focus();
       return false;
    }
@@ -244,18 +244,18 @@ function showAddResponse(resp, statusText, xhr, $form){
 <form name="Offer_for_you_post_in_RT_Business" method="post" action="" enctype="multipart/form-data" id="bstbuyerrequest" onsubmit="return ValidateOffer_for_you_post_in_RT_Business(this);">
 <input type="hidden" name="post_id" value="<?php echo $post[0]['id'];?>" />
 <input type="hidden" name="seller_id" value="<?php echo $post[0]['busi_id'];?>" />
-<input type="text" id="Editbox1" style="position:absolute;left:289px;top:288px;width:194px;height:19px;line-height:19px;z-index:0;" name="name" value="<?php echo $contact_details[0]['name'];?>" maxlength="20">
-<input type="text" id="Editbox2" style="position:absolute;left:289px;top:318px;width:194px;height:19px;line-height:19px;z-index:1;" name="Company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
-<input type="number" id="Editbox6" style="position:absolute;left:290px;top:380px;width:194px;height:19px;line-height:19px;z-index:2;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
-<input type="email" id="Editbox7" style="position:absolute;left:290px;top:349px;width:194px;height:19px;line-height:19px;z-index:3;" name="email" value="<?php echo $contact_details[0]['email'];?>" maxlength="30">
-<select name="country" size="1" id="Combobox2" style="position:absolute;left:290px;top:411px;width:200px;height:25px;z-index:4;">
+<input type="text" id="Editbox1" style="position:absolute;left:230px;top:288px;width:252px;height:19px;line-height:19px;z-index:0;" name="name" value="<?php echo $contact_details[0]['name'];?>" maxlength="20">
+<input type="text" id="Editbox2" style="position:absolute;left:230px;top:318px;width:252px;height:19px;line-height:19px;z-index:1;" name="Company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
+<input type="number" id="Editbox6" style="position:absolute;left:230px;top:380px;width:252px;height:19px;line-height:19px;z-index:2;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
+<input type="email" id="Editbox7" style="position:absolute;left:230px;top:349px;width:252px;height:19px;line-height:19px;z-index:3;" name="email" value="<?php echo $contact_details[0]['email'];?>" maxlength="30">
+<select name="country" size="1" id="Combobox2" style="position:absolute;left:230px;top:411px;width:258px;height:25px;z-index:4;">
 <option selected value="Select">Select your country</option>
 <?php foreach ($Country as $country){?>
 <option value="<?php echo $country['name'];?> "><?php echo $country['name'];?></option>
 <?php }?>
 </select>
-<input type="button" id="Button1" name="" value="Send" style="position:absolute;left:393px;top:455px;width:96px;height:25px;z-index:5;" onclick="saveRequest();">
-<input type="reset" id="Button2" name="" value="Cancel" style="position:absolute;left:289px;top:455px;width:96px;height:25px;z-index:6;" onclick="window.close();">
+<input type="button" id="Button1" name="" value="Send" style="position:absolute;left:334px;top:455px;width:96px;height:25px;z-index:5;" onclick="saveRequest();">
+<input type="reset" id="Button2" name="" value="Cancel" style="position:absolute;left:230px;top:455px;width:96px;height:25px;z-index:6;" onclick="window.close();">
 <div id="wb_Text1" style="position:absolute;left:27px;top:355px;width:180px;height:14px;z-index:7;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">Contact Email</span></div>
 <div id="wb_Text3" style="position:absolute;left:27px;top:418px;width:180px;height:14px;z-index:8;text-align:left;">

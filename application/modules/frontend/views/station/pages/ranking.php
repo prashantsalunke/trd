@@ -110,27 +110,28 @@
 									</div>
 									<div class="col-sm-3">
 										<div class="<?php if($binfo[0]['plan_id'] == 1){?>plan-active<?php } else {?>plan-regular<?php } ?>">
-											<div><strong>Free Plan</strong></div>
+											<div style="<?php if($binfo[0]['plan_id'] == 1){?>color:#1E90FF;<?php }?>"><strong>Free Plan</strong></div>
 											<div>Provides you with % 0</div>
 										</div>
 										<div class="<?php if($binfo[0]['plan_id'] == 2){?>plan-active<?php } else {?>plan-regular<?php } ?>">
-											<div><strong>Basic Plan</strong></div>
+											<div style="<?php if($binfo[0]['plan_id'] == 2){?>color:#1E90FF;<?php }?>"><strong>Basic Plan</strong></div>
 											<div>Provides you with % 59</div>
 										</div>
 										<div class="<?php if($binfo[0]['plan_id'] == 3){?>plan-active<?php } else {?>plan-regular<?php } ?>">
-											<div><strong>VIP Plan</strong></div>
+											<div style="<?php if($binfo[0]['plan_id'] == 3){?>color:#1E90FF;<?php }?>"><strong>VIP Plan</strong></div>
 											<div>Provides you with % 61</div>
 										</div>
 										<div class="<?php if($binfo[0]['plan_id'] == 4){?>plan-active<?php } else {?>plan-regular<?php } ?>">
-											<div><strong>Elite Plan</strong></div>
+											<div style="<?php if($binfo[0]['plan_id'] == 4){?>color:#1E90FF;<?php }?>"><strong>Elite Plan</strong></div>
 											<div>Provides you with % 63</div>
 										</div>
 									</div>
 									<div class="col-sm-3" style="color:#1E90FF;font-family:Arial;font-size:11px;">
-										<img src="<?php echo asset_url();?>images/img1982.png" id="Shape280" alt="" style="width:11px;height:13px;">
+										<!-- img src="<?php echo asset_url();?>images/img1982.png" id="Shape280" alt="" style="width:11px;height:13px;">
 										<strong> Your Current Plan is<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $binfo[0]['plan_name'];?> Plan</strong><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php if($binfo[0]['rank'] > 0) {?>You Got <?php echo $binfo[0]['rank'];?> % <?php } ?>
+										-->
 									</div>
 									<div class="col-sm-3" style="color:#2D2D2D;font-family:Arial;font-size:11px;padding-top:20px;">
 										<br>
@@ -301,9 +302,9 @@
 												You still have chance to increase <br>% 5, if you provide guarantee on <br>your products
 											</div>
 											<div id="terms-btns" style="display:<?php if(!empty($binfo[0]['gaurantee_term'])) { ?>block;<?php } else{ ?>none;<?php } ?>">
-												<a href="javascript:confirmTerms();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;display:<?php if(!empty($binfo[0]['gaurantee_term'])) { ?>none;<?php } else{ ?>block;<?php } ?>" id="confess_btn">Confess & Confirm</a><br>
-												<a href="javascript:editTerms();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;padding:5px 61px;">Edit Terms</a><br>
-												<a href="javascript:cancelTerms();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;">Cancel Gaurantee</a>
+												<a href="javascript:confirmTerms();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;width: 180px;display:<?php if(!empty($binfo[0]['gaurantee_term'])) { ?>none;<?php } else{ ?>block;<?php } ?>" id="confess_btn">Confess & Confirm</a><br>
+												<a href="javascript:editTerms();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;padding:5px 61px;width: 180px;">Edit Terms</a><br>
+												<a href="javascript:cancelTerms();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;width: 180px;">Cancel Gaurantee</a>
 											</div>
 										</div>
 									</div>
@@ -642,6 +643,7 @@ function confirmTerms() {
 	$.post(base_url+"mystation/gaurantee/confirm",{ gaurantee_term: term_text, gaurantee_period: months},function(data){
 		$("#terms_desc").html("<strong>You have been confess to provide a guarantee on your <br>products based on the following terms</strong>");
 		$("#confess_btn").hide();
+		getBusinessRanking();
 	},'json');
 }
 
@@ -655,6 +657,7 @@ function confirmCerts() {
 			$("#certs-input-msg").show();
 			$("#certs-btns").show();
 			$("#certs_text_msg").html(certs);
+			getBusinessRanking();
 		},'json');
 	} else {
 		alert("Please enter certificates.");
@@ -678,6 +681,7 @@ function confirmLics() {
 		$("#lic-input-msg").show();
 		$("#lic-btns").show();
 		$("#lic_text_msg").html(lics);
+		getBusinessRanking();
 	},'json');
 }
 

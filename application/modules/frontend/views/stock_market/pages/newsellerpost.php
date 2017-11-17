@@ -59,7 +59,7 @@ ul.typeahead li a:hover {
 								  <option value="<?php echo $item['id'];?>"><?php echo $item['name'];?></option>
 							    <?php } ?>	
 							</select-->
-							<input type="text" style="width: 190px;padding-top:4px;display:inline;" id="product_select" class="form-control post-input-control" placeholder="Type the product name or No."/>
+							<input type="text" style="width:190px;padding-top:4px;display:inline;" id="product_select" class="form-control post-input-control" placeholder="Type the product no."/>
 							<button id="buttonselect" style="width:60px;height:25px;" type="button" onclick="getProductImages();">Link</button>
 							</div>
 							<div class="messageContainer"></div>
@@ -68,7 +68,7 @@ ul.typeahead li a:hover {
 					<br>
 					<div class="row">
 						<label class="label-text col-sm-3">&nbsp;</label>
-						<div class="hh label-text col-sm-4"><div class="col-sm-1" style="padding-left:0px;"><input type="radio" name="gender" value="uproductimage" /></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OR choose files below.</div>
+						<div class="hh label-text col-sm-4"><div class="col-sm-1" style="padding-left:0px;"><input type="radio" name="gender" value="uproductimage" /></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New images " Click below".</div>
 						<div class="col-sm-3"><span style="color:#696969;font-family:Arial;font-size:9.3px;">4 jpg images, Each image with Max. size 75KB</span></div>
 						<div class="col-sm-offset-3 col-sm-9" style="margin-top:10px;">
 							<div>
@@ -142,7 +142,7 @@ ul.typeahead li a:hover {
 								<p class="leftbox2">Keep My Profile Info. Locked For Other Sellers..</p>
 							</div>
 							<div class="inline">
-								<button id="Button4">RESET</button>
+								<button id="Button4" type="button" onclick="resetMyForm();">RESET</button>
 								<button id="Button4" type="submit">SEND</button>
 							</div>
 						</div>
@@ -179,7 +179,7 @@ ul.typeahead li a:hover {
 	</div>
 </form>
 <script>
-$(document).ready(function () {
+/*$(document).ready(function () {
 	$("#product_select").typeahead({
 	    onSelect: function(item) {
 	        itemvalue = item.value;
@@ -206,5 +206,8 @@ $(document).ready(function () {
 	    }
 	    
 	});	
-});
+});*/
+function resetMyForm() {
+	document.getElementById("addPostContent").reset();
+}
 </script>

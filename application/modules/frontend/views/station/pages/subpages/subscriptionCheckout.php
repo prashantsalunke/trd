@@ -4837,13 +4837,17 @@
 			</div>
 		</div>
 	</div>
-	<div id="Layer6"
-		style="position: fixed; text-align: left; visibility: hidden; left: 0; top: 0; bottom: 0; width: 1280px; z-index: 220;">
+	<div id="Layer6" style="position: fixed; text-align: left; visibility: hidden; left: 0; top: 0; bottom: 0; width: 1280px; z-index: 220;">
 		<div id="Layer8"
 			style="position: fixed; text-align: left; left: 0; top: 0; right: 0; bottom: 0; z-index: 119;">
 		</div>
-		<div id="Layer20"
-			style="position: absolute; text-align: left; left: 370px; top:60px; width: 780px; height: 545px; z-index: 120;">
+		<div id="Layer20" style="position: absolute; text-align: left; left: 370px; top:60px; width: 780px; height: 545px; z-index: 120;">
+			<style media="print">
+			 @page {
+			  size: auto;
+			  margin: 0;
+			       }
+			</style>
 			<div id="wb_Text10"
 				style="position: absolute; left: 117px; top: 304px; width: 44px; height: 15px; z-index: 95; text-align: left;">
 				<span style="color: #3C3C3C; font-family: Arial; font-size: 12px;">Details</span>
@@ -4876,43 +4880,42 @@
 				style="position: absolute; left: 117px; top: 264px; width: 44px; height: 15px; z-index: 102; text-align: left;">
 				<span style="color: #3C3C3C; font-family: Arial; font-size: 12px;">Item</span>
 			</div>
-			<hr id="Line33"
-				style="position: absolute; left: 117px; top: 406px; width: 533px; height: 1px; z-index: 103;">
+			<hr id="Line33" style="position: absolute; left: 117px; top: 406px; width: 533px; height: 1px; z-index: 103;border-top: 1px solid #eee;">
 			<div id="wb_Text19"
 				style="position: absolute; left: 540px; top: 416px; width: 102px; height: 19px; z-index: 104; text-align: left;">
 				<span style="color: #3C3C3C; font-family: Arial; font-size: 16px;"><strong>USD
 						<?php echo $sprice;?>.00</strong></span>
 			</div>
-			<hr id="Line44"
-				style="position: absolute; left: 117px; top: 443px; width: 533px; height: 1px; z-index: 105;">
+			<hr id="Line44" style="position: absolute; left: 117px; top: 443px; width: 533px; height: 1px; z-index: 105;border-top: 1px solid #eee;">
 			<div id="wb_Shape5"
 				style="position: absolute; left: 209px; top: 472px; width: 107px; height: 33px; z-index: 106;">
-				<a href="<?php echo base_url();?>mystation"><div id="Shape5">
+				<a href="javascript:openMyStation();">
+					<div id="Shape5">
 						<div id="Shape5_text">
-							<span
-								style="color: #FF6347; font-family: Arial; font-size: 16px;">My
-								Station</span>
+							<span style="color: #FF6347; font-family: Arial; font-size: 16px;">My Station</span>
 						</div>
-					</div></a>
+					</div>
+				</a>
 			</div>
 			<div id="wb_Shape6"
 				style="position: absolute; left: 330px; top: 472px; width: 107px; height: 33px; z-index: 107;">
-				<a href="javascript:window.print()" onclick=";return false;"><div
-						id="Shape6">
+				<a href="javascript:printInvoice();">
+					<div id="Shape6">
 						<div id="Shape6_text">
-							<span
-								style="color: #FF6347; font-family: Arial; font-size: 16px;">Print</span>
+							<span style="color: #FF6347; font-family: Arial; font-size: 16px;">Print</span>
 						</div>
-					</div></a>
+					</div>
+				</a>
 			</div>
 			<div id="wb_Shape7"
 				style="position: absolute; left: 451px; top: 472px; width: 107px; height: 33px; z-index: 108;">
-				<a href="" onclick=";return false;"><div id="Shape7">
+				<a href="javascript:saveInvoice();" id="cmd">
+					<div id="Shape7">
 						<div id="Shape7_text">
-							<span
-								style="color: #FF6347; font-family: Arial; font-size: 16px;">Save</span>
+							<span style="color: #FF6347; font-family: Arial; font-size: 16px;">Save</span>
 						</div>
-					</div></a>
+					</div>
+				</a>
 			</div>
 			<div id="wb_Text20"
 				style="position: absolute; left: 262px; top: 91px; width: 295px; height: 24px; z-index: 109; text-align: left;">
@@ -4960,10 +4963,88 @@
 				<img src="<?php echo asset_url();?>images/tick-big.png" id="Image5"
 					alt="">
 			</div>
+			<br><br>
 		</div>
 	</div>
+	<div style="display:none;">
+		<div id="content">
+			<style>
+				table, th, td {
+				   border: 0px solid #ccc;
+				   border-collapse: collapse;
+				   padding: 5px;
+				   border-spacing:0;
+				}
+				table {
+					margin-left:50px;
+				}
+				.idetail {
+					margin-left:50px;
+				}
+				.paydiv {
+					margin-left:50px;
+					margin-top:25px;
+				}
+			</style>
+			<div style="width: 100%; height: 14px; text-align: center;">
+				<span style="color: #FA5C43; font-family: Arial; font-size: 11px;">TRADE</span>
+			</div>
+			<div style="text-align: center;width: 100%; height: 25px; z-index: 117;">
+				<span style="color: #FA5C43; font-family: Impact; font-size: 20px; letter-spacing: 0.07px;">STATION</span>
+			</div>
+			<br><br>
+			<div style="width:100%; height: 24px;;text-align: center;">
+					<span style="color: #3C3C3C; font-family: Georgia; font-size: 20px;">
+						<strong>Thanks <?php echo $tsprefix;?> <?php echo $tsusername;?></strong>
+					</span>
+			</div>
+			<br><br><br>
+			<div style="width:100%; height: 20px; z-index: 115; text-align: left;" class="idetail">
+				<span style="color: #3C3C3C; font-family: Georgia; font-size: 20px;border-bottom:1px solid #000;">
+					<b>Invoice Details</b>
+				</span>
+			</div>
+			<br><br>
+			<div>
+				<table style="border:0px;border-collapse: collapse;background:#fff;color: #3C3C3C; font-family: Georgia; font-size: 12px;" border="0" bgcolor="#fff" cellpadding="0" cellspacing="0">
+					<tr style="border:0px;background:#fff;" bgcolor="white">
+						<td style="border:0px;background:#fff;" bgcolor="white">Item</td>
+						<td style="border:0px;background:#fff;" bgcolor="white">Trade Station Membership Subscription</td>
+					</tr>
+					<tr>
+						<td>Plan</td>
+						<td><?php echo $msad[0]['name'];?></td>
+					</tr>
+					<tr>
+						<td>Details</td>
+						<td>Black Horse  Membership</td>
+					</tr>
+					<tr>
+						<td>Terms</td>
+						<td>12 Months</td>
+					</tr>
+					<tr>
+						<td>Start</td>
+						<td><?php echo date('jS M Y');?></td>
+					</tr>
+					<tr>
+						<td>Expired on</td>
+						<td><?php echo date('jS M Y',strtotime('+12 months'));?></td>
+					</tr>
+				</table>
+			</div>
+			<div class="paydiv">
+				<hr style="border-bottom:1px solid #000000;">
+				<span style="color:#000;">
+					Payment is done successfully at USD <?php echo $sprice;?>.00
+				</span>			
+			</div>
+		</div>
+	</div>
+	<div id="editor"></div>
 </body>
 </html>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 <script>
 var base_url = '<?php echo base_url();?>';												
 paypal.Button.render({
@@ -5028,4 +5109,36 @@ $(document).ready(function(){
         $(".myalert").hide();
     });
 });
+function printInvoice() {    
+	var printContents = document.getElementById('content').innerHTML;
+    w = window.open();
+    w.document.write(printContents);
+    w.document.write('<scr' + 'ipt type="text/javascript">' + 'window.onload = function() { window.print(); window.close(); };' + '</sc' + 'ript>');
+    w.document.close(); // necessary for IE >= 10
+    w.focus(); // necessary for IE >= 10
+    return true;
+}
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+    doc.fromHTML($('#content').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+});
+function openMyStation() {
+	<?php if($tscategory_id == 1) { ?>
+		window.location.href="<?php echo base_url();?>desksite/<?php echo $busi_id;?>";
+	<?php } else if($tscategory_id == 2) { ?>
+		window.location.href="<?php echo base_url();?>shipper/profile/<?php echo $busi_id;?>";
+	<?php } else if($tscategory_id == 3) { ?>
+		window.location.href="<?php echo base_url();?>buyer/profile/<?php echo $busi_id;?>";
+	<?php } ?>
+}
 </script>

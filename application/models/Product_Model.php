@@ -586,10 +586,12 @@ class Product_Model extends CI_Model {
     }
     public function getProductById($id)
     {
-    	$this->db->select('*');
-    	$this->db->from(TABLES::$PRODUCT_ITEM);
-    	$this->db->where('id',$id);
-    	$this->db->order_by('id','ASC');
+    	$this->db->select('a.*,b.name as sub_product,c.name as main_product');
+    	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
+    	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+    	$this->db->where('a.id',$id);
+    	$this->db->order_by('a.id','ASC');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -617,6 +619,22 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
     	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
     	$this->db->where('a.id',$id);
+    	$this->db->where('a.status',1);
+    	$this->db->order_by('a.id','ASC');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    public function getProductdetailsByProductNo($busi_id,$product_no) {
+    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id');
+    	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
+    	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+    	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->where('a.busi_id',$busi_id);
+    	$this->db->where('a.model_no',$product_no);
     	$this->db->where('a.status',1);
     	$this->db->order_by('a.id','ASC');
     	$query = $this->db->get();

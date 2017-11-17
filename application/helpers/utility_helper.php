@@ -411,4 +411,10 @@ function resizeImage($image,$width,$height,$scale,$ext) {
 	return $image;
 }
 
+function getInvoiceCode($id) {
+	$tripid = str_pad($id, 5, '0', STR_PAD_LEFT);
+	$id = "".$id;
+	return $tripid;
+}
+
 

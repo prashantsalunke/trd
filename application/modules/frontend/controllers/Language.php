@@ -68,6 +68,28 @@ class Language extends MX_Controller {
 		$html = $this->template->build ('station/pages/language_subchineseproduct','',true);
 		echo $html;
 	}
+	
+	public function getLanguageService()
+	{
+		$number = $this->input->post('number');
+		$language_id = $this->input->post('lang_id');
+		$number = $number-1;
+		$this->load->library('mylib/LanguageLib');
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$productserviceinfo = $this->languagelib->getProductServicesBybusiId($busi_id);
+		$this->template->set ( 'productserviceinfo', $productserviceinfo[$number]);
+		$languagefieldinfo = $this->languagelib->getLanguageFieldTranslation($language_id);
+		$this->template->set ( 'languagefieldinfo', $languagefieldinfo);
+		$langproductinfo = $this->languagelib->getServiceInfoByLanguageId($language_id,$busi_id,$productserviceinfo[$number]['id']);
+		$this->template->set ( 'langproductserviceinfo', $langproductinfo);
+	
+		$this->template->set ( 'number', $number);
+		$this->template->set ( 'page', 'home' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('station/pages/languagemainservice','',true);
+		echo $html;
+	}
 	public function chineseTranslation($language_id)
 	{
 		$this->load->library('mylib/LanguageLib');

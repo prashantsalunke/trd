@@ -721,13 +721,14 @@ class Account_Model extends CI_Model {
 	}
 	public function getFeaturedWorldSeller()
 	{
-		$this->db->select('a.*, b.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position  ');
+		$this->db->select('a.*, b.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position,i.flag');
 		$this->db->from(TABLES::$FEATURED_WORLD_SELLER.' as a');
 		$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'a.busi_id = b.id', 'left');
 		$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' as c', 'b.id = c.busi_id', 'left');
 		$this->db->join(TABLES::$COMPANY_INFO.' as d', 'b.id = d.busi_id', 'left');
 		$this->db->join(TABLES::$CONTACTPERSON.' as e', 'b.id = d.busi_id', 'left');
 		$this->db->join(TABLES::$USER.' AS f', 'b.id= f.busi_id', 'left');
+		$this->db->join(TABLES::$COUNTRY.' AS i','b.company_country=i.name','left');
 		$this->db->where ( 'NOW() BETWEEN a.start_date AND a.end_date');
 		$this->db->where('f.user_category_id', 1);
 		$this->db->where('b.is_logo_verified', 1);
