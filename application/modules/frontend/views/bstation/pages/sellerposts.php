@@ -16,11 +16,11 @@
 			</div>
 			
 		</div>
-		<div class="col-md-7 col-sm-12 space1" style="background-color:#fff;height: 172px;">
+		<div class="col-md-7 col-sm-12 space1" style="background-color:#fff;height: 172px;width: 570px;padding-right: 0px !important;">
 			<div id="wb_Text8" class="section3">
 				<span><strong class="font1"><span class="style5"><?php echo $product['title'];?></span></strong>
 				</span>
-				<p class="font5"><?php echo substr($product['stockdesc'],0,265);?> <?php if(strlen($product['stockdesc']) > 265) { ?>...<?php } ?></p>
+				<p class="font5"><?php echo substr($product['stockdesc'],0,270);?> <?php if(strlen($product['stockdesc']) > 270) { ?>...<?php } ?></p>
 				<div class="inline pp">
 					<span class="usd y" style="background-color: #FFA500;">&nbsp; USD <?php echo $product['stockprice'];?>&nbsp;&nbsp;&nbsp; </span>
 					<span class="minorder g">&nbsp; Min. Order: <?php echo $product['stockqty'];?>&nbsp;&nbsp;&nbsp; </span>
@@ -74,7 +74,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-12" style="background-color:#fff;padding-right:0px;">
+		<div class="col-md-3 col-sm-12" style="background-color:#fff;padding-right:0px;padding-left: 8px !important;width: 220px;">
 			<div id="Layer8_<?php echo $key;?>" class="section9" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;" style="visibility:hidden;background-color:#fff;right:0;height:172px;border: 1px #D3D3D3 solid;" onmouseleave="ShowObject('Layer8_<?php echo $key;?>', 0);">
 				<div id="wb_Shape1" class="stylebox">
 					<a href="#" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
@@ -83,7 +83,7 @@
 				</div>
 			</div>
 			<div id="Layer7" class="" style="height: 172px;">
-				<img src="<?php echo asset_url(); ?><?php echo $product['image1'];?>" class="imgresponsive img211" style="margin-left: 10px;">
+				<img src="<?php echo asset_url(); ?><?php echo $product['image1'];?>" class="imgresponsive img211" >
 			</div>
 		</div>
 	</div>

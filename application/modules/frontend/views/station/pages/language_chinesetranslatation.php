@@ -62,7 +62,7 @@ color: #fff;
 		  	<li><a href="#languageproductspecification_info"  data-toggle="pill" >Products Specification</a></li>
 		  	<?php } ?>
 		  <?php } if($tscategory_id == 2) { ?>
-		  	<li><a href="#languageproductservices_info"  data-toggle="pill" >Product Services</a></li>
+		  	<li><a href="#languageproductservices_info"  data-toggle="pill" >Main Services</a></li>
 		  <?php } ?>
 		</ul>
 		
@@ -509,53 +509,27 @@ color: #fff;
 		  <div id="languageproductservices_info"  style="padding-left:33px;padding-top:33px;"  class="tab-pane fade">
 		  	  <form name="frmlanguageserviceinfo"   method="post" enctype="multipart/form-data" id="frmlanguageserviceinfo" >
 		  	  	<input type="hidden" name="productservice_langid"  id="productservice_langid"  value="<?php echo $language_id; ?>" />
-					<?php for($i =0; $i<count($productserviceinfo);$i++) { ?>
+		  	  	<input type="hidden" name="scountid" id="scountid"  value="1"/>
+		  	  	<input type="hidden" name="sproductcount"  id="sproductcount"  value="<?php echo count($productserviceinfo);?>"/>
 						<div class="row" style="margin-left: -37px;padding-bottom: 4px;">
-							<div class="col-md-12">
+							<div class="col-md-4">
 									<span style="color:#3C3C3C;font-family:Arial;font-size:15px;"><strong>Service Name</strong></span>
 							</div>
-						</div>
-						<div class="row" style="margin-left: -37px;padding-bottom: 4px;">
-							<div class="col-md-12">
-								<span style="color:#3C3C3C;font-family:SimSun;font-size:12px;"><?php echo $productserviceinfo[0]['name'];?></span>
+							<div class="col-md-2">
+								<span style="color:#FF6347;font-family:Arial;font-size:15px;">Total : <?php echo count($productserviceinfo);?> services</span>
+							</div>
+							<div class="col-md-2">
+								<input type="button"  name="btnprevious"  onclick = "previousServ();"  class="form-control"  style="color:#FFFFFF;background-color: #0000FF;margin-left:-84px"  value="Previous Service" />
+							</div>
+							<div class="col-md-2">
+								<input type="button"  name="btnnext"  onclick = "nextServ();" class="form-control"  style="color:#FFFFFF;background-color: #0000FF;margin-left:-108px"  value="Next Service" />
 							</div>
 						</div>
-						<div class="row" style="margin-left: -37px;padding-bottom: 4px;">
-							<div class="col-md-12">
-								<span style="color:#3C3C3C;font-family:SimSun;font-size:12px;"><?php echo $languagefieldinfo[0]['service_name'];?></span>
-							</div>
+						<div id="mservicediv">
+						
 						</div>
-						<input type="hidden" name="service_id[]"  id="service_id" value="<?php echo $productserviceinfo[0]['id'];?>" class="form-control form-custom-input"  style="background-color:#E0FFFF;">
-						<div class="row" style="margin-left: -37px;padding-bottom: 4px;">
-							<div class="col-md-12">
-								<div class="col-md-4 form-group" style="margin-left: -16px;">
-									<input type="text" name="service_name[]"  id="service_name" value="" class="form-control form-custom-input"  style="background-color:#E0FFFF;">
-								</div>
-							</div>
-						</div><br><br>
-						<div class="row" style="margin-left: -37px;padding-bottom: 4px;">
-							<div class="col-md-12">
-								<span style="color:#3C3C3C;font-family:Arial;font-size:15px;"><strong>Service Description</strong></span>
-							</div>
-						</div>
-						<div class="row" style="margin-left: -37px;padding-bottom: 4px;">
-							<div class="col-md-12">
-								<span style="color:#3C3C3C;font-family:SimSun;font-size:12px;"><?php echo $productserviceinfo[0]['description'];?></span>
-							</div>
-						</div>
-						<div class="row" style="margin-left: -37px;padding-bottom: 4px;">
-							<div class="col-md-12">
-								<span style="color:#000000;font-family:SimSun;font-size:13px;"><?php echo $languagefieldinfo[0]['service_description'];?></span>
-							</div>
-						</div>
-						<div class="row" style="margin-left: -37px;padding-bottom: 4px;">
-							<div class="col-md-8 form-group">
-								<textarea rows="13" name="service_description[]"  id="service_description" class="form-control"  style="background-color:#E0FFFF;" ></textarea>
-							</div>
-						</div>
-					<?php } ?>
 					<div style="position: absolute;  left: 1066px; top: 335px; width: 100px;">
-			    		<input type="submit" value="save" name="btnserviceinfo"     style=" background-color: #F69C0A;height: 35px;width: 130px;border:none;">
+			    		<input type="submit" value="save" name="btnserviceinfo"  style=" background-color: #F69C0A;height: 35px;width: 130px;border:none;">
 			    	</div>
 			   </form> 
 		  </div>
@@ -568,6 +542,13 @@ $( document ).ready(function() {
 	var lang_id = document.getElementById('language_id').value;
 	$.post('<?php echo base_url();?>mystation/getlanguageproduct',{number:number,lang_id:lang_id},function(data) {
 		document.getElementById('productdiv').innerHTML = data;
+	});
+});
+$( document ).ready(function() {
+	var number = 1;
+	var lang_id = document.getElementById('language_id').value;
+	$.post('<?php echo base_url();?>mystation/getlanguageservice',{number:number,lang_id:lang_id},function(data) {
+		document.getElementById('mservicediv').innerHTML = data;
 	});
 });
 function previous()
@@ -599,6 +580,37 @@ function next()
 			} else {
 				alert('No More Product Available');
 			}
+		}
+	}
+}
+
+function previousServ()
+{
+	var number = document.getElementById('scountid').value;
+	number = parseInt(number) - 1;
+	var lang_id = document.getElementById('language_id').value;
+	if(number > 0) {
+		document.getElementById('scountid').value = number;
+		$.post('<?php echo base_url();?>mystation/getlanguageservice',{number:number,lang_id:lang_id},function(data) {
+			document.getElementById('mservicediv').innerHTML = data;
+		});
+	} 
+}
+function nextServ()
+{
+	savelangserviceinfo();
+	var number = document.getElementById('scountid').value;
+	var productcount = document.getElementById('sproductcount').value;
+	var lang_id = document.getElementById('language_id').value;
+	number = parseInt(number) + 1;
+	if(number > 0) {
+		if(number <= productcount) {
+			document.getElementById('scountid').value = number;
+			$.post('<?php echo base_url();?>mystation/getlanguageservice',{number:number,lang_id:lang_id},function(data) {
+				document.getElementById('mservicediv').innerHTML = data;
+			});
+		} else {
+			alert('No More Product Available');
 		}
 	}
 }
@@ -725,24 +737,19 @@ function savelangserviceinfo()
 
 function showinfoRequest(formData, jqForm, options){
 	var queryString = $.param(formData);
-return true;
+	return true;
 }
 function showinfoResponse(resp, statusText, xhr, $form){
-if(resp.status == 0) {
+	if(resp.status == 0) {
 		$("#response").addClass('alert-danger');
 		$("#response").html(resp.msg);
 		$("#response").show();
 		alert(resp.msg);
-		//window.reload();
-		//window.location = "<?php //echo base_url();?>mystation/chinesetranslation";
 	} else {
 		$("#response").addClass('alert-success');
 		$("#response").html(resp.msg);
 		$("#response").show();
-		alert(resp.msg);
-	//	window.location = "<?php //echo base_url();?>mystation/chinesetranslation";
 	}
-	//window.reload();
 }
 
 function savelangproductinfo()

@@ -75,9 +75,9 @@ class Bstation extends MX_Controller {
 			$params['image1'] = $cimages[0];
 		}
 		if (!empty($_FILES['postphoto2']['name'])) {
-			$Img = uploadImage($_FILES['postphoto2'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation');
-			if($Img['status'] == 1) {
-				$params['image2'] = $Img['image'];
+			$Img1 = uploadImage($_FILES['postphoto2'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation1');
+			if($Img1['status'] == 1) {
+				$params['image2'] = $Img1['image'];
 				$size = $size + $_FILES['postphoto2']['size'];
 			} else {
 				$params['image2'] = $cimages[1];
@@ -86,9 +86,9 @@ class Bstation extends MX_Controller {
 			$params['image2'] = $cimages[1];
 		}
 		if (!empty($_FILES['postphoto3']['name'])) {
-			$Img = uploadImage($_FILES['postphoto3'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation');
-			if($Img['status'] == 1) {
-				$params['image3'] = $Img['image'];
+			$Img2 = uploadImage($_FILES['postphoto3'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation2');
+			if($Img2['status'] == 1) {
+				$params['image3'] = $Img2['image'];
 				$size = $size + $_FILES['postphoto3']['size'];
 			} else {
 				$params['image3'] = $cimages[2];
@@ -97,9 +97,9 @@ class Bstation extends MX_Controller {
 			$params['image3'] = $cimages[2];
 		}
 		if (!empty($_FILES['postphoto4']['name'])) {
-			$Img = uploadImage($_FILES['postphoto4'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation');
-			if($Img['status'] == 1) {
-				$params['image4'] = $Img['image'];
+			$Img3 = uploadImage($_FILES['postphoto4'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation3');
+			if($Img3['status'] == 1) {
+				$params['image4'] = $Img3['image'];
 				$size = $size + $_FILES['postphoto4']['size'];
 			} else {
 				$params['image4'] = $cimages[3];
@@ -187,14 +187,24 @@ class Bstation extends MX_Controller {
 	public function ProductImages(){
 		
 		$id = $this->input->post('id');
+		$product_no = $this->input->post('product_no');
 		$this->load->model('Product_Model', 'product' );
-		$prodata = $this->product->getProductdetailsById($id);
-		$this->template->set('prodata',$prodata);
-		$this->template->set ( 'page', 'bstation' );
-		$this->template->set_theme('default_theme');
-		$this->template->set_layout (false);
-		$html = $this->template->build ('station/pages/bstationproductimages','',true);
-		echo $html;
+		if(!empty($id)) {
+			$prodata = $this->product->getProductdetailsById($id);
+		} else {
+			$busi_id = $this->session->userdata('busi_id');
+			$prodata = $this->product->getProductdetailsByProductNo($busi_id,$product_no);
+		}
+		if(count($prodata) > 0) {
+			$this->template->set('prodata',$prodata);
+			$this->template->set ( 'page', 'bstation' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout (false);
+			$html = $this->template->build ('station/pages/bstationproductimages','',true);
+			echo $html;
+		} else {
+			echo 11;
+		}
 		
 	}
 	

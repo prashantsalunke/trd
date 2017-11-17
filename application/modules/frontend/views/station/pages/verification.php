@@ -52,7 +52,7 @@
 							<div class="col-sm-1"></div>
 							<div class="col-sm-10" style="padding:0px;">
 								<div id="wb_Text346" style="height:25px;z-index:2511;text-align:left;">
-									<span class="rank-heading">Verification System <span style="color:#FF6347;font-family:Georgia;font-size:13px;">" Optional"</span></span>
+									<span class="rank-heading">Verification System <span style="color:#FF6347;font-family:Georgia;font-size:13px;"></span></span>
 								</div>
 								<div style="color:#2D2D2D;font-family:Arial;font-size:11px;padding-top:10px;">
 									Verification Logo is one of the most important indicators about your business and performance in the <strong>TRADE STATION</strong> platform, which presents the trust factor and <br>professional image about your business to global sellers and buyers. 

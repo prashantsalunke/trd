@@ -350,4 +350,9 @@ class LanguageLib {
 		return $this->CI->language->getMyUnPublishedLang($busi_id);
 	}
 	
+	public function getServiceInfoByLanguageId($language_id,$busi_id,$id) {
+		$this->CI->load->model ( 'Language_model', 'language' );
+		return $this->CI->language->getServiceInfoByLanguageId($language_id,$busi_id,$id);
+	}
+	
 }

@@ -313,6 +313,7 @@ function editCatalogue() {
 	$.get(base_url+"mystation/editCatelougeForm",{catalogue_id: $("#pcatalogue_id").val()},function(data){
 		$("#editcatalouge").html(data);
 		$("#editcatalouge_div").show();
+		$("#vcatalogue_overlay").modal('hide');
 	});
 }
 </script>

@@ -74,9 +74,9 @@ class StockMarket extends MX_Controller {
 			$params['image1'] = $cimages[0];
 		}
 		if (!empty($_FILES['postphoto2']['name'])) {
-			$Img = uploadImage($_FILES['postphoto2'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation');
-			if($Img['status'] == 1) {
-				$params['image2'] = $Img['image'];
+			$Img1 = uploadImage($_FILES['postphoto2'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation1');
+			if($Img1['status'] == 1) {
+				$params['image2'] = $Img1['image'];
 			} else {
 				$params['image2'] = $cimages[1];
 			}
@@ -84,9 +84,9 @@ class StockMarket extends MX_Controller {
 			$params['image2'] = $cimages[1];
 		}
 		if (!empty($_FILES['postphoto3']['name'])) {
-			$Img = uploadImage($_FILES['postphoto3'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation');
-			if($Img['status'] == 1) {
-				$params['image3'] = $Img['image'];
+			$Img2 = uploadImage($_FILES['postphoto3'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation2');
+			if($Img2['status'] == 1) {
+				$params['image3'] = $Img2['image'];
 			} else {
 				$params['image3'] = $cimages[2];
 			}
@@ -94,9 +94,9 @@ class StockMarket extends MX_Controller {
 			$params['image3'] = $cimages[2];
 		}
 		if (!empty($_FILES['postphoto4']['name'])) {
-			$Img = uploadImage($_FILES['postphoto4'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation');
-			if($Img['status'] == 1) {
-				$params['image4'] = $Img['image'];
+			$Img3 = uploadImage($_FILES['postphoto4'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation3');
+			if($Img3['status'] == 1) {
+				$params['image4'] = $Img3['image'];
 			} else {
 				$params['image4'] = $cimages[3];
 			}

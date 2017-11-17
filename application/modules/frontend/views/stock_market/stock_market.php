@@ -252,10 +252,19 @@ $("#top_country_id").change(function() {
 });
 function getProductImages() {
     var id = $('#select_product_id').val(); 
-    $('#postdatacontent').hide();
-    $.post(base_url+"product/images", {id : id}, function(data){
-	    $('#view_Product_image').html(data);
-	},'html');
+    var product_no = $("#product_select").val();
+    if(product_no != "") {
+	    $.post(base_url+"product/images", {id : id, product_no: product_no}, function(data){
+		    if(data == 11) {
+		    	alert("No product found");
+		    } else {
+		    	$('#postdatacontent').hide();
+		    	$('#view_Product_image').html(data);
+		    }
+		},'html');
+    } else {
+		alert("Please enter product number.");
+    }
 }
 
 $('#buttonuse').click(function() {

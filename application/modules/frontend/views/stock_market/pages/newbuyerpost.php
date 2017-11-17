@@ -69,7 +69,7 @@
 								<p class="leftbox2">Keep My Profile Info. Locked For Other Buyers..</p>
 							</div>
 							<div class="inline">
-								<button id="Button4">Reset</button>
+								<button id="Button4" type="button" onclick="resetMyForm();">Reset</button>
 								<button id="Button4" type="submit">SEND</button>
 							</div>
 						</div>
@@ -104,3 +104,8 @@
 		</div>
 	</div>
 </form>
+<script>
+function resetMyForm() {
+	document.getElementById("addPostBuyerContent").reset();
+}
+</script>

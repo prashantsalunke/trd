@@ -2548,7 +2548,13 @@ function verifiedBuyerLogoRequeted() {
 }
 function showBReqRequest(formData, jqForm, options){
 	var queryString = $.param(formData);
-	return true;
+	if($("#fileattachs").val()) {
+		return true;
+	} else {
+		ajaxindicatorstop();
+		alert("Please attach files.");
+		return false;
+	}
 }
 function showBReqResponse(resp, statusText, xhr, $form){
 	ajaxindicatorstop();

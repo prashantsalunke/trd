@@ -15,14 +15,14 @@ if(count($bposts) > 0) {
 				<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
 				<strong class="country"><br> </strong>
 				<?php } else { ?>
-				<strong class="country"><?php echo $product['country'];?></strong>
+				<strong class="country"><?php echo $product['company_country'];?></strong>
 				<?php } ?>
 			</div>
 			<div>
 				<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
 				<span class=""><br></span>
 				<?php } else { ?>
-				<span class=""><?php echo $product['province'];?></span>
+				<span class=""><?php echo $product['company_province'];?></span>
 				<?php } ?>
 			</div>
 			<!-- p class="date"><?php echo date("d M, Y", strtotime($product['create'])); ?></p-->

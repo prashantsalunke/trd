@@ -23,7 +23,7 @@
 					Min. Order: <?php echo $product['quantity'];?> <?php echo $product['unit'];?>
 				</div>
 				<div class="col-sm-12 catalogue_page_item_price_div">
-					<span class="catalogue_page_item_price">USD <?php echo $product['unit_price'];?> / Set</span>
+					<span class="catalogue_page_item_price">USD <?php echo $product['unit_price'];?> / <?php echo $product['unit'];?></span>
 				</div>
 				<div class="col-sm-12 catalogue_page_item_mimg">
 					<a href="<?php echo base_url();?>deskdetails/<?php echo $product['id'];?>" target="_blank">

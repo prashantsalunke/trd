@@ -429,6 +429,18 @@ class Language_model extends CI_Model {
     	return $result;
     }
     
+    public function getServiceInfoByLanguageId($language_id,$busi_id,$id)
+    {
+    	$this->db->select('a.*');
+    	$this->db->from(TABLES::$LANGUAGESERVICES. ' AS a');
+    	$this->db->where('language_id', $language_id);
+    	$this->db->where('busi_id', $busi_id);
+    	$this->db->where('service_id', $id);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
     public function checkLanguageBusiness($param)
     {
     	$this->db->select('a.*');

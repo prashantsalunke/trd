@@ -1572,6 +1572,7 @@ class Station extends MX_Controller {
 		$paymant_data = $this->input->post('paydata');
 		$plan_id = $this->input->post('id');
 		$this->load->model('Payment_model','payment');
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$pdata = array();
 		$pdata['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		$pdata['plan_id'] = $plan_id;
@@ -1580,15 +1581,58 @@ class Station extends MX_Controller {
 		$pdata['currency_code'] = $paymant_data['transactions'][0]['amount']['currency'];
 		$pdata['payer_email'] = $paymant_data['payer']['payer_info']['email'];
 		$pdata['payment_status'] = $paymant_data['state'];
-		$this->payment->addPaymentInfo($pdata);
+		$invoice_id = $this->payment->addPaymentInfo($pdata);
 		$data['id'] = $this->session->userdata('tsuser')['busi_id'];
 		$data['plan_id'] = $plan_id;
 		$data['expiry_date'] = date('Y-m-d',strtotime('+12 months'));
 		$this->load->library('mylib/BusinessLib');
+		$binfo = $this->businesslib->getBusinessInfo($busi_id);
+		$data['rank'] = $this->calculateRank($binfo[0]);
 		$userdata = $this->businesslib->updateBusinessInfo($data);
 		$tuser = $this->session->userdata('tsuser');
 		$tuser['plan_id'] = $plan_id;
 		$this->session->set_userdata('tsuser',$tuser);
+		if($invoice_id > 0) {
+			$udetails = $this->payment->getMemberDetails($pdata['busi_id']);
+			$pdata['expiry_date'] = $data['expiry_date'];
+			$pdata['uname'] = $udetails[0]['name_prefix']." ".$udetails[0]['user_name']; 
+			$pdata['ucategory'] = $udetails[0]['user_category'];
+			$pdata['usubcategory'] = $udetails[0]['sub_category'];
+			$pdata['plan_name'] = $udetails[0]['plan_name'];
+			$pdata['starting_on'] = date('d/m/Y');
+			if($udetails[0]['cat_id'] == 1) {
+				$pdata['amount'] = $udetails[0]['price'];
+			} else {
+				$pdata['amount'] = $udetails[0]['shipper_price'];
+			}
+			$pdata['company_name'] = $udetails[0]['company_name'];
+			$pdata['company_country'] = $udetails[0]['company_country'];
+			$pdata['telephone_number'] = $udetails[0]['telephone_number'];
+			$pdata['invoice_id'] = getInvoiceCode($invoice_id);
+			$this->template->set ( 'invoice', $pdata );
+			$this->template->set ( 'page', 'home' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout (false);
+			$html = $this->template->build ('default/invoice','',true);
+			$config = Array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'ssl://smtp.googlemail.com',
+					'smtp_port' => 465,
+					'smtp_user' => 'mytrdstation@gmail.com', // change it to yours
+					'smtp_pass' => 'tradestation123', // change it to yours
+					'mailtype' => 'html',
+					'charset' => 'iso-8859-1',
+					'wordwrap' => TRUE
+			);
+			$email = $udetails[0]['user_email'].",".$udetails[0]['company_email'];
+			$this->load->library('email', $config);
+			$this->email->set_newline("\r\n");
+			$this->email->from('mytrdstation@gmail.com'); // change it to yours
+			$this->email->to($email); // change it to yours
+			$this->email->subject('TradeStation Order Invoice');
+			$this->email->message($html);
+			$this->email->send();
+		}
 		echo json_encode(array('status'=>1));
 	}
 	

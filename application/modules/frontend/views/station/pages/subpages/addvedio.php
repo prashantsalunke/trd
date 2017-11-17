@@ -14,66 +14,103 @@
 		  	</div>
 	  		<div class="row">
 		  		<div class="col-md-12">
-		  			<span style="color:#2D2D2D;font-family:Arial;font-size:11px;">Present your products with rich information to global buyers through our " Products In Videos " tube. <br>To upload and link your video please select one of the following options, according to the product shown in your video:</span>
-		  		</div>
-		  	</div><br>
-	  		<div class="row">
-		  		<div class="col-md-12">
-		  			<input type="checkbox" id="chkproduct" name="chkproduct[]" value="1" >
-		  			<span style="color:#2D2D2D;font-family:Georgia;font-size:21px;">"One Product" Video:</span><br><br>
-		  			<span style="color:#000000;font-family:Arial;font-size:11px;">Use this option in case your video displays only one product has a certain price and you prefer to linke it with the same product in your site.</span>
-		  			<br><span style="color:#F05539;font-family:Arial;font-size:13px;">*</span><span style="color:#666666;font-family:Arial;font-size:9.3px;">Mp4 format, Max. size: 50 MB</span>
+		  			<span style="color:#2D2D2D;font-family:Arial;font-size:11px;">Present your products with rich information to global buyers through our " Products In Videos " tube. <br>
+To upload and link your video to a certain product, follow the two steps here-under and press publish:</span>
 		  		</div>
 		  	</div><br><br>
-		  	<div class="row">
-		  		<div class="col-md-12">
-		  			<div class="col-md-1">
-		  			<?php $maxvediosizeinbyte =  50* 1048576; ?>
-		  				<input type="file"  name="uploadonepvedio"  id="uploadonepvedio"  onchange="validatevediofile('uploadonepvedio',this,<?php echo $maxvediosizeinbyte ; ?>);" style="display: none"/>
-		  				<a href="#" class="style23"  id="oneproductupload">Upload</a><br><br>
-		  				<a href="#" class="style23" >Change</a>
-		  			</div>
-		  			<div class="col-md-2" id="wb_MediaPlayer1" >
-						<!--  <video src="http://www.udtalks.com/orbitok.mp4" id="MediaPlayer1" controls="controls"></video> -->
-		  			</div>
-		  			<div class="col-md-5">
-		  			<input type="hidden" id="product_id"  name="product_id" value="" >
-		  				<span style="color:#F05539;font-family:Arial;font-size:13px;">*</span><span style="color:#3C3C3C;font-family:Georgia;font-size:12px;">Link the video to this product </span><br><br>
-		  				<input type="text" id="product_item" autocomplete = off   style="position:absolute;width:345px;height:29px;line-height:29px;" name="SiteSearch1" value="" placeholder="Type products name or no.">
-		  				<input type="button" id="Button5"  name="Search"  data-toggle="modal"  backdrop='static' data-target="#productlist_modal"   onclick="searchproduct();" value="" style="position:absolute;left:359px;width:45px;height:32px;top: 28px;"><br><br>
-		  				<span style="color:#666666;font-family:Arial;font-size:9.3px;">Select the option, then upload the video and type the product name or no., then press " Publish button"</span>
+	  		<div class="row">
+		  		<div class="col-md-6">
+		  			<input type="checkbox" id="chkproduct" name="chkproduct[]" value="1" style="top:458px;display:none;" checked/>
+		  			<div class="">
+		  				<div id="wb_Text450" style="height:23px;z-index:1055;text-align:left;">
+							<span style="color:#F05539;font-family:'Arial Black';font-size:16px;">STEP 1</span>
+						</div>
+						<div id="wb_Text504" style="height:25px;z-index:1047;text-align:left;">
+							<span style="color:#2D2D2D;font-family:Georgia;font-size:21px;">Upload Your Video</span>
+						</div>
+						<br>
+						<div id="wb_Text515" style="height:12px;z-index:1045;text-align:left;">
+							<span style="color:#666666;font-family:Arial;font-size:9.3px;">Mp4 format, Max. size: 50 MB</span>
+						</div>
+						<br>
+						<div id="Layer980" style="text-align:left;height:200px;z-index:1056;">
+							<div id="img_div" class="col-sm-6" style="width:250px;height:150px;z-index:1036;padding-left:0px;padding-top: 14px;">
+								<a href="javascript:openFileInput();" id="oneproductupload"><img src="<?php echo asset_url();?>images/video-player.png" id="Image283" alt=""></a>
+							</div>
+							<div id="video_div" class="col-sm-6" style="width:250px;height:150px;z-index:1036;padding-left:0px;padding-top: 14px;display:none;">
+								<video src="" id="MediaPlayer1" controls="controls">
+									<source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+								</video>
+							</div>
+							<div class="col-sm-6" id="upload_div" style="width:67px;height:150px;z-index:1037;text-align:left;padding-top: 14px;padding-top:80px;">
+								<span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u><a href="javascript:openFileInput();" class="style23" id="oneproductupload">Upload</a></u></span>
+							</div>
+							<div class="col-sm-6" id="change_div" style="width:67px;height:150px;z-index:1037;text-align:left;padding-top: 14px;padding-top:80px;display:none;">
+								<span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u><a href="javascript:openFileInput();" class="style23" id="oneproductupload">Change</a></u></span>
+							</div>
+							<?php $maxvediosizeinbyte =  50* 1048576; ?>
+							<input type="file"  name="uploadonepvedio"  id="uploadonepvedio"  onchange="validatevediofile('uploadonepvedio',this,<?php echo $maxvediosizeinbyte ; ?>);" style="display: none"/>
+						</div>
 		  			</div>
 		  		</div>
-		  	</div>
-	  		<div class="row" >
-		  		<div class="col-md-12">
-		  			<div class="col-md-3"></div>
-		  			<div class="col-md-1">
-		  				<img src="<?php echo asset_url();?>images/img1240.png" id="mainproductimg" alt="" style="width:71px;height:64px;">
-		  			</div>	
-		  			<div class="col-md-2">
-		  				<span style="color:#1E90FF;font-family:Georgia;font-size:12px;" id="pname"><strong></strong></span>
-		  				<span style="color:#1E90FF;font-family:Arial;font-size:12px;" id="pnumber"><strong></strong></span>
+		  		<div class="col-md-6">
+		  			<div class="">
+		  				<div id="wb_Text337" style="height:23px;z-index:1054;text-align:left;">
+							<span style="color:#F05539;font-family:'Arial Black';font-size:16px;">STEP 2</span>
+						</div>
+						<div id="wb_Text503" style="height:25px;z-index:1052;text-align:left;">
+							<span style="color:#2D2D2D;font-family:Georgia;font-size:21px;">Select A Product To Link</span>
+						</div>
+						<br>
+						<div>
+							<input type="hidden" id="product_id"  name="product_id" value="" >
+		  					<input type="text" id="product_item" autocomplete = off   style="position:absolute;width:345px;height:29px;line-height:29px;" name="SiteSearch1" value="" placeholder="Type products name or no.">
+		  					<input type="button" id="Button5"  name="Search"  data-toggle="modal"  backdrop='static' data-target="#productlist_modal"   onclick="searchproduct();" value="" style="position:absolute;left:359px;width:45px;height:32px;top: 61px;">
+						</div>
+						<br>
+						<div id="pinfo_div" style="position: relative; text-align: left; visibility: visible;left:-125px;top:22px; width: 532px; height: 154px;display:none;">
+							<div id="wb_Text511" style="position:absolute;left:265px;top:93px;width:300px;height:15px;text-align:left;">
+								<span style="color:#1E90FF;font-family:Arial;font-size:12px;" id="loc">Location: <span id="pmpro">Men Fashion</span> <span id="psubpro">/ Lether shoes</span></span>
+							</div>
+							<div id="wb_Text510" style="position:absolute;left:384px;top:71px;width:300px;height:15px;text-align:left;">
+								<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Min. Qty : <span id="pqty">2</span> <span id="punit">Containers</span></span>
+							</div>
+							<div id="wb_Text509" style="position:absolute;left:265px;top:70px;width:100px;height:15px;text-align:left;">
+								<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">USD <span id="pprice">60.00</span></span>
+							</div>
+							<div id="wb_Shape603" style="position:absolute;left:117px;top:19px;width:200px;height:103px;">
+								<a href="./desk_details.php" target="_blank"><img src="<?php echo asset_url();?>images/img4386.png" id="mainproductimg" alt="" style="width:129px;height:103px;border: 1px solid #ccc;"></a>
+							</div>
+							<div id="wb_Text507" style="position:absolute;left:265px;top:50px;width:300px;height:15px;text-align:left;">
+								<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Product No.: <span id="pnumber">JS0123</span></span>
+							</div>
+							<div id="wb_Text506" style="position:absolute;left:265px;top:32px;width:300px;height:15px;text-align:left;">
+								<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Product Name: <span id="pname">Brown High Neck Shoes</span></span>
+							</div>
+							<div id="wb_Image228" style="position:absolute;left:11px;top:56px;width:32px;height:32px;">
+								<img src="<?php echo asset_url();?>images/link.png" id="Image228" alt="">
+							</div>
+						</div>
 		  			</div>
 		  		</div>
-		  	</div>	
-	  		<div class="row" style="padding-top:35px;">
+		  	</div><br><br>
+	  		<div class="row" style="padding-top:35px;display:none;">
 		  		<div class="col-md-12">
 		  			<input type="checkbox" id="chkproduct" name="chkproduct[]" value="2" style="top:458px;" />
 		  			<span style="color:#2D2D2D;font-family:Georgia;font-size:21px;">"Multi-Products" Video:</span>
 		  		</div>
 		  	</div>
-	  		<div class="row" >
+	  		<div class="row" style="display:none;">
 		  		<div class="col-md-12">
 		  			<span style="color:#000000;font-family:Arial;font-size:11px;">Use this option in case your video displays many products at the same time with diffrent prices, and you prefer to link it to Main or Sub Products.</span>
 		  		</div>
 		  	</div>	
-	  		<div class="row" >
+	  		<div class="row" style="display:none;">
 		  		<div class="col-md-12">
 		  			<br><br><span style="color:#F05539;font-family:Arial;font-size:13px;">*</span><span style="color:#666666;font-family:Arial;font-size:9.3px;">Mp4 format, Max. size: 50 MB</span>
 		  		</div>
 		  	</div><br><br>
-	  		<div class="row">
+	  		<div class="row" style="display:none;">
 		  		<div class="col-md-12">
 		  			<div class="col-md-1">
 		  				<input type="file"  name="uploadmainpvedio"  id="uploadmainpvedio"  onchange="validatevediofile('uploadmainpvedio',this,<?php echo $maxvediosizeinbyte ; ?>);"  style="display: none" />
@@ -209,18 +246,38 @@ function validatevediofile(id,input,size)
        		var filesizeinmb = (file_size/1048576).toFixed(2);
        		var sizeinmb = (size/1048576).toFixed(2);
        		if(ext == 'mp4') {
-	                if(parseFloat(filesizeinmb) > parseFloat(sizeinmb)) {
-	                	alert("File size should be 50 MB max.");
-	                    $('#'+id).val('');
-	                    flag = false;
-	                } 
-                } else {
-                	alert("File should be mp4 format.");
+	         	if(parseFloat(filesizeinmb) > parseFloat(sizeinmb)) {
+                	alert("File size should be 50 MB max.");
                     $('#'+id).val('');
                     flag = false;
+                } else {
+					$("#upload_div").hide();
+					$("#change_div").show();
+					$("#img_div").hide();
+					$("#video_div").show();
+					var reader = new FileReader();
+                    reader.onload = function (e) {
+                        video = $('#MediaPlayer1').attr('src', e.target.result);
+                        var source = document.createElement('source');
+                        source.setAttribute('src', e.target.result);
+                        video.append(source);
+                        $("#MediaPlayer1 > source").attr("src",e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
                 }
-   		}
-		return flag;
+        	} else {
+              	alert("File should be mp4 format.");
+              	$('#'+id).val('');
+               	flag = false;
+         	}
+   	} else {
+   		$("#upload_div").show();
+		$("#change_div").hide();
+		$("#img_div").show();
+		$("#video_div").hide();
+		//$('#MediaPlayer1').attr('src', "");
+   	}
+	return flag;
 }
 function selectproduct()
 {
@@ -238,9 +295,16 @@ function selectproduct()
 			 	$.post("<?php echo base_url();?>mystation/getproductbyid",{productid:productid},function(data) {
 			 		document.getElementById("product_item").value = data[0].name;
 			    	document.getElementById("pname").textContent =data[0].name;
-			    	document.getElementById("pnumber").textContent = "No."+data[0].model_no;
+			    	document.getElementById("pnumber").textContent = data[0].model_no;
+			    	document.getElementById("pqty").textContent = data[0].quantity;
+			    	document.getElementById("punit").textContent = data[0].unit;
+			    	document.getElementById("pmpro").textContent = data[0].main_product;
+			    	if(data[0].sub_product !="") {
+			    		document.getElementById("psubpro").textContent = " / "+data[0].sub_product;
+			    	}
 			    	$("#product_id").val(data[0].id);
 			    	$("#mainproductimg").attr("src", asseturl+data[0].main_image);
+			    	$("#pinfo_div").show();
 				 	jQuery('#productlist_modal').modal('hide');
 			 	},'json');
 		}
@@ -260,10 +324,13 @@ function searchproduct()
 		alert('Please Enter ProductName');
 	}
 }
-
+function openFileInput() {
+	 $("#uploadonepvedio:hidden").trigger('click');
+}
 $(function(){
     $("#oneproductupload").unbind().on('click', function(e){
         e.preventDefault();
+        alert("Hi");
         $("#uploadonepvedio:hidden").trigger('click');
     });
 });

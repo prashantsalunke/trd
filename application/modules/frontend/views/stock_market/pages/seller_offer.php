@@ -83,7 +83,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
       theForm.Editbox1.focus();
       return false;
    }
-   if (theForm.Editbox1.value.length > 20)
+   if (theForm.Editbox1.value.length > 100)
    {
       alert("Please Enter The Contact Name");
       theForm.Editbox1.focus();
@@ -101,7 +101,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
       theForm.Editbox2.focus();
       return false;
    }
-   if (theForm.Editbox2.value.length > 20)
+   if (theForm.Editbox2.value.length > 100)
    {
       alert("Please Enter Your Company Name");
       theForm.Editbox2.focus();
@@ -173,7 +173,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
       theForm.Editbox7.focus();
       return false;
    }
-   if (theForm.Editbox7.value.length > 30)
+   if (theForm.Editbox7.value.length > 128)
    {
       alert("Please Enter A Valid Email");
       theForm.Editbox7.focus();
@@ -211,7 +211,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
    }
    if (theForm.TextArea4.value.length > 4000)
    {
-      alert("Please Enter Enough Description");
+      alert("Please Enter max Description of 4000 characters");
       theForm.TextArea4.focus();
       return false;
    }
@@ -229,7 +229,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
    }
    if (theForm.TextArea3.value.length > 4000)
    {
-      alert("Please Enter Enough Introduction");
+      alert("Please Enter max Introduction of 4000 characters");
       theForm.TextArea3.focus();
       return false;
    }
@@ -289,20 +289,20 @@ function showAddResponse(resp, statusText, xhr, $form){
 <form name="Offer_for_you_post_in_RT_Business" method="post" action="" enctype="multipart/form-data" id="seller_bstation_offer" onsubmit="return ValidateOffer_for_you_post_in_RT_Business(this)">
 <input type="hidden" name="post_id" value="<?php echo $post[0]['id'];?>" />
 <input type="hidden" name="buyer_id" value="<?php echo $post[0]['busi_id'];?>" />
-<input type="text" id="Editbox1" style="position:absolute;left:289px;top:324px;width:194px;height:19px;line-height:19px;z-index:1;" name="name" value="<?php echo $contact_details[0]['name'];?>" maxlength="20">
-<input type="text" id="Editbox2" style="position:absolute;left:289px;top:354px;width:194px;height:19px;line-height:19px;z-index:2;" name="Company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
-<input type="text" id="Editbox3" style="position:absolute;left:225px;top:235px;width:146px;height:19px;line-height:19px;z-index:3;" name="Price" value="" maxlength="20">
-<input type="text" id="Editbox5" style="position:absolute;left:286px;top:269px;width:194px;height:19px;line-height:19px;z-index:4;" name="Qty" value="" maxlength="20">
-<input type="number" id="Editbox6" style="position:absolute;left:290px;top:416px;width:194px;height:19px;line-height:19px;z-index:5;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
-<input type="email" id="Editbox7" style="position:absolute;left:290px;top:385px;width:194px;height:19px;line-height:19px;z-index:6;" name="email" value="<?php echo $contact_details[0]['email'];?>" maxlength="30">
-<select name="country" size="1" id="Combobox2" style="position:absolute;left:290px;top:447px;width:200px;height:25px;z-index:7;">
+<input type="text" id="Editbox1" style="position:absolute;left:230px;top:324px;width:252px;height:19px;line-height:19px;z-index:1;" name="name" value="<?php echo $contact_details[0]['name'];?>" maxlength="20">
+<input type="text" id="Editbox2" style="position:absolute;left:230px;top:354px;width:252px;height:19px;line-height:19px;z-index:2;" name="Company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
+<input type="text" id="Editbox3" style="position:absolute;left:230px;top:235px;width:140px;height:19px;line-height:19px;z-index:3;" name="Price" value="" maxlength="20">
+<input type="text" id="Editbox5" style="position:absolute;left:230px;top:269px;width:252px;height:19px;line-height:19px;z-index:4;" name="Qty" value="" maxlength="20">
+<input type="number" id="Editbox6" style="position:absolute;left:230px;top:416px;width:252px;height:19px;line-height:19px;z-index:5;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
+<input type="email" id="Editbox7" style="position:absolute;left:230px;top:385px;width:252px;height:19px;line-height:19px;z-index:6;" name="email" value="<?php echo $contact_details[0]['email'];?>" maxlength="30">
+<select name="country" size="1" id="Combobox2" style="position:absolute;left:230px;top:447px;width:258px;height:25px;z-index:7;">
 <option selected value="Select">Select your country</option>
 <?php foreach ($Country as $country){?>
 <option value="<?php echo $country['name'];?> "><?php echo $country['name'];?></option>
 <?php }?>
 </select>
-<input type="button" id="Button1" name="" value="Send" style="position:absolute;left:393px;top:491px;width:96px;height:25px;z-index:8;" onclick="savePostRequest();" />
-<input type="reset" id="Button2" name="" value="Cancel" style="position:absolute;left:289px;top:491px;width:96px;height:25px;z-index:9;" onclick="window.close();">
+<input type="button" id="Button1" name="" value="Send" style="position:absolute;left:334px;top:491px;width:96px;height:25px;z-index:8;" onclick="savePostRequest();" />
+<input type="reset" id="Button2" name="" value="Cancel" style="position:absolute;left:230px;top:491px;width:96px;height:25px;z-index:9;" onclick="window.close();">
 <div id="wb_Text149" style="position:absolute;left:27px;top:239px;width:180px;height:14px;z-index:10;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">USD Price </span></div>
 <div id="wb_Text150" style="position:absolute;left:27px;top:391px;width:180px;height:14px;z-index:11;text-align:left;">

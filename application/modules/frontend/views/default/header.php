@@ -23,7 +23,6 @@ a.style5:hover
    color: #FF6347;
    text-decoration: underline;
 }
-
 </style>
 <!--my alert-->
         <div aria-labelledby="myLargeModalLabel" tabindex="-1" role="dialog" class="modal fade bs-example-modal-lg" style="padding-right: 17px;">
@@ -393,81 +392,47 @@ a.style5:hover
         <div>
         <?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
         <?php if(empty($_COOKIE['drag_me'])) { ?>
+        <style>
+        	#main-page {
+        		display:none;
+        	}
+        </style>
         <div class="fixed-lock displaydesktop" id="main-page-lock">
         	<div class="fixed-lock-inner">
-        		<div class="col-sm-offset-2 col-sm-10">
-        			<div class="col-sm-offset-1 col-sm-11" style="color:#2D2D2D;font-family:Arial;font-size:21px;position:relative;top:30px;">THE TRADE</div>
+        		<div class="col-sm-offset-1 col-sm-10">
+        			<div class="col-sm-11" style="color:#4B4B4B;font-family:Arial;font-size:32px;position:relative;top:36px;padding-left:0px;">THE TRADE</div>
         			<div>
-        				<span style="color:#F05539;font-family:Impact;font-size:96px;letter-spacing:0.07px;">STATION</span>
+        				<span style="color:#F05539;font-family:Impact;font-size:107px;letter-spacing:0.07px;">STATION</span>
         			</div>
-        			<div class="col-sm-offset-1 col-sm-11" style="color:#2D2D2D;font-family:Arial;font-size:16px;position:relative;top:-30px;">Social B2B Platform</div>
-        			<div style="color:#A9A9A9;font-family:Arial;font-size:19px;position:relative;top:-20px;">Generating Customers Each Second</div>
+        			<div class="col-sm-12" style="color:#2D2D2D;font-family:Arial;font-size:16px;position:relative;top:-30px;"><span style="color:#2D2D2D;font-family:'Roboto Light';font-size:15px;">Social B2B Platform, Generates Customers Each Second..!<br></span></div>
         		</div>
-        		<div id="wb_Image48" class="col-sm-offset-3 col-sm-9">
-        			<div id="wb_Image48" style="position:absolute;top:0px;left:50px;width:57px;height:43px;z-index:1974;">
-						<a href="#" onmouseover="return false;"><img src="<?php echo asset_url();?>images/lock.png" id="Image48" height="43px" alt=""></a>
-					</div>
-					<div id="wb_JavaScript1" style="position:absolute;left:90px;top:20px;width:167px;height:27px;z-index:1975;">
-					<script>
-					var message="Drag The Lock To Unlock";
-					var flashspeed=100;
-					var n=0;
-					
-					document.write('<div style="color:#1E1E1E;font-family:Arial;font-size:12px;font-weight:bold;font-style:normal;text-align:left;text-decoration:none;">');
-					for (m=0;m<message.length;m++)
-					   document.write('<span id="neonlight'+m+'">'+message.charAt(m)+'<\/span>');
-					document.write('<\/div>');
-					
-					function crossref(number)
-					{
-					   var crossobj = document.getElementById("neonlight"+number);
-					   return crossobj;
-					}
-					function neon()
-					{
-					   if (n==0)
-					   {
-					      for (m=0;m<message.length;m++)
-					         crossref(m).style.color="#1E1E1E";
-					   }
-					
-					   crossref(n).style.color="#FF6347";
-					
-					   if (n<message.length-1)
-					   {
-					      n++;
-					   }
-					   else
-					   {
-					      n=0;
-					      clearInterval(flashing);
-					      setTimeout("StartNeon()", 1500);
-					      return;
-					   }
-					}
-					function StartNeon()
-					{
-					   if (document.all||document.getElementById)
-					      flashing=setInterval("neon()", flashspeed)
-					}
-					StartNeon();
-					</script>
-   					</div>
-   					<div id="wb_Image49" style="position: absolute; left: 235px; top: 0px; width: 59px; height: 46px; opacity: 0.6; visibility: visible; z-index: 1973;">
-						<a href="#" ondragleave="openHomePage();">
-							<img src="<?php echo asset_url();?>images/lock1.png" id="Image49" height="46px" alt="">
-						</a>
-					</div>
+        		<div id="wb_Shape68" style="position:absolute;left:195px;top:215px;width:105px;height:36px;z-index:5987;">
+					<a href="javascript:openHomePage();">
+						<div id="Shape68">
+							<div id="Shape68_text">
+								<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Get Started</span>
+							</div>
+						</div>
+					</a>
 				</div>
-				<div class="col-sm-offset-3 col-sm-9" >
-					<div style="position:absolute;left:90px;top:60px;height:46px;z-index:1971;">
-						<input type="checkbox" id="Checkbox1" name="" value="on" onclick="hideStartScreen();"/><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">Skip this page next time</span>
-					</div>
+				<div id="wb_Shape67" style="position:absolute;left:320px;top:215px;width:105px;height:37px;z-index:5988;">
+					<a href="<?php echo base_url();?>/intro">
+						<div id="Shape67">
+							<div id="Shape67_text">
+								<span style="color:#1E90FF;font-family:Arial;font-size:13px;">Tour</span>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="col-sm-offset-1 col-sm-9" >
 				</div>
         	</div>
         	<div>
-        		<div id="wb_Text438" style="position:absolute;bottom:15px;width:100%;height:12px;z-index:1966;text-align:center;">
+        		<div id="wb_Text438" style="position:absolute;bottom:35px;width:100%;height:12px;z-index:1966;text-align:center;">
 					<span style="color:#2D2D2D;font-family:Arial;font-size:9.3px;">Copyrights | TrdStation 2013-2017 @ All Rights Reserved</span>
+				</div>
+				<div style="position:absolute;left:8.3333%;bottom:0;height:20px;z-index:1971;">
+					<input type="checkbox" id="Checkbox1" name="" value="on" onclick="hideStartScreen();"/><span style="color:#2D2D2D;font-family:Arial;font-size:11px;"> Skip this page next time</span>
 				</div>
         	</div>
         </div>
