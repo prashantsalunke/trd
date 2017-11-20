@@ -68,11 +68,11 @@ To upload and link your video to a certain product, follow the two steps here-un
 		  					<input type="button" id="Button5"  name="Search"  data-toggle="modal"  backdrop='static' data-target="#productlist_modal"   onclick="searchproduct();" value="" style="position:absolute;left:359px;width:45px;height:32px;top: 61px;">
 						</div>
 						<br>
-						<div id="pinfo_div" style="position: relative; text-align: left; visibility: visible;left:-125px;top:22px; width: 532px; height: 154px;display:none;">
+						<div id="pinfo_div" class="pinfo_div" style="position: relative; text-align: left; visibility: visible;left:-125px;top:22px; width: 532px; height: 154px;display:none;">
 							<div id="wb_Text511" style="position:absolute;left:265px;top:93px;width:300px;height:15px;text-align:left;">
 								<span style="color:#1E90FF;font-family:Arial;font-size:12px;" id="loc">Location: <span id="pmpro">Men Fashion</span> <span id="psubpro">/ Lether shoes</span></span>
 							</div>
-							<div id="wb_Text510" style="position:absolute;left:384px;top:71px;width:300px;height:15px;text-align:left;">
+							<div id="wb_Text510" style="position:absolute;left:384px;top:71px;width:150px;height:15px;text-align:left;">
 								<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Min. Qty : <span id="pqty">2</span> <span id="punit">Containers</span></span>
 							</div>
 							<div id="wb_Text509" style="position:absolute;left:265px;top:70px;width:100px;height:15px;text-align:left;">
@@ -177,10 +177,11 @@ To upload and link your video to a certain product, follow the two steps here-un
   				<?php if($total_videos < $max_videos) { ?>
   					<div class="col-md-3"></div>
 		  			<div class="col-md-2" >
-		  				<button type="button"  onclick="addvedio();" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Publish</span></button>
+		  				<button type="button" id="publish"  style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Publish</span></button>
+		  				<!--  commented by suraj<button type="button" id="publish"  onclick="addvedio();" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Publish</span></button> -->
 		  			</div>
 		  			<div class="col-md-2" >
-		  				<button type="button"  style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Cancel</span></button>
+		  				<button type="button" onclick="resetAll()" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Cancel</span></button>
 		  			</div>
 		  		<?php } else { ?>
 		  			<div class="text-center">
@@ -225,7 +226,7 @@ To upload and link your video to a certain product, follow the two steps here-un
 					<div style="text-align: center;padding-top:22px;padding-bottom:22px;">
 						<input type="button"  onclick="selectproduct();" id="btnuseproduct"  name="" value="Use" style="width:158px;height:25px;">
 					</div>
-						<div id="subproductlist_div" style="max-height:500px;overflow-y: scroll;">
+						<div id="subproductlist_div" style="max-height:500px;overflow-y: auto;">
 						
 						</div>
 				</form>
@@ -330,7 +331,7 @@ function openFileInput() {
 $(function(){
     $("#oneproductupload").unbind().on('click', function(e){
         e.preventDefault();
-        alert("Hi");
+        //alert("Hi");
         $("#uploadonepvedio:hidden").trigger('click');
     });
 });
@@ -351,6 +352,26 @@ function selecteditScat(scat_id,input,name) {
 }
 var asseturl = '<?php echo asset_url();?>';
 
+//Added By Suraj
+
+$("#publish").on('click', function(e){
+	if($("#uploadonepvedio").val()==''){
+		alert('No video uploaded yet');
+		e.preventDefault();
+		//return false;
+		} else{
+			   addvedio();
+				//return true;
+			}
+} );
+function resetAll(){
+	$("#pinfo_div").css("display","none");
+	$("#video_div").css("display","none");
+	document.getElementById("frmaddvedio").reset();
+	//$("form #frmaddvedio").reset();
+	//alert("Reset");
+}
+ 
 </script>
  
  

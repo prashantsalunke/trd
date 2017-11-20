@@ -10,7 +10,7 @@
 			foreach ($Products as $product){?>
 			<div class="col-md-3 col-sm-4">
 			     <div class="imgsection slick-slide slick-cloned style1"  tabindex="-1" role="option" data-slick-index="11" aria-hidden="true">
-					<h4 class="text-center product-strong-text" 
+					<h4 class="text-center product-strong-text"> 
 						<strong><?php echo $product['name']?></strong>
 					</h4>
 					<p class="text-center product-text" maxlength="5"><?php echo substr($product['description'], '0', '100'); ?></p>

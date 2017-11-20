@@ -152,7 +152,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-3">
-                                <p><img src="<?php echo asset_url(); ?>images/ts/Clock.png" style="width:15px;"</p>
+                                <p><img src="<?php echo asset_url(); ?>images/ts/Clock.png" style="width:15px;"></p>
                                 <p><span style="color:#808080;font-family:Arial;font-size:9.3px;">Your will be requested to renew your business certificate documents ( dates, inforamtions and images) after expiry date..</span></p>
                             </div>
                         </div>
