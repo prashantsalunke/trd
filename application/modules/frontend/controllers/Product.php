@@ -396,6 +396,50 @@ class Product extends MX_Controller {
 		echo json_encode($result);
 	}
 	
-	
+	public function get3DPrducts() {
+		$params = $this->input->get();
+		$keyword = "";
+		if(!empty($params['keyword']))
+			$keyword = $params['keyword'];
+			$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			if(empty($params['page'])) {
+				$params['page'] = 1;
+			}
+			$this->load->model('Sellers_Model', 'sellers' );
+			$this->load->library('mylib/General', 'general');
+			$this->load->model ( 'Account_Model', 'account' );
+			$products = $this->sellers->search3DProducts($params);
+			$total_pages = $this->sellers->countProducts($params);
+			$this->template->set ( 'products', $products);
+			$Country= $this->account->getCountry();
+			$this->template->set ( 'Country', $Country);
+			$procategories = $this->general->getProductCategories();
+			$this->template->set ( 'categories', $procategories);
+			$maincats = $this->product->getActiveProductMainAndSubCategories();
+			$this->template->set ( 'mcats', $maincats );
+			if(empty($keyword)) {
+				unset($params['keyword']);
+			}
+			$url = base_url()."3dproducts?".http_build_query($params);
+			$this->template->set ( 'params', $params);
+			$this->template->set('producturl',$url);
+			$this->template->set('page',$params['page']);
+			$this->template->set('total_pages',$total_pages);
+			unset($params['page']);
+			if(http_build_query($params) != "")
+				$wpurl = base_url()."3dproducts?".http_build_query($params)."&";
+				else
+					$wpurl = base_url()."3dproducts?";
+					$this->template->set('wpproducturl',$wpurl);
+					$this->template->set ( 'page', '3dproduct' );
+					$this->template->set ( 'browser_icon', 'products.ico' );
+					$this->template->set ( 'userId', '' );
+					$this->template->set_theme('default_theme');
+					$this->template->set_layout ('default')
+					->title ( 'Find Products' )
+					->set_partial ( 'header', 'default/inner-header' )
+					->set_partial ( 'footer', 'default/footer' );
+					$this->template->build ('product/product3D');
+	}
 }
 ?>

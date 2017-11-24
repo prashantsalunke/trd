@@ -425,7 +425,7 @@ a.style5:hover
 						<p class="text3">Follow the latest collection of world sellers brands..</p>
 						<span class="text2"><strong><a href="<?php echo base_url();?>" target="_blank" class="style5">DESKSITES </a></strong></span>
 						<p class="text3">Experience a new vision of websites techniques with quick access, rich information and much more..</p>
-						<span class="text2"><strong><a href="<?php echo base_url();?>" target="_blank" class="style5">PRODUCTS IN 3D </a></strong></span>
+						<span class="text2"><strong><a href="<?php echo base_url();?>3dproducts" target="_blank" class="style5">PRODUCTS IN 3D </a></strong></span>
 						<p class="text3">Step into a new dimension of E-commerce, search products with rich information, live details and much more..</p>
 				    </div>
 			   </div>
