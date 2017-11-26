@@ -473,5 +473,6 @@ $route['product/item/search'] = "frontend/Product/getMyProductList";
 
 /* *********************************  22-12-2017 ***************************/
 $route['3dproducts'] = 'frontend/Product/get3DPrducts';
+$route['vcatalogues'] = 'frontend/Product/getAllVCatalogues';
 
 
