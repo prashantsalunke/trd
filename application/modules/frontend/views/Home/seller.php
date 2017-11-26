@@ -421,7 +421,7 @@ a.style5:hover
 				</div>
 				<div id="Layer3" class="box8">
 					<div id="wb_Text328" class="innersection" style="background-color:#fff;">
-						<span class="text2"><strong><a href="<?php echo base_url();?>" target="_blank" class="style5">V-CATALOGUES</a></strong></span>
+						<span class="text2"><strong><a href="<?php echo base_url();?>vcatalogues" target="_blank" class="style5">V-CATALOGUES</a></strong></span>
 						<p class="text3">Follow the latest collection of world sellers brands..</p>
 						<span class="text2"><strong><a href="<?php echo base_url();?>" target="_blank" class="style5">DESKSITES </a></strong></span>
 						<p class="text3">Experience a new vision of websites techniques with quick access, rich information and much more..</p>
