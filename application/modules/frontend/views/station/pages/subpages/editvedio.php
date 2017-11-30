@@ -28,13 +28,17 @@
 		  	<?php foreach ($oneproductvedio as $row) { ?>
 		  	<div class="row">
 		  		<div class="col-md-12">
-		  			<div class="col-md-1">
-		  				<input type="checkbox" id="Checkbox125" name="chkoneproduct[]" value="<?php echo $row['vedio_id'];?>" >
+		  			<div class="col-md-3">
+		  				<div class="row">
+				  			<div class="col-md-2" style="padding-top: 35px;">
+				  				<input type="checkbox" id="Checkbox125" name="chkoneproduct[]" value="<?php echo $row['vedio_id'];?>" >
+				  			</div>
+				  			<div class="col-md-10 text-center" id="wb_MediaPlayer1" style="padding:0px;">
+								<video src="<?php echo asset_url().$row['vedio_file'];?>" id="MediaPlayer1" controls="controls" style="width:190px;"></video>
+				  			</div>
+			  			</div>
 		  			</div>
-		  			<div class="col-md-2" id="wb_MediaPlayer1" >
-							<video src="<?php echo asset_url().$row['vedio_file'];?>" id="MediaPlayer1" controls="controls"></video>
-		  			</div>
-		  			<div class="col-md-2">
+		  			<div class="col-md-2" style="padding-left:25px;">
 		  				<span style="color:#2D2D2D;font-family:Arial;font-size:11px;"><strong>One Product </strong>Video</span><br>
 		  				<span style="color:#2D2D2D;font-family:Arial;font-size:11px;">Size : <?php echo $row['vedio_size'];?></span>
 		  			</div>
@@ -42,7 +46,9 @@
 		  				<img src="<?php echo asset_url();?>images/link.png" id="" alt="" >
 		  			</div>
 		  			<div class="col-md-2">
-		  				<img src="<?php echo asset_url().$row['main_image'];?>" id="Shape303" alt="" style="width:129px;height:103px;">
+		  				<a href="<?php echo base_url();?>products/details/<?php echo $row['id'];?>" target="_blank" class="style5">
+		  					<img src="<?php echo asset_url().$row['main_image'];?>" id="Shape303" alt="" style="width:129px;height:106px;border:1px solid #f1f1f1;border-radius:3px;">
+		  				</a>
 		  			</div>
 		  			<div class="col-md-4" style="padding-left: 12px">
 		  				<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Product Name: <?php echo $row['name'];?></span><br>
@@ -50,7 +56,7 @@
 		  				<span style="color:#808080;font-family:Arial;font-size:11px;"><?php echo $row['description']; ?></span><br><br>
 		  				<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">USD <?php echo $row['unit_price']; ?></span>
 		  				<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Min. Qty : <?php echo $row['quantity']; ?>Containers</span><br>
-		  				<span style="color:#1E90FF;font-family:Arial;font-size:12px;">Location: <?php echo $row['subproname'].">".$row['mainproname'];?></span>
+		  				<span style="color:#1E90FF;font-family:Arial;font-size:12px;">Location: <a href="<?php echo base_url();?>products/details/<?php echo $row['id'];?>" target="_blank" class="style5"><?php echo $row['subproname'].">".$row['mainproname'];?></a></span>
 		  			</div>
 		  		</div>
 		  	</div><br><br>

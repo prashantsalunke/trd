@@ -18,7 +18,7 @@
 			<div class="account-main-nav" style="padding-top: 55px;">
 				<ul class="nav nav-tabs nav-tabs-custom">
 				  	<li class="active"><a data-toggle="tab" href="#addvedio" onclick="openAddvedio();">Add <br><span>Products Videos</span></a></li>
-				  	<li><a data-toggle="tab" href="#editvedio" onclick="openEditvedio();">"View | Edit" <br><span>Products Videos</span></a></li>
+				  	<li><a data-toggle="tab" href="#editvedio" onclick="openEditvedio();" id="myvideo_edit">"View | Edit" <br><span>Products Videos</span></a></li>
 				</ul>
 			</div>
 			<div class="account-image" style="padding-top: 40px;">
