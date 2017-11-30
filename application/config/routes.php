@@ -471,6 +471,11 @@ $route['business/likecomment/([0-9]+)'] = 'frontend/Business/likeComment/$1';
 $route['mystation/getloginstatus'] = "frontend/Station/getLoginStatus";
 $route['product/item/search'] = "frontend/Product/getMyProductList";
 
+/* *********************************  22-12-2017 ***************************/
+$route['3dproducts'] = 'frontend/Product/get3DPrducts';
+$route['vcatalogues'] = 'frontend/Product/getAllVCatalogues';
 
+// Admin ROutes
+$config['admin'] = 'backend'
 
-
+?>

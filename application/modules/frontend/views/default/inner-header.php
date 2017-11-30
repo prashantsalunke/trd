@@ -321,34 +321,34 @@ ul.hover-red-menu li.open a.firstmain{
 					<div class="col-xs-11">
 						<ul class="nav navbar-nav trd-nav">
 							<li class=" col-sm-2 col-xs-6">
-								<a href="<?php echo base_url();?>"><img src="assets/images/ts/Homekit.png" style="width: 50px;">
+								<a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>assets/images/ts/Homekit.png" style="width: 50px;">
 								<h5>Home</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-								<a href="<?php echo base_url();?>seller"><img src="assets/images/ts/seller.png" style="width: 50px;">
+								<a href="<?php echo base_url();?>seller"><img src="<?php echo base_url();?>assets/images/ts/seller.png" style="width: 50px;">
 								<h5 <?php if($page == 'sellers'){?>class="blue-color"<?php }?>>Sellers</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-								<a href="<?php echo base_url();?>products"><img src="assets/images/ts/products.png" style="width: 50px;">
+								<a href="<?php echo base_url();?>products"><img src="<?php echo base_url();?>assets/images/ts/products.png" style="width: 50px;">
 								<h5 <?php if($page == 'product'){?>class="blue-color"<?php }?>>Products</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-								<a href="<?php echo base_url();?>b-station"><img src="assets/images/ts/trade.png" style="width: 50px;">
+								<a href="<?php echo base_url();?>b-station"><img src="<?php echo base_url();?>assets/images/ts/trade.png" style="width: 50px;">
 								<h5>B-Station</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
 							<a href="<?php echo base_url();?>pro-video"><img src="assets/images/ts/vidtube0.png" style="width: 50px;">
 								<h5 <?php if($page == 'pro-videos'){?>class="blue-color"<?php }?>>Pro-Videos</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-								<a href="<?php echo base_url();?>buyer"><img src="assets/images/ts/buyer.png" style="width: 50px;">
+								<a href="<?php echo base_url();?>buyer"><img src="<?php echo base_url();?>assets/images/ts/buyer.png" style="width: 50px;">
 								<h5 <?php if($page == 'buyers'){?>class="blue-color"<?php }?>>Buyers</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-								<a href="<?php echo base_url();?>shipper"><img src="assets/images/ts/shipper.png" style="width: 50px;">
+								<a href="<?php echo base_url();?>shipper"><img src="<?php echo base_url();?>assets/images/ts/shipper.png" style="width: 50px;">
 								<h5 <?php if($page == 'shippers'){?>class="blue-color"<?php }?>>Shippers</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-							<a href="<?php echo base_url();?>stock-goods"><img src="assets/images/ts/stock.png" style="width: 50px;">
+							<a href="<?php echo base_url();?>stock-goods"><img src="<?php echo base_url();?>assets/images/ts/stock.png" style="width: 50px;">
 								<h5>Stock Goods</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-							<a href="<?php echo base_url();?>community"><img src="assets/images/ts/CommMember.png" style="width: 50px;">
+							<a href="<?php echo base_url();?>community"><img src="<?php echo base_url();?>assets/images/ts/CommMember.png" style="width: 50px;">
 								<h5>Community</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-							<a href="<?php echo base_url();?>my-alert" data-toggle="modal" data-target=".bs-example-modal-lg"><img src="assets/images/ts/Alerts1.png" style="width: 50px;">
+							<a href="<?php echo base_url();?>my-alert" data-toggle="modal" data-target=".bs-example-modal-lg"><img src="<?php echo base_url();?>assets/images/ts/Alerts1.png" style="width: 50px;">
 								<h5>My Alerts</h5></a></li>
 						</ul>
 					</div>
@@ -1179,7 +1179,80 @@ ul.hover-red-menu li.open a.firstmain{
 							</div>
 						</div>
 					</form>
-					<?php } ?>
+					<?php } elseif($page =='3dproduct'){?>
+					<form method="get" action="<?php echo base_url();?>3dprducts" style="padding-top:25px;" name="sellerfrm" onsubmit="return validateForm('sellerfrm');">
+						<div class="col-sm-2 col-xs-11" style="padding: 0px;">
+							<a class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" id="seller_cat_label">
+						   		<?php 
+						   		$subcat = "";
+						   		foreach ($mcats as $mcat) {
+					   				foreach ($mcat['subcats'] as $scat) {
+					   					if(!empty($params['cat_id']) && $params['cat_id'] == $scat['id']) {
+					   						$subcat = $scat['name'];
+					   					}
+					   				}
+						   		}
+						   		if(!empty($subcat)) {
+						   			echo $subcat;
+						   		} else { ?>
+						   		Categories<?php } ?> <span class="caret pull-right caret-vmiddle"></span>
+						  	</a>
+							<input type="hidden" name="cat_id" id="seller_cat_id" value="<?php if(!empty($params['cat_id'])) { echo $params['cat_id'];}?>"/>
+							<ul class="dropdown-menu hover-red-menu">
+						  		<?php foreach ($mcats as $mcat) { ?>
+						    	<li class="dropdown">
+						      		<a href="#" class="firstmain"><?php echo $mcat['name'];?></a>
+						      		<ul class="dropdown-menu">
+						      			<?php foreach ($mcat['subcats'] as $scat) { ?>
+						        		<li><a href="javascript:selectSellerScat(<?php echo $scat['id'];?>,`<?php echo $scat['name'];?>`);"><?php echo $scat['name'];?></a></li>
+						        		<?php } ?>
+						       		</ul>
+						    	</li>
+						    	<?php } ?>
+						  	</ul>
+						</div>
+						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+						</div>
+						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
+							<div>
+								<div class="col-sm-5 padding-0" style="padding-right: 3px;">
+									<div class="dropdown">
+										<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
+											<option value="">Country</option>
+											<?php foreach ($Country as $country){?>
+												<option value="<?php echo $country['name'];?>" <?php if(!empty($params['country']) && $params['country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
+											<?php }?>
+										</select>
+										
+									</div>
+								</div>
+								<div class="col-sm-5 padding-0" style="padding-right: 3px;">
+									<div class="dropdown">
+										<select class="search-box search-dp" id="city" name='city'>
+											<option value="">City</option>
+											<?php foreach($cities as $city){?>
+												<option value="<?php echo $city['company_city']?>" <?php if(!empty($params['city']) && $params['city'] == $city['company_city']) { ?>selected<?php } ?>><?php echo $city['company_city']?></option>
+											<?php }?>
+										</select>
+									</div>
+								</div>
+								<!-- div class="col-sm-8 padding-0">
+									<div class="dropdown">
+										<select class="search-box search-dp" name='type'>
+											<option value="">More</option>
+											<option value="0" <?php if(!empty($params['type']) && $params['type'] == 0) { ?>selected<?php } ?>>Show Audited First</option>
+											<option value="1" <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show All</option>
+										</select>
+									</div>
+								</div-->
+								<div class="col-sm-2 padding-0">
+									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+								</div>
+							</div>
+						</div>
+					</form>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

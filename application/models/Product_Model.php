@@ -2001,7 +2001,7 @@ class Product_Model extends CI_Model {
     	return $result;
     }
     
-    
+   
     
 }
     

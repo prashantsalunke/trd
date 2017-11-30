@@ -226,7 +226,7 @@ To upload and link your video to a certain product, follow the two steps here-un
 					<div style="text-align: center;padding-top:22px;padding-bottom:22px;">
 						<input type="button"  onclick="selectproduct();" id="btnuseproduct"  name="" value="Use" style="width:158px;height:25px;">
 					</div>
-						<div id="subproductlist_div" style="max-height:500px;overflow-y: auto;">
+						<div id="subproductlist_div" style="max-height:500px;">
 						
 						</div>
 				</form>
@@ -367,6 +367,9 @@ $("#publish").on('click', function(e){
 function resetAll(){
 	$("#pinfo_div").css("display","none");
 	$("#video_div").css("display","none");
+	$("#change_div").css("display","none");
+	$("#img_div").css("display","block");
+	$("#upload_div").css("display","block");
 	document.getElementById("frmaddvedio").reset();
 	//$("form #frmaddvedio").reset();
 	//alert("Reset");
