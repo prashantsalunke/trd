@@ -125,7 +125,7 @@ return true;
 }
 function showAddVedioResponse(resp, statusText, xhr, $form){
 	ajaxindicatorstop();
-if(resp.status == 0) {
+	if(resp.status == 0) {
 		$("#response").addClass('alert-danger');
 		$("#response").html(resp.msg);
 		$("#response").show();
@@ -137,6 +137,7 @@ if(resp.status == 0) {
 		$("#response").show();
 		//alert(resp.msg);
 		openEditvedio();
+		$("#myvideo_edit").trigger("click");
 	}
 }
 function deletevedio()
