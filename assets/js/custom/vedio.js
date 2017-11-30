@@ -193,7 +193,7 @@ if(resp.status == 0) {
 		$("#response").addClass('alert-success');
 		$("#response").html(resp.msg);
 		$("#response").show();
-		alert(resp.msg);
+		//alert(resp.msg);
 		openEditvedio();
 	}
 }
