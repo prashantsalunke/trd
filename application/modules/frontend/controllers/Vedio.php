@@ -441,7 +441,7 @@ class Vedio extends MX_Controller {
 			}
 			$location =  "assets/images/business_images/$busi_id/Myvedio/";
 			//$certificate_Img = uploadImage($_FILES['publicfileupload'],$location,array('jpg','png','gif'),2097152,'publicfile');
-			$oneproductvedio_Img = uploadImage($_FILES['uploadonepvedio'],$location,array('mp4','mp3'),2097152,'vedio');
+			$oneproductvedio_Img = uploadImage($_FILES['uploadonepvedio'],$location,array('mp4','mp3'),200097152,'vedio');
 			if($oneproductvedio_Img['status'] == 1) {
 				$param['vedio_file'] =  $oneproductvedio_Img['image'];
 				$param['vedio_size'] = $this->myfilelib->formatSizeUnits($size);

@@ -26,7 +26,7 @@
 		  		</div>
 		  	</div><br><br>
 		  	<input type="hidden" id="fileid" name="fileid" />
-		  	<input type="file" style="display: none" name="vediofile" id="vediofile"  onchange="setBackground('vediofile',this,5000);" />
+		  	<input type="file" style="display: none" name="vediofile" id="vediofile"  onchange="setBackground('vediofile',this,30);" />
 		  <?php foreach ($multiproductvedio as $row) { ?>
 		  <input type="hidden" value="<?php echo $row['id']; ?>" name="vedio_id"  id="vedio_id" />
 		  	<div class="row">
@@ -106,24 +106,18 @@ function changevedio(id)
 	       		var ext = input.files[0].name.split('.').pop();
 	       		var file_size = parseInt(input.files[0].size);
 	       		var filesizeinkb = (file_size/1024);
-	       		//var image = new Image();
-	           // image.src = e.target.result;
-	           // image.onload = function () {
-	               // var imgheight = this.height;
-	               // var imgwidth = this.width;
-	                if(ext == 'mp3' || ext == 'mp4') {
-		                if(filesizeinkb > size) {
-		                	alert("Vedio size should be "+size+"kb max.");
-		                    $('#'+id).val('');
-		                } else {
-		                	changeVedio();
-			                	//$('#'+id).css('background-image', 'url('+e.target.result+')').css('background-size','cover');
-		                }
-	                } else {
-	                	alert("Image should be MP3 or MP4.");
+               	var kbsize = size*1024;
+                if(ext == 'mp3' || ext == 'mp4') {
+	                if(filesizeinkb > kbsize) {
+	                	alert("Vedio size should be "+size+" MB max.");
 	                    $('#'+id).val('');
+	                } else {
+	                	changeVedio();
 	                }
-	          //  };
+                } else {
+                	alert("Image should be MP3 or MP4.");
+                    $('#'+id).val('');
+                }
 	      	}
 	        reader.readAsDataURL(input.files[0]);
 	   	}

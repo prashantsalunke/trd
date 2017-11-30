@@ -248,7 +248,7 @@ function validatevediofile(id,input,size)
        		var sizeinmb = (size/1048576).toFixed(2);
        		if(ext == 'mp4') {
 	         	if(parseFloat(filesizeinmb) > parseFloat(sizeinmb)) {
-                	alert("File size should be 50 MB max.");
+                	alert("File size should be 20 MB max.");
                     $('#'+id).val('');
                     flag = false;
                 } else {
