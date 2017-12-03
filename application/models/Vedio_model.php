@@ -482,5 +482,31 @@ class Vedio_model extends CI_Model {
     	}
     }
     
+    public function getOneProductVideosByIds($ids) {
+    	$this->db->select('*');
+    	$this->db->from(TABLES::$PRODUCTVEDIO);
+    	$this->db->where("id IN(".$ids.")",'',false);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    public function getMultiProductVideosByIds($ids) {
+    	$this->db->select('*');
+    	$this->db->from(TABLES::$MAINSUBPRODUCTVEDIO);
+    	$this->db->where("id IN(".$ids.")",'',false);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
+    public function getMultiProductVideoById($id) {
+    	$this->db->select('*');
+    	$this->db->from(TABLES::$MAINSUBPRODUCTVEDIO);
+    	$this->db->where("id",$id);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
    
 }

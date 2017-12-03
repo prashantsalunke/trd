@@ -112,6 +112,7 @@ class Vedio extends MX_Controller {
 		$keyvalue = 0;
 		$keyvalue1 = 0;
 		$arrcount = count($chkvalue);
+		$size = 0;
 		if (!empty($_FILES['uploadonepvedio']['name'])) {
 			
 			$oneproductvedio = $_FILES['uploadonepvedio']['name'];
@@ -150,6 +151,14 @@ class Vedio extends MX_Controller {
 			if(!empty($param['vedio_file']))
 			{
 				$oneproduct = $this->vediolib->saveoneproductvedio($param);
+				/* ************** Storage Implementation *************** */
+				$this->load->library('mylib/StorageLib');
+				$storage = array();
+				$storage['busi_id'] = $this->session->userdata('busi_id');
+				$storage['field'] = 'videos';
+				$storage['datasize'] = round($size/1024,2);
+				$this->storagelib->updateStorageByBusiId($storage);
+				/* ***************************************************** */
 				
 			}
 			if($oneproduct >0)
@@ -205,6 +214,14 @@ class Vedio extends MX_Controller {
 			if(!empty($mainparam['vedio_file']))
 			{
 				$mainproduct = $this->vediolib->saveMainSubproductvedio($mainparam);
+				/* ************** Storage Implementation *************** */
+				$this->load->library('mylib/StorageLib');
+				$storage = array();
+				$storage['busi_id'] = $this->session->userdata('busi_id');
+				$storage['field'] = 'videos';
+				$storage['datasize'] = round($size/1024,2);
+				$this->storagelib->updateStorageByBusiId($storage);
+				/* ***************************************************** */
 			}
 			if($mainproduct > 0)
 			{
@@ -225,6 +242,29 @@ class Vedio extends MX_Controller {
 		$this->load->library('mylib/VedioLib');
 		$chkoneprolist = $this->input->post('chkoneproduct');
 		$chkmultiprolist = $this->input->post('chkmultiproduct');
+		$size = 0;
+		if(count($chkmultiprolist) > 0) {
+			$ids = implode(",",$chkmultiprolist);
+			$mvideos = $this->vediolib->getMultiProductVideosByIds($ids);
+			foreach ($mvideos as $mvideo) {
+				$mfile_to_delete = FCPATH."assets/".$mvideo['vedio_file'];
+				$size = $size + filesize($mfile_to_delete);
+				if (is_file($mfile_to_delete)){
+					unlink($mfile_to_delete);
+				}
+			}
+		}
+		if(count($chkoneprolist) > 0) {
+			$ids = implode(",",$chkoneprolist);
+			$videos = $this->vediolib->getOneProductVideosByIds($ids);
+			foreach ($videos as $video) {
+				$file_to_delete = FCPATH."assets/".$video['vedio_file'];
+				$size = $size + filesize($file_to_delete);
+				if (is_file($file_to_delete)){
+					unlink($file_to_delete);
+				}
+			}
+		}
 		if(count($chkoneprolist) > 0)
 		{
 			for ($i=0;$i<count($chkoneprolist);$i++)
@@ -245,6 +285,14 @@ class Vedio extends MX_Controller {
 				$boolean = $this->vediolib->updateMultiProductvedio($data);
 			}
 		}
+		/* ************** Storage Implementation *************** */
+		$this->load->library('mylib/StorageLib');
+		$storage = array();
+		$storage['busi_id'] = $this->session->userdata('busi_id');
+		$storage['field'] = 'videos';
+		$storage['datasize'] = round($size/1024,2) * -1;
+		$this->storagelib->updateStorageByBusiId($storage);
+		/* ***************************************************** */
 		$map['status'] = 1;
 		$map['msg'] = "Vedio Deleted Successfully.";
 		echo json_encode($map);
@@ -421,7 +469,7 @@ class Vedio extends MX_Controller {
 		$description = $this->input->post('description');
 		$param['vedio_title'] = $title;
 		$param['vedio_description'] = $description;
-		
+		$size = 0;
 		if (!empty($_FILES['uploadonepvedio']['name'])) {
 			
 			$oneproductvedio = $_FILES['uploadonepvedio']['name'];
@@ -463,6 +511,14 @@ class Vedio extends MX_Controller {
 		if(!empty($param['vedio_file']))
 		{
 			$oneproduct = $this->vedios->saveMainSubproductvedio($param);
+			/* ************** Storage Implementation *************** */
+			$this->load->library('mylib/StorageLib');
+			$storage = array();
+			$storage['busi_id'] = $this->session->userdata('busi_id');
+			$storage['field'] = 'videos';
+			$storage['datasize'] = round($size/1024,2);
+			$this->storagelib->updateStorageByBusiId($storage);
+			/* ***************************************************** */
 			
 		}
 		if($oneproduct >0)
@@ -520,13 +576,15 @@ class Vedio extends MX_Controller {
 	public function changeVedio()
 	{
 		$map = array();
+		$this->load->library('mylib/VedioLib');
 		$this->load->model('Vedio_model', 'vedios' );
 		$this->load->library('mylib/MyfileLib');
 		$id = $this->input->post('fileid');
 		$busi_id= $this->session->userdata('tsuser')['busi_id'];
+		$videos = $this->vediolib->getMultiProductVideoById($id);
 		$param = array();
 		$param['id'] = $id;
-		
+		$size = 0;
 		if (!empty($_FILES['vediofile']['name'])) {
 			
 			$oneproductvedio = $_FILES['vediofile']['name'];
@@ -564,6 +622,21 @@ class Vedio extends MX_Controller {
 			
 		}
 		$response = $this->vedios->updateMultiProductvedio($param);
+		foreach ($videos as $video) {
+			$file_to_delete = FCPATH."assets/".$video['vedio_file'];
+			$size = $size - filesize($file_to_delete);
+			if (is_file($file_to_delete)){
+				unlink($file_to_delete);
+			}
+		}
+		/* ************** Storage Implementation *************** */
+		$this->load->library('mylib/StorageLib');
+		$storage = array();
+		$storage['busi_id'] = $this->session->userdata('busi_id');
+		$storage['field'] = 'videos';
+		$storage['datasize'] = round($size/1024,2);
+		$this->storagelib->updateStorageByBusiId($storage);
+		/* ***************************************************** */
 		if($response > 0)
 		{
 			$map['status'] = 1;
@@ -581,7 +654,18 @@ class Vedio extends MX_Controller {
 		$boolean = 0;
 		$this->load->library('mylib/VedioLib');
 		$chkvediolist = $this->input->post('chkvedio');
-		
+		$size = 0;
+		if(count($chkvediolist) > 0) {
+			$ids = implode(",",$chkvediolist);
+			$videos = $this->vediolib->getMultiProductVideosByIds($ids);
+			foreach ($videos as $video) {
+				$file_to_delete = FCPATH."assets/".$video['vedio_file'];
+				$size = $size + filesize($file_to_delete);
+				if (is_file($file_to_delete)){
+					unlink($file_to_delete);
+				}
+			}
+		}
 		if(count($chkvediolist) > 0)
 		{
 			for ($i=0;$i<count($chkvediolist);$i++)
@@ -592,6 +676,14 @@ class Vedio extends MX_Controller {
 				$boolean = $this->vediolib->updateMultiProductvedio($data);
 			}
 		}
+		/* ************** Storage Implementation *************** */
+		$this->load->library('mylib/StorageLib');
+		$storage = array();
+		$storage['busi_id'] = $this->session->userdata('busi_id');
+		$storage['field'] = 'videos';
+		$storage['datasize'] = round($size/1024,2) * -1;
+		$this->storagelib->updateStorageByBusiId($storage);
+		/* ***************************************************** */
 		$map['status'] = 1;
 		$map['msg'] = "Vedio Deleted Successfully.";
 		echo json_encode($map);

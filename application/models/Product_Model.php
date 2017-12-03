@@ -848,6 +848,15 @@ class Product_Model extends CI_Model {
     	$result = $query->result_array();
     	return $result;
     }
+    public function getComapnyMainCertificate($id) {
+    	$this->db->select('a.*');
+    	$this->db->from(TABLES::$CERTIFICATE_INFO.' AS a');
+    	$this->db->where('a.busi_id', $id);
+    	$this->db->group_by('a.id');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
     public function getAdvantage($id) {
     	$this->db->select('a.*');
     	$this->db->from(TABLES::$BUSINESS_INFO.' AS a');
@@ -895,19 +904,41 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$USER_INFO.' AS e','d.id=e.user_id','left');
     	$this->db->join(TABLES::$USER_CATEGORIES.' AS f','d.user_category_id=f.id','left');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS g','d.user_subcategory_id=g.id','left');
-    	$this->db->join(TABLES::$COMMUNITY_MEMBER.' as h ', 'h.busi_id = c.id', 'left');
     	$this->db->where('a.status', 1);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
+    	$this->db->where('b.is_deleted', 0);
     	$this->db->where('a.busi_id', $id);
+    	$this->db->group_by('b.id');
     	$this->db->order_by('b.created_date','DESC');
     	$query = $this->db->get();
     	//echo $this->db->last_query();
     	$row = $query->result_array();
     	return $row;
     	
+    }
+    public function getProductVideosByBusiId($id)
+    {
+    	$this->db->select('b.*,c.name,c.quantity,c.unit,c.unit_price,c.description,d.email as useremail,d.name as username,d.name_prefix as prefix,e.country as country, e.province as province, f.user_category as category, g.sub_category as subcategory');
+    	$this->db->from(TABLES::$PRODUCT_VIDEO.' as b', 'b.product_item_id = a.id ', 'inner');
+    	$this->db->join(TABLES::$PRODUCT_ITEM.' as c','b.product_item_id=c.id','inner');
+    	$this->db->join(TABLES::$USER.' as d ', 'd.busi_id = b.busi_id', 'left');
+    	$this->db->join(TABLES::$USER_INFO.' AS e','d.id=e.user_id','left');
+    	$this->db->join(TABLES::$USER_CATEGORIES.' AS f','d.user_category_id=f.id','left');
+    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS g','d.user_subcategory_id=g.id','left');
+    	$this->db->where('d.is_suspend', 0);
+    	$this->db->where('d.is_deleted', 0);
+    	$this->db->where('b.is_deleted', 0);
+    	$this->db->where('b.busi_id', $id);
+    	$this->db->group_by('b.id');
+    	$this->db->order_by('b.created_date','DESC');
+    	$query = $this->db->get();
+    	//echo $this->db->last_query();
+    	$row = $query->result_array();
+    	return $row;
+    	 
     }
     public function get3dproduct($id) {
     	$this->db->select('a.*, c.*');

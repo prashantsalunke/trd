@@ -287,7 +287,7 @@ body{
    font-style: normal;
    text-decoration: none;
    width: 239px;
-   height: 44px;
+   height: 35px;
    padding: 0px 10px 0px 10px;
    vertical-align: middle;
    line-height: 44px;
@@ -1808,4 +1808,46 @@ a.style1:hover
 .add-share-img {
 	width: 30px;
     height: 30px;
+}
+#RollOver6 a
+{
+   display: block;
+   position: relative;
+   height: 100%;
+   width: 100%;
+}
+#RollOver6 a img
+{
+   position: absolute;
+   z-index: 1;
+   border-width: 0;
+}
+#RollOver6 span
+{
+   display: block;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   z-index: 2;
+}
+#RollOver6 a .hover
+{
+   visibility: hidden;
+}
+#RollOver6 a:hover .hover
+{
+   visibility: visible;
+}
+#RollOver6 a:hover span
+{
+   visibility: hidden;
+}
+#RollOver6 img
+{
+   border-width: 0;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
 }

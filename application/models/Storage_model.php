@@ -30,7 +30,7 @@ class Storage_model extends CI_Model {
     		$params['usedspace'] = 0;
     		$this->db->insert(TABLES::$MYSTORAGE, $data);
     	} else {
-    		$sql = "UPDATE ".TABLES::$MYSTORAGE." SET ".$data['field']." = ".$data['field']." + ".$data['datasize'].", freespace = freespace - ".$data['datasize'].", usedspace = usedspace + ".$data['datasize']." WHERE busi_id = ".$data['busi_id'];
+    		$sql = "UPDATE ".TABLES::$MYSTORAGE." SET ".$data['field']." = IFNULL(".$data['field'].",0) + ".$data['datasize'].", freespace = freespace - ".$data['datasize'].", usedspace = usedspace + ".$data['datasize']." WHERE busi_id = ".$data['busi_id'];
     		$this->db->query($sql);
     	}
     }

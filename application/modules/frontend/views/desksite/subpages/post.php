@@ -11,23 +11,23 @@
 				                <p class="s7"><strong><?php echo $post['title'];?></strong></p>
 				                <br>
 				                <div class="col-md-6 col-md-6 ">
-				                    <a href="images/babytoy1.jpg" data-rel="PhotoGallery8" title="babytoy1" rel="PhotoGallery8">
-									<img alt="babytoy1" id="PhotoGallery8_img0" src="<?php echo asset_url().$post['image1']; ?>" title="babytoy1" class="imgscree">
+				                    <a href="<?php echo asset_url().$post['image1']; ?>" data-rel="PhotoGallery8" title="babytoy1" rel="PhotoGallery8">
+									<img alt="babytoy1" id="PhotoGallery8_img0" src="<?php echo asset_url().$post['image1']; ?>" title="babytoy1" class="imgscree" style="width:100%;">
 									</a>
 				                </div>
 				                <div class="col-md-6 col-md-6">
-				                    <a href="images/babytoy1.jpg" data-rel="PhotoGallery8" title="babytoy1" rel="PhotoGallery8">
-									<img alt="babytoy1" id="PhotoGallery8_img0" src="<?php echo asset_url().$post['image2']; ?>" title="babytoy1" class="imgscree">
+				                    <a href="<?php echo asset_url().$post['image2']; ?>" data-rel="PhotoGallery8" title="babytoy1" rel="PhotoGallery8">
+									<img alt="babytoy1" id="PhotoGallery8_img0" src="<?php echo asset_url().$post['image2']; ?>" title="babytoy1" class="imgscree" style="width:100%;">
 									</a>
 				                </div>
 				                <div class="col-md-6 col-md-6">
-				                    <a href="images/babytoy1.jpg" data-rel="PhotoGallery8" title="babytoy1" rel="PhotoGallery8">
-									<img alt="babytoy1" id="PhotoGallery8_img0" src="<?php echo asset_url().$post['image3']; ?>" title="babytoy1" class="imgscree">
+				                    <a href="<?php echo asset_url().$post['image3']; ?>" data-rel="PhotoGallery8" title="babytoy1" rel="PhotoGallery8">
+									<img alt="babytoy1" id="PhotoGallery8_img0" src="<?php echo asset_url().$post['image3']; ?>" title="babytoy1" class="imgscree" style="width:100%;">
 									</a>
 				                </div>
 				                <div class="col-md-6 col-md-6">
-				                    <a href="images/babytoy1.jpg" data-rel="PhotoGallery8" title="babytoy1" rel="PhotoGallery8">
-									<img alt="babytoy1" id="PhotoGallery8_img0" src="<?php echo asset_url().$post['image4']; ?>" title="babytoy1" class="imgscree">
+				                    <a href="<?php echo asset_url().$post['image4']; ?>" data-rel="PhotoGallery8" title="babytoy1" rel="PhotoGallery8">
+									<img alt="babytoy1" id="PhotoGallery8_img0" src="<?php echo asset_url().$post['image4']; ?>" title="babytoy1" class="imgscree" style="width:100%;">
 									</a>
 				                </div>
 				            </div>

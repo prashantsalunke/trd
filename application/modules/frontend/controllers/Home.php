@@ -794,11 +794,14 @@ class Home extends MX_Controller {
 		$map['id'] = $id;
 		$map['user_id'] = $busi_id ;
 		$this->load->model('Product_Model','product');
+		$this->load->model('Catalogue_model','catalogue');
 		$this->load->model('Myudtalk_model','myudtalk');
 		$Desksites= $this->product->getDesksiteByBusiId($map);
+		$catalogues = $this->catalogue->getProductCatalogues($busi_id);
 		$images = $this->myudtalk->getUdFiles($busi_id);
 		$this->template->set ( 'images', $images);
 		$this->template->set ( 'Desksites', $Desksites);
+		$this->template->set ( 'catalogues', $catalogues);
 		$this->template->set ( 'busi_id', $id);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'seller');
@@ -851,7 +854,9 @@ class Home extends MX_Controller {
 	public function getComapnyCertificate($id) {
 		$this->load->model('Product_Model', 'product' );
 		$Certificate = $this->product->getComapnyCertificate($id);
+		$licences = $this->product->getComapnyMainCertificate($id);
 		$this->template->set ( 'Certificate', $Certificate);
+		$this->template->set ( 'licences', $licences);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
@@ -896,7 +901,7 @@ class Home extends MX_Controller {
 	
 	public function getProductVideos($id) {
 		$this->load->model('Product_Model', 'product' );
-		$Videos = $this->product->getProductVideos($id);
+		$Videos = $this->product->getProductVideosByBusiId($id);
 		$this->template->set ( 'Videos', $Videos);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -1280,6 +1285,42 @@ class Home extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$this->template->build ('station/pages/subpages/subscriptionCheckout');
+	}
+	
+	public function getCatalogueByBusiId($busi_id) {
+		$this->load->model('Catalogue_model','catalogue');
+		$catalogues = $this->catalogue->getProductCatalogues($busi_id);
+		$params = array();
+		if(count($catalogues) > 0) {
+			$id = $catalogues[0]['id'];
+			$catalogue_items = $this->catalogue->getProductCatalogueItems($id);
+			$this->template->set ( 'products', $catalogue_items );
+			$this->template->set ( 'catalogues', $catalogues );
+			$this->template->set ( 'page', 'home' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout (false);
+			$html= $this->template->build ('Home/pages/bcatalogue', '', true);
+			$params['html'] = $html;
+			$params['id'] = $id;
+			echo json_encode($params);
+		} else {
+			$params['html'] = 0;
+			$params['id'] = 0;
+			echo json_encode($params);
+		}
+	}
+	
+	public function getNextCatalogueById($id) {
+		$this->load->model('Catalogue_model','catalogue');
+		$catalogue_items = $this->catalogue->getProductCatalogueItems($id);
+		$this->template->set ( 'products', $catalogue_items );
+		$this->template->set ( 'page', 'home' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('Home/pages/bcatalogue', '', true);
+		$params['html'] = $html;
+		$params['id'] = $id;
+		echo json_encode($params);
 	}
 	
 	
