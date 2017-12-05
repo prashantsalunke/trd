@@ -30,7 +30,7 @@ To upload and link your video to a certain product, follow the two steps here-un
 						</div>
 						<br>
 						<div id="wb_Text515" style="height:12px;z-index:1045;text-align:left;">
-							<span style="color:#666666;font-family:Arial;font-size:9.3px;">Mp4 format, Max. size: 50 MB</span>
+							<span style="color:#666666;font-family:Arial;font-size:9.3px;">Mp4 format, Max. size: 20 MB</span>
 						</div>
 						<br>
 						<div id="Layer980" style="text-align:left;height:200px;z-index:1056;">
@@ -48,7 +48,7 @@ To upload and link your video to a certain product, follow the two steps here-un
 							<div class="col-sm-6" id="change_div" style="width:67px;height:150px;z-index:1037;text-align:left;padding-top: 14px;padding-top:80px;display:none;">
 								<span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u><a href="javascript:openFileInput();" class="style23" id="oneproductupload">Change</a></u></span>
 							</div>
-							<?php $maxvediosizeinbyte =  50* 1048576; ?>
+							<?php $maxvediosizeinbyte =  20* 1048576; ?>
 							<input type="file"  name="uploadonepvedio"  id="uploadonepvedio"  onchange="validatevediofile('uploadonepvedio',this,<?php echo $maxvediosizeinbyte ; ?>);" style="display: none"/>
 						</div>
 		  			</div>
@@ -248,7 +248,7 @@ function validatevediofile(id,input,size)
        		var sizeinmb = (size/1048576).toFixed(2);
        		if(ext == 'mp4') {
 	         	if(parseFloat(filesizeinmb) > parseFloat(sizeinmb)) {
-                	alert("File size should be 50 MB max.");
+                	alert("File size should be 20 MB max.");
                     $('#'+id).val('');
                     flag = false;
                 } else {
@@ -358,11 +358,9 @@ $("#publish").on('click', function(e){
 	if($("#uploadonepvedio").val()==''){
 		alert('No video uploaded yet');
 		e.preventDefault();
-		//return false;
-		} else{
-			   addvedio();
-				//return true;
-			}
+	} else{
+		addvedio();
+	}
 } );
 function resetAll(){
 	$("#pinfo_div").css("display","none");
