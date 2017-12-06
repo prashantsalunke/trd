@@ -476,6 +476,7 @@ $route['3dproducts'] = 'frontend/Product/get3DPrducts';
 $route['vcatalogues'] = 'frontend/Product/getAllVCatalogues';
 
 // Admin ROutes
-$config['admin'] = 'backend'
+$route['admin'] = 'backend/index';
+$route['api/auth'] = 'backend/auth/test';
 
 ?>
