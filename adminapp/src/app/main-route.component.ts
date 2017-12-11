@@ -1,22 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './core/auth.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'trd-main-route',
   template: `
     <router-outlet></router-outlet>
-    <nav class="navbar admin-nav navbar-fixed-top">
+    <nav class="navbar admin-nav navbar-fixed-top" *ngIf="loggedInUser">
     <div class="container">
       <ul class="nav navbar-right navbar-nav">
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="images/rseller2.png" style="width:35px;"> Tang Lee</a>
+        <li class="dropdown" trdDropdown>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <img src="images/rseller2.png" style="width:35px;"> {{loggedInUser?.username}}</a>
           <ul class="dropdown-menu">
             <li><a href="#">Edit</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a (click)="logout()">Logout</a></li>
           </ul>
         </li>
       </ul>
     </div>
     </nav>
-    <nav class="navbar navbar-fixed-bottom footerNav-div">
+    <nav class="navbar navbar-fixed-bottom footerNav-div" *ngIf="loggedInUser">
     <div class="container">
       <nav class="navbar  footer-nav">
         <div class="navbar-header"> <a href="#" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="padding: 0px; margin: 4px 0px;"><img src="images/5-128.png" width="40px"></a> </div>
@@ -46,10 +50,16 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class MainRouteComponent implements OnInit {
+  loggedInUser: any;
+  sub: Subscription;
 
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit() {
+    this.sub = this.authService.getLoggedInUser()
+    .subscribe((loggedInUser)=> this.loggedInUser = loggedInUser)
   }
-
+  logout(){
+    this.authService.logout();
+  }
 }
