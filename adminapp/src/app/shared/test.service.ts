@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class TestService {
 
-  private appUrl = `api/` 
+  private appUrl = environment.backend; 
   constructor(private http:HttpClient) { }
 
   testApi(){

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TestService } from './shared/test.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { AuthService } from './core/auth.service';
 
 @Component({
   selector: 'trd-root',
@@ -9,15 +10,14 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
     
    <router-outlet></router-outlet>
   `,
-  styles: [],
-  providers: [TestService]
+  styles: []
 })
 export class AppComponent implements OnInit {
   title = 'trd';
-constructor(private testService:TestService){}
+constructor(private authService:AuthService){}
 
   ngOnInit(){
 
-    this.testService.testApi().subscribe((res)=> console.log(res));
+    this.authService.getLoggedInUser().subscribe((res)=> console.log(res));
   }
 }
