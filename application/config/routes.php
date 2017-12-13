@@ -392,12 +392,15 @@ $route['product/images'] = 'frontend/Bstation/ProductImages';
 
 $route['desksite/([0-9]+)'] = 'frontend/Home/DesksiteByBusiId/$1';
 $route['desksite/company/([0-9]+)'] = 'frontend/Home/getComapnyProfile/$1';
+$route['desksite/company/shipper/([0-9]+)'] = 'frontend/Home/getShipperComapnyProfile/$1';
+$route['desksite/company/buyer/([0-9]+)'] = 'frontend/Home/getBuyerComapnyProfile/$1';
 $route['desksite/company/about/([0-9]+)'] = 'frontend/Home/getComapnyAbout/$1';
 $route['desksite/company/certificate/([0-9]+)'] = 'frontend/Home/getComapnyCertificate/$1';
 $route['desksite/advantage/([0-9]+)'] = 'frontend/Home/getAdvantage/$1';
 $route['desksite/contact/([0-9]+)'] = 'frontend/Home/getContactPerson/$1';
 $route['desksite/myfiles/([0-9]+)'] = 'frontend/Home/getMyfiles/$1';
 $route['desksite/video/([0-9]+)'] = 'frontend/Home/getProductVideos/$1';
+$route['desksite/video/shipper/([0-9]+)'] = 'frontend/Home/getShipperVideos/$1';
 $route['desksite/post/([0-9]+)'] = 'frontend/Home/getCurrentPost/$1';
 $route['desksite/3dproduct/([0-9]+)'] = 'frontend/Home/get3DProduct/$1';
 $route['desksite/favourite/([0-9]+)/([0-9]+)'] = 'frontend/Home/addFavourite/$1/$2';
@@ -405,6 +408,7 @@ $route['desksite/request/([0-9]+)'] = 'frontend/Home/buyerCurrentRequest/$1';
 $route['product/search'] = 'frontend/Home/desksiteSearch';
 $route['addtofavourite/([0-9]+)/([0-9]+)'] = 'frontend/Favourite/addToFavourite/$1/$2';
 $route ['website/product/([0-9]+)'] ='frontend/Home/productViewWebsite/$1';
+$route['desksite/shipper/services/([0-9]+)'] = 'frontend/Home/getShipperServices/$1';
 $route ['advertisement/([0-9]+)'] ='frontend/Home/advertisement/$1';
 $route['buyer/profile/([0-9]+)'] = 'frontend/Home/buyerProfileByBusiId/$1';
 $route['shipper/profile/([0-9]+)'] = 'frontend/Home/shipperProfileByBusiId/$1';
@@ -414,6 +418,7 @@ $route['desksite/product/menu/([0-9]+)'] = 'frontend/Home/getProductCategories/$
 $route['([0-9]+)/ads-checkout'] = 'frontend/MyAds/msCheckout/$1';
 $route['([0-9]+)/featured-ads-checkout'] = 'frontend/MyAds/fcCheckout/$1';
 $route['([0-9]+)/subscription-checkout'] = 'frontend/Home/getSubscriptionCheckout/$1';
+$route['desksite/like/([0-9]+)'] = 'frontend/Home/likeBusiness/$1';
 
 
 /********************  Community **************/

@@ -2,19 +2,40 @@
 					foreach($Company as $company){?>
 					 
 				            <p class="box1font2"><strong><?php echo $company['company_name']?> </strong></p>
+				            <div>
 				            	<img src="<?php echo asset_url().$company['business_logo']; ?>" id="Shape7" alt="" style="width:112px;height:116px;">
-				            <p class="left style-font-1">Rank</p>
-				            <div class="progress">
-				                <div class="progress-bar orange1" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $company['rank']; ?>%">
-				                </div>
 				            </div>
-				            <p class="font121">%<?php echo $company['rank']; ?></p>
+				            <br>
 				            <div class="inline">
-				                <p class="be2">Business Type : </p>
-				                <p class="be1"> <?php echo " ".$company['sub_category'];?></p>
+				                <p class="be2">
+				                	<span style="color:#000000;font-family:Arial;font-size:12px;">Business Type : </span>
+				                	<span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo " ".$company['sub_category'];?></span>
+				                </p>
 				            </div>
-				            <p class="be2">Main Products :</p>
-				            <p class="be1">  <?php echo substr($company['main_product'], 0, 150);?> </p>
+				            <p class="be2">Main Services :</p>
+				            <?php 
+				            	$mservices = "";
+				            	foreach ($mainservices as $mservice) {
+				            		if($mservices == "") {
+				            			$mservices = $mservice['name'];
+				            		} else {
+				            			$mservices = $mservices.", ".$mservice['name'];
+				            		}
+				            	}
+				            	
+				            	$sservices = "";
+				            	foreach ($specialservices as $mservice) {
+				            		if($sservices == "") {
+				            			$sservices = $mservice['name'];
+				            		} else {
+				            			$sservices = $sservices.", ".$mservice['name'];
+				            		}
+				            	}
+				            		
+				            ?>
+				            <p class="be1">  <?php echo substr($mservices, 0, 150);?> </p>
+				            <p class="be2">Special Services :</p>
+				            <p class="be1">  <?php echo substr($sservices, 0, 150);?> </p>
 				            <p class="be1"><hr style="margin: 5px 0px; height: 1px; border-top: 1px dotted #000;"/></p>
 				            <div class="inline">
 				                <p class="be2">Year of Establish: </p>
@@ -28,24 +49,6 @@
 				                <p class="be2">Employees : </p>
 				                <p class="be1"> <?php echo " ".$company['company_size'];?></p>
 				            </div>
-				            <div class="inline">
-				                <p class="be2">Factory Size : </p>
-				                <p class="be1"> Above <?php echo " ".$company['fact_size'];?> Square Meter</p>
-				            </div>
-				            <div class="inline">
-				                <p class="be2">Production Lines : </p>
-				                <p class="be1"><?php echo "$".$company['no_of_production_line'];?></p>
-				            </div>
-				            <p class="be2">R&D Capacity : 
-				            <span class="be1"><?php foreach ($user_rnd as $row) { ?>
-	  							<?php if($row['rnd_type_id'] == 4) { ?>
-	  							<?php echo $company['rnd_capacity'];?>
-	  							<?php } else { ?>
-	  							<?php echo $row['name']?>&nbsp;
-	  							<?php } ?>
-	  							<?php } ?>
-	  						</span>
-		  					</p>
 				            <p class="be1"><hr style="margin: 5px 0px; height: 1px; border-top: 1px dotted #000;"/></p>
 				            <div>
 				            	<p class="be2">Contact Person : </p>
@@ -54,7 +57,7 @@
 			                </div>
 				      
 				    <div class="bg3 inline">
-				        <div class="row">
+				    	<div class="row">
 					        <div class="col-sm-2">Views</div>
 					        <div class="col-sm-4 count"><?php echo $company['visit'];?></div>
 					        <div class="col-sm-2">Likes</div>

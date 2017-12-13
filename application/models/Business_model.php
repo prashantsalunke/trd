@@ -27,10 +27,10 @@ class Business_model extends CI_Model {
 		$query = $this->db->get();
 		$row = $query->result_array();
 		if (count($row) > 0) {
-			$this->db->insert(TABLES::$USER, $data);
+			$this->db->insert(TABLES::$BUSINESS_LIKE_COMMENTS, $data);
 		} else {
 			$this->db->where('id',$data['id']);
-			$this->db->update(TABLES::$USER, $data);
+			$this->db->update(TABLES::$BUSINESS_LIKE_COMMENTS, $data);
 		}
 	}
 	

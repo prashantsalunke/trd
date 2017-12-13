@@ -1,5 +1,4 @@
 <!-- css js -->
-<script src="<?php echo asset_url(); ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
@@ -10,7 +9,6 @@
 <script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-bounce.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/slimbox/js/slimbox2.js"></script>
-<script src="<?php echo asset_url(); ?>js/jquery.ui.tooltip.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.wiggle.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.ui.position.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.ui.tooltip.min.js"></script>
@@ -20,8 +18,17 @@
 <script src="<?php echo asset_url();?>js/jquery.ui.effect-pulsate.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.ui.effect-scale.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.ui.effect-shake.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.tooltip.min.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.ui.widget.min.js"></script>
+<link rel="stylesheet" href="<?php echo asset_url();?>js/prettyPhoto/css/prettyPhoto.css">
+<script src="<?php echo asset_url();?>js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
 <style>
-
+div.pp_overlay {
+	z-index:12800 !important;
+}
+div.pp_pic_holder {
+	z-index:12801 !important;
+}
 .catalog_c_img {
 	border: none;
     width: 150px;
@@ -327,7 +334,7 @@ $(document).ready(function() {
     });
     $("#Layer216").stickylayer({
         orientation: 1,
-        position: [70, 60],
+        position: ['30%', 60],
         delay: 0
     });
     $("a[data-rel='PhotoGallery4']").attr('rel', 'PhotoGallery4');
@@ -387,10 +394,10 @@ $(document).ready(function() {
         position: [0, 25],
         delay: 0
     });
-    searchParseURL();
+    //searchParseURL();
     $("#Layer58").stickylayer({
         orientation: 1,
-        position: [70, 50],
+        position: ['30%', 50],
         delay: 0
     });
     $("a[data-rel='PhotoGallery7']").attr('rel', 'PhotoGallery7');
@@ -451,7 +458,7 @@ $(document).ready(function() {
     $("#Carousel8").carousel(Carousel8Opts);
     $("#Layer44").stickylayer({
         orientation: 4,
-        position: [0, 0],
+        position: [70, 30],
         delay: 0
     });
     $("#Layer116").stickylayer({
@@ -644,12 +651,15 @@ function stopWiggle(input) {
 			<!-- user profile details -->
 			<div class="c12">
 			    <div id="wb_Image53" class="c13">
-			        <img src="<?php echo asset_url(); ?>images/usa-round.png" id="Image53" alt=""></div>
+			    	<?php if(!empty($Desksite['flag'])) { ?>
+			        <img src="<?php echo asset_url(); ?>images/flags/<?php echo $Desksite['flag'];?>" id="Image53" alt="<?php echo $Desksite['company_country'];?>" style="width:28px;">
+			        <?php } ?>
+			  	</div>
 			    <div id="wb_Text50" class="c3">
 			        <p class="c1"><?php echo $Desksite['company_country']." | ".$Desksite['company_province']; ?></p>
 			    </div>
 			    <div id="wb_Text8" class="c2">
-			        <p class="c1"><strong>09:00 PM</strong></p>
+			        <p class="c1"><strong><?php echo date('h:i A');?></strong></p>
 			    </div>
 			</div>
 			<!-- profile end -->
@@ -669,9 +679,11 @@ function stopWiggle(input) {
 		    <div id="Layer88" class="leftnav">
 		        <div id="Layer116" class="left-fixed">
 		            <div id="wb_Image61">
-		               <?php if($Desksite['plan_id'] != '' && $Desksite['plan_id'] > '1'){?>
-		               	 <img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="" class="img28">
-		               	 <?php }?>
+		               <?php if($Desksite['plan_id'] > 1){?>
+		               	 <img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" title="Black Horse Member" alt="Black Horse Member" class="img28">
+		               	 <?php } else { ?>
+		               	 <img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" title="Black Horse Member" alt="Black Horse Member" class="img28" style="opacity:0.15;">
+		               	 <?php } ?>
 	               	 </div>
 		            <div id="wb_Image67">
 		                <a href="javascript:getVerified(<?php echo $Desksite['busi_id']?>);">
@@ -680,7 +692,7 @@ function stopWiggle(input) {
 						<?php }?></a>
 					</div>
 		            <div id="wb_Image76">
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="" title="A member in your community" class="img28">
+		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is member in your community" title="This shipper is member in your community" class="img28">
 	                </div>
 		        </div>
 		    </div>
@@ -689,75 +701,76 @@ function stopWiggle(input) {
 			<!-- bottom navigation -->
 			<div class="container">
 				<div id="Layer5"class="bottomnav">
-					<div id=" Layer5_Container ">
+					<div id=" Layer5_Container" style="width:1277px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
 					    <div class="row ">
-					        <div class="col-md-1 col-sm-1 ">
+					        <div class="col-md-1 col-sm-1" style="width:120px;">
 					        <br>
-					            <a href="javascript:productListBySubCategory(<?php echo $Desksite['busi_id'];?>) " class="product " onclick="ShowObjectWithEffect( 'Layer44', 1, 'slidedown', 500, 'swing');return false; ">Services
+					            <a href="javascript:serviceList(<?php echo $Desksite['busi_id'];?>);" class="product" style="color:#1f90f6;">
+					            	Services
 								</a>
 					        </div>
-					        <div class="col-md-9 col-sm-9 bg ">
-					            <div class="col-md-4 ">
-					             <a href="javascript:getComapnyProfile(<?php echo $Desksite['busi_id']?>)" class="navigation2 ">
-							     <img src="<?php echo asset_url(); ?>images/img0178.png" id="Image60" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-					            <p class="font2">Company Profile</p>
-					            </a>
-					            <a href="javascript:getComapnyAbout(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-							    <img src="<?php echo asset_url(); ?>images/about.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-							    <p class="font2">About Us</p>
-							    </a>
-							    <a href="javascript:getRoutes(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-							    <img src="<?php echo asset_url(); ?>images/Airplane.png" id="Image43" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-							     <p class="font2">Routes</p>
-							    </a>
-					            <a href="javascript:getComapnyCertificate(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-							    <img src="<?php echo asset_url(); ?>images/certificates.png" id="Image7" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-							     <p class="font2">Certificates</p>
-							    </a>
-					            
-					            <a href="javascript:getMyFiles(<?php echo $Desksite['busi_id'];?>)" class="navigation2" >
-							    <img src="<?php echo asset_url(); ?>images/folder-user.png" id="Image8" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-							    <p class="font2">My Files</p>
-							    </a>
-					        </div>
-					        <div class="col-md-5">
-					            <a href="javascript:getProductVideo(<?php echo $Desksite['busi_id']?>);" class="navigation2" >
-					                <!--  --><img src="<?php echo asset_url(); ?>images/img0179.png" id="Image77" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-					                <p class="font2">Recent Videos</p>
-					            </a>
-					            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer72', 1, 'slidedown', 500, 'swing');return false;">
-								   <img src="<?php echo asset_url(); ?>images/UD-0.png" id="Image79" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-								   <p class="font2">UDtalks  Images</p>
-							   </a>
-					            <a href="javascript:getCurrentPost(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-							   <img src="<?php echo asset_url(); ?>images/img0180.png" id="Image71" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-							   <p class="font2">Current  Post</p>
-							   </a>
-					        </div>
-					        <div class="col-md-3">
-					            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer16', 1, 'slidedown', 500, 'swing');return false;">
-							   <img src="<?php echo asset_url(); ?>images/web_site.png" id="Image75" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-							   	   <p class="font5">World-wide  Offices</p>
-							   </a>
-					            <a href="javascript:getContactPerson(<?php echo $Desksite['busi_id'];?>);" class="navigation2" >
-							   <img src="<?php echo asset_url(); ?>images/img0395-new.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-							   <p class="font2">Contact Person</p>
-							   </a>
-					            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;">
-							   <img src="<?php echo asset_url(); ?>images/contact_email.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-							   <p class="font5">Contact, Add Share...</p>
-							   </a>
-					        </div>
-					    </div>
-					    <div class="col-md-2 col-sm-2  bg121">
-					        <a href="javascript:showWebsite();" class="navigation2" >
-							   <img src="<?php echo asset_url(); ?>images/system-shutdown-5.png" id="Image47" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+					        <div class="col-md-9 col-sm-9 bg" style="width:82%;padding-left:50px;">
+					            <div class="col-md-5" style="padding-left:35px !important;">
+						            <a href="javascript:getComapnyProfile(<?php echo $Desksite['busi_id']?>)" class="navigation2 ">
+								     	<img src="<?php echo asset_url(); ?>images/img0178.png" id="Image60" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+						            	<p class="font2">Company Profile</p>
+						          	</a>
+						            <a href="javascript:getComapnyAbout(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
+								    <img src="<?php echo asset_url(); ?>images/about.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								    <p class="font2">About Us</p>
+								    </a>
+								    <a href="javascript:getRoutes(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
+								    <img src="<?php echo asset_url(); ?>images/Airplane.png" id="Image43" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								     <p class="font2">Routes</p>
+								    </a>
+						            <a href="javascript:getComapnyCertificate(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
+								    <img src="<?php echo asset_url(); ?>images/certificates.png" id="Image7" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								     <p class="font2">Certificates</p>
+								    </a>
+						            
+						            <a href="javascript:getMyFiles(<?php echo $Desksite['busi_id'];?>)" class="navigation2" >
+								    <img src="<?php echo asset_url(); ?>images/folder-user.png" id="Image8" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								    <p class="font2">My Files</p>
+								    </a>
+						        </div>
+						        <div class="col-md-3">
+						            <a href="javascript:getProductVideo(<?php echo $Desksite['busi_id']?>);" class="navigation2" >
+						                <!--  --><img src="<?php echo asset_url(); ?>images/img0179.png" id="Image77" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+						                <p class="font2">Recent Videos</p>
+						            </a>
+						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer72', 1, 'slidedown', 500, 'swing');return false;">
+									   <img src="<?php echo asset_url(); ?>images/UD-0.png" id="Image79" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+									   <p class="font2">UDtalks  Images</p>
+								   </a>
+						            <a href="javascript:getCurrentPost(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
+								   <img src="<?php echo asset_url(); ?>images/img0180.png" id="Image71" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   <p class="font2">Current  Post</p>
+								   </a>
+						        </div>
+						        <div class="col-md-3" style="width:27%;">
+						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer16', 1, 'slidedown', 500, 'swing');return false;">
+								   		<img src="<?php echo asset_url(); ?>images/web_site.png" id="Image75" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   	   	<p class="font5">World-wide  Offices</p>
+								   	</a>
+						            <a href="javascript:getContactPerson(<?php echo $Desksite['busi_id'];?>);" class="navigation2" >
+								   		<img src="<?php echo asset_url(); ?>images/img0395-new.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<p class="font2">Contact Person</p>
+								   	</a>
+						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;">
+								   		<img src="<?php echo asset_url(); ?>images/contact_email.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<p class="font5">Contact, Add Share...</p>
+								   	</a>
+						        </div>
+					    	</div>
+					    	<div class="col-md-2 col-sm-2  bg121" style="width:7%;">
+					        	<a href="javascript:showWebsite();" class="navigation2" style="display:none;">
+							   		<img src="<?php echo asset_url(); ?>images/system-shutdown-5.png" id="Image47" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							   	   <p class="font2">Switch to <br> Classic Mode</p>
 							   </a>
-					    </div>
+					    	</div>
+						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 			 <?php }?>
 			<div class="container">
@@ -776,28 +789,26 @@ function stopWiggle(input) {
 			    </div>
 			    <!-- verified member end -->
 			    <!-- product popup -->
-			    <div id="Layer44" class="box1" onmouseleave="ShowObjectWithEffect('Layer18', 0, 'slidedown', 500);return false;" style="    top: 30%; width: 20%;">
+			    <div id="Layer44" class="box1" onmouseleave="ShowObjectWithEffect('Layer18', 0, 'slidedown', 500);return false;" style="position:fixed;top:30px;width:863px;padding:15px;">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer44', 0, 'slidedown', 300, 'swing');return false;">
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <div style=" width: 240px;">
-			            <br>
-			            <p class="box1font1"><img src="<?php echo asset_url(); ?>images/MENUICON.png" alt="" class="img32">PRODUCT CATEGORY</p>
-			            <div id="wb_desktop_menu" id="product-category">
+						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:98%;">
+					</a>
+			        <div>
+			            <div id="my-services">
 			                
-			                <br>
 			            </div>
 			        </div>
 			    </div>
 			<!-- product popup ends -->
 				
 			<!--about us-->
-			<div id="Layer23" class="box1 a4">
+			<div id="Layer23" class="box1 a4" style="padding:15px;width:411px;">
 			    <div id="Layer23_Container">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <br>
-			        <p class="box1font3"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32">ABOUT US</p>
-			        <div class="box2" id="about-us" style="height: 512px;">
+						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+					</a>
+			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT US</p>
+			        <div class="box2" id="about-us" style="height: 512px;padding-top:5px;">
 			            
 			        </div>
 			    </div>
@@ -805,23 +816,23 @@ function stopWiggle(input) {
 			
 			<!-- about us end -->
 			<!-- certification -->
-			<div id="Layer144" class="box11 a4">
+			<div id="Layer144" class="box11 a4" style="width:503px;padding:15px;">
 			    <div id="Layer144_Container">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer144', 0, 'slidedown', 300, 'swing');return false;">
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <br>
-			        <p class="box1font3"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32">COMPANY LICENSE AND CERTIFICATES</p>
-		       		<div id="Layer147">  </div>
+						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+					</a>
+			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY LICENSE AND CERTIFICATES</p>
+		       		<div id="Layer147"></div>
 			    </div>
 			</div>
 			<!-- certification ends -->
 			
 			<!-- company profile -->
-			<div id="Layer48" class="box1" style="left:36%; top:3%">
+			<div id="Layer48" class="box1" style="left:36%; top:3%;width: 316px;padding:15px;">
 			    <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
 				 	<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			    <br>
-			    <p class="box1font3"><img src="<?php echo asset_url(); ?>images/barcompany-profile.png" alt="" class="img32">COMPANY PROFILE</p>
+			    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/barcompany-profile.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE
+			   </p>
 			    <div>
 			        <div class="box2" id="company-profile" style=" height: 642px;">
 					</div>
@@ -844,26 +855,26 @@ function stopWiggle(input) {
 			<!-- advantages ends-->
 			
 			<!-- Routes -->
-			<div id="Layer33" class="box1 a3" style="width:314px;">
+			<div id="Layer33" class="box1 a3" style="width:314px;padding:15px;">
 			    <div id="Layer79_Container">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer33', 0, 'slidedown', 300, 'swing');return false;">
-				<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <br>
-			        <p class="box1font3"><img src="<?php echo asset_url(); ?>images/Airplane.png" alt="" class="img32">MAIN ROUTES</p>
-			        <div class="box2" id="route"></div>
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:94%;">
+						</a>
+			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/Airplane.png" alt="" class="img32" > &nbsp;&nbsp;&nbsp;MAIN ROUTES</p>
+			        <div class="box2 blackbox" id="route"></div>
 			        
 			    </div>
 			</div>
 			<!-- routes ends-->
 			
 			<!-- my files -->
-			<div id="Layer148" class="box1 a3">
+			<div id="Layer148" class="box1 a3" style="width:517px;padding:15px;">
 			    <div id="Layer148_Container">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer148', 0, 'slidedown', 300, 'swing');return false;">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <br>
-			        <p class="box1font3"><img src="<?php echo asset_url(); ?>images/my_file.png" alt="" class="img32">MY FILES</p>
-			        <div class="box22" id="my-files">
+						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
+					</a>
+			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/my_file.png" alt="" class="img32" style="left:96%;"> &nbsp;&nbsp;&nbsp;MY FILES</p>
+			        <div class="box22 blackbox" id="my-files">
 			           
 			        </div>
 			    </div>
@@ -905,34 +916,34 @@ function stopWiggle(input) {
 			    </div>
 			    <div class="inline box5">
 			        <img src="<?php echo asset_url(); ?>images/MENUFAVORITE.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
+			        <a href="javascript:addShipperToMyFavourite(<?php echo $Desksites[0]['busi_id']?>,2);" target="_self" class="antag">
 					Add To Favorite
 					</a>
 			    </div>
 			    <div class="inline box5">
 			        <img src="<?php echo asset_url(); ?>images/menuaddcomm.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
+			        <a href="javascript:addToMyCommunity(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
 			        Add To Community
 					</a>
 			    </div>
 			    <div class="inline box5">
 			        <img src="<?php echo asset_url(); ?>images/cha0t.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
+			        <a href="javascript:openChatWithBuyer(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
 			        Chat
 					</a>
 			    </div>
 			    <div class="inline box5">
 			        <img src="<?php echo asset_url(); ?>images/like.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
+			        <a href="javascript:javascript:likeMyDesksite(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
 			        Like & Comments
 					</a>
 			    </div>
-			    <div class="inline box5">
+			    <!-- div class="inline box5">
 			        <img src="<?php echo asset_url(); ?>images/img0908.png" id="Image19" alt="" class="img32">
 			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
 			        Share
 					</a>
-			    </div>
+			    </div-->
 			    <div class="inline box5">
 			        <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image19" alt="" class="img32">
 			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
@@ -948,259 +959,26 @@ function stopWiggle(input) {
 			</div>
 			<!-- contact add ends -->
 			<!-- contact us form -->
-			<div id="Layer216" class="box1 a2" >
+			<div id="Layer216" class="box1 a2" style="width:417px;padding:15px;">
 			    <div id="Layer216_Container">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer216', 0, 'slideleft', 300, 'swing');return false;">
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <br>
-			        <p class="box1font3"><img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">CONTACT US</p>
+						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+					</a>
+			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;CONTACT US</p>
 			        <div class="box2">
 			            <input type="text" class="input" name="name" value="" placeholder="Name">
 			            <input type="text" class="input" name="phone" value="" placeholder="Phone">
 			            <input type="email" class="input" name="email" value="" placeholder="Email">
 			            <select name="country" size="1" id="Combobox1" class="input">
 			                <option selected="" value="Select">Select your country</option>
-			                <option value="Afghanistan">Afghanistan</option>
-			                <option value="Aland Islands">Aland Islands</option>
-			                <option value="Albania">Albania</option>
-			                <option value="Algeria">Algeria</option>
-			                <option value="American Samoa">American Samoa</option>
-			                <option value="Andorra">Andorra</option>
-			                <option value="Angola">Angola</option>
-			                <option value="Anguilla">Anguilla</option>
-			                <option value="Antarctica">Antarctica</option>
-			                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-			                <option value="Argentina">Argentina</option>
-			                <option value="Armenia">Armenia</option>
-			                <option value="Aruba">Aruba</option>
-			                <option value="Australia">Australia</option>
-			                <option value="Austria">Austria</option>
-			                <option value="Azerbaijan">Azerbaijan</option>
-			                <option value="Bahamas">Bahamas</option>
-			                <option value="Bahrain">Bahrain</option>
-			                <option value="Bangladesh">Bangladesh</option>
-			                <option value="Barbados">Barbados</option>
-			                <option value="Belarus">Belarus</option>
-			                <option value="Belgium">Belgium</option>
-			                <option value="Belize">Belize</option>
-			                <option value="Benin">Benin</option>
-			                <option value="Bermuda">Bermuda</option>
-			                <option value="Bhutan">Bhutan</option>
-			                <option value="Bolivia">Bolivia</option>
-			                <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-			                <option value="Botswana">Botswana</option>
-			                <option value="Bouvet Island">Bouvet Island</option>
-			                <option value="Brazil">Brazil</option>
-			                <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
-			                <option value="Brunei Darussalam">Brunei Darussalam</option>
-			                <option value="Bulgaria">Bulgaria</option>
-			                <option value="Burkina Faso">Burkina Faso</option>
-			                <option value="Burundi">Burundi</option>
-			                <option value="Cambodia">Cambodia</option>
-			                <option value="Cameroon">Cameroon</option>
-			                <option value="Canada">Canada</option>
-			                <option value="Cape Verde">Cape Verde</option>
-			                <option value="Cayman Islands">Cayman Islands</option>
-			                <option value="Central African Republic">Central African Republic</option>
-			                <option value="Chad">Chad</option>
-			                <option value="Chile">Chile</option>
-			                <option value="China">China</option>
-			                <option value="Christmas Island">Christmas Island</option>
-			                <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
-			                <option value="Colombia">Colombia</option>
-			                <option value="Comoros">Comoros</option>
-			                <option value="Congo">Congo</option>
-			                <option value="Cook Islands">Cook Islands</option>
-			                <option value="Costa Rica">Costa Rica</option>
-			                <option value="Cote D'Ivoire">Cote D'Ivoire</option>
-			                <option value="Croatia">Croatia</option>
-			                <option value="Cuba">Cuba</option>
-			                <option value="Cyprus">Cyprus</option>
-			                <option value="Czech Republic">Czech Republic</option>
-			                <option value="Denmark">Denmark</option>
-			                <option value="Djibouti">Djibouti</option>
-			                <option value="Dominica">Dominica</option>
-			                <option value="Dominican Republic">Dominican Republic</option>
-			                <option value="Ecuador">Ecuador</option>
-			                <option value="Egypt">Egypt</option>
-			                <option value="El Salvador">El Salvador</option>
-			                <option value="Equatorial Guinea">Equatorial Guinea</option>
-			                <option value="Eritrea">Eritrea</option>
-			                <option value="Estonia">Estonia</option>
-			                <option value="Ethiopia">Ethiopia</option>
-			                <option value="Falkland Islands">Falkland Islands</option>
-			                <option value="Faroe Islands">Faroe Islands</option>
-			                <option value="Fiji">Fiji</option>
-			                <option value="Finland">Finland</option>
-			                <option value="France">France</option>
-			                <option value="French Guiana">French Guiana</option>
-			                <option value="French Polynesia">French Polynesia</option>
-			                <option value="French Southern Territories">French Southern Territories</option>
-			                <option value="Gabon">Gabon</option>
-			                <option value="Gambia">Gambia</option>
-			                <option value="Georgia">Georgia</option>
-			                <option value="Germany">Germany</option>
-			                <option value="Ghana">Ghana</option>
-			                <option value="Gibraltar">Gibraltar</option>
-			                <option value="Greece">Greece</option>
-			                <option value="Greenland">Greenland</option>
-			                <option value="Grenada">Grenada</option>
-			                <option value="Guadeloupe">Guadeloupe</option>
-			                <option value="Guam">Guam</option>
-			                <option value="Guatemala">Guatemala</option>
-			                <option value="Guinea">Guinea</option>
-			                <option value="Guinea-Bissau">Guinea-Bissau</option>
-			                <option value="Guyana">Guyana</option>
-			                <option value="Haiti">Haiti</option>
-			                <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
-			                <option value="Vatican City">Vatican City</option>
-			                <option value="Honduras">Honduras</option>
-			                <option value="Hong Kong">Hong Kong</option>
-			                <option value="Hungary">Hungary</option>
-			                <option value="Iceland">Iceland</option>
-			                <option value="India">India</option>
-			                <option value="Indonesia">Indonesia</option>
-			                <option value="Iran">Iran</option>
-			                <option value="Iraq">Iraq</option>
-			                <option value="Ireland">Ireland</option>
-			                <option value="Israel">Israel</option>
-			                <option value="Italy">Italy</option>
-			                <option value="Jamaica">Jamaica</option>
-			                <option value="Japan">Japan</option>
-			                <option value="Jordan">Jordan</option>
-			                <option value="Kazakhstan">Kazakhstan</option>
-			                <option value="Kenya">Kenya</option>
-			                <option value="Kiribati">Kiribati</option>
-			                <option value="South Korea">South Korea</option>
-			                <option value="North Korea">North Korea</option>
-			                <option value="Kuwait">Kuwait</option>
-			                <option value="Kyrgyzstan">Kyrgyzstan</option>
-			                <option value="Laos">Laos</option>
-			                <option value="Latvia">Latvia</option>
-			                <option value="Lebanon">Lebanon</option>
-			                <option value="Lesotho">Lesotho</option>
-			                <option value="Liberia">Liberia</option>
-			                <option value="Libya">Libya</option>
-			                <option value="Liechtenstein">Liechtenstein</option>
-			                <option value="Lithuania">Lithuania</option>
-			                <option value="Luxembourg">Luxembourg</option>
-			                <option value="Macao">Macao</option>
-			                <option value="Macedonia">Macedonia</option>
-			                <option value="Madagascar">Madagascar</option>
-			                <option value="Malawi">Malawi</option>
-			                <option value="Malaysia">Malaysia</option>
-			                <option value="Maldives">Maldives</option>
-			                <option value="Mali">Mali</option>
-			                <option value="Malta">Malta</option>
-			                <option value="Marshall Islands">Marshall Islands</option>
-			                <option value="Martinique">Martinique</option>
-			                <option value="Mauritania">Mauritania</option>
-			                <option value="Mauritius">Mauritius</option>
-			                <option value="Mayotte">Mayotte</option>
-			                <option value="Mexico">Mexico</option>
-			                <option value="Micronesia">Micronesia</option>
-			                <option value="Moldova">Moldova</option>
-			                <option value="Monaco">Monaco</option>
-			                <option value="Mongolia">Mongolia</option>
-			                <option value="Montserrat">Montserrat</option>
-			                <option value="Morocco">Morocco</option>
-			                <option value="Mozambique">Mozambique</option>
-			                <option value="Myanmar">Myanmar</option>
-			                <option value="Namibia">Namibia</option>
-			                <option value="Nauru">Nauru</option>
-			                <option value="Nepal">Nepal</option>
-			                <option value="Netherlands">Netherlands</option>
-			                <option value="Netherlands Antilles">Netherlands Antilles</option>
-			                <option value="New Caledonia">New Caledonia</option>
-			                <option value="New Zealand">New Zealand</option>
-			                <option value="Nicaragua">Nicaragua</option>
-			                <option value="Niger">Niger</option>
-			                <option value="Nigeria">Nigeria</option>
-			                <option value="Niue">Niue</option>
-			                <option value="Norfolk Island">Norfolk Island</option>
-			                <option value="Northern Mariana Islands">Northern Mariana Islands</option>
-			                <option value="Norway">Norway</option>
-			                <option value="Oman">Oman</option>
-			                <option value="Pakistan">Pakistan</option>
-			                <option value="Palau">Palau</option>
-			                <option value="Palestinian Territory">Palestinian Territory</option>
-			                <option value="Panama">Panama</option>
-			                <option value="Papua New Guinea">Papua New Guinea</option>
-			                <option value="Paraguay">Paraguay</option>
-			                <option value="Peru">Peru</option>
-			                <option value="Philippines">Philippines</option>
-			                <option value="Pitcairn">Pitcairn</option>
-			                <option value="Poland">Poland</option>
-			                <option value="Portugal">Portugal</option>
-			                <option value="Puerto Rico">Puerto Rico</option>
-			                <option value="Qatar">Qatar</option>
-			                <option value="Reunion">Reunion</option>
-			                <option value="Romania">Romania</option>
-			                <option value="Russian Federation">Russian Federation</option>
-			                <option value="Rwanda">Rwanda</option>
-			                <option value="Saint Helena">Saint Helena</option>
-			                <option value="Saint Kitts And Nevis">Saint Kitts And Nevis</option>
-			                <option value="Saint Lucia">Saint Lucia</option>
-			                <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-			                <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
-			                <option value="Samoa">Samoa</option>
-			                <option value="San Marino">San Marino</option>
-			                <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-			                <option value="Saudi Arabia">Saudi Arabia</option>
-			                <option value="Senegal">Senegal</option>
-			                <option value="Serbia and Montenegro">Serbia and Montenegro</option>
-			                <option value="Seychelles">Seychelles</option>
-			                <option value="Sierra Leone">Sierra Leone</option>
-			                <option value="Singapore">Singapore</option>
-			                <option value="Slovakia">Slovakia</option>
-			                <option value="Slovenia">Slovenia</option>
-			                <option value="Solomon Islands">Solomon Islands</option>
-			                <option value="Somalia">Somalia</option>
-			                <option value="South Africa">South Africa</option>
-			                <option value="Spain">Spain</option>
-			                <option value="Sri Lanka">Sri Lanka</option>
-			                <option value="Sudan">Sudan</option>
-			                <option value="Suriname">Suriname</option>
-			                <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
-			                <option value="Swaziland">Swaziland</option>
-			                <option value="Sweden">Sweden</option>
-			                <option value="Switzerland">Switzerland</option>
-			                <option value="Syrian Arab Republic">Syrian Arab Republic</option>
-			                <option value="Taiwan">Taiwan</option>
-			                <option value="Tajikistan">Tajikistan</option>
-			                <option value="Tanzania">Tanzania</option>
-			                <option value="Thailand">Thailand</option>
-			                <option value="Timor-Leste">Timor-Leste</option>
-			                <option value="Togo">Togo</option>
-			                <option value="Tokelau">Tokelau</option>
-			                <option value="Tonga">Tonga</option>
-			                <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-			                <option value="Tunisia">Tunisia</option>
-			                <option value="Turkey">Turkey</option>
-			                <option value="Turkmenistan">Turkmenistan</option>
-			                <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
-			                <option value="Tuvalu">Tuvalu</option>
-			                <option value="Uganda">Uganda</option>
-			                <option value="Ukraine">Ukraine</option>
-			                <option value="United Arab Emirates">United Arab Emirates</option>
-			                <option value="United Kingdom">United Kingdom</option>
-			                <option value="United States">United States</option>
-			                <option value="Uruguay">Uruguay</option>
-			                <option value="Uzbekistan">Uzbekistan</option>
-			                <option value="Vanuatu">Vanuatu</option>
-			                <option value="Venezuela">Venezuela</option>
-			                <option value="Vietnam">Vietnam</option>
-			                <option value="Virgin Islands">Virgin Islands</option>
-			                <option value="Wallis and Futuna">Wallis and Futuna</option>
-			                <option value="Western Sahara">Western Sahara</option>
-			                <option value="Yemen">Yemen</option>
-			                <option value="Zambia">Zambia</option>
-			                <option value="Zimbabwe">Zimbabwe</option>
+			                <?php foreach ($countries as $country) { ?>
+			                <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
+			                <?php } ?>
 			            </select>
 			            <input type="text" class="input" name="city" value="" placeholder="City">
-			            <textarea name="TextArea2" id="TextArea2" rows="7" cols="38" maxlength="2000">Message</textarea>
-			            <div class="block">
-			                <input type="submit" id="Button5" name="" value="Send">
+			            <textarea name="TextArea2" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;">Message</textarea>
+			            <div style="width:99%;">
+			                <input type="submit" id="Button5" name="" value="Send" style="margin-left:5px;">
 			                <input type="submit" id="Button5" name="" value="Reset">
 			            </div>
 			        </div>
@@ -1208,46 +986,82 @@ function stopWiggle(input) {
 			</div>
 			<!-- contact us form end -->
 				<!-- contact person -->
-				<div id="Layer62" class="box11 a1">
+				<div id="Layer62" class="box11 a1" style="width:518px;padding:15px;">
 				    <div id="Layer62_Container">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer62', 0, 'slidedown', 300, 'swing');return false;">
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
-					</a>
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+						</a>
 				        <br>
-				        <div class="box222 row" id="contact-person">
+				        <div class="box222 row" id="contact-person" style="margin:0px;">
 				            
 				        </div>
 				    </div>
 				    <div class="center">
-				        <a href="javascript:window.print()"><img src="<?php echo asset_url(); ?>images/print.png" id="Image26" alt="" class="img32"></a>
+				        <a href="javascript:printInvoice();"><img src="<?php echo asset_url(); ?>images/print.png" id="Image26" alt="" class="img32"></a>
 				    </div>
 				</div>
 				<!-- contact person end -->
 			<!-- world wide offices -->
-			<div id="Layer16" class="box1 s9" >
+			<div id="Layer16" class="box1 s9" style="width:437px;padding:15px;">
 			    <div id="Layer16_Container">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer16', 0, 'slidedown', 300, 'swing');return false;">
-			            <br>
-			            <br>
-			            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
+			            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 			        </a>
-			        <div class="box2 row" id="address" style=" height: 250px;">
-			            
+			        <div class="box2 row carousel slide" id="address" style="height: 250px;margin:0px;padding-top:30px;" data-ride="carousel">
+			        	<div class="carousel-inner" role="listbox">
+			        		<div class="item active">
+					            <div class="col-md-2">
+					                <br>
+					                <?php if(!empty($Desksites[0]['flag'])) { ?>
+					                <img src="<?php echo asset_url(); ?>images/flags/<?php echo $Desksites[0]['flag'];?>" id="Shape12" alt="" style="width:58px;">
+					                <?php } ?>
+					            </div>
+					            <div class="col-md-10 left">
+					            	<br>
+					                <p   class="s13"><strong><?php echo $Desksites[0]['company_country'];?> Branch</strong></p>
+					                <p   class="s15"><?php echo $Desksites[0]['company_street'];?>, <?php echo $Desksites[0]['company_city'];?>, <?php echo $Desksites[0]['company_province'];?>, <?php echo $Desksites[0]['company_country'];?>.</p>
+					                <p   class="s13">+<?php echo $Desksites[0]['telephone_code'];?> <?php echo $Desksites[0]['telephone_city_code'];?> <?php echo $Desksites[0]['telephone_number'];?></p>
+					                <br>
+					                <p class="s12"><strong><?php echo $Desksites[0]['company_email'];?></strong></p>
+					            </div>
+				            </div>
+				        	<?php foreach ($branches as $branch) { ?>
+				        	<div class="item">
+					            <div class="col-md-2"><br>
+					                <?php if(!empty($branch['flag'])) { ?>
+					                <img src="<?php echo asset_url(); ?>images/flags/<?php echo $branch['flag'];?>" id="Shape12" alt="" style="width:58px;">
+					                <?php } ?>
+					            </div>
+					            <div class="col-md-10 left">
+					            	<br>
+					                <p   class="s13"><strong><?php echo $branch['country'];?> Branch</strong></p>
+					                <p   class="s15"><?php echo $branch['street'];?>, <?php echo $branch['city'];?>, <?php echo $branch['province'];?>, <?php echo $branch['country'];?>.</p>
+					                <p   class="s13">+<?php echo $branch['country_code'];?> <?php echo $branch['city_code'];?> <?php echo $branch['telephone1'];?></p>
+					                <br>
+					                <p class="s12"><strong><?php echo $branch['fax'];?></strong></p>
+					            </div>
+				            </div>
+				            <?php } ?>
+			            </div>
 			        </div>
-			        <div id="Carousel1_back" class="s10">
-			            <a href="#"><img alt="Back"src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
-			         </div>
-			        <div id="Carousel1_next" class="s11">
-			            <a href="#"><img alt="Next"src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
+			        <br>
+			        <div style="width:320px;position:relative">
+				        <div id="Carousel1_back" class="s10 left carousel-control" href="#address" data-slide="prev">
+				            <a href="#"><img alt="Back"src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
+				         </div>
+				        <div id="Carousel1_next" class="s11 right carousel-control" href="#address" data-slide="next">
+				            <a href="#"><img alt="Next"src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
+				        </div>
 			        </div>
+			        <br>
 			    </div>
 			</div>
 			<!-- world wide end -->
 			<!--  current post -->
-			<div id="Layer58" class="box1 s5"  >
-				   <div id=" Layer58_Container ">
-				   <a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer58', 0, 'slidedown', 300, 'swing');return false; "><br><br>
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
+			<div id="Layer58" class="box1 s5" style="width:414px;padding:15px;">
+				<div id=" Layer58_Container ">
+				   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer58', 0, 'slidedown', 300, 'swing');return false; ">
+						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 				    </a>
 				    <div class="greybox center" id="post">
 				        
@@ -1256,26 +1070,50 @@ function stopWiggle(input) {
 			</div>
 			<!--  current post end-->
 				<!-- UDtalk images -->
-				<div id="Layer72" class="box1 c19">
+				<div id="Layer72" class="box1 c19" style="width:509px;padding:15px;">
 				   <div id=" Layer72_Container ">
-				   <a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer72', 0, 'slidedown', 300, 'swing');return false; "><br><br>
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
-				    </a>
-				    <p class="box1font3"><img src="<?php echo asset_url(); ?>images/udLOGO.png" alt="" class="img32">AMAZING BUSINESS COMMUNICATION APP</p>
-				    <div class="box2" id="ud-talk" style="height:449px">
-					       
-				    </div>
-				</div>
+				   		<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer72', 0, 'slidedown', 300, 'swing');return false; ">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+				    	</a>
+				    	<p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/udLOGO.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;AMAZING BUSINESS COMMUNICATION APP</p>
+				    	<div class="box2" id="ud-talk" style="height:449px">
+							<br>
+						   	<div id="wb_Text93" style="text-align:center;">
+								<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Discover more ( View products, Catalouge or Watch videos), contact with this member through an amazing way, add him to your mobile contacts, chat with him on you phone, make an Instant call, send SMS, Email, get your own business platform and much more..</span>
+							</div>
+							<div id="wb_Text110" style="text-align:center;padding-top:5px;">
+								<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><strong>Download UDtalks ( business chat app ) on your mobile for free</strong></span>
+							</div>
+							<div id="wb_Text108" style="text-align:center;padding-top:5px;">
+								<span style="color:#3C3C3C;font-family:Arial;font-size:13px;"><a href="http://www.udtalks.com" target="_blank" class="style16">www.udtalks.com</a></span>
+							</div>
+							<div id="wb_Text98" style="text-align:center;padding-top:10px;">
+								<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Click the image to enlarge, open UDtalks and scan</span>
+							</div>
+							<div id="wb_PhotoGallery1" style="height:288px;overflow-y:scroll;">
+								<table id="PhotoGallery1">
+								   	<tbody>
+								   		<?php for ($i=0; $i < count($images); ) { ?>
+								   		<tr>
+								      		<td class="image"><a href="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="BCard2" class="img<?php echo $i;?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo $i;?>" src="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" title="UD Talk"></a></td>
+								      		<td class="image"><?php if(!empty($images[$i+1]['image'])) { ?><a href="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="UDTalk" class="img<?php echo ($i+1);?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo ($i+1);?>" src="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" title="UD Talk"></a><?php } ?></td>
+								   		</tr>
+								   		<?php $i = $i + 2;} ?>
+									</tbody>
+								</table>
+							</div>
+				    	</div>
+					</div>
 				</div>
 				<!-- UDtalk images end -->
 				<!-- Videos section -->
-				<div id="Layer65" class="box1 c19">
+				<div id="Layer65" class="box1 c19" style="width:505px;padding:15px;">
 					<div id=" Layer65_Container ">
-						<a href="#" onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer65', 0, 'slidedown', 300, 'swing');return false; "><br>
-							<br> <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
-						 </a> <br>
-						<p class="box1font3">
-							<img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">PRODUCTS IN VIDEOS
+						<a href="#" onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer65', 0, 'slidedown', 300, 'swing');return false; ">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+						 </a>
+						<p class="box1font3" style="padding-left:0px;">
+							<img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">RECENT VIDEOS
 						</p>
 						<div class="box2">
 							<div class="carousel slide" data-ride="carousel">
@@ -1344,7 +1182,7 @@ function stopWiggle(input) {
 <script>
 
 function getComapnyProfile(id) {
-	$.get(base_url+"desksite/company/"+id,{},function(data) {
+	$.get(base_url+"desksite/company/shipper/"+id,{},function(data) {
 		$("#company-profile").html(data);
 		ShowObjectWithEffect( 'Layer5', 0, 'slidedown', 500, 'swing');
 		ShowObjectWithEffect( 'Layer48', 1, 'slidedown', 500, 'swing');
@@ -1353,9 +1191,9 @@ function getComapnyProfile(id) {
 
 function getComapnyAbout(id) {
 	$.get(base_url+"desksite/company/about/"+id,{},function(data) {
-		$("#about-us").html(data);
 		ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
 		ShowObjectWithEffect('Layer23', 1, 'slidedown', 500, 'swing');
+		$("#about-us").html(data);
 	},'html');
 }
 
@@ -1405,7 +1243,7 @@ function get3DProduct(id) {
 	},'html');
 }
 function getProductVideo(id) {
-	$.get(base_url+"desksite/video/"+id,{},function(data) {
+	$.get(base_url+"desksite/video/shipper/"+id,{},function(data) {
 		$("#product-video").html(data);
 		ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
 		ShowObjectWithEffect('Layer65', 1, 'slidedown', 500, 'swing');
@@ -1420,13 +1258,39 @@ function getCurrentPost(id) {
 			
 	},'html');
 }
+
+function serviceList(busi_id) {
+	$.get(base_url+"desksite/shipper/services/"+busi_id,{},function(data) {
+		$("#my-services").html(data);
+		ShowObjectWithEffect( 'Layer44', 1, 'slidedown', 500, 'swing');
+	},'html');
+}
+
 function addToFavourite(id) {
 	var type =1;
 	$.get(base_url+"desksite/favourite/"+id+"/"+type,{},function(data) {
 		ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
 		ShowObjectWithEffect('Layer58', 1, 'slidedown', 500, 'swing');
-			
 	},'json');
+}
+function addShipperToMyFavourite(fav_id,type) {
+	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(resp) {
+		customAlert(resp.msg);
+	},'json');
+}
+
+function addToMyCommunity(id) {
+	$.get(base_url+"addtomycommunity/"+id,{},function(data) {
+		customAlert(data.msg);
+	},'json');
+}
+
+function openChatWithBuyer(seller_id) {
+	if(accept_chat == 1) {
+		popupwnd('<?php echo base_url();?>global/chat/'+buyer_id,'no','no','no','no','no','no','750','50','430','720');
+	} else {
+		customAlert('Sorry.. Buyer status is " Don\'t Disturb".. Please try again on other time, status may be changed soon.');
+	}
 }
 
 function getVerified(id) {
@@ -1524,4 +1388,30 @@ function openWebsite() {
 	window.location.href = "<?php echo base_url();?>shipper/website/<?php echo $busi_id;?>";
 }
 
+function likeMySVideo(id,type,likeid) {
+	$.get(base_url+"likevideo/"+id,{ type: type},function(data) {
+		if(data.status == 1) {
+			var likes = parseInt($("#"+likeid).html());
+			likes = likes + 1;
+			$("#"+likeid).html(likes);
+		}
+		alert(data.msg);
+	},'json');
+}
+function printInvoice() {    
+	var printContents = document.getElementById('contact-person').innerHTML;
+    w = window.open();
+    w.document.write(printContents);
+    w.document.write('<scr' + 'ipt type="text/javascript">' + 'window.onload = function() { window.print(); window.close(); };' + '</sc' + 'ript>');
+    w.document.close(); // necessary for IE >= 10
+    w.focus(); // necessary for IE >= 10
+    return true;
+}
+function likeMyDesksite(busi_id) {
+	$.get(base_url+"desksite/like/"+id,{},function(data) {
+		alert(data.msg);
+	},'json');
+}
+$("a[data-rel='prettyPhoto_SlideShow31[SlideShow31]']").attr('rel', 'prettyPhoto_SlideShow31[SlideShow31]');
+$("a[rel^='prettyPhoto_SlideShow31']").prettyPhoto({theme:'facebook',social_tools:false});
 </script>

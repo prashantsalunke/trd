@@ -1,5 +1,5 @@
 					<?php foreach($Company as $company){?>
-					<div class="col-md-2"><br>
+						<div class="col-md-2"><br>
 			                <br>
 			                <img src="<?php echo asset_url(); ?>images/img0479.gif" id="Shape12" alt="" style="width:58px;height:43px;">
 			            </div>
