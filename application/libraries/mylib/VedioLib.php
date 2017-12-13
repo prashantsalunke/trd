@@ -41,5 +41,20 @@ class VedioLib {
 		return $res = $this->CI->vedio->updateMultiProductvedio($data);
 	}
 	
+	public function getOneProductVideosByIds($ids) {
+		$this->CI->load->model ( 'Vedio_model', 'vedio' );
+		return $res = $this->CI->vedio->getOneProductVideosByIds($ids);
+	}
+	
+	public function getMultiProductVideosByIds($ids) {
+		$this->CI->load->model ( 'Vedio_model', 'vedio' );
+		return $res = $this->CI->vedio->getMultiProductVideosByIds($ids);
+	}
+	
+	public function getMultiProductVideoById($id) {
+		$this->CI->load->model ( 'Vedio_model', 'vedio' );
+		return $res = $this->CI->vedio->getMultiProductVideoById($id);
+	}
+	
 
 }

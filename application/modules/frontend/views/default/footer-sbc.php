@@ -26,7 +26,7 @@
     <p style="color:#DCDCDC;font-family:Arial;font-size:11px;padding-top:13px">COPYRIGHTS | TRDSTATION 2013-2016 @ ALL RIGHTS RESERVED</p>
 </div>
 </div>
-<div id="Layer99" style="position: relative; text-align: center; visibility: hidden; margin: 300px 0px 0px 550px; width: 332px; height: 90px; float: left; display: block; z-index: 3846;background-color: #4B4B4B;border: 1px #A9A9A9 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 2px 2px 12px #000000;-webkit-box-shadow: 2px 2px 12px #000000;box-shadow: 2px 2px 12px #000000;">
+<div id="Layer99" style="position:absolute;left:0;top:100px; text-align: center; visibility: hidden; margin: 300px 0px 0px 550px; width: 332px; height: 90px; float: left; display: block; z-index: 3846;background-color: #4B4B4B;border: 1px #A9A9A9 solid;-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; -moz-box-shadow: 2px 2px 12px #000000;-webkit-box-shadow: 2px 2px 12px #000000;box-shadow: 2px 2px 12px #000000;">
 	<div id="Layer99_Container" style="width:332px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
 		<div id="wb_Text145" style="position:absolute;left:24px;top:19px;width:285px;height:16px;text-align:center;z-index:3529;">
 		<span style="color:#C0C0C0;font-family:Georgia;font-size:12px;" id="msg_cont">ADDED SUCCESFULLY TO YOUR FAVORITE</span></div>
@@ -110,6 +110,32 @@
 <a href="#" onclick="ShowObjectWithEffect('Layer223', 0, 'fade', 500);return false;"><img src="<?php echo asset_url();?>images/img0482.png" id="Image103" alt=""></a></div>
 </div>
 </div>
+<div id="customAlertBox" class="modal fade" role="dialog" style="z-index:13000;">
+  	<div class="modal-dialog" style="width:400px;">
+    	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
+      		<div class="modal-body">
+      			<div class="row" style="padding-top:10px;">
+      				<div class="col-sm-2"></div>
+      				<div class="col-sm-8">
+	      				<div style="text-align: center;">
+							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;"></span>
+						</div>
+						<br><br>
+						<div style="text-align: center;" id="customAlertText">
+							My Alert
+						</div>
+					</div>
+					<div class="col-sm-2"></div>
+      			</div>
+      			<br>
+      			<div class="row text-center">
+      				<a href="" class="btn btn-sm btn-danger-custom" data-dismiss="modal" style="width:100px;">OK</a>
+      			</div>
+      			<br><br>
+      		</div>
+    	</div>
+  	</div>
+</div>
 <script>
 function addToMyFavourite(fav_id,type) {
 	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(data) {
@@ -140,5 +166,9 @@ function likeBusiness(id) {
 	$.get(base_url+"likebusiness/"+id,{},function(data) {
 		alert(data.msg);
 	},'json');
+}
+function customAlert(msg) {
+	$("#customAlertText").html(msg);
+	$('#customAlertBox').modal({show:true,backdrop: 'static',keyboard: false});
 }
 </script>

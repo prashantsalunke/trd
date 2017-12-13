@@ -76,7 +76,7 @@ function changetitle(id)
 {
 	var title = document.getElementById('vediotitle-'+id).value;
 	$.post("<?php echo base_url();?>mystation/updatevediotitle",{id:id,'title':title},function(data){
-		alert(data.msg);
+		//alert(data.msg);
 		openEditvedio();
  	},'json');
 }
@@ -84,7 +84,7 @@ function changedescription(id)
 {
 	var description = document.getElementById('description-'+id).value;
 	$.post("<?php echo base_url();?>mystation/updatevediodescription",{id:id,'description':description},function(data){
-		alert(data.msg);
+		//alert(data.msg);
 		openEditvedio();
 	},'json');
 }

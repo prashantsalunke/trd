@@ -562,9 +562,9 @@ class Deskside extends MX_Controller {
 		$images = array();
 		$images['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		if (!empty($_FILES['compn_img1']['name'])) {
-			$tmpFilePath = $_FILES['compn_img1']['name'];
+			$tmpFilePath = $_FILES['compn_img1']['tmp_name'];
 			if ($tmpFilePath != ""){
-				$fileName = microtime(true).$_FILES['compn_img1']['tmp_name'];
+				$fileName = microtime(true).$_FILES['compn_img1']['name'];
 				$newFilePath = $userPath.$fileName;
 				if(move_uploaded_file($tmpFilePath, $newFilePath)) {
 					$images['company_info_img1'] = "images/user_images/$user_id/info/".$fileName;
@@ -574,9 +574,9 @@ class Deskside extends MX_Controller {
 			}
 		}
 		if (!empty($_FILES['compn_img2']['name'])) {
-			$tmpFilePath = $_FILES['compn_img2']['name'];
+			$tmpFilePath = $_FILES['compn_img2']['tmp_name'];
 			if ($tmpFilePath != ""){
-				$fileName = microtime(true).$_FILES['compn_img2']['tmp_name'];
+				$fileName = microtime(true).$_FILES['compn_img2']['name'];
 				$newFilePath = $userPath.$fileName;
 				if(move_uploaded_file($tmpFilePath, $newFilePath)) {
 					$images['company_info_img2'] = "images/user_images/$user_id/info/".$fileName;
@@ -610,7 +610,7 @@ class Deskside extends MX_Controller {
 			}
 		}
 		$resp = array();
-		if($images['company_info_img1'] != "" || $images['company_info_img2'] != "" || $images['company_info_img3'] != "" || $images['company_info_img4'] != "") {
+		if(!empty($images['company_info_img1']) || !empty($images['company_info_img2']) || !empty($images['company_info_img3']) || !empty($images['company_info_img4'])) {
 			$this->load->model('Account_Model');
 			$this->Account_Model->updateBusinessImages($images);
 			$resp['status'] = 1;
