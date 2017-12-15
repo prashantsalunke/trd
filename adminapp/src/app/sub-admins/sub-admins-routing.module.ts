@@ -8,23 +8,24 @@ import { AddComponent } from './add.component';
 import { PermitionComponent } from './permition.component';
 
 const routes: Routes = [
-  {path : '',
-      component : IndexComponent,
-    children : [ {
-      path : '', component:ListComponent,
-      children : [{
-        path:'add', component:AddComponent
-      },
-      {
-        path:'edit-permisions/:id', component:PermitionComponent
-      }]
+  {
+    path: '',
+    component: IndexComponent,
+    children: [{
+      path: '', component: ListComponent,
+      children: [
+        {
+          path: 'add', component: AddComponent
+        },
+        {
+          path: 'permisions/:id', component: PermitionComponent
+        }],
     },
     {
-      path : 'suspended-list', component:SuspendedListComponent
-    }
-  ]}
+      path: 'suspended-list', component: SuspendedListComponent
+    }]
+  }
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

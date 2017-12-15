@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TestService } from './shared/test.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { AuthService } from './core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'trd-root',
@@ -14,10 +15,19 @@ import { AuthService } from './core/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'trd';
-constructor(private authService:AuthService){}
+  constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit(){
+  ngOnInit() {
 
-    this.authService.getLoggedInUser().subscribe((res)=> console.log(res));
+    this.authService.getLoggedInUser().subscribe((res) => {
+      if (res['status_code'] == 400) {
+        this.router.navigate(['login'])
+      }
+    },
+      err => {
+        if (err['status'] == 404) {
+          this.router.navigate(['login'])
+        }
+      });
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'trd-index',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class IndexComponent implements OnInit {
-
+  @ViewChild('autoShownModal') autoShownModal: ModalDirective;
+  
   constructor() {    console.log('dfdf');
 }
 

@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  backend : 'http://localhost:8080/station-trd/api/'
+  backend : 'http://localhost/trd/api/'
 };

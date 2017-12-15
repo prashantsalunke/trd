@@ -1,6 +1,6 @@
 #admin user table
 
-CREATE TABLE `station_trd`.`admin_users` ( `id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT , `username` VARCHAR(128) NOT NULL , `email` VARCHAR(256) NOT NULL , `security_code` VARCHAR(128) NOT NULL , `password` VARCHAR(256) NOT NULL , `profile_image` MEDIUMBLOB NOT NULL , `online_status` BOOLEAN NOT NULL DEFAULT FALSE , `is_suspended` BOOLEAN NOT NULL DEFAULT FALSE , `is_deleted` BOOLEAN NOT NULL DEFAULT FALSE , `created_by` INT NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `modified_by` INT NOT NULL , `modified_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`), UNIQUE `unique_email` (`email`(256)), UNIQUE `uniqe_scode` (`security_code`(128))) ENGINE = InnoDB;
+CREATE TABLE `station_trd`.`admin_users` ( `id` INT UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT , `username` VARCHAR(128) NOT NULL , `email` VARCHAR(256) NOT NULL , `security_code` VARCHAR(128) NOT NULL , `password` VARCHAR(256) NOT NULL , `profile_image` MEDIUMBLOB , `online_status` BOOLEAN NOT NULL DEFAULT FALSE , `is_suspended` BOOLEAN NOT NULL DEFAULT FALSE , `is_deleted` BOOLEAN NOT NULL DEFAULT FALSE , `created_by` INT NOT NULL , `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `modified_by` INT NOT NULL , `modified_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id`), UNIQUE `unique_email` (`email`(256)), UNIQUE `uniqe_scode` (`security_code`(128))) ENGINE = InnoDB;
 
 #permission table
 

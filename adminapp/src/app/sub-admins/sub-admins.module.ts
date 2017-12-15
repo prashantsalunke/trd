@@ -8,11 +8,14 @@ import { AddComponent } from './add.component';
 import { SuspendedListComponent } from './suspended-list.component';
 import { PermitionComponent } from './permition.component';
 import { HeaderComponent } from './header.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   imports: [
     CommonModule,
-    SubAdminsRoutingModule
+    SubAdminsRoutingModule,
+    
+    ModalModule.forRoot()
   ],
   declarations: [IndexComponent, ListComponent, AddComponent, SuspendedListComponent, PermitionComponent, HeaderComponent]
 })

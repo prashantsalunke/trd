@@ -1,3 +1,38 @@
-<p>
-  suspended-list works!
-</p>
+<div [config]="{ show: true , backdrop: 'static'}" bsModal #autoShownModal="bs-modal" class="modal fade Sub-Admin3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="background:#F5F5F5;">
+        <div class="modal-content admin-popup" style="background:#F5F5F5; box-shadow:none; border:none;">
+            <div class="modal-header" style="background:#F5F5F5">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="opacity:1;"><img src="images/img3424.png" width="30px"></button>
+                <h4 class="modal-title" id="myLargeModalLabel">
+                    <div class="row">
+                        <div class="col-sm-12" style="color:#2D2D2D;font-family:Georgia;font-size:21px;">Suspended Accounts</div>
+
+                    </div>
+                </h4>
+            </div>
+            <div class="modal-body" style="background:#F5F5F5">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="col-sm-7"> <a href="#" class="btn btn-login" data-toggle="modal" data-target=".Sub-Admin1">Delete</a> <a href="#" class="btn btn-login">Allow</a></div>
+                        <div class="col-sm-5">
+                            <div class="row" style="margin:0px;">
+                                <div class="col-xs-10">
+                                    <div class="row">
+                                        <input type="text" class="form-control input-box" placeholder="Search for sub admin" style="margin-top:20px;">
+                                    </div>
+                                </div>
+                                <div class="col-xs-2">
+                                    <div class="row"> <a href="#" class="btn btn-login">Search</a> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row tabel-div">
+                    <div class="col-xs-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
