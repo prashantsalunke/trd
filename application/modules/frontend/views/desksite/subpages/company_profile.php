@@ -21,7 +21,7 @@
 				                <p class="be1"> <?php echo " ".$company['year_of_registration'];?></p>
 				            </div>
 				            <div class="inline">
-				                <p class="be2">Annual revenu: </p>
+				                <p class="be2">Annual revenue: </p>
 				                <p class="be1"> <?php echo "$".$company['annual_trad_volume'];?> Millions</p>
 				            </div>
 				            <div class="inline">
@@ -54,9 +54,11 @@
 			                </div>
 				      
 				    <div class="bg3 inline">
-				        <p>View</p>
-				        <p class="count"><?php echo $company['visit'];?></p>
-				        <p>Like</p>
-				        <p class="count"><?php echo $company['likes'];?></p>
+				        <div class="row">
+					        <div class="col-sm-2">Views</div>
+					        <div class="col-sm-4 count"><?php echo $company['visit'];?></div>
+					        <div class="col-sm-2">Likes</div>
+					        <div class="col-sm-4 count"><?php echo $company['likes'];?></div>
+				        </div>
 				    </div>
 					<?php } ?>

@@ -1,33 +1,182 @@
+<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+      margin: auto;
+  }
+#Image6
+{
+   border: 0px #000000 solid;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#Image7
+{
+   border: 0px #000000 solid;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#Image8
+{
+   border: 0px #000000 solid;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#Image9
+{
+   border: 0px #000000 solid;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#Carousel1
+{
+   position: absolute;
+}
+#wb_Carousel1
+{
+   background-color: transparent;
+}
+#Carousel1 .frame
+{
+   width: 422px;
+   display: inline-block;
+   float: left;
+   height: 357px;
+}
+#wb_Carousel1 .pagination
+{
+   bottom: 0;
+   left: 0;
+   position: absolute;
+   text-align: center;
+   vertical-align: middle;
+   width: 100%;
+   z-index: 999;
+}
+#wb_Carousel1 .pagination img
+{
+   border-style: none;
+   padding: 5px 5px 5px 5px;
+}
+#wb_Image6
+{
+   position: absolute;
+   left: 12px;
+   top: 7px;
+   width: 400px;
+   height: 320px;
+   z-index: 55;
+}
+#wb_Carousel1
+{
+   position: absolute;
+   width: 420px;
+   height: 370px;
+   z-index: 60;
+   overflow: hidden;
+   left:20px;
+}
+#wb_Image7
+{
+   position: absolute;
+   left: 431px;
+   top: 9px;
+   width: 400px;
+   height: 320px;
+   z-index: 56;
+}
+#wb_Image8
+{
+   position: absolute;
+   left: 853px;
+   top: 8px;
+   width: 400px;
+   height: 320px;
+   z-index: 57;
+}
+#wb_Image9
+{
+   position: absolute;
+   left: 1275px;
+   top: 8px;
+   width: 400px;
+   height: 320px;
+   z-index: 58;
+}
+#wb_Shape7
+{
+   position: absolute;
+   left: 5px;
+   width: 72px;
+   height: 60px;
+   z-index: 61;
+}
+#Shape7
+{
+   width: 72px;
+   height: 60px;
+   border-width:0;
+}
+</style>
+<div style="height: 540px;width: 465px;overflow-y:scroll;overflow-x:hidden;position: absolute;left:15px;">
 <?php foreach($Company as $company){?>
-	<div id="myCarouselAbout" class="carousel slide" data-ride="carousel">
-    	<!-- Indicators -->
-   		<ol class="carousel-indicators">
-			<li data-target="#myCarouselAbout" data-slide-to="0" class="active"></li>
-			<li data-target="#myCarouselAbout" data-slide-to="1"></li>
-			<li data-target="#myCarouselAbout" data-slide-to="2"></li>
-			<li data-target="#myCarouselAbout" data-slide-to="3"></li>
-		</ol>
-       	<!-- Wrapper for slides -->
-       	<div class="carousel-inner" style="width:330px;" role="listbox">
-         	<div class="item active">
-         		<img src="<?php echo asset_url().$company['company_info_img1']; ?>" class="img-responsive" alt="<?php echo $company['company_name'];?>"/>
-          	</div>
-          	<div class="item">
-            	<img src="<?php echo asset_url().$company['company_info_img2']; ?>" class="img-responsive" alt="<?php echo $company['company_name'];?>"/>
-         	</div>
-          	<div class="item">
-            	<img src="<?php echo asset_url().$company['company_info_img3']; ?>" class="img-responsive" alt="<?php echo $company['company_name'];?>"/>
-        	</div>
-        	<div class="item">
-             	<img src="<?php echo asset_url().$company['company_info_img4']; ?>" class="img-responsive" alt="<?php echo $company['company_name'];?>"/>
-         	</div>
-     	</div>
-   	</div>
-   	<br>
-    <p class="be2">
-    	<?php echo $company['company_introduction'];?>
-    </p>
+	<div id="wb_Carousel1">
+		<div id="Carousel1">
+		<div class="frame">
+		<div id="wb_Image6">
+		<img src="<?php echo asset_url().$company['company_info_img1']; ?>" id="Image6" alt=""></div>
+		</div>
+		<div class="frame">
+		<div id="wb_Image7">
+		<img src="<?php echo asset_url().$company['company_info_img2']; ?>" id="Image7" alt=""></div>
+		</div>
+		<div class="frame">
+		<div id="wb_Image8">
+		<img src="<?php echo asset_url().$company['company_info_img3']; ?>" id="Image8" alt=""></div>
+		</div>
+		<div class="frame">
+		<div id="wb_Image9">
+		<img src="<?php echo asset_url().$company['company_info_img4']; ?>" id="Image9" alt=""></div>
+		</div>
+		</div>
+	</div>
+	<div id="wb_Shape7">
+		<img src="<?php echo asset_url();?><?php echo $company['business_logo'];?>" id="Shape7" alt="">
+	</div>
+	<div class="row" style="margin:0px;">
+	    <div class="be2" style="position:absolute;top:360px;width:465px;padding:15px 15px;">
+	    	<?php echo $company['company_introduction'];?>
+	    		<br>
+	    </div>
+    </div>
+    <br>
 <?php } ?>
+</div>
 <script>
-    $("#myCarouselAbout").carousel();
+$(document).ready(function(){
+    //$("#myCarouselAbout").carousel();
+
+	var Carousel1Opts =
+   	{
+      	delay: 3000,
+      	duration: 500,
+      	easing: 'swing',
+      	mode: 'forward',
+      	direction: '',
+      	scalemode: 2,
+      	pagination: true,
+      	pagination_img_default: '<?php echo asset_url();?>images/page_default.png',
+      	pagination_img_active: '<?php echo asset_url();?>images/page_active.png',
+      	start: 0
+   	};
+   	$("#Carousel1").carousel(Carousel1Opts);
+});
 </script>

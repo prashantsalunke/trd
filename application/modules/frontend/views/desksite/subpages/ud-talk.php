@@ -10,6 +10,6 @@
 				        </div>
 				        <div class="col-md-6">
 				            <a href="images/sell-n-buy-post-when-sent.png" data-rel="PhotoGallery1" title="Manage menu" class="img1 ui-draggable" rel="PhotoGallery1" class="relative">
-				    		<img alt="Manage menu" id="PhotoGallery1_img1" src="<?php echo asset_url(); ?>images/tn_sell-n-buy-post-when-sent.png" title="Manage menu"></a>
+				    		<img alt="Manage menu" id="PhotoGallery1_img1" src="<?php echo asset_url(); ?>images/tn_sell-n-buy-post-when-sent.png" title="Manage menu" style="width:100px;"></a>
 				        </div>
 					<?php } ?>

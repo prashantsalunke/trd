@@ -780,6 +780,7 @@ class Home extends MX_Controller {
 	public function DesksiteByBusiId($id){
 		$busi_id = $this->session->userdata('tsuser')['busi_id']; 
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$community = array();
 		if(!empty($busi_id)) {
 			if($busi_id != $id) {
 				$map = array();
@@ -788,17 +789,26 @@ class Home extends MX_Controller {
 				$map['visit_date'] = date('Y-m-d');
 				$this->load->model('Tool_model','mytoolmodel');
 				$this->mytoolmodel->addBusinessVisit($map);
+				$community = $this->product->getInCommunity($busi_id,$id);
 			}
 		}
 		$map =array();
 		$map['id'] = $id;
 		$map['user_id'] = $busi_id ;
 		$this->load->model('Product_Model','product');
+		$this->load->model('Catalogue_model','catalogue');
 		$this->load->model('Myudtalk_model','myudtalk');
 		$Desksites= $this->product->getDesksiteByBusiId($map);
+		$catalogues = $this->catalogue->getProductCatalogues($id);
 		$images = $this->myudtalk->getUdFiles($busi_id);
+		$countries = $this->product->getAllCountries();
+		$branches = $this->product->getBusinessBranchesByBusiId($map);
+		$this->template->set ( 'countries', $countries );
+		$this->template->set ( 'community', $community );
+		$this->template->set ( 'branches', $branches );
 		$this->template->set ( 'images', $images);
 		$this->template->set ( 'Desksites', $Desksites);
+		$this->template->set ( 'catalogues', $catalogues);
 		$this->template->set ( 'busi_id', $id);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'seller');
@@ -837,6 +847,63 @@ class Home extends MX_Controller {
 		$html= $this->template->build ('desksite/subpages/company_profile', '', true);
 		echo $html;
 	}
+	
+	public function getBuyerComapnyProfile($id) {
+		$this->load->library('mylib/FactoryLib');
+		$this->load->model('Product_Model', 'product' );
+		$Company = $this->product->getComapnyProfile($id);
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		if(!empty($busi_id)) {
+			if($busi_id != $id) {
+				$map = array();
+				$map['busi_id'] = $busi_id;
+				$map['visitor_id'] = $id;
+				$map['visit_date'] = date('Y-m-d');
+				$this->load->model('Tool_model','mytoolmodel');
+				$this->mytoolmodel->addBusinessVisit($map);
+			}
+		}
+		$pterms = $this->product->getBusinessPaymentTerms($id);
+		$this->template->set('pterms',$pterms);
+		$this->template->set ( 'Company', $Company);
+		$this->template->set ( 'page', 'desksite' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('desksite/subpages/buyer_company_profile', '', true);
+		echo $html;
+	}
+	
+	public function getShipperComapnyProfile($id) {
+		$this->load->library('mylib/FactoryLib');
+		$this->load->model('Product_Model', 'product' );
+		$Company = $this->product->getComapnyProfile($id);
+		$mainservices = $this->product->getMainShippingServices($id);
+		$specialservices = $this->product->getSpecialShippingServices($id);
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		if(!empty($busi_id)) {
+			if($busi_id != $id) {
+				$map = array();
+				$map['busi_id'] = $busi_id;
+				$map['visitor_id'] = $id;
+				$map['visit_date'] = date('Y-m-d');
+				$this->load->model('Tool_model','mytoolmodel');
+				$this->mytoolmodel->addBusinessVisit($map);
+			}
+		}
+		$user_rnd = $this->factorylib->getUserRNDtype($Company[0]['factory_id']);
+		$this->template->set('user_rnd',$user_rnd);
+		$this->template->set ( 'Company', $Company);
+		$this->template->set ( 'mainservices', $mainservices);
+		$this->template->set ( 'specialservices', $specialservices);
+		$this->template->set ( 'page', 'desksite' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('desksite/subpages/shipper_company_profile', '', true);
+		echo $html;
+	}
+	
 	public function getComapnyAbout($id) {
 		$this->load->model('Product_Model', 'product' );
 		$Company= $this->product->getComapnyProfile($id);
@@ -851,7 +918,9 @@ class Home extends MX_Controller {
 	public function getComapnyCertificate($id) {
 		$this->load->model('Product_Model', 'product' );
 		$Certificate = $this->product->getComapnyCertificate($id);
+		$licences = $this->product->getComapnyMainCertificate($id);
 		$this->template->set ( 'Certificate', $Certificate);
+		$this->template->set ( 'licences', $licences);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
@@ -896,13 +965,24 @@ class Home extends MX_Controller {
 	
 	public function getProductVideos($id) {
 		$this->load->model('Product_Model', 'product' );
-		$Videos = $this->product->getProductVideos($id);
+		$Videos = $this->product->getProductVideosByBusiId($id);
 		$this->template->set ( 'Videos', $Videos);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html= $this->template->build ('desksite/subpages/product-video', '', true);
+		echo $html;
+	}
+	public function getShipperVideos($id) {
+		$this->load->model('Product_Model', 'product' );
+		$Videos = $this->product->getShipperVideosByBusiId($id);
+		$this->template->set ( 'Videos', $Videos);
+		$this->template->set ( 'page', 'desksite' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('desksite/subpages/shipper-videos', '', true);
 		echo $html;
 	}
 	public function get3DProduct($id) {
@@ -1101,6 +1181,7 @@ class Home extends MX_Controller {
 	}
 	public function buyerProfileByBusiId($id){
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$community = array();
 		if(!empty($busi_id)) {
 			if($busi_id != $id) {
 				$map = array();
@@ -1109,14 +1190,18 @@ class Home extends MX_Controller {
 				$map['visit_date'] = date('Y-m-d');
 				$this->load->model('Tool_model','mytoolmodel');
 				$this->mytoolmodel->addBusinessVisit($map);
+				$community = $this->product->getInCommunity($busi_id,$id);
 			}
 		}
 		$map =array();
 		$map['id'] = $id;
-		$map['user_id'] = $busi_id ;
+		$map['user_id'] = $busi_id;
 		$this->load->model('Product_Model','product');
 		$Desksites= $this->product->getDesksiteByBusiId($map);
+		$countries = $this->product->getAllCountries();
+		$this->template->set ( 'countries', $countries );
 		$this->template->set ( 'Desksites', $Desksites);
+		$this->template->set ( 'community', $community);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'buyer');
 		$this->template->set_theme('default_theme');
@@ -1143,7 +1228,14 @@ class Home extends MX_Controller {
 		$map['id'] = $id;
 		$map['user_id'] = $busi_id ;
 		$this->load->model('Product_Model','product');
-		$Desksites= $this->product->getDesksiteByBusiId($map);
+		$this->load->model('Myudtalk_model','myudtalk');
+		$Desksites= $this->product->getShipperDesksiteByBusiId($map);
+		$images = $this->myudtalk->getUdFiles($busi_id);
+		$branches = $this->product->getBusinessBranchesByBusiId($map);
+		$countries = $this->product->getAllCountries();
+		$this->template->set ( 'countries', $countries );
+		$this->template->set ( 'images', $images);
+		$this->template->set ( 'branches', $branches);
 		$this->template->set ( 'Desksites', $Desksites);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'shipper');
@@ -1280,6 +1372,70 @@ class Home extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$this->template->build ('station/pages/subpages/subscriptionCheckout');
+	}
+	
+	public function getCatalogueByBusiId($busi_id) {
+		$this->load->model('Catalogue_model','catalogue');
+		$catalogues = $this->catalogue->getProductCatalogues($busi_id);
+		$params = array();
+		if(count($catalogues) > 0) {
+			$id = $catalogues[0]['id'];
+			$catalogue_items = $this->catalogue->getProductCatalogueItems($id);
+			$this->template->set ( 'products', $catalogue_items );
+			$this->template->set ( 'catalogues', $catalogues );
+			$this->template->set ( 'page', 'home' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout (false);
+			$html= $this->template->build ('Home/pages/bcatalogue', '', true);
+			$params['html'] = $html;
+			$params['id'] = $id;
+			echo json_encode($params);
+		} else {
+			$params['html'] = 0;
+			$params['id'] = 0;
+			echo json_encode($params);
+		}
+	}
+	
+	public function getNextCatalogueById($id) {
+		$this->load->model('Catalogue_model','catalogue');
+		$catalogue_items = $this->catalogue->getProductCatalogueItems($id);
+		$this->template->set ( 'products', $catalogue_items );
+		$this->template->set ( 'page', 'home' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('Home/pages/bcatalogue', '', true);
+		$params['html'] = $html;
+		$params['id'] = $id;
+		echo json_encode($params);
+	}
+	
+	public function getShipperServices($busi_id) {
+		$this->load->model('Product_Model', 'product' );
+		$services = $this->product->getShipperServices($busi_id);
+		$this->template->set ( 'services', $services);
+		$this->template->set ( 'page', 'desksite' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('desksite/subpages/services', '', true);
+		echo $html;
+	}
+	
+	public function likeBusiness($busi_id) {
+		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
+		$resp = array();
+		if(!empty($mybusi_id)) { 
+			$this->load->model('Product_Model', 'product' );
+			$this->product->updateBusinessLikes($busi_id);
+			$resp['status'] = 1;
+			$resp['msg'] = "WE HAVE RECORDED YOUR RESPONSE";
+		} else {
+			$resp['status'] = 0;
+			$resp['msg'] = "LOGIN TO LIKE";
+		}
+		echo json_encode($resp);
+		
 	}
 	
 	

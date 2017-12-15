@@ -4,7 +4,7 @@
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-slide.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/wb.slideshow.min.js"></script>
-<!-- script src="<?php echo asset_url(); ?>js/wb.carousel.min.js"></script-->
+<script src="<?php echo asset_url(); ?>js/wb.carousel.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.core.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.widget.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.position.min.js"></script>
@@ -29,6 +29,10 @@
 <script src="<?php echo asset_url(); ?>js/slimbox/js/slimbox2.js"></script>
 <script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.wiggle.js"></script>
+<link href="<?php echo asset_url();?>css/jquery.booklet.1.1.0.css?1.1" rel="stylesheet">
+<script src="<?php echo asset_url();?>js/jquery.booklet.1.1.0.min.js?1.1"></script>
+<link rel="stylesheet" href="<?php echo asset_url();?>js/prettyPhoto/css/prettyPhoto.css">
+<script src="<?php echo asset_url();?>js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
 <style>
 #Layer54 {
     background-color: #FA5C43;
@@ -45,15 +49,14 @@
 .catalogue_modal_body {
 	background-color:transparent;background-image:url('<?php echo asset_url();?>images/vcat_insider.png');background-size:cover;padding-top: 110px;
 }
-.catalogue_outer_body {
-	width: 700px;
-    margin-left: 100px;
+.catalogue_modal_body_bg {
+	background-color:transparent;background-image:url('<?php echo asset_url();?>images/vcat_insider.png');background-size:cover;padding-top: 80px;background-size:initial;background-position:right;
 }
 .catalogue_page_item_name {
-	color:#303030;font-family:Georgia;font-size:13px;padding-bottom:5px;padding-top:8px;
+	color:#303030;font-family:Georgia;font-size:13px;padding-bottom:5px;padding-top:0px;
 }
 .catalogue_page_item_details {
-	color:#787878;font-family:Arial;font-size:11px;padding-bottom:10px;
+	color:#787878;font-family:Arial;font-size:11px;padding-bottom:10px;min-height:55px;
 }
 .catalogue_page_item_quantity {
 	color:#1E90FF;font-family:Arial;font-size:11px;padding-bottom:25px;
@@ -71,6 +74,7 @@
 }
 .catalogue_page_left_num {
 	padding-top: 10px;
+	background-color:#fff;
 }
 .catalogue_page_no_text {
 	color:#D3D3D3;font-family:Arial;font-size:11px;
@@ -83,6 +87,7 @@
 }
 .catalogue_page_right_num {
 	padding-top: 10px;
+	background-color:#fff;
 }
 .catalogue_main_img {
 	border: 1px solid #eee;
@@ -396,35 +401,30 @@ $(document).ready(function() {
             });
         }
     });
-    var jQueryToolTip3Opts = {
-        hide: true,
-        show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">Black Horse Member</p>',
-        items: '#wb_Image61',
-        position: {
-            my: "right bottom",
-            at: "left top",
-            collision: "flipfit"
-        }
+    var jQueryToolTip3Opts =
+    {
+       hide: true,
+       show: true,
+       content: '<span style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;z-index:3780;margin-left:40px;">Black Horse Member</span>',
+       items: '#wb_Image61',
+       position: { my: "right bottom", at: "left top", collision: "flipfit" }
     };
     $("#wb_Image61").tooltip(jQueryToolTip3Opts);
-    var jQueryToolTip4Opts = {
-        hide: true,
-        show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">Guarantee logo..<br>This seller provides a guarantee on his goods, subjected to certain terms, you can check it, on each product ( Along with Product Details Page)..<br>Furthermore, Click on &quot; Advantages&quot; icon to view more..</p>',
-        items: '#wb_Image94',
-        position: {
-            my: "right bottom",
-            at: "left top",
-            collision: "flipfit"
-        }
+    var jQueryToolTip4Opts =
+    {
+       hide: true,
+       show: true,
+       content: '<div style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;z-index:3780;margin-left:40px;width:300px;">Guarantee logo.. This seller provides a guarantee on his goods, subjected to certain terms, you can check it, on each product ( Along with Product Details Page)..Furthermore, Click on &quot; Advantages&quot; icon to view more..</div>',
+       items: '#wb_Image94',
+       position: { my: "right bottom", at: "left top", collision: "flipfit" }
     };
     $("#wb_Image94").tooltip(jQueryToolTip4Opts);
-    $("#Layer5").stickylayer({
+    
+    /*$("#Layer5").stickylayer({
         orientation: 4,
         position: [0, 25],
         delay: 0
-    });
+    });*/
     //searchParseURL();
     $("#Layer58").stickylayer({
         orientation: 1,
@@ -489,7 +489,7 @@ $(document).ready(function() {
     $("#Carousel8").carousel(Carousel8Opts);
     $("#Layer44").stickylayer({
         orientation: 4,
-        position: [0, 0],
+        position: [100, 0],
         delay: 0
     });
     $("#Layer116").stickylayer({
@@ -502,10 +502,11 @@ $(document).ready(function() {
         position: [0, 0],
         delay: 0
     });
+    <?php if(count($community) > 0){ ?>
     var jQueryToolTip5Opts = {
         hide: true,
         show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">This seller is a member in your community..</p>',
+        content: '<div style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;margin-left:40px;width:300px;">This seller is a member in your community..</div>',
         items: '#wb_Image76',
         position: {
             my: "right bottom",
@@ -514,6 +515,7 @@ $(document).ready(function() {
         }
     };
     $("#wb_Image76").tooltip(jQueryToolTip5Opts);
+    <?php } ?>
     $("#Layer49").stickylayer({
         orientation: 4,
         position: [0, 60],
@@ -587,7 +589,7 @@ function stopWiggle(input) {
 <!--  -->
 		<!-- navbar starts -->
 		
-		<div class="container-fluid top-div center" style="width:1280px;position: absolute;z-index:3000;padding:0px;">
+		<div class="container-fluid top-div center" style="width:100%;position: absolute;z-index:3000;padding:0px;text-align:center;">
 		    <a href="#" onclick="ShowObjectWithEffect('Layer106', 1, 'fold', 500, 'easeOutBounce');return false;" class="inline22">
 		      <img src="<?php echo asset_url(); ?>images/img0235.png" id="Image25" alt="" class="desksite-maindropdown"><span class="font1">toolbox</span>
 		    </a>
@@ -597,32 +599,43 @@ function stopWiggle(input) {
 		<!-- navbar  end -->
 			<!-- head text section -->
 			<div class="c9" style="z-index:200;">
-			    <p class="c10"><strong><?php echo $Desksite['company_name'];?></strong></p>
-			    <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['company_introduction'], 0, 280);?> <?php if(strlen($Desksite['company_introduction']) > 280){?>..<?php }?></span></p>
+			    <span class="c10"><strong><?php echo $Desksite['company_name'];?></strong></span><br>
+			    <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['hot_presentation'], 0, 280);?> <?php if(strlen($Desksite['company_introduction']) > 280){?>..<?php }?></span></p>
 			</div>
 			<!-- head text section -->
 			<!-- user profile details -->
 			<div class="c12">
 			    <div id="wb_Image53" class="c13">
-			        <img src="<?php echo asset_url(); ?>images/usa-round.png" id="Image53" class="country-flag-icon" alt=""></div>
+			        <?php if(!empty($Desksite['flag'])) { ?>
+			        <img src="<?php echo asset_url(); ?>images/flags/<?php echo $Desksite['flag'];?>" id="Image53" alt="<?php echo $Desksite['company_country'];?>" style="width:28px;">
+			        <?php } ?>
+			   	</div>
 			    <div id="wb_Text50" class="c3">
 			        <p class="c1"><?php echo $Desksite['company_country']." | ".$Desksite['company_province']; ?></p>
 			    </div>
 			    <div id="wb_Text8" class="c2">
-			        <p class="c1"><strong>09:00 PM</strong></p>
+			        <p class="c1"><strong>
+			        <?php 
+			        if(!empty($Desksite['timezone'])) {
+				        $date = new DateTime('now', new DateTimeZone($Desksite['timezone']));
+				        echo $date->format('h:i A');
+			        } else {
+			        	echo date('h:i A');
+			        }
+			        ?></strong></p>
 			    </div>
 			</div>
 			<!-- profile end -->
 			<!-- Main Slider -->
 			<div id="Layer46" style="text-align:left;left:0;top:0;right:0;bottom:0;z-index:33;">
+				<?php if(!empty($Desksite['desksite_bg1'])) { ?>
 			    <div id="SlideShow1" >
-			    <?php if(!empty($Desksite['desksite_bg1'])) { ?>
 			        <img class="image d1" src=" <?php echo asset_url().$Desksite['desksite_bg1']; ?> " alt="" title="" style="width:100%;"/>
 			        <img class="image d2" src="<?php echo asset_url().$Desksite['desksite_bg2']; ?>" alt="" title="" style="width:100%;"/>
-			    <?php } else { ?>
-			        <img class="image d1" src=" <?php echo asset_url(); ?>images/member-desksite.jpg" alt="" title="" />
-			    <?php } ?>
 				</div>
+				<?php } else { ?>
+			        <img class="image d1" src=" <?php echo asset_url(); ?>images/member-desksite.jpg" alt="" title="" style="width:100%;"/>
+			    <?php } ?>
 			</div>
 		    <!-- slider ends -->
 		    <!-- left navigation -->
@@ -636,7 +649,7 @@ function stopWiggle(input) {
 		              	<?php } ?>
 	               	 </div>
 		            <div id="wb_Image67"  class="text-center">
-		                <a href="#" onclick="ShowObjectWithEffect('Layer61', 1, 'slideleft', 500, 'swing');return false;">
+		                <a href="#" onclick="<?php if($Desksite['is_logo_verified'] > 1){?>ShowObjectWithEffect('Layer61', 1, 'slideleft', 500, 'swing');<?php } ?>return false;">
 			                <?php if($Desksite['is_logo_verified'] > 1){?>
 							<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon">
 							<?php } else { ?>
@@ -644,29 +657,29 @@ function stopWiggle(input) {
 							<?php } ?>
 						</a>
 					</div>
-		            <div id="wb_Image76"  class="text-center">
-		            	<?php if(!empty($Desksite['community_id'])){ ?>
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="" title="A member in your community" class="community-member-icon">
-		                <?php } else { ?>
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="" title="A member in your community" class="community-member-icon img-disabled">
-		                <?php } ?>
-		          	</div>
-		            <div id="wb_Image94"  class="text-center">
+					<div id="wb_Image94"  class="text-center">
 		               <?php if($Desksite['gaurantee_period'] > 0){?>
 		                <img src="<?php echo asset_url(); ?>images/guarantee.png" id="Image94" alt="" class="gaurantee-icon">
 		                <?php } else { ?>
 		                <img src="<?php echo asset_url(); ?>images/guarantee.png" id="Image94" alt="" class="gaurantee-icon img-disabled">
 		                <?php } ?>
 	                </div>
+		            <div id="wb_Image76"  class="text-center">
+		            	<?php if(count($community) > 0){ ?>
+		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="" title="A member in your community" class="community-member-icon">
+		                <?php } else { ?>
+		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="" title="A member in your community" class="community-member-icon img-disabled">
+		                <?php } ?>
+		          	</div>
 		        </div>
 		    </div>
 		    <!-- left navigation ends -->
 		   
 			<!-- bottom navigation -->
-			<div class="container">
-				<div id="Layer5"class="bottomnav" style="left:20px;height:65px;">
-					<div id=" Layer5_Container " style="width:99%;margin:auto;">
-					    <div class="row ">
+			<div class="container" style="margin:auto auto;">
+				<div id="Layer5" class="bottomnav" style="height:105px;width:100%;margin:auto auto;">
+					<div id=" Layer5_Container " style="width:1280px;margin:auto;padding-top:40px;">
+					    <div class="row" style="margin-left:0px;">
 					        <div class="col-md-2 col-sm-2 " style="width: 97px;">
 					        <br>
 					            <a href="javascript:getProductCategory(<?php echo $Desksite['busi_id'];?>) " class="product " >Products
@@ -676,11 +689,11 @@ function stopWiggle(input) {
 					            <div class="col-sm-5" style="width:38%;">
 						             <a href="javascript:getComapnyProfile(<?php echo $Desksite['busi_id']?>)" class="navigation2 ">
 								     	<img src="<?php echo asset_url(); ?>images/img0178.png" id="Image60" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-						            	<p class="font2">Company Profile</p>
+						            	<p class="font2">Profile</p>
 						            </a>
 						            <a href="javascript:getComapnyAbout(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
 								    	<img src="<?php echo asset_url(); ?>images/about.png" id="Image5" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-								    	<p class="font2">About Us</p>
+								    	<p class="font2">About Seller</p>
 								    </a>
 						            <a href="javascript:getComapnyCertificate(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
 								    	<img src="<?php echo asset_url(); ?>images/certificates.png" id="Image7" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
@@ -692,13 +705,13 @@ function stopWiggle(input) {
 								    </a>
 						            <a href="javascript:getMyFiles(<?php echo $Desksite['busi_id'];?>)" class="navigation2" >
 								    	<img src="<?php echo asset_url(); ?>images/folder-user.png" id="Image8" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-								    	<p class="font2">My Files</p>
+								    	<p class="font2">Files</p>
 								    </a>
 								</div>
 								<div class="col-sm-5" style="width:38%;">
 						            <a href="javascript:viewCatalogueBook(<?php echo $Desksite['busi_id']?>)" class="navigation2">
 								   		<img src="<?php echo asset_url(); ?>images/Catalogue1.png" id="Image10" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-								   		<p class="font2">My Catalogues</p>
+								   		<p class="font2">Virtual Catalogues</p>
 								   	</a>
 						            <a href="javascript:getProductVideo(<?php echo $Desksite['busi_id']?>);" class="navigation2" >
 						                <img src="<?php echo asset_url(); ?>images/img0179.png" id="Image77" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
@@ -737,7 +750,7 @@ function stopWiggle(input) {
 							   	<img src="<?php echo asset_url(); ?>images/Desktop_Search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							   	<p class="font2">Search</p>
 							</a>
-					        <a href="javascript:showWebsite();" class="navigation2" >
+					        <a href="javascript:showWebsite();" class="navigation2" style="display:none;">
 							   	<img src="<?php echo asset_url(); ?>images/exit.png" id="Image47" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							  	<p class="font2" style="font-size:10px;width:81px;">Switch to <br> Classic Mode</p>
 							</a>
@@ -766,13 +779,13 @@ function stopWiggle(input) {
 			            <p class="boxfont3">To check Sellers / Shipper's verification certificate, click on Certificates Icon or copy the ( Member Verification No. shown below ) and past it into the CHECK&nbsp; link.
 			            </p>
 			            <p class="b1"><strong>SGS Verification No. :</strong></p>
-			            <p class="c14">QNd12355525</p>
-			            <p class="b2"><strong>Check</strong></p>
+			            <p class="c14"><?php echo $Desksites[0]['verification_id'];?></p>
+			            <p class="b2"><strong><a href="http://www.sgs.com/en/Our-Company/Certified-Clients-and-Products/Audited-supplier-verification.aspx" target="_blank" class="style5">Check</a></strong></span></strong></p>
 			        </div>
 			    </div>
 			    <!-- verified member end -->
 			    <!-- product popup -->
-			    <div id="Layer44" class="box1" onmouseleave="ShowObjectWithEffect('Layer18', 0, 'slidedown', 500);ShowObjectWithEffect('Layer88', 1, 'slideleft', 1000, 'swing');return false;" style="">
+			    <div id="Layer44" class="box1" onmouseleave="ShowObjectWithEffect('Layer18', 0, 'slidedown', 500);ShowObjectWithEffect('Layer88', 1, 'slideleft', 1000, 'swing');return false;" style="padding:15px;width:270px;">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer44', 0, 'slidedown', 300, 'swing');return false;">
 					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
 			        <div style=" width: 240px;">
@@ -787,13 +800,15 @@ function stopWiggle(input) {
 			<!-- product popup ends -->
 				
 			<!--about us-->
-			<div id="Layer23" class="box1 a4">
-			    <div id="Layer23_Container">
+			<!-- div id="Layer23" class="box1 a4" style="width:495px;padding:15px;"-->
+			<div id="Layer23" style="position:absolute;text-align:center;visibility:hidden;left:378px;top:34px;width:45%;height:670px;z-index:3864;">
+				<div id="Layer23_Container" style="width:584px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+				<div id="Layer42" class="a4" >
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <br>
-			        <p class="box1font3"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32">ABOUT US</p>
-			        <div class="box2" id="about-us" style="height: 512px;overflow-y:scroll;">
+						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+					</a>
+			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT US</p>
+			        <div class="box2" id="about-us" style="height: 540px;overflow-y:scroll;padding-top:5px;">
 			            
 			        </div>
 			    </div>
@@ -802,13 +817,15 @@ function stopWiggle(input) {
 			
 			<!-- about us end -->
 			<!-- certification -->
-			<div id="Layer144" class="box11 a4">
-			    <div id="Layer144_Container">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer144', 0, 'slidedown', 300, 'swing');return false;">
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <br>
-			        <p class="box1font3"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32">COMPANY LICENSE AND CERTIFICATES</p>
-		       		<div id="Layer147">  </div>
+			<div id="Layer144" style="position:absolute;text-align:center;visibility:hidden;left:143px;top:126px;width:61%;height:554px;z-index:3853;">
+				<div id="Layer144_Container" style="width:788px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+					<div id="Layer145" class="a4">
+				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer144', 0, 'slidedown', 300, 'swing');return false;">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+						</a>
+				        <p class="box1font3" style="padding: 5px 0px;"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY LICENSE AND CERTIFICATES</p>
+			       		<div id="Layer147">  </div>
+				    </div>
 			    </div>
 			</div>
 			<!-- certification ends -->
@@ -818,7 +835,7 @@ function stopWiggle(input) {
 			    <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
 				 	<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
 				 </a>
-			    <p class="box1font3" style="padding:0px 20px;"><img src="<?php echo asset_url(); ?>images/barcompany-profile.png" alt="" class="img32"> &nbsp;&nbsp;COMPANY PROFILE</p>
+			    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/barcompany-profile.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE</p>
 			    <div>
 			        <div class="box2" id="company-profile" style=" height: 642px;">
 					</div>
@@ -828,27 +845,30 @@ function stopWiggle(input) {
 			
 			
 			<!-- advantages -->
-			<div id="Layer79" class="box1 a3">
-			    <div id="Layer79_Container">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer79', 0, 'slidedown', 300, 'swing');return false;">
-				<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <br>
-			        <p class="box1font3"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32">ADVANTAGES</p>
-			        <div class="box2" id="advantage"></div>
-			        
+			<div id="Layer79" style="position:absolute;text-align:center;visibility:hidden;left:342px;top:65px;width:37%;height:601px;z-index:3855;" onmouseleave="ShowObjectWithEffect('Layer43', 0, 'slidedown', 500);return false;">
+				<div id="Layer79_Container" style="width:483px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+					<div id="Layer80" class="a3">
+				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer79', 0, 'slidedown', 300, 'swing');return false;">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
+						</a>
+				        <p class="box1font3" style="padding:5px 0px;"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32"> &nbsp;&nbsp;ADVANTAGES</p>
+				        <div class="box802 blackbox" id="advantage"></div>
+				    </div>
 			    </div>
 			</div>
 			<!-- advantages ends-->
 			<!-- my files -->
-			<div id="Layer148" class="box1 a3">
-			    <div id="Layer148_Container">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer148', 0, 'slidedown', 300, 'swing');return false;">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-			        <br>
-			        <p class="box1font3"><img src="<?php echo asset_url(); ?>images/my_file.png" alt="" class="img32">MY FILES</p>
-			        <div class="box22" id="my-files">
-			           
-			        </div>
+			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:245px;top:198px;width:53%;height:462px;z-index:3850;">
+				<div id="Layer148_Container" style="width:432px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+					<div id="Layer150" style="position:absolute;text-align:left;left:65px;top:28px;width:517px;height:402px;z-index:3616;">
+				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer148', 0, 'slidedown', 300, 'swing');return false;">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+						</a>
+				        <p class="box1font3" style="padding:5px 0px;"><img src="<?php echo asset_url(); ?>images/my_file.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;MY FILES</p>
+				        <div class="box22 blackbox" id="my-files" style="height:325px;">
+				           
+				        </div>
+				    </div>
 			    </div>
 			</div>
 			<!-- my files end -->
@@ -901,11 +921,11 @@ function stopWiggle(input) {
 			    </div>
 			    <div class="inline box5">
 			        <img src="<?php echo asset_url(); ?>images/cha0t.png" alt="Chat" class="add-share-img">
-			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
+			        <a href="javascript:openChatWithBuyer(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
 			        	Chat
 					</a>
 			    </div>
-			    <div class="inline box5">
+			    <!-- div class="inline box5">
 			        <img src="<?php echo asset_url(); ?>images/like.png" alt="Like & Comments" class="add-share-img">
 			        <a href="javascript:popupwnd('<?php echo base_url();?>business/likecomment/<?php echo $Desksites[0]['busi_id']?>','no','no','no','no','no','no','750','50','380','750')" target="_self" class="antag">
 			        	Like & Comments
@@ -916,7 +936,7 @@ function stopWiggle(input) {
 			        <a href="#" onclick="ShowObjectWithEffect('Layer223', 1, 'scale', 500);return false;" target="_self" class="antag">
 			        	Share
 					</a>
-			    </div>
+			    </div-->
 			    <div class="inline box5">
 			        <img src="<?php echo asset_url(); ?>images/buyer-request.png" alt="General Inquiry" class="add-share-img">
 			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
@@ -947,6 +967,9 @@ function stopWiggle(input) {
 			            <input type="text" class="input" name="phone" value="" placeholder="Phone">
 			            <input type="email" class="input" name="email" value="" placeholder="Email">
 			            <select name="country" size="1" id="Combobox1" class="input">
+			            	<?php foreach ($countries as $country) { ?>
+			                <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
+			                <?php } ?>
 			            </select>
 			            <input type="text" class="input" name="city" value="" placeholder="City">
 			            <textarea name="TextArea2" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;">Message</textarea>
@@ -959,107 +982,174 @@ function stopWiggle(input) {
 			</div>
 			<!-- contact us form end -->
 				<!-- contact person -->
-				<div id="Layer62" class="box11 a1">
-				    <div id="Layer62_Container">
-				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer62', 0, 'slidedown', 300, 'swing');return false;">
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
-					</a>
-				        <br>
-				        <div class="box222 row" id="contact-person">
-				            
-				        </div>
-				    </div>
-				    <div class="center">
-				        <a href="javascript:window.print()"><img src="<?php echo asset_url(); ?>images/print.png" id="Image26" alt="" class="img32"></a>
-				    </div>
+				<div id="Layer62" style="position:absolute;text-align:right;visibility:hidden;left:19%;top:166px;width:51%;height:447px;z-index:3854;">
+					<div id="Layer62_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+						<div id="Layer63" class="a1">
+					        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer62', 0, 'slidedown', 300, 'swing');return false;">
+								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+							</a>
+					        <div class="box222 row" id="contact-person" style="margin:0px;">
+					            
+					        </div>
+					        <div class="center">
+						        <a href="javascript:printInvoice();"><img src="<?php echo asset_url(); ?>images/print.png" id="Image26" alt="" class="img32"></a>
+						    </div>
+					    </div>
+					</div>
 				</div>
 				<!-- contact person end -->
 			<!-- world wide offices -->
-			<div id="Layer16" class="box1 s9" >
-			    <div id="Layer16_Container">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer16', 0, 'slidedown', 300, 'swing');return false;">
-			            <br>
-			            <br>
-			            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
-			        </a>
-			        <div class="box2 row" id="address" style=" height: 250px;">
-			            
-			        </div>
-			        <div id="Carousel1_back" class="s10">
-			            <a href="#"><img alt="Back"src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
-			         </div>
-			        <div id="Carousel1_next" class="s11">
-			            <a href="#"><img alt="Next"src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
-			        </div>
-			    </div>
+			<div id="Layer16" style="position:absolute;text-align:right;visibility:hidden;left:25%;top:225px;width:51%;height:411px;z-index:3863;">
+				<div id="Layer16_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+					<div id="Layer15" class="s9">
+				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer16', 0, 'slidedown', 300, 'swing');return false;">
+				            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+				        </a>
+				        <div class="box2 row" id="address" style="height: 235px;margin:0px;">
+				            <div id="wb_Carousel1" style="position:absolute;left:15px;top:15px;width:422px;height:235px;z-index:3781;overflow:hidden;">
+								<div id="Carousel1" style="position:absolute">
+									<div class="frame active">
+										<div class="col-md-2">
+							                <br>
+							                <?php if(!empty($Desksites[0]['flag'])) { ?>
+							                <img src="<?php echo asset_url(); ?>images/flags/<?php echo $Desksites[0]['flag'];?>" id="Shape12" alt="" style="width:58px;">
+							                <?php } ?>
+							            </div>
+							            <div class="col-md-10 left">
+							            	<br>
+							                <p   class="s13"><strong>Main Company Address</strong></p>
+							                <p   class="s15"><?php echo $Desksites[0]['company_street'];?>, <?php echo $Desksites[0]['company_city'];?>, <?php echo $Desksites[0]['company_province'];?>, <?php echo $Desksites[0]['company_country'];?>.</p>
+							                <p   class="s13">+<?php echo $Desksites[0]['telephone_code'];?> <?php echo $Desksites[0]['telephone_city_code'];?> <?php echo $Desksites[0]['telephone_number'];?></p>
+							                <br>
+							                <p class="s12"><strong><?php echo $Desksites[0]['company_email'];?></strong></p>
+							            </div>
+									</div>
+									<?php foreach ($branches as $branch) { ?>
+									<div class="frame">
+										<div class="col-md-2"><br>
+							                <?php if(!empty($branch['flag'])) { ?>
+							                <img src="<?php echo asset_url(); ?>images/flags/<?php echo $branch['flag'];?>" id="Shape12" alt="" style="width:58px;">
+							                <?php } ?>
+							            </div>
+							            <div class="col-md-10 left">
+							            	<br>
+							                <p   class="s13"><strong><?php echo $branch['country'];?> Branch</strong></p>
+							                <p   class="s15"><?php echo $branch['street'];?>, <?php echo $branch['city'];?>, <?php echo $branch['province'];?>, <?php echo $branch['country'];?>.</p>
+							                <p   class="s13">+<?php echo $branch['country_code'];?> <?php echo $branch['city_code'];?> <?php echo $branch['telephone1'];?></p>
+							                <br>
+							                <p class="s12"><strong><?php echo $branch['fax'];?></strong></p>
+							            </div>
+									</div>
+									<?php } ?>
+								</div>
+					        </div>
+					        <div id="Carousel1_back" class="s10">
+					            <a href="#"><img alt="Back"src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
+					         </div>
+					        <div id="Carousel1_next" class="s11">
+					            <a href="#"><img alt="Next"src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
+					        </div>
+				    	</div>
+					</div>
+				</div>
 			</div>
 			<!-- world wide end -->
 			<!--  current post -->
-			<div id="Layer58" class="box1 s5"  >
-				   <div id=" Layer58_Container ">
-				   <a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer58', 0, 'slidedown', 300, 'swing');return false; "><br><br>
-					<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
-				    </a>
-				    <div class="greybox center" id="post">
-				        
-				    </div>
-				</div>
-				</div>
+			<div id="Layer58" style="position:absolute;text-align:right;visibility:hidden;left:134px;top:2px;width:69%;height:702px;z-index:3861;">
+				<div id="Layer58_Container" style="width:890px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+					<div id="Layer8" class="s5">
+					   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer58', 0, 'slidedown', 300, 'swing');return false; ">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+					    </a>
+					    <p class="box1font3" style="padding:0px;">
+				        	<img src="<?php echo asset_url(); ?>images/buyer-request.png" alt="" class="img32">
+				        	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong> &nbsp;&nbsp;&nbsp;POSTS & CURRENT REQUESTS</strong></span>
+				        </p>
+					    <div class="greybox center" id="post" style="height:570px;">
+					        
+					    </div>
+					    <div id="wb_CssMenu2">
+							<ul>
+								<li class="firstmain"><a class="withsubmenu" href="#" target="_self">Translate</a>
+									<ul>
+										<li class="firstitem"><a href="#" target="_self">To&nbsp;my&nbsp;langauge</a>
+										</li>
+										<li class="lastitem"><a href="#" target="_self">To&nbsp;english</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<br>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!--  current post end-->
 				<!-- UDtalk images -->
-				<div id="Layer72" class="box1 c19" style="width: 509px;">
-				   	<div id=" Layer72_Container ">
-				   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer72', 0, 'slidedown', 300, 'swing');return false; ">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left: 95%;">
-				   	</a>
-				    <p class="box1font3"><img src="<?php echo asset_url(); ?>images/udLOGO.png" alt="" class="img32">AMAZING BUSINESS COMMUNICATION APP</p>
-				    <div class="box2" id="ud-talk" style="height:449px;background-color: #DCDCDC;border: 1px #FFFFFF solid;padding:10px;">
-				    	<br>
-					   	<div id="wb_Text93" style="text-align:center;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Discover more ( View products, Catalouge or Watch videos), contact with this member through an amazing way, add him to your mobile contacts, chat with him on you phone, make an Instant call, send SMS, Email, get your own business platform and much more..</span>
-						</div>
-						<div id="wb_Text110" style="text-align:center;padding-top:5px;">
-							<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><strong>Download UDtalks ( business chat app ) on your mobile for free</strong></span>
-						</div>
-						<div id="wb_Text108" style="text-align:center;padding-top:5px;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:13px;"><a href="http://www.udtalks.com" target="_blank" class="style16">www.udtalks.com</a></span>
-						</div>
-						<div id="wb_Text98" style="text-align:center;padding-top:10px;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Click the image to enlarge, open UDtalks and scan</span>
-						</div>
-						<div id="wb_PhotoGallery1" style="height:288px;overflow-y:scroll;">
-							<table id="PhotoGallery1">
-							   	<tbody>
-							   		<?php for ($i=0; $i < count($images); ) { ?>
-							   		<tr>
-							      		<td class="image"><a href="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" data-rel="PhotoGallery1" title="BCard2" class="img<?php echo $i;?> ui-draggable" rel="PhotoGallery1" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo $i;?>" src="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" title="UD Talk"></a></td>
-							      		<td class="image"><?php if(!empty($images[$i+1]['image'])) { ?><a href="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" data-rel="PhotoGallery1" title="Manage menu" class="img<?php echo ($i+1);?> ui-draggable" rel="PhotoGallery1" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo ($i+1);?>" src="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" title="UD Talk"></a><?php } ?></td>
-							   		</tr>
-							   		<?php $i = $i + 2;} ?>
-								</tbody>
-							</table>
-						</div>
-				    </div>
-				</div>
+				<div id="Layer72" style="position:absolute;text-align:center;visibility:hidden;left:50px;top:64px;width:66%;height:616px;z-index:3848;">
+					<div id="Layer72_Container" style="width:850px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+						<div id="Layer73" class="c19">
+						   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer72', 0, 'slidedown', 300, 'swing');return false; ">
+								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left: 96%;">
+						   	</a>
+						    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/udLOGO.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;AMAZING BUSINESS COMMUNICATION APP</p>
+						    <div class="box732" id="ud-talk" style="height:495px;background-color: #DCDCDC;border: 1px #FFFFFF solid;padding:10px;">
+						    	<br>
+							   	<div id="wb_Text93" style="text-align:center;">
+									<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Discover more ( View products, Catalouge or Watch videos), contact with this member through an amazing way, add him to your mobile contacts, chat with him on you phone, make an Instant call, send SMS, Email, get your own business platform and much more..</span>
+								</div>
+								<div id="wb_Text110" style="text-align:center;padding-top:5px;">
+									<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><strong>Download UDtalks ( business chat app ) on your mobile for free</strong></span>
+								</div>
+								<div id="wb_Text108" style="text-align:center;padding-top:5px;">
+									<span style="color:#3C3C3C;font-family:Arial;font-size:13px;"><a href="http://www.udtalks.com" target="_blank" class="style16">www.udtalks.com</a></span>
+								</div>
+								<div id="wb_Text98" style="text-align:center;padding-top:10px;">
+									<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Click the image to enlarge, open UDtalks and scan</span>
+								</div>
+								<div id="wb_PhotoGallery1" style="height:288px;overflow-y:scroll;">
+									<table id="PhotoGallery1">
+									   	<tbody>
+									   		<?php for ($i=0; $i < count($images); ) { ?>
+									   		<tr>
+									      		<td class="image"><a href="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="UDTalk" class="img<?php echo $i;?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo $i;?>" src="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" title="UD Talk" style="width:220px;"></a></td>
+									      		<td class="image"><?php if(!empty($images[$i+1]['image'])) { ?><a href="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="UDTalk" class="img<?php echo ($i+1);?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo ($i+1);?>" src="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" title="UD Talk" style="width:220px;"></a><?php } ?></td>
+									   		</tr>
+									   		<?php $i = $i + 2;} ?>
+										</tbody>
+									</table>
+								</div>
+						    </div>
+						 </div>
+					</div>
 				</div>
 				<!-- UDtalk images end -->
 				<!-- Videos section -->
-				<div id="Layer65" class="box1 c19">
-					<div id=" Layer65_Container ">
-						<a href="#" onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer65', 0, 'slidedown', 300, 'swing');return false; "><br>
-							<br> <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
-						 </a> <br>
-						<p class="box1font3">
-							<img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">PRODUCTS IN VIDEOS
-						</p>
-						<div class="box2">
-							<div class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner" id="product-video" role="listbox">
-									
+				<div id="Layer65" style="position:absolute;text-align:center;visibility:hidden;left:305px;top:73px;width:50%;height:628px;z-index:3847;">
+					<div id="Layer65_Container" style="width:644px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+						<div id="Layer66" class="c19">
+							<a href="#" onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer65', 0, 'slidedown', 300, 'swing');return false;">
+								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+							 </a>
+							<p class="box1font3" style="padding-left: 0px;">
+								<img src="<?php echo asset_url(); ?>images/videos2.ico" alt="" class="img32"> &nbsp;&nbsp;&nbsp;PRODUCTS IN VIDEOS
+							</p>
+							<div class="box662">
+								<div id="vcarousel" class="carousel slide" data-ride="carousel">
+									<div class="carousel-inner" id="product-video" role="listbox">
+										
+									</div>
+									<div>
+									<a class="left carousel-control" href="#vcarousel" data-slide="prev" style="background-image: none;top:430px;">
+										<img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previoustxt0.png">
+									</a>
+									<a class="right carousel-control" href="#vcarousel" data-slide="next" style="background-image: none;top:430px;">
+									    <img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nexttxt0.png">
+									</a>
+									</div>
 								</div>
 							</div>
+							<br><br>
 						</div>
 					</div>
 				</div>
@@ -1085,10 +1175,10 @@ function stopWiggle(input) {
 				
 				<div id="Layer14" class="box1 c19" >
 				   <div id=" Layer14_Container ">
-					   <a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer14', 0, 'slidedown', 300, 'swing');return false; "><br><br>
-						 <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
+					   <a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer14', 0, 'slidedown', 300, 'swing');return false; ">
+						 <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 					    </a>
-					    <p class="box1font3"><img src="<?php echo asset_url(); ?>images/3d.png" alt="" class="img32">PRODUCTS IN 3D VIEW</p>
+					    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/3d.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;PRODUCTS IN 3D VIEW</p>
 					    <div class="box2" style=" height: 521px;">
 					   
 					    <div class="carousel slide" data-ride="carousel">
@@ -1108,25 +1198,35 @@ function stopWiggle(input) {
 				<!-- products in 3d end -->
 
 </div>
-<div id="vcatalogue_overlay" class="modal fade" style="background-color:#404040;">
+<div id="vcatalogue_overlay" class="modal fade" style="background-color:#404040;z-index: 4000;">
 	<div class="modal-dialog" style="background-color:#404040;width:990px;">
 		<div class="modal-content" style="background: transparent;box-shadow:none;-webkit-box-shadow:none;border: 0px;">
-				<div class="modal-header" style="border:0px;">
-					<button type="button" class="close catalogue_modal_close" data-dismiss="modal" aria-hidden="true">x</button>
-				</div>
-				<div class="modal-body catalogue_modal_body" style="width:960px;height:603px;">
+				<div style="position:absolute;right:0;width:50px;height:50px;z-index:5000;"><button type="button" class="pull-right" data-dismiss="modal" aria-hidden="true" style="background:transparent;border:0px;"><img src="<?php echo asset_url();?>images/closeround.png" id="Image47" alt="" style="width:35px;"></button></div>
+				<div class="modal-body catalogue_modal_body_bg" style="width:980px;height:603px;">
 					<input type="hidden" id="pcatalogue_id" value="" />
 					<div class="row">
-						<div class="col-md-10">
+						<div class="col-md-1" style="float:left;padding:0px;width:140px;">
+							<?php foreach ($catalogues as $catalogue) { ?>
+							<div style="text-align: center; margin-bottom: 5px; width:140px;height:155px;">
+								<div style="position:relative;width: 140px;top:-10px;">
+									<a href="javascript:viewNextCatalogueBook(<?php echo $catalogue['id'];?>);">
+										<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $catalogue['catalogue_title'];?></strong></span>
+									</a>
+								</div>
+								<a href="javascript:viewNextCatalogueBook(<?php echo $catalogue['id'];?>);">
+								<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block;width:77px;" >
+								<div style="position:relative;width:65px;top:-70px;left:38px;">
+									<img src="<?php echo asset_url().$catalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
+								</div>
+								</a>
+							</div>
+							<?php } ?>
+						</div>
+						<div class="col-md-9" style="width:770px;padding-top:25px;">
 							<div id="catalogue_page_content" class="catalogue_outer_body">
 							</div>
 						</div>
-						<div class="col-md-2 " style="float:left">
-							<ul class="share pull-right">
-								<li class="share-button"><a href=""><i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a></li>
-								<li class="share-button"><a href=""><i class="fa fa-comments" aria-hidden="true">&nbsp;</i></a></li>
-								<li class="share-button"><a href=""><i class="fa fa-share-alt" aria-hidden="true">&nbsp;</i></a></li>
-							</ul>
+						<div class="col-md-1" style="padding:0px;width:60px;" id="share_it">
 						</div>
 					</div>
 				</div>
@@ -1240,83 +1340,177 @@ function openWebsite() {
 }
 
 function viewCatalogueBook(id) {
-	$.get(base_url+"catalogue/popup/"+id,{},function(data){
-		$("#catalogue_page_content").html(data);
-		$("#pcatalogue_id").val(id);
-		$("#vcatalogue_overlay").modal('show');
-		var $mybook 		= $('#mybook');
-		var $bttn_next		= $('#next_page_button');
-		var $bttn_prev		= $('#prev_page_button');
-		var $loading		= $('#loading');
-		var $mybook_images	= $mybook.find('img');
-		var cnt_images		= $mybook_images.length;
-		var loaded			= 0;
-		//preload all the images in the book,
-		//and then call the booklet plugin
-		$mybook_images.each(function(){
-			var $img 	= $(this);
-			var source	= $img.attr('src');
-			$('<img/>').load(function(){
-				++loaded;
-				if(loaded == cnt_images){
-					$loading.hide();
-					$bttn_next.show();
-					$bttn_prev.show();
-					$mybook.show().booklet({
-						name:               null,                            // name of the booklet to display in the document title bar
-						width:              740,                             // container width
-						height:             450,                             // container height
-						speed:              600,                             // speed of the transition between pages
-						direction:          'LTR',                           // direction of the overall content organization, default LTR, left to right, can be RTL for languages which read right to left
-						startingPage:       0,                               // index of the first page to be displayed
-						easing:             'easeInOutQuad',                 // easing method for complete transition
-						easeIn:             'easeInQuad',                    // easing method for first half of transition
-						easeOut:            'easeOutQuad',                   // easing method for second half of transition
-
-						closed:             false,                           // start with the book "closed", will add empty pages to beginning and end of book
-						closedFrontTitle:   null,                            // used with "closed", "menu" and "pageSelector", determines title of blank starting page
-						closedFrontChapter: null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank starting page
-						closedBackTitle:    null,                            // used with "closed", "menu" and "pageSelector", determines chapter name of blank ending page
-						closedBackChapter:  null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank ending page
-						covers:             false,                           // used with  "closed", makes first and last pages into covers, without page numbers (if enabled)
-
-						pagePadding:        10,                              // padding for each page wrapper
-						pageNumbers:        false,                            // display page numbers on each page
-
-						hovers:             false,                            // enables preview pageturn hover animation, shows a small preview of previous or next page on hover
-						overlays:           false,                            // enables navigation using a page sized overlay, when enabled links inside the content will not be clickable
-						tabs:               false,                           // adds tabs along the top of the pages
-						tabWidth:           60,                              // set the width of the tabs
-						tabHeight:          20,                              // set the height of the tabs
-						arrows:             false,                           // adds arrows overlayed over the book edges
-						cursor:             'pointer',                       // cursor css setting for side bar areas
-
-						hash:               false,                           // enables navigation using a hash string, ex: #/page/1 for page 1, will affect all booklets with 'hash' enabled
-						keyboard:           true,                            // enables navigation with arrow keys (left: previous, right: next)
-						next:               $bttn_next,          			// selector for element to use as click trigger for next page
-						prev:               $bttn_prev,          			// selector for element to use as click trigger for previous page
-
-						menu:               null,                            // selector for element to use as the menu area, required for 'pageSelector'
-						pageSelector:       false,                           // enables navigation with a dropdown menu of pages, requires 'menu'
-						chapterSelector:    false,                           // enables navigation with a dropdown menu of chapters, determined by the "rel" attribute, requires 'menu'
-
-						shadows:            true,                            // display shadows on page animations
-						shadowTopFwdWidth:  166,                             // shadow width for top forward anim
-						shadowTopBackWidth: 166,                             // shadow width for top back anim
-						shadowBtmWidth:     50,                              // shadow width for bottom shadow
-
-						before:             function(){},                    // callback invoked before each page turn animation
-						after:              function(){}                     // callback invoked after each page turn animation
-					});
-					//Cufon.refresh();
-				}
-			}).attr('src',source);
-		});
-	},'html');
+	$.get(base_url+"catalogue/business/"+id,{},function(data){
+		if(data.html == '0') {
+			alert("Sorry no catalogues created.");
+		} else {
+			$("#catalogue_page_content").html(data.html);
+			$("#pcatalogue_id").val(data.id);
+			$("#vcatalogue_overlay").modal('show');
+			var shareIt = '<ul class="share pull-right">'
+						 +'<li class="share-button"><a href="javascript:addToMyFavourite('+data.id+',7);"><i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a></li>'
+						 +'<li class="share-button"><a href="javascript:openChatWithBuyer(<?php echo $busi_id;?>);"><i class="fa fa-comments" aria-hidden="true">&nbsp;</i></a></li>'
+						 +'</ul>';
+			$("#share_it").html(shareIt);
+			var $mybook 		= $('#mybook');
+			var $bttn_next		= $('#next_page_button');
+			var $bttn_prev		= $('#prev_page_button');
+			var $loading		= $('#loading');
+			var $mybook_images	= $mybook.find('img');
+			var cnt_images		= $mybook_images.length;
+			var loaded			= 0;
+			//preload all the images in the book,
+			//and then call the booklet plugin
+			$mybook_images.each(function(){
+				var $img 	= $(this);
+				var source	= $img.attr('src');
+				$('<img/>').load(function(){
+					++loaded;
+					if(loaded == cnt_images){
+						$loading.hide();
+						$bttn_next.show();
+						$bttn_prev.show();
+						$mybook.show().booklet({
+							name:               null,                            // name of the booklet to display in the document title bar
+							width:              690,                             // container width
+							height:             450,                             // container height
+							speed:              600,                             // speed of the transition between pages
+							direction:          'LTR',                           // direction of the overall content organization, default LTR, left to right, can be RTL for languages which read right to left
+							startingPage:       0,                               // index of the first page to be displayed
+							easing:             'easeInOutQuad',                 // easing method for complete transition
+							easeIn:             'easeInQuad',                    // easing method for first half of transition
+							easeOut:            'easeOutQuad',                   // easing method for second half of transition
+	
+							closed:             false,                           // start with the book "closed", will add empty pages to beginning and end of book
+							closedFrontTitle:   null,                            // used with "closed", "menu" and "pageSelector", determines title of blank starting page
+							closedFrontChapter: null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank starting page
+							closedBackTitle:    null,                            // used with "closed", "menu" and "pageSelector", determines chapter name of blank ending page
+							closedBackChapter:  null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank ending page
+							covers:             false,                           // used with  "closed", makes first and last pages into covers, without page numbers (if enabled)
+	
+							pagePadding:        10,                              // padding for each page wrapper
+							pageNumbers:        false,                            // display page numbers on each page
+	
+							hovers:             false,                            // enables preview pageturn hover animation, shows a small preview of previous or next page on hover
+							overlays:           false,                            // enables navigation using a page sized overlay, when enabled links inside the content will not be clickable
+							tabs:               false,                           // adds tabs along the top of the pages
+							tabWidth:           60,                              // set the width of the tabs
+							tabHeight:          20,                              // set the height of the tabs
+							arrows:             true,                           // adds arrows overlayed over the book edges
+							cursor:             'pointer',                       // cursor css setting for side bar areas
+	
+							hash:               false,                           // enables navigation using a hash string, ex: #/page/1 for page 1, will affect all booklets with 'hash' enabled
+							keyboard:           true,                            // enables navigation with arrow keys (left: previous, right: next)
+							next:               $bttn_next,          			// selector for element to use as click trigger for next page
+							prev:               $bttn_prev,          			// selector for element to use as click trigger for previous page
+	
+							menu:               null,                            // selector for element to use as the menu area, required for 'pageSelector'
+							pageSelector:       false,                           // enables navigation with a dropdown menu of pages, requires 'menu'
+							chapterSelector:    false,                           // enables navigation with a dropdown menu of chapters, determined by the "rel" attribute, requires 'menu'
+	
+							shadows:            true,                            // display shadows on page animations
+							shadowTopFwdWidth:  166,                             // shadow width for top forward anim
+							shadowTopBackWidth: 166,                             // shadow width for top back anim
+							shadowBtmWidth:     50,                              // shadow width for bottom shadow
+	
+							before:             function(){},                    // callback invoked before each page turn animation
+							after:              function(){}                     // callback invoked after each page turn animation
+						});
+						//Cufon.refresh();
+					}
+				}).attr('src',source);
+			});
+		}
+	},'json');
 }
 
-$("a[data-rel='PhotoGallery1']").attr('rel', 'PhotoGallery1');
-$("a[rel^='PhotoGallery1']").slimbox({overlayOpacity: 0.8}, null, function(el){return (this == el)||((this.rel.length > 8)&&(this.rel == el.rel));});
+function viewNextCatalogueBook(id) {
+	$.get(base_url+"catalogue/business/next/"+id,{},function(data){
+		if(data.html == '0') {
+			alert("Sorry no catalogues created.");
+		} else {
+			$("#catalogue_page_content").html(data.html);
+			$("#pcatalogue_id").val(data.id);
+			$("#vcatalogue_overlay").modal('show');
+			var shareIt = '<ul class="share pull-right">'
+						 +'<li class="share-button"><a href="javascript:addToMyFavourite('+data.id+',7);"><i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a></li>'
+						 +'<li class="share-button"><a href="javascript:openChatWithBuyer(<?php echo $busi_id;?>);"><i class="fa fa-comments" aria-hidden="true">&nbsp;</i></a></li>'
+						 +'</ul>';
+			$("#share_it").html(shareIt);
+			var $mybook 		= $('#mybook');
+			var $bttn_next		= $('#next_page_button');
+			var $bttn_prev		= $('#prev_page_button');
+			var $loading		= $('#loading');
+			var $mybook_images	= $mybook.find('img');
+			var cnt_images		= $mybook_images.length;
+			var loaded			= 0;
+			//preload all the images in the book,
+			//and then call the booklet plugin
+			$mybook_images.each(function(){
+				var $img 	= $(this);
+				var source	= $img.attr('src');
+				$('<img/>').load(function(){
+					++loaded;
+					if(loaded == cnt_images){
+						$loading.hide();
+						$bttn_next.show();
+						$bttn_prev.show();
+						$mybook.show().booklet({
+							name:               null,                            // name of the booklet to display in the document title bar
+							width:              690,                             // container width
+							height:             450,                             // container height
+							speed:              600,                             // speed of the transition between pages
+							direction:          'LTR',                           // direction of the overall content organization, default LTR, left to right, can be RTL for languages which read right to left
+							startingPage:       0,                               // index of the first page to be displayed
+							easing:             'easeInOutQuad',                 // easing method for complete transition
+							easeIn:             'easeInQuad',                    // easing method for first half of transition
+							easeOut:            'easeOutQuad',                   // easing method for second half of transition
+	
+							closed:             false,                           // start with the book "closed", will add empty pages to beginning and end of book
+							closedFrontTitle:   null,                            // used with "closed", "menu" and "pageSelector", determines title of blank starting page
+							closedFrontChapter: null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank starting page
+							closedBackTitle:    null,                            // used with "closed", "menu" and "pageSelector", determines chapter name of blank ending page
+							closedBackChapter:  null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank ending page
+							covers:             false,                           // used with  "closed", makes first and last pages into covers, without page numbers (if enabled)
+	
+							pagePadding:        10,                              // padding for each page wrapper
+							pageNumbers:        false,                            // display page numbers on each page
+	
+							hovers:             false,                            // enables preview pageturn hover animation, shows a small preview of previous or next page on hover
+							overlays:           false,                            // enables navigation using a page sized overlay, when enabled links inside the content will not be clickable
+							tabs:               false,                           // adds tabs along the top of the pages
+							tabWidth:           60,                              // set the width of the tabs
+							tabHeight:          20,                              // set the height of the tabs
+							arrows:             true,                           // adds arrows overlayed over the book edges
+							cursor:             'pointer',                       // cursor css setting for side bar areas
+	
+							hash:               false,                           // enables navigation using a hash string, ex: #/page/1 for page 1, will affect all booklets with 'hash' enabled
+							keyboard:           true,                            // enables navigation with arrow keys (left: previous, right: next)
+							next:               $bttn_next,          			// selector for element to use as click trigger for next page
+							prev:               $bttn_prev,          			// selector for element to use as click trigger for previous page
+	
+							menu:               null,                            // selector for element to use as the menu area, required for 'pageSelector'
+							pageSelector:       false,                           // enables navigation with a dropdown menu of pages, requires 'menu'
+							chapterSelector:    false,                           // enables navigation with a dropdown menu of chapters, determined by the "rel" attribute, requires 'menu'
+	
+							shadows:            true,                            // display shadows on page animations
+							shadowTopFwdWidth:  166,                             // shadow width for top forward anim
+							shadowTopBackWidth: 166,                             // shadow width for top back anim
+							shadowBtmWidth:     50,                              // shadow width for bottom shadow
+	
+							before:             function(){},                    // callback invoked before each page turn animation
+							after:              function(){}                     // callback invoked after each page turn animation
+						});
+						//Cufon.refresh();
+					}
+				}).attr('src',source);
+			});
+		}
+	},'json');
+}
+
+$("a[data-rel='prettyPhoto_SlideShow31[SlideShow31]']").attr('rel', 'prettyPhoto_SlideShow31[SlideShow31]');
+$("a[rel^='prettyPhoto_SlideShow31']").prettyPhoto({theme:'facebook',social_tools:false});
 var zindex = 250;
 $("#PhotoGallery1 a").draggable(
 {
@@ -1337,4 +1531,36 @@ $("#PhotoGallery1 a").draggable(
    }
 });
 
+function addToMyFavourite(fav_id,type) {
+	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(data) {
+		alert(data.msg);
+	},'json');
+}
+
+function openChatWithBuyer(seller_id) {
+	if(accept_chat == 1) {
+		popupwnd('<?php echo base_url();?>global/chat/'+buyer_id,'no','no','no','no','no','no','750','50','430','720');
+	} else {
+		customAlert('Sorry.. Buyer status is " Don\'t Disturb".. Please try again on other time, status may be changed soon.');
+	}
+}
+function likeMyVideo(id,type,likeid) {
+	$.get(base_url+"likevideo/"+id,{ type: type},function(data) {
+		if(data.status == 1) {
+			var likes = parseInt($("#"+likeid).html());
+			likes = likes + 1;
+			$("#"+likeid).html(likes);
+		}
+		alert(data.msg);
+	},'json');
+}
+function printInvoice() {    
+	var printContents = document.getElementById('contact-person').innerHTML;
+    w = window.open();
+    w.document.write(printContents);
+    w.document.write('<scr' + 'ipt type="text/javascript">' + 'window.onload = function() { window.print(); window.close(); };' + '</sc' + 'ript>');
+    w.document.close(); // necessary for IE >= 10
+    w.focus(); // necessary for IE >= 10
+    return true;
+}
 </script>
