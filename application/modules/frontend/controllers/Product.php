@@ -174,8 +174,32 @@ class Product extends MX_Controller {
 		->title ( 'Find Products' )
 		->set_partial ( 'header', 'default/floating-header' )
 		->set_partial ( 'footer', 'default/footer' );
-		$this->template->build ('product/product-details');
+		$this->template->build ('desksite/subpages/product_details');
 		
+	}
+	public function productDetailsPage($id) {
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		if(!empty($busi_id)) {
+			$map = array();
+			$map['busi_id'] = $busi_id;
+			$map['item_id'] = $id;
+			$map['visit_date'] = date('Y-m-d');
+			$this->load->model('Tool_model','mytoolmodel');
+			$this->mytoolmodel->addProductVisit($map);
+		}
+		$this->load->model('Product_Model', 'product' );
+		$getProductdetailsById = $this->product->getProductdetailsById($id);
+		$this->template->set ( 'Productdetails', $getProductdetailsById);
+		$colors = $this->product->getProductColorById($id);
+		$this->template->set ( 'colors', $colors);
+		$Specifications = $this->product->getProductSpecificationById($id);
+		$this->template->set ( 'specifications', $Specifications);
+		$this->template->set ( 'page', 'pro-details');
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('desksite/subpages/product_details','',true);
+		echo $html;
 	}
 	
 	public function productDetailById($id){
@@ -236,6 +260,7 @@ class Product extends MX_Controller {
 		echo $html;
 		
 	}
+	
 	public function productListBySubProduct($id, $busi_id){
 		$map = array();
 		$map['sproduct_id'] = $id;
@@ -268,6 +293,24 @@ class Product extends MX_Controller {
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('product/video-details');
 		
+	}
+	
+	public function productListByCat($catid, $scatid, $mcatid, $busi_id){
+		$map = array();
+		$map['subcat_id'] = $catid;
+		$map['sproduct_id'] = $scatid;
+		$map['mproduct_id'] = $mcatid;
+		$map['busi_id'] = $busi_id;
+		$this->load->model('Product_Model', 'product' );
+		$products = $this->product->productListByCSMCategory($map);
+		$this->template->set ( 'productList', $products);
+		$this->template->set ( 'page', 'product' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('product/pages/pro-list', '', true);
+		echo $html;
+	
 	}
 	
 	public function itemDetailById($id, $busi_id){

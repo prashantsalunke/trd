@@ -236,7 +236,7 @@ function showAddResponse(resp, statusText, xhr, $form){
 <span style="color:#696969;font-family:Arial;font-size:11px;">Ref. to your post titled : </span></div>
 <div id="wb_Text140" style="position:absolute;left:89px;top:83px;height:16px;z-index:22;text-align:left;">
 <span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $post[0]['name_prefix'];?> <?php echo $post[0]['name'];?> </strong></span></div>
-<div id="wb_Text142" style="position:absolute;left:90px;top:105px;width:173px;height:16px;z-index:23;text-align:left;">
+<div id="wb_Text142" style="position:absolute;left:90px;top:105px;width:400px;height:16px;z-index:23;text-align:left;">
 <span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $post[0]['company_name'];?> </strong></span></div>
 <div id="wb_Text143" style="position:absolute;left:166px;top:141px;width:330px;height:16px;z-index:24;text-align:left;">
 <span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $post[0]['title'];?></strong></span></div>

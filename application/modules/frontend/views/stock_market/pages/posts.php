@@ -6,7 +6,7 @@ if(count($posts) > 0) {
 	<div class="row" id="Layer4">
 		<div class="col-md-2 col-sm-12 grid">
 			<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
-			<img src="<?php echo asset_url(); ?>images/img1699.png" alt="" class="bstation-profile-pic" style="border:0px;"/> 
+			<img src="<?php echo asset_url(); ?>images/lock-profile.png" alt="" class="bstation-profile-pic" style="border:0px;"/> 
 			<?php } else { ?>
 			<img src="<?php echo asset_url(); ?><?php echo $product['profile_image'];?>" alt="" class="bstation-profile-pic" /> 
 			<img src="<?php echo asset_url(); ?>images/flags/<?php echo $product['flag'];?>" id="Image297" alt="" class="flag"> <br>
@@ -188,24 +188,18 @@ if(count($posts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver5" class="img45">
-						<?php if($product['catid'] == 1) { ?>
-							<a href="<?php echo base_url();?>seller/website/<?php echo $product['busi_id'];?>" target="_blank"> 
-						<?php } else if($product['catid'] == 2) { ?>
-							<a href="<?php echo base_url();?>shipper/website/<?php echo $busi_id;?>" target="_blank">
-						<?php } else { ?>
-							<a href="<?php echo base_url();?>buyer/website/<?php echo $busi_id;?>" target="_blank">
-						<?php } ?>
+						<a href="<?php if($contact_details[0]['accept_community'] == 1) { ?>addToCommunity(<?php echo $product['busi_id'];?>);<?php } else { ?>javascript:addToMyCommunityAlert();<?php } ?>" target="_blank"> 
 							<img class="hover" alt="Add To My Community" src="<?php echo asset_url(); ?>images/Active/addcommunity_button2.png" />
 							<span><img alt="Add To My Community" src="<?php echo asset_url(); ?>images/Link/addcommunity_button2.png" /></span>
 						</a>
 					</div>
 					<div id="RollOver1" class="img45">
 						<?php if($product['catid'] == 1) { ?>
-						<a href="<?php if($contact_details[0]['accept_community'] == 1) { ?><?php echo base_url();?>desksite/<?php echo $product['busi_id'];?><?php } else { ?>javascript:addToMyCommunityAlert();<?php } ?>" target="_blank"> 
+						<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" target="_blank"> 
 						<?php } else if($product['catid'] == 2) { ?>
-							<a href="<?php if($contact_details[0]['accept_community'] == 1) { ?><?php echo base_url();?>shipper/profile/<?php echo $busi_id;?><?php } else { ?>javascript:addToMyCommunityAlert();<?php } ?>" target="_blank">
+							<a href="<?php echo base_url();?>shipper/profile/<?php echo $product['busi_id'];?>" target="_blank">
 						<?php } else { ?>
-							<a href="<?php if($contact_details[0]['accept_community'] == 1) { ?><?php echo base_url();?>buyer/profile/<?php echo $busi_id;?><?php } else { ?>javascript:addToMyCommunityAlert();<?php } ?>" target="_blank">
+							<a href="<?php echo base_url();?>buyer/profile/<?php echo $product['busi_id'];?>" target="_blank">
 						<?php } ?>
 							<img class="hover" alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Active/desksite-dorange.png" /> 
 							<span><img alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Link/desksite-dorange.png" /></span>
@@ -267,6 +261,15 @@ function addToMyCommunityAlert() {
 }
 function noAccessAlert() {
 	customAlert("Oops… You are not supposed to reply your own post..!!");
+}
+function addToCommunity(id) {
+	$.get(base_url+"addtomycommunity/"+id,{},function(data) {
+		if(data.status == 1) {
+			customAlert(data.msg);
+		} else {
+			customAlert(data.msg);
+		}
+	},'json');
 }
 
 </script>

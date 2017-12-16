@@ -348,6 +348,8 @@ $route['seller/product/([0-9]+)'] = 'frontend/Product/productListBySellerId/$1';
 $route['product/subcategory/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListBySubCategory/$1/$2';
 $route['product/mainproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListByMainProduct/$1/$2';
 $route['product/subproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListBySubProduct/$1/$2';
+$route['product/csmproduct/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListByCat/$1/$2/$3/$4';
+$route['product/details/page/([0-9]+)'] = 'frontend/Product/productDetailsPage/$1';
 $route['seller/video/view/([0-9]+)'] = 'frontend/Home/getSellerVideo/$1';
 $route['seller/product/view/([0-9]+)'] = 'frontend/Home/getSellerProduct/$1';
 $route['product/verified'] = 'frontend/Product/productVerifiedFirst';
@@ -419,6 +421,9 @@ $route['([0-9]+)/ads-checkout'] = 'frontend/MyAds/msCheckout/$1';
 $route['([0-9]+)/featured-ads-checkout'] = 'frontend/MyAds/fcCheckout/$1';
 $route['([0-9]+)/subscription-checkout'] = 'frontend/Home/getSubscriptionCheckout/$1';
 $route['desksite/like/([0-9]+)'] = 'frontend/Home/likeBusiness/$1';
+$route['desksite/catalogue/like/([0-9]+)'] = 'frontend/Home/likeCatalogue/$1';
+$route['desksite/general_enquiry/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
+$route['desksite/saveenquiry'] = 'frontend/Home/saveGeneralInquiry';
 
 
 /********************  Community **************/

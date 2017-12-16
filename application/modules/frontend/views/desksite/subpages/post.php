@@ -46,3 +46,8 @@
 				        $("a[rel^='prettyPhoto_SlideShow31<?php echo $key;?>']").prettyPhoto({theme:'facebook',social_tools:false});
 				        </script>
 					<?php } ?>
+					<?php if(count($Posts) <= 0) {?>
+					<div style="padding-top:200px;font-size:14px;">
+						<strong>The seller has no recent posts.</strong>
+					</div>
+					<?php } ?>

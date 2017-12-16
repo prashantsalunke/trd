@@ -6,7 +6,7 @@ if(count($bposts) > 0) {
 	<div class="row" id="Layer4">
 		<div class="col-md-2 col-sm-12 grid">
 			<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
-			<img src="<?php echo asset_url(); ?>images/img1699.png" alt="" class="bstation-profile-pic" style="border:0px;"/> 
+			<img src="<?php echo asset_url(); ?>images/lock-profile.png" alt="" class="bstation-profile-pic" style="border:0px;"/> 
 			<?php } else { ?>
 			<img src="<?php echo asset_url(); ?><?php echo $product['profile_image'];?>" alt="" class="bstation-profile-pic" /> 
 			<img src="<?php echo asset_url(); ?>images/flags/<?php echo $product['flag'];?>" id="Image297" alt="" class="flag"> <br>
@@ -180,13 +180,7 @@ if(count($bposts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver5" class="img45">
-						<?php if($tscategory_id == 1) { ?>
-							<a href="<?php echo base_url();?>seller/website/<?php echo $product['busi_id'];?>" target="_blank"> 
-						<?php } else if($tscategory_id == 2) { ?>
-							<a href="<?php echo base_url();?>shipper/website/<?php echo $busi_id;?>" target="_blank">
-						<?php } else { ?>
-							<a href="<?php echo base_url();?>buyer/website/<?php echo $busi_id;?>" target="_blank">
-						<?php } ?>
+							<a href="addToCommunity(<?php echo $product['busi_id'];?>);" target="_blank"> 
 							<img class="hover" alt="Add To My Community" src="<?php echo asset_url(); ?>images/Active/addcommunity_button2.png" />
 							<span><img alt="Add To My Community" src="<?php echo asset_url(); ?>images/Link/addcommunity_button2.png" /></span>
 						</a>
@@ -195,9 +189,9 @@ if(count($bposts) > 0) {
 						<?php if($tscategory_id == 1) { ?>
 						<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" target="_blank"> 
 						<?php } else if($tscategory_id == 2) { ?>
-							<a href="<?php echo base_url();?>shipper/profile/<?php echo $busi_id;?>" target="_blank">
+							<a href="<?php echo base_url();?>shipper/profile/<?php echo $product['busi_id'];?>" target="_blank">
 						<?php } else { ?>
-							<a href="<?php echo base_url();?>buyer/profile/<?php echo $busi_id;?>" target="_blank">
+							<a href="<?php echo base_url();?>buyer/profile/<?php echo $product['busi_id'];?>" target="_blank">
 						<?php } ?>
 							<img class="hover" alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Active/randbuyercherry.png" /> 
 							<span><img alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Link/randbuyerblack.png" /></span>
@@ -258,6 +252,15 @@ function openChatWithBuyer(postid,buyer_id,accept_chat) {
 }
 function noAccessAlert() {
 	customAlert("Oops… You are not supposed to reply your own post..!!");
+}
+function addToCommunity(id) {
+	$.get(base_url+"addtomycommunity/"+id,{},function(data) {
+		if(data.status == 1) {
+			customAlert(data.msg);
+		} else {
+			customAlert(data.msg);
+		}
+	},'json');
 }
 </script>
 <?php 
