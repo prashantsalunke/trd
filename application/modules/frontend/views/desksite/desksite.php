@@ -690,66 +690,66 @@ function stopWiggle(input) {
 					        <div class="col-md-8 col-sm-8 bg " style="margin-left: 15px;margin-right:15px;width:78%;">
 					            <div class="col-sm-5" style="width:38%;">
 						             <a href="javascript:getComapnyProfile(<?php echo $Desksite['busi_id']?>)" class="navigation2 ">
-								     	<img src="<?php echo asset_url(); ?>images/img0178.png" id="Image60" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								     	<img src="<?php echo asset_url(); ?>images/desksite/D-About.png" id="Image60" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 						            	<p class="font2">Profile</p>
 						            </a>
 						            <a href="javascript:getComapnyAbout(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-								    	<img src="<?php echo asset_url(); ?>images/about.png" id="Image5" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								    	<img src="<?php echo asset_url(); ?>images/desksite/D-company.png" id="Image5" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								    	<p class="font2">About Seller</p>
 								    </a>
 						            <a href="javascript:getComapnyCertificate(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-								    	<img src="<?php echo asset_url(); ?>images/certificates.png" id="Image7" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								    	<img src="<?php echo asset_url(); ?>images/desksite/D-certificates.png" id="Image7" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								     	<p class="font2">Certificates</p>
 								    </a>
 						            <a href="javascript:getAdvantage(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-								    	<img src="<?php echo asset_url(); ?>images/emblem-art.png" id="Image43" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								    	<img src="<?php echo asset_url(); ?>images/desksite/D-advantages.png" id="Image43" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								     	<p class="font2">Advantages</p>
 								    </a>
 						            <a href="javascript:getMyFiles(<?php echo $Desksite['busi_id'];?>)" class="navigation2" >
-								    	<img src="<?php echo asset_url(); ?>images/folder-user.png" id="Image8" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								    	<img src="<?php echo asset_url(); ?>images/desksite/D-files.png" id="Image8" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								    	<p class="font2">Files</p>
 								    </a>
 								</div>
 								<div class="col-sm-5" style="width:38%;">
 						            <a href="javascript:viewCatalogueBook(<?php echo $Desksite['busi_id']?>)" class="navigation2">
-								   		<img src="<?php echo asset_url(); ?>images/Catalogue1.png" id="Image10" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/D-vcat.png" id="Image10" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   		<p class="font2">Virtual Catalogues</p>
 								   	</a>
 						            <a href="javascript:getProductVideo(<?php echo $Desksite['busi_id']?>);" class="navigation2" >
-						                <img src="<?php echo asset_url(); ?>images/img0179.png" id="Image77" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+						                <img src="<?php echo asset_url(); ?>images/desksite/D-video.png" id="Image77" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 						                <p class="font2">Products in Videos</p>
 						            </a>
 						            <a href="javascript:get3DProduct(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-								   		<img src="<?php echo asset_url(); ?>images/3Dpro.png" id="Image80" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/3D.png" id="Image80" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								    	<p class="font2">Products in 3D</p>
 								   	</a>
 						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer72', 1, 'slidedown', 500, 'swing');return false;">
-								   		<img src="<?php echo asset_url(); ?>images/UD-0.png" id="Image79" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/UD.png" id="Image79" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   		<p class="font2">UDtalks Images</p>
 								   	</a>
 						            <a href="javascript:getCurrentPost(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-								   		<img src="<?php echo asset_url(); ?>images/img0180.png" id="Image71" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/D-posts.png" id="Image71" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   		<p class="font2">Current Post</p>
 								   	</a>
 								</div>
 								<div class="col-sm-2" style="width:24%;">
 						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer16', 1, 'slidedown', 500, 'swing');return false;">
-								   		<img src="<?php echo asset_url(); ?>images/web_site.png" id="Image75" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/offices.png" id="Image75" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   	   <p class="font5">World-wide  Offices</p>
 								   	</a>
 						           	<a href="javascript:getContactPerson(<?php echo $Desksite['busi_id'];?>);" class="navigation2" >
-								   		<img src="<?php echo asset_url(); ?>images/img0395-new.png" id="Image9" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/contact-person.png" id="Image9" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   		<p class="font2">Contact Person</p>
 								   	</a>
 						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;">
-								   		<img src="<?php echo asset_url(); ?>images/contact_email.png" id="Image9" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   		<p class="font5">Contact, Add Share...</p>
 								   	</a>
 						        </div>
 						    </div>
 						    <div class="col-md-2 col-sm-2  bg121" style="width:11%;">
 						        <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer53S', 1, 'slideright', 500, 'swing');return false;">
-								   	<img src="<?php echo asset_url(); ?>images/Desktop_Search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   	<img src="<?php echo asset_url(); ?>images/desksite/D-search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   	<p class="font2">Search</p>
 								</a>
 						        <a href="javascript:showWebsite();" class="navigation2" style="display:none;">
@@ -768,37 +768,37 @@ function stopWiggle(input) {
 					        </div>
 					        <div class="col-md-5 col-sm-5 bg " style="margin-left: 15px;margin-right:15px;width:550px;padding-left:25px !important;padding-right:25px !important;">
 					           	<a href="javascript:getComapnyProfile(<?php echo $Desksite['busi_id']?>)" class="navigation2 ">
-							     	<img src="<?php echo asset_url(); ?>images/img0178.png" id="Image60" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+							     	<img src="<?php echo asset_url(); ?>images/desksite/D-About.png" id="Image60" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 					            	<p class="font2">Profile</p>
 					            </a>
 					            <a href="javascript:getComapnyAbout(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-							    	<img src="<?php echo asset_url(); ?>images/about.png" id="Image5" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+							    	<img src="<?php echo asset_url(); ?>images/desksite/D-company.png" id="Image5" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							    	<p class="font2">About Seller</p>
 							    </a>
 					            <a href="javascript:getComapnyCertificate(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-							    	<img src="<?php echo asset_url(); ?>images/certificates.png" id="Image7" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+							    	<img src="<?php echo asset_url(); ?>images/desksite/D-certificates.png" id="Image7" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							     	<p class="font2">Certificates</p>
 							    </a>
 					            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer72', 1, 'slidedown', 500, 'swing');return false;">
-							   		<img src="<?php echo asset_url(); ?>images/UD-0.png" id="Image79" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+							   		<img src="<?php echo asset_url(); ?>images/desksite/UD.png" id="Image79" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							   		<p class="font2">UDtalks Images</p>
 							   	</a>
 					            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer16', 1, 'slidedown', 500, 'swing');return false;">
-							   		<img src="<?php echo asset_url(); ?>images/web_site.png" id="Image75" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+							   		<img src="<?php echo asset_url(); ?>images/desksite/offices.png" id="Image75" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							   	   <p class="font5">World-wide  Offices</p>
 							   	</a>
 					           	<a href="javascript:getContactPerson(<?php echo $Desksite['busi_id'];?>);" class="navigation2" >
-							   		<img src="<?php echo asset_url(); ?>images/img0395-new.png" id="Image9" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+							   		<img src="<?php echo asset_url(); ?>images/desksite/contact-person.png" id="Image9" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							   		<p class="font2">Contact Person</p>
 							   	</a>
 					            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;">
-							   		<img src="<?php echo asset_url(); ?>images/contact_email.png" id="Image9" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+							   		<img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							   		<p class="font5">Contact, Add Share...</p>
 							   	</a>
 						    </div>
 						    <div class="col-md-1 col-sm-1  bg121">
 						        <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer53S', 1, 'slideright', 500, 'swing');return false;">
-								   	<img src="<?php echo asset_url(); ?>images/Desktop_Search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   	<img src="<?php echo asset_url(); ?>images/desksite/D-search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   	<p class="font2">Search</p>
 								</a>
 						        <a href="javascript:showWebsite();" class="navigation2" style="display:none;">

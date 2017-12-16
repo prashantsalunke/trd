@@ -330,10 +330,26 @@ pre {
    width: 100%;
    height: 100%;
 }
+#Line10
+{
+   color: #D3D3D3;
+   background-color: #D3D3D3;
+   border-width: 0;
+   margin: 0;
+   padding: 0;
+}
+#Line11
+{
+   color: #D3D3D3;
+   background-color: #D3D3D3;
+   border-width: 0;
+   margin: 0;
+   padding: 0;
+}
 </style>
 <div style="background-color:#EBECEE;">
 	<div id="body" style="padding-top: 15px;">
-		<div class="container" id="product_details" class="b-gray">
+		<div class="container text-left" id="product_details" class="b-gray">
 		<?php foreach ($Productdetails as $product) {?>
 			<div class="row" style="margin:0px;">
 				<ol class="breadcrumb" style="background-color: #D3D3D3;width: 100%;padding-top: 15px;">
@@ -352,7 +368,7 @@ pre {
 			</div>
 			<div class="panel panel-default">
 			  <div class="panel-body">
-			    <div class="col-md-7">
+			    <div class="col-md-7 text-left">
 				   <div class="row"> 
 				   		<div class="row">
 				    		<p class="product-braedcrumbs" style="padding-left:30px;">
@@ -403,9 +419,9 @@ pre {
 						
 					</div>
 			    </div>
-			    <div class="col-md-5">
+			    <div class="col-md-5 text-left">
 			    	<h3 class="blue"><img src="<?php echo asset_url();?>images/page_location.png" class="sm-img" alt=""><span><?php echo $product['name']; ?></span></h3>
-			    	<p><?php echo substr($product['description'], 0, 150); ?> ...</p>
+			    	<p ><?php echo substr($product['description'], 0, 150); ?> ...</p>
 			    	<div class="row">&nbsp;</div>
 			    	<p> <h6>Quick Specifications</h6><hr id="Line10" style="height: 1px; width: 357px; margin: 10px 0px;"/> </p>
 			    	<div class="row">
