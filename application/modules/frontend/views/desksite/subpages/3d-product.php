@@ -12,3 +12,8 @@
 					        <p class="c14">&nbsp; Min. Order: <?php echo $product['quantity'].' '.$product['unit'];?> </p>
 						 </div>
 					<?php } ?>
+					<?php if(count($Products) <= 0) { ?>
+					<div style="padding-top:200px;font-size:14px;">
+						<strong>The seller has not created products in 3D yet.</strong>
+					</div>
+					<?php } ?>
