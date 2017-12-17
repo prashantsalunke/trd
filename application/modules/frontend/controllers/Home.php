@@ -952,6 +952,8 @@ class Home extends MX_Controller {
 	public function getMyfiles($id) {
 		$this->load->model('Product_Model', 'product' );
 		$MyFiles = $this->product->getMyFiles($id);
+		$binfo = $this->product->getBusinessCategory($id);
+		$this->template->set ( 'bcatinfo', $binfo);
 		$this->template->set ( 'Files', $MyFiles);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -1008,6 +1010,8 @@ class Home extends MX_Controller {
 	public function getCurrentPost($id) {
 		$this->load->model('Product_Model', 'product' );
 		$Posts = $this->product->getCurrentPost($id);
+		$binfo = $this->product->getBusinessCategory($id);
+		$this->template->set ( 'bcatinfo', $binfo);
 		$this->template->set ( 'Posts', $Posts);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -1019,6 +1023,8 @@ class Home extends MX_Controller {
 	public function getCurrentRequest($id) {
 		$this->load->model('Product_Model', 'product' );
 		$Posts = $this->product->getCurrentRequest($id);
+		$binfo = $this->product->getBusinessCategory($id);
+		$this->template->set ( 'bcatinfo', $binfo);
 		$this->template->set ( 'Posts', $Posts);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -1031,6 +1037,8 @@ class Home extends MX_Controller {
 	public function buyerCurrentRequest($id) {
 		$this->load->model('Product_Model', 'product' );
 		$Posts = $this->product->getCurrentRequest($id);
+		$binfo = $this->product->getBusinessCategory($id);
+		$this->template->set ( 'bcatinfo', $binfo);
 		$this->template->set ( 'Posts', $Posts);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -1208,9 +1216,11 @@ class Home extends MX_Controller {
 		$this->load->model('Product_Model','product');
 		$Desksites= $this->product->getDesksiteByBusiId($map);
 		$countries = $this->product->getAllCountries();
+		$requests = $this->product->getCurrentRequest($id);
 		$this->template->set ( 'countries', $countries );
 		$this->template->set ( 'Desksites', $Desksites);
 		$this->template->set ( 'community', $community);
+		$this->template->set ( 'requests', $requests);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'buyer');
 		$this->template->set_theme('default_theme');
@@ -1223,6 +1233,7 @@ class Home extends MX_Controller {
 	}
 	public function shipperProfileByBusiId($id){
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$community = array();
 		if(!empty($busi_id)) {
 			if($busi_id != $id) {
 				$map = array();
@@ -1231,6 +1242,7 @@ class Home extends MX_Controller {
 				$map['visit_date'] = date('Y-m-d');
 				$this->load->model('Tool_model','mytoolmodel');
 				$this->mytoolmodel->addBusinessVisit($map);
+				$community = $this->product->getInCommunity($busi_id,$id);
 			}
 		}
 		$map =array();
@@ -1246,6 +1258,7 @@ class Home extends MX_Controller {
 		$this->template->set ( 'images', $images);
 		$this->template->set ( 'branches', $branches);
 		$this->template->set ( 'Desksites', $Desksites);
+		$this->template->set ( 'community', $community);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'shipper');
 		$this->template->set_theme('default_theme');

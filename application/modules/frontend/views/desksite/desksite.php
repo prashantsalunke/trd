@@ -599,7 +599,7 @@ function stopWiggle(input) {
 		<?php foreach($Desksites as $Desksite) {?>
 		<!-- navbar  end -->
 			<!-- head text section -->
-			<div class="c9" style="z-index:200;">
+			<div class="c9" style="z-index:200;text-align:left;">
 			    <span class="c10"><strong><?php echo $Desksite['company_name'];?></strong></span><br>
 			    <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['hot_presentation'], 0, 280);?> <?php if(strlen($Desksite['company_introduction']) > 280){?>..<?php }?></span></p>
 			</div>
@@ -856,19 +856,18 @@ function stopWiggle(input) {
 			<!-- product popup ends -->
 				
 			<!--about us-->
-			<!-- div id="Layer23" class="box1 a4" style="width:495px;padding:15px;"-->
 			<div id="Layer23" style="position:absolute;text-align:center;visibility:hidden;left:378px;top:34px;width:45%;height:670px;z-index:3864;">
 				<div id="Layer23_Container" style="width:584px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
-				<div id="Layer42" class="a4" >
-			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-					</a>
-			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT US</p>
-			        <div class="box2" id="about-us" style="height: 540px;overflow-y:scroll;padding-top:0px;">
-			            
-			        </div>
-			    </div>
-			</div>
+					<div id="Layer42" class="a4" >
+				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+						</a>
+				        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT US</p>
+				        <div class="box2" id="about-us" style="height: 540px;overflow-y:scroll;padding-top:0px;">
+				            
+				        </div>
+				    </div>
+				</div>
 			</div>
 			
 			<!-- about us end -->
@@ -1751,7 +1750,8 @@ function likeMyVideo(id,type,likeid) {
 			likes = likes + 1;
 			$("#"+likeid).html(likes);
 		}
-		alert(data.msg);
+		$("#msg_cont").html(data.msg);
+		ShowObject('Layer99', 1);
 	},'json');
 }
 function printInvoice() {    
@@ -1789,7 +1789,7 @@ function submitContactForm() {
 			<?php } ?>
 		<?php } ?>
 	<?php } else { ?>
-		$("#msg_cont").html("Please login to send enquiry.");
+		$("#msg_cont").html("Please login to contact this seller.");
 		ShowObject('Layer99', 1);
 	<?php } ?>
 }

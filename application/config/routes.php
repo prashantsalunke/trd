@@ -424,6 +424,7 @@ $route['desksite/like/([0-9]+)'] = 'frontend/Home/likeBusiness/$1';
 $route['desksite/catalogue/like/([0-9]+)'] = 'frontend/Home/likeCatalogue/$1';
 $route['desksite/general_enquiry/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
 $route['desksite/saveenquiry'] = 'frontend/Home/saveGeneralInquiry';
+$route['desksite/product/like/([0-9]+)'] = 'frontend/Product/likeProduct/$1';
 
 
 /********************  Community **************/

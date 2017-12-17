@@ -36,7 +36,7 @@
 				            <p class="be1">  <?php echo substr($mservices, 0, 150);?> </p>
 				            <p class="be2">Special Services :</p>
 				            <p class="be1">  <?php echo substr($sservices, 0, 150);?> </p>
-				            <p class="be1"><hr style="margin: 5px 0px; height: 1px; border-top: 1px dotted #000;"/></p>
+				            <p class="be1"><hr style="margin:20px 0px; height: 1px; border-top: 1px dotted #000;"/></p>
 				            <div class="inline">
 				                <p class="be2">Year of Establish: </p>
 				                <p class="be1"> <?php echo " ".$company['year_of_registration'];?></p>
@@ -49,19 +49,18 @@
 				                <p class="be2">Employees : </p>
 				                <p class="be1"> <?php echo " ".$company['company_size'];?></p>
 				            </div>
-				            <p class="be1"><hr style="margin: 5px 0px; height: 1px; border-top: 1px dotted #000;"/></p>
-				            <div>
-				            	<p class="be2">Contact Person : </p>
-				                <p class="name"><?php echo $company['name'];?></p>
-				                <img src="<?php echo asset_url().$company['profile_image']; ?>" id="Image63" alt="" class="img66">
-			                </div>
+				            <p class="be1"><hr style="margin: 20px 0px; height: 1px; border-top: 1px dotted #000;"/></p>
 				      
-				    <div class="bg3 inline">
-				    	<div class="row">
-					        <div class="col-sm-2">Views</div>
-					        <div class="col-sm-4 count"><?php echo $company['visit'];?></div>
-					        <div class="col-sm-2">Likes</div>
-					        <div class="col-sm-4 count"><?php echo $company['likes'];?></div>
-				        </div>
-				    </div>
+					    <div class="">
+					        <div class="row">
+						        <div class="col-sm-6 text-center">
+						        	<div class="text-center"><span style="color:#1E90FF;font-family:Georgia;font-size:12px;"><strong>View</strong></span></div>
+						        	<div class="count text-center"><?php echo $company['visit'];?></div>
+						        </div>
+						        <div class="col-sm-6 text-center">
+						        	<div class="text-center"><span style="color:#1E90FF;font-family:Georgia;font-size:12px;"><strong>Like</strong></span></div>
+						        	<div class="count text-center"><?php echo $company['likes'];?></div>
+						        </div>
+					        </div>
+					    </div>
 					<?php } ?>

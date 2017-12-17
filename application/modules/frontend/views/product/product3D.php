@@ -27,8 +27,8 @@
 				}
 				.wb_Text496{
 					position:absolute;
-					left:22px;
-					top:35px;
+					left:33px;
+					top:40px;
 					width:254px;
 					height:30px;
 					text-align:center;
@@ -55,6 +55,7 @@
 					color:#1E90FF;
 					font-family:Arial;
 					font-size:16px;
+					text-align:center;
 				}
 				.wb_Text498{
 					position:absolute;left:70px;top:356px;width:161px;height:16px;text-align:center;z-index:223;
@@ -93,6 +94,9 @@
 				    background: #fff;
    					margin-bottom: 30px;
    					padding-top:5px;
+   					background-color: #FFFFFF;
+    				border: 1px #D3D3D3 solid;
+    				padding-top:12px;
 				}
 			</style>
 			<div id="Layer2_Container">
@@ -110,15 +114,15 @@
 								<div class="col-md-3">
 									<div id="Layer228" class="Layer228" onmouseenter="ShowObjectWithEffect('Layer105', 1, 'fade', 500);return false;" onmouseleave="ShowObjectWithEffect('Layer105', 0, 'fade', 500);return false;">
 										<div id="wb_Text495" style="">
-										<span class="product_name"style="color: #1E90FF; font-family: Arial; font-size: 14px;"><a href="<?php echo base_url();?>products/details/<?php echo $item['id']; ?>" target="_blank" class="style16"><?php echo $item['name']; ?></a></span></div>
+										<span class="product_name"><a href="<?php echo base_url();?>products/details/<?php echo $item['id']; ?>" target="_blank" class="style16"><?php echo $item['name']; ?></a></span></div>
 										<div id="wb_Text496" class="wb_Text496" style="">
-										<span class="desc" style=""><?php echo substr($item['description'],0,60);?> ...</span></div>
+										<span class="desc" style=""><?php echo substr($item['description'],0,80);?> <?php if(strlen($item['description']) > 80) { ?>...<?php } ?></span></div>
 										<div id="wb_Text497" class="wb_Text497" style="">
-										<span class="usd" style="">USD</span><span style="color:#C0C0C0;font-family:Arial;font-size:13px;"> </span><span style="color:#3C3C3C;font-family:Arial;font-size:24px;"><?php echo $item['unit_price'];?></span></div>
+										<span class="usd" style="">USD</span><span style="color:#C0C0C0;font-family:Arial;font-size:13px;"> </span><span style="color:#3C3C3C;font-family:Arial;font-size:24px;"><?php echo $item['unit_price'];?>.00</span></div>
 										<div id="wb_Text498" class="wb_Text498" style="">
 										<span class="min-order" style="">Min. Order: <?php echo $item['quantity'].' '.$item['unit'];?>&nbsp;&nbsp;&nbsp; </span></div>
 										<div id="wb_Shape75" class="wb_Shape75" style="">
-										<img src="<?php echo asset_url().$item['main_image']?>" id="Shape75" alt="" style="width:215px;height:250px;"></div>
+										<img src="<?php echo asset_url().$item['main_image']?>" id="Shape75" alt="" style="width:236px;"></div>
 										<div id="wb_Text2"  class ="wb_Text2" >
 										<span style=""  class="like-count"><?php echo $item['likes'];?></span></div>
 										<div id="wb_Image1" class ="wb_Image1" style="position:absolute;left:137px;top:373px;width:25px;height:25px;z-index:226;">
@@ -132,4 +136,12 @@
 					<?php  } $i++; ?>
 				<?php }?>
 			</div>
-			
+<script>
+function changeCountry(a){
+	var country = $(a).val();
+	$.post(base_url+"seller/city",{country: country, busi_type: 1 },function(data) {
+		$('#city').html(data);
+	},'html');
+	
+}					
+</script>			

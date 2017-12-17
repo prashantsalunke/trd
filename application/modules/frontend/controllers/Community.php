@@ -256,12 +256,13 @@ class Community extends MX_Controller {
 		$params = array();
 		$params['my_busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		$params['busi_id'] = $id;
+		$this->load->model('Product_Model','product');
 		$mydetails = $this->product->getCommunicationInfo($params['my_busi_id']);
 		$tscat_id = $this->session->userdata('tsuser')['category_id'];
 		$resp = array();
 		if(!empty($this->session->userdata('tsuser')['busi_id'])) { 
 			if($params['my_busi_id'] != $params['busi_id']) {
-				if(($tscat_id == 1 && $mydetails['step'] == 4) || ($tscat_id == 2 && $mydetails['step'] == 2) || ($tscat_id == 3 && $mydetails['step'] == 2)) {
+				if(($tscat_id == 1 && $mydetails[0]['step'] == 4) || ($tscat_id == 2 && $mydetails[0]['step'] == 2) || ($tscat_id == 3 && $mydetails[0]['step'] == 2)) {
 					if($tscat_id != 3) {
 						$isadded = $this->mycommunity->addToMyCommunity($params);
 						if($isadded) {

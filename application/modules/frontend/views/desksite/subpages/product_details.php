@@ -458,7 +458,7 @@ pre {
 	    			</div>
 	    			<div class="row" style="padding-top:10px;">
 			    		<div class="col-md-4" ><p>Product CBM</p></div>
-			    		<div class="col-md-8" ><p><?php echo $product['cbm']?></p></div>
+			    		<div class="col-md-8" ><p><?php echo $product['cbm'];?></p></div>
 		    		</div>
 	    			<hr id="Line10" style="height: 1px; width: 357px; margin: 10px 0px;"/>
 	    			<div class="row">
@@ -471,30 +471,30 @@ pre {
 		    		</div>
 		    		<div style="position:relative;">
 		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;">
-							<a href="javascript:popupwnd('./chat_window.php','no','no','no','no','no','no','750','50','440','750')" target="_self">
-							<img class="hover" alt="" src="<?php echo asset_url();?>images/items_chat.png">
-							<span><img alt="" src="<?php echo asset_url();?>images/items_chat0.png"></span>
+							<a href="javascript:openChatWithBuyer(<?php echo $product['busi_id'];?>);" target="_self">
+								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_chat.png">
+								<span><img alt="" src="<?php echo asset_url();?>images/items_chat0.png"></span>
 							</a>
 						</div>
-		    			<div id="wb_Image68" style="position:absolute;left:291px;top:8px;width:41px;height:41px;">
+		    			<!-- div id="wb_Image68" style="position:absolute;left:291px;top:8px;width:41px;height:41px;">
 							<a href="#" onclick="ShowObjectWithEffect('Layer223', 1, 'fade', 500);return false;">
 								<img src="<?php echo asset_url();?>images/items_share0.png" id="Image68" alt="">
 							</a>
-						</div>
+						</div-->
 						<div id="RollOver14" style="position:absolute;left:244px;top:8px;overflow:hidden;width:41px;height:41px;z-index:177">
-							<a href="javascript:popupwnd('./likes_blogs.php','no','no','no','no','no','no','750','50','380','750')" target="_self">
+							<a href="javascript:likeProduct(<?php echo $product['id'];?>);" target="_self">
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_like.png">
 								<span><img alt="" src="<?php echo asset_url();?>images/items_like0.png"></span>
 							</a>
 						</div>
 						<div id="RollOver15" style="position:absolute;left:192px;top:9px;overflow:hidden;width:40px;height:40px;z-index:178">
-							<a href="">
+							<a href="javascript:addToItemToCart(<?php echo $product['id'];?>);">
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_cart.png">
 								<span><img alt="" src="<?php echo asset_url();?>images/items_cart0.png"></span>
 							</a>
 						</div>
 						<div id="RollOver36" style="position:absolute;left:140px;top:9px;overflow:hidden;width:40px;height:40px;z-index:179">
-							<a href="">
+							<a href="javascript:addToMyFavourite(<?php echo $product['id'];?>,4);">
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_favorite.png">
 								<span><img alt="" src="<?php echo asset_url();?>images/items_favorite0.png"></span>
 							</a>
@@ -582,5 +582,21 @@ function saveToPdf() {
 	  html2canvas:  { dpi: 192, letterRendering: true },
 	  jsPDF:        { unit: 'in', format: 'A4', orientation: 'portrait' }
 	});
+}
+function addToItemToCart(id) {
+	$.post(base_url+"additemtocart",{product_id: id},function(data) {
+		$("#msg_cont").html(data.msg);
+		ShowObject('Layer99', 1);
+	},'json');
+}
+function likeProduct(id) {
+	$.get(base_url+"desksite/product/like/"+id,{},function(data) {
+		if(data.status == 1) {
+			$("#msg_cont").html(data.msg);
+		} else {
+			$("#msg_cont").html(data.msg);
+		}
+		ShowObject('Layer99', 1);
+	},'json');
 }
 </script>

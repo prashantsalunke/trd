@@ -26,7 +26,7 @@
 					<?php } ?>
 					<?php if(count($Files) <= 0) { ?>
 						<div style="padding:100px;font-size:14px;">
-							The seller has no files to share
+							The <?php if($bcatinfo[0]['user_category_id'] == 1) { ?>seller<?php } elseif ($bcatinfo[0]['user_category_id'] == 2) { ?>shipper<?php } else { ?>buyer<?php } ?> has no files to share
 						</div>
 					<?php } ?>
 				</div>

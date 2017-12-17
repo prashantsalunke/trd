@@ -961,7 +961,7 @@ class Product_Model extends CI_Model {
     	return $result;
     }
     
-    public function getMyfiles($id){
+    public function getMyFiles($id){
     	$this->db->select('*');
     	$this->db->from(TABLES::$MYFILE);
     	$this->db->where('busi_id', $id);
@@ -1048,24 +1048,36 @@ class Product_Model extends CI_Model {
     	$result = $query->result_array();
     	return $result;
     }
-    public function getCurrentPost($id){
+    public function getCurrentPost($busi_id){
+    	$start_date = date('Y-m-d',strtotime("-15 days"));
+    	$end_date = date('Y-m-d H:i:s');
     	$this->db->select('a.*, c.*');
     	$this->db->from(TABLES::$BSTATION_POST.' as a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = a.busi_id', 'left');
-    	$this->db->where('a.busi_id', $id);
-    	$this->db->where('a.status', 1);
-    	$this->db->order_by('a.created_date');
+    	$this->db->where('a.status',1);
+    	$this->db->where('a.is_deleted',0);
+    	$this->db->where('a.created_date >',$start_date);
+    	$this->db->where('a.busi_id',$busi_id);
+    	$this->db->where("DATE(a.created_date) > '".$start_date."'",'',false);
+    	$this->db->order_by('a.created_date','DESC');
+    	$this->db->group_by('a.id');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
     }
-    public function getCurrentRequest($id){
+    public function getCurrentRequest($busi_id){
+    	$start_date = date('Y-m-d',strtotime("-15 days"));
+    	$end_date = date('Y-m-d H:i:s');
     	$this->db->select('a.*, c.*');
-    	$this->db->from(TABLES::$BSTATION_POST.' as a');
-    	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = a.busi_id', 'left');
-    	$this->db->where('a.busi_id', $id);
-    	$this->db->where('a.status', 1);
-    	$this->db->order_by('a.created_date');
+    	$this->db->from(TABLES::$STOCK_REQUEST.' as a');
+    	$this->db->join(TABLES::$BSTATION_POST.' as b' , 'b.id = a.post_id', 'inner');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = a.buyer_id', 'left');
+    	$this->db->where('b.status',1);
+    	$this->db->where('b.is_deleted',0);
+    	$this->db->where('b.created_date >',$start_date);
+    	$this->db->where('a.buyer_id',$busi_id);
+    	$this->db->where("DATE(b.created_date) > '".$start_date."'",'',false);
+    	$this->db->order_by('a.created_date','DESC');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -2190,6 +2202,31 @@ class Product_Model extends CI_Model {
    		return $this->db->affected_rows();
    	}
    	
+   	public function updateProductLikes($product_id,$busi_id){
+   		$this->db->select('id');
+   		$this->db->from(TABLES::$PRODUCT_VISITORS);
+   		$this->db->where('item_id', $product_id);
+   		$this->db->where('busi_id', $busi_id);
+   		$this->db->where('likes', 1);
+   		$query = $this->db->get();
+   		$row = $query->result_array();
+   		if(count($row) <= 0) {
+	   		$sql = "UPDATE ".TABLES::$PRODUCT_ITEM." SET likes = likes + 1 where id=".$product_id;
+	   		$query = $this->db->query($sql);
+	   		$this->db->affected_rows();
+	   		$params = array();
+	   		$params['busi_id'] = $busi_id;
+	   		$params['item_id'] = $product_id;
+	   		$params['likes'] = 1;
+	   		$params['shares'] = 0;
+	   		$params['visit_date'] = date('Y-m-d');
+	   		$this->db->insert(TABLES::$PRODUCT_VISITORS,$params);
+	   		return 1;
+   		} else {
+   			return 0;
+   		}
+   	}
+   	
    	public function getCompanyTradeInfo($busi_id) {
    		$this->db->select('*');
    		$this->db->from(TABLES::$TRADE_INFO);
@@ -2243,6 +2280,17 @@ class Product_Model extends CI_Model {
    		$this->db->from(TABLES::$BUSINESS_INFO.' AS a');
    		$this->db->join(TABLES::$PRODUCT_STAGE.' AS b','a.id=b.busi_id','left');
    		$this->db->where('a.id', $busi_id);
+   		$query = $this->db->get();
+   		$result = $query->result_array();
+   		return $result;
+   	}
+   	
+   	public function getBusinessCategory($busi_id) {
+   		$this->db->select('a.id,b.user_category_id,b.user_subcategory_id');
+   		$this->db->from(TABLES::$BUSINESS_INFO.' AS a');
+   		$this->db->join(TABLES::$USER.' AS b','a.id=b.busi_id','inner');
+   		$this->db->where('a.id', $busi_id);
+   		$this->db->group_by('a.id');
    		$query = $this->db->get();
    		$result = $query->result_array();
    		return $result;
