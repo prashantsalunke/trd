@@ -79,10 +79,10 @@ div.pp_pic_holder {
 }
   </style>
 <div class="row" style="margin:0px;padding-top:10px;">
-<ul class="myudtalk">
+<ul class="myudtalk text-left">
 	<?php foreach ($licences as $key=>$image) { ?>
 		<?php if(!empty($image['cert_image1'])) { ?>
-      	<li class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      	<li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
           	<div class="card" id="<?php echo $key;?>">
            		<a href="<?php echo asset_url().$image['cert_image1'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]">
                		<img class="img-responsive imageborderclass" src="<?php echo asset_url().$image['cert_image1'];?>" style="width: 180px;" />
@@ -92,7 +92,7 @@ div.pp_pic_holder {
      	</li>
      	<?php } ?>
      	<?php if(!empty($image['cert_image2'])) { ?>
-      	<li class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      	<li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
           	<div class="card" id="<?php echo $key;?>">
            		<a href="<?php echo asset_url().$image['cert_image2'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]">
                		<img class="img-responsive imageborderclass" src="<?php echo asset_url().$image['cert_image2'];?>" style="width: 180px;" />
@@ -102,7 +102,7 @@ div.pp_pic_holder {
      	</li>
      	<?php } ?>
      	<?php if(!empty($image['cert_image3'])) { ?>
-      	<li class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      	<li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
           	<div class="card" id="<?php echo $key;?>">
            		<a href="<?php echo asset_url().$image['cert_image3'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]">
                		<img class="img-responsive imageborderclass" src="<?php echo asset_url().$image['cert_image3'];?>" style="width: 180px;" />
@@ -112,7 +112,7 @@ div.pp_pic_holder {
      	</li>
      	<?php } ?>
      	<?php if(!empty($image['cert_image4'])) { ?>
-      	<li class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      	<li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
           	<div class="card" id="<?php echo $key;?>">
            		<a href="<?php echo asset_url().$image['cert_image4'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]">
                		<img class="img-responsive imageborderclass" src="<?php echo asset_url().$image['cert_image4'];?>" style="width: 180px;" />
@@ -123,7 +123,7 @@ div.pp_pic_holder {
      	<?php } ?>
    	<?php } ?>
 	<?php foreach ($Certificate as $key=>$image) { ?>
-      	<li class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      	<li class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
           	<div class="card" id="<?php echo $key;?>">
            		<a href="<?php echo asset_url().$image['certificate_url'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]">
                		<img class="img-responsive imageborderclass" src="<?php echo asset_url().$image['certificate_url'];?>" style="width: 180px;" />

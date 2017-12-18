@@ -1066,8 +1066,8 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b', 'a.product_item_id = b.id', 'inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','b.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','b.busi_id=f.busi_id','inner');
-    	$this->db->join(TABLES::$USER_CATEGORIES.' AS d','f.user_category_id=d.id','left');
-    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','f.user_subcategory_id=e.id','left');
+    	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=b.sproduct_id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','b.mproduct_id=d.id','left');
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
@@ -1076,10 +1076,10 @@ class Sellers_Model extends CI_Model {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
     		if(!empty($params['keyword'])) {
-    			$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR a.model_no like '%".trim($params['keyword'])."%')",'',false);
+    			$this->db->where("(b.name like '%".trim($params['keyword'])."%' OR b.model_no like '%".trim($params['keyword'])."%')",'',false);
     		}
     		if(!empty($params['city'])) {
-    			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
+    			$this->db->where("c.company_city like '%".trim($params['city'])."%'",'',false);
     		}
     		if(!empty($params['type'])) {
     			if($params['type'] ==1) {
@@ -1095,7 +1095,7 @@ class Sellers_Model extends CI_Model {
     		}
     	}
     	
-    	$this->db->group_by('a.id');
+    	$this->db->group_by('b.id');
     	if(!empty($params['page'])) {
     		$start = $params['page']*25 - 25;
     		$this->db->limit($start,25);
@@ -1108,17 +1108,14 @@ class Sellers_Model extends CI_Model {
     	
     }
     
-    public function searchVCatalogues($params){
-    	$current_date = date('Y-m-d');
-    	$this->db->select('a.*,b.*, c.company_name, c.company_country, c.company_province,c.company_city, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank ');
-    	$this->db->from(TABLES::$FEATURED_CATALOGUE.' as a');
-    	$this->db->join(TABLES::$PRODUCT_CATALOGUE.' as b' , 'b.id = a.catalogue_id', 'left');
+    public function count3DProducts($params){
+    	$this->db->select('count(DISTINCT a.product_item_id) as products');
+    	$this->db->from(TABLES::$PRODUCT_3DPRODUCT.' AS a');
+    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b', 'a.product_item_id = b.id', 'inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','b.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','b.busi_id=f.busi_id','inner');
-    	$this->db->join(TABLES::$USER_CATEGORIES.' AS d','f.user_category_id=d.id','left');
-    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','f.user_subcategory_id=e.id','left');
-    	//$this->db->where($current_date." BETWEEN a.start_date AND  a.end_date",'',false);
-    	$this->db->where('a.status', 1);
+    	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=b.sproduct_id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','b.mproduct_id=d.id','left');
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
@@ -1127,16 +1124,16 @@ class Sellers_Model extends CI_Model {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
     		if(!empty($params['keyword'])) {
-    			$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR a.model_no like '%".trim($params['keyword'])."%')",'',false);
+    			$this->db->where("(b.name like '%".trim($params['keyword'])."%' OR b.model_no like '%".trim($params['keyword'])."%')",'',false);
     		}
     		if(!empty($params['city'])) {
-    			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
+    			$this->db->where("c.company_city like '%".trim($params['city'])."%'",'',false);
     		}
     		if(!empty($params['type'])) {
     			if($params['type'] ==1) {
     				$this->db->order_by('a.unit_price', 'ASC');
     			} elseif($params['type'] ==2){
-    				
+    
     				$this->db->order_by('a.unit_price', 'DESC');
     			}
     		}
@@ -1145,17 +1142,97 @@ class Sellers_Model extends CI_Model {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
     	}
+    	 
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    	 
+    	 
+    }
+    
+    public function searchVCatalogues($params){
+    	$current_date = date('Y-m-d');
+    	$this->db->select('b.*,b.id as catalogue_id, c.company_name, c.company_country, c.company_province,c.company_city, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank,(select id from tbl_community_member as cm where cm.my_busi_id=c.id and cm.busi_id = '.$params['busi_id'].' limit 1) as incommunity');
+    	$this->db->from(TABLES::$PRODUCT_CATALOGUE.' as b');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','b.busi_id=c.id','inner');
+    	$this->db->join(TABLES::$USER.' AS f','b.busi_id=f.busi_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_CATALOGUE_ITEM.' AS g','b.id=g.catalogue_id','left');
+    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS h', 'g.item_id = h.id', 'left');
+    	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=h.sproduct_id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','h.mproduct_id=d.id','left');
+    	$this->db->where('b.status', 1);
+    	$this->db->where('c.is_disable', 0);
+    	$this->db->where('c.is_deleted', 0);
+    	if(!empty($params['keyword'])) {
+    		if(!empty($params['country'])) {
+    			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
+    		}
+    		if(!empty($params['keyword'])) {
+    			$this->db->where("(b.catalogue_title like '%".trim($params['keyword'])."%')",'',false);
+    		}
+    		if(!empty($params['city'])) {
+    			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
+    		}
+    		if(!empty($params['type']) && $params['type'] == 1) {
+    			$this->db->where("c.plan_id > 1",'',false);
+    		}
+    	} else {
+    		if(!empty($params['cat_id'])) {
+    			$this->db->where('d.subcat_id', $params['cat_id']);
+    		}
+    	}
     	
-    	$this->db->group_by('a.id');
+    	$this->db->group_by('b.id');
     	if(!empty($params['page'])) {
     		$start = $params['page']*25 - 25;
     		$this->db->limit($start,25);
     	}
     	$query = $this->db->get();
-    	//echo $this->db->last_query();
     	$result = $query->result_array();
     	return $result;
     	
+    }
+    
+    public function countVCatalogues($params){
+    	$current_date = date('Y-m-d');
+    	$this->db->select('count(DISTINCT b.id) as catalogues');
+    	$this->db->from(TABLES::$PRODUCT_CATALOGUE.' as b');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','b.busi_id=c.id','inner');
+    	$this->db->join(TABLES::$USER.' AS f','b.busi_id=f.busi_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_CATALOGUE_ITEM.' AS g','b.id=g.catalogue_id','left');
+    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS h', 'g.item_id = h.id', 'left');
+    	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=h.sproduct_id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','h.mproduct_id=d.id','left');
+    	$this->db->where('b.status', 1);
+    	$this->db->where('c.is_disable', 0);
+    	$this->db->where('c.is_deleted', 0);
+    	if(!empty($params['keyword'])) {
+    		if(!empty($params['country'])) {
+    			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
+    		}
+    		if(!empty($params['keyword'])) {
+    			$this->db->where("(b.catalogue_title like '%".trim($params['keyword'])."%')",'',false);
+    		}
+    		if(!empty($params['city'])) {
+    			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
+    		}
+    		if(!empty($params['type']) && $params['type'] == 1) {
+    			$this->db->where("c.plan_id > 1",'',false);
+    		}
+    	} else {
+    		if(!empty($params['cat_id'])) {
+    			$this->db->where('d.subcat_id', $params['cat_id']);
+    		}
+    	}
+    	 
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	if(count($result) > 0) {
+    		return ceil($result[0]['products']/25);
+    	} else {
+    		return 0;
+    	}
+    	 
     }
     
 }

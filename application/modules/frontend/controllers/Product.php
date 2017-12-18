@@ -174,8 +174,32 @@ class Product extends MX_Controller {
 		->title ( 'Find Products' )
 		->set_partial ( 'header', 'default/floating-header' )
 		->set_partial ( 'footer', 'default/footer' );
-		$this->template->build ('product/product-details');
+		$this->template->build ('desksite/subpages/product_details');
 		
+	}
+	public function productDetailsPage($id) {
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		if(!empty($busi_id)) {
+			$map = array();
+			$map['busi_id'] = $busi_id;
+			$map['item_id'] = $id;
+			$map['visit_date'] = date('Y-m-d');
+			$this->load->model('Tool_model','mytoolmodel');
+			$this->mytoolmodel->addProductVisit($map);
+		}
+		$this->load->model('Product_Model', 'product' );
+		$getProductdetailsById = $this->product->getProductdetailsById($id);
+		$this->template->set ( 'Productdetails', $getProductdetailsById);
+		$colors = $this->product->getProductColorById($id);
+		$this->template->set ( 'colors', $colors);
+		$Specifications = $this->product->getProductSpecificationById($id);
+		$this->template->set ( 'specifications', $Specifications);
+		$this->template->set ( 'page', 'pro-details');
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('desksite/subpages/product_details','',true);
+		echo $html;
 	}
 	
 	public function productDetailById($id){
@@ -236,6 +260,7 @@ class Product extends MX_Controller {
 		echo $html;
 		
 	}
+	
 	public function productListBySubProduct($id, $busi_id){
 		$map = array();
 		$map['sproduct_id'] = $id;
@@ -268,6 +293,24 @@ class Product extends MX_Controller {
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('product/video-details');
 		
+	}
+	
+	public function productListByCat($catid, $scatid, $mcatid, $busi_id){
+		$map = array();
+		$map['subcat_id'] = $catid;
+		$map['sproduct_id'] = $scatid;
+		$map['mproduct_id'] = $mcatid;
+		$map['busi_id'] = $busi_id;
+		$this->load->model('Product_Model', 'product' );
+		$products = $this->product->productListByCSMCategory($map);
+		$this->template->set ( 'productList', $products);
+		$this->template->set ( 'page', 'product' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('product/pages/pro-list', '', true);
+		echo $html;
+	
 	}
 	
 	public function itemDetailById($id, $busi_id){
@@ -348,6 +391,28 @@ class Product extends MX_Controller {
 		echo json_encode($resp);
 	}
 	
+	public function likeProduct($id) {
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$resp = array();
+		if(!empty($busi_id)) {
+			$this->load->model('Product_Model', 'product' );
+			$is_added = $this->product->updateProductLikes($id,$busi_id);
+			if($is_added) {
+				$resp['status'] = 1;
+				$resp['msg'] = 'Thank you for your response';
+			} else {
+				$resp['status'] = 1;
+				$resp['msg'] = 'You have already like this product';
+			}
+		} else {
+			$resp = array();
+			$resp['status'] = 0;
+			$resp['msg'] = 'Please login to like';
+		}
+		echo json_encode($resp);
+	}
+	
+	
 	public function getProductRelatedImages($product_id,$key) {
 		$this->load->model('Product_Model', 'product' );
 		$images = $this->product->getProductRelatedImages($product_id);
@@ -400,46 +465,46 @@ class Product extends MX_Controller {
 		$params = $this->input->get();
 		$keyword = "";
 		if(!empty($params['keyword']))
-			$keyword = $params['keyword'];
-			$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
-			if(empty($params['page'])) {
-				$params['page'] = 1;
-			}
-			$this->load->model('Sellers_Model', 'sellers' );
-			$this->load->library('mylib/General', 'general');
-			$this->load->model ( 'Account_Model', 'account' );
-			$products = $this->sellers->search3DProducts($params);
-			$total_pages = $this->sellers->countProducts($params);
-			$this->template->set ( 'products', $products);
-			$Country= $this->account->getCountry();
-			$this->template->set ( 'Country', $Country);
-			$procategories = $this->general->getProductCategories();
-			$this->template->set ( 'categories', $procategories);
-			$maincats = $this->product->getActiveProductMainAndSubCategories();
-			$this->template->set ( 'mcats', $maincats );
-			if(empty($keyword)) {
-				unset($params['keyword']);
-			}
-			$url = base_url()."3dproducts?".http_build_query($params);
-			$this->template->set ( 'params', $params);
-			$this->template->set('producturl',$url);
-			$this->template->set('page',$params['page']);
-			$this->template->set('total_pages',$total_pages);
-			unset($params['page']);
-			if(http_build_query($params) != "")
-				$wpurl = base_url()."3dproducts?".http_build_query($params)."&";
-				else
-					$wpurl = base_url()."3dproducts?";
-					$this->template->set('wpproducturl',$wpurl);
-					$this->template->set ( 'page', '3dproduct' );
-					$this->template->set ( 'browser_icon', 'products.ico' );
-					$this->template->set ( 'userId', '' );
-					$this->template->set_theme('default_theme');
-					$this->template->set_layout ('default')
-					->title ( 'Find Products' )
-					->set_partial ( 'header', 'default/inner-header' )
-					->set_partial ( 'footer', 'default/footer' );
-					$this->template->build ('product/product3D');
+		$keyword = $params['keyword'];
+		$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+		if(empty($params['page'])) {
+			$params['page'] = 1;
+		}
+		$this->load->model('Sellers_Model', 'sellers' );
+		$this->load->library('mylib/General', 'general');
+		$this->load->model ( 'Account_Model', 'account' );
+		$products = $this->sellers->search3DProducts($params);
+		$total_pages = $this->sellers->count3DProducts($params);
+		$this->template->set ( 'products', $products);
+		$Country= $this->account->getCountry();
+		$this->template->set ( 'Country', $Country);
+		$procategories = $this->general->getProductCategories();
+		$this->template->set ( 'categories', $procategories);
+		$maincats = $this->product->getActiveProductMainAndSubCategories();
+		$this->template->set ( 'mcats', $maincats );
+		if(empty($keyword)) {
+			unset($params['keyword']);
+		}
+		$url = base_url()."3dproducts?".http_build_query($params);
+		$this->template->set ( 'params', $params);
+		$this->template->set('producturl',$url);
+		$this->template->set('page',$params['page']);
+		$this->template->set('total_pages',$total_pages);
+		unset($params['page']);
+		if(http_build_query($params) != "")
+			$wpurl = base_url()."3dproducts?".http_build_query($params)."&";
+		else
+			$wpurl = base_url()."3dproducts?";
+		$this->template->set('wpproducturl',$wpurl);
+		$this->template->set ( 'page', '3dproduct' );
+		$this->template->set ( 'browser_icon', 'products.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout ('default')
+		->title ( 'Find Products' )
+		->set_partial ( 'header', 'default/inner-header' )
+		->set_partial ( 'footer', 'default/footer' );
+		$this->template->build ('product/product3D');
 	}
 	
 	public function getAllVCatalogues() {
@@ -447,45 +512,49 @@ class Product extends MX_Controller {
 		$keyword = "";
 		if(!empty($params['keyword']))
 			$keyword = $params['keyword'];
+		if(!empty($this->session->userdata('tsuser')['busi_id'])) {
 			$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
-			if(empty($params['page'])) {
-				$params['page'] = 1;
-			}
-			$this->load->model('Sellers_Model', 'sellers' );
-			$this->load->library('mylib/General', 'general');
-			$this->load->model ( 'Account_Model', 'account' );
-			$vCatalogues = $this->sellers->searchVCatalogues($params);
-			$total_pages = $this->sellers->countProducts($params);
-			$this->template->set ( 'vCatalogues', $vCatalogues);
-			$Country= $this->account->getCountry();
-			$this->template->set ( 'Country', $Country);
-			$procategories = $this->general->getProductCategories();
-			$this->template->set ( 'categories', $procategories);
-			$maincats = $this->product->getActiveProductMainAndSubCategories();
-			$this->template->set ( 'mcats', $maincats );
-			if(empty($keyword)) {
-				unset($params['keyword']);
-			}
-			$url = base_url()."vcatalogues?".http_build_query($params);
-			$this->template->set ( 'params', $params);
-			$this->template->set('producturl',$url);
-			$this->template->set('page',$params['page']);
-			$this->template->set('total_pages',$total_pages);
-			unset($params['page']);
-			if(http_build_query($params) != "")
-				$wpurl = base_url()."vcatalogues?".http_build_query($params)."&";
-				else
-					$wpurl = base_url()."vcatalogues?";
-					$this->template->set('wpproducturl',$wpurl);
-					$this->template->set ( 'page', '3dproduct' );
-					$this->template->set ( 'browser_icon', 'products.ico' );
-					$this->template->set ( 'userId', '' );
-					$this->template->set_theme('default_theme');
-					$this->template->set_layout ('default')
-					->title ( 'Find Products' )
-					->set_partial ( 'header', 'default/inner-header' )
-					->set_partial ( 'footer', 'default/footer' );
-					$this->template->build ('product/Vcatalogue');
+		} else {
+			$params['busi_id'] = 0;
+		}
+		if(empty($params['page'])) {
+			$params['page'] = 1;
+		}
+		$this->load->model('Sellers_Model', 'sellers' );
+		$this->load->library('mylib/General', 'general');
+		$this->load->model ( 'Account_Model', 'account' );
+		$vCatalogues = $this->sellers->searchVCatalogues($params);
+		$total_pages = $this->sellers->countProducts($params);
+		$this->template->set ( 'vCatalogues', $vCatalogues);
+		$Country= $this->account->getCountry();
+		$this->template->set ( 'Country', $Country);
+		$procategories = $this->general->getProductCategories();
+		$this->template->set ( 'categories', $procategories);
+		$maincats = $this->product->getActiveProductMainAndSubCategories();
+		$this->template->set ( 'mcats', $maincats );
+		if(empty($keyword)) {
+			unset($params['keyword']);
+		}
+		$url = base_url()."vcatalogues?".http_build_query($params);
+		$this->template->set ( 'params', $params);
+		$this->template->set('producturl',$url);
+		$this->template->set('page',$params['page']);
+		$this->template->set('total_pages',$total_pages);
+		unset($params['page']);
+		if(http_build_query($params) != "")
+			$wpurl = base_url()."vcatalogues?".http_build_query($params)."&";
+		else
+			$wpurl = base_url()."vcatalogues?";
+		$this->template->set('wpproducturl',$wpurl);
+		$this->template->set ( 'page', 'vcatalogue' );
+		$this->template->set ( 'browser_icon', 'products.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout ('default')
+		->title ( 'Find Products' )
+		->set_partial ( 'header', 'default/inner-header' )
+		->set_partial ( 'footer', 'default/footer' );
+		$this->template->build ('product/Vcatalogue');
 	}
 	
 	

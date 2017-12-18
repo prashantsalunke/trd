@@ -46,7 +46,7 @@
 }
 #Carousel1 .frame
 {
-   width: 422px;
+   width: 455px;
    display: inline-block;
    float: left;
    height: 357px;
@@ -69,45 +69,45 @@
 #wb_Image6
 {
    position: absolute;
-   left: 12px;
-   top: 7px;
-   width: 400px;
+   left: 0px;
+   top: 5px;
+   width: 455px;
    height: 320px;
    z-index: 55;
 }
 #wb_Carousel1
 {
    position: absolute;
-   width: 420px;
+   width: 455px;
    height: 370px;
    z-index: 60;
    overflow: hidden;
-   left:20px;
+   left:5px;
 }
 #wb_Image7
 {
    position: absolute;
-   left: 431px;
-   top: 9px;
-   width: 400px;
+   left: 455px;
+   top: 5px;
+   width: 455px;
    height: 320px;
    z-index: 56;
 }
 #wb_Image8
 {
    position: absolute;
-   left: 853px;
-   top: 8px;
-   width: 400px;
+   left: 910px;
+   top: 5px;
+   width: 455px;
    height: 320px;
    z-index: 57;
 }
 #wb_Image9
 {
    position: absolute;
-   left: 1275px;
-   top: 8px;
-   width: 400px;
+   left: 1365px;
+   top: 5px;
+   width: 455px;
    height: 320px;
    z-index: 58;
 }
@@ -126,31 +126,31 @@
    border-width:0;
 }
 </style>
-<div style="height: 540px;width: 465px;overflow-y:scroll;overflow-x:hidden;position: absolute;left:15px;">
+<div style="height: 540px;width: 470px;overflow-y:scroll;overflow-x:hidden;position: absolute;left:15px;">
 <?php foreach($Company as $company){?>
 	<div id="wb_Carousel1">
 		<div id="Carousel1">
-		<div class="frame">
-		<div id="wb_Image6">
-		<img src="<?php echo asset_url().$company['company_info_img1']; ?>" id="Image6" alt=""></div>
-		</div>
-		<div class="frame">
-		<div id="wb_Image7">
-		<img src="<?php echo asset_url().$company['company_info_img2']; ?>" id="Image7" alt=""></div>
-		</div>
-		<div class="frame">
-		<div id="wb_Image8">
-		<img src="<?php echo asset_url().$company['company_info_img3']; ?>" id="Image8" alt=""></div>
-		</div>
-		<div class="frame">
-		<div id="wb_Image9">
-		<img src="<?php echo asset_url().$company['company_info_img4']; ?>" id="Image9" alt=""></div>
-		</div>
+			<div class="frame">
+				<div id="wb_Image6">
+				<img src="<?php echo asset_url().$company['company_info_img1']; ?>" id="Image6" alt=""></div>
+				</div>
+			<div class="frame">
+				<div id="wb_Image7">
+				<img src="<?php echo asset_url().$company['company_info_img2']; ?>" id="Image7" alt=""></div>
+				</div>
+			<div class="frame">
+				<div id="wb_Image8">
+				<img src="<?php echo asset_url().$company['company_info_img3']; ?>" id="Image8" alt=""></div>
+				</div>
+			<div class="frame">
+				<div id="wb_Image9">
+				<img src="<?php echo asset_url().$company['company_info_img4']; ?>" id="Image9" alt=""></div>
+			</div>
 		</div>
 	</div>
-	<div id="wb_Shape7">
+	<!-- div id="wb_Shape7">
 		<img src="<?php echo asset_url();?><?php echo $company['business_logo'];?>" id="Shape7" alt="">
-	</div>
+	</div-->
 	<div class="row" style="margin:0px;">
 	    <div class="be2" style="position:absolute;top:360px;width:465px;padding:15px 15px;">
 	    	<?php echo $company['company_introduction'];?>

@@ -6,50 +6,57 @@
 <script src="<?php echo asset_url(); ?>js/wb.slideshow.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/wb.carousel.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.core.min.js"></script>
-<script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
-<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-bounce.min.js"></script>
-<script src="<?php echo asset_url(); ?>js/slimbox/js/slimbox2.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.wiggle.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.ui.position.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.ui.tooltip.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.ui.widget.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.ui.mouse.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.ui.draggable.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.ui.effect-pulsate.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.ui.effect-scale.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.ui.effect-shake.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.widget.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.position.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.tooltip.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.ui.widget.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.mouse.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.draggable.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-blind.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-bounce.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-clip.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-drop.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-explode.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fold.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-highlight.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-pulsate.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-scale.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-shake.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/fancybox/jquery.easing-1.3.pack.js"></script>
+<link rel="stylesheet" href="<?php echo asset_url(); ?>css/fancybox/jquery.fancybox-1.3.0.css">
+<script src="<?php echo asset_url(); ?>js/fancybox/jquery.fancybox-1.3.0.pack.js"></script>
+<script src="<?php echo asset_url(); ?>js/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+<link rel="stylesheet" href="<?php echo asset_url(); ?>js/slimbox/css/slimbox2.css">
+<script src="<?php echo asset_url(); ?>js/slimbox/js/slimbox2.js"></script>
+<script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.wiggle.js"></script>
+<link href="<?php echo asset_url();?>css/jquery.booklet.1.1.0.css?1.1" rel="stylesheet">
+<script src="<?php echo asset_url();?>js/jquery.booklet.1.1.0.min.js?1.1"></script>
 <link rel="stylesheet" href="<?php echo asset_url();?>js/prettyPhoto/css/prettyPhoto.css">
 <script src="<?php echo asset_url();?>js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
 <style>
-div.pp_overlay {
-	z-index:12800 !important;
-}
-div.pp_pic_holder {
-	z-index:12801 !important;
+#Layer54 {
+    background-color: #FA5C43;
 }
 .catalog_c_img {
 	border: none;
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background-image: url(../../../assets/images/img2096.png);
+    background-image: url('<?php echo asset_url();?>images/img2096.png');
     background-repeat: no-repeat;
     background-position: 50%;
 }
 .catalogue_modal_body {
-	background-color:transparent;background-image:url('.../../assets/images/vcat_insider.png');background-size:cover;padding-top: 110px;
+	background-color:transparent;background-image:url('<?php echo asset_url();?>images/vcat_insider.png');background-size:cover;padding-top: 110px;
 }
-.catalogue_outer_body {
-	width: 700px;
-    margin-left: 100px;
+.catalogue_modal_body_bg {
+	background-color:transparent;background-image:url('<?php echo asset_url();?>images/vcat_insider.png');background-repeat:no-repeat;background-size:cover;padding-top: 80px;background-size:initial;background-position:center;
 }
 .catalogue_page_item_name {
-	color:#303030;font-family:Georgia;font-size:13px;padding-bottom:5px;padding-top:8px;
+	color:#303030;font-family:Georgia;font-size:13px;padding-bottom:5px;padding-top:0px;
 }
 .catalogue_page_item_details {
-	color:#787878;font-family:Arial;font-size:11px;padding-bottom:10px;
+	color:#787878;font-family:Arial;font-size:11px;padding-bottom:10px;min-height:55px;
 }
 .catalogue_page_item_quantity {
 	color:#1E90FF;font-family:Arial;font-size:11px;padding-bottom:25px;
@@ -67,6 +74,7 @@ div.pp_pic_holder {
 }
 .catalogue_page_left_num {
 	padding-top: 10px;
+	background-color:#fff;
 }
 .catalogue_page_no_text {
 	color:#D3D3D3;font-family:Arial;font-size:11px;
@@ -79,6 +87,7 @@ div.pp_pic_holder {
 }
 .catalogue_page_right_num {
 	padding-top: 10px;
+	background-color:#fff;
 }
 .catalogue_main_img {
 	border: 1px solid #eee;
@@ -122,6 +131,32 @@ ul.share{
 	list-style-type: none;
 	margin-top:  100%;
 	line-height: 50px;
+}
+.navigation2 {
+    display: table-cell;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 0px 0px;
+}
+a.style16
+{
+   color: #4169E1;
+   text-decoration: underline;
+}
+a.style16:visited
+{
+   color: #4169E1;
+   text-decoration: underline;
+}
+a.style16:active
+{
+   color: #4169E1;
+   text-decoration: underline;
+}
+a.style16:hover
+{
+   color: #FF7F50;
+   text-decoration: underline;
 }
 </style>
 
@@ -334,7 +369,7 @@ $(document).ready(function() {
     });
     $("#Layer216").stickylayer({
         orientation: 1,
-        position: ['30%', 60],
+        position: [70, 60],
         delay: 0
     });
     $("a[data-rel='PhotoGallery4']").attr('rel', 'PhotoGallery4');
@@ -365,18 +400,15 @@ $(document).ready(function() {
             });
         }
     });
-    var jQueryToolTip3Opts = {
-        hide: true,
-        show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">Black Horse Member</p>',
-        items: '#wb_Image61',
-        position: {
-            my: "right bottom",
-            at: "left top",
-            collision: "flipfit"
-        }
+    /*var jQueryToolTip3Opts =
+    {
+       hide: true,
+       show: true,
+       content: '<span style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;z-index:5000;margin-left:40px;">Black Horse Member</span>',
+       items: '#wb_Image61',
+       position: { my: "right bottom", at: "left top", collision: "flipfit" }
     };
-    $("#wb_Image61").tooltip(jQueryToolTip3Opts);
+    $("#wb_Image61").tooltip(jQueryToolTip3Opts);*/
     var jQueryToolTip4Opts = {
         hide: true,
         show: true,
@@ -397,7 +429,7 @@ $(document).ready(function() {
     //searchParseURL();
     $("#Layer58").stickylayer({
         orientation: 1,
-        position: ['30%', 50],
+        position: [70, 50],
         delay: 0
     });
     $("a[data-rel='PhotoGallery7']").attr('rel', 'PhotoGallery7');
@@ -471,10 +503,11 @@ $(document).ready(function() {
         position: [0, 0],
         delay: 0
     });
+    <?php if(count($community) > 0){ ?>
     var jQueryToolTip5Opts = {
         hide: true,
         show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">This seller is a member in your community..</p>',
+        content: '<div style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;margin-left:40px;width:300px;">This seller is a member in your community..</div>',
         items: '#wb_Image76',
         position: {
             my: "right bottom",
@@ -483,6 +516,7 @@ $(document).ready(function() {
         }
     };
     $("#wb_Image76").tooltip(jQueryToolTip5Opts);
+    <?php } ?>
     $("#Layer49").stickylayer({
         orientation: 4,
         position: [0, 60],
@@ -551,101 +585,24 @@ function stopWiggle(input) {
 	clearInterval(interval);
 }
 </script>
+<div id="Layer89" style="position:fixed;overflow:auto;text-align:center;visibility:visible;left:0;top:0;right:0;bottom:0;z-index:4930;">
 <!-- css js -->
 <!--  -->
 <!--  -->
 		<!-- navbar starts -->
 		
-		<div class="container-fluid top-div center" style="width: 1280px;position: absolute;z-index:3000;padding:0px;">
-		    <a href="#" onclick="ShowObjectWithEffect('Layer106', 1, 'fold', 300);return false;"  class="inline22">
-		      <img src="<?php echo asset_url(); ?>images/img0235.png" id="Image25" alt="" class="img25"><p class="font1">toolbox</p>
-		     </a>
-		    <nav class="navbar" style="position:relative;top:-36px;display:none;width:1280px;box-shadow: 10px 10px 5px #888888;" id="Layer106" onmouseleave="javascript:document.getElementById('Layer106').style.display='none';">
-		        <div id="">
-		            <!-- Brand and toggle get grouped for better mobile display -->
-		            <div class="row" class="c3">
-		                <div class="col-lg-2 col-sm-4 logo">
-		                    <div class="c4">WELCOME TO THE</div>
-		                    <div class="c5">TRD</div>
-		                    <div class="c6">STATION</div>
-		                    <div class="c7">The new ear of ecommerce</div>
-		                </div>
-		                <div class="col-lg-4 col-sm-8 headimg">
-		                </div>
-		                <div class="col-lg-6 col-sm-12">
-		                    <div class="row open-div1 bgwhite" class="c8" style="background: #fff;">
-		                        <!-- Collect the nav links, forms, and other content for toggling -->
-		                        <div class="col-xs-11">
-		                            <ul class="nav navbar-nav trd-nav">
-		                                <li class=" col-sm-2 col-xs-6">
-		                                    <a href="#" class="navigation2" "><img src="<?php echo asset_url();?>images/ts/Homekit.png " style="width: 50px; ">
-													<h5>Home</h5>
-													</a>
-												</li>
-									<li class="col-sm-2 col-xs-6 ">
-									<a href="# "seller"><img src="<?php echo asset_url();?>images/ts/seller.png" style="width: 50px;">
-		                                        <h5>Sellers</h5></a>
-		                                </li>
-		                                <li class="col-sm-2 col-xs-6">
-		                                    <a href="#" class="navigation2 products "><img src="<?php echo asset_url();?>images/ts/products.png " style="width: 50px; ">
-										<h5>Products</h5></a></li>
-									<li class="col-sm-2 col-xs-6 ">
-									<a href="# "b-station"><img src="<?php echo asset_url();?>images/ts/trade.png" style="width: 50px;">
-		                                        <h5>B-Station</h5></a>
-		                                </li>
-		                                <li class="col-sm-2 col-xs-6">
-		                                    <a href="#" class="navigation2" pro-video "><img src="<?php echo asset_url();?>images/ts/vidtube0.png " style="width: 50px; ">
-										<h5>Pro-Videos</h5></a></li>
-									<li class="col-sm-2 col-xs-6 ">
-									<a href="# "buyer"><img src="<?php echo asset_url();?>images/ts/buyer.png" style="width: 50px;">
-		                                        <h5>Buyers</h5></a>
-		                                </li>
-		                                <li class="col-sm-2 col-xs-6">
-		                                    <a href="#" class="navigation2" shipper "><img src="<?php echo asset_url();?>images/ts/shipper.png " style="width: 50px; ">
-										<h5>Shippers</h5></a></li>
-									<li class="col-sm-2 col-xs-6 ">
-									<a href="# "stock-goods"><img src="<?php echo asset_url();?>images/ts/stock.png" style="width: 50px;">
-		                                        <h5>Stock Goods</h5></a>
-		                                </li>
-		                                <li class="col-sm-2 col-xs-6">
-		                                    <a href="#" class="navigation2" community "><img src="<?php echo asset_url();?>images/ts/CommMember.png " style="width: 50px; ">
-										<h5>Community</h5></a></li>
-									<li class="col-sm-2 col-xs-6 ">
-									<a href="# "my-alert" data-toggle="modal" data-target=".bs-example-modal-lg"><img src="<?php echo asset_url();?>images/ts/Alerts1.png" style="width: 50px;">
-		                                        <h5>My Alerts</h5></a>
-		                                </li>
-		                            </ul>
-		                        </div>
-		                        <div class="reminder-div">
-		                            <div class="col-xs-12 col-sm-6 col-sm-offset-3 myalert" style="padding-top: 30px; display: none;">
-		                                <h4 style="color: #ccc; text-align: center;">TRD STATION ALERTS BOX</h4>
-		                                <p class="text-center">
-		                                    <img src="<?php echo asset_url();?>images/ts/Alerts1.png" style="display: inline-block">
-		                                </p>
-		                                <p class="text-center">You Have Received A New Alert</p>
-		                                <p style="color: #FF3033; text-align: center;">Add Request</p>
-		                            </div>
-		                            <div style="padding-top:80px;padding-left:10px;">
-		                            	<div>
-				                            <a href="#" onclick="ShowObjectWithEffect('Layer255', 1, 'slideright', 500, 'swing');return false;"><img src="<?php echo asset_url();?>images/img0915.png" id="Shape22" alt="" style="width:11px;height:48px;"></a>
-				                            <a href="#" class="" class="menu-arrow" style="width:1px;height:69px;"><img src="<?php echo asset_url();?>images/ts/img0020.png" style="width:9px;height:77px;"><img src="<?php echo asset_url();?>images/ts/img0020.png" style="width:9px;height:77px;"></a>
-				                            <a href="#" class="" class="menu-arrow2" style="width:1px;height:69px;"><img src="<?php echo asset_url();?>images/ts/img0020.png" style="width:9px;height:77px;"><img src="<?php echo asset_url();?>images/ts/img0020.png" style="width:9px;height:77px;"></a>
-			                            </div>
-		                            </div>
-		                        </div>
-		                        <!-- /.navbar-collapse -->
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </nav>
+		<div class="container-fluid top-div center" style="width:100%;position: absolute;z-index:3000;padding:0px;text-align:center;">
+		    <a href="#" onclick="ShowObjectWithEffect('Layer106', 1, 'fold', 500, 'easeOutBounce');return false;" class="inline22">
+		      <img src="<?php echo asset_url(); ?>images/img0235.png" id="Image25" alt="" class="desksite-maindropdown"><span class="font1">toolbox</span>
+		    </a>
 		</div>
+		<?php include APPPATH.'modules/frontend/views/default/hover-nav.php';?>
 		<?php foreach($Desksites as $Desksite) {?>
 		<!-- navbar  end -->
 			<!-- head text section -->
-			<div class="c9">
-			    <p class="c10"><strong><?php echo $Desksite['company_name'];?></strong></p>
-			    <p class="c11"><?php echo substr($Desksite['company_introduction'], 0, 180);?></p>
+			<div class="c9" style="z-index:200;text-align:left;">
+			    <span class="c10"><strong><?php echo $Desksite['company_name'];?></strong></span><br>
+			    <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['hot_presentation'], 0, 280);?> <?php if(strlen($Desksite['company_introduction']) > 280){?>..<?php }?></span></p>
 			</div>
 			<!-- head text section -->
 			<!-- user profile details -->
@@ -659,7 +616,14 @@ function stopWiggle(input) {
 			        <p class="c1"><?php echo $Desksite['company_country']." | ".$Desksite['company_province']; ?></p>
 			    </div>
 			    <div id="wb_Text8" class="c2">
-			        <p class="c1"><strong><?php echo date('h:i A');?></strong></p>
+			        <p class="c1"><strong><?php 
+			        if(!empty($Desksite['timezone'])) {
+				        $date = new DateTime('now', new DateTimeZone($Desksite['timezone']));
+				        echo $date->format('h:i A');
+			        } else {
+			        	echo date('h:i A');
+			        }
+			        ?></strong></p>
 			    </div>
 			</div>
 			<!-- profile end -->
@@ -677,31 +641,38 @@ function stopWiggle(input) {
 		    <!-- slider ends -->
 		    <!-- left navigation -->
 		    <div id="Layer88" class="leftnav">
-		        <div id="Layer116" class="left-fixed">
-		            <div id="wb_Image61">
-		               <?php if($Desksite['plan_id'] > 1){?>
-		               	 <img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" title="Black Horse Member" alt="Black Horse Member" class="img28">
-		               	 <?php } else { ?>
-		               	 <img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" title="Black Horse Member" alt="Black Horse Member" class="img28" style="opacity:0.15;">
-		               	 <?php } ?>
+		        <div id="Layer116" class="left-fixed" style="padding-top:25px;">
+		            <div id="wb_Image61" class="text-center">
+		            	<?php if($Desksite['plan_id'] > 1){?>
+		            	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" title="Black Horse Member" class="black-horse-icon">
+		              	<?php } else { ?>
+		              	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" title="Black Horse Member" class="black-horse-icon img-disabled">
+		              	<?php } ?>
 	               	 </div>
-		            <div id="wb_Image67">
-		                <a href="javascript:getVerified(<?php echo $Desksite['busi_id']?>);">
-		                <?php if($Desksite['is_logo_verified'] !=''){?>
-						<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="img28">
-						<?php }?></a>
+		            <div id="wb_Image67"  class="text-center">
+		                <a href="#" onclick="<?php if($Desksite['is_logo_verified'] > 1){?>ShowObjectWithEffect('Layer61', 1, 'slideleft', 500, 'swing');<?php } ?>return false;">
+			                <?php if($Desksite['is_logo_verified'] > 1){?>
+							<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon">
+							<?php } else { ?>
+							<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon img-disabled">
+							<?php } ?>
+						</a>
 					</div>
-		            <div id="wb_Image76">
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is member in your community" title="This shipper is member in your community" class="img28">
-	                </div>
+		            <div id="wb_Image76"  class="text-center">
+		            	<?php if(count($community) > 0){ ?>
+		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" title="This shipper is a member in your community" class="community-member-icon">
+		                <?php } else { ?>
+		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" title="This shipper is a member in your community" class="community-member-icon img-disabled">
+		                <?php } ?>
+		          	</div>
 		        </div>
 		    </div>
 		    <!-- left navigation ends -->
 		   
 			<!-- bottom navigation -->
-			<div class="container">
-				<div id="Layer5"class="bottomnav">
-					<div id=" Layer5_Container" style="width:1277px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+			<div class="container" style="margin:auto auto;">
+				<div id="Layer5" class="bottomnav" style="height:105px;width:100%;margin:auto auto;">
+					<div id=" Layer5_Container " style="width:1280px;margin:auto;padding-top:40px;">
 					    <div class="row ">
 					        <div class="col-md-1 col-sm-1" style="width:120px;">
 					        <br>
@@ -712,11 +683,11 @@ function stopWiggle(input) {
 					        <div class="col-md-9 col-sm-9 bg" style="width:82%;padding-left:50px;">
 					            <div class="col-md-5" style="padding-left:35px !important;">
 						            <a href="javascript:getComapnyProfile(<?php echo $Desksite['busi_id']?>)" class="navigation2 ">
-								     	<img src="<?php echo asset_url(); ?>images/img0178.png" id="Image60" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-						            	<p class="font2">Company Profile</p>
+								     	<img src="<?php echo asset_url(); ?>images/desksite/D-About.png" id="Image60" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+						            	<p class="font2">Profile</p>
 						          	</a>
 						            <a href="javascript:getComapnyAbout(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-								    <img src="<?php echo asset_url(); ?>images/about.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								    <img src="<?php echo asset_url(); ?>images/desksite/D-company.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								    <p class="font2">About Us</p>
 								    </a>
 								    <a href="javascript:getRoutes(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
@@ -724,40 +695,40 @@ function stopWiggle(input) {
 								     <p class="font2">Routes</p>
 								    </a>
 						            <a href="javascript:getComapnyCertificate(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-								    <img src="<?php echo asset_url(); ?>images/certificates.png" id="Image7" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								    <img src="<?php echo asset_url(); ?>images/desksite/D-certificates.png" id="Image7" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								     <p class="font2">Certificates</p>
 								    </a>
 						            
 						            <a href="javascript:getMyFiles(<?php echo $Desksite['busi_id'];?>)" class="navigation2" >
-								    <img src="<?php echo asset_url(); ?>images/folder-user.png" id="Image8" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								    <img src="<?php echo asset_url(); ?>images/desksite/D-files.png" id="Image8" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								    <p class="font2">My Files</p>
 								    </a>
 						        </div>
 						        <div class="col-md-3">
 						            <a href="javascript:getProductVideo(<?php echo $Desksite['busi_id']?>);" class="navigation2" >
-						                <!--  --><img src="<?php echo asset_url(); ?>images/img0179.png" id="Image77" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+						                <!--  --><img src="<?php echo asset_url(); ?>images/desksite/D-video.png" id="Image77" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 						                <p class="font2">Recent Videos</p>
 						            </a>
 						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer72', 1, 'slidedown', 500, 'swing');return false;">
-									   <img src="<?php echo asset_url(); ?>images/UD-0.png" id="Image79" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+									   <img src="<?php echo asset_url(); ?>images/desksite/UD.png" id="Image79" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 									   <p class="font2">UDtalks  Images</p>
 								   </a>
 						            <a href="javascript:getCurrentPost(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-								   <img src="<?php echo asset_url(); ?>images/img0180.png" id="Image71" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   <img src="<?php echo asset_url(); ?>images/desksite/D-posts.png" id="Image71" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   <p class="font2">Current  Post</p>
 								   </a>
 						        </div>
 						        <div class="col-md-3" style="width:27%;">
 						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer16', 1, 'slidedown', 500, 'swing');return false;">
-								   		<img src="<?php echo asset_url(); ?>images/web_site.png" id="Image75" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/offices.png" id="Image75" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   	   	<p class="font5">World-wide  Offices</p>
 								   	</a>
 						            <a href="javascript:getContactPerson(<?php echo $Desksite['busi_id'];?>);" class="navigation2" >
-								   		<img src="<?php echo asset_url(); ?>images/img0395-new.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/contact-person.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   		<p class="font2">Contact Person</p>
 								   	</a>
 						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;">
-								   		<img src="<?php echo asset_url(); ?>images/contact_email.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   		<p class="font5">Contact, Add Share...</p>
 								   	</a>
 						        </div>
@@ -802,27 +773,31 @@ function stopWiggle(input) {
 			<!-- product popup ends -->
 				
 			<!--about us-->
-			<div id="Layer23" class="box1 a4" style="padding:15px;width:411px;">
-			    <div id="Layer23_Container">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-					</a>
-			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT US</p>
-			        <div class="box2" id="about-us" style="height: 512px;padding-top:5px;">
-			            
-			        </div>
-			    </div>
+			<div id="Layer23" style="position:absolute;text-align:center;visibility:hidden;left:378px;top:34px;width:45%;height:670px;z-index:3864;">
+				<div id="Layer23_Container" style="width:584px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+					<div id="Layer42" class="a4" >
+				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+						</a>
+				        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT US</p>
+				        <div class="box2" id="about-us" style="height: 540px;overflow-y:scroll;padding-top:0px;">
+				            
+				        </div>
+				    </div>
+				</div>
 			</div>
 			
 			<!-- about us end -->
 			<!-- certification -->
-			<div id="Layer144" class="box11 a4" style="width:503px;padding:15px;">
-			    <div id="Layer144_Container">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer144', 0, 'slidedown', 300, 'swing');return false;">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-					</a>
-			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY LICENSE AND CERTIFICATES</p>
-		       		<div id="Layer147"></div>
+			<div id="Layer144" style="position:absolute;text-align:center;visibility:hidden;left:143px;top:126px;width:61%;height:554px;z-index:3853;">
+				<div id="Layer144_Container" style="width:788px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+					<div id="Layer145" class="a4">
+				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer144', 0, 'slidedown', 300, 'swing');return false;">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+						</a>
+				        <p class="box1font3" style="padding: 5px 0px;"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY LICENSE AND CERTIFICATES</p>
+			       		<div id="Layer147">  </div>
+				    </div>
 			    </div>
 			</div>
 			<!-- certification ends -->
@@ -868,15 +843,17 @@ function stopWiggle(input) {
 			<!-- routes ends-->
 			
 			<!-- my files -->
-			<div id="Layer148" class="box1 a3" style="width:517px;padding:15px;">
-			    <div id="Layer148_Container">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer148', 0, 'slidedown', 300, 'swing');return false;">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
-					</a>
-			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/my_file.png" alt="" class="img32" style="left:96%;"> &nbsp;&nbsp;&nbsp;MY FILES</p>
-			        <div class="box22 blackbox" id="my-files">
-			           
-			        </div>
+			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:245px;top:198px;width:53%;height:462px;z-index:3850;">
+				<div id="Layer148_Container" style="width:432px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+					<div id="Layer150" style="position:absolute;text-align:left;left:65px;top:28px;width:517px;height:402px;z-index:3616;">
+				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer148', 0, 'slidedown', 300, 'swing');return false;">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+						</a>
+				        <p class="box1font3" style="padding:5px 0px;"><img src="<?php echo asset_url(); ?>images/my_file.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;MY FILES</p>
+				        <div class="box22 blackbox" id="my-files" style="height:325px;">
+				           
+				        </div>
+				    </div>
 			    </div>
 			</div>
 			<!-- my files end -->
@@ -906,221 +883,252 @@ function stopWiggle(input) {
 			</div>
 			<!-- search section ends -->
 			<!-- contact and add -->
-			<div id="Layer49" class="boxy" style="left:10%;top:13%">
-			    <a href="#" onclick="ShowObjectWithEffect('Layer49', 0, 'slideleft', 300, 'swing');ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer88', 1, 'slideleft', 1000, 'swing');return false;">
-			   		<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image59" alt=""  class="img59">
-				</a>
-			    <div class="inline">
-			        <br>
-			        <p class="box1font1 w1"><img src="<?php echo asset_url(); ?>images/community.png" id="Image21" alt="" class="img32">ADD & SHARE</p>
-			    </div>
-			    <div class="inline box5">
-			        <img src="<?php echo asset_url(); ?>images/MENUFAVORITE.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:addShipperToMyFavourite(<?php echo $Desksites[0]['busi_id']?>,2);" target="_self" class="antag">
-					Add To Favorite
+			<div id="Layer49" style="position:absolute;text-align:left;visibility:hidden;left:0px;top:112px;width:25%;height:547px;z-index:3869;">
+				<div id="Layer52">
+				    <a href="#" onclick="ShowObjectWithEffect('Layer49', 0, 'slideleft', 300, 'swing');ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer88', 1, 'slideleft', 1000, 'swing');return false;">
+				   		<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image59" alt=""  class="img59">
 					</a>
-			    </div>
-			    <div class="inline box5">
-			        <img src="<?php echo asset_url(); ?>images/menuaddcomm.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:addToMyCommunity(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
-			        Add To Community
-					</a>
-			    </div>
-			    <div class="inline box5">
-			        <img src="<?php echo asset_url(); ?>images/cha0t.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:openChatWithBuyer(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
-			        Chat
-					</a>
-			    </div>
-			    <div class="inline box5">
-			        <img src="<?php echo asset_url(); ?>images/like.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:javascript:likeMyDesksite(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
-			        Like & Comments
-					</a>
-			    </div>
-			    <!-- div class="inline box5">
-			        <img src="<?php echo asset_url(); ?>images/img0908.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
-			        Share
-					</a>
-			    </div-->
-			    <div class="inline box5">
-			        <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image19" alt="" class="img32">
-			        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
-			        General Inquiry
-					</a>
-			    </div>
-			    <div class="inline box5">
-			        <img src="<?php echo asset_url(); ?>images/Mail.ico" id="Image19" alt="" class="img32">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer216', 1, 'slideleft', 500, 'swing');return false;" target="_self" class="antag">
-			        Contact Us
-					</a>
-			    </div>
+				    <div class="inline">
+				        <br>
+				        <p class="box1font1 w1"><img src="<?php echo asset_url(); ?>images/community.png" id="Image21" alt="" class="img32">ADD & SHARE</p>
+				    </div>
+				    <div class="inline box5">
+				        <img src="<?php echo asset_url(); ?>images/MENUFAVORITE.png" id="Image19" alt="" class="img32">
+				        <a href="javascript:addToMyFavourite(<?php echo $Desksites[0]['busi_id']?>,2);" target="_self" class="antag">
+						Add To Favorite
+						</a>
+				    </div>
+				    <div class="inline box5">
+				        <img src="<?php echo asset_url(); ?>images/menuaddcomm.png" id="Image19" alt="" class="img32">
+				        <a href="javascript:addToCommunity(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+				        Add To Community
+						</a>
+				    </div>
+				    <div class="inline box5">
+				        <img src="<?php echo asset_url(); ?>images/cha0t.png" id="Image19" alt="" class="img32">
+				        <a href="javascript:openChatWithBuyer(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+				        Chat
+						</a>
+				    </div>
+				    <div class="inline box5">
+				        <img src="<?php echo asset_url(); ?>images/like.png" id="Image19" alt="" class="img32">
+				        <a href="javascript:javascript:likeMyDesksite(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+				        Like
+						</a>
+				    </div>
+				    <!-- div class="inline box5">
+				        <img src="<?php echo asset_url(); ?>images/img0908.png" id="Image19" alt="" class="img32">
+				        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
+				        Share
+						</a>
+				    </div-->
+				    <div class="inline box5">
+				        <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image19" alt="" class="img32">
+				        <a href="javascript:openGeneralEnquiry(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+				        General Inquiry
+						</a>
+				    </div>
+				    <div class="inline box5">
+				        <img src="<?php echo asset_url(); ?>images/Mail.ico" id="Image19" alt="" class="img32">
+				        <a href="#" onclick="ShowObjectWithEffect('Layer216', 1, 'slideleft', 500, 'swing');return false;" target="_self" class="antag">
+				        Contact Us
+						</a>
+				    </div>
+				</div>
 			</div>
 			<!-- contact add ends -->
 			<!-- contact us form -->
-			<div id="Layer216" class="box1 a2" style="width:417px;padding:15px;">
-			    <div id="Layer216_Container">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer216', 0, 'slideleft', 300, 'swing');return false;">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-					</a>
-			        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;CONTACT US</p>
-			        <div class="box2">
-			            <input type="text" class="input" name="name" value="" placeholder="Name">
-			            <input type="text" class="input" name="phone" value="" placeholder="Phone">
-			            <input type="email" class="input" name="email" value="" placeholder="Email">
-			            <select name="country" size="1" id="Combobox1" class="input">
-			                <option selected="" value="Select">Select your country</option>
-			                <?php foreach ($countries as $country) { ?>
-			                <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
-			                <?php } ?>
-			            </select>
-			            <input type="text" class="input" name="city" value="" placeholder="City">
-			            <textarea name="TextArea2" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;">Message</textarea>
-			            <div style="width:99%;">
-			                <input type="submit" id="Button5" name="" value="Send" style="margin-left:5px;">
-			                <input type="submit" id="Button5" name="" value="Reset">
-			            </div>
-			        </div>
-			    </div>
+			<div id="Layer216" style="position:absolute;text-align:right;visibility:hidden;left:224px;top:18px;width:55%;height:627px;z-index:3851;">
+				<div id="Layer216_Container" style="width:607px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+					<div id="Layer217" class="a1">
+				        <a href="#" onclick="ShowObjectWithEffect('Layer216', 0, 'slideleft', 300, 'swing');return false;">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+						</a>
+				        <p class="box1font3" style="padding:0px;">
+				        	<img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">
+				        	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>CONTACT US</strong></span>
+				        </p>
+				        <div class="box2">
+				            <input type="text" class="input" name="name" value="" placeholder="Name">
+				            <input type="text" class="input" name="phone" value="" placeholder="Phone">
+				            <input type="email" class="input" name="email" value="" placeholder="Email">
+				            <select name="country" size="1" id="Combobox1" class="input">
+				            	<?php foreach ($countries as $country) { ?>
+				                <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
+				                <?php } ?>
+				            </select>
+				            <input type="text" class="input" name="city" value="" placeholder="City">
+				            <textarea name="TextArea2" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;">Message</textarea>
+				            <div style="width:99%;">
+				                <input type="submit" id="Button5" name="Send" value="Send" style="margin-left:5px;" onclick="submitContactForm();">
+				                <input type="submit" id="Button5" name="Reset" value="Reset">
+				            </div>
+				        </div>
+				    </div>
+				</div>
 			</div>
 			<!-- contact us form end -->
 				<!-- contact person -->
-				<div id="Layer62" class="box11 a1" style="width:518px;padding:15px;">
-				    <div id="Layer62_Container">
-				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer62', 0, 'slidedown', 300, 'swing');return false;">
-							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-						</a>
-				        <br>
-				        <div class="box222 row" id="contact-person" style="margin:0px;">
-				            
-				        </div>
-				    </div>
-				    <div class="center">
-				        <a href="javascript:printInvoice();"><img src="<?php echo asset_url(); ?>images/print.png" id="Image26" alt="" class="img32"></a>
-				    </div>
+				<div id="Layer62" style="position:absolute;text-align:right;visibility:hidden;left:19%;top:166px;width:51%;height:447px;z-index:3854;">
+					<div id="Layer62_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+						<div id="Layer63" class="a1">
+					        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer62', 0, 'slidedown', 300, 'swing');return false;">
+								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+							</a>
+					        <div class="box222 row" id="contact-person" style="margin:0px;">
+					            
+					        </div>
+					        <div class="center">
+						        <a href="javascript:printInvoice();"><img src="<?php echo asset_url(); ?>images/print.png" id="Image26" alt="" class="img32"></a>
+						    </div>
+					    </div>
+					</div>
 				</div>
 				<!-- contact person end -->
 			<!-- world wide offices -->
-			<div id="Layer16" class="box1 s9" style="width:437px;padding:15px;">
-			    <div id="Layer16_Container">
-			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer16', 0, 'slidedown', 300, 'swing');return false;">
-			            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-			        </a>
-			        <div class="box2 row carousel slide" id="address" style="height: 250px;margin:0px;padding-top:30px;" data-ride="carousel">
-			        	<div class="carousel-inner" role="listbox">
-			        		<div class="item active">
-					            <div class="col-md-2">
-					                <br>
-					                <?php if(!empty($Desksites[0]['flag'])) { ?>
-					                <img src="<?php echo asset_url(); ?>images/flags/<?php echo $Desksites[0]['flag'];?>" id="Shape12" alt="" style="width:58px;">
-					                <?php } ?>
-					            </div>
-					            <div class="col-md-10 left">
-					            	<br>
-					                <p   class="s13"><strong><?php echo $Desksites[0]['company_country'];?> Branch</strong></p>
-					                <p   class="s15"><?php echo $Desksites[0]['company_street'];?>, <?php echo $Desksites[0]['company_city'];?>, <?php echo $Desksites[0]['company_province'];?>, <?php echo $Desksites[0]['company_country'];?>.</p>
-					                <p   class="s13">+<?php echo $Desksites[0]['telephone_code'];?> <?php echo $Desksites[0]['telephone_city_code'];?> <?php echo $Desksites[0]['telephone_number'];?></p>
-					                <br>
-					                <p class="s12"><strong><?php echo $Desksites[0]['company_email'];?></strong></p>
-					            </div>
-				            </div>
-				        	<?php foreach ($branches as $branch) { ?>
-				        	<div class="item">
-					            <div class="col-md-2"><br>
-					                <?php if(!empty($branch['flag'])) { ?>
-					                <img src="<?php echo asset_url(); ?>images/flags/<?php echo $branch['flag'];?>" id="Shape12" alt="" style="width:58px;">
-					                <?php } ?>
-					            </div>
-					            <div class="col-md-10 left">
-					            	<br>
-					                <p   class="s13"><strong><?php echo $branch['country'];?> Branch</strong></p>
-					                <p   class="s15"><?php echo $branch['street'];?>, <?php echo $branch['city'];?>, <?php echo $branch['province'];?>, <?php echo $branch['country'];?>.</p>
-					                <p   class="s13">+<?php echo $branch['country_code'];?> <?php echo $branch['city_code'];?> <?php echo $branch['telephone1'];?></p>
-					                <br>
-					                <p class="s12"><strong><?php echo $branch['fax'];?></strong></p>
-					            </div>
-				            </div>
-				            <?php } ?>
-			            </div>
-			        </div>
-			        <br>
-			        <div style="width:320px;position:relative">
-				        <div id="Carousel1_back" class="s10 left carousel-control" href="#address" data-slide="prev">
-				            <a href="#"><img alt="Back"src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
-				         </div>
-				        <div id="Carousel1_next" class="s11 right carousel-control" href="#address" data-slide="next">
-				            <a href="#"><img alt="Next"src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
-				        </div>
-			        </div>
-			        <br>
-			    </div>
+			<div id="Layer16" style="position:absolute;text-align:right;visibility:hidden;left:25%;top:225px;width:51%;height:411px;z-index:3863;">
+				<div id="Layer16_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+					<div id="Layer15" class="s9">
+				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer16', 0, 'slidedown', 300, 'swing');return false;">
+				            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+				        </a>
+				        <div class="box2 row" id="address" style="height: 235px;margin:0px;">
+				            <div id="wb_Carousel1" style="position:absolute;left:15px;top:15px;width:422px;height:235px;z-index:3781;overflow:hidden;">
+								<div id="Carousel1" style="position:absolute">
+									<div class="frame active">
+										<div class="col-md-2">
+							                <br><br>
+							                <?php if(!empty($Desksites[0]['flag'])) { ?>
+							                <img src="<?php echo asset_url(); ?>images/flags/<?php echo $Desksites[0]['flag'];?>" id="Shape12" alt="" style="width:58px;">
+							                <?php } ?>
+							            </div>
+							            <div class="col-md-10 left" style="padding-left:35px;">
+							            	<br><br>
+							                <p   class="s13"><strong>Main Company Address</strong></p>
+							                <p   class="s15"><?php echo $Desksites[0]['company_street'];?>, <?php echo $Desksites[0]['company_city'];?>, <?php echo $Desksites[0]['company_province'];?>, <?php echo $Desksites[0]['company_country'];?>.</p>
+							                <p   class="s13">+<?php echo $Desksites[0]['telephone_code'];?> <?php echo $Desksites[0]['telephone_city_code'];?> <?php echo $Desksites[0]['telephone_number'];?></p>
+							                <br>
+							                <p class="s12"><strong><?php echo $Desksites[0]['company_email'];?></strong></p>
+							            </div>
+									</div>
+									<?php foreach ($branches as $branch) { ?>
+									<div class="frame">
+										<div class="col-md-2"><br><br>
+							                <?php if(!empty($branch['flag'])) { ?>
+							                <img src="<?php echo asset_url(); ?>images/flags/<?php echo $branch['flag'];?>" id="Shape12" alt="" style="width:58px;">
+							                <?php } ?>
+							            </div>
+							            <div class="col-md-10 left" style="padding-left:35px;">
+							            	<br><br>
+							                <p   class="s13"><strong><?php echo $branch['country'];?> Branch</strong></p>
+							                <p   class="s15"><?php echo $branch['street'];?>, <?php echo $branch['city'];?>, <?php echo $branch['province'];?>, <?php echo $branch['country'];?>.</p>
+							                <p   class="s13">+<?php echo $branch['country_code'];?> <?php echo $branch['city_code'];?> <?php echo $branch['telephone1'];?></p>
+							                <br>
+							                <p class="s12"><strong><?php echo $branch['fax'];?></strong></p>
+							            </div>
+									</div>
+									<?php } ?>
+								</div>
+					        </div>
+					        <div id="Carousel1_back" class="s10">
+					            <a href="#"><img alt="Back"src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
+					         </div>
+					        <div id="Carousel1_next" class="s11">
+					            <a href="#"><img alt="Next"src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
+					        </div>
+				    	</div>
+					</div>
+				</div>
 			</div>
 			<!-- world wide end -->
 			<!--  current post -->
-			<div id="Layer58" class="box1 s5" style="width:414px;padding:15px;">
-				<div id=" Layer58_Container ">
-				   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer58', 0, 'slidedown', 300, 'swing');return false; ">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-				    </a>
-				    <div class="greybox center" id="post">
-				        
-				    </div>
+			<div id="Layer58" style="position:absolute;text-align:right;visibility:hidden;left:134px;top:2px;width:69%;height:702px;z-index:3861;">
+				<div id="Layer58_Container" style="width:890px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+					<div id="Layer8" class="s5">
+					   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer58', 0, 'slidedown', 300, 'swing');return false; ">
+							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+					    </a>
+					    <p class="box1font3" style="padding:0px;">
+				        	<img src="<?php echo asset_url(); ?>images/buyer-request.png" alt="" class="img32">
+				        	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong> &nbsp;&nbsp;&nbsp;POSTS & CURRENT REQUESTS</strong></span>
+				        </p>
+					    <div class="greybox center" id="post" style="height:570px;">
+					        
+					    </div>
+					    <div id="wb_CssMenu2">
+							<ul>
+								<li class="firstmain"><a class="withsubmenu" href="#" target="_self">Translate</a>
+									<ul>
+										<li class="firstitem"><a href="#" target="_self">To&nbsp;my&nbsp;langauge</a>
+										</li>
+										<li class="lastitem"><a href="#" target="_self">To&nbsp;english</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<br>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!--  current post end-->
 				<!-- UDtalk images -->
-				<div id="Layer72" class="box1 c19" style="width:509px;padding:15px;">
-				   <div id=" Layer72_Container ">
-				   		<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer72', 0, 'slidedown', 300, 'swing');return false; ">
-							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-				    	</a>
-				    	<p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/udLOGO.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;AMAZING BUSINESS COMMUNICATION APP</p>
-				    	<div class="box2" id="ud-talk" style="height:449px">
-							<br>
-						   	<div id="wb_Text93" style="text-align:center;">
-								<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Discover more ( View products, Catalouge or Watch videos), contact with this member through an amazing way, add him to your mobile contacts, chat with him on you phone, make an Instant call, send SMS, Email, get your own business platform and much more..</span>
-							</div>
-							<div id="wb_Text110" style="text-align:center;padding-top:5px;">
-								<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><strong>Download UDtalks ( business chat app ) on your mobile for free</strong></span>
-							</div>
-							<div id="wb_Text108" style="text-align:center;padding-top:5px;">
-								<span style="color:#3C3C3C;font-family:Arial;font-size:13px;"><a href="http://www.udtalks.com" target="_blank" class="style16">www.udtalks.com</a></span>
-							</div>
-							<div id="wb_Text98" style="text-align:center;padding-top:10px;">
-								<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Click the image to enlarge, open UDtalks and scan</span>
-							</div>
-							<div id="wb_PhotoGallery1" style="height:288px;overflow-y:scroll;">
-								<table id="PhotoGallery1">
-								   	<tbody>
-								   		<?php for ($i=0; $i < count($images); ) { ?>
-								   		<tr>
-								      		<td class="image"><a href="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="BCard2" class="img<?php echo $i;?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo $i;?>" src="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" title="UD Talk"></a></td>
-								      		<td class="image"><?php if(!empty($images[$i+1]['image'])) { ?><a href="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="UDTalk" class="img<?php echo ($i+1);?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo ($i+1);?>" src="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" title="UD Talk"></a><?php } ?></td>
-								   		</tr>
-								   		<?php $i = $i + 2;} ?>
-									</tbody>
-								</table>
-							</div>
-				    	</div>
+				<div id="Layer72" style="position:absolute;text-align:center;visibility:hidden;left:50px;top:64px;width:66%;height:616px;z-index:3848;">
+					<div id="Layer72_Container" style="width:850px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+						<div id="Layer73" class="c19">
+						   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer72', 0, 'slidedown', 300, 'swing');return false; ">
+								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left: 96%;">
+						   	</a>
+						    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/udLOGO.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;AMAZING BUSINESS COMMUNICATION APP</p>
+						    <div class="box732" id="ud-talk" style="height:495px;background-color: #DCDCDC;border: 1px #FFFFFF solid;padding:10px;">
+						    	<br>
+							   	<div id="wb_Text93" style="text-align:center;">
+									<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Discover more ( View products, Catalouge or Watch videos), contact with this member through an amazing way, add him to your mobile contacts, chat with him on you phone, make an Instant call, send SMS, Email, get your own business platform and much more..</span>
+								</div>
+								<div id="wb_Text110" style="text-align:center;padding-top:5px;">
+									<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><strong>Download UDtalks ( business chat app ) on your mobile for free</strong></span>
+								</div>
+								<div id="wb_Text108" style="text-align:center;padding-top:5px;">
+									<span style="color:#3C3C3C;font-family:Arial;font-size:13px;"><a href="http://www.udtalks.com" target="_blank" class="style16">www.udtalks.com</a></span>
+								</div>
+								<div id="wb_Text98" style="text-align:center;padding-top:10px;">
+									<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Click the image to enlarge, open UDtalks and scan</span>
+								</div>
+								<div id="wb_PhotoGallery1" style="height:288px;overflow-y:scroll;">
+									<table id="PhotoGallery1">
+									   	<tbody>
+									   		<?php for ($i=0; $i < count($images); ) { ?>
+									   		<tr>
+									      		<td class="image"><a href="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="UDTalk" class="img<?php echo $i;?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo $i;?>" src="<?php echo asset_url();?><?php echo $images[$i]['image'];?>" title="UD Talk" style="width:220px;"></a></td>
+									      		<td class="image"><?php if(!empty($images[$i+1]['image'])) { ?><a href="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="UDTalk" class="img<?php echo ($i+1);?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo ($i+1);?>" src="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" title="UD Talk" style="width:220px;"></a><?php } ?></td>
+									   		</tr>
+									   		<?php $i = $i + 2;} ?>
+										</tbody>
+									</table>
+								</div>
+						    </div>
+						 </div>
 					</div>
 				</div>
 				<!-- UDtalk images end -->
 				<!-- Videos section -->
-				<div id="Layer65" class="box1 c19" style="width:505px;padding:15px;">
-					<div id=" Layer65_Container ">
-						<a href="#" onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer65', 0, 'slidedown', 300, 'swing');return false; ">
-							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-						 </a>
-						<p class="box1font3" style="padding-left:0px;">
-							<img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">RECENT VIDEOS
-						</p>
-						<div class="box2">
-							<div class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner" id="product-video" role="listbox">
-									
+				<div id="Layer65" style="position:absolute;text-align:center;visibility:hidden;left:305px;top:73px;width:50%;height:628px;z-index:3847;">
+					<div id="Layer65_Container" style="width:644px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+						<div id="Layer66" class="c19">
+							<a href="#" onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer65', 0, 'slidedown', 300, 'swing');return false;">
+								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+							 </a>
+							<p class="box1font3" style="padding-left: 0px;">
+								<img src="<?php echo asset_url(); ?>images/videos2.ico" alt="" class="img32"> &nbsp;&nbsp;&nbsp;PRODUCTS IN VIDEOS
+							</p>
+							<div class="box662">
+								<div id="vcarousel" class="carousel slide" data-ride="carousel">
+									<div class="carousel-inner" id="product-video" role="listbox">
+										
+									</div>
 								</div>
 							</div>
+							<br><br>
 						</div>
 					</div>
 				</div>
@@ -1167,16 +1175,6 @@ function stopWiggle(input) {
 				</div>
 			</div>
 				<!-- products in 3d end -->
-	</div>
-</div>
-<div id="Layer99" style="position: relative; text-align: center; visibility: none; margin: 300px 0px 0px 550px; width: 332px; height: 90px; float: left; display: block; z-index: 3846;">
-	<div id="Layer99_Container" style="width:332px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
-	<div id="wb_Text145" style="position:absolute;left:24px;top:19px;width:285px;height:16px;text-align:center;z-index:3529;">
-	<span style="color:#C0C0C0;font-family:Georgia;font-size:12px;">ADDED SUCCESFULLY TO YOUR FAVORITE</span></div>
-	<div id="Layer282" style="position:absolute;text-align:left;left:100px;top:50px;width:133px;height:24px;z-index:3530;" onclick="ShowObject('Layer99', 0);return false;">
-	<div id="wb_Text146" style="position:absolute;left:45px;top:4px;width:49px;height:16px;text-align:center;z-index:3528;">
-	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><a href="#" class="style1" onclick="ShowObject('Layer99', 0);return false;">OK</a></span></div>
-	</div>
 	</div>
 </div>
 <script>
@@ -1266,31 +1264,22 @@ function serviceList(busi_id) {
 	},'html');
 }
 
-function addToFavourite(id) {
-	var type =1;
-	$.get(base_url+"desksite/favourite/"+id+"/"+type,{},function(data) {
-		ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
-		ShowObjectWithEffect('Layer58', 1, 'slidedown', 500, 'swing');
-	},'json');
-}
-function addShipperToMyFavourite(fav_id,type) {
-	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(resp) {
-		customAlert(resp.msg);
-	},'json');
-}
-
-function addToMyCommunity(id) {
-	$.get(base_url+"addtomycommunity/"+id,{},function(data) {
-		customAlert(data.msg);
-	},'json');
-}
-
 function openChatWithBuyer(seller_id) {
-	if(accept_chat == 1) {
-		popupwnd('<?php echo base_url();?>global/chat/'+buyer_id,'no','no','no','no','no','no','750','50','430','720');
-	} else {
-		customAlert('Sorry.. Buyer status is " Don\'t Disturb".. Please try again on other time, status may be changed soon.');
-	}
+	<?php if(!empty($tsuserid)) { ?>
+		<?php if($tscategory_id == 3) { ?>
+			<?php if($contact_details[0]['accept_chat'] == 1) { ?>
+				popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+			<?php } else { ?>
+				$("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
+				ShowObject('Layer99', 1);
+			<?php } ?>
+		<?php } else { ?>
+			popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+		<?php } ?>
+	<?php } else { ?>
+		$("#msg_cont").html('LOGIN TO CAHT');
+		ShowObject('Layer99', 1);
+	<?php } ?>
 }
 
 function getVerified(id) {
@@ -1395,7 +1384,8 @@ function likeMySVideo(id,type,likeid) {
 			likes = likes + 1;
 			$("#"+likeid).html(likes);
 		}
-		alert(data.msg);
+		$("#msg_cont").html(data.msg);
+		ShowObject('Layer99', 1);
 	},'json');
 }
 function printInvoice() {    
@@ -1408,9 +1398,54 @@ function printInvoice() {
     return true;
 }
 function likeMyDesksite(busi_id) {
-	$.get(base_url+"desksite/like/"+id,{},function(data) {
-		alert(data.msg);
+	$.get(base_url+"desksite/like/"+busi_id,{},function(data) {
+		$("#msg_cont").html(data.msg);
+		ShowObject('Layer99', 1);
 	},'json');
+}
+function submitContactForm() {
+	<?php if(!empty($tsuserid)) { ?>
+		<?php if($tscategory_id != 3) { ?>
+			$("#msg_cont").html("We have recorded your enquiry.");
+			ShowObject('Layer99', 1);
+			ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
+		<?php } else { ?>
+			<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
+				$("#msg_cont").html("We have recorded your enquiry.");
+				ShowObject('Layer99', 1);
+				ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
+			<?php } else if($contact_details[0]['step'] < 2) { ?>
+				$("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
+				ShowObject('Layer99', 1);
+			<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
+				$("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+				ShowObject('Layer99', 1);
+			<?php } ?>
+		<?php } ?>
+	<?php } else { ?>
+		$("#msg_cont").html("Please login to contact this shipper.");
+		ShowObject('Layer99', 1);
+	<?php } ?>
+}
+function openGeneralEnquiry(id) {
+	<?php if(!empty($tsuserid)) { ?>
+		<?php if($tscategory_id != 3) { ?>
+			popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+		<?php } else { ?>
+			<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
+				popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+			<?php } else if($contact_details[0]['step'] < 2) { ?>
+				$("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
+				ShowObject('Layer99', 1);
+			<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
+				$("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+				ShowObject('Layer99', 1);
+			<?php } ?>
+		<?php } ?>
+	<?php } else { ?>
+		$("#msg_cont").html("Please login to send enquiry.");
+		ShowObject('Layer99', 1);
+	<?php } ?>
 }
 $("a[data-rel='prettyPhoto_SlideShow31[SlideShow31]']").attr('rel', 'prettyPhoto_SlideShow31[SlideShow31]');
 $("a[rel^='prettyPhoto_SlideShow31']").prettyPhoto({theme:'facebook',social_tools:false});
