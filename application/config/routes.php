@@ -484,6 +484,8 @@ $route['vcatalogues'] = 'frontend/Product/getAllVCatalogues';
 
 // Admin ROutes
 $route['admin'] = 'backend/index';
-$route['api/auth'] = 'backend/auth/test';
+$route['api/auth'] = 'backend/auth/login';
+$route['api/current-user'] = 'backend/auth/getLoggetInUser';
+$route['api/logout'] = 'backend/auth/logout';
 
 ?>

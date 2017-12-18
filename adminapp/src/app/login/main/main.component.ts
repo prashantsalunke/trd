@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/auth.service';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'trd-main',
@@ -10,7 +11,9 @@ import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 export class MainComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService:AuthService, private formBuilder:FormBuilder) { }
+  constructor(private authService:AuthService, 
+    private formBuilder:FormBuilder,
+  private router:Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -23,7 +26,7 @@ export class MainComponent implements OnInit {
   onSubmit(user:any){
     this.authService.authenticate(user)
     .subscribe((userdata)=>{
-      console.log(userdata);
+this.router.navigate(['/'])
     })
   }
 

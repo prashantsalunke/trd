@@ -13,8 +13,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 @NgModule({
   imports: [
     CommonModule,
-    SubAdminsRoutingModule,
-    
+    SubAdminsRoutingModule,    
     ModalModule.forRoot()
   ],
   declarations: [IndexComponent, ListComponent, AddComponent, SuspendedListComponent, PermitionComponent, HeaderComponent]
