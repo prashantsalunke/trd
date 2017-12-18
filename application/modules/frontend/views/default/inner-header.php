@@ -1180,9 +1180,9 @@ ul.hover-red-menu li.open a.firstmain{
 						</div>
 					</form>
 					<?php } elseif($page =='3dproduct'){?>
-					<form method="get" action="<?php echo base_url();?>3dprducts" style="padding-top:25px;" name="sellerfrm" onsubmit="return validateForm('sellerfrm');">
+					<form method="get" action="<?php echo base_url();?>3dproducts" style="padding-top:25px;" name="dprofrm" onsubmit="return validateForm('dprofrm');">
 						<div class="col-sm-2 col-xs-11" style="padding: 0px;">
-							<a class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" id="seller_cat_label">
+							<a class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" id="dproduct_cat_label">
 						   		<?php 
 						   		$subcat = "";
 						   		foreach ($mcats as $mcat) {
@@ -1197,14 +1197,14 @@ ul.hover-red-menu li.open a.firstmain{
 						   		} else { ?>
 						   		Categories<?php } ?> <span class="caret pull-right caret-vmiddle"></span>
 						  	</a>
-							<input type="hidden" name="cat_id" id="seller_cat_id" value="<?php if(!empty($params['cat_id'])) { echo $params['cat_id'];}?>"/>
+							<input type="hidden" name="cat_id" id="dproduct_cat_id" value="<?php if(!empty($params['cat_id'])) { echo $params['cat_id'];}?>"/>
 							<ul class="dropdown-menu hover-red-menu">
 						  		<?php foreach ($mcats as $mcat) { ?>
 						    	<li class="dropdown">
 						      		<a href="#" class="firstmain"><?php echo $mcat['name'];?></a>
 						      		<ul class="dropdown-menu">
 						      			<?php foreach ($mcat['subcats'] as $scat) { ?>
-						        		<li><a href="javascript:selectSellerScat(<?php echo $scat['id'];?>,`<?php echo $scat['name'];?>`);"><?php echo $scat['name'];?></a></li>
+						        		<li><a href="javascript:selectDproductScat(<?php echo $scat['id'];?>,`<?php echo $scat['name'];?>`);"><?php echo $scat['name'];?></a></li>
 						        		<?php } ?>
 						       		</ul>
 						    	</li>
@@ -1247,6 +1247,80 @@ ul.hover-red-menu li.open a.firstmain{
 									</div>
 								</div-->
 								<div class="col-sm-2 padding-0">
+									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+								</div>
+							</div>
+						</div>
+					</form>
+				<?php } else if($page =='vcatalogue') { ?>
+					<form method="get" action="<?php echo base_url();?>vcatalogues" style="padding-top:25px;" name="vcatfrm" onsubmit="return validateForm('vcatfrm');">
+						<div class="col-sm-2 col-xs-2" style="padding: 0px;">
+							<a class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" id="catalogue_cat_label">
+						   		<?php 
+						   		$subcat = "";
+						   		foreach ($mcats as $mcat) {
+					   				foreach ($mcat['subcats'] as $scat) {
+					   					if(!empty($params['cat_id']) && $params['cat_id'] == $scat['id']) {
+					   						$subcat = $scat['name'];
+					   					}
+					   				}
+						   		}
+						   		if(!empty($subcat)) {
+						   			echo $subcat;
+						   		} else { ?>
+						   		Categories<?php } ?> <span class="caret pull-right caret-vmiddle"></span>
+						  	</a>
+							<input type="hidden" name="cat_id" id="catalogue_cat_id" value="<?php if(!empty($params['cat_id'])) { echo $params['cat_id'];}?>"/>
+							<ul class="dropdown-menu hover-red-menu">
+						  		<?php foreach ($mcats as $mcat) { ?>
+						    	<li class="dropdown">
+						      		<a href="#" class="firstmain"><?php echo $mcat['name'];?></a>
+						      		<ul class="dropdown-menu">
+						      			<?php foreach ($mcat['subcats'] as $scat) { ?>
+						        		<li><a href="javascript:selectCatalogeScat(<?php echo $scat['id'];?>,`<?php echo $scat['name'];?>`);"><?php echo $scat['name'];?></a></li>
+						        		<?php } ?>
+						       		</ul>
+						    	</li>
+						    	<?php } ?>
+						  	</ul>
+						</div>
+						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
+							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
+						</div>
+						<div class="col-sm-5 col-xs-5" style="padding: 0px;background-color: #fff;">
+							<div class="col-sm-7" style="padding:0px">
+								<div class="col-sm-6" style="padding:0px">
+									<div class="dropdown">
+										<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
+											<option value="">Country</option>
+											<?php foreach ($Country as $country){?>
+												<option value="<?php echo $country['name'];?>" <?php if(!empty($params['country']) && $params['country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
+											<?php }?>
+										</select>
+									</div>
+								</div>
+								<div class="col-sm-6" style="padding:0px 2px;">
+									<div class="dropdown">
+										<select class="search-box search-dp" id="city" name='city'>
+											<option value="">City</option>
+											<?php foreach($cities as $city){?>
+												<option value="<?php echo $city['name']?>" <?php if(!empty($params['city']) && $params['city'] == $city['name']) { ?>selected<?php } ?>><?php echo $city['name']?></option>
+											<?php }?>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-5" style="padding:0px;">
+								<div class="col-sm-8" style="padding:0px;">
+									<div class="dropdown">
+										<select class="search-box search-dp"  name='type'>
+											<option value="">More</option>
+											<option value="1"  <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show Verified Member First</option>
+											<option value="2"  <?php if(!empty($params['type']) && $params['type'] == 2) { ?>selected<?php } ?>>Show All</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-sm-4" style="padding:0px;padding-left:2px;">
 									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
 								</div>
 							</div>
@@ -1673,6 +1747,16 @@ function selectVideoScat(scat_id,name) {
 	$("#seller_cat_id").val(scat_id);
 	$("#seller_cat_label").html(name+' <span class="caret pull-right caret-vmiddle"></span>');
 	document.videofrm.submit();
+}
+function selectCatalogeScat(scat_id,name) {
+	$("#catalogue_cat_id").val(scat_id);
+	$("#catalogue_cat_label").html(name+' <span class="caret pull-right caret-vmiddle"></span>');
+	document.vcatfrm.submit();
+}
+function selectDproductScat(scat_id,name) {
+	$("#dproduct_cat_id").val(scat_id);
+	$("#dproduct_cat_label").html(name+' <span class="caret pull-right caret-vmiddle"></span>');
+	document.dprofrm.submit();
 }
 function addToCommunity(id) {
 	$.get(base_url+"addtomycommunity/"+id,{},function(data) {

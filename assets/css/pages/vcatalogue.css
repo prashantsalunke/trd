@@ -1071,14 +1071,6 @@ h1{
 	height:26px;
 	z-index:88;
 }
-.style19{
-	position:absolute;
-	left:3px;
-	top:1px;
-	width:30px;
-	height:23px;
-	z-index:84;
-}
 .style20{
 	position:absolute;
 	text-align:left;
@@ -7935,14 +7927,6 @@ h1{
 	height:26px;
 	z-index:88;
 }
-.style19{
-	position:absolute;
-	left:3px;
-	top:1px;
-	width:30px;
-	height:23px;
-	z-index:84;
-}
 .style20{
 	position:absolute;
 	text-align:left;
@@ -14220,4 +14204,24 @@ a.style5:hover
 {
    color: #FF6347;
    text-decoration: underline;
+}
+a.style19
+{
+   color: #1E90FF;
+   text-decoration: none;
+}
+a.style19:visited
+{
+   color: #1E90FF;
+   text-decoration: none;
+}
+a.style19:active
+{
+   color: #1E90FF;
+   text-decoration: none;
+}
+a.style19:hover
+{
+   color: #FF7F50;
+   text-decoration: none;
 }

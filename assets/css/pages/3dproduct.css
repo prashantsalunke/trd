@@ -1048,15 +1048,6 @@ h1{
 	height:65px;
 	z-index:93;
 }
-.style16{
-	position:absolute;
-	left:75px;
-	top:8px;
-	width:126px;
-	height:14px;
-	z-index:86;
-	text-align:left;
-}
 .fontstyle-5{
 	color:#696969;
 	font-family:Arial;
@@ -7912,15 +7903,6 @@ h1{
 	height:65px;
 	z-index:93;
 }
-.style16{
-	position:absolute;
-	left:75px;
-	top:8px;
-	width:126px;
-	height:14px;
-	z-index:86;
-	text-align:left;
-}
 .fontstyle-5{
 	color:#696969;
 	font-family:Arial;
@@ -14219,5 +14201,25 @@ a.style5:active
 a.style5:hover
 {
    color: #FF6347;
+   text-decoration: underline;
+}
+a.style16
+{
+   color: #4169E1;
+   text-decoration: underline;
+}
+a.style16:visited
+{
+   color: #4169E1;
+   text-decoration: underline;
+}
+a.style16:active
+{
+   color: #4169E1;
+   text-decoration: underline;
+}
+a.style16:hover
+{
+   color: #FF7F50;
    text-decoration: underline;
 }

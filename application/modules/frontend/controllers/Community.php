@@ -256,20 +256,44 @@ class Community extends MX_Controller {
 		$params = array();
 		$params['my_busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		$params['busi_id'] = $id;
-		$isadded = $this->mycommunity->addToMyCommunity($params);
+		$this->load->model('Product_Model','product');
+		$mydetails = $this->product->getCommunicationInfo($params['my_busi_id']);
+		$tscat_id = $this->session->userdata('tsuser')['category_id'];
 		$resp = array();
 		if(!empty($this->session->userdata('tsuser')['busi_id'])) { 
 			if($params['my_busi_id'] != $params['busi_id']) {
-				if($isadded) {
-					$resp['status'] = 1;
-					$resp['msg'] = 'ADDED SUCCESFULLY TO YOUR COMMUNITY';
+				if(($tscat_id == 1 && $mydetails[0]['step'] == 4) || ($tscat_id == 2 && $mydetails[0]['step'] == 2) || ($tscat_id == 3 && $mydetails[0]['step'] == 2)) {
+					if($tscat_id != 3) {
+						$isadded = $this->mycommunity->addToMyCommunity($params);
+						if($isadded) {
+							$resp['status'] = 1;
+							$resp['msg'] = 'Add to community request has been sent to this member, waiting his acceptance, to check or delete this request go to your Station/Alerts/Add rquest.';
+						} else {
+							$resp['status'] = 0;
+							$resp['msg'] = 'ALREADY ADDED TO YOUR COMMUNITY';
+						}
+					} else {
+						if($mydetails['accept_community'] == 1) {
+							$isadded = $this->mycommunity->addToMyCommunity($params);
+							if($isadded) {
+								$resp['status'] = 1;
+								$resp['msg'] = 'Add to community request has been sent to this member, waiting his acceptance, to check or delete this request go to your Station/Alerts/Add rquest.';
+							} else {
+								$resp['status'] = 0;
+								$resp['msg'] = 'ALREADY ADDED TO YOUR COMMUNITY';
+							}
+						} else {
+							$resp['status'] = 0;
+							$resp['msg'] = 'Oops.. It seems that you have turned this feature OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Panel", then Turn it ON.';
+						}
+					}
 				} else {
 					$resp['status'] = 0;
-					$resp['msg'] = 'ALREADY ADDED TO YOUR COMMUNITY';
+					$resp['msg'] = 'Please establish your Community first, to do this complete your registration process and build your desksite';
 				}
 			} else {
 				$resp['status'] = 0;
-				$resp['msg'] = 'YOU ARE ALREADY IN YOUR COMMUNITY';
+				$resp['msg'] = 'Oops, this is your community..!';
 			}
 		} else {
 			$resp['status'] = 0;

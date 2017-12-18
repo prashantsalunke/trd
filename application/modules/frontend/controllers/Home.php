@@ -778,7 +778,6 @@ class Home extends MX_Controller {
 		$this->template->build ('Home/bstation');
 	}
 	public function DesksiteByBusiId($id){
-		$busi_id = $this->session->userdata('tsuser')['busi_id']; 
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$community = array();
 		if(!empty($busi_id)) {
@@ -803,12 +802,16 @@ class Home extends MX_Controller {
 		$images = $this->myudtalk->getUdFiles($busi_id);
 		$countries = $this->product->getAllCountries();
 		$branches = $this->product->getBusinessBranchesByBusiId($map);
+		$contact_details = array();
+		if(!empty($busi_id))
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'countries', $countries );
 		$this->template->set ( 'community', $community );
 		$this->template->set ( 'branches', $branches );
 		$this->template->set ( 'images', $images);
 		$this->template->set ( 'Desksites', $Desksites);
 		$this->template->set ( 'catalogues', $catalogues);
+		$this->template->set ( 'contact_details',$contact_details);
 		$this->template->set ( 'busi_id', $id);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'seller');
@@ -838,7 +841,13 @@ class Home extends MX_Controller {
 			}
 		}
 		$user_rnd = $this->factorylib->getUserRNDtype($Company[0]['factory_id']);
+		$trade_info = $this->product->getCompanyTradeInfo($id);
+		$market_info = array();
+		if(!empty($trade_info[0]['main_market_ids']))
+		$market_info = $this->product->getCompanyMarketInfo($trade_info[0]['main_market_ids']);
 		$this->template->set('user_rnd',$user_rnd);
+		$this->template->set('trade_info',$trade_info);
+		$this->template->set('market_info',$market_info);
 		$this->template->set ( 'Company', $Company);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -943,6 +952,8 @@ class Home extends MX_Controller {
 	public function getMyfiles($id) {
 		$this->load->model('Product_Model', 'product' );
 		$MyFiles = $this->product->getMyFiles($id);
+		$binfo = $this->product->getBusinessCategory($id);
+		$this->template->set ( 'bcatinfo', $binfo);
 		$this->template->set ( 'Files', $MyFiles);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -999,6 +1010,8 @@ class Home extends MX_Controller {
 	public function getCurrentPost($id) {
 		$this->load->model('Product_Model', 'product' );
 		$Posts = $this->product->getCurrentPost($id);
+		$binfo = $this->product->getBusinessCategory($id);
+		$this->template->set ( 'bcatinfo', $binfo);
 		$this->template->set ( 'Posts', $Posts);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -1010,6 +1023,8 @@ class Home extends MX_Controller {
 	public function getCurrentRequest($id) {
 		$this->load->model('Product_Model', 'product' );
 		$Posts = $this->product->getCurrentRequest($id);
+		$binfo = $this->product->getBusinessCategory($id);
+		$this->template->set ( 'bcatinfo', $binfo);
 		$this->template->set ( 'Posts', $Posts);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -1022,6 +1037,8 @@ class Home extends MX_Controller {
 	public function buyerCurrentRequest($id) {
 		$this->load->model('Product_Model', 'product' );
 		$Posts = $this->product->getCurrentRequest($id);
+		$binfo = $this->product->getBusinessCategory($id);
+		$this->template->set ( 'bcatinfo', $binfo);
 		$this->template->set ( 'Posts', $Posts);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -1199,9 +1216,11 @@ class Home extends MX_Controller {
 		$this->load->model('Product_Model','product');
 		$Desksites= $this->product->getDesksiteByBusiId($map);
 		$countries = $this->product->getAllCountries();
+		$requests = $this->product->getCurrentRequest($id);
 		$this->template->set ( 'countries', $countries );
 		$this->template->set ( 'Desksites', $Desksites);
 		$this->template->set ( 'community', $community);
+		$this->template->set ( 'requests', $requests);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'buyer');
 		$this->template->set_theme('default_theme');
@@ -1214,6 +1233,7 @@ class Home extends MX_Controller {
 	}
 	public function shipperProfileByBusiId($id){
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$community = array();
 		if(!empty($busi_id)) {
 			if($busi_id != $id) {
 				$map = array();
@@ -1222,6 +1242,7 @@ class Home extends MX_Controller {
 				$map['visit_date'] = date('Y-m-d');
 				$this->load->model('Tool_model','mytoolmodel');
 				$this->mytoolmodel->addBusinessVisit($map);
+				$community = $this->product->getInCommunity($busi_id,$id);
 			}
 		}
 		$map =array();
@@ -1237,6 +1258,7 @@ class Home extends MX_Controller {
 		$this->template->set ( 'images', $images);
 		$this->template->set ( 'branches', $branches);
 		$this->template->set ( 'Desksites', $Desksites);
+		$this->template->set ( 'community', $community);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'shipper');
 		$this->template->set_theme('default_theme');
@@ -1389,6 +1411,8 @@ class Home extends MX_Controller {
 			$html= $this->template->build ('Home/pages/bcatalogue', '', true);
 			$params['html'] = $html;
 			$params['id'] = $id;
+			$params['views'] = $catalogues[0]['views'];
+			$params['likes'] = $catalogues[0]['likes'];
 			echo json_encode($params);
 		} else {
 			$params['html'] = 0;
@@ -1399,6 +1423,7 @@ class Home extends MX_Controller {
 	
 	public function getNextCatalogueById($id) {
 		$this->load->model('Catalogue_model','catalogue');
+		$catalogue = $this->catalogue->getProductCatalogueById($id);
 		$catalogue_items = $this->catalogue->getProductCatalogueItems($id);
 		$this->template->set ( 'products', $catalogue_items );
 		$this->template->set ( 'page', 'home' );
@@ -1407,6 +1432,8 @@ class Home extends MX_Controller {
 		$html= $this->template->build ('Home/pages/bcatalogue', '', true);
 		$params['html'] = $html;
 		$params['id'] = $id;
+		$params['views'] = $catalogue[0]['views'];
+		$params['likes'] = $catalogue[0]['likes'];
 		echo json_encode($params);
 	}
 	
@@ -1436,6 +1463,89 @@ class Home extends MX_Controller {
 		}
 		echo json_encode($resp);
 		
+	}
+	
+	public function likeCatalogue($catalogue_id) {
+		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
+		$resp = array();
+		if(!empty($mybusi_id)) {
+			$this->load->model('Product_Model', 'product' );
+			$this->product->updateCatalogueLikes($catalogue_id);
+			$resp['status'] = 1;
+			$resp['msg'] = "WE HAVE RECORDED YOUR RESPONSE";
+		} else {
+			$resp['status'] = 0;
+			$resp['msg'] = "LOGIN TO LIKE";
+		}
+		echo json_encode($resp);
+	
+	}
+	
+	public function getGeneralInquiry($busi_id) {
+		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
+		$this->load->model('Product_Model','product');
+		$mydesksite = $this->product->getBusinessContactInfo(array('id'=>$mybusi_id));
+		$desksites = $this->product->getBusinessContactInfo(array('id'=>$busi_id));
+		$this->template->set ( 'mydesksite', $mydesksite);
+		$this->template->set ( 'desksite', $desksites);
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('desksite/subpages/general_inquiry', '', true);
+		echo $html;
+	}
+	
+	public function saveGeneralInquiry() {
+		$this->load->model('Product_Model','product');
+		$userId = $this->session->userdata('tsuser')['userid'];
+		$size = 0;
+		$params = array();
+		$params['busi_id'] = $this->input->post('busi_id');
+		$params['requester_busi_id'] = $this->input->post('my_busi_id');
+		$params['inquiry_subject'] = 'General Enquiry';
+		$params['inquiry_body'] = $this->input->post('message');
+		$params['product_item_id'] = 0;
+		$params['inquiry_type_id'] = 1;
+		$params['name'] = $this->input->post('name');
+		$params['company'] = $this->input->post('company');
+		$params['email'] = $this->input->post('email');
+		$params['phone'] = $this->input->post('phone');
+		$params['created_date'] = date('Y-m-d H:i:s');
+		$size = 0;
+		if (!empty($_FILES['FileUpload1']['name'])) {
+			$certiPath = FCPATH . "assets/images/user_images/$userId/buyerrequest";
+			if (!file_exists($certiPath)) {
+				mkdir($certiPath, 0777, true);
+				chmod($certiPath, 0777);
+			}
+			$certiPath = "assets/images/user_images/$userId/buyerrequest";
+			$imgupload = uploadImage($_FILES['FileUpload1'],$certiPath,array('jpeg','jpg','png','gif','pdf','doc','docx','xls','xlsx'),20971521,'br');
+			if($imgupload['status'] == 1) {
+				$params['attachment1'] = $imgupload['image'];
+				$size = $size + $_FILES['FileUpload1'] ['size'];
+				$params['attachment1_size'] = $size;
+			}
+		}
+		$this->load->model('Product_Model', 'product' );
+		$id = $this->product->addGeneralEnquiry($params);
+		$resp = array();
+		if(!empty($id)) {
+			/* ************** Storage Implementation *************** */
+			if($size != 0) {
+				$this->load->library('mylib/StorageLib');
+				$storage = array();
+				$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+				$storage['field'] = 'bstation';
+				$storage['datasize'] = round($size/1024,2);
+				$this->storagelib->updateStorageByBusiId($storage);
+			}
+			/* ***************************************************** */
+			$resp['status'] = 1;
+			$resp['msg'] = "Enquiry added successfully.";
+		} else {
+			$resp['status'] = 0;
+			$resp['msg'] = "Failed to add Enquiry.";
+		}
+		echo json_encode($resp);
 	}
 	
 	

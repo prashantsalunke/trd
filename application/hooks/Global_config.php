@@ -111,6 +111,7 @@ class Global_config {
 				$this->CI->template->set('gblinquiries',$gblmyinquiries);
 				$this->CI->template->set('gblorders',$gblmyorders);
 				$this->CI->template->set('gblrequests',$gblmyrequests);
+				
 			}
 			
 		}
