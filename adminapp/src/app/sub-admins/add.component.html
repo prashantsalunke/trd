@@ -5,6 +5,7 @@
                 <button type="button" class="close" [routerLink]="['../']" style="opacity:1;"><img src="images/img3424.png" width="30px"></button>
             </div>
             <div class="modal-body">
+                    <form [formGroup]="adminForm" novalidate>                            
                 <div class="row margin-bottom">
                     <div class="col-sm-3"><img src="images/img3235.png" class="img-responsive"></div>
                     <div class="col-sm-6">
@@ -13,12 +14,12 @@
                     </div>
                 </div>
                 <div class="row margin-bottom">
-                    <div class="col-sm-6"><input type="text" class="form-control input-box" placeholder="user Name"></div>
-                    <div class="col-sm-6"><input type="text" class="form-control input-box" placeholder="Email id"></div>
+                    <div class="col-sm-6"><input type="text" class="form-control input-box" formControlName="username" placeholder="user Name"></div>
+                    <div class="col-sm-6"><input type="text" class="form-control input-box" formControlName="email" placeholder="Email id"></div>
                 </div>
                 <div class="row margin-bottom">
-                    <div class="col-sm-6"><input type="text" class="form-control input-box" placeholder="Password"></div>
-                    <div class="col-sm-6"><input type="text" class="form-control input-box" placeholder="security Code"></div>
+                    <div class="col-sm-6"><input type="text" class="form-control input-box" formControlName="password" placeholder="Password"></div>
+                    <div class="col-sm-6"><input type="text" class="form-control input-box" formControlName="security_code" placeholder="security Code"></div>
                 </div>
 
                 <div class="row margin-bottom margin-top">
@@ -41,8 +42,8 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
+                                    <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" checked>
+                                    <label class="onoffswitch-label" for="myonoffswitch2">
         <span class="onoffswitch-inner"></span>
         <span class="onoffswitch-switch"></span>
     </label>
@@ -171,6 +172,7 @@
 
                 </div>
                 <div class="row text-center"><a href="#" class="btn btn-blue">Create</a> <a href="#" class="btn btn-blue">Cancel</a></div>
+                    </form>
             </div>
         </div>
     </div>

@@ -28,13 +28,12 @@ class Auth extends REST_Controller {
 	}
 
 	function getLoggetInUser_get(){
-		$user =  $this->session->userdata('admin_user');
+		$user =  $this->session->all_userdata();
+		print_r($user);
 		
-			if(isset($user)){
-				$this->response(json_decode($user));
-			}else {
-				$this->response(NULL,404);
-			}
+			// if(isset($user)){
+			// 	$this->response($user);
+			// }
 	}
 
 	function logout_get(){

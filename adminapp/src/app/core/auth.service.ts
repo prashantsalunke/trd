@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private http:HttpClient, private router:Router) { }
 
   authenticate(user){
-    return this.http.post(`${this.apiUrl}auth`,user,{
+    return this.http.post(`${this.apiUrl}auth`,JSON.stringify(user),{
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
     });
   }
