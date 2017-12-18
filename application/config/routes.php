@@ -493,5 +493,6 @@ $route['admin'] = 'backend/index';
 $route['api/auth'] = 'backend/auth/login';
 $route['api/current-user'] = 'backend/auth/getLoggetInUser';
 $route['api/logout'] = 'backend/auth/logout';
+$route['api/sub-admins/add'] = 'backend/subadmins/add';
 
 ?>

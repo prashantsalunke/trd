@@ -11,13 +11,15 @@ import { HeaderComponent } from './header.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SubAdminService } from './sub-admin.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomFormsModule } from '@floydspace/ngx-validation';
 
 @NgModule({
   imports: [
     CommonModule,
     SubAdminsRoutingModule,    
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    CustomFormsModule
   ],
   declarations: [IndexComponent, 
     ListComponent, AddComponent,

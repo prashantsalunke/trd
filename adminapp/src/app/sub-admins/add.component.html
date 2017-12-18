@@ -22,154 +22,28 @@
                     <div class="col-sm-6"><input type="text" class="form-control input-box" formControlName="security_code" placeholder="security Code"></div>
                 </div>
 
-                <div class="row margin-bottom margin-top">
+                <div class="row margin-bottom margin-top" formGroupName="permissions">
+                        <div class="col-sm-12">
+                                <div class="row">
+                        <h1 style="color:#2D2D2D;font-family:Georgia;font-size:21px;">User Permissions</h1>   
+                        </div>
+                        </div>                     
                     <div class="col-sm-6">
-                        <h1 style="color:#2D2D2D;font-family:Georgia;font-size:21px;">User Permissions</h1>
-                        <div class="row">
+                        <div class="row" *ngFor="let permit of permissionKeys; let permitI=index;">
                             <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
+                                <div class="onoffswitch">                                       
+                                    <input type="checkbox" name="onoffswitch" [formControlName]="permit" class="onoffswitch-checkbox" id="{{'myonoffswitch' + permitI}}" >
+                                    <label class="onoffswitch-label" for="{{'myonoffswitch' + permitI}}">
         <span class="onoffswitch-inner"></span>
         <span class="onoffswitch-switch"></span>
     </label>
                                 </div>
                             </div>
                             <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
+                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">{{permit}}</span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch2">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
-                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 margin-top">
-
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="onoffswitch">
-                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                    <label class="onoffswitch-label" for="myonoffswitch">
-        <span class="onoffswitch-inner"></span>
-        <span class="onoffswitch-switch"></span>
-    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <span style="color:#1E1E1E;font-family:Arial;font-size:14px;">Login as an admin</span>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="row text-center"><a href="#" class="btn btn-blue">Create</a> <a href="#" class="btn btn-blue">Cancel</a></div>
                     </form>

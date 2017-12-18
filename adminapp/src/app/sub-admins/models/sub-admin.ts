@@ -30,3 +30,6 @@ export class Permissions {
     created_at?:Date    
 }
     
+export const PermissionsArray =  ['as_admin',
+'manage_sub_admin','manage_member', 'manage_carousel','audit','chat',
+'view_errors','statistic','account_alarm'];
