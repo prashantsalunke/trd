@@ -30,4 +30,19 @@ class Admin_User_Model extends CI_Model{
         }
         return null;   
         }
+
+        public function add_sub_admin($subadmin){
+            $this->username = $subadmin['username'];
+            $this->password = $subadmin['password'];
+            $this->email = $subadmin['email'];
+            $this->security_code = $subadmin['security_code'];
+            $this->profile_image = $subadmin['profile_image'];
+            $this->online_status = $subadmin['online_status'];
+            $this->is_suspended = false;
+            $this->is_deleted = false;
+            // $this->created_by = $subadmin['created_by'];
+            // $this->modified_by = $subadmin['created_by'];
+           return $this->db->insert('tbl_admin_users', $this);            
+        }
+
 }

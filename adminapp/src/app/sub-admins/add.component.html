@@ -7,19 +7,49 @@
             <div class="modal-body">
                     <form [formGroup]="adminForm" novalidate>                            
                 <div class="row margin-bottom">
-                    <div class="col-sm-3"><img src="images/img3235.png" class="img-responsive"></div>
+                    <div class="col-sm-3">
+                            <div *ngIf="profileImg && profileImg.value; else falsyTemplate">
+                                    <img [src]="imageToShow" class="img-responsive">                               
+                                   </div>
+                                   
+                                  <ng-template #falsyTemplate>
+                                        <img src="images/img3235.png" class="img-responsive">                        
+                                              </ng-template>
+                                  </div>
                     <div class="col-sm-6">
                         <h1 style="color:#1E1E1E;font-family:Arial;font-size:16px;">Add User Profile Image</h1>
-                        <input type="file" class="form-control input-box">
+                        <input type="file" class="form-control input-box" ng2FileSelect [uploader]="uploader" (change)="onFileChange($event)" #fileInput/>
                     </div>
                 </div>
                 <div class="row margin-bottom">
-                    <div class="col-sm-6"><input type="text" class="form-control input-box" formControlName="username" placeholder="user Name"></div>
-                    <div class="col-sm-6"><input type="text" class="form-control input-box" formControlName="email" placeholder="Email id"></div>
+                    <div class="col-sm-6 form-group" [ngClass]="{'has-error': submitted && adminForm.get('username').errors}">
+                        <input type="text" class="form-control input-box" formControlName="username" placeholder="user Name">
+                        <span class="help-block" *ngIf="submitted">
+                            <span *ngIf="adminForm.get('username').hasError('required')"> UserName required</span>
+</span>
+
+                        </div>
+                    <div class="col-sm-6 form-group" [ngClass]="{'has-error': submitted && adminForm.get('email').errors}">
+                        <input type="text" class="form-control input-box" formControlName="email" placeholder="email">
+                        <span class="help-block" *ngIf="submitted">
+                            <span *ngIf="(adminForm.get('email').errors | firstError) === 'email'"> Email invalid</span>
+                            <span *ngIf="(adminForm.get('email').errors | firstError) === 'required'"> Email required</span>
+                        </span>
+                    </div>
                 </div>
                 <div class="row margin-bottom">
-                    <div class="col-sm-6"><input type="text" class="form-control input-box" formControlName="password" placeholder="Password"></div>
-                    <div class="col-sm-6"><input type="text" class="form-control input-box" formControlName="security_code" placeholder="security Code"></div>
+                        <div class="col-sm-6 form-group" [ngClass]="{'has-error':submitted && adminForm.get('password').errors}">
+                                <input type="text" class="form-control input-box" formControlName="password" placeholder="Password">
+                                <span class="help-block" *ngIf="submitted">
+                                    <span *ngIf="adminForm.get('password').hasError('required')"> Password required</span>
+        </span>
+    </div>
+                        <div class="col-sm-6 form-group" [ngClass]="{'has-error':submitted && adminForm.get('security_code').errors}">
+                                <input type="text" class="form-control input-box" formControlName="security_code" placeholder="security code">
+                                <span class="help-block" *ngIf="submitted">
+                                    <span *ngIf="adminForm.get('security_code').hasError('required')"> security code required</span>
+        </span>
+    </div>
                 </div>
 
                 <div class="row margin-bottom margin-top" formGroupName="permissions">

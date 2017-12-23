@@ -12,14 +12,20 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { SubAdminService } from './sub-admin.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomFormsModule } from '@floydspace/ngx-validation';
+import { SharedModule } from '../shared/shared.module';
+import { FileUploadModule } from 'ng2-file-upload';
+
+
 
 @NgModule({
   imports: [
     CommonModule,
     SubAdminsRoutingModule,    
     ReactiveFormsModule,
+    SharedModule,
     ModalModule.forRoot(),
-    CustomFormsModule
+    CustomFormsModule,
+    FileUploadModule 
   ],
   declarations: [IndexComponent, 
     ListComponent, AddComponent,

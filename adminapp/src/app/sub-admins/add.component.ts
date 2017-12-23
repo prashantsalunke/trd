@@ -5,6 +5,9 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { SubAdmin, Permissions, PermissionsArray } from './models/sub-admin'
 import { FormArray } from '@angular/forms/src/model';
 import { CustomValidators } from '@floydspace/ngx-validation';
+import { FileUploader } from 'ng2-file-upload';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'trd-add',
@@ -12,18 +15,24 @@ import { CustomValidators } from '@floydspace/ngx-validation';
   styles: []
 })
 export class AddComponent implements OnInit {
+  imageToShow: SafeResourceUrl;
+  profileImg: { filename: any; filetype: any; value: any; };
+  public uploader: FileUploader;
+  
   permissionKeys: string[];
 
   showForm: boolean = false;
+  submitted: boolean = false;
   adminForm: FormGroup;
   constructor(private subAdminService: SubAdminService,
-    private router: Router, private formBuilder: FormBuilder
+    private router: Router, private formBuilder: FormBuilder,
+    public _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
+    this.uploader = new FileUploader({
+  });
     this.initForm();
-
-
   }
 
   initForm(): any {
@@ -37,7 +46,7 @@ export class AddComponent implements OnInit {
       'username': [adminUser.username, Validators.required],
       'security_code': [adminUser.security_code, Validators.required],
       'password': [adminUser.password, Validators.required],
-      'email': [adminUser.email, Validators.required,CustomValidators.email],
+      'email': [adminUser.email, [Validators.required,Validators.email]],
       'profile_image': adminUser.profile_image,
       'online_status': adminUser.online_status,
       'is_suspended': adminUser.is_suspended,
@@ -47,8 +56,25 @@ export class AddComponent implements OnInit {
     this.adminForm.valueChanges
     .debounceTime(500)
     .subscribe(c=>{
+      this.submitted = true;
       console.log(c);
-      this.subAdminService.addSubAdmin(c).subscribe(res=> console.log(res));
+      this.subAdminService.addSubAdmin(c).subscribe(res=> {
+        console.log(res)
+      },error => {
+        console.log('err',error);
+        if(error.status === 422){
+          const serverErrors = error.error;
+          const errorKeys = Object.keys(serverErrors);
+          errorKeys.forEach(errorKey=>{
+            console.log(errorKey);
+            let key:string = serverErrors[errorKey];
+            console.log(key);
+            let errorMsg[key] = true;
+            this.adminForm.get(errorKey).setErrors(errorMsg);
+          })
+          console.log(this.adminForm);
+        }
+      });
     })
     console.log(this.adminForm);
   }
@@ -68,4 +94,22 @@ export class AddComponent implements OnInit {
     return permissionGroup;
   }
 
+  onFileChange(event)
+  {
+    let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      this.adminForm.get('profile_image').setValue(file);
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.profileImg = {
+          filename: file.name,
+          filetype: file.type,
+          value: reader.result.split(',')[1]
+      };
+
+      this.imageToShow = this._sanitizer.bypassSecurityTrustResourceUrl( `data:${this.profileImg.filetype};base64, ${this.profileImg.value}`)
+    }
+  }
+  }
 }
