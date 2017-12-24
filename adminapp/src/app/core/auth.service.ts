@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private apiUrl = environment.backend;
-
+  public authUser = {};
   constructor(private http:HttpClient, private router:Router) { }
 
   authenticate(user){

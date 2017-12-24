@@ -16,12 +16,28 @@ class SubAdmins extends REST_Controller {
 		parent::__construct ();
 		
 		$this->load->model('backend/Admin_User_Model');
+		$this->load->model('backend/Permissions_Model');
 			
-	}    
+	}
+	
+	public function get_admin_get(){
+		$subAdmins = $this->Admin_User_Model->getAll();
+		if($subAdmins){
+			$this->response($subAdmins,400);
+		}else{
+			$this->response([],400);			
+		}
+	}
 
+	/**
+	 * create new subadmin with permissions
+	 *
+	 * @return json
+	 */
 	public function add_post(){
 		// print_r(json_decode($this->post()['permissions']));
 		$post_admin = $this->post();
+		$post_admin['permissions'] = json_decode($post_admin['permissions']);
 		$image_upload_status = $this->do_upload();
 		if(isset($image_upload_status['error'])){
 			$error = array('profile_image'=>$image_upload_status['error']);
@@ -57,11 +73,24 @@ class SubAdmins extends REST_Controller {
 						}
 						else
 						{
+							$user =  json_decode($this->session->userdata('admin_user'));
+							$post_admin['created_by'] = $user->id;
+							$post_admin['modified_by'] = $user->id;
+						
 							$crated_admin = $this->Admin_User_Model->add_sub_admin($post_admin);
-							$this->response($crated_admin);
+							if($crated_admin){
+								$this->response($crated_admin);								
+							}else{
+								$this->response(NULL);
+							}
 						}
 		}
 
+		/**
+		 * upload subadmins images
+		 *
+		 * @return json_response
+		 */
 	public function do_upload(){
 		$upload_path = "assets/images/admin_images/";
 		$config = array(

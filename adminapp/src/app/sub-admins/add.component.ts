@@ -15,6 +15,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styles: []
 })
 export class AddComponent implements OnInit {
+  serverErrors: any;
   imageToShow: SafeResourceUrl;
   profileImg: { filename: any; filetype: any; value: any; };
   public uploader: FileUploader;
@@ -53,29 +54,6 @@ export class AddComponent implements OnInit {
       'is_deleted': adminUser.is_deleted,
       'permissions': permissionGroup
     });
-    this.adminForm.valueChanges
-    .debounceTime(500)
-    .subscribe(c=>{
-      this.submitted = true;
-      console.log(c);
-      this.subAdminService.addSubAdmin(c).subscribe(res=> {
-        console.log(res)
-      },error => {
-        console.log('err',error);
-        if(error.status === 422){
-          const serverErrors = error.error;
-          const errorKeys = Object.keys(serverErrors);
-          errorKeys.forEach(errorKey=>{
-            console.log(errorKey);
-            let key:string = serverErrors[errorKey];
-            console.log(key);
-            let errorMsg[key] = true;
-            this.adminForm.get(errorKey).setErrors(errorMsg);
-          })
-          console.log(this.adminForm);
-        }
-      });
-    })
     console.log(this.adminForm);
   }
 
@@ -111,5 +89,23 @@ export class AddComponent implements OnInit {
       this.imageToShow = this._sanitizer.bypassSecurityTrustResourceUrl( `data:${this.profileImg.filetype};base64, ${this.profileImg.value}`)
     }
   }
+  }
+
+  onSubmit(adminForm:FormGroup){
+this.serverErrors= {};
+this.submitted = true;
+    if(adminForm.valid){
+      const adminValues = adminForm.value;
+      this.subAdminService.addSubAdmin(adminValues).subscribe(res=> {
+        console.log(res);
+        this.submitted = false;        
+      },error => {
+        console.log('err',error);
+        if(error.status === 422){
+          this.serverErrors = error.error;
+        }
+      });
+    }
+
   }
 }

@@ -16,38 +16,42 @@
                                         <img src="images/img3235.png" class="img-responsive">                        
                                               </ng-template>
                                   </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 form-group" [ngClass]="{'has-error':serverErrors?.profile_image}">
                         <h1 style="color:#1E1E1E;font-family:Arial;font-size:16px;">Add User Profile Image</h1>
                         <input type="file" class="form-control input-box" ng2FileSelect [uploader]="uploader" (change)="onFileChange($event)" #fileInput/>
+                        <span class="help=block error" *ngIf="serverErrors?.profile_image">{{serverErrors?.profile_image}}</span>
                     </div>
                 </div>
                 <div class="row margin-bottom">
-                    <div class="col-sm-6 form-group" [ngClass]="{'has-error': submitted && adminForm.get('username').errors}">
+                    <div class="col-sm-6 form-group" [ngClass]="{'has-error': submitted && (adminForm.get('username').errors || serverErrors?.username)}">
                         <input type="text" class="form-control input-box" formControlName="username" placeholder="user Name">
                         <span class="help-block" *ngIf="submitted">
-                            <span *ngIf="adminForm.get('username').hasError('required')"> UserName required</span>
-</span>
+                            <span *ngIf="adminForm.get('username').hasError('required') || serverErrors?.username == 'required'"> UserName required</span>
+                            <span *ngIf="serverErrors?.username == 'is_unique'"> Username already exist</span>
+                        </span>
 
                         </div>
-                    <div class="col-sm-6 form-group" [ngClass]="{'has-error': submitted && adminForm.get('email').errors}">
+                    <div class="col-sm-6 form-group" [ngClass]="{'has-error': submitted && (adminForm.get('email').errors || serverErrors?.email)}">
                         <input type="text" class="form-control input-box" formControlName="email" placeholder="email">
                         <span class="help-block" *ngIf="submitted">
-                            <span *ngIf="(adminForm.get('email').errors | firstError) === 'email'"> Email invalid</span>
-                            <span *ngIf="(adminForm.get('email').errors | firstError) === 'required'"> Email required</span>
+                            <span *ngIf="(adminForm.get('email').errors | firstError) === 'email' || serverErrors?.email == 'valid_email'"> Email invalid</span>
+                            <span *ngIf="(adminForm.get('email').errors | firstError) === 'required' || serverErrors?.email == 'required'"> Email required</span>
+                            <span *ngIf="serverErrors?.email == 'is_unique'"> Email already exist</span>
                         </span>
                     </div>
                 </div>
                 <div class="row margin-bottom">
-                        <div class="col-sm-6 form-group" [ngClass]="{'has-error':submitted && adminForm.get('password').errors}">
+                        <div class="col-sm-6 form-group" [ngClass]="{'has-error':submitted && (adminForm.get('password').errors || serverErrors?.password)}">
                                 <input type="text" class="form-control input-box" formControlName="password" placeholder="Password">
                                 <span class="help-block" *ngIf="submitted">
-                                    <span *ngIf="adminForm.get('password').hasError('required')"> Password required</span>
+                                    <span *ngIf="adminForm.get('password').hasError('required') || serverErrors?.password?.required"> Password required</span>
         </span>
     </div>
-                        <div class="col-sm-6 form-group" [ngClass]="{'has-error':submitted && adminForm.get('security_code').errors}">
+                        <div class="col-sm-6 form-group" [ngClass]="{'has-error':submitted && (adminForm.get('security_code').errors ||
+                         serverErrors?.security_code)}">
                                 <input type="text" class="form-control input-box" formControlName="security_code" placeholder="security code">
                                 <span class="help-block" *ngIf="submitted">
-                                    <span *ngIf="adminForm.get('security_code').hasError('required')"> security code required</span>
+                                    <span *ngIf="adminForm.get('security_code').hasError('required') || serverErrors?.security_code?.required"> security code required</span>
         </span>
     </div>
                 </div>
@@ -75,7 +79,8 @@
                         </div>
                         </div>
                 </div>
-                <div class="row text-center"><a href="#" class="btn btn-blue">Create</a> <a href="#" class="btn btn-blue">Cancel</a></div>
+                <div class="row text-center"><a (click)="onSubmit(adminForm)" class="btn btn-blue">Create</a>
+                     <a [routerLink]="['../']" class="btn btn-blue">Cancel</a></div>
                     </form>
             </div>
         </div>

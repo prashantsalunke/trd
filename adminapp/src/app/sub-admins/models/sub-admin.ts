@@ -5,9 +5,9 @@ export class SubAdmin {
     password:string='';
     email?:string='';
     profile_image?:ByteString='';
-    online_status?:boolean=!1;
-    is_suspended?:boolean=!1;
-    is_deleted?:boolean=!1;
+    online_status?:number=0;
+    is_suspended?:number=0;
+    is_deleted?:number=0;
     created_by?:string='';
     created_at?:Date;
     modified_by?:string;
@@ -18,15 +18,15 @@ export class SubAdmin {
 export class Permissions {
     id:number;
     admin_user_id:number;
-    as_admin:boolean=!1;
-    manage_sub_admin:boolean=!1;
-    manage_member:boolean=!1;
-    manage_carousel:boolean=!1;
-    audit:boolean=!1;
-    chat:boolean=!1;
-    view_errors:boolean=!1;
-    statistic:boolean=!1;
-    account_alarm:boolean=!1;
+    as_admin:number=0;
+    manage_sub_admin:number=0;
+    manage_member:number=0;
+    manage_carousel:number=0;
+    audit:number=0;
+    chat:number=0;
+    view_errors:number=0;
+    statistic:number=0;
+    account_alarm:number=0;
     created_at?:Date    
 }
     
