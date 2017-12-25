@@ -19,20 +19,19 @@ export class AddComponent implements OnInit {
   imageToShow: SafeResourceUrl;
   profileImg: { filename: any; filetype: any; value: any; };
   public uploader: FileUploader;
-  
-  permissionKeys: string[];
 
   showForm: boolean = false;
   submitted: boolean = false;
   adminForm: FormGroup;
+  permissionKeys:Array<any>;
+
   constructor(private subAdminService: SubAdminService,
-    private router: Router, private formBuilder: FormBuilder,
-    public _sanitizer: DomSanitizer
-  ) { }
+              private router: Router, private formBuilder: FormBuilder,
+              public _sanitizer: DomSanitizer) {
+  }
 
   ngOnInit() {
-    this.uploader = new FileUploader({
-  });
+    this.uploader = new FileUploader({});
     this.initForm();
   }
 
@@ -47,14 +46,13 @@ export class AddComponent implements OnInit {
       'username': [adminUser.username, Validators.required],
       'security_code': [adminUser.security_code, Validators.required],
       'password': [adminUser.password, Validators.required],
-      'email': [adminUser.email, [Validators.required,Validators.email]],
+      'email': [adminUser.email, [Validators.required, Validators.email]],
       'profile_image': adminUser.profile_image,
       'online_status': adminUser.online_status,
       'is_suspended': adminUser.is_suspended,
       'is_deleted': adminUser.is_deleted,
       'permissions': permissionGroup
     });
-    console.log(this.adminForm);
   }
 
   getPermissionGorup(permissions: Permissions): FormGroup {
@@ -64,18 +62,15 @@ export class AddComponent implements OnInit {
 
     // const permissionKeys = Object.keys(permissions);
     this.permissionKeys.forEach(permit => {
-      let control: FormControl = new FormControl(permissions[permit]);
-      permissionGroup.addControl(permit, control);
+      let control: FormControl = new FormControl(permissions[permit.value]);
+      permissionGroup.addControl(permit.value, control);
     });
-
-    
     return permissionGroup;
   }
 
-  onFileChange(event)
-  {
+  onFileChange(event) {
     let reader = new FileReader();
-    if(event.target.files && event.target.files.length > 0) {
+    if (event.target.files && event.target.files.length > 0) {
       let file = event.target.files[0];
       this.adminForm.get('profile_image').setValue(file);
       reader.readAsDataURL(file);
@@ -84,24 +79,24 @@ export class AddComponent implements OnInit {
           filename: file.name,
           filetype: file.type,
           value: reader.result.split(',')[1]
-      };
+        };
 
-      this.imageToShow = this._sanitizer.bypassSecurityTrustResourceUrl( `data:${this.profileImg.filetype};base64, ${this.profileImg.value}`)
+        this.imageToShow = this._sanitizer.bypassSecurityTrustResourceUrl(`data:${this.profileImg.filetype};base64, ${this.profileImg.value}`)
+      }
     }
   }
-  }
 
-  onSubmit(adminForm:FormGroup){
-this.serverErrors= {};
-this.submitted = true;
-    if(adminForm.valid){
+  onSubmit(adminForm: FormGroup) {
+    this.serverErrors = {};
+    this.submitted = true;
+    if (adminForm.valid) {
       const adminValues = adminForm.value;
-      this.subAdminService.addSubAdmin(adminValues).subscribe(res=> {
-        console.log(res);
-        this.submitted = false;        
-      },error => {
-        console.log('err',error);
-        if(error.status === 422){
+      this.subAdminService.addSubAdmin(adminValues).subscribe((res: SubAdmin)=> {
+        this.subAdminService.addLocalAdmin(res);
+        this.submitted = false;
+          this.router.navigate(['../']);
+      }, error => {
+        if (error.status === 422) {
           this.serverErrors = error.error;
         }
       });

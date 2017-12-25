@@ -4,7 +4,7 @@ export class SubAdmin {
     security_code:string='';
     password:string='';
     email?:string='';
-    profile_image?:ByteString='';
+    profile_image?:string='';
     online_status?:number=0;
     is_suspended?:number=0;
     is_deleted?:number=0;
@@ -12,6 +12,7 @@ export class SubAdmin {
     created_at?:Date;
     modified_by?:string;
     modified_at?:Date;
+    selected?:boolean=!1;
     permissions:Permissions
 }
 
@@ -30,6 +31,9 @@ export class Permissions {
     created_at?:Date    
 }
     
-export const PermissionsArray =  ['as_admin',
-'manage_sub_admin','manage_member', 'manage_carousel','audit','chat',
-'view_errors','statistic','account_alarm'];
+export const PermissionsArray =  [{value:'as_admin',name: 'Login as an admin'},
+    {value:'manage_sub_admin',name:'Manage Sub-Admin'},
+    {value:'manage_member',name:'Member Information'}, {value:'manage_carousel',name:'Manage Carousels'},
+    {value:'audit',name:'Audit'},{value:'chat',name:'Chat'},
+    {value:'view_errors',name:'View Errors'},{value:'statistic',name:'Manage Statictics'},
+    {value:'account_alarm',name:'Account Alarm'}];

@@ -493,6 +493,10 @@ $route['admin'] = 'backend/index';
 $route['api/auth'] = 'backend/auth/login';
 $route['api/current-user'] = 'backend/auth/getLoggetInUser';
 $route['api/logout'] = 'backend/auth/logout';
-$route['api/sub-admins/add'] = 'backend/subadmins/add';
+$route['api/sub-admins']['post'] = 'backend/subadmins/add';
+$route['api/sub-admins']['put'] = 'backend/subadmins/edit';
+$route['api/sub-admins']['get'] = 'backend/subadmins/getAll';
+$route['api/sub-admins/permissions']['put'] = 'backend/subadmins/permissions';
+$route['api/sub-admins/permissions/([0-9]+)'] = 'backend/subadmins/permissions/$1';
 
 ?>
