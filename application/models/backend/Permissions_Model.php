@@ -48,7 +48,8 @@ class Permissions_Model extends CI_Model{
             'statistic' => $permisson['statistic'],
             'account_alarm' => $permisson['account_alarm']
         );
-        $this->db->where('id', $user_id);
+
+        $this->db->where('admin_user_id', $user_id);
         $result = $this->db->update('admin_permissions', $permitions);
         if ($result) {
             $this->db->trans_complete();
