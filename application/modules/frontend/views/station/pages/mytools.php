@@ -77,17 +77,17 @@
 						<div id="wb_Image132" style="position:absolute;left:69px;top:11px;width:30px;height:30px;z-index:3355;">
 						<img src="<?php echo asset_url();?>images/Desksite-small.png" id="Image132" alt=""></div>
 						<div id="wb_Text1453" style="position:absolute;left:123px;top:272px;width:60px;height:16px;text-align:center;z-index:3356;">
-						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $business_stats[0]['visit'];?></strong></span></div>
+						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $busi_history_pages['visits'];?></strong></span></div>
 						<div id="wb_Text1461" style="position:absolute;left:67px;top:271px;width:51px;height:16px;z-index:3357;text-align:left;">
 						<span style="color:#2688E4;font-family:Arial;font-size:12px;"><strong>Visitors</strong></span></div>
 						<div id="wb_Text1456" style="position:absolute;left:123px;top:292px;width:60px;height:16px;text-align:center;z-index:3358;">
-						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $business_stats[0]['likes'];?></strong></span></div>
+						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $busi_history_pages['likes'];?></strong></span></div>
 						<div id="wb_Text1458" style="position:absolute;left:67px;top:291px;width:51px;height:16px;z-index:3359;text-align:left;">
 						<span style="color:#2688E4;font-family:Arial;font-size:12px;"><strong>Likes</strong></span></div>
 						<div id="wb_Text1459" style="position:absolute;left:67px;top:311px;width:51px;height:16px;z-index:3360;text-align:left;">
 						<span style="color:#2688E4;font-family:Arial;font-size:12px;"><strong>Shares</strong></span></div>
 						<div id="wb_Text1460" style="position:absolute;left:123px;top:312px;width:60px;height:16px;text-align:center;z-index:3361;">
-						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $business_stats[0]['shares'];?></strong></span></div>
+						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $busi_history_pages['shares'];?></strong></span></div>
 						<div id="wb_Text1464" style="position:absolute;left:23px;top:212px;width:33px;height:16px;text-align:center;z-index:3362;">
 						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong>URL</strong></span></div>
 						<div id="wb_Text1463" style="position:absolute;left:27px;top:229px;width:202px;height:16px;z-index:3363;text-align:left;">
@@ -107,16 +107,16 @@
 							<img src="<?php echo asset_url();?>images/products.png" id="Image133" alt="">
 						</div>
 						<div id="wb_Text1466" style="position:absolute;left:124px;top:219px;width:60px;height:16px;text-align:center;z-index:3368;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_stats[0]['products'] ? $product_stats[0]['products']:0;?></strong></span>
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_history_pages['products'] ? $product_history_pages['products']:0;?></strong></span>
 						</div>
 						<div id="wb_Text1467" style="position:absolute;left:68px;top:218px;width:51px;height:16px;z-index:3369;text-align:left;">
 							<span style="color:#2688E4;font-family:Arial;font-size:12px;"><strong>Total</strong></span>
 						</div>
 						<div id="wb_Text1468" style="position:absolute;left:124px;top:239px;width:60px;height:16px;text-align:center;z-index:3370;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_stats[0]['likes'] ? $product_stats[0]['likes']:0;?></strong></span>
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_history_pages['likes'] ? $product_history_pages['likes']:0;?></strong></span>
 						</div>
 						<div id="wb_Text1471" style="position:absolute;left:124px;top:259px;width:60px;height:16px;text-align:center;z-index:3371;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_stats[0]['shares'] ? $product_stats[0]['shares']:0;?></strong></span>
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_history_pages['shares'] ? $product_history_pages['shares']:0;?></strong></span>
 						</div>
 						<?php $images = explode(",",$product_stats[0]['images']);?>
 						<div style="position:absolute;left:38px;top:50px;width:170px;height:110px;z-index:3372;">
@@ -148,20 +148,26 @@
 						<div id="wb_Text1472" style="position:absolute;left:78px;top:17px;width:122px;height:16px;z-index:3382;text-align:left;">
 						<span style="color:#D3D3D3;font-family:Georgia;font-size:16px;">Active Products</span></div>
 						<div id="wb_Text1473" style="position:absolute;left:142px;top:238px;width:60px;height:16px;text-align:center;z-index:3383;">
-						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $aproduct_stats[0]['visit'] ? $aproduct_stats[0]['visit']:0;?></strong></span></div>
+						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo !empty($aproduct_history_pages['visits']) ? $aproduct_history_pages['visits']:0;?></strong></span></div>
 						<div id="wb_Text1474" style="position:absolute;left:66px;top:237px;width:51px;height:16px;z-index:3384;text-align:left;">
 						<span style="color:#2688E4;font-family:Arial;font-size:12px;"><strong>Views</strong></span></div>
 						<div id="wb_Text1475" style="position:absolute;left:142px;top:258px;width:60px;height:16px;text-align:center;z-index:3385;">
-						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $aproduct_stats[0]['likes'] ? $aproduct_stats[0]['likes']:0;?></strong></span></div>
+						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo !empty($aproduct_history_pages['likes']) ? $aproduct_history_pages['likes']:0;?></strong></span></div>
 						<div id="wb_Text1478" style="position:absolute;left:142px;top:278px;width:60px;height:16px;text-align:center;z-index:3386;">
-						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $aproduct_stats[0]['shares'] ? $aproduct_stats[0]['shares']:0;?></strong></span></div>
+						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo !empty($aproduct_history_pages['shares']) ? $aproduct_history_pages['shares']:0;?></strong></span></div>
 						<div id="wb_Image134" style="position:absolute;left:37px;top:9px;width:36px;height:36px;z-index:3387;">
 						<img src="<?php echo asset_url();?>images/img1748.png" id="Image134" alt=""></div>
 						<div id="wb_Text1479" style="position:absolute;left:66px;top:216px;width:65px;height:16px;z-index:3388;text-align:left;">
 						<span style="color:#2688E4;font-family:Arial;font-size:12px;"><strong>Active Pro.</strong></span></div>
 						<div id="wb_Text1480" style="position:absolute;left:142px;top:217px;width:60px;height:16px;text-align:center;z-index:3389;">
-						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $aproduct_stats[0]['products'] ? $aproduct_stats[0]['products']:0;?></strong></span></div>
-						<?php $aimages = explode(",",$aproduct_stats[0]['images']);?>
+						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo !empty($aproduct_history_pages['products']) ? $aproduct_history_pages['products']:0;?></strong></span></div>
+						<?php 
+							if(!empty($aproduct_stats[0]['images'])) {
+								$aimages = explode(",",$aproduct_stats[0]['images']);
+							} else { 
+								$aimages = array();
+							}
+						?>
 						<div style="position:absolute;left:37px;top:50px;width:170px;height:110px;z-index:3386;">
 						<?php foreach ($aimages as $key=>$image) { ?>
 							<?php if($key <= 5) { ?>
@@ -296,7 +302,7 @@
 											<div id="Layer540" style="width:21px;height:22px;z-index:3404;">
 											</div>
 											<div id="wb_Text1486" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3405;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">All Products Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">All Products Usage</span>
 											</div>
 										</div>
 									</div>
@@ -312,7 +318,7 @@
 											<div id="Layer542" style="width:21px;height:22px;z-index:3406;">
 											</div>
 											<div id="wb_Text1489" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3407;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Community Posts Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Community Posts Usage</span>
 											</div>
 										</div>
 									</div>
@@ -328,7 +334,7 @@
 											<div id="Layer544" style="width:21px;height:22px;z-index:3408;">
 											</div>
 											<div id="wb_Text1492" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3409;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Offers Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Offers Usage</span>
 											</div>
 										</div>
 									</div>
@@ -344,7 +350,7 @@
 											<div id="Layer546" style="width:21px;height:22px;z-index:3410;">
 											</div>
 											<div id="wb_Text1493" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3411;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Inquiries Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Inquiries Usage</span>
 											</div>
 										</div>
 									</div>
@@ -360,7 +366,7 @@
 											<div id="Layer548" style="width:21px;height:22px;z-index:3412;">
 											</div>
 											<div id="wb_Text1496" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3413;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Videos Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Videos Usage</span>
 											</div>
 										</div>
 									</div>
@@ -376,7 +382,7 @@
 											<div id="Layer550" style="width:21px;height:22px;z-index:3414;">
 											</div>
 											<div id="wb_Text1498" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3415;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">B. Station Posts Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">B. Station Posts Usage</span>
 											</div>
 										</div>
 									</div>
@@ -392,7 +398,7 @@
 											<div id="Layer552" style="width:21px;height:22px;z-index:3416;">
 											</div>
 											<div id="wb_Text1499" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3417;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Stock M. Posts Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Stock M. Posts Usage</span>
 											</div>
 										</div>
 									</div>
@@ -464,8 +470,8 @@
 									</div>
 								</div>
 								<br><br>
-								<div id="busi_stats_area">
-								<div class="row">
+								<div >
+								<div class="row" id="busi_stats_area">
 									<div class="col-sm-12">
 										<table class="skyblue">
 											<thead>
@@ -484,15 +490,15 @@
 													<td><?php echo $busi_history_stat['visits'];?></td>
 													<td><?php echo $busi_history_stat['likes'];?></td>
 													<td><?php echo $busi_history_stat['shares'];?></td>
-													<td><?php echo $busi_history_stat['country_name'];?></td>
-													<td><?php echo $busi_history_stat['city_name'];?></td>
+													<td><?php echo !empty($busi_history_stat['country_name']) ? $busi_history_stat['country_name']:'Unknown';?></td>
+													<td><?php echo !empty($busi_history_stat['city_name']) ? $busi_history_stat['city_name']:'Unknown';?></td>
 													<td><?php echo date('d M Y',strtotime($busi_history_stat['visit_date']));?></td>
 												</tr>
 												<?php } ?>
 												<tr>
-													<td style="border:0px;"><?php echo $business_stats[0]['visit'];?></td>
-													<td style="border:0px;"><?php echo $business_stats[0]['likes'];?></td>
-													<td style="border:0px;"><?php echo $business_stats[0]['shares'];?></td>
+													<td style="border:0px;"><?php echo $busi_history_pages['visits'];?></td>
+													<td style="border:0px;"><?php echo $busi_history_pages['likes'];?></td>
+													<td style="border:0px;"><?php echo $busi_history_pages['shares'];?></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
@@ -505,7 +511,7 @@
 								<div class="row">
 									<div class="pull-right" style="padding-right:20px;">
 										<strong>Page&nbsp;&nbsp;&nbsp; </strong>
-										<?php for ($i = 1; $i <= $busi_history_pages; $i++) { ?>
+										<?php for ($i = 1; $i <= $busi_history_pages['pages']; $i++) { ?>
 										<a href="javascript:showNextBusinessStats(<?php echo $i;?>);" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
 										<?php } ?>
 									</div>
@@ -556,8 +562,8 @@
 									</div>
 								</div>
 								<br><br>
-								<div id="product_stats_area">
-								<div class="row">
+								<div>
+								<div class="row" id="product_stats_area">
 									<div class="col-sm-12">
 										<table class="skyblue">
 											<thead>
@@ -580,17 +586,17 @@
 													<td><?php echo $product_history_stat['visits'];?></td>
 													<td><?php echo $product_history_stat['likes'];?></td>
 													<td><?php echo $product_history_stat['shares'];?></td>
-													<td><?php echo $product_history_stat['country_name'];?></td>
-													<td><?php echo $product_history_stat['city_name'];?></td>
+													<td><?php echo !empty($product_history_stat['country_name']) ? $product_history_stat['country_name']:'Unknown' ;?></td>
+													<td><?php echo !empty($product_history_stat['city_name']) ? $product_history_stat['city_name']:'Unknown';?></td>
 													<td><?php echo date('d M Y',strtotime($product_history_stat['visit_date']));?></td>
 												</tr>
 												<?php } ?>
 												<tr>
 													<td style="border:0px;"></td>
-													<td style="border:0px;"><strong><?php echo count($product_history);?></strong></td>
-													<td style="border:0px;"><strong><?php echo $product_stats[0]['visit'];?></strong></td>
-													<td style="border:0px;"><strong><?php echo $product_stats[0]['likes'];?></td>
-													<td style="border:0px;"><strong><?php echo $product_stats[0]['shares'];?></strong></td>
+													<td style="border:0px;"><strong><?php echo $product_history_pages['products'];?></strong></td>
+													<td style="border:0px;"><strong><?php echo $product_history_pages['visits'];?></strong></td>
+													<td style="border:0px;"><strong><?php echo $product_history_pages['likes'];?></td>
+													<td style="border:0px;"><strong><?php echo $product_history_pages['shares'];?></strong></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
@@ -603,7 +609,7 @@
 								<div class="row">
 									<div class="pull-right" style="padding-right:20px;">
 										<strong>Page&nbsp;&nbsp;&nbsp; </strong>
-										<?php for ($i = 1; $i <= $product_history_pages; $i++) { ?>
+										<?php for ($i = 1; $i <= $product_history_pages['pages']; $i++) { ?>
 										<a href="javascript:showNextProductStats(<?php echo $i;?>);" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
 										<?php } ?>
 									</div>
@@ -646,8 +652,8 @@
 									</div>
 								</div>
 								<br><br>
-								<div id="aproduct_stats_area">
-								<div class="row">
+								<div>
+								<div class="row" id="aproduct_stats_area">
 									<div class="col-sm-12">
 										<table class="skyblue">
 											<thead>
@@ -670,17 +676,17 @@
 													<td><?php echo $aproduct_history_stat['visits'];?></td>
 													<td><?php echo $aproduct_history_stat['likes'];?></td>
 													<td><?php echo $aproduct_history_stat['shares'];?></td>
-													<td><?php echo $aproduct_history_stat['country_name'];?></td>
-													<td><?php echo $aproduct_history_stat['city_name'];?></td>
+													<td><?php echo !empty($aproduct_history_stat['country_name']) ? $aproduct_history_stat['country_name']:'Unknown';?></td>
+													<td><?php echo !empty($aproduct_history_stat['city_name']) ? $aproduct_history_stat['city_name']:'Unknown';?></td>
 													<td><?php echo date('d M Y',strtotime($aproduct_history_stat['visit_date']));?></td>
 												</tr>
 												<?php } ?>
 												<tr>
 													<td style="border:0px;"></td>
-													<td style="border:0px;"><strong><?php echo count($aproduct_history);?></strong></td>
-													<td style="border:0px;"><strong><?php echo $aproduct_stats[0]['visit'];?></strong></td>
-													<td style="border:0px;"><strong><?php echo $aproduct_stats[0]['likes'];?></td>
-													<td style="border:0px;"><strong><?php echo $aproduct_stats[0]['shares'];?></strong></td>
+													<td style="border:0px;"><strong><?php echo $aproduct_history_pages['products'];?></strong></td>
+													<td style="border:0px;"><strong><?php echo !empty($aproduct_history_pages['visits']) ? $aproduct_history_pages['visits']:0;?></strong></td>
+													<td style="border:0px;"><strong><?php echo !empty($aproduct_history_pages['likes']) ? $aproduct_history_pages['likes']:0;?></td>
+													<td style="border:0px;"><strong><?php echo !empty($aproduct_history_pages['shares']) ? $aproduct_history_pages['shares']:0;?></strong></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
@@ -693,7 +699,7 @@
 								<div class="row">
 									<div class="pull-right" style="padding-right:20px;">
 										<strong>Page&nbsp;&nbsp;&nbsp; </strong>
-										<?php for ($i = 1; $i <= $aproduct_history_pages; $i++) { ?>
+										<?php for ($i = 1; $i <= $aproduct_history_pages['pages']; $i++) { ?>
 										<a href="javascript:showNextAProductStats(<?php echo $i;?>);" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
 										<?php } ?>
 									</div>
@@ -747,11 +753,12 @@ function showStorage() {
 	var myChart = new Chart(ctx, {
 	    type: 'pie',
 	    data: {
-	        labels: ["All Products Storage", "Community Posts Storage", "Offers Storage", "Inquiries Storage", "Videos Storage", "B. Station Posts Storage","Stock M. Posts Storage"],
+	        labels: ["Free Space", "All Products Storage", "Community Posts Storage", "Offers Storage", "Inquiries Storage", "Videos Storage", "B. Station Posts Storage","Stock M. Posts Storage"],
 	        datasets: [{
 	            label: '# MB',
-	            data: [<?php echo $product_storage;?>, <?php echo $community_storage;?>, <?php echo $offer_storage;?>, <?php echo $inquiry_storage;?>, <?php echo $video_storage; ?>, <?php echo $bstation_storage;?>, <?php echo $stock_storage;?>],
+	            data: [<?php echo round(($storage_plan-$total_storage),2);?>, <?php echo $product_storage;?>, <?php echo $community_storage;?>, <?php echo $offer_storage;?>, <?php echo $inquiry_storage;?>, <?php echo $video_storage; ?>, <?php echo $bstation_storage;?>, <?php echo $stock_storage;?>],
 	            backgroundColor: [
+	              	'#FF6347',
 	                '#E76C1A',
 	                '#E7241A',
 	                '#AF0F07',
@@ -878,7 +885,15 @@ function closeStatsDiv() {
 	$("#maintoolscreen").show();
 	$("#statstoolscreen").hide();
 }
-
+$("#bcountry_id").change(function(){
+	searchBusiStats();
+});
+$("#pcountry_id").change(function(){
+	searchProductStats();
+});
+$("#apcountry_id").change(function(){
+	searchAproductStats();
+});
 function searchBusiStats() {
 	$.post(base_url+"mystation/business/stats",{country_name: $("#bcountry_id").val(), from_date: $("#bfrom_date").val(), to_date: $("#bto_date").val(), page: 1},function(data) {
 		$("#busi_stats_area").html(data);

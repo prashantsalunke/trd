@@ -191,7 +191,7 @@ background-color:#FFFFFF;color:#3C3C3C;font-family:Georgia;font-size:20px;
             </li>
         </ul>
     </div>
-    <div class="container" style="width: 1280px;padding-left:0px;">
+    <div class="container" style="width: 1280px;padding-left:0px;margin:auto auto;">
     <?php include 'hover-nav.php';?>
     </div>
 <script>

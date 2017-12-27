@@ -1,4 +1,5 @@
 <!-- css js -->
+<link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
@@ -562,7 +563,7 @@ $(document).ready(function() {
     var jQueryToolTip3Opts = {
         hide: true,
         show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">Black Horse Member</p>',
+        content: 'This buyer is an active Buyer.',
         items: '#wb_Image61',
         position: {
             my: "right bottom",
@@ -668,7 +669,7 @@ $(document).ready(function() {
     var jQueryToolTip5Opts = {
         hide: true,
         show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">This seller is a member in your community..</p>',
+        content: 'Buyer has a current request, click on Current Requests to view deal.',
         items: '#Image67',
         position: {
             my: "right bottom",
@@ -690,15 +691,15 @@ $(document).ready(function() {
     var jQueryToolTip6Opts = {
         hide: true,
         show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">The Seller Is A Member In Your Community</p>',
-        items: '#wb_Image39',
+        content: 'This buyer is member in your community',
+        items: '#wb_Image76',
         position: {
             my: "right bottom",
             at: "left top",
             collision: "flipfit"
         }
     };
-    $("#wb_Image39").tooltip(jQueryToolTip6Opts);
+    $("#wb_Image76").tooltip(jQueryToolTip6Opts);
     var jQueryToolTip7Opts = {
         hide: true,
         show: true,
@@ -796,23 +797,23 @@ function stopWiggle(input) {
 					<div id=" Layer5_Container " style="width:1280px;margin:auto;padding-top:40px;">
 					    <div class="row" style="margin-left:0px;">
 					        <div class="col-md-2 col-sm-2 bg" style="width: 180px;padding:15px 30px;">
-				               	<a href="#" class="navigation2" title="This buyer is an active Buyer." style="padding:0px 15px;">
+				               	<a href="#" class="navigation2" id="wb_Image61" style="padding:0px 15px;">
 				              		<?php if(($Desksite['accept_chat']+$Desksite['accept_offer']+$Desksite['accept_community']+$Desksite['accept_email']) > 2) { ?>
-				                	<img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." class="verified-icon" title="This buyer is an active Buyer."/>
+				                	<img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." class="verified-icon" />
 				                	<?php } else { ?>
-					              	<img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." title="This buyer is an active Buyer." class="verified-icon img-disabled1">
+					              	<img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." class="verified-icon img-disabled1">
 					              	<?php } ?>
 				                </a>
-				                <a href="#" class="navigation2" title="Buyer is member in your community." style="padding:0px 15px;">
+				                <a href="#" class="navigation2" id="wb_Image67" style="padding:0px 15px;">
 					                <?php if(count($requests) > 0){?>
-									<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" alt="Buyer has a current request, click on Current Requests to view deal."  class="img28" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" title="Buyer has a current request, click on Current Requests to view deal."/>
+									<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" alt="Buyer has a current request, click on Current Requests to view deal."  class="img28" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);"/>
 									<?php }?>
 								</a>
-				               	<a href="#" class="navigation2 " title="Buyer is member in your community." style="padding:0px 15px;">
+				               	<a href="#" class="navigation2 " id="wb_Image76" style="padding:0px 15px;">
 				                	<?php if(count($community) > 0){ ?>
-					                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" title="This buyer is member in your community" class="community-member-icon">
+					                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" class="community-member-icon">
 					                <?php } else { ?>
-					                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" title="This buyer is member in your community" class="community-member-icon img-disabled1">
+					                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" class="community-member-icon img-disabled1">
 					                <?php } ?>
 				               </a>
 					        </div>
@@ -860,12 +861,13 @@ function stopWiggle(input) {
 							        	<p class="c1">
 							        		<strong>
 							        		<?php 
-									        if(!empty($Desksite['timezone'])) {
-										        $date = new DateTime('now', new DateTimeZone($Desksite['timezone']));
-										        echo $date->format('h:i A');
-									        } else {
-									        	echo date('h:i A');
-									        }
+												try {
+                                                    $mars = new DateTimeZone($Desksite['timezone']);
+                                                    $date = new DateTime('now', $mars);
+                                                    echo $date->format('h:i A');
+                                                } catch(Exception $e) {
+                                                    echo date('h:i A');
+                                                }
 									        ?>
 									        </strong>
 									 	</p>
@@ -1022,12 +1024,12 @@ function stopWiggle(input) {
 				        Like
 						</a>
 				    </div>
-				    <!-- div class="inline box5">
+				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/img0908.png" id="Image19" alt="" class="img32">
-				        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
+				        <a href="javascript:shareToWorld('<?php echo base_url();?>buyer/profile/<?php echo $Desksite['busi_id']?>','<?php echo $Desksite['company_name'];?> @ TRDSTATION',1,<?php echo $Desksite['busi_id']?>);" target="_self" class="antag">
 				        	Share
 						</a>
-				    </div-->
+				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/posts-icon.png" id="Image19" alt="" class="img32">
 				        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">

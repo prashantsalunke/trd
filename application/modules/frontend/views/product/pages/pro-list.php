@@ -123,7 +123,7 @@ pre {
 			<?php
 			foreach ($productList as $item) {?>
 			<div class="col-md-4">
-				<div class="panel panel-default product-box">
+				<div class="panel panel-default product-box" style="height:485px;">
 				    <div class="panel-body center">
 				    	<div class="row">
 				    		<h6><a href="javascript:productDetail(<?php echo $item['id'];?>);" target="_self"><?php echo $item['name']?></a></h6>

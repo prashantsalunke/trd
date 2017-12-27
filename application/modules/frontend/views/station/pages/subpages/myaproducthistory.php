@@ -15,6 +15,8 @@
 			</thead>
 			<tbody>
 				<?php 
+					$itemid = 0;
+					$cnt = 0;
 					$visits = 0;
 					$likes = 0;
 					$shares = 0;
@@ -26,38 +28,32 @@
 					<td><?php echo $aproduct_history_stat['visits'];?></td>
 					<td><?php echo $aproduct_history_stat['likes'];?></td>
 					<td><?php echo $aproduct_history_stat['shares'];?></td>
-					<td><?php echo $aproduct_history_stat['country_name'];?></td>
-					<td><?php echo $aproduct_history_stat['city_name'];?></td>
+					<td><?php echo !empty($aproduct_history_stat['country_name']) ? $aproduct_history_stat['country_name']:'Unknown';?></td>
+					<td><?php echo !empty($aproduct_history_stat['city_name']) ? $aproduct_history_stat['city_name']:'Unknown';?></td>
 					<td><?php echo date('d M Y',strtotime($aproduct_history_stat['visit_date']));?></td>
 				</tr>
 				<?php 
+					if($itemid == 0 || $itemid != $product_history_stat['item_id']) {
+						$cnt++;
+					} 
 					$visits = $visits + $aproduct_history_stat['visits'];
 					$likes = $likes + $aproduct_history_stat['likes'];
 					$shares = $shares + $aproduct_history_stat['shares'];
+					$itemid = $product_history_stat['item_id'];
 				?>
 				<?php } ?>
+				<tr>
+					<td style="border:0px;"></td>
+					<td style="border:0px;"><strong><?php echo $cnt;?></strong></td>
+					<td style="border:0px;"><strong><?php echo $visits;?></strong></td>
+					<td style="border:0px;"><strong><?php echo $likes;?></td>
+					<td style="border:0px;"><strong><?php echo $shares;?></strong></td>
+					<td style="border:0px;"></td>
+					<td style="border:0px;"></td>
+					<td style="border:0px;"></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
 <br>
-<div class="row">
-	<div class="col-sm-1">
-		<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $visits;?></strong></span>
-	</div>
-	<div class="col-sm-1">
-		<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $likes;?></strong></span>
-	</div>
-	<div class="col-sm-1">
-		<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $shares;?></strong></span>
-	</div>
-</div>
-<br>
-<div class="row">
-	<div class="pull-right" style="padding-right:20px;">
-		<strong>Page&nbsp;&nbsp;&nbsp; </strong>
-		<?php for ($i = 1; $i <= $aproduct_history_pages; $i++) { ?>
-		<a href="javascript:showNextAProductStats(<?php echo $i;?>);" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
-		<?php } ?>
-	</div>
-</div>

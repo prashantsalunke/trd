@@ -37,7 +37,7 @@ class Sellers_Model extends CI_Model {
     }
     
     public function searchSellers($params) {
-    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
+    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,b.likes,
 		b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, IFNULL(n.picture,c.profile_image) as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
  		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id) as main_product,j.id as catalouge_id,l.id as community_id,n.name as contact_name,n.name_prefix as contact_prefix');

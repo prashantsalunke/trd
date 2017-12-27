@@ -1,4 +1,5 @@
 <!-- css js -->
+<link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
@@ -400,15 +401,15 @@ $(document).ready(function() {
             });
         }
     });
-    /*var jQueryToolTip3Opts =
+    var jQueryToolTip3Opts =
     {
        hide: true,
        show: true,
-       content: '<span style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;z-index:5000;margin-left:40px;">Black Horse Member</span>',
+       content: 'Black Horse Member',
        items: '#wb_Image61',
        position: { my: "right bottom", at: "left top", collision: "flipfit" }
     };
-    $("#wb_Image61").tooltip(jQueryToolTip3Opts);*/
+    $("#wb_Image61").tooltip(jQueryToolTip3Opts);
     var jQueryToolTip4Opts = {
         hide: true,
         show: true,
@@ -507,7 +508,7 @@ $(document).ready(function() {
     var jQueryToolTip5Opts = {
         hide: true,
         show: true,
-        content: '<div style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;margin-left:40px;width:300px;">This seller is a member in your community..</div>',
+        content: 'This shipper is a member in your community',
         items: '#wb_Image76',
         position: {
             my: "right bottom",
@@ -617,12 +618,13 @@ function stopWiggle(input) {
 			    </div>
 			    <div id="wb_Text8" class="c2">
 			        <p class="c1"><strong><?php 
-			        if(!empty($Desksite['timezone'])) {
-				        $date = new DateTime('now', new DateTimeZone($Desksite['timezone']));
-				        echo $date->format('h:i A');
-			        } else {
-			        	echo date('h:i A');
-			        }
+						try {
+                       		$mars = new DateTimeZone($Desksite['timezone']);
+                            $date = new DateTime('now', $mars);
+                            echo $date->format('h:i A');
+                     	} catch(Exception $e) {
+                         	echo date('h:i A');
+                       	}
 			        ?></strong></p>
 			    </div>
 			</div>
@@ -644,9 +646,9 @@ function stopWiggle(input) {
 		        <div id="Layer116" class="left-fixed" style="padding-top:25px;">
 		            <div id="wb_Image61" class="text-center">
 		            	<?php if($Desksite['plan_id'] > 1){?>
-		            	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" title="Black Horse Member" class="black-horse-icon">
+		            	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" class="black-horse-icon">
 		              	<?php } else { ?>
-		              	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" title="Black Horse Member" class="black-horse-icon img-disabled">
+		              	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" class="black-horse-icon img-disabled">
 		              	<?php } ?>
 	               	 </div>
 		            <div id="wb_Image67"  class="text-center">
@@ -660,9 +662,9 @@ function stopWiggle(input) {
 					</div>
 		            <div id="wb_Image76"  class="text-center">
 		            	<?php if(count($community) > 0){ ?>
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" title="This shipper is a member in your community" class="community-member-icon">
+		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" class="community-member-icon">
 		                <?php } else { ?>
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" title="This shipper is a member in your community" class="community-member-icon img-disabled">
+		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" class="community-member-icon img-disabled">
 		                <?php } ?>
 		          	</div>
 		        </div>
@@ -728,15 +730,15 @@ function stopWiggle(input) {
 								   		<p class="font2">Contact Person</p>
 								   	</a>
 						            <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;">
-								   		<img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+								   		<img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width:54px;">
 								   		<p class="font5">Contact, Add Share...</p>
 								   	</a>
 						        </div>
 					    	</div>
-					    	<div class="col-md-2 col-sm-2  bg121" style="width:7%;">
-					        	<a href="javascript:showWebsite();" class="navigation2" style="display:none;">
-							   		<img src="<?php echo asset_url(); ?>images/system-shutdown-5.png" id="Image47" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-							   	   <p class="font2">Switch to <br> Classic Mode</p>
+					    	<div class="col-md-2 col-sm-2  bg121" style="width:100px;">
+					        	<a href="#" class="navigation2" style="display:none;">
+							   		<img src="<?php echo asset_url(); ?>images/system-shutdown-5.png" id="Image47" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width:45px;">
+							   	   <p class="font2" style="width:87px;">Switch to <br> Classic Mode</p>
 							   </a>
 					    	</div>
 						</div>
@@ -916,12 +918,12 @@ function stopWiggle(input) {
 				        Like
 						</a>
 				    </div>
-				    <!-- div class="inline box5">
+				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/img0908.png" id="Image19" alt="" class="img32">
-				        <a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self" class="antag">
+				        <a href="javascript:shareToWorld('<?php echo base_url();?>buyer/profile/<?php echo $Desksites[0]['busi_id']?>','<?php echo $Desksites[0]['company_name']?> @ TRDSTATION',1,<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
 				        Share
 						</a>
-				    </div-->
+				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image19" alt="" class="img32">
 				        <a href="javascript:openGeneralEnquiry(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
@@ -1365,16 +1367,6 @@ function viewCatalogueBook(id) {
 			}).attr('src',source);
 		});
 	},'html');
-}
-
-function showWebsite() {
-	ShowObjectWithEffect('Layer46', 1, 'bounce', 500, 'easeInOutBounce');
-	ShowObjectWithEffect('Layer46', 0, 'pulsate', 500, 'swing');
-	setTimeout(openWebsite, 1000);
-}
-
-function openWebsite() {
-	window.location.href = "<?php echo base_url();?>shipper/website/<?php echo $busi_id;?>";
 }
 
 function likeMySVideo(id,type,likeid) {

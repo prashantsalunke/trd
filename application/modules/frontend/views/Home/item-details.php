@@ -1,5 +1,31 @@
+<link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
+<script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
-<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-slide.min.js"></script> ​
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-slide.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wb.slideshow.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wb.carousel.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.core.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.widget.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.position.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.mouse.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.draggable.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-blind.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-bounce.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-clip.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-drop.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-explode.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fold.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-highlight.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-pulsate.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-scale.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/jquery.ui.effect-shake.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/fancybox/jquery.easing-1.3.pack.js"></script>
+<link rel="stylesheet" href="<?php echo asset_url(); ?>css/fancybox/jquery.fancybox-1.3.0.css">
+<script src="<?php echo asset_url(); ?>js/fancybox/jquery.fancybox-1.3.0.pack.js"></script>
+<script src="<?php echo asset_url(); ?>js/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+<link rel="stylesheet" href="<?php echo asset_url();?>js/prettyPhoto/css/prettyPhoto.css">
+<script src="<?php echo asset_url();?>js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
 <style>
 <!--
 body {
@@ -9,30 +35,29 @@ body {
     background-color: #B22222;
 }
 .business-info{
-background-color: #ffffff;
-padding :2px;
+	background-color: #ffffff;
+	padding :2px;
 }
-.business-info a{
-color: red;
-padding :10px;
-}
+
 -->
 </style>
 <div id="body">        
-<div class="row center bgwhite1">
-	<br>
-	<h2 class="font1 "><?php echo $business[0]['company_name'];?></h2><br>
-   	<div class="row">
-	  	<div class="col-md-3 col-sm-3">
+<div class="row center bgwhite1" style="height:220px;">
+	<h2 class="font1 "><?php echo $business[0]['company_name'];?></h2>
+   	<div class="row" style="margin:0px;">
+	  	<div class="col-md-3 col-sm-3 text-right">
 	     	<img  src="<?php echo asset_url();?><?php echo $business[0]['business_logo'];?>" id="Shape85" alt="" style="width:100px;height:86px;">
      	</div>
 	   	<div class="col-md-6 col-sm-6">
-	     	<p class="font2"><br><?php echo $business[0]['company_introduction'];?></p>
+	     	<p class="font2"><br><?php echo substr($business[0]['company_introduction'],0,500);?></p>
 	   	</div>
 	   	<div class="col-md-2 col-sm-2">
+	   		<?php if($business[0]['plan_id'] > 1) { ?>
 		  	<img  src="<?php echo asset_url();?>images/black-horse.png" id="Image105" alt="" class="img41"><br>
-		   	<span class="font3"><strong>Black Horse </strong>MEMBER</span><br><br>
-		  	<div id="Layer251">
+		   	<span class="font3"><strong>Black Horse </strong>MEMBER</span>
+		   	<?php } ?>
+		   	<br><br>
+		  	<div id="Layer251" style="z-index:1;">
 				<div id="Layer251_Container">
 					<a href="#" onclick="ShowObjectWithEffect('Layer252', 1, 'slideup', 500);return false;">
 						<img  src="<?php echo asset_url();?>images/deal_icon.png" id="Image97" alt="" class="img50">
@@ -42,25 +67,25 @@ padding :10px;
 					</a>
 					<div id="Layer252" style="visibility:hidden">
 						<div id="Layer252_Container">
-							<a href="javascript:popupwnd('./chat_window.php','no','no','no','no','no','no','750','50','440','750')" target="_self">
+							<a href="javascript:openChatWithBuyer(<?php echo $business[0]['busi_id'];?>);" target="_self">
 								<img class="hover" alt=""  src="<?php echo asset_url();?>images/chat_button2.png">
 								<span>
 									<img alt=""  src="<?php echo asset_url();?>images/chat_button1.png">
 								</span>
 							</a>
-							<a href="">
+							<a href="javascript:addToCommunity(<?php echo $business[0]['busi_id'];?>);">
 								<img class="hover" alt=""  src="<?php echo asset_url();?>images/addcommunity_button2.png">
 						 		<span>
 						 			<img alt=""  src="<?php echo asset_url();?>images/addcommunity_button1.png">
 						 		</span>
 							</a>
-							<a href="">
+							<a href="javascript:shareToWorld('<?php echo base_url();?>seller/website/<?php echo $business[0]['busi_id']?>','<?php echo $business[0]['company_name']?> @ TRDSTATION',1,<?php echo $business[0]['busi_id']?>);">
 								<img class="hover" alt=""  src="<?php echo asset_url();?>images/share_button.png">
 								<span>
 									<img alt=""  src="<?php echo asset_url();?>images/share_button1.png">
 						   		</span>
 							</a>
-							<a href="javascript:popupwnd('./general_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self">
+							<a href="javascript:openGeneralEnquiry(<?php echo $business[0]['busi_id']?>);" target="_self">
 								<img class="hover" alt=""  src="<?php echo asset_url();?>images/inquirytomato.png">
 								<span>
 									<img alt=""  src="<?php echo asset_url();?>images/inquiryblack.png">
@@ -73,7 +98,7 @@ padding :10px;
 					</div>
 				</div>
 			</div>
-		  	<img  src="<?php echo asset_url();?>images/Guarantee.png" id="Image89" alt="" aria-describedby="ui-tooltip-0" class="img25">
+		  	<img  src="<?php echo asset_url();?>images/Guarantee.png" id="Image89" alt="" aria-describedby="ui-tooltip-0" class="img25" style="width:30px !important;">
 		  	<img  src="<?php echo asset_url();?>images/trusted.png" id="Image104" alt="" aria-describedby="ui-tooltip-1"  class="img25">
 		</div>
 	</div>
@@ -83,7 +108,7 @@ padding :10px;
 </div>
 <!-- search and navigation bar -->
 <div class="bg2">
-	<div class="row">
+	<div class="row" style="margin:0px;">
 	  	<div class="col-md-offset-3 col-md-5 mj1">
    		 	<a href="#" class="nav1">
    		 		Home
@@ -102,10 +127,10 @@ padding :10px;
 			<div class="search-div"> 
 				<form method="post" action="search">
 					<div class="col-sm-10 col-xs-11" style="padding: 0px;">
-						<input type="text" class="search-box" required="required" name="keyword" placeholder="Search">
+						<input type="text" class="search-box" required="required" name="keyword" id="SiteSearch1" placeholder="Search">
 					</div>
 					<div class="col-sm-2 col-xs-1" style="padding: 0px;">
-						<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+						<button class="btn btn-block search-btn" type="button" onclick="searchProducts();"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
 					</div>
 				</form>
 			</div>
@@ -113,21 +138,23 @@ padding :10px;
  	</div>
     <!-- search and navigation bar -->
     <!-- about us popup bar -->
-	<div id="Layer98">
+	<div id="Layer98" style="position:absolute;z-index:500;width:1280px;margin:auto auto;">
   		<img src="<?php echo asset_url();?>images/img0568.png" id="Shape20" alt="" class="aro">
      	<div class="bg3">
       		<div class="row">
       	 	 	<div class="col-md-6 left">
 	      	 	 	<br><br>
-	      	 	 	<p class="about1"><strong>About Us</strong></p>
-	      	 	 	<p class="about2">Seven Seas Logistics Co. was established in 2002 responding to the growing ofcommercial and project market, from the time of established, the company was catering cargo transportation needs of local market as well as of international market to serve the shipping movement all over the world... </p>
-	      	 	 	<br><br>
+	      	 	 	<div class="col-sm-12">
+		      	 	 	<p class="about1"><strong>About Us</strong></p>
+		      	 	 	<p class="about2"><?php echo substr($business[0]['company_introduction'],0,1000);?> <?php if(strlen($business[0]['company_introduction']) > 1000) { ?>...<?php } ?> </p>
+		      	 	 	<br><br>
+	      	 	 	</div>
       	 	 	    <div class="col-sm-4 about3">
 	      	 	 	    <br><br>
 		      	 	 	<p class="about1"><strong>Business Information</strong></p>
 		      	 	 	<br>
 		      	 	 	<p>Business Type</p>
-		      	 	 	<p>Main Product</p><br>
+		      	 	 	<p>Main Product</p><br><br>
 		      	 	 	<p>Main Market</p>
 		      	 	 	<p>Year of Establish</p>
 		      	 	 	<p>No. of Employees</p>
@@ -147,21 +174,52 @@ padding :10px;
       	 	 	    </div>
       	 	 	    <div class="col-sm-8 about2">
 	      	 	 	    <br><br><br><br><br>
-	      	 	 	    <p>Manufacture</p>
-	      	 	 	    <p>Leather Sofa, Fabric Sofa, Chairs, Classic Chairs, Library, Tea Table</p>
-	      	 	 	    <p>Africa, Middel East</p>
-	      	 	 	    <p>1991</p>
-	      	 	 	    <p>11-15 Person</p>
-	      	 	 	    <p>China</p>
-	      	 	 	    <p>Fujian</p>
+	      	 	 	    <p><?php echo $business[0]['user_subcategory'];?></p>
+	      	 	 	    <p><?php echo $business[0]['mainproducts'];?></p>
+	      	 	 	    <p>
+	      	 	 	    <?php 
+		                	foreach ($market_info as $key=>$market) {
+		                		if($key > 0) {
+		                			echo ", ";
+		                		}
+		                		echo $market['name'];
+		                	}
+		                ?>
+				        </p>
+	      	 	 	    <p><?php echo $business[0]['year_of_registration'];?></p>
+	      	 	 	    <p><?php echo $business[0]['total_no_of_emp'];?> Person</p>
+	      	 	 	    <p><?php echo $business[0]['company_country'];?></p>
+	      	 	 	    <p><?php echo $business[0]['company_city'];?></p>
+	      	 	 	    <br><br><br><br>
+	      	 	 	    <p><?php if($business[0]['plan_id'] > 1) { ?>Black Horse Member<?php } else { ?>Free Member<?php } ?></p>
+	      	 	 	    <p><?php echo $business[0]['likes'];?></p>
+	      	 	 	    <p><?php echo $business[0]['rank'];?>%</p>
 	      	 	 	    <br><br><br>
-	      	 	 	    <p>Black Horse Member</p>
-	      	 	 	    <p>30000</p>
-	      	 	 	    <p>85%</p>
-	      	 	 	    <br><br><br>
-	      	 	 	    <p>Below 1000 Square Meter</p>
-	      	 	 	    <p>6</p>
-	      	 	 	    <p>OEM, ODM, Our Own Brand ( Hotii)</p>
+	      	 	 	    <?php 
+				            $size = "N/A";
+				            if($company[0]['fact_size'] == 100) {
+				            	$size = "Less Than 100 Square Meter";	
+				            } else if($company[0]['fact_size'] == 500) {
+				            	$size = "100 to 500 Square Meter";
+			            	} else if($company[0]['fact_size'] == 1000) {
+			            		$size = "501 to 1000 Square Meter";
+		            		} else if($company[0]['fact_size'] == 2000) {
+		            			$size = "1001 to 2000 Square Meter";
+	            			} else if($company[0]['fact_size'] == 2100) {
+	            				$size = "More Than 2000 Square Meter";
+				            }
+				        ?>
+	      	 	 	    <p><?php echo $size;?></p>
+	      	 	 	    <p><?php if(!empty($company[0]['no_of_production_line'])) { echo $company[0]['no_of_production_line'];} else { echo "N/A";}?></p>
+	      	 	 	    <p>
+	      	 	 	    <?php foreach ($user_rnd as $row) { ?>
+  							<?php if($row['rnd_type_id'] == 4) { ?>
+  								<?php echo $company[0]['rnd_capacity'];?>
+  							<?php } else { ?>
+  								<?php echo $row['name']?>&nbsp;
+  							<?php } ?>
+  						<?php } ?>
+	  					</p>
       	 	 	    </div>
       	 	 	</div>
       	 	 	<div class="col-md-6"><br><br>
@@ -170,45 +228,54 @@ padding :10px;
 	      	 	 	</a>
 	      	 		<div  class="tab-content">
 		      	 		<div id="home1" class="tab-pane fade in active content1">
-	      	 	 	     	<img class="image"  src="<?php echo asset_url();?>images/1.jpg" alt="" title="" style="float: right;">
+	      	 	 	     	<img class="image"  src="<?php echo asset_url();?><?php echo $business[0]['info_img1'];?>" alt="" title="" style="float: right;width:500px;">
 	      	 	 	  	</div>
 	      	 	 	 	<div id="menu11" class="tab-pane fade content1 center">
-	      	 	 	     	<table>
+	      	 	 	     	<table style="width:100%;">
 	      	 	 	     	 	<tbody>
+	      	 	 	     	 		<?php foreach ($licences as $key=>$image) { ?>
 		      	 	 	     	 	<tr>
 		      	 	 	     	 		<td>
-			      	 	 	     	 		<a href="images/ISO_2000ok.jpg" data-rel="PhotoGallery5" rel="PhotoGallery5">
-			      	 	 	     	 			<img alt="" id="PhotoGallery5_img1" src="<?php echo asset_url();?>images/tn_ISO_2000ok.png">
+		      	 	 	     	 			<?php if(!empty($image['cert_image1'])) { ?>
+			      	 	 	     	 		<a href="<?php echo asset_url().$image['cert_image1'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]>
+			      	 	 	     	 			<img alt="" id="PhotoGallery5_img1" src="<?php echo asset_url().$image['cert_image1'];?>" style="height:180px;">
 			      	 	 	     	 		</a>
+			      	 	 	     	 		<?php } ?>
 		      	 	 	     	 		</td>
 		      	 	 	     	 		<td>
-		      	 	 	     	 			<a href="images/ISO_2000ok.jpg" data-rel="PhotoGallery5" rel="PhotoGallery5">
-			      	 	 	     	 			<img alt="" id="PhotoGallery5_img1" src="<?php echo asset_url();?>images/tn_ISO_2000ok.png">
+		      	 	 	     	 			<?php if(!empty($image['cert_image2'])) { ?>
+		      	 	 	     	 			<a href="<?php echo asset_url().$image['cert_image2'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]">
+			      	 	 	     	 			<img alt="" id="PhotoGallery5_img1" src="<?php echo asset_url().$image['cert_image2'];?>" style="height:180px;">
 			      	 	 	     	 		</a>
+			      	 	 	     	 		<?php } ?>
 		      	 	 	     	 		</td>
 		      	 	 	     	 	</tr>
 		      	 	 	     	 	<tr>
 		      	 	 	     	 		<td>
-		      	 	 	     	 			<a href="images/ISO_2000ok.jpg" data-rel="PhotoGallery5" rel="PhotoGallery5">
-			      	 	 	     	 			<img alt="" id="PhotoGallery5_img1" src="<?php echo asset_url();?>images/tn_ISO_2000ok.png">
+		      	 	 	     	 			<?php if(!empty($image['cert_image3'])) { ?>
+		      	 	 	     	 			<a href="<?php echo asset_url().$image['cert_image3'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]">
+			      	 	 	     	 			<img alt="" id="PhotoGallery5_img1" src="<?php echo asset_url().$image['cert_image3'];?>" style="height:180px;">
 			      	 	 	     	 		</a>
+			      	 	 	     	 		<?php } ?>
 		      	 	 	     	 		</td>
 		      	 	 	     	 		<td>
-		      	 	 	     	 			<a href="images/ISO_2000ok.jpg" data-rel="PhotoGallery5" rel="PhotoGallery5">
-			      	 	 	     	 			<img alt="" id="PhotoGallery5_img1" src="<?php echo asset_url();?>images/tn_ISO_2000ok.png">
+		      	 	 	     	 			<?php if(!empty($image['cert_image4'])) { ?>
+		      	 	 	     	 			<a href="<?php echo asset_url().$image['cert_image4'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]">
+			      	 	 	     	 			<img alt="" id="PhotoGallery5_img1" src="<?php echo asset_url().$image['cert_image4'];?>" style="height:180px;">
 			      	 	 	     	 		</a>
+			      	 	 	     	 		<?php } ?>
 		      	 	 	     	 		</td>
 		      	 	 	     	 	</tr>
+		      	 	 	     	 	<?php } ?>
 	      	 	 	     	 	</tbody>
 	      	 	 	     	</table>
 	      	 	 		</div>
 	      	 	 	 	<div id="menu21" class="tab-pane fade content1 center">
-		      	 	 	   	<a href="images/Certificate_of_Honor2004.jpg" data-rel="PhotoGallery6" rel="PhotoGallery6">
-		      	 	 	     	<img alt="" id="PhotoGallery6_img0" src="<?php echo asset_url();?>images/tn_Certificate_of_Honor2004.png">
-		      	 	 	   	</a><br>
-		      	 	 	   	<a href="images/iso_9001_certification.gif" data-rel="PhotoGallery6" rel="PhotoGallery6">
-		      	 	 	    	<img alt="" id="PhotoGallery6_img1" src="<?php echo asset_url();?>images/tn_iso_9001_certification.png">
-		      	 	 		</a>
+	      	 	 	 		<?php foreach ($Certificate as $key=>$image) { ?>
+		      	 	 	   	<a href="<?php echo asset_url().$image['certificate_url'];?>" data-rel="prettyPhoto_SlideShow312[SlideShow312]" rel="prettyPhoto_SlideShow312[SlideShow312]">
+		      	 	 	     	<img alt="" id="PhotoGallery6_img0" src="<?php echo asset_url().$image['certificate_url'];?>" style="width:250px;">
+		      	 	 	   	</a>
+		      	 	 		<?php } ?>
 	      	 	 	  	</div>
 	      	 	 	  	<div id="menu31" class="tab-pane fade content1">
 	      	 	 	 	</div>
@@ -219,19 +286,20 @@ padding :10px;
 		      	 	 	<p class="about1"><strong>License</strong></p>
 		      	 	 	<p class="about1"><strong>Verification</strong></p>
 		      	 	 </div>
-		      	 	 <div class="col-md-4 font3">
+		      	 	 <div class="col-md-4 font3 text-left">
 		      	 	 	<br><br>
-		      	 	 	<p>ISO, SGS, CQC, ICQ, Ce</p>
-		      	 	 	<p>Expor License</p>
-		      	 	 	<p>Done by ( Povided later ) ..</p>
-		      	 	 	<p class="font2">Back to Company Gallery</p>
+		      	 	 	<p style="padding-top: 10px;text-align:left;"><?php echo $business[0]['product_certs'];?></p>
+		      	 	 	<p style="padding-top: 5px;text-align:left;">Expor License</p>
+		      	 	 	<p style="padding-top: 5px;text-align:left;">Done by ( Povided later ) ..</p>
+		      	 	 	<p class="font2 text-left">Back to Company Gallery</p>
 		      	 	</div>
 	      	 	 	<div class="col-md-3">
 	      	 	 	   	<br><br>
-	      	 	 	    <ul class="nav nav-tabs">
-		      	 	 		<li class="active contact1"><a data-toggle="tab" href="#home1" >view</a></li>
-		      	 	 		<li><a data-toggle="tab" href="#menu11">view</a></li>
-		      	 	 		<li><a data-toggle="tab" href="#menu21">view</a></li>
+	      	 	 	    <ul class="nav nav-tabs" style="border-bottom:0px;">
+		      	 	 		<li class="active" style="width:130px;"><a data-toggle="tab" href="#menu11" style="padding:3px 10px;">view</a></li>
+		      	 	 		<li style="width:130px;"><a data-toggle="tab" href="#menu21" style="padding:3px 10px;">view</a></li>
+		      	 	 		<li style="width:130px;"><a data-toggle="tab" href="#menu31" style="padding:3px 10px;">view</a></li>
+		      	 	 		<li style="width:130px;"><a data-toggle="tab" href="#home1" style="padding:3px 10px;">view</a></li>
 		      	 	 	</ul>
 	      	 	 	</div>
 	      	 	</div>
@@ -240,62 +308,22 @@ padding :10px;
 	</div>
     <!-- about us bar end-->
    	<!-- product popup  -->
-	<div id="Layer120" onmouseleave="ShowObjectWithEffect('Layer120', 0, 'slideup', 500, 'swing');return false;" style="visibility:hidden; margin-left: 474px;"  class=" boxstyle1">
+	<div id="Layer120" onmouseleave="ShowObjectWithEffect('Layer120', 0, 'slideup', 500, 'swing');return false;" style="position: absolute;top: 306px;z-index: 1;visibility:hidden; margin-left: 474px;"  class=" boxstyle1">
 		<img src="<?php echo asset_url();?>images/img0568.png" id="Shape20" alt="" class="aro">
 		<div id="wb_desktop_menu">
           	<ul>
+          		<?php foreach($productCategories as $mainCategory) { ?>
               	<li class="firstmain">
-                    <a class="withsubmenu" href="#" target="_self">Indoors&nbsp;Furniture</a>
+                    <a class="<?php if(count($mainCategory['subproducts']) > 0) {?>withsubmenu<?php } ?>" href="<?php echo base_url();?>product/category/0/0/<?php echo $mainCategory['id'];?>/<?php echo $mainCategory['busi_id'];?>" target="_self"><?php echo $mainCategory['name']; ?></a>
+                   	<?php foreach($mainCategory['subproducts'] as $subproduct){?>
                    	<ul>
                        	<li class="firstitem">
-                       		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Fabric&nbsp;Sofas</a>
+                       		<a href="<?php echo base_url();?>product/category/0/<?php echo $subproduct['id'];?>/0/<?php echo $mainCategory['busi_id'];?>" target="_self"><?php echo $subproduct['name'];?></a>
                        	</li>
-                       	<li>
-                       		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Leather&nbsp;Sofas</a>
-                       	</li>
-                       	<li>
-                       		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">New&nbsp;Style</a>
-                       	</li>
-                       	<li>
-                       		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Bed&nbsp;Rooms</a>
-                        </li>
-                      	<li>
-                      		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Tabels</a>
-                       	</li>
-                      	<li class="lastitem">
-                      		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Libraries</a>
-                   		</li>
                		</ul>
+               		<?php } ?>
                	</li>
-            	<li>
-             		<a class="withsubmenu" href="#" target="_self">Outdoors</a>
-                  	<ul>
-                      	<li class="firstitem">
-                         	<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Wooden&nbsp;Seats</a>
-                        </li>
-                       	<li>
-                          	<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Cradels</a>
-                        </li>
-                      	<li>
-                        	<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Garden&nbsp;Tabels</a>
-                       	</li>
-                      	<li class="lastitem">
-                      		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">More</a>
-                   		</li>
-                	</ul>
-              	</li>
-              	<li>
-                 	<a href="#" target="_self">More</a>
-               	</li>
-               	<li>
-                 	<a href="#" target="_self">More</a>
-               	</li>
-             	<li>
-               		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">New&nbsp;Arrivals</a>
-              	</li>
-              	<li>
-                    <a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Hot&nbsp;Sales</a>
-            	</li>
+               	<?php } ?>
         	</ul>
           	<br>
       	</div>
@@ -304,14 +332,17 @@ padding :10px;
       
    	<!-- product popup bar end -->
   	<!-- contact popup bar  -->
-	<div id="Layer95" onmouseleave="ShowObjectWithEffect('Layer95', 0, 'slideup', 500, 'swing');return false;" >
+	<div id="Layer95" style="position:absolute;z-index:500;width:1280px;margin:auto auto;" >
 	  	<img src="<?php echo asset_url();?>images/img0568.png" id="Shape20" alt="" class="aro">
-		<div class="row contact6">
+		<div class="row contact7">
+			<a href="#" onclick="ShowObjectWithEffect('Layer95', 0, 'slideup', 500, 'swing');return false;" class="pull-right">
+      	 		<img  src="<?php echo asset_url();?>images/img0596.gif" id="Shape26" alt="" class="img33">
+      	 	</a>
 			<div class="col-md-2">
-				<div class="whitebox3">
-		  			<ul class="nav nav-tabs">
-			   			<li class="active contact1"><a data-toggle="tab" href="#home" >Information</a></li>
-			   			<li><a data-toggle="tab" href="#menu1" class="contact1" >Contact us</a></li>
+				<div class="whitebox3" style="background-color:transparent !important;">
+		  			<ul class="nav nav-tabs" style="border:0px;">
+			   			<li class="active contact1"><a data-toggle="tab" href="#home" style="cursor:pointer;">Information</a></li>
+			   			<li><a data-toggle="tab" href="#menu1" class="contact1" style="cursor:pointer;">Contact us</a></li>
 		  			</ul>
 		  		</div>
 			</div>
@@ -319,78 +350,55 @@ padding :10px;
 			  	<div class="tab-content">
 			    	<div id="home" class="tab-pane fade in active">
 			    		<div class="col-sm-6">
-			      			<p class="about1">Contact person</p>
-			      			 	<img alt="" id="PhotoGallery3_img0" src="<?php echo asset_url();?>images/tn_sell1.png"><br>
-			      			<p class="contact2"><strong>Jack Lee</strong></p>
-			      			<p class="contact3"><strong>jacklee@hotmail.com</strong><p>
+			      			<p class="about1">Contact Person</p>
+			      			<div class="card" style="margin:auto auto;width:220px;">
+			      			 	<img alt="<?php echo $business[0]['name'];?>" id="PhotoGallery3_img0" src="<?php echo asset_url();?><?php echo $business[0]['profile_image'];?>" style="width:200px;" /><br>
+			      			 </div>
+			      			<br>
+			      			<p class="contact2"><strong><?php echo $business[0]['name'];?></strong></p>
+			      			<p class="contact3"><strong><?php echo $business[0]['email'];?></strong><p>
 				      	</div>
 			      		<div class="col-md-6 left">
 			      			<h3 class="contact4">MAIN OFFICE</h3>
 			      			<div class="whitebox">
 			      				<div class="col-sm-7">
-			      					<p>Office No. 250, Hengsheng Building No. 203, C Zuo, HuanshiZhong Road</p>
+			      					<p><?php echo $business[0]['company_street'];?>, <?php echo $business[0]['company_city'];?>, <?php echo $business[0]['company_province'];?>, <?php echo $business[0]['company_country'];?></p>
 			      					<div class="flex">
-			      						<p class="about1"> Email</p><p>zaki-hazem250@hotmail.com</p></div>
+			      						<p class="about1"> Email</p><p><?php echo $business[0]['company_email'];?></p></div>
 			      					<div class="flex">
-			      						<p class="about1"> Web</p><p>www.udtalks.com</p>
+			      						<p class="about1"> Web</p><p><?php echo $business[0]['website'];?></p>
 			      					</div>
 			      				</div>
 			      				<div class="col-sm-4">
 				      				<p class="about1"> Tel</p>
-				      				<p>0086 028665384</p>
-				      				<p>0086 028665384</p>
+				      				<p><?php if(!empty($business[0]['telephone_number'])) { ?><?php echo $business[0]['telephone_city_code'];?> <?php echo $business[0]['telephone_number'];?><?php } ?></p>
+				      				<p><?php if(!empty($business[0]['telephone_number1'])) { ?><?php echo $business[0]['telephone_city_code'];?> <?php echo $business[0]['telephone_number1'];?><?php } ?></p>
+				      				<p class="about1"> Fax</p>
+				      				<p><?php echo $business[0]['fax'];?></p>
 			      				</div>
 			      			</div>
-				      		<h3 class="contact4">MAIN OFFICE</h3>
+				      		<h3 class="contact4">WORLDWIDE BRANCHES</h3>
 				      		<div class="scrollbox">
-				      			<div class="whitebox">
+				      			<?php foreach ($branches as $branch) { ?>
+				      			<div class="whitebox" style="padding-bottom:10px;">
 				      				<div class="col-sm-7">
-				      					<p>Office No. 250, Hengsheng Building No. 203, C Zuo, HuanshiZhong Road</p>
+				      					<p><?php echo $branch['street'];?>, <?php echo $branch['city'];?>, <?php echo $branch['province'];?>, <?php echo $branch['country'];?></p>
 				      					<div class="flex">
-				      						<p class="about1"> Email</p><p>zaki-hazem250@hotmail.com</p>
+				      						<p class="about1"> Email</p><p><?php echo $branch['email'];?></p>
 				      					</div>
 				      					<div class="flex">
-				      						<p class="about1" > Web</p><p>www.udtalks.com</p>
+				      						<p class="about1" > </p><p></p>
 				      					</div>
 				      				</div>
 				      				<div class="col-sm-4">
 					      				<p class="about1"> Tel</p>
-					      				<p>0086 028665384</p>
-					      				<p>0086 028665384</p>
+					      				<p><?php echo $branch['city_code'];?> <?php echo $branch['telephone1'];?></p>
+					      				<p><?php echo $branch['city_code'];?> <?php echo $branch['telephone2'];?></p>
+					      				<p class="about1"> Fax</p>
+					      				<p><?php echo $branch['fax'];?></p>
 				      				</div>
 				      			</div>
-				      			<div class="whitebox">
-				      				<div class="col-sm-7">
-				      					<p>Office No. 250, Hengsheng Building No. 203, C Zuo, HuanshiZhong Road</p>
-				      					<div class="flex">
-				      						<p class="about1"> Email</p><p>zaki-hazem250@hotmail.com</p>
-				      					</div>
-				      					<div class="flex">
-				      						<p class="about1" > Web</p><p>www.udtalks.com</p>
-				      					</div>
-				      				</div>
-				      				<div class="col-sm-4">
-					      				<p class="about1"> Tel</p>
-					      				<p>0086 028665384</p>
-					      				<p>0086 028665384</p>
-				      				</div>
-				      			</div>
-				      			<div class="whitebox">
-				      				<div class="col-sm-7">
-				      					<p>Office No. 250, Hengsheng Building No. 203, C Zuo, HuanshiZhong Road</p>
-				      					<div class="flex">
-				      						<p class="about1"> Email</p><p>zaki-hazem250@hotmail.com</p>
-				      					</div>
-				      					<div class="flex">
-				      						<p class="about1" > Web</p><p>www.udtalks.com</p>
-				      					</div>
-				      				</div>
-				      				<div class="col-sm-4">
-					      				<p class="about1"> Tel</p>
-					      				<p>0086 028665384</p>
-					      				<p>0086 028665384</p>
-				      				</div>
-				      			</div>
+				      			<?php } ?>
 			      			</div>
 			      		</div>
 			    	</div>
@@ -405,9 +413,9 @@ padding :10px;
 							    <input type="text" name="company" placeholder="Company"/>
 							    <input type="number" name="phone" placeholder="Phone"/>
 						    </div>
-						    <div class="col-md-8">
+						    <div class="col-md-10">
 						    	<textarea rows="" cols="" placeholder="Message"> </textarea>
-						    	<button>Submit</button>
+						    	<button type="button" onclick="submitContactForm();" style="padding:10px 15px;">Submit</button>
 						    </div>
 					    </div>
 				    </div>
@@ -415,10 +423,11 @@ padding :10px;
 			</div>
     	</div>
   	</div>
+</div>
   	<!-- contact popup bar end -->
-  	<div class="row">&nbsp;</div>
-  	<div class="row">
-  		<div class="col-md-9">
+  	<div class="row" style="margin:0px;">&nbsp;</div>
+  	<div class="row" style="margin:0px;">
+  		<div class="col-md-10" style="padding-left: 0px;">
   			<?php foreach ($Productdetails as $product) {?>
 			<div class="panel panel-default">
 			  <div class="panel-body">
@@ -426,10 +435,10 @@ padding :10px;
 				   <div class="row"> 
 				   		<div class="row" style="padding-left: 10px;">
 				    		<p class="product-braedcrumbs">
-					    		<a href="<?php echo base_url();?>desksite">Desktop</a> 
-						    	&gt; <a href="javascript:productListBySubCategory(<?php echo $product['subcategory_id'];?>,<?php echo $product['busi_id'];?>)" > <?php echo $product['subcategory']?></a> 
-								&gt;<a href="javascript:productListByMainProduct(<?php echo $product['mainproduct_id'];?>,<?php echo $product['busi_id'];?>)"  > <?php echo $product['mainproduct']?></a>
-								&gt; <a href="javascript:productListBySubProduct(<?php echo $product['subproduct_id'];?>,<?php echo $product['busi_id'];?>)" > <?php echo $product['subproduct']?> </a>&gt;
+					    		<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>">Desktop</a> 
+						    	&gt; <a href="<?php echo base_url();?>product/category/<?php echo $product['subcategory_id'];?>/0/0/<?php echo $product['busi_id'];?>" > <?php echo $product['subcategory']?></a> 
+								&gt;<a href="<?php echo base_url();?>product/category/0/<?php echo $product['mainproduct_id'];?>/0/<?php echo $product['busi_id'];?>"  > <?php echo $product['mainproduct']?></a>
+								&gt; <a href="<?php echo base_url();?>product/category/0/0/<?php echo $product['subproduct_id'];?>/<?php echo $product['busi_id'];?>" > <?php echo $product['subproduct']?> </a>&gt;
 							</p>
 				    	</div>
 				    	<div class="row">&nbsp;</div>
@@ -509,23 +518,27 @@ padding :10px;
 		    				<?php } ?>
 	    				</div>
 	    			</div>
+	    			<div class="row" style="padding-top:10px;">
+			    		<div class="col-md-4" ><p>Product CBM</p></div>
+			    		<div class="col-md-8" ><p><?php echo $product['cbm'];?></p></div>
+		    		</div>
 	    			<hr />
 	    			<div class="row">
 			    		<div class="col-md-4" ><p>Port</p></div>
-			    		<div class="col-md-8" ><p>Ningbo</p></div>
+			    		<div class="col-md-8" ><p><?php if(!empty($trade_info[0]['part1'])) { echo $trade_info[0]['part1']; } ?> <?php if(!empty($trade_info[0]['part2'])) { echo ", ".$trade_info[0]['part2']; } ?></p></div>
 	    			</div>
 		    		<div class="row">
 			    		<div class="col-md-4" ><p>Accepted Payment</p></div>
-			    		<div class="col-md-8" ><p>T/T, LC ...</p></div>
+			    		<div class="col-md-8" ><p><?php $curr_text = ""; foreach ($currency as $curr) { if($curr_text == "") { $curr_text = $curr['payment_currency'];} else { $curr_text = $curr_text.", ".$curr['payment_currency'];}} echo $curr_text;?></p></div>
 		    		</div>
 		    		<hr />
 		    		<div class="row pull-center">
-		    			<div class="share-icons"><a href=""><i class="fa fa-comments" aria-hidden="true"></i></a></div>
+		    			<div class="share-icons"><a href="javascript:openChatWithBuyer(<?php echo $product['busi_id'];?>);"><i class="fa fa-comments" aria-hidden="true"></i></a></div>
 		    			<div class="share-icons"><a href=""><i class="fa fa-file-text-o" aria-hidden="true"></i></a></div>
-		    			<div class="share-icons"><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></div>
-		    			<div class="share-icons"><a href=""><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></div>
-		    			<div class="share-icons"><a href=""><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></div>
-		    			<div class="share-icons"><a href=""><i class="fa fa-share-alt" aria-hidden="true"></i></a></div>
+		    			<div class="share-icons"><a href="javascript:addToMyFavourite(<?php echo $product['id'];?>,4);"><i class="fa fa-star" aria-hidden="true"></i></a></div>
+		    			<div class="share-icons"><a href="javascript:addToItemToCart(<?php echo $product['id'];?>);"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></div>
+		    			<div class="share-icons"><a href="javascript:likeProduct(<?php echo $product['id'];?>);"><i class="fa fa-thumbs-up" aria-hidden="true"></i></a></div>
+		    			<div class="share-icons"><a href="javascript:shareToWorld('<?php echo base_url();?>item/details/<?php echo $product['id'];?>','<?php echo $product['name'];?>',2,<?php echo $product['id'];?>);"><i class="fa fa-share-alt" aria-hidden="true"></i></a></div>
 		    		</div>
 		    		<hr />
 			    </div>
@@ -585,36 +598,32 @@ padding :10px;
 		  </div>
 		<?php } ?>
 		</div>
-      		<div class="col-md-3">
+      		<div class="col-md-2">
       			<div class="row">
       			<div class="business-info col-md-12">
       			<?php  foreach ($advantages as $advantage){?>
-      				<h4 class="heading"> Sellers Advantage</h4>
-	      			<div class="panel-group" id="accordion">
+      				<h4 class="heading" style="margin-left:10px;"> <span style="color:#FF6347;font-family:Georgia;font-size:12px;"><strong>Seller Advantages</strong></span></h4>
+	      			<div class="panel-group" id="accordion" style="padding-left: 10px;padding-right: 10px;">
 	      				<p>
-					        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-					        Product Guarantee</a>
+					        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="style5A">
+					        	Product Guarantee <span class="pull-right"><img alt="" src="<?php echo asset_url();?>images/advantages_arrow.png"></span>
+					        </a>
 				        </p>
 					    <div id="collapse1" class="panel-collapse collapse">
 					      <div class="panel-body"><?php echo $advantage['gaurantee_term'];?></div>
 					    </div>
 					    <p>
-						    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-					        Sample</a>
-				        </p>
-					    <div id="collapse2" class="panel-collapse collapse">
-					      <div class="panel-body">The seller provides a free sample, shipping fees to be paid by customer.</div>
-					    </div>
-					    <p>
-						    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-					        Product Certificates</a>
+						    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" class="style5A">
+					        	Product Certificates <span class="pull-right"><img alt="" src="<?php echo asset_url();?>images/advantages_arrow.png"></span>
+					        </a>
 				        </p>
 					    <div id="collapse3" class="panel-collapse collapse">
 					      <div class="panel-body">The seller able to issue the following Products Certificates: <?php echo  $advantage['product_certs'];?></div>
 					    </div>
 					    <p>
-						    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-					        Product Certificates</a>
+						    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" class="style5A">
+					        	Export and Shipping <span class="pull-right"><img alt="" src="<?php echo asset_url();?>images/advantages_arrow.png"></span>
+					        </a>
 				        </p>
 					    <div id="collapse4" class="panel-collapse collapse">
 					      <div class="panel-body"><?php if(!empty($advantage['verification_id'])){ echo "The seller has an export license and able to export and ship the goods under his company license."; } ?></div>
@@ -622,25 +631,40 @@ padding :10px;
 					 </div>
 					 <?php }?>
 				</div>
+				<hr>
 				<div class="bgwhite1">
 				<div class="row">
-				<?php  foreach ($sellers as $seller){?>
 					<div class="col-md-12">
-						<center><img src="<?php echo base_url().$seller['profile_image']?>" width="100px;" height="100px;" class="circle"></center>
+						<h6><a href="#"><span style="color:#696969;font-family:Arial;font-size:12px;"><u>Business Type : </u></span></a></h6>
+						<p><?php echo $business[0]['user_subcategory'];?></p>
+						<h6><a href="#"><span style="color:#696969;font-family:Arial;font-size:12px;"><u>Contact Person : </u></span></a></h6>
+						<p><?php echo $business[0]['name_prefix'];?> <?php echo $business[0]['name'];?></p>
+						<p><?php echo $business[0]['position'];?></p>
 					</div>
 					<div class="col-md-12">
-						<h6><a href="#">Main Market</a></h6>
-						<p><?php echo $seller['company_country']?></p>
+						<center><img src="<?php echo asset_url().$business[0]['profile_image']?>" width="100px;" height="100px;" style="border-radius:50%;border:2px solid #FF6347;" class="circle"></center>
+					</div>
+					<div class="col-md-12">
+						<h6><a href="#"><span style="color:#696969;font-family:Arial;font-size:12px;"><u>Main Market : </u></span></a></h6>
+						<p>
+						<?php 
+		                	foreach ($market_info as $key=>$market) {
+		                		if($key > 0) {
+		                			echo ", ";
+		                		}
+		                		echo $market['name'];
+		                	}
+		                ?>
+						</p>
 						<h6><a href="#">Main Product</a></h6>
-						<p><?php echo $seller['main_product']?></p>
+						<p><?php echo $business[0]['mainproducts'];?></p>
 						<h6><a href="#">Year of Establish</a></h6>
-						<p><?php echo $seller['year_of_registration']?></p>
+						<p><?php echo $business[0]['year_of_registration'];?></p>
 						<h6><a href="#">No. of Employees</a></h6>
-						<p><?php echo $seller['total_no_of_emp'] ;?> Person</p>
+						<p><?php echo $business[0]['total_no_of_emp'];?> Person</p>
 						<h6><a href="#">Country</a></h6>
-						<p><?php echo $seller['company_country'].' '.$seller['company_province'];?></p>
+						<p><?php echo $business[0]['company_country'].' '.$business[0]['company_province'];?></p>
 					</div>
-				<?php }?>
 				</div>
 				</div>
 				</div>
@@ -786,7 +810,92 @@ function productListBySubProduct(id, busi_id) {
 		ShowObjectWithEffect('Layer_products', 1, 'slideright', 500, 'swing');
 	},'html');
 }
-
+function searchProducts() {
+	var url = "<?php echo base_url();?>products?keyword="+$("#SiteSearch1").val();
+	var win = window.open(url, '_blank');
+	win.focus();
+}
+function addToItemToCart(id) {
+	$.post(base_url+"additemtocart",{product_id: id},function(data) {
+		$("#msg_cont").html(data.msg);
+		ShowObject('Layer99', 1);
+	},'json');
+}
+function likeProduct(id) {
+	$.get(base_url+"desksite/product/like/"+id,{},function(data) {
+		if(data.status == 1) {
+			$("#msg_cont").html(data.msg);
+		} else {
+			$("#msg_cont").html(data.msg);
+		}
+		ShowObject('Layer99', 1);
+	},'json');
+}
+function submitContactForm() {
+	<?php if(!empty($tsuserid)) { ?>
+		<?php if($tscategory_id != 3) { ?>
+			$("#msg_cont").html("We have recorded your enquiry.");
+			ShowObject('Layer99', 1);
+			ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
+		<?php } else { ?>
+			<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
+				$("#msg_cont").html("We have recorded your enquiry.");
+				ShowObject('Layer99', 1);
+				ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
+			<?php } else if($contact_details[0]['step'] < 2) { ?>
+				$("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
+				ShowObject('Layer99', 1);
+			<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
+				$("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+				ShowObject('Layer99', 1);
+			<?php } ?>
+		<?php } ?>
+	<?php } else { ?>
+		$("#msg_cont").html("Please login to contact this seller.");
+		ShowObject('Layer99', 1);
+	<?php } ?>
+}
+function openChatWithBuyer(seller_id) {
+	<?php if(!empty($tsuserid)) { ?>
+		<?php if($tscategory_id == 3) { ?>
+			<?php if($contact_details[0]['accept_chat'] == 1) { ?>
+				popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+			<?php } else { ?>
+				$("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
+				ShowObject('Layer99', 1);
+			<?php } ?>
+		<?php } else { ?>
+			popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+		<?php } ?>
+	<?php } else { ?>
+		$("#msg_cont").html('LOGIN TO CAHT');
+		ShowObject('Layer99', 1);
+	<?php } ?>
+}
+function openGeneralEnquiry(id) {
+	<?php if(!empty($tsuserid)) { ?>
+		<?php if($tscategory_id != 3) { ?>
+			popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+		<?php } else { ?>
+			<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
+				popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+			<?php } else if($contact_details[0]['step'] < 2) { ?>
+				$("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
+				ShowObject('Layer99', 1);
+			<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
+				$("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+				ShowObject('Layer99', 1);
+			<?php } ?>
+		<?php } ?>
+	<?php } else { ?>
+		$("#msg_cont").html("Please login to send enquiry.");
+		ShowObject('Layer99', 1);
+	<?php } ?>
+}
+$("a[data-rel='prettyPhoto_SlideShow311[SlideShow311]']").attr('rel', 'prettyPhoto_SlideShow311[SlideShow311]');
+$("a[rel^='prettyPhoto_SlideShow311']").prettyPhoto({theme:'facebook',social_tools:false});
+$("a[data-rel='prettyPhoto_SlideShow312[SlideShow312]']").attr('rel', 'prettyPhoto_SlideShow312[SlideShow312]');
+$("a[rel^='prettyPhoto_SlideShow312']").prettyPhoto({theme:'facebook',social_tools:false});
 </script>
 <script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
 
