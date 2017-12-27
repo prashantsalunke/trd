@@ -68,7 +68,8 @@ switch (ENVIRONMENT)
 {
 	case 'development':
 		error_reporting(-1);
-		ini_set('display_errors', 1);
+		ini_set('display_errors', E_ALL);
+		header('Access-Control-Allow-Origin: *');		
 	break;
 
 	case 'testing':
