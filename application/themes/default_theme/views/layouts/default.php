@@ -30,6 +30,58 @@ ul.dropdown-menu li > a:hover {
 a:focus,.btn:active {
    outline: none !important;
 }
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('<?php echo asset_url();?>images/loading.gif') 50% 50% no-repeat rgb(0,0,0);
+    opacity: 0.7;
+}
+#RollOverToTop a
+{
+   display: block;
+   position: relative;
+   height: 100%;
+   width: 100%;
+}
+#RollOverToTop a img
+{
+   position: absolute;
+   z-index: 1;
+   border-width: 0;
+}
+#RollOverToTop span
+{
+   display: block;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   z-index: 2;
+}
+#RollOverToTop a .hover
+{
+   visibility: hidden;
+}
+#RollOverToTop a:hover .hover
+{
+   visibility: visible;
+}
+#RollOverToTop a:hover span
+{
+   visibility: hidden;
+}
+#RollOverToTop img
+{
+   border-width: 0;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
 </style>
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -49,6 +101,7 @@ function customAlert(msg) {
 </script>
 </head>
 <body>
+	<div class="loader"></div>
     <?php echo $template['partials']['header']; ?>
     <?php echo $template['body']; ?>
 	<?php echo $template['partials']['footer']; ?>
@@ -194,5 +247,8 @@ $(window).scroll(function(){
 });
 $("#totop").on("click",function(){
 	return $("html, body").animate({scrollTop:0},"fast"),!1
+});
+$(window).load(function() {
+    $(".loader").fadeOut("slow");
 });
 </script>

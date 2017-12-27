@@ -2,11 +2,14 @@
 .blue-color {
  	color:#1E90FF !important;
  }
+ #Image45 {
+ 	height:235px;
+ }
 </style>
-<div id="Layer106" style="position: absolute; text-align: right; visibility: visible; top: 49px; width: 100%; height: 235px; z-index:4000; background-color:transparent; display: none;" onmouseleave="ShowObjectWithEffect('Layer106', 0, 'fold', 500);return false;">
+<div id="Layer106" style="position: absolute; text-align: right; visibility: visible; top: 49px; width: 1280px; height: 235px; z-index:4000; background-color:transparent; display: none;" onmouseleave="ShowObjectWithEffect('Layer106', 0, 'fold', 500);return false;">
 	<div id="Layer106_Container" style="width: 1280px; position: relative; margin: auto;height: 235px; text-align: left;background-color:#fff;background-color: #FFFFFF; -moz-box-shadow: 0px 6px 15px #000000; -webkit-box-shadow: 0px 6px 15px #000000; box-shadow: 0px 6px 15px #000000;">
 		<div id="Layer54"
-			style="position: absolute; text-align: center; left: 0%; top: 0px; width: 215px; height: 235px; z-index: 363;">
+			style="position: absolute; text-align: center; left: 0%; top: 0px; width: 215px; height: 235px; z-index: 363;background: #F05235;">
 			<div id="Layer54_Container"
 				style="width: 215px; position: relative; margin-left: auto; margin-right: auto; text-align: left;">
 				<div id="wb_Text106"
@@ -329,20 +332,20 @@
 				</div>
 				<div id="RollOver44" style="position: absolute; left: 476px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 343">
 					<a href="<?php echo base_url();?>pro-video"> 
-						<img class="hover" alt="" src="<?php echo asset_url();?>images/vidtubcolore0.png"> 
-						<span><img alt="" src="<?php echo asset_url();?>images/vidtube0.png"></span>
+						<img class="hover" alt="" src="<?php echo asset_url();?>images/vidtubcolore0.png" style="width:50px;"> 
+						<span><img alt="" src="<?php echo asset_url();?>images/vidtube0.png" style="width:50px;"></span>
 					</a>
 				</div>
 				<div id="RollOver45" style="position: absolute; left: 96px; top: 122px; overflow: hidden; width: 50px; height: 50px; z-index: 344">
 					<a href="<?php echo base_url();?>buyer"> 
-						<img class="hover" alt="" src="<?php echo asset_url();?>images/buyerbrown0.png"> 
-						<span><img alt="" src="<?php echo asset_url();?>images/buyer.png"></span>
+						<img class="hover" alt="" src="<?php echo asset_url();?>images/buyerbrown0.png" style="width:50px;"> 
+						<span><img alt="" src="<?php echo asset_url();?>images/buyer.png" style="width:50px;"></span>
 					</a>
 				</div>
 				<div id="RollOver46" style="position: absolute; left: 192px; top: 123px; overflow: hidden; width: 50px; height: 50px; z-index: 345">
 					<a href="<?php echo base_url();?>shipper"> 
-						<img class="hover" alt="" src="<?php echo asset_url();?>images/shipperblue.png"> 
-						<span><img alt="" src="<?php echo asset_url();?>images/shipper.png"></span>
+						<img class="hover" alt="" src="<?php echo asset_url();?>images/shipperblue.png" style="width:50px;"> 
+						<span><img alt="" src="<?php echo asset_url();?>images/shipper.png" style="width:50px;"></span>
 					</a>
 				</div>
 				<div id="RollOver47" style="position: absolute; left: 382px; top: 123px; overflow: hidden; width: 50px; height: 50px; z-index: 346">
@@ -353,8 +356,8 @@
 				</div>
 				<div id="RollOver48" style="position: absolute; left: 382px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 347">
 					<a href="<?php echo base_url();?>b-station"> 
-						<img class="hover" alt="" src="<?php echo asset_url();?>images/tradeglod.png"> 
-						<span><img alt="" src="<?php echo asset_url();?>images/trade.png"></span>
+						<img class="hover" alt="" src="<?php echo asset_url();?>images/tradeglod.png" style="width:50px;"> 
+						<span><img alt="" src="<?php echo asset_url();?>images/trade.png" style="width:50px;"></span>
 					</a>
 				</div>
 				<div id="RollOver49" style="position: absolute; left: 285px; top: 123px; overflow: hidden; width: 50px; height: 50px; z-index: 348">
@@ -365,8 +368,8 @@
 				</div>
 				<div id="RollOver42" style="position: absolute; left: 192px; top: 26px; overflow: hidden; width: 50px; height: 50px; z-index: 349">
 					<a href="<?php echo base_url();?>seller"> 
-						<img class="hover" alt="" src="<?php echo asset_url();?>images/sellerred.png"> 
-						<span><img alt="" src="<?php echo asset_url();?>images/seller.png"></span>
+						<img class="hover" alt="" src="<?php echo asset_url();?>images/sellerred.png" style="width:50px;"> 
+						<span><img alt="" src="<?php echo asset_url();?>images/seller.png" style="width:50px;"></span>
 					</a>
 				</div>
 				<div id="wb_Text114" style="position: absolute; left: 360px; top: 80px; width: 95px; height: 16px; text-align: center; z-index: 350;">
@@ -403,7 +406,7 @@
 			<img src="<?php echo asset_url();?>images/sbusiness.png" id="Image45" alt="">
 			<?php } else if($page == 'stock_market'){ ?>
 			<img src="<?php echo asset_url();?>images/stockheade0r.png" id="Image45" alt="">
-			<?php } else if($page == 'desksite'){ ?>
+			<?php } else if($page == 'desksite' || $page == 'sellers-home' || $page == 'shipper-home'){ ?>
 				<?php if($pagename == 'seller') { ?>
 					<img src="<?php echo asset_url();?>images/sellerheader0.jpg" id="Image45" alt="">
 				<?php } elseif($pagename == 'shipper') { ?>

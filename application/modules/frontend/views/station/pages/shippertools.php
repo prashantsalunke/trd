@@ -453,8 +453,8 @@
 									</div>
 								</div>
 								<br><br>
-								<div id="busi_stats_area">
-								<div class="row">
+								<div>
+								<div class="row" id="busi_stats_area">
 									<div class="col-sm-12">
 										<table class="skyblue">
 											<thead>
@@ -479,9 +479,9 @@
 												</tr>
 												<?php } ?>
 												<tr>
-													<td style="border:0px;"><?php echo $business_stats[0]['visit'];?></td>
-													<td style="border:0px;"><?php echo $business_stats[0]['likes'];?></td>
-													<td style="border:0px;"><?php echo $business_stats[0]['shares'];?></td>
+													<td style="border:0px;"><?php echo $busi_history_pages['visits'];?></td>
+													<td style="border:0px;"><?php echo $busi_history_pages['likes'];?></td>
+													<td style="border:0px;"><?php echo $busi_history_pages['shares'];?></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
@@ -494,7 +494,7 @@
 								<div class="row">
 									<div class="pull-right" style="padding-right:20px;">
 										<strong>Page&nbsp;&nbsp;&nbsp; </strong>
-										<?php for ($i = 1; $i <= $busi_history_pages; $i++) { ?>
+										<?php for ($i = 1; $i <= $busi_history_pages['pages']; $i++) { ?>
 										<a href="javascript:showNextBusinessStats(<?php echo $i;?>);" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
 										<?php } ?>
 									</div>
@@ -503,191 +503,6 @@
 							</div>
 						</div>
 					
-					</div>
-					<div id="myproduct_stats" style="display:none;overflow-y:scroll;max-height:500px;" class="mytoolsts-div">
-						<div class="row" style="margin:0px;">
-							<div class="col-sm-1 text-right">
-							</div>
-							<div class="col-sm-4">
-								<span style="color:#292929;font-family:Georgia;font-size:16px;">Services Statistics</span><br>
-								<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Reported from <?php echo date('j M Y',strtotime($tsreg_date));?>&nbsp;&nbsp; to&nbsp;&nbsp; <?php echo date('j M Y');?></span>
-							</div>
-						</div>
-						<br><br><br><br>
-						<div class="row" style="margin:0px;">
-							<div class="col-sm-1 text-right">
-							</div>
-							<div class="col-sm-9">
-								<div class="row">
-									<div class="col-sm-4">
-										Period From <input type="date" id="pfrom_date" style="height:19px;width:135px;"/>
-									</div>
-									<div class="col-sm-4">
-										To <input type="date" id="pto_date" style="height:19px;width:135px;"/>
-									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="col-sm-4">
-										<select id="pcountry_id" name="pcountry_id" style="background-color: #FFFFFF;">
-											<option value="">Sort according to the country</option>
-											<?php foreach ($countries as $country) { ?>
-											<option id="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
-											<?php } ?>
-										</select>
-									</div>
-									<div class="col-sm-5">
-										<input type="text" id="pro_name" style="width:312px;height:19px;" name="pro_name" value="" placeholder="Type service name to view statistics"/>
-									</div>
-									<div class="col-sm-1">
-										<input type="button" id="Button18" onclick="searchServiceStats();" name="Search" value="" style="width:32px;height:22px;">
-									</div>
-								</div>
-								<br><br>
-								<div id="product_stats_area">
-								<div class="row">
-									<div class="col-sm-12">
-										<table class="skyblue">
-											<thead>
-												<tr>
-													<th>S.N</th>
-													<th>Services</th>
-													<th>Views</th>
-													<th>Likes</th>
-													<th>Share</th>
-													<th>Country</th>
-													<th>City</th>
-													<th>Date</th>
-												</tr>
-											</thead>
-											<tbody>
-												<?php foreach ($product_history as $key=>$product_history_stat) { ?>
-												<tr>
-													<td><?php echo $key+1;?></td>
-													<td><?php echo $product_history_stat['name'];?></td>
-													<td><?php echo $product_history_stat['visits'];?></td>
-													<td><?php echo $product_history_stat['likes'];?></td>
-													<td><?php echo $product_history_stat['shares'];?></td>
-													<td><?php echo $product_history_stat['country_name'];?></td>
-													<td><?php echo $product_history_stat['city_name'];?></td>
-													<td><?php echo date('d M Y',strtotime($product_history_stat['visit_date']));?></td>
-												</tr>
-												<?php } ?>
-												<tr>
-													<td style="border:0px;"></td>
-													<td style="border:0px;"><strong><?php echo $product_stats[0]['products'];?></strong></td>
-													<td style="border:0px;"><strong><?php echo $product_stats[0]['visit'];?></strong></td>
-													<td style="border:0px;"><strong><?php echo $product_stats[0]['likes'];?></td>
-													<td style="border:0px;"><strong><?php echo $product_stats[0]['shares'];?></strong></td>
-													<td style="border:0px;"></td>
-													<td style="border:0px;"></td>
-													<td style="border:0px;"></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="pull-right" style="padding-right:20px;">
-										<strong>Page&nbsp;&nbsp;&nbsp; </strong>
-										<?php for ($i = 1; $i <= $product_history_pages; $i++) { ?>
-										<a href="javascript:showNextProductStats(<?php echo $i;?>);" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
-										<?php } ?>
-									</div>
-								</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="myaproduct_stats" style="display:none;overflow-y:scroll;" class="mytoolsts-div">
-						<div class="row" style="margin:0px;">
-							<div class="col-sm-1 text-right">
-							</div>
-							<div class="col-sm-4">
-								<span style="color:#292929;font-family:Georgia;font-size:16px;">Active Services Statistics</span><br>
-								<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Active Services are the most liked Services by the Visitors and Buyers </span><br><br>
-								<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Reported Each 3 Months </span><br>
-								<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">from <?php echo date('j M Y',strtotime($tsreg_date));?>   to   <?php echo date('j M Y');?></span>
-							</div>
-						</div>
-						<br><br><br><br>
-						<div class="row" style="margin:0px;">
-							<div class="col-sm-1 text-right">
-							</div>
-							<div class="col-sm-9">
-								<div class="row">
-									<div class="col-sm-4">
-										<select id="apcountry_id" name="apcountry_id" style="background-color: #FFFFFF;">
-											<option value="">Sort according to the country</option>
-											<?php foreach ($countries as $country) { ?>
-											<option id="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
-											<?php } ?>
-										</select>
-									</div>
-									<div class="col-sm-5">
-										<input type="text" id="apparo_name" style="width:312px;height:19px;" name="apro_name" value="" placeholder="Type service name to view statistics"/>
-									</div>
-									<div class="col-sm-1">
-										<input type="button" id="Button19" onclick="searchAserviceStats();" name="Search" value="" style="width:32px;height:22px;">
-									</div>
-								</div>
-								<br><br>
-								<div id="aproduct_stats_area">
-								<div class="row">
-									<div class="col-sm-12">
-										<table class="skyblue">
-											<thead>
-												<tr>
-													<th>S.N</th>
-													<th>Services</th>
-													<th>Views</th>
-													<th>Likes</th>
-													<th>Share</th>
-													<th>Country</th>
-													<th>City</th>
-													<th>Date</th>
-												</tr>
-											</thead>
-											<tbody>
-												<?php foreach ($aproduct_history as $key=>$aproduct_history_stat) { ?>
-												<tr>
-													<td><?php echo $key+1;?></td>
-													<td><?php echo $aproduct_history_stat['name'];?></td>
-													<td><?php echo $aproduct_history_stat['visits'];?></td>
-													<td><?php echo $aproduct_history_stat['likes'];?></td>
-													<td><?php echo $aproduct_history_stat['shares'];?></td>
-													<td><?php echo $aproduct_history_stat['country_name'];?></td>
-													<td><?php echo $aproduct_history_stat['city_name'];?></td>
-													<td><?php echo date('d M Y',strtotime($aproduct_history_stat['visit_date']));?></td>
-												</tr>
-												<?php } ?>
-												<tr>
-													<td style="border:0px;"></td>
-													<td style="border:0px;"><strong><?php echo $aproduct_stats[0]['products'];?></strong></td>
-													<td style="border:0px;"><strong><?php echo $aproduct_stats[0]['visit'];?></strong></td>
-													<td style="border:0px;"><strong><?php echo $aproduct_stats[0]['likes'];?></td>
-													<td style="border:0px;"><strong><?php echo $aproduct_stats[0]['shares'];?></strong></td>
-													<td style="border:0px;"></td>
-													<td style="border:0px;"></td>
-													<td style="border:0px;"></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="pull-right" style="padding-right:20px;">
-										<strong>Page&nbsp;&nbsp;&nbsp; </strong>
-										<?php for ($i = 1; $i <= $aproduct_history_pages; $i++) { ?>
-										<a href="javascript:showNextAProductStats(<?php echo $i;?>);" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
-										<?php } ?>
-									</div>
-								</div>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -734,11 +549,12 @@ function showStorage() {
 	var myChart = new Chart(ctx, {
 	    type: 'pie',
 	    data: {
-	        labels: ["All Products Storage", "Community Posts Storage", "Offers Storage", "Inquiries Storage", "Videos Storage", "B. Station Posts Storage","Stock M. Posts Storage"],
+	        labels: ["Free Space", "All Desksite Storage", "Community Posts Storage", "Offers Storage", "Inquiries Storage", "Videos Storage", "B. Station Posts Storage","Stock M. Posts Storage"],
 	        datasets: [{
 	            label: '# MB',
-	            data: [<?php echo $product_storage;?>, <?php echo $community_storage;?>, <?php echo $offer_storage;?>, <?php echo $inquiry_storage;?>, <?php echo $video_storage; ?>, <?php echo $bstation_storage;?>, <?php echo $stock_storage;?>],
+	            data: [<?php echo round(($storage_plan-$total_storage),2);?>, <?php echo $product_storage;?>, <?php echo $community_storage;?>, <?php echo $offer_storage;?>, <?php echo $inquiry_storage;?>, <?php echo $video_storage; ?>, <?php echo $bstation_storage;?>, <?php echo $stock_storage;?>],
 	            backgroundColor: [
+					'#FF6347',
 	                '#E76C1A',
 	                '#E7241A',
 	                '#AF0F07',
@@ -865,7 +681,9 @@ function closeStatsDiv() {
 	$("#maintoolscreen").show();
 	$("#statstoolscreen").hide();
 }
-
+$("#bcountry_id").change(function(){
+	searchBusiStats();
+});
 function searchBusiStats() {
 	$.post(base_url+"mystation/business/stats",{country_name: $("#bcountry_id").val(), from_date: $("#bfrom_date").val(), to_date: $("#bto_date").val(), page: 1},function(data) {
 		$("#busi_stats_area").html(data);

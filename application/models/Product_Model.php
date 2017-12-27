@@ -800,10 +800,10 @@ class Product_Model extends CI_Model {
     }
     
     public function getDesksiteByBusiId($map) {
-    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, 
-    			d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size, 
-    			b.company_name, b.company_country, b.company_province, b.company_city,b.telephone_code,
-    			b.telephone_city_code,b.telephone_number,b.company_street,b.company_email, b.business_logo, 
+    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, 
+    			d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, 
+    			b.company_name, b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,
+    			b.telephone_city_code,b.telephone_number,b.telephone_number1,b.company_street,b.company_email, b.business_logo, 
     			b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank,
     			b.verification_id,g.*, c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image,
     			c.timezone,e.sub_category as user_subcategory,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
@@ -828,7 +828,7 @@ class Product_Model extends CI_Model {
     	$this->db->where('b.id', $map['id']);
     	//$this->db->where("(f.status != 0)",'',false);
     	$this->db->order_by('a.created_date','DESC');
-    	$this->db->group_by('a.id');
+    	$this->db->group_by('b.id');
     	//echo $this->db->last_query();
     	$query = $this->db->get();
     	$result = $query->result_array();
@@ -836,16 +836,15 @@ class Product_Model extends CI_Model {
     }
     
     public function getShipperDesksiteByBusiId($map) {
-    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size, b.company_name,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
-		b.company_country, b.company_province, b.company_city,b.telephone_code,b.telephone_city_code,b.telephone_number,b.company_street,b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified,b.verification_id, b.likes, b.rank,  g.*,
-		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image,c.timezone,e.sub_category as user_subcategory,GROUP_CONCAT(f.name) as mainservices,h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,i.flag');
+    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, b.company_name,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
+		b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,b.telephone_city_code,b.telephone_number,b.telephone_number1,b.company_street,b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified,b.verification_id, b.likes, b.rank,  g.*,
+		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image,c.timezone,e.sub_category as user_subcategory,(select GROUP_CONCAT(f.name) from tbl_shipper_service as f where f.busi_id=a.busi_id and f.status = 1 and f.is_special = 0) as mainservices,h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,h.fact_province,h.fact_city,h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag');
     	$this->db->from(TABLES::$USER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
     	$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
     	$this->db->join(TABLES::$COMPANY_INFO.' AS d','a.id=d.busi_id','left');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','e.id=a.user_subcategory_id','inner');
-    	$this->db->join(TABLES::$SHIPPER_SERVICES.' AS f','f.busi_id=a.busi_id','left');
     	$this->db->join(TABLES::$FACTORY_INFO.' AS h','h.busi_id=a.busi_id','left');
     	$this->db->join(TABLES::$COUNTRY.' AS i','i.name=b.company_country','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS j','j.busi_id=a.busi_id','left');
@@ -856,9 +855,8 @@ class Product_Model extends CI_Model {
     	$this->db->where('a.is_contactperson',1);
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('b.id', $map['id']);
-    	$this->db->where("(f.status != 0)",'',false);
     	$this->db->order_by('a.created_date','DESC');
-    	$this->db->group_by('a.id');
+    	$this->db->group_by('b.id');
     	//echo $this->db->last_query();
     	$query = $this->db->get();
     	$result = $query->result_array();
@@ -1630,6 +1628,16 @@ class Product_Model extends CI_Model {
     	return $result;
     }
     
+    public function getActiveShipperServices($busi_id) {
+    	$this->db->select('*');
+    	$this->db->from(TABLES::$SHIPPER_SERVICES);
+    	$this->db->where('busi_id', $busi_id);
+    	$this->db->where('status', 1);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
     public function getShipperSpecialServices($busi_id) {
     	$this->db->select('*');
     	$this->db->from(TABLES::$SHIPPER_SERVICES);
@@ -2190,8 +2198,20 @@ class Product_Model extends CI_Model {
    		return $result;
    	}
    	
-   	public function updateBusinessLikes($busi_id) {
-   		$sql = "UPDATE ".TABLES::$BUSINESS_INFO." SET likes = likes + 1 where id=".$busi_id;
+   	public function updateBusinessLikes($busi_id,$visitor_id = 0) {
+   		$ip_address = getRealIP();
+   		$ipinfo = ip_info($ip_address,'location');
+   		$params = array();
+   		$params['busi_id'] = $busi_id;
+   		$params['visitor_id'] = $visitor_id;
+   		$params['city'] = $ipinfo['city'];
+   		$params['country'] = $ipinfo['country'];
+   		$params['ip_address'] = $ip_address;
+   		$params['likes'] = 1;
+   		$params['shares'] = 0;
+   		$params['visit_date'] = date('Y-m-d');
+   		$this->db->insert(TABLES::$BUSINESS_VISITORS,$params);
+   		$sql = "UPDATE ".TABLES::$BUSINESS_INFO." SET visit = visit + 1, likes = likes + 1 where id=".$busi_id;
    		$this->db->query($sql);
    		return $this->db->affected_rows();
    	}
@@ -2211,12 +2231,17 @@ class Product_Model extends CI_Model {
    		$query = $this->db->get();
    		$row = $query->result_array();
    		if(count($row) <= 0) {
-	   		$sql = "UPDATE ".TABLES::$PRODUCT_ITEM." SET likes = likes + 1 where id=".$product_id;
+	   		$sql = "UPDATE ".TABLES::$PRODUCT_ITEM." SET visit = visit + 1, likes = likes + 1 where id=".$product_id;
 	   		$query = $this->db->query($sql);
 	   		$this->db->affected_rows();
+	   		$ip_address = getRealIP();
+	   		$ipinfo = ip_info($ip_address,'location');
 	   		$params = array();
 	   		$params['busi_id'] = $busi_id;
 	   		$params['item_id'] = $product_id;
+	   		$params['city'] = $ipinfo['city'];
+	   		$params['country'] = $ipinfo['country'];
+	   		$params['ip_address'] = $ip_address;
 	   		$params['likes'] = 1;
 	   		$params['shares'] = 0;
 	   		$params['visit_date'] = date('Y-m-d');
@@ -2225,6 +2250,41 @@ class Product_Model extends CI_Model {
    		} else {
    			return 0;
    		}
+   	}
+   	
+   	public function addProductShare($params) {
+   		$sql = "UPDATE ".TABLES::$PRODUCT_ITEM." SET visit = visit + 1, shares = shares + 1 where id=".$params['item_id'];
+   		$query = $this->db->query($sql);
+   		$this->db->affected_rows();
+   		$this->db->insert(TABLES::$PRODUCT_VISITORS,$params);
+   	}
+   	
+   	public function addProductVisit($params) {
+   		$sql = "UPDATE ".TABLES::$PRODUCT_ITEM." SET visit = visit + 1 where id=".$params['item_id'];
+   		$query = $this->db->query($sql);
+   		$this->db->affected_rows();
+   		$this->db->insert(TABLES::$PRODUCT_VISITORS,$params);
+   	}
+   	
+   	public function addDesksiteShare($params) {
+   		$sql = "UPDATE ".TABLES::$BUSINESS_INFO." SET visit = visit + 1, shares = shares + 1 where id=".$params['busi_id'];
+   		$query = $this->db->query($sql);
+   		$this->db->affected_rows();
+   		$this->db->insert(TABLES::$BUSINESS_VISITORS,$params);
+   	}
+   	
+   	public function addServiceShare($params) {
+   		$sql = "UPDATE ".TABLES::$SHIPPER_SERVICES." SET visit = visit + 1, shares = shares + 1 where id=".$params['service_id'];
+   		$query = $this->db->query($sql);
+   		$this->db->affected_rows();
+   		$this->db->insert(TABLES::$SERVICE_VISITORS,$params);
+   	}
+   	
+   	public function addServiceVisit($params) {
+   		$sql = "UPDATE ".TABLES::$SHIPPER_SERVICES." SET visit = visit + 1 where id=".$params['service_id'];
+   		$query = $this->db->query($sql);
+   		$this->db->affected_rows();
+   		$this->db->insert(TABLES::$SERVICE_VISITORS,$params);
    	}
    	
    	public function getCompanyTradeInfo($busi_id) {

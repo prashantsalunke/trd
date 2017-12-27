@@ -779,22 +779,29 @@ class Home extends MX_Controller {
 	}
 	public function DesksiteByBusiId($id){
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$this->load->model('Product_Model','product');
 		$community = array();
 		if(!empty($busi_id)) {
 			if($busi_id != $id) {
-				$map = array();
-				$map['busi_id'] = $busi_id;
-				$map['visitor_id'] = $id;
-				$map['visit_date'] = date('Y-m-d');
-				$this->load->model('Tool_model','mytoolmodel');
-				$this->mytoolmodel->addBusinessVisit($map);
 				$community = $this->product->getInCommunity($busi_id,$id);
 			}
+		}
+		$ip_address = getRealIP();
+		$ipinfo = ip_info($ip_address,'location');
+		if(!empty($ip_address)) {
+			$map = array();
+			$map['busi_id'] = $id;
+			$map['visitor_id'] = $busi_id;
+			$map['visit_date'] = date('Y-m-d');
+			$map['city'] = $ipinfo['city'];
+			$map['country'] = $ipinfo['country'];
+			$map['ip_address'] = $ip_address;
+			$this->load->model('Tool_model','mytoolmodel');
+			$this->mytoolmodel->addBusinessVisit($map);
 		}
 		$map =array();
 		$map['id'] = $id;
 		$map['user_id'] = $busi_id ;
-		$this->load->model('Product_Model','product');
 		$this->load->model('Catalogue_model','catalogue');
 		$this->load->model('Myudtalk_model','myudtalk');
 		$Desksites= $this->product->getDesksiteByBusiId($map);
@@ -830,15 +837,18 @@ class Home extends MX_Controller {
 		$this->load->model('Product_Model', 'product' );
 		$Company = $this->product->getComapnyProfile($id);
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		if(!empty($busi_id)) {
-			if($busi_id != $id) {
-				$map = array();
-				$map['busi_id'] = $busi_id;
-				$map['visitor_id'] = $id;
-				$map['visit_date'] = date('Y-m-d');
-				$this->load->model('Tool_model','mytoolmodel');
-				$this->mytoolmodel->addBusinessVisit($map);
-			}
+		$ip_address = getRealIP();
+		$ipinfo = ip_info($ip_address,'location');
+		if(!empty($ip_address)) {
+			$map = array();
+			$map['busi_id'] = $id;
+			$map['visitor_id'] = $busi_id;
+			$map['visit_date'] = date('Y-m-d');
+			$map['city'] = $ipinfo['city'];
+			$map['country'] = $ipinfo['country'];
+			$map['ip_address'] = $ip_address;
+			$this->load->model('Tool_model','mytoolmodel');
+			$this->mytoolmodel->addBusinessVisit($map);
 		}
 		$user_rnd = $this->factorylib->getUserRNDtype($Company[0]['factory_id']);
 		$trade_info = $this->product->getCompanyTradeInfo($id);
@@ -862,15 +872,18 @@ class Home extends MX_Controller {
 		$this->load->model('Product_Model', 'product' );
 		$Company = $this->product->getComapnyProfile($id);
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		if(!empty($busi_id)) {
-			if($busi_id != $id) {
-				$map = array();
-				$map['busi_id'] = $busi_id;
-				$map['visitor_id'] = $id;
-				$map['visit_date'] = date('Y-m-d');
-				$this->load->model('Tool_model','mytoolmodel');
-				$this->mytoolmodel->addBusinessVisit($map);
-			}
+		$ip_address = getRealIP();
+		$ipinfo = ip_info($ip_address,'location');
+		if(!empty($ip_address)) {
+			$map = array();
+			$map['busi_id'] = $id;
+			$map['visitor_id'] = $busi_id;
+			$map['visit_date'] = date('Y-m-d');
+			$map['city'] = $ipinfo['city'];
+			$map['country'] = $ipinfo['country'];
+			$map['ip_address'] = $ip_address;
+			$this->load->model('Tool_model','mytoolmodel');
+			$this->mytoolmodel->addBusinessVisit($map);
 		}
 		$pterms = $this->product->getBusinessPaymentTerms($id);
 		$this->template->set('pterms',$pterms);
@@ -890,15 +903,18 @@ class Home extends MX_Controller {
 		$mainservices = $this->product->getMainShippingServices($id);
 		$specialservices = $this->product->getSpecialShippingServices($id);
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		if(!empty($busi_id)) {
-			if($busi_id != $id) {
-				$map = array();
-				$map['busi_id'] = $busi_id;
-				$map['visitor_id'] = $id;
-				$map['visit_date'] = date('Y-m-d');
-				$this->load->model('Tool_model','mytoolmodel');
-				$this->mytoolmodel->addBusinessVisit($map);
-			}
+		$ip_address = getRealIP();
+		$ipinfo = ip_info($ip_address,'location');
+		if(!empty($ip_address)) {
+			$map = array();
+			$map['busi_id'] = $id;
+			$map['visitor_id'] = $busi_id;
+			$map['visit_date'] = date('Y-m-d');
+			$map['city'] = $ipinfo['city'];
+			$map['country'] = $ipinfo['country'];
+			$map['ip_address'] = $ip_address;
+			$this->load->model('Tool_model','mytoolmodel');
+			$this->mytoolmodel->addBusinessVisit($map);
 		}
 		$user_rnd = $this->factorylib->getUserRNDtype($Company[0]['factory_id']);
 		$this->template->set('user_rnd',$user_rnd);
@@ -1197,23 +1213,30 @@ class Home extends MX_Controller {
 		
 	}
 	public function buyerProfileByBusiId($id){
+		$this->load->model('Product_Model','product');
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$community = array();
 		if(!empty($busi_id)) {
 			if($busi_id != $id) {
-				$map = array();
-				$map['busi_id'] = $busi_id;
-				$map['visitor_id'] = $id;
-				$map['visit_date'] = date('Y-m-d');
-				$this->load->model('Tool_model','mytoolmodel');
-				$this->mytoolmodel->addBusinessVisit($map);
 				$community = $this->product->getInCommunity($busi_id,$id);
 			}
+		}
+		$ip_address = getRealIP();
+		$ipinfo = ip_info($ip_address,'location');
+		if(!empty($ip_address)) {
+			$map = array();
+			$map['busi_id'] = $id;
+			$map['visitor_id'] = $busi_id;
+			$map['visit_date'] = date('Y-m-d');
+			$map['city'] = $ipinfo['city'];
+			$map['country'] = $ipinfo['country'];
+			$map['ip_address'] = $ip_address;
+			$this->load->model('Tool_model','mytoolmodel');
+			$this->mytoolmodel->addBusinessVisit($map);
 		}
 		$map =array();
 		$map['id'] = $id;
 		$map['user_id'] = $busi_id;
-		$this->load->model('Product_Model','product');
 		$Desksites= $this->product->getDesksiteByBusiId($map);
 		$countries = $this->product->getAllCountries();
 		$requests = $this->product->getCurrentRequest($id);
@@ -1232,23 +1255,30 @@ class Home extends MX_Controller {
 		
 	}
 	public function shipperProfileByBusiId($id){
+		$this->load->model('Product_Model','product');
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$community = array();
 		if(!empty($busi_id)) {
 			if($busi_id != $id) {
-				$map = array();
-				$map['busi_id'] = $busi_id;
-				$map['visitor_id'] = $id;
-				$map['visit_date'] = date('Y-m-d');
-				$this->load->model('Tool_model','mytoolmodel');
-				$this->mytoolmodel->addBusinessVisit($map);
 				$community = $this->product->getInCommunity($busi_id,$id);
 			}
+		}
+		$ip_address = getRealIP();
+		$ipinfo = ip_info($ip_address,'location');
+		if(!empty($ip_address)) {
+			$map = array();
+			$map['busi_id'] = $id;
+			$map['visitor_id'] = $busi_id;
+			$map['visit_date'] = date('Y-m-d');
+			$map['city'] = $ipinfo['city'];
+			$map['country'] = $ipinfo['country'];
+			$map['ip_address'] = $ip_address;
+			$this->load->model('Tool_model','mytoolmodel');
+			$this->mytoolmodel->addBusinessVisit($map);
 		}
 		$map =array();
 		$map['id'] = $id;
 		$map['user_id'] = $busi_id ;
-		$this->load->model('Product_Model','product');
 		$this->load->model('Myudtalk_model','myudtalk');
 		$Desksites= $this->product->getShipperDesksiteByBusiId($map);
 		$images = $this->myudtalk->getUdFiles($busi_id);
@@ -1284,83 +1314,6 @@ class Home extends MX_Controller {
 		
 	}
 	
-	public function sellerWebsite($busi_id) {
-		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
-		if(!empty($mybusi_id)) {
-			if($busi_id != $mybusi_id) {
-				$map = array();
-				$map['busi_id'] = $mybusi_id;
-				$map['visitor_id'] = $busi_id;
-				$map['visit_date'] = date('Y-m-d');
-				$this->load->model('Tool_model','mytoolmodel');
-				$this->mytoolmodel->addBusinessVisit($map);
-			}
-		}
-		$map =array();
-		$map['id'] = $busi_id;
-		$this->load->model('Product_Model','product');
-		$this->load->model('Catalogue_Model','catalougemodel');
-		$Desksites = $this->product->getDesksiteByBusiId($map);
-		$videos = $this->product->getWebsiteProductVideos($busi_id);
-		$catalouges = $this->product->getWebsiteProductCatalogue($busi_id);
-		$featured_products = $this->product->getWebsiteFeaturedProducts($busi_id);
-		$pro3d_products = $this->product->getWebsitePro3dProducts($busi_id);
-		$new_arrivals = $this->product->getWebsiteNewArriavals($busi_id);
-		$hot_sales = $this->product->getWebsiteHotSales($busi_id);
-		$this->template->set ( 'business', $Desksites);
-		$this->template->set ( 'catalouges', $catalouges);
-		$this->template->set ( 'videos', $videos);
-		$this->template->set ( 'featured_products', $featured_products);
-		$this->template->set ( 'pro3d_products', $pro3d_products);
-		$this->template->set ( 'new_arrivals', $new_arrivals);
-		$this->template->set ( 'hot_sales', $hot_sales);
-		$this->template->set ( 'busi_id', $busi_id);
-		$this->template->set ( 'page', 'sellers-home');
-		$this->template->set_theme('default_theme');
-		$this->template->set_layout ('default')
-		->title ( 'TRADE STATION - Seller Website' )
-		->set_partial ( 'header', 'default/floating-header' )
-		->set_partial ( 'footer', 'default/footer' );
-		$this->template->build ('Home/shipper-website');
-	}
-	
-	public function shipperWebsite($busi_id) {
-		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
-		if(!empty($mybusi_id)) {
-			if($busi_id != $mybusi_id) {
-				$map = array();
-				$map['busi_id'] = $mybusi_id;
-				$map['visitor_id'] = $busi_id;
-				$map['visit_date'] = date('Y-m-d');
-				$this->load->model('Tool_model','mytoolmodel');
-				$this->mytoolmodel->addBusinessVisit($map);
-			}
-		}
-		$map =array();
-		$map['id'] = $busi_id;
-		$this->load->model('Product_Model','product');
-		$this->load->model('Catalogue_Model','catalougemodel');
-		$Desksites = $this->product->getDesksiteByBusiId($map);
-		$videos = $this->product->getWebsiteProductVideos($busi_id);
-		$catalouges = $this->product->getWebsiteProductCatalogue($busi_id);
-		$featured_products = $this->product->getWebsiteFeaturedProducts($busi_id);
-		$pro3d_products = $this->product->getWebsitePro3dProducts($busi_id);
-		$new_arrivals = $this->product->getWebsiteNewArriavals($busi_id);
-		$hot_sales = $this->product->getWebsiteHotSales($busi_id);
-		$this->template->set ( 'business', $Desksites);
-		$this->template->set ( 'catalouges', $catalouges);
-		$this->template->set ( 'videos', $videos);
-		$this->template->set ( 'featured_products', $featured_products);
-		$this->template->set ( 'pro3d_products', $pro3d_products);
-		$this->template->set ( 'new_arrivals', $new_arrivals);
-		$this->template->set ( 'hot_sales', $hot_sales);
-		$this->template->set ( 'busi_id', $busi_id);
-		$this->template->set ( 'page', 'desksite');
-		$this->template->set ( 'pagename', 'shipper');
-		$this->template->set_theme('default_theme');
-		$this->template->set_layout (false);
-		$this->template->build ('Home/ShipperWebsite');
-	}
 	public function setHomePageCookie() {
 		setcookie('drag_me', 1, time() + (86400 * 30), "/");
 	}
@@ -1432,6 +1385,7 @@ class Home extends MX_Controller {
 		$html= $this->template->build ('Home/pages/bcatalogue', '', true);
 		$params['html'] = $html;
 		$params['id'] = $id;
+		$params['busi_id'] = $catalogue[0]['busi_id'];
 		$params['views'] = $catalogue[0]['views'];
 		$params['likes'] = $catalogue[0]['likes'];
 		echo json_encode($params);
@@ -1454,7 +1408,7 @@ class Home extends MX_Controller {
 		$resp = array();
 		if(!empty($mybusi_id)) { 
 			$this->load->model('Product_Model', 'product' );
-			$this->product->updateBusinessLikes($busi_id);
+			$this->product->updateBusinessLikes($busi_id,$mybusi_id);
 			$resp['status'] = 1;
 			$resp['msg'] = "WE HAVE RECORDED YOUR RESPONSE";
 		} else {

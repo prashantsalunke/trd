@@ -267,7 +267,7 @@
 											<div id="Layer540" style="width:21px;height:22px;z-index:3404;">
 											</div>
 											<div id="wb_Text1486" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3405;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">All Desksite Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">All Desksite Usage</span>
 											</div>
 										</div>
 									</div>
@@ -283,7 +283,7 @@
 											<div id="Layer542" style="width:21px;height:22px;z-index:3406;">
 											</div>
 											<div id="wb_Text1489" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3407;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Community Posts Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Community Posts Usage</span>
 											</div>
 										</div>
 									</div>
@@ -299,7 +299,7 @@
 											<div id="Layer544" style="width:21px;height:22px;z-index:3408;">
 											</div>
 											<div id="wb_Text1492" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3409;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Offers Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Offers Usage</span>
 											</div>
 										</div>
 									</div>
@@ -315,7 +315,7 @@
 											<div id="Layer546" style="width:21px;height:22px;z-index:3410;">
 											</div>
 											<div id="wb_Text1493" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3411;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Inquiries Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Inquiries Usage</span>
 											</div>
 										</div>
 									</div>
@@ -331,7 +331,7 @@
 											<div id="Layer550" style="width:21px;height:22px;z-index:3414;">
 											</div>
 											<div id="wb_Text1498" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3415;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">B. Station Posts Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">B. Station Posts Usage</span>
 											</div>
 										</div>
 									</div>
@@ -347,7 +347,7 @@
 											<div id="Layer552" style="width:21px;height:22px;z-index:3416;">
 											</div>
 											<div id="wb_Text1499" style="position:absolute;left:40px;top:3px;width:159px;height:16px;z-index:3417;text-align:left;">
-												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Stock M. Posts Storage</span>
+												<span style="color:#2D2D2D;font-family:Arial;font-size:13px;">Stock M. Posts Usage</span>
 											</div>
 										</div>
 									</div>
@@ -459,11 +459,12 @@ function showStorage() {
 	var myChart = new Chart(ctx, {
 	    type: 'pie',
 	    data: {
-	        labels: ["All Desksite Storage", "Community Posts Storage", "Offers Storage", "Inquiries Storage", "B. Station Posts Storage","Stock M. Posts Storage"],
+	        labels: ["Free Space","All Desksite Storage", "Community Posts Storage", "Offers Storage", "Inquiries Storage", "B. Station Posts Storage","Stock M. Posts Storage"],
 	        datasets: [{
 	            label: '# MB',
-	            data: [<?php echo $product_storage;?>, <?php echo $community_storage;?>, <?php echo $offer_storage;?>, <?php echo $inquiry_storage;?>, <?php echo $bstation_storage;?>, <?php echo $stock_storage;?>],
+	            data: [<?php echo round(($storage_plan-$total_storage),2);?>, <?php echo $product_storage;?>, <?php echo $community_storage;?>, <?php echo $offer_storage;?>, <?php echo $inquiry_storage;?>, <?php echo $bstation_storage;?>, <?php echo $stock_storage;?>],
 	            backgroundColor: [
+				    '#FF6347',
 	                '#E76C1A',
 	                '#E7241A',
 	                '#AF0F07',

@@ -22,8 +22,8 @@
 					<td><?php echo $busi_history_stat['visits'];?></td>
 					<td><?php echo $busi_history_stat['likes'];?></td>
 					<td><?php echo $busi_history_stat['shares'];?></td>
-					<td><?php echo $busi_history_stat['country_name'];?></td>
-					<td><?php echo $busi_history_stat['city_name'];?></td>
+					<td><?php echo !empty($busi_history_stat['country_name']) ? $busi_history_stat['country_name']:'Unknown';?></td>
+					<td><?php echo !empty($busi_history_stat['city_name']) ? $busi_history_stat['city_name']:'Unknown';?></td>
 					<td><?php echo date('d M Y',strtotime($busi_history_stat['visit_date']));?></td>
 				</tr>
 				<?php 
@@ -32,28 +32,16 @@
 					$shares = $shares + $busi_history_stat['shares'];
 				?>
 				<?php } ?>
+				<tr>
+					<td style="border:0px;"><?php echo $visits;?></td>
+					<td style="border:0px;"><?php echo $likes;?></td>
+					<td style="border:0px;"><?php echo $shares;?></td>
+					<td style="border:0px;"></td>
+					<td style="border:0px;"></td>
+					<td style="border:0px;"></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
 <br>
-<div class="row">
-	<div class="col-sm-1">
-		<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $visits;?></strong></span>
-	</div>
-	<div class="col-sm-1">
-		<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $likes;?></strong></span>
-	</div>
-	<div class="col-sm-1">
-		<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $shares;?></strong></span>
-	</div>
-</div>
-<br>
-<div class="row">
-	<div class="pull-right" style="padding-right:20px;">
-		<strong>Page&nbsp;&nbsp;&nbsp; </strong>
-		<?php for ($i = 1; $i <= $busi_history_pages; $i++) { ?>
-		<a href="javascript:showNextBusinessStats(<?php echo $i;?>);" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
-		<?php } ?>
-	</div>
-</div>

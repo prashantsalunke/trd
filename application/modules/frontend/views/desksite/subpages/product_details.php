@@ -463,11 +463,11 @@ pre {
 	    			<hr id="Line10" style="height: 1px; width: 357px; margin: 10px 0px;"/>
 	    			<div class="row">
 			    		<div class="col-md-4" ><p>Port</p></div>
-			    		<div class="col-md-8" ><p>Ningbo</p></div>
+			    		<div class="col-md-8" ><p><?php if(!empty($trade_info[0]['part1'])) { echo $trade_info[0]['part1']; } ?> <?php if(!empty($trade_info[0]['part2'])) { echo ", ".$trade_info[0]['part2']; } ?></p></div>
 	    			</div>
 		    		<div class="row">
 			    		<div class="col-md-4" ><p>Accepted Payment</p></div>
-			    		<div class="col-md-8" ><p>T/T, LC ...</p></div>
+			    		<div class="col-md-8" ><p><?php $curr_text = ""; foreach ($currency as $curr) { if($curr_text == "") { $curr_text = $curr['payment_currency'];} else { $curr_text = $curr_text.", ".$curr['payment_currency'];}} echo $curr_text;?></p></div>
 		    		</div>
 		    		<div style="position:relative;">
 		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;">
@@ -476,11 +476,11 @@ pre {
 								<span><img alt="" src="<?php echo asset_url();?>images/items_chat0.png"></span>
 							</a>
 						</div>
-		    			<!-- div id="wb_Image68" style="position:absolute;left:291px;top:8px;width:41px;height:41px;">
-							<a href="#" onclick="ShowObjectWithEffect('Layer223', 1, 'fade', 500);return false;">
+		    			<div id="wb_Image68" style="position:absolute;left:291px;top:8px;width:41px;height:41px;">
+							<a href="javascript:shareToWorld('<?php echo base_url();?>item/details/<?php echo $product['id'];?>','<?php echo $product['name'];?>',2,<?php echo $product['id'];?>);">
 								<img src="<?php echo asset_url();?>images/items_share0.png" id="Image68" alt="">
 							</a>
-						</div-->
+						</div>
 						<div id="RollOver14" style="position:absolute;left:244px;top:8px;overflow:hidden;width:41px;height:41px;z-index:177">
 							<a href="javascript:likeProduct(<?php echo $product['id'];?>);" target="_self">
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_like.png">

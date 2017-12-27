@@ -277,13 +277,13 @@ color:#696969 !important ;font-family:'MS Shell Dlg';font-size:13px;
     border: 0px #FFFFFF solid;
 }
 .bg3{
-margin:20px 0px;
-background:white;
-border-top:5px solid  #FF6347;;
+	margin:20px 0px;
+	background:white;
+	border-top:5px solid  #FF6347;;
 }
 .img35{
-width:38px !important
-;height:33px!important;
+	width:38px !important;	
+	height:33px!important;
 }
 .tab-content h2{
 	   color: #FF6347;
@@ -313,12 +313,11 @@ width:38px !important
         float: right;
 }
 .tab-content textarea{
-	
-        width: 732px;
+    width: 100%;
     height: 222px;
 	padding:10px;
-	    margin-bottom: 10px;
-        top: 4px !important;;
+	margin-bottom: 10px;
+    top: 4px !important;;
     border: 1px #A9A9A9 solid !important;;
     background-color: #FFFFFF !important;;
     color: #3C3C3C !important;;
@@ -327,24 +326,22 @@ width:38px !important
 }
  .tab-content input{
 	padding:10px;
-	    margin-bottom: 10px;
-        top: 4px !important;;
+	margin-bottom: 10px;
+    top: 4px !important;;
     border: 1px #A9A9A9 solid !important;;
     background-color: #FFFFFF !important;;
     color: #3C3C3C !important;;
     font-family: Arial !important;;
     font-weight: normal !important;;
-    width: 355px  !important;;
+    width: 100%  !important;;
     height: 46px !important;; 
 } 
 .whitebox3 {
     margin: 5% 0%;
     width: 100%;
     padding: 10 10px;
-    height: 136px;
+    height: 150px;
     background-color: white !important;
-    background: white;
-    margin: 5% 0%;
     background: white;
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
@@ -413,14 +410,14 @@ body
    background-image: none;
    font-family: Georgia;
    font-weight: normal;
-   font-size: 13px;
+   font-size: 12px;
    font-style: normal;
    text-decoration: none;
     width: 181px;
-   height: 44px;
+   height: 35px;
    padding: 0px 10px 0px 10px;
    vertical-align: middle;
-   line-height: 44px;
+   line-height: 35px;
    text-align: center;
 }
 #wb_desktop_menu li:hover a, #wb_desktop_menu a:hover
@@ -454,7 +451,7 @@ body
     margin-left: 468px
 }
 .contact6 .left .about1{
-	    width: 48px;
+	width: 45px;
 }
 .scrollbox{
 	height:200px;
@@ -466,13 +463,11 @@ body
     background-color: #FAFAFA;
 }
 .whitebox{
-	    margin: 5% 0%;
+	margin: 5% 0%;
     width: 100%;
     padding: 26px;
-    height: 136px;
+    height: 150px;
     background-color: white !important;
-    background: white;
-	    margin: 5% 0%;
     background: white;
 }
 .contact1{
@@ -493,19 +488,19 @@ body
 
 #wb_desktop_menu a.withsubmenu
 {
-	    font-family: Arial;
+	font-family: Arial;
     font-weight: bold;
     font-size: 12px;
-   padding: 0 10px 0 10px;
-  width: 181px;
-  text-align:center;
-   background-image: url(images/menu_icon.png);
-   background-repeat: no-repeat;
-   background-position: right center;
+   	padding: 0 10px 0 10px;
+  	width: 181px;
+  	text-align:center;
+   	background-image: url(../../images/menu_icon.png);
+   	background-repeat: no-repeat;
+   	background-position: right center;
 }
 #wb_desktop_menu li:hover a.withsubmenu, #wb_desktop_menu a.withsubmenu:hover
 {
-   background-image: url(images/menu_icon0.png);
+   background-image: url(../../images/menu_icon0.png);
    background-repeat: no-repeat;
    background-position: right center;
 }
@@ -527,7 +522,7 @@ body
     -webkit-box-shadow: 2px 2px 5px #3C3C3C;
     box-shadow: 2px 2px 5px #3C3C3C;
     left:169px;
-    top: 20px !important;
+    top: 0px !important;
    padding-top: 0px;
 }
 #Layer20{
@@ -570,7 +565,7 @@ body
    width: 145px;
    height: auto;
    white-space: normal;
-   padding: 15px 10px 14px 10px;
+   padding: 10px 10px 9px 10px;
    background-color: #FFFFFF;
    background-image: none;
    border: 1px #FFFFFF solid;
@@ -696,9 +691,15 @@ body{
     font-weight: bold !important;;
 }
 .contact6{
-	     margin: 0px 0px;
-    padding: 6%;
+	margin:0px 0px;
     border-top: 5px solid #FF6347;
+}
+.contact7{
+	margin:0px 0px;
+    padding: 40px 15px;
+    border-top: 5px solid #FF6347;
+    border-bottom: 2px solid #FF6347;
+    background-color: #FAFAFA;
 }
 .details{ 
 		/* position: absolute;  */
@@ -905,10 +906,10 @@ top: 114px; left: 872px; display: block;
 }
 
 .bg3{
-
     margin: 0px 0px;
     background: white;
     border-top: 5px solid #FF6347;
+    border-bottom: 2px solid #FF6347;
 }
 
 
@@ -966,13 +967,13 @@ text-align:left !important;
 	    text-align: justify;
 }
 .a1{
-	 text-decoration: none;
-	    color: #1E90FF !important;;
+	text-decoration: none;
+	color: #1E90FF;
     font-family: Arial;
     font-size: 16px;
 }
 .a4{
-	    background-color: transparent;
+	background-color: transparent;
     color: #3C3C3C;
     font-family: Arial;
     font-size: 13px;
@@ -1067,24 +1068,20 @@ a{
 	
 }
 .bgwhite{
-	
-	
-	 padding: 10px;
-    margin:  20px 20px;
-	
+	padding: 15px 10px;
+    margin: 15px 0px;
+    border: 1px #D3D3D3 solid;
 }
 .inline{
-	    display: -webkit-inline-box;
-	
+	display: -webkit-inline-box;
 }
 .bgwhite1 {
 	background: white;
-   
     padding: 26px 10px 10px 10px;
-       margin: 0px 0px 7px;
+   	margin: 0px 0px 7px;
 }
 .bg3{
-	    padding: 30px;
+	padding: 30px;
 }
 .bggray a{
 	display: inline-block;
@@ -1092,7 +1089,6 @@ a{
     text-decoration: none;
 }
 .bggray p{
-	
     text-decoration: none;
 	color: #C0C0C0;
     font-family: Arial;
@@ -1105,7 +1101,7 @@ a{
     /* padding: 20px; */
 }
 .hover{
-	    position: absolute;
+	position: absolute;
 }
 .bggray img{
 	width:35px;
@@ -1114,14 +1110,16 @@ a{
 	text-align:center;
 }
 .a2{
-	 text-decoration: none;
-	    color: #5A5A5A;
+	text-decoration: none;
+	color: #5A5A5A;
     font-family: Arial;
     font-size: 12px;
-        margin-top: 20px; 
+   	margin-top: 5px; 
+   	padding: 0px 10px;
+    text-align: left;
 }
 .space1{
-	    padding: 0px 0px 0px 57px;
+	padding: 0px 0px 0px 57px;
 }
 .bggray{
 	margin-top: 1px;
@@ -1136,11 +1134,11 @@ video{
     margin-top: -9px;
 }
 .carousel-control {
-   position: relative;
-   text-shadow:none;
-    float: right;
-        width: 89px;
-    }
+   	position: relative;
+   	text-shadow:none;
+   	float: right;
+  	width: 89px;
+}
     .carousel-control.right{
     background-image:none;
     }
@@ -1171,5 +1169,197 @@ video{
     padding:20px;
     margin: 0px 0px 0px 15px;
 }
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding:10px;
+}
 
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+a.style5
+{
+   color: #1E90FF;
+   text-decoration: none;
+}
+a.style5:visited
+{
+   color: #1E90FF;
+   text-decoration: none;
+}
+a.style5:active
+{
+   color: #1E90FF;
+   text-decoration: none;
+}
+a.style5:hover
+{
+   color: #FF6347;
+   text-decoration: underline;
+}
+#RollOver10 a
+{
+   display: block;
+   position: relative;
+   height: 100%;
+   width: 100%;
+}
+#RollOver10 a img
+{
+   position: absolute;
+   z-index: 1;
+   border-width: 0;
+}
+#RollOver10 span
+{
+   display: block;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   z-index: 2;
+}
+#RollOver10 a .hover
+{
+   visibility: hidden;
+}
+#RollOver10 a:hover .hover
+{
+   visibility: visible;
+}
+#RollOver10 a:hover span
+{
+   visibility: hidden;
+}
+#RollOver10 img
+{
+   border-width: 0;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#RollOver61 a
+{
+   display: block;
+   position: relative;
+   height: 100%;
+   width: 100%;
+}
+#RollOver61 a img
+{
+   position: absolute;
+   z-index: 1;
+   border-width: 0;
+}
+#RollOver61 span
+{
+   display: block;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   z-index: 2;
+}
+#RollOver61 a .hover
+{
+   visibility: hidden;
+}
+#RollOver61 a:hover .hover
+{
+   visibility: visible;
+}
+#RollOver61 a:hover span
+{
+   visibility: hidden;
+}
+#RollOver61 img
+{
+   border-width: 0;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+.Layer207 {
+    background-color: #FFFFFF;
+    filter: alpha(opacity=70);
+    opacity: 0.70;
+}
+#wb_Text437 
+{
+   background-color: transparent;
+   border: 0px #000000 solid;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+#wb_Text437 div
+{
+   text-align: left;
+}
+#RollOver31 a
+{
+   display: block;
+   position: relative;
+   height: 100%;
+   width: 100%;
+}
+#RollOver31 a img
+{
+   position: absolute;
+   z-index: 1;
+   border-width: 0;
+}
+#RollOver31 span
+{
+   display: block;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   z-index: 2;
+}
+#RollOver31 a .hover
+{
+   visibility: hidden;
+}
+#RollOver31 a:hover .hover
+{
+   visibility: visible;
+}
+#RollOver31 a:hover span
+{
+   visibility: hidden;
+}
+#RollOver31 img
+{
+   border-width: 0;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+a.style5A
+{
+   	color: #1E90FF;
+   	font-weight: bold;
+   	text-decoration: none;
+}
+a.style5A:visited
+{
+   	color: #1E90FF;
+   	text-decoration: none;
+}
+a.style5A:active
+{
+   	color: #1E90FF;
+   	text-decoration: none;
+}
+a.style5A:hover
+{
+   	color: #FF6347;
+   	text-decoration: underline;
+}
 

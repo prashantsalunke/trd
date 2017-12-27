@@ -1326,6 +1326,79 @@ ul.hover-red-menu li.open a.firstmain{
 							</div>
 						</div>
 					</form>
+				<?php } else if($page == 'sellerdesksite') { ?>
+					<form method="get" action="<?php echo base_url();?>seller/desksites" style="padding-top:25px;" name="sellerdfrm" onsubmit="return validateForm('sellerdfrm');">
+						<div class="col-sm-2 col-xs-11" style="padding: 0px;">
+							<a class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" id="seller_dcat_label">
+						   		<?php 
+						   		$subcat = "";
+						   		foreach ($mcats as $mcat) {
+					   				foreach ($mcat['subcats'] as $scat) {
+					   					if(!empty($params['cat_id']) && $params['cat_id'] == $scat['id']) {
+					   						$subcat = $scat['name'];
+					   					}
+					   				}
+						   		}
+						   		if(!empty($subcat)) {
+						   			echo $subcat;
+						   		} else { ?>
+						   		Categories<?php } ?> <span class="caret pull-right caret-vmiddle"></span>
+						  	</a>
+							<input type="hidden" name="cat_id" id="seller_dcat_id" value="<?php if(!empty($params['cat_id'])) { echo $params['cat_id'];}?>"/>
+							<ul class="dropdown-menu hover-red-menu">
+						  		<?php foreach ($mcats as $mcat) { ?>
+						    	<li class="dropdown">
+						      		<a href="#" class="firstmain"><?php echo $mcat['name'];?></a>
+						      		<ul class="dropdown-menu">
+						      			<?php foreach ($mcat['subcats'] as $scat) { ?>
+						        		<li><a href="javascript:selectSellerDScat(<?php echo $scat['id'];?>,`<?php echo $scat['name'];?>`);"><?php echo $scat['name'];?></a></li>
+						        		<?php } ?>
+						       		</ul>
+						    	</li>
+						    	<?php } ?>
+						  	</ul>
+						</div>
+						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+						</div>
+						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
+							<div>
+								<div class="col-sm-5 padding-0" style="padding-right: 3px;">
+									<div class="dropdown">
+										<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
+											<option value="">Country</option>
+											<?php foreach ($Country as $country){?>
+												<option value="<?php echo $country['name'];?>" <?php if(!empty($params['country']) && $params['country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
+											<?php }?>
+										</select>
+										
+									</div>
+								</div>
+								<div class="col-sm-5 padding-0" style="padding-right: 3px;">
+									<div class="dropdown">
+										<select class="search-box search-dp" id="city" name='city'>
+											<option value="">City</option>
+											<?php foreach($cities as $city){?>
+												<option value="<?php echo $city['company_city']?>" <?php if(!empty($params['city']) && $params['city'] == $city['company_city']) { ?>selected<?php } ?>><?php echo $city['company_city']?></option>
+											<?php }?>
+										</select>
+									</div>
+								</div>
+								<!-- div class="col-sm-8 padding-0">
+									<div class="dropdown">
+										<select class="search-box search-dp" name='type'>
+											<option value="">More</option>
+											<option value="0" <?php if(!empty($params['type']) && $params['type'] == 0) { ?>selected<?php } ?>>Show Audited First</option>
+											<option value="1" <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show All</option>
+										</select>
+									</div>
+								</div-->
+								<div class="col-sm-2 padding-0">
+									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+								</div>
+							</div>
+						</div>
+					</form>
 				<?php } ?>
 			</div>
 		</div>
@@ -1757,6 +1830,11 @@ function selectDproductScat(scat_id,name) {
 	$("#dproduct_cat_id").val(scat_id);
 	$("#dproduct_cat_label").html(name+' <span class="caret pull-right caret-vmiddle"></span>');
 	document.dprofrm.submit();
+}
+function selectSellerDScat(scat_id,name) {
+	$("#seller_dcat_id").val(scat_id);
+	$("#seller_dcat_label").html(name+' <span class="caret pull-right caret-vmiddle"></span>');
+	document.sellerdfrm.submit();
 }
 function addToCommunity(id) {
 	$.get(base_url+"addtomycommunity/"+id,{},function(data) {
