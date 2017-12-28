@@ -35,6 +35,9 @@ class Tool_model extends CI_Model {
     	$this->db->from(TABLES::$PRODUCT_ITEM);
     	$this->db->where('busi_id',$busi_id);
     	$this->db->where('status',1);
+    	$this->db->having('visit > 0','',false);
+    	$this->db->having('likes > 0','',false);
+    	$this->db->having('shares > 0','',false);
     	$this->db->group_by('busi_id');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -48,12 +51,12 @@ class Tool_model extends CI_Model {
     	$this->db->where('visit_date',$data['visit_date']);
     	$query = $this->db->get();
     	$row = $query->result_array();
-    	if(count($row) <= 0) {
+    	//if(count($row) <= 0) {
     		$this->db->insert(TABLES::$BUSINESS_VISITORS,$data);
-    	} else {
+    	/*} else {
     		$this->db->where('id',$row[0]['id']);
     		$this->db->update(TABLES::$BUSINESS_VISITORS,$data);
-    	}
+    	}*/
     	$sql = 'UPDATE '.TABLES::$BUSINESS_INFO.' SET visit = visit+1 ';
     	if(!empty($data['likes'])) {
     		$sql = $sql.',likes = likes+1 ';
@@ -72,12 +75,12 @@ class Tool_model extends CI_Model {
     	$this->db->where('visit_date',$data['visit_date']);
     	$query = $this->db->get();
     	$row = $query->result_array();
-    	if(count($row) <= 0) {
+    	//if(count($row) <= 0) {
     		$this->db->insert(TABLES::$PRODUCT_VISITORS,$data);
-    	} else {
+    	/*} else {
     		$this->db->where('id',$row[0]['id']);
     		$this->db->update(TABLES::$PRODUCT_VISITORS,$data);
-    	}
+    	}*/
     	$sql = 'UPDATE '.TABLES::$PRODUCT_ITEM.' SET visit = visit+1 ';
     	if(!empty($data['likes'])) {
     		$sql = $sql.',likes = likes+1 ';
@@ -90,23 +93,23 @@ class Tool_model extends CI_Model {
     }
     
     public function getBusinessVisitHistory($map) {
-    	$page_size = 10;
-    	$this->db->select('count(a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares,b.company_country as country_name,b.company_city as city_name,a.visit_date');
+    	$page_size = 20;
+    	$this->db->select('count(DISTINCT a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares,a.country as country_name,a.city as city_name,a.visit_date');
     	$this->db->from(TABLES::$BUSINESS_VISITORS.' AS a');
-    	$this->db->from(TABLES::$BUSINESS_INFO.' AS b','a.visitor_id=b.id');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->where('a.busi_id',$map['busi_id']);
     	if(!empty($map['country_name'])) {
-    		$this->db->where('b.company_country',$map['country_name']);
+    		$this->db->where('a.country',$map['country_name']);
     	}
     	if(!empty($map['from_date']) && !empty($map['to_date'])) {
     		$this->db->where("a.visit_date BETWEEN '".$map['from_date']."' AND '".$map['to_date']."'",'',false);
     	}
-    	$this->db->group_by('b.company_city');
+    	$this->db->group_by('a.city');
     	$this->db->order_by('a.visit_date','DESC');
-    	$this->db->order_by('b.company_country','ASC');
-    	$this->db->order_by('b.company_city','ASC');
+    	$this->db->order_by('a.country','ASC');
+    	$this->db->order_by('a.city','ASC');
     	if(!empty($map['page'])) {
-    		$start_page = $map['page']*10 - $page_size;
+    		$start_page = $map['page']*20 - $page_size;
     		$this->db->limit($page_size,$start_page);
     	}
     	$query = $this->db->get();
@@ -115,15 +118,15 @@ class Tool_model extends CI_Model {
     }
     
     public function getProductVisitHistory($map) {
-    	$page_size = 10;
-    	$this->db->select('b.visit as visits,sum(a.likes) as likes,sum(a.shares) as shares,c.company_country as country_name,c.company_city as city_name,a.visit_date,b.model_no');
+    	$page_size = 20;
+    	$this->db->select('a.item_id,count(DISTINCT a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares,a.country as country_name,a.city as city_name,a.visit_date,b.model_no');
     	$this->db->from(TABLES::$PRODUCT_VISITORS.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b','a.item_id=b.id','inner');
-    	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','inner');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','left');
     	$this->db->where('b.busi_id',$map['busi_id']);
     	$this->db->where('status',1);
     	if(!empty($map['country_name'])) {
-    		$this->db->where('c.company_country',$map['country_name']);
+    		$this->db->where('a.country',$map['country_name']);
     	}
     	if(!empty($map['from_date']) && !empty($map['to_date'])) {
     		$this->db->where("a.visit_date BETWEEN '".$map['from_date']."' AND '".$map['to_date']."'",'',false);
@@ -132,12 +135,12 @@ class Tool_model extends CI_Model {
     		$this->db->where("(b.name like '%".$map['product_name']."%' OR b.model_no like '%".$map['product_name']."%')",'',false);
     	}
     	$this->db->group_by('a.item_id');
-    	$this->db->group_by('c.company_city');
+    	$this->db->group_by('a.city');
     	$this->db->order_by('a.visit_date','DESC');
-    	$this->db->order_by('c.company_country','ASC');
-    	$this->db->order_by('c.company_city','ASC');
+    	$this->db->order_by('a.country','ASC');
+    	$this->db->order_by('a.city','ASC');
     	if(!empty($map['page'])) {
-    		$start_page = $map['page']*10 - $page_size;
+    		$start_page = $map['page']*20 - $page_size;
     		$this->db->limit($page_size,$start_page);
     	}
     	$query = $this->db->get();
@@ -146,15 +149,15 @@ class Tool_model extends CI_Model {
     }
     
     public function getActiveProductVisitHistory($map) {
-    	$page_size = 10;
-    	$this->db->select('b.visit as visits,sum(a.likes) as likes,sum(a.shares) as shares,c.company_country as country_name,c.company_city as city_name,a.visit_date,b.model_no');
+    	$page_size = 20;
+    	$this->db->select('a.item_id,count(DISTINCT a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares,a.country as country_name,a.city as city_name,a.visit_date,b.model_no');
     	$this->db->from(TABLES::$PRODUCT_VISITORS.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b','a.item_id=b.id','inner');
-    	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','inner');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','left');
     	$this->db->where('b.busi_id',$map['busi_id']);
     	$this->db->where('b.status',1);
     	if(!empty($map['country_name'])) {
-    		$this->db->where('c.company_country',$map['country_name']);
+    		$this->db->where('a.country',$map['country_name']);
     	}
     	if(!empty($map['from_date']) && !empty($map['to_date'])) {
     		$this->db->where("a.visit_date BETWEEN '".$map['from_date']."' AND '".$map['to_date']."'",'',false);
@@ -162,13 +165,16 @@ class Tool_model extends CI_Model {
     	if(!empty($map['product_name'])) {
     		$this->db->where("(b.name like '%".$map['product_name']."%' OR b.model_no like '%".$map['product_name']."%')",'',false);
     	}
+    	$this->db->having('visits > 0','',false);
+    	$this->db->having('likes > 0','',false);
+    	$this->db->having('shares > 0','',false);
     	$this->db->group_by('a.item_id');
-    	$this->db->group_by('c.company_city');
+    	$this->db->group_by('a.city');
     	$this->db->order_by('a.visit_date','DESC');
-    	$this->db->order_by('c.company_country','ASC');
-    	$this->db->order_by('c.company_city','ASC');
+    	$this->db->order_by('a.country','ASC');
+    	$this->db->order_by('a.city','ASC');
     	if(!empty($map['page'])) {
-    		$start_page = $map['page']*10 - $page_size;
+    		$start_page = $map['page']*20 - $page_size;
     		$this->db->limit($page_size,$start_page);
     	}
     	$query = $this->db->get();
@@ -177,37 +183,48 @@ class Tool_model extends CI_Model {
     }
     
     public function getBusinessVisitHistoryCount($map) {
-    	$page_size = 10;
-    	$this->db->select('count(a.id) as visits');
+    	$page_size = 20;
+    	$this->db->select('count(DISTINCT a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares');
     	$this->db->from(TABLES::$BUSINESS_VISITORS.' AS a');
-    	$this->db->from(TABLES::$BUSINESS_INFO.' AS b','a.visitor_id=b.id');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->where('a.busi_id',$map['busi_id']);
     	if(!empty($map['country_name'])) {
-    		$this->db->where('b.company_country',$map['country_name']);
+    		$this->db->where('a.country',$map['country_name']);
     	}
     	if(!empty($map['from_date']) && !empty($map['to_date'])) {
     		$this->db->where("a.visit_date BETWEEN '".$map['from_date']."' AND '".$map['to_date']."'",'',false);
     	}
-    	$this->db->group_by('b.company_city');
+    	$this->db->group_by('a.city');
     	$this->db->order_by('a.visit_date','DESC');
-    	$this->db->order_by('b.company_country','ASC');
-    	$this->db->order_by('b.company_city','ASC');
+    	$this->db->order_by('a.country','ASC');
+    	$this->db->order_by('a.city','ASC');
     	$query = $this->db->get();
     	$row = $query->result_array();
-    	$pages = ceil(count($row)/10);
+    	$visits = 0;
+    	$likes = 0;
+    	$shares = 0;
+    	foreach ($row as $ap) {
+    		$visits = $visits + $ap['visits'];
+    		$likes = $likes + $ap['likes'];
+    		$shares = $shares + $ap['shares'];
+    	}
+    	$pages['visits'] = $visits;
+    	$pages['likes'] = $likes;
+    	$pages['shares'] = $shares;
+    	$pages['pages'] = ceil(count($row)/20);
     	return $pages;
     }
     
     public function getProductVisitHistoryCount($map) {
-    	$page_size = 10;
-    	$this->db->select('count(a.id) as visits');
+    	$page_size = 20;
+    	$this->db->select('count(DISTINCT a.item_id) as products,count(a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares');
     	$this->db->from(TABLES::$PRODUCT_VISITORS.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b','a.item_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','inner');
     	$this->db->where('b.busi_id',$map['busi_id']);
     	$this->db->where('status',1);
     	if(!empty($map['country_name'])) {
-    		$this->db->where('c.company_country',$map['country_name']);
+    		$this->db->where('a.country',$map['country_name']);
     	}
     	if(!empty($map['from_date']) && !empty($map['to_date'])) {
     		$this->db->where("a.visit_date BETWEEN '".$map['from_date']."' AND '".$map['to_date']."'",'',false);
@@ -216,26 +233,40 @@ class Tool_model extends CI_Model {
     		$this->db->where("(b.name like '%".$map['product_name']."%' OR b.model_no like '%".$map['product_name']."%')",'',false);
     	}
     	$this->db->group_by('a.item_id');
-    	$this->db->group_by('c.company_city');
+    	//$this->db->group_by('a.city');
     	$this->db->order_by('a.visit_date','DESC');
-    	$this->db->order_by('c.company_country','ASC');
-    	$this->db->order_by('c.company_city','ASC');
+    	$this->db->order_by('a.country','ASC');
+    	$this->db->order_by('a.city','ASC');
     	$query = $this->db->get();
     	$row = $query->result_array();
-    	$pages = ceil(count($row)/10);
+    	$products = 0;
+    	$visits = 0;
+    	$likes = 0;
+    	$shares = 0;
+    	foreach ($row as $ap) {
+    		$products++;
+    		$visits = $visits + $ap['visits'];
+    		$likes = $likes + $ap['likes'];
+    		$shares = $shares + $ap['shares'];
+    	}
+    	$pages['products'] = $products;
+    	$pages['visits'] = $visits;
+    	$pages['likes'] = $likes;
+    	$pages['shares'] = $shares;
+    	$pages['pages'] = ceil(count($row)/20);
     	return $pages;
     }
     
     public function getActiveProductVisitHistoryCount($map) {
-    	$page_size = 10;
-    	$this->db->select('count(a.id) as visits');
+    	$page_size = 20;
+    	$this->db->select('count(DISTINCT a.item_id) as products,count(a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares');
     	$this->db->from(TABLES::$PRODUCT_VISITORS.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b','a.item_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','inner');
     	$this->db->where('b.busi_id',$map['busi_id']);
     	$this->db->where('b.status',1);
     	if(!empty($map['country_name'])) {
-    		$this->db->where('c.company_country',$map['country_name']);
+    		$this->db->where('a.country',$map['country_name']);
     	}
     	if(!empty($map['from_date']) && !empty($map['to_date'])) {
     		$this->db->where("a.visit_date BETWEEN '".$map['from_date']."' AND '".$map['to_date']."'",'',false);
@@ -243,14 +274,31 @@ class Tool_model extends CI_Model {
     	if(!empty($map['product_name'])) {
     		$this->db->where("(b.name like '%".$map['product_name']."%' OR b.model_no like '%".$map['product_name']."%')",'',false);
     	}
+    	$this->db->having('visits > 0','',false);
+    	$this->db->having('likes > 0','',false);
+    	$this->db->having('shares > 0','',false);
     	$this->db->group_by('a.item_id');
-    	$this->db->group_by('c.company_city');
+    	//$this->db->group_by('a.city');
     	$this->db->order_by('a.visit_date','DESC');
-    	$this->db->order_by('c.company_country','ASC');
-    	$this->db->order_by('c.company_city','ASC');
+    	$this->db->order_by('a.country','ASC');
+    	$this->db->order_by('a.city','ASC');
     	$query = $this->db->get();
     	$row = $query->result_array();
-    	$pages = ceil(count($row)/10);
+    	$products = 0;
+    	$visits = 0;
+    	$likes = 0;
+    	$shares = 0;
+    	foreach ($row as $ap) {
+    		$products++;
+    		$visits = $visits + $ap['visits'];
+    		$likes = $likes + $ap['likes'];
+    		$shares = $shares + $ap['shares'];
+    	}
+    	$pages['products'] = $products;
+    	$pages['visits'] = $visits;
+    	$pages['likes'] = $likes;
+    	$pages['shares'] = $shares;
+    	$pages['pages'] = ceil(count($row)/20);
     	return $pages;
     }
     
@@ -357,6 +405,7 @@ class Tool_model extends CI_Model {
     	$this->db->select('count(id) as products,sum(visit) as visit,sum(likes) as likes,sum(shares) as shares,group_concat(image1) as images');
     	$this->db->from(TABLES::$SHIPPER_SERVICES);
     	$this->db->where('busi_id',$busi_id);
+    	$this->db->where('status',1);
     	$this->db->group_by('busi_id');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -369,6 +418,9 @@ class Tool_model extends CI_Model {
     	$this->db->from(TABLES::$SHIPPER_SERVICES);
     	$this->db->where('busi_id',$busi_id);
     	$this->db->where('status',1);
+    	$this->db->having('visit > 0','',false);
+    	$this->db->having('likes > 0','',false);
+    	$this->db->having('shares > 0','',false);
     	$this->db->group_by('busi_id');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -391,6 +443,7 @@ class Tool_model extends CI_Model {
     	if(!empty($map['product_name'])) {
     		$this->db->where("(b.name like '%".$map['product_name']."%')",'',false);
     	}
+    	$this->db->where('status',1);
     	$this->db->group_by('a.service_id');
     	$this->db->group_by('c.company_city');
     	$this->db->order_by('a.visit_date','DESC');
@@ -421,6 +474,9 @@ class Tool_model extends CI_Model {
     	if(!empty($map['product_name'])) {
     		$this->db->where("(b.name like '%".$map['product_name']."%')",'',false);
     	}
+    	$this->db->having('visits > 0','',false);
+    	$this->db->having('likes > 0','',false);
+    	$this->db->having('shares > 0','',false);
     	$this->db->group_by('a.service_id');
     	$this->db->group_by('c.company_city');
     	$this->db->order_by('a.visit_date','DESC');
@@ -451,6 +507,7 @@ class Tool_model extends CI_Model {
     	if(!empty($map['product_name'])) {
     		$this->db->where("(b.name like '%".$map['product_name']."%')",'',false);
     	}
+    	$this->db->where('status',1);
     	$this->db->group_by('a.service_id');
     	$this->db->group_by('c.company_city');
     	$this->db->order_by('a.visit_date','DESC');
@@ -464,9 +521,9 @@ class Tool_model extends CI_Model {
     
     public function getActiveServiceVisitHistoryCount($map) {
     	$page_size = 10;
-    	$this->db->select('count(a.id) as visits');
+    	$this->db->select('count(a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares');
     	$this->db->from(TABLES::$SERVICE_VISITORS.' AS a');
-    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b','a.service_id=b.id','inner');
+    	$this->db->join(TABLES::$SHIPPER_SERVICES.' AS b','a.service_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','inner');
     	$this->db->where('b.status',1);
     	if(!empty($map['country_name'])) {
@@ -478,6 +535,10 @@ class Tool_model extends CI_Model {
     	if(!empty($map['product_name'])) {
     		$this->db->where("(b.name like '%".$map['product_name']."%')",'',false);
     	}
+    	$this->db->where('status',1);
+    	$this->db->having('visits > 0','',false);
+    	$this->db->having('likes > 0','',false);
+    	$this->db->having('shares > 0','',false);
     	$this->db->group_by('a.service_id');
     	$this->db->group_by('c.company_city');
     	$this->db->order_by('a.visit_date','DESC');

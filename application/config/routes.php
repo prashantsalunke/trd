@@ -336,6 +336,7 @@ $route['mystation/udtalk/delete/([0-9]+)'] = 'frontend/Udtalks/deleteImage/$1';
 
 /* Frontend Pages .. */
 $route['seller'] = 'frontend/Home/sellersList';
+$route['seller/desksites'] = 'frontend/Product/getAllDesksites';
 $route['buyer'] = 'frontend/Home/buyersList';
 $route['shipper'] = 'frontend/Home/shippersList';
 $route['search'] = 'frontend/Home/search';
@@ -368,7 +369,6 @@ $route['seller/popup/([0-9]+)'] = 'frontend/Home/getSellerById/$1';
 $route['buyer/popup/([0-9]+)'] = 'frontend/Home/getBuyerById/$1';
 $route['item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/itemDetailById/$1/$2';
 $route['video/item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/videoItemDetailById/$1/$2';
-$route['product/category/([0-9]+)'] = 'frontend/Product/getProductCategoryPage/$1';
 
 $route['pro-video'] = 'frontend/Vedio/productVideoList';
 $route['video/details/([0-9]+)'] = 'frontend/Product/videoDetailById/$1';
@@ -425,13 +425,12 @@ $route['desksite/catalogue/like/([0-9]+)'] = 'frontend/Home/likeCatalogue/$1';
 $route['desksite/general_enquiry/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
 $route['desksite/saveenquiry'] = 'frontend/Home/saveGeneralInquiry';
 $route['desksite/product/like/([0-9]+)'] = 'frontend/Product/likeProduct/$1';
+$route['desksite/share'] = 'frontend/Product/shareWithWorld';
 
 
 /********************  Community **************/
 
 $route['add/community/([0-9]+)'] = 'frontend/Home/AddCommunity/$1';
-$route['seller/website/([0-9]+)'] = 'frontend/Home/sellerWebsite/$1';
-$route['shipper/website/([0-9]+)'] = 'frontend/Home/shipperWebsite/$1';
 $route['community'] = 'frontend/Community';
 $route['community/communitypost'] = 'frontend/Community/communityPostInsert';
 $route['community/deletepost'] = 'frontend/Community/deleteCommunityPost';

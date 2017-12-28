@@ -11,11 +11,10 @@ color:#5A5A5A;font-family:Arial;font-size:12px;
 
 
 .boxstyle1 {
-	
-    
     margin-top: 21px;
-    border-top: 6px solid #FF6347;
-	    width: 181px;
+    border-top: 6px solid #1E90FF;
+    border-bottom:2px solid #1E90FF;
+	width: 181px;
     -moz-box-shadow: -4px 4px 9px #000000;
     -webkit-box-shadow: -4px 4px 9px #000000;
     box-shadow: -4px 4px 9px #000000;
@@ -251,35 +250,32 @@ color:#696969;font-family:Arial;font-size:12px;
     height: 41px !important;;
 }
 .img25{
-    
-     width: 25px !important;;
-    height: 25px !important;;
+    width: 35px !important;;
+    height: 35px !important;;
 }
 .font5{
 top: 114px; left: 872px; display: block;
 }
 .bg2{
 
-    background-color: #D3D3D3;
+    background-color: #3C3C3C;
 }
 .nav1{
-
     padding: 6px 31px;
     background-color: #FFFFFF;
     border: 0px #FFFFFF solid;
-color:#696969 !important ;font-family:'MS Shell Dlg';font-size:13px;
+	color:#696969 !important ;font-family:'MS Shell Dlg';font-size:13px;
 }
 .nav1:hover{
-
     padding: 6px 31px;
-	color:black !important;
-    background-color: #FF6347;
+	color: #fff !important;
+    background-color: #1E90FF;
     border: 0px #FFFFFF solid;
 }
 .bg3{
 	margin:20px 0px;
 	background:white;
-	border-top:5px solid  #FF6347;;
+	border-top:5px solid  #1E90FF;;
 }
 .img35{
 	width:38px !important;	
@@ -358,16 +354,16 @@ color:#696969 !important ;font-family:'MS Shell Dlg';font-size:13px;
      border:none;
   }
 .about1{
-color:#FF6347;font-family:Arial;font-size:13px;
+	color:#1E90FF;font-family:Arial;font-size:13px;
 }
 .about2{
-color:#5A5A5A;font-family:Arial;font-size:12px;
+	color:#5A5A5A;font-family:Arial;font-size:12px;
 }
 .about3{
-color:#696969;font-family:Arial;font-size:12px;
+	color:#696969;font-family:Arial;font-size:12px;
 }
 .left{
-text-align:left !important;
+	text-align:left !important;
 }
 
 
@@ -423,7 +419,7 @@ body
 #wb_desktop_menu li:hover a, #wb_desktop_menu a:hover
 {
    color: #FFFFFF;
-   background-color: #FF6347;
+   background-color: #1E90FF;
    background-image: none;
    border: 0px #FFFFFF solid;
 }
@@ -448,7 +444,7 @@ body
 }
  #Layer98 .aro{
 	margin-top: 6px;
-    margin-left: 468px
+    margin-left: 572px
 }
 .contact6 .left .about1{
 	width: 45px;
@@ -535,10 +531,10 @@ body
 }
 #wb_desktop_menu .firstmain:hover ul
 {
-	    -webkit-box-shadow: 2px 2px 5px #3C3C3C;
+	-webkit-box-shadow: 2px 2px 5px #3C3C3C;
     box-shadow: 2px 2px 5px #3C3C3C;
-   top: 0px;
-   padding-top: 0px;
+   	top: 0px;
+   	padding-top: 0px;
 }
 #wb_desktop_menu li li
 {
@@ -681,9 +677,8 @@ body{
 	 display:none;
 }
 #Layer95 .aro{
-	margin-top: 6px !important;
-	    
-    margin-left: 117px !important;;
+	margin-top: 0px !important;
+    margin-left: 320px !important;;
 }
 #wb_desktop_menu a{
 	
@@ -697,8 +692,8 @@ body{
 .contact7{
 	margin:0px 0px;
     padding: 40px 15px;
-    border-top: 5px solid #FF6347;
-    border-bottom: 2px solid #FF6347;
+    border-top: 5px solid #1E90FF;
+    border-bottom: 2px solid #1E90FF;
     background-color: #FAFAFA;
 }
 .details{ 
@@ -874,42 +869,41 @@ color:#696969;font-family:Arial;font-size:12px;
     height: 41px !important;;
 }
 .img25{
-    
-     width: 25px !important;;
-    height: 25px !important;;
+    width: 35px !important;;
+    height: 35px !important;;
 }
 .font5{
 top: 114px; left: 872px; display: block;
 }
 .bg2{
     height: 26px;
-    background-color: #D3D3D3;
+    background-color: #3C3C3C;
 }
 .nav1 a{
 	
 }
 .mj1{
-	    margin-top: 5px;
+	    margin-top: 7px;
 }
 .nav1{
- background-color: #FFFFFF;
+ 	background-color: #FFFFFF;
     border: 1px #D3D3D3 solid;
     text-decoration: none;
     color:#696969 !important ;font-family:'MS Shell Dlg';font-size:13px;
 }
 .nav1:hover{
- text-decoration: none;
+ 	text-decoration: none;
     padding: 6px 31px;
-	color:black !important;
-    background-color: #FF6347;
+	color: #fff !important;
+    background-color: #1E90FF;
     border: 0px #FFFFFF solid;
 }
 
 .bg3{
     margin: 0px 0px;
     background: white;
-    border-top: 5px solid #FF6347;
-    border-bottom: 2px solid #FF6347;
+    border-top: 5px solid #1E90FF;
+    border-bottom: 2px solid #1E90FF;
 }
 
 
@@ -938,7 +932,7 @@ width:38px !important;
 ;height:33px!important;
 }
 .about1{
-color:#FF6347;font-family:Arial;font-size:13px;   
+	color:#1E90FF;font-family:Arial;font-size:13px;   
 }
 .about2{
 color:#5A5A5A;font-family:Arial;font-size:12px;
@@ -996,9 +990,8 @@ text-align:left !important;
     font-size: 24px;
 }
 .img25{
-	 margin-top: -5px;
-	
-	width:25px;
+	margin-top: -5px;
+	width:35px;
 }
 h5 a{
 	    font-family: Arial;
@@ -1361,5 +1354,82 @@ a.style5A:hover
 {
    	color: #FF6347;
    	text-decoration: underline;
+}
+#Shape1 {
+    width: 100%;
+    height: 41px;
+    background-color: #1E90FF;
+    border: 0px #00BFFF solid;
+    margin-bottom:10px;
+}
+#Shape1_text {
+    position: absolute;
+    left: 1px;
+    top: 12px;
+    width: 100%;
+    height: 28px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#wb_desktop_menu1
+{
+   border: 0px #FFFFFF solid;
+   background-color: transparent;
+}
+#wb_desktop_menu1 ul
+{
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   width: 100%;
+}
+#wb_desktop_menu1 li
+{
+   float: left;
+   margin: 0;
+   padding: 0px 0px 0px 0px;
+   width: 100%;
+}
+#wb_desktop_menu1 a
+{
+   display: block;
+   color: #fff;
+   border: 0px #FFFFFF solid;
+   background-color: #3C3C3C;
+   background-image: none;
+   font-family: Georgia;
+   font-weight: normal;
+   font-size: 12px;
+   font-style: normal;
+   text-decoration: none;
+    width: 100%;
+   height: 35px;
+   padding: 0px 10px 0px 10px;
+   vertical-align: middle;
+   line-height: 35px;
+   text-align: center;
+}
+#wb_desktop_menu1 li:hover a, #wb_desktop_menu1 a:hover
+{
+   color: #FFFFFF;
+   background-color: #1E90FF;
+   background-image: none;
+   border: 0px #FFFFFF solid;
+}
+#wb_desktop_menu1 .firstmain a
+{
+   margin-top: 0px;
+}
+#wb_desktop_menu1 li.lastmain
+{
+   padding-bottom: 0px;
+}
+.aro{
+	width:24px;height:12px; margin-top: -42px
+}
+#wb_desktop_menu1 li:hover, #wb_desktop_menu1 li a:hover
+{
+   position: relative;
 }
 

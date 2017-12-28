@@ -220,157 +220,152 @@ a.style5:hover
 </style>
 <div>   
    	<div class="col-sm-12" style="padding:0px;padding-top: 40px;">
-   		 <h1 class="sfont1">sellers</h1>
-   		 <p class="sfont2">Sourcing with more details is available by selecting additional options from the More Options Menu on the right side..</p>
+   		 <h1 class="sfont1">DESKSITES</h1>
+   		 <p class="sfont2">Experience a new vision of websites techniques with quick access, rich information and much more..</p>
    		 <br>
     </div>
     <div class="row" style="margin:0px;">
-	    <div class="col-lg-10 section11 seller-list"  id="Layer6"  >
+	    <div class="col-lg-10 section11 seller-list">
 			<?php
 			if(count($Sellers) > 0 && $Sellers[0]['id'] !='') { 
     		foreach ($Sellers as $key=>$seller) {?>
-			<div class="row" id="Layer4" style="margin:0px;margin-bottom:15px;" onmouseenter="ShowObjectWithEffect('Layer8_<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5_<?php echo $key;?>', 0);ShowObject('Layer8_<?php echo $key;?>', 0);return false;">
-				<div class="col-md-3 col-sm-12 displaydesktop" style="width:240px;">
-					<div id="" class="img22 mysellercarousel SlideShow1">
-					<?php if(!empty($seller['info_img1'])) { ?>
-					    <img class="image" src="<?php echo asset_url().$seller['info_img1'];?>" alt="" title="" style="width:218px;">
-					    <img class="image" src="<?php echo asset_url().$seller['info_img2'];?>" style="display:none;width:218px;" alt="" title="">
-					<?php } else { ?>
-						<img class="image" src="<?php echo asset_url();?>images/seller-a.jpg" alt="" title="" style="width:218px;">
-					    <img class="image" src="<?php echo asset_url();?>images/seller-a.jpg" style="display:none;width:218px;" alt="" title="">
+    		<div id="Layer4" style="height:363px;margin-bottom:10px;">
+    			<div style="position:absolute;text-align:left;left:0px;width:1034px;height:361px;z-index:390;">
+					<div id="wb_Shape1" style="position:absolute;left:0px;top:0px;width:587px;height:361px;z-index:349;">
+						<?php if(!empty($seller['desksite_bg1'])) { ?>
+						<img src="<?php echo asset_url();?><?php echo $seller['desksite_bg1'];?>" id="Shape1" alt="" style="width:587px;height:361px;">
+						<?php } else { ?>
+						<img src="<?php echo asset_url(); ?>images/member-desksite.jpg" id="Shape1" alt="" style="width:587px;height:361px;">
+						<?php } ?>
+					</div>
+					<div id="wb_Text3" style="position:absolute;left:679px;top:46px;width:210px;height:15px;z-index:350;text-align:left;">
+						<span style="color:#4B4B4B;font-family:Arial;font-size:12px;">Presented By: <?php if(!empty($seller['contact_name'])){ echo $seller['contact_prefix'].' '.$seller['contact_name']; } else { echo $seller['name_prefix'].' '.$seller['name'];} ?></span>
+					</div>
+					<div id="wb_Image5" style="position:absolute;left:625px;top:20px;width:45px;height:45px;z-index:351;">
+						<?php if(!empty($seller['profile_image'])) { ?>
+						 <img src="<?php echo asset_url().$seller['profile_image']; ?>" class="img1"/>
+						 <?php } else { ?>
+						 <img src="<?php echo asset_url(); ?>images/img3450.png" class="img1"/>
+						 <?php } ?>
+					</div>
+					<div id="wb_Text8" style="position:absolute;left:678px;top:24px;width:345px;height:18px;z-index:352;text-align:left;">
+						<span style="color:#303030;font-family:Georgia;font-size:15px;"><strong class="font1"><a href="<?php echo base_url();?>desksite/<?php echo $seller['busi_id'];?>" target="_blank" class="style5"><?php echo $seller['company_name']?></a></strong></span>
+					</div>
+					<?php if(!empty($seller['desksite_bg2'])) { ?>
+					<div id="wb_Shape4" style="position:absolute;left:629px;top:205px;width:66px;height:62px;z-index:353;">
+						<a href="#" onclick="ShowObjectWithEffect('Layer6', 1, 'fade', 500, 'swing');return false;" onmouseenter="SetImage('Shape7','<?php echo asset_url();?><?php echo $seller['desksite_bg2'];?>');return false;" onmouseleave="ShowObjectWithEffect('Layer6', 0, 'fade', 500, 'swing');return false;">
+							<img src="<?php echo asset_url();?><?php echo $seller['desksite_bg2'];?>" id="Shape4" alt="" style="width:66px;height:62px;">
+						</a>
+					</div>
 					<?php } ?>
+					<?php if(!empty($seller['company_info_img1'])) { ?>
+					<div id="wb_Shape23" style="position:absolute;left:705px;top:205px;width:66px;height:62px;z-index:354;">
+						<a href="#" onclick="ShowObjectWithEffect('Layer6', 1, 'fade', 500, 'swing');return false;" onmouseenter="SetImage('Shape7','<?php echo asset_url();?><?php echo $seller['company_info_img1'];?>');return false;" onmouseleave="ShowObjectWithEffect('Layer6', 0, 'fade', 500, 'swing');return false;">
+							<img src="<?php echo asset_url();?><?php echo $seller['company_info_img1'];?>" id="Shape23" alt="" style="width:66px;height:62px;">
+						</a>
 					</div>
-				</div>
-				<div class="col-md-6 col-sm-12 space1" style="width:578px;">
-					 <div id="wb_Text8" class="section3">
-						 <div class="inline">
-						 	<?php if(!empty($seller['profile_image'])) { ?>
-							 <img src="<?php echo asset_url().$seller['profile_image']; ?>" class="img1"/>
-							 <?php } else { ?>
-							 <img src="<?php echo asset_url(); ?>images/img3450.png" class="img1"/>
-							 <?php } ?>
-					   		 <span class="block"><strong class="font1"><a href="<?php echo base_url();?>desksite/<?php echo $seller['busi_id'];?>" target="_blank" class="style5"><?php echo $seller['company_name']?></a></strong>
-					   		<br> Presented By: <?php if(!empty($seller['contact_name'])){ echo $seller['contact_prefix'].' '.$seller['contact_name']; } else { echo $seller['name_prefix'].' '.$seller['name'];} ?></span>
-				   		 </div>
-			   		  <p class="font5"><?php echo substr($seller['company_introduction'], '0', '200'); ?><br></span></p>
-			   		</div>
-					<div><div class="col-sm-2" style="padding:0px;width:110px;"><strong class="strong1">Main Products |</strong></div><div class="col-sm-9" style="padding:0px;width:445px;"> <?php echo substr($seller['main_product'], '0', '150')?> <?php if(strlen($seller['main_product']) > 150) { ?>...<?php } ?></div></div>
-					<div id="Layer5_<?php echo $key;?>" class="section10 row seller_Layer5">
-					<div class="col-md-3">
-					 	<div id="RollOver5" class="box1">
-					        <a href="<?php echo base_url();?>desksite/<?php echo $seller['busi_id'];?>" target="_blank">
-					            <img class="hover" alt="" src="<?php echo asset_url() ?>images/Desktopblue.png">
-					            <span><img alt="" src="<?php echo asset_url() ?>images/desktopicon.gif"></span>
-					        </a>
-					        <div id="wb_Text13"class="beauty1">
-					        <p class="textfont1">DESKSITE</p>
-					        <p class="textfont2">To View Seller Desktop Source products, Videos, Contact, Chat and much more.. </p>
-					        </div>
-					    
-					    </div>
-					</div>
-					<div class="col-md-3">
-					<?php if(!empty($seller['catalouge_id'])) { ?>
-					 	<div id="RollOver21"  class="box2" >
-					        <a href="javascript:viewCatalogueBook(<?php echo $seller['catalouge_id'];?>);">
-					            <img class="hover" alt="" src="<?php echo asset_url() ?>images/vacticonblue.png">
-					            <span><img alt="" src="<?php echo asset_url() ?>images/vacticonblack.png"></span>
-					        </a>
-					         <div id="wb_Text13"class="beauty1">
-					        <p class="textfont1">CATALOGUE</p>
-					        <p class="textfont2">To View Seller Products In a Quick Way.. </p>
-					        </div>
-	
-						</div>
-					<?php } else { ?>
-						<div class="box2" >
-					        <div style="margin-left: 45px;">
-					            <span><img src="<?php echo asset_url() ?>images/vacticonblack.png" id="Image114" alt="Catalogue" style="opacity: 0.3;"></span>
-					        </div>
-					      	<div id="wb_Text13"class="beauty1">
-						        <p class="textfont1" style="color:#DCDCDC;;">CATALOGUE</p>
-						        <p class="textfont2" style="color:#DCDCDC;">To View Seller Products In a Quick Way.. </p>
-					        </div>
-	
-						</div>
 					<?php } ?>
+					<?php if(!empty($seller['company_info_img2'])) { ?>
+					<div id="wb_Shape5" style="position:absolute;left:855px;top:205px;width:66px;height:62px;z-index:355;">
+						<a href="#" onclick="ShowObjectWithEffect('Layer6', 1, 'fade', 500, 'swing');return false;" onmouseenter="SetImage('Shape7','<?php echo asset_url();?><?php echo $seller['company_info_img2'];?>');return false;" onmouseleave="ShowObjectWithEffect('Layer6', 0, 'fade', 500, 'swing');return false;">
+							<img src="<?php echo asset_url();?><?php echo $seller['company_info_img2'];?>" id="Shape5" alt="" style="width:66px;height:62px;">
+						</a>
 					</div>
-					<div class="col-md-3">
-					 	<div id="RollOver22" class="box3">
-					        <a href="javascript:addToMyFavourite(<?php echo $seller['busi_id'];?>,1);" target="_self">
-					            <img class="hover" alt="" src="<?php echo asset_url() ?>images/videoaddtofav.png">
-					            <span><img alt="Favourite" src="<?php echo asset_url() ?>images/favoriteclick.png"></span>
-					        </a>
-					        <div id="wb_Text13"class="beauty1">
-						        <p class="textfont1">ADD TO FAVOURITE</p>
-						        <p class="textfont2">To Save Seller in Your Favorite Box, So As You Will Be Able To View It Later On..</p>
-					        </div>
-					    </div>
+					<?php } ?>
+					<?php if(!empty($seller['company_info_img3'])) { ?>
+					<div id="wb_Shape6" style="position:absolute;left:780px;top:205px;width:66px;height:62px;z-index:356;">
+						<a href="#" onclick="ShowObjectWithEffect('Layer6', 1, 'fade', 500, 'swing');return false;" onmouseenter="SetImage('Shape7','<?php echo asset_url();?><?php echo $seller['company_info_img3'];?>');return false;" onmouseleave="ShowObjectWithEffect('Layer6', 0, 'fade', 500, 'swing');return false;">
+							<img src="<?php echo asset_url();?><?php echo $seller['company_info_img3'];?>" id="Shape6" alt="" style="width:66px;height:62px;">
+						</a>
 					</div>
-					<div class="col-md-3">
-					 
-					  <div id="RollOver6" class="box4">
-					        <a href="javascript:popupwnd('chat_window.html','no','no','no','no','no','no','750','50','440','750')" target="_self">
-					            <img class="hover" alt="" src="<?php echo asset_url() ?>images/chatblue.png">
-					            <span><img alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
-					        </a>
-					        <div id="wb_Text13"class="beauty1">
-					        <p class="textfont1">CHAT </p>
-					        <p class="textfont2">To Chat With Seller .. </p>
-					        </div>
-					    </div>
+					<?php } ?>
+					<?php if(!empty($seller['company_info_img4'])) { ?>
+					<div id="wb_Shape19" style="position:absolute;left:931px;top:205px;width:66px;height:62px;z-index:357;">
+						<a href="#" onclick="ShowObjectWithEffect('Layer6', 1, 'fade', 500, 'swing');return false;" onmouseenter="SetImage('Shape7','<?php echo asset_url();?><?php echo $seller['company_info_img4'];?>');return false;" onmouseleave="ShowObjectWithEffect('Layer6', 0, 'fade', 500, 'swing');return false;">
+							<img src="<?php echo asset_url();?><?php echo $seller['company_info_img4'];?>" id="Shape19" alt="" style="width:66px;height:62px;">
+						</a>
 					</div>
-					</div>
-				
-				</div>
-				
-				<div class="col-md-3 col-sm-12" style="width:220px;">
-						<div id="Layer8_<?php echo $key;?>" class="section9 seller_Layer8" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
-						    <div id="wb_Shape1" class="stylebox">
-						        <a href="#" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;"><img src="<?php echo asset_url() ?>images/img1243.png" id="Shape1" alt="" style="width:11px;height:48px;"></a>
-						    </div>
+					<?php } ?>
+					<div id="Layer6" style="position: absolute; text-align: left; visibility: visible; left: 0px; top: 0px; width: 592px; height: 361px; z-index: 358; display: none;background-color: #FFFFFF;">
+						<div id="wb_Shape7" style="position:absolute;left:92px;top:0px;width:401px;height:360px;z-index:344;">
+							<?php if(!empty($seller['desksite_bg1'])) { ?>
+							<img src="<?php echo asset_url();?><?php echo $seller['desksite_bg1'];?>" id="Shape7" alt="" style="width:401px;height:360px;">
+							<?php } else { ?>
+							<img src="<?php echo asset_url(); ?>images/member-desksite.jpg" id="Shape7" alt="" style="width:401px;height:360px;">
+							<?php } ?>
 						</div>
-						<div id="Layer7" class="section8">
-						    <div id="wb_Text7" class="style-2">
-							    <div id="wb_Image10" class="img-style">
-							        <?php if(!empty($tsuserid) && $seller['community_id'] !='' && $seller['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" > 
-							        <?php }else {?>
-							        <img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15">
-							        <?php } ?>
-						        </div>
-							    <div id="wb_Image2" class="img-style">
-							    	<?php if($seller['plan_id'] > 1 && $seller['gaurantee_period'] !=''){ ?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="width:34px;height:26px;"> <?php } else {?>
-							    	<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="opacity :0.15;width:34px;height:26px;" >
-							    	<?php }?>
-						        </div>
-							    <div id="wb_Image1" class="img-style">
-							        <?php if($seller['plan_id'] > 1 && $seller['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" > <?php } else { ?>
-							        <img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="opacity :0.15" >
-							        <?php }?>
-						        </div>
-						        <div id="wb_Image1" class="img-style">
-									<?php if($seller['plan_id'] > '1' && $seller['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1"><?php } else {?>
-									<img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1" style="opacity :0.15">
-									<?php }?>
-						        </div>
+					</div>
+					<div id="Layer7" style="position:absolute;text-align:left;left:1px;top:1px;width:585px;height:360px;z-index:359;visibility:visible;background-color: transparent;" onmouseenter="ShowObjectWithEffect('Layer5-<?php echo $key;?>', 1, 'fade', 350, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer5-<?php echo $key;?>', 0, 'fade', 500, 'swing');return false;">
+						<div id="Layer5-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: hidden; left: 238px; top: 131px; width: 114px; height: 95px; z-index: 347; display: block;">
+							<div id="RollOver30" style="position:absolute;left:27px;top:0px;overflow:hidden;width:60px;height:60px;z-index:345">
+								<a href="<?php echo base_url();?>desksite/<?php echo $seller['busi_id'];?>" target="_blank">
+									<img class="hover" alt="" src="<?php echo asset_url();?>images/view-detailsc.png">
+									<span><img alt="" src="<?php echo asset_url();?>images/view-detailsb.png"></span>
+								</a>
 							</div>
-							<div class="text-center">
-								<div class="space33" style="padding-top: 10px;">
-									<strong class="font-style-1">Seller | </strong><p class="font-style-2"> <?php echo $seller['sub_category'];?></p>
-								</div><br>
-								<div class="space33">
-									<strong class="font-style-1"> <?php echo $seller['company_country'];?> |  </strong><p class="font-style-2"> <?php echo $seller['company_city'];?></p>
-								</div>
-								<p class="left style-font-1" style="padding-top:10px;">Rank</p>
-								<div class="progress">
-								    <div class="progress-bar orange1" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $seller['rank']?>%">
-								     </div>
-								 </div>
-								 <p class="font121">%<?php echo $seller['rank']?></p>
+							<div id="wb_Text430" style="position:absolute;left:0px;top:68px;width:114px;height:16px;text-align:center;z-index:346;">
+								<span style="background-color:#FFFFFF;color:#3C3C3C;font-family:Arial;font-size:13px;">DISCOVER</span>
 							</div>
 						</div>
-					</div>		
+					</div>
+					<div id="wb_Text10" style="position:absolute;left:631px;top:145px;width:374px;height:30px;z-index:360;text-align:left;">
+						<span style="color:#4B4B4B;font-family:Arial;font-size:12px;"><?php echo substr($seller['main_product'], '0', '150')?> <?php if(strlen($seller['main_product']) > 150) { ?>...<?php } ?></span>
+					</div>
+					<div id="wb_Text9" style="position:absolute;left:631px;top:122px;width:130px;height:15px;z-index:361;text-align:left;">
+						<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong>Main Products | </strong></span>
+					</div>
+					<div id="" style="position:absolute;left: 677px;top: 68px;width:120px;height:15px;z-index:362;text-align:left;">
+						<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['sub_category'];?></span>
+					</div>
+					<div id="wb_Text431" style="position:absolute;left:806px;top:68px;width:76px;height:15px;z-index:363;text-align:left;">
+						<span style="color:#FF6347;font-family:Georgia;font-size:12px;"><strong><?php echo $seller['company_country'];?> </strong></span><span style="color:#303030;font-family:Georgia;font-size:12px;"><strong>| </strong></span>
+					</div>
+					<div id="wb_Text6" style="position:absolute;left:857px;top:68px;width:86px;height:15px;z-index:364;text-align:left;">
+						<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['company_city'];?></span>
+					</div>
+					<div id="wb_Text13" style="position:absolute;left:971px;top:30px;width:36px;height:14px;z-index:365;text-align:left;">
+						<span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo $seller['likes'];?></span>
+					</div>
+					<div id="wb_Image14" style="position:absolute;left:947px;top:24px;width:25px;height:25px;z-index:366;">
+						<img src="<?php echo asset_url();?>images/items_like0.png" id="Image14" alt="" style="width:25px;">
+					</div>
+					<div style="position:absolute;left: 705px;top: 275px;width: 200px;height:25px;z-index:367;text-align:center;">
+						<div id="wb_Text7" class="style-2">
+						    <div id="wb_Image10" class="img-style">
+						        <?php if(!empty($tsuserid) && $seller['community_id'] !='' && $seller['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" > 
+						        <?php }else {?>
+						        <img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15">
+						        <?php } ?>
+					        </div>
+						    <div id="wb_Image2" class="img-style">
+						    	<?php if($seller['plan_id'] > 1 && $seller['gaurantee_period'] !=''){ ?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="width:34px;height:26px;"> <?php } else {?>
+						    	<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="opacity :0.15;width:34px;height:26px;" >
+						    	<?php }?>
+					        </div>
+						    <div id="wb_Image1" class="img-style">
+						        <?php if($seller['plan_id'] > 1 && $seller['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" > <?php } else { ?>
+						        <img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="opacity :0.15" >
+						        <?php }?>
+					        </div>
+					        <div id="wb_Image1" class="img-style">
+								<?php if($seller['plan_id'] > '1' && $seller['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1"><?php } else {?>
+								<img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1" style="opacity :0.15">
+								<?php }?>
+					        </div>
+						</div>
+					</div>
+					<div id="wb_Text31" style="position:absolute;left:694px;top:332px;width:30px;height:12px;z-index:371;text-align:left;">
+						<span style="color:#3C3C3C;font-family:Arial;font-size:9.3px;">Rank</span>
+					</div>
+					<div id="Layer20" style="position:absolute;text-align:left;left:728px;top:336px;width:181px;height:3px;z-index:372;background-color: #D3D3D3;">
+						<div id="Layer21" style="position:absolute;text-align:left;left:0px;top:0px;width:<?php echo $seller['rank']?>%;height:3px;z-index:348;background-color: #FF6347;">
+						</div>
+					</div>
+					<div id="wb_Text12" style="position:absolute;left:915px;top:331px;width:40px;height:14px;z-index:373;text-align:left;">
+						<span style="color:#FF6347;font-family:Arial;font-size:11px;"><strong>% <?php echo $seller['rank']?></strong></span>
+					</div>
 				</div>
+			</div>
 			<?php }}  else {?>
 			      <div class="col-lg-10 section11"  id="Layer6" onmouseenter="ShowObjectWithEffect('Layer8', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5', 0);ShowObject('Layer8', 0);return false;" >
 			     	<h4 class="center"> No Seller Found!</h4>
@@ -407,24 +402,10 @@ a.style5:hover
 			<?php } ?>
 		     </div>
 			<div class="col-lg-2" style="padding:0px;">
-				<div class="panel">
-					<div class="panel-heading" class="panelstyle">
-						<b class="panelstyle1">More Options Menu</b>
-					</div>
-					<div class="list-group categary">
-				   		<a href="<?php echo $sellerurl;?>&plan_id=2" class="list-group-item" >Show verified Members First </a> 
-				   		<?php if(!empty($tsuserid)){?>
-				   		<a href="<?php echo $sellerurl;?>&community_only=1" class="list-group-item">Show My Community Members Only </a> 
-				   		<a href="<?php echo $sellerurl;?>community_hide=1" class="list-group-item">Hide My Community Members </a>
-				   		<?php }?>
-				   	</div>
-				</div>
 				<div id="Layer3" class="box8">
 					<div id="wb_Text328" class="innersection" style="background-color:#fff;">
 						<span class="text2"><strong><a href="<?php echo base_url();?>vcatalogues" target="_blank" class="style5">V-CATALOGUES</a></strong></span>
 						<p class="text3">Follow the latest collection of world sellers brands..</p>
-						<span class="text2"><strong><a href="<?php echo base_url();?>seller/desksites" target="_blank" class="style5">DESKSITES </a></strong></span>
-						<p class="text3">Experience a new vision of websites techniques with quick access, rich information and much more..</p>
 						<span class="text2"><strong><a href="<?php echo base_url();?>3dproducts" target="_blank" class="style5">PRODUCTS IN 3D </a></strong></span>
 						<p class="text3">Step into a new dimension of E-commerce, search products with rich information, live details and much more..</p>
 				    </div>

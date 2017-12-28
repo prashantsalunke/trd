@@ -506,12 +506,14 @@ background-color:#FFFFFF;color:#3C3C3C;font-family:Georgia;font-size:20px;
 				style="position: absolute; left: 311px; top: 139px; width: 670px; height: 75px; text-align: center; z-index: 300;">
 				<span style="color: #5A5A5A; font-family: Arial; font-size: 12px;"><?php echo $business[0]['company_introduction'];?></span>
 			</div>
-			<div id="Layer96"
-				style="position: absolute; text-align: left; left: 0%; top: 299px; width: 100%; height: 656px; z-index: 301;">
-				<div id="SlideShow2"
-					style="position: absolute; left: 0%; top: 0%; width: 100%; height: 95%; z-index: 0;">
-					<img class="image" src="<?php echo asset_url();?>images/shipping_main_background0.jpg" alt="" title=""> 
-					<img class="image" src="<?php echo asset_url();?>images/shipping_main_background2.jpg" style="display: none;" alt="" title="">
+			<div id="Layer96" style="position: absolute; text-align: left; left: 0%; top: 299px; width: 100%; height: 656px; z-index: 301;">
+				<div id="SlideShow2" style="position: absolute; left: 0%; top: 0%; width: 100%; height: 95%; z-index: 0;">
+				<?php if(!empty($business[0]['website_bg1'])) { ?>
+					<img class="image" src="<?php echo asset_url();?><?php echo $business[0]['website_bg1'];?>" alt="" title=""> 
+					<img class="image" src="<?php echo asset_url();?><?php echo $business[0]['website_bg2'];?>" style="display: none;" alt="" title="">
+					<?php } else { ?>
+					<img class="image" src="<?php echo asset_url(); ?>images/member-desksite.jpg" alt="" title="">
+					<?php } ?>
 				</div>
 			</div>
 			<div id="Layer98"
@@ -614,7 +616,7 @@ background-color:#FFFFFF;color:#3C3C3C;font-family:Georgia;font-size:20px;
 							<div id="wb_Text150"
 								style="position: absolute; left: 230px; top: 216px; width: 89px; height: 15px; text-align: justify; z-index: 8;">
 								<span
-									style="color: #000000; font-family: Arial; font-size: 12px;">Forwarder</span>
+									style="color: #000000; font-family: Arial; font-size: 12px;"><?php echo $business[0]['user_subcategory'];?></span>
 							</div>
 							<div id="wb_Text156"
 								style="position: absolute; left: 69px; top: 236px; width: 89px; height: 15px; text-align: justify; z-index: 9;">
@@ -737,21 +739,13 @@ background-color:#FFFFFF;color:#3C3C3C;font-family:Georgia;font-size:20px;
 						<div id="wb_Text218"
 							style="position: absolute; left: 18px; top: 6px; width: 504px; height: 62px; text-align: justify; z-index: 13;">
 							<span
-								style="color: #5A5A5A; font-family: Arial; font-size: 12px;">Seven
-								Seas Logistics Co. was established in 2002 responding to the
-								growing of<br>commercial and project market, from the time of
-								established, the company was catering cargo transportation needs
-								of local market as well as of international market to serve the
-								shipping movement all over the world... <br>
+								style="color: #5A5A5A; font-family: Arial; font-size: 12px;"><?php echo substr($business[0]['company_introduction'],0,1000);?> <?php if(strlen($business[0]['company_introduction']) > 1000) { ?>...<?php } ?> <br>
 							</span>
 						</div>
 					</div>
 					<div id="wb_Text158"
 						style="position: absolute; left: 230px; top: 242px; width: 351px; height: 45px; text-align: justify; z-index: 28;">
-						<span style="color: #000000; font-family: Arial; font-size: 12px;">Sea
-							Freight, Air Freight, Land Freight, Inspection, Port Agencies,
-							Door 2 Door from china to dubai, ....... ..... ......... ........
-							...... ....... ...... .... ................ ........</span>
+						<span style="color: #000000; font-family: Arial; font-size: 12px;"><?php echo $business[0]['mainservices'];?></span>
 					</div>
 					<div id="wb_Text159"
 						style="position: absolute; left: 69px; top: 336px; width: 89px; height: 15px; text-align: justify; z-index: 29;">

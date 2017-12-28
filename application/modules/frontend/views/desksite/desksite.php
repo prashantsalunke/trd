@@ -1,4 +1,5 @@
 <!-- css js -->
+<link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
@@ -8,7 +9,6 @@
 <script src="<?php echo asset_url(); ?>js/jquery.ui.core.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.widget.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.position.min.js"></script>
-<script src="<?php echo asset_url(); ?>js/jquery.ui.tooltip.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.mouse.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.draggable.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-blind.min.js"></script>
@@ -291,7 +291,7 @@ $(document).ready(function() {
         position: [220, 90],
         delay: 500
     });
-    var jQueryToolTip1Opts = {
+    /*var jQueryToolTip1Opts = {
         hide: true,
         show: true,
         content: '<p style="color:#696969;font-family:Arial;font-size:12px;">Verified logo is only ( strictly ) submitted to the Seller / Shipper who has been passed a strict verified check and audit procedures performed by leading inspection, verification, testing and certification third party companies, includes company licenses, product certificates and onsite check.<br>To check Sellers / Shipper\'s verification certificate, click on Seller\'s (About Tab) &gt; View Verification.<br></p>',
@@ -314,7 +314,7 @@ $(document).ready(function() {
             collision: "flipfit"
         }
     };
-    $("#wb_Image89").tooltip(jQueryToolTip2Opts);
+    $("#wb_Image89").tooltip(jQueryToolTip2Opts);*/
     $("#SlideShow1").slideshow({
         interval: 8000,
         type: 'sequence',
@@ -405,7 +405,7 @@ $(document).ready(function() {
     {
        hide: true,
        show: true,
-       content: '<span style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;z-index:3780;margin-left:40px;">Black Horse Member</span>',
+       content: 'Black Horse Member',
        items: '#wb_Image61',
        position: { my: "right bottom", at: "left top", collision: "flipfit" }
     };
@@ -414,7 +414,7 @@ $(document).ready(function() {
     {
        hide: true,
        show: true,
-       content: '<div style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;z-index:3780;margin-left:40px;width:300px;">Guarantee logo.. This seller provides a guarantee on his goods, subjected to certain terms, you can check it, on each product ( Along with Product Details Page)..Furthermore, Click on &quot; Advantages&quot; icon to view more..</div>',
+       content: 'Guarantee logo.. This seller provides a guarantee on his goods, subjected to certain terms, you can check it, on each product ( Along with Product Details Page)..Furthermore, Click on &quot; Advantages&quot; icon to view more..',
        items: '#wb_Image94',
        position: { my: "right bottom", at: "left top", collision: "flipfit" }
     };
@@ -506,7 +506,7 @@ $(document).ready(function() {
     var jQueryToolTip5Opts = {
         hide: true,
         show: true,
-        content: '<div style="background-color:#fff;padding:15px;border:1px solid #f2f2f2;border-radius:3px;color:#696969;font-family:Arial;font-size:12px;margin-left:40px;width:300px;">This seller is a member in your community..</div>',
+        content: 'This seller is a member in your community..',
         items: '#wb_Image76',
         position: {
             my: "right bottom",
@@ -526,7 +526,7 @@ $(document).ready(function() {
         position: [0, 4],
         delay: 0
     });
-    var jQueryToolTip6Opts = {
+    /*var jQueryToolTip6Opts = {
         hide: true,
         show: true,
         content: '<p style="color:#696969;font-family:Arial;font-size:12px;">The Seller Is A Member In Your Community</p>',
@@ -573,7 +573,7 @@ $(document).ready(function() {
             collision: "flipfit"
         }
     };
-    $("#wb_Image40").tooltip(jQueryToolTip9Opts);
+    $("#wb_Image40").tooltip(jQueryToolTip9Opts);*/
 });
 var interval = null;
 function startWiggle(input) {
@@ -617,12 +617,13 @@ function stopWiggle(input) {
 			    <div id="wb_Text8" class="c2">
 			        <p class="c1"><strong>
 			        <?php 
-			        if(!empty($Desksite['timezone'])) {
-				        $date = new DateTime('now', new DateTimeZone($Desksite['timezone']));
-				        echo $date->format('h:i A');
-			        } else {
-			        	echo date('h:i A');
-			        }
+			        	try {
+                       		$mars = new DateTimeZone($Desksite['timezone']);
+                            $date = new DateTime('now', $mars);
+                            echo $date->format('h:i A');
+                     	} catch(Exception $e) {
+                         	echo date('h:i A');
+                       	}
 			        ?></strong></p>
 			    </div>
 			</div>
@@ -631,11 +632,11 @@ function stopWiggle(input) {
 			<div id="Layer46" style="text-align:left;left:0;top:0;right:0;bottom:0;z-index:33;">
 				<?php if(!empty($Desksite['desksite_bg1'])) { ?>
 			    <div id="SlideShow1" >
-			        <img class="image d1" src=" <?php echo asset_url().$Desksite['desksite_bg1']; ?> " alt="" title="" style="width:100%;"/>
+			        <img class="image d1" src="<?php echo asset_url().$Desksite['desksite_bg1']; ?>" alt="" title="" style="width:100%;"/>
 			        <img class="image d2" src="<?php echo asset_url().$Desksite['desksite_bg2']; ?>" alt="" title="" style="width:100%;"/>
 				</div>
 				<?php } else { ?>
-			        <img class="image d1" src=" <?php echo asset_url(); ?>images/member-desksite.jpg" alt="" title="" style="width:100%;"/>
+			        <img class="image d1" src="<?php echo asset_url(); ?>images/member-desksite.jpg" alt="" title="" style="width:100%;"/>
 			    <?php } ?>
 			</div>
 		    <!-- slider ends -->
@@ -644,9 +645,9 @@ function stopWiggle(input) {
 		        <div id="Layer116" class="left-fixed">
 		            <div id="wb_Image61" class="text-center">
 		            	<?php if($Desksite['plan_id'] > 1){?>
-		            	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="" class="black-horse-icon">
+		            	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" class="black-horse-icon">
 		              	<?php } else { ?>
-		              	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="" class="black-horse-icon img-disabled">
+		              	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" class="black-horse-icon img-disabled">
 		              	<?php } ?>
 	               	 </div>
 		            <div id="wb_Image67"  class="text-center">
@@ -667,9 +668,9 @@ function stopWiggle(input) {
 	                </div>
 		            <div id="wb_Image76"  class="text-center">
 		            	<?php if(count($community) > 0){ ?>
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="" title="A member in your community" class="community-member-icon">
+		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="" class="community-member-icon">
 		                <?php } else { ?>
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="" title="A member in your community" class="community-member-icon img-disabled">
+		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="" class="community-member-icon img-disabled">
 		                <?php } ?>
 		          	</div>
 		        </div>
@@ -752,7 +753,7 @@ function stopWiggle(input) {
 								   	<img src="<?php echo asset_url(); ?>images/desksite/D-search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   	<p class="font2">Search</p>
 								</a>
-						        <a href="javascript:showWebsite();" class="navigation2" style="display:none;">
+						        <a href="#" class="navigation2" style="display:none;">
 								   	<img src="<?php echo asset_url(); ?>images/exit.png" id="Image47" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								  	<p class="font2" style="font-size:10px;width:81px;">Switch to <br> Classic Mode</p>
 								</a>
@@ -801,7 +802,7 @@ function stopWiggle(input) {
 								   	<img src="<?php echo asset_url(); ?>images/desksite/D-search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   	<p class="font2">Search</p>
 								</a>
-						        <a href="javascript:showWebsite();" class="navigation2" style="display:none;">
+						        <a href="javascript:showWebsite();" class="navigation2">
 								   	<img src="<?php echo asset_url(); ?>images/exit.png" id="Image47" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								  	<p class="font2" style="font-size:10px;width:81px;">Switch to <br> Classic Mode</p>
 								</a>
@@ -989,12 +990,12 @@ function stopWiggle(input) {
 				        	Like
 						</a>
 				    </div>
-				    <!-- div class="inline box5">
+				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/img0908.png" alt="Share" class="add-share-img">
-				        <a href="#" onclick="ShowObjectWithEffect('Layer223', 1, 'scale', 500);return false;" target="_self" class="antag">
+				        <a href="javascript:shareToWorld('<?php echo base_url();?>desksite/<?php echo $Desksites[0]['busi_id']?>','<?php echo $Desksites[0]['company_name']?> @ TRDSTATION',1,<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
 				        	Share
 						</a>
-				    </div-->
+				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/buyer-request.png" alt="General Inquiry" class="add-share-img">
 				        <a href="javascript:openGeneralEnquiry(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
@@ -1509,16 +1510,6 @@ function getProductCategoryP(id) {
 	},'html');
 }
 
-
-function showWebsite() {
-	ShowObjectWithEffect('Layer89', 1, 'bounce', 500, 'easeInOutBounce');
-	ShowObjectWithEffect('Layer46', 0, 'pulsate', 500, 'swing');
-	setTimeout(openWebsite, 1000);
-}
-
-function openWebsite() {
-	window.location.href = "<?php echo base_url();?>seller/website/<?php echo $busi_id;?>";
-}
 
 function viewCatalogueBook(id) {
 	ajaxindicatorstart("Please wait while we load catalogue.");
