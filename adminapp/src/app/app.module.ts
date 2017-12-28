@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { MainRouteComponent } from './main-route.component';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './core/auth.service';
-import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
 
 
 @NgModule({
@@ -26,12 +25,10 @@ import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
     HttpClientModule,
     ReactiveFormsModule,
     CoreModule,
-    AppRoutingModule,
-    NgxSmartModalModule.forRoot()
+    AppRoutingModule
     
   ],
-  providers: [AuthService,
-    NgxSmartModalService ],
+  providers: [AuthService ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

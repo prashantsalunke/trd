@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --env=prod --base-href /station-trd/admin --deploy-url /station-trd/adminapp/build/",
+    "build": "ng build --env=prod --base-href /trdstation/admin --deploy-url /trdstation/adminapp/build/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

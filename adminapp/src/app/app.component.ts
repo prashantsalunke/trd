@@ -20,12 +20,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     this.authService.getLoggedInUser().subscribe((res) => {
-      if (res['status_code'] == 400) {
+      if (res['error'] == 'Unauthorized') {
         this.router.navigate(['login'])
       }
     },
       err => {
-        if (err['status'] == 404) {
+        if (err['status'] == 401) {
           this.router.navigate(['login'])
         }
       });
