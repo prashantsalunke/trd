@@ -10,14 +10,23 @@ import { PermitionComponent } from './permition.component';
 import { HeaderComponent } from './header.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SubAdminService } from './sub-admin.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { CustomFormsModule } from '@floydspace/ngx-validation';
+import { SharedModule } from '../shared/shared.module';
+import { FileUploadModule } from 'ng2-file-upload';
+
+
 
 @NgModule({
   imports: [
     CommonModule,
-    SubAdminsRoutingModule,    
+    SubAdminsRoutingModule,
+      FormsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    SharedModule,
+    ModalModule.forRoot(),
+    CustomFormsModule,
+    FileUploadModule 
   ],
   declarations: [IndexComponent, 
     ListComponent, AddComponent,

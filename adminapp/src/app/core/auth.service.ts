@@ -7,13 +7,19 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private apiUrl = environment.backend;
-
+  public authUser = {};
   constructor(private http:HttpClient, private router:Router) { }
 
   authenticate(user){
-    return this.http.post(`${this.apiUrl}auth`,JSON.stringify(user),{
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
-    });
+    let userData = new FormData();
+    if(user){
+      const userKeys = Object.keys(user);
+      userKeys.forEach((key) => {
+        userData.append(key,user[key]);
+      });
+    }
+
+    return this.http.post(`${this.apiUrl}auth`,userData);
   }
 
   getLoggedInUser(){

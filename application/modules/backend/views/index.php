@@ -10,9 +10,9 @@
 </head>
 <body>
   <trd-root></trd-root>
-<script type="text/javascript" src="<?php echo base_url(); ?>adminapp/dist/inline.bundle.js">
-</script><script type="text/javascript" src="<?php echo base_url(); ?>adminapp/dist/polyfills.bundle.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>adminapp/dist/styles.bundle.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>adminapp/dist/vendor.bundle.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>adminapp/dist/main.bundle.js"></script></body>
+<script type="text/javascript" src="<?php echo base_url(); ?>adminapp/build/inline.bundle.js">
+</script><script type="text/javascript" src="<?php echo base_url(); ?>adminapp/build/polyfills.bundle.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>adminapp/build/styles.bundle.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>adminapp/build/vendor.bundle.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>adminapp/build/main.bundle.js"></script></body>
 </html>

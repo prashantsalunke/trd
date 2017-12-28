@@ -11,11 +11,12 @@ class Auth extends REST_Controller {
 	}
 	
 	public function login_post(){
-		$post = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+		// $this->response($this->post());
+		$post = $this->post();
 		$this->load->model('backend/Admin_User_Model');
-		$user['email'] = $post->email;
-		$user['password'] = $post->password;
-		$user['security_code'] = $post->security_code;
+		$user['email'] = $post['email'];
+		$user['password'] = $post['password'];
+		$user['security_code'] = $post['security_code'];
 		
 		$authenticateUser = $this->Admin_User_Model->authenticate($user);
 
