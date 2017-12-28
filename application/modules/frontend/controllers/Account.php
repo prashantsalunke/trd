@@ -159,6 +159,7 @@ class Account extends MX_Controller {
 		$this->session->unset_userdata('tsuserid');
 		$this->session->unset_userdata('busi_id');
 		$this->session->unset_userdata('registration_step');
+		setcookie('cc_data', '', -time() + (86400 * 30), "/");
 		redirect(base_url());
 	}
 	
@@ -371,8 +372,7 @@ class Account extends MX_Controller {
 				$this->session->set_userdata('is_disable', $result[0]['is_disable']);
 				$this->session->set_userdata('is_subuser', $result[0]['is_subuser']);
 				$this->session->set_userdata('subuserid', $subuserid);
-				
-				
+				setcookie('cc_data', $userinfo['userid'], time() + (86400 * 30), "/");
 				$_SESSION['timeout'] = time();
 				
 				if ($rememberme == 'yes') {

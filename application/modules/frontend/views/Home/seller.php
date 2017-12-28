@@ -1,3 +1,5 @@
+<script type="text/javascript" charset="utf-8" src="/trd/cometchat/js.php"></script>
+<link type="text/css" rel="stylesheet" media="all" href="/trd/cometchat/css.php" />
 <style>
 #RollOver26 a
 {
@@ -309,8 +311,8 @@ a.style5:hover
 					</div>
 					<div class="col-md-3">
 					 
-					  <div id="RollOver6" class="box4">
-					        <a href="javascript:popupwnd('chat_window.html','no','no','no','no','no','no','750','50','440','750')" target="_self">
+					  <div id="RollOver6" class="box4" onclick="javascript:jqcc.cometchat.chatWith(<?php echo $seller['user_id'];?>);">
+					        <a>
 					            <img class="hover" alt="" src="<?php echo asset_url() ?>images/chatblue.png">
 					            <span><img alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
 					        </a>
