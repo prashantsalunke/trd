@@ -22,8 +22,8 @@ class Community_Model extends CI_Model {
     }
     public function getSendCommunityRequest($busi_id)
     {
-    	$this->db->select('a.id as community_id,b.*,c.info_img1,c.info_img2,d.name_prefix,d.name,e.company_introduction,e.hot_presentation,f.profile_image,
-		g.sub_category,group_concat(h.name) as productname');
+    	$this->db->select('a.id as community_id,b.*,c.info_img1,c.info_img2,d.name_prefix,d.name,d.user_category_id,e.company_introduction,e.hot_presentation,f.profile_image,
+		g.sub_category,(select GROUP_CONCAT(j.name SEPARATOR ", ") from tbl_main_product as j where j.busi_id=b.id AND j.status != 0 group by j.busi_id) as mainproducts,(select GROUP_CONCAT(k.name SEPARATOR ", ") from tbl_shipper_service as k where k.busi_id=b.id AND k.status != 0 group by k.busi_id) as mainservices');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER . ' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESSINFOIMAGE. ' AS c','a.busi_id=c.busi_id','inner');
@@ -31,10 +31,13 @@ class Community_Model extends CI_Model {
     	$this->db->join(TABLES::$COMPANY_INFO. ' AS e','a.busi_id=e.busi_id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS f','d.id=f.user_id','inner');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES. ' AS g','d.user_subcategory_id = g.id','inner');
-    	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS h','b.id=h.busi_id','left');
     	$this->db->where('a.my_busi_id',$busi_id);
     	$this->db->where('a.is_deleted',0);
-    	$this->db->where('d.admin_user_id', 0);
+    	$this->db->where('a.status',0);
+    	$this->db->where('d.account_activated', 1);
+    	$this->db->where('d.is_suspend', 0);
+    	$this->db->where('d.is_deleted', 0);
+    	$this->db->where('d.is_contactperson',1);
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;
@@ -42,8 +45,8 @@ class Community_Model extends CI_Model {
     public function getInvitationCommunityRequest($busi_id)
     {
     	
-    	$this->db->select('a.id as community_id,b.*,c.info_img1,c.info_img2,d.name_prefix,d.name,e.company_introduction,e.hot_presentation,f.profile_image,
-		g.sub_category,group_concat(h.name) as productname');
+    	$this->db->select('a.id as community_id,b.*,c.info_img1,c.info_img2,d.name_prefix,d.user_category_id,d.name,e.company_introduction,e.hot_presentation,f.profile_image,
+		g.sub_category,(select GROUP_CONCAT(j.name SEPARATOR ", ") from tbl_main_product as j where j.busi_id=b.id AND j.status != 0 group by j.busi_id) as mainproducts,(select GROUP_CONCAT(k.name SEPARATOR ", ") from tbl_shipper_service as k where k.busi_id=b.id AND k.status != 0 group by k.busi_id) as mainservices');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER . ' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.my_busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESSINFOIMAGE. ' AS c','a.my_busi_id=c.busi_id','inner');
@@ -51,10 +54,13 @@ class Community_Model extends CI_Model {
     	$this->db->join(TABLES::$COMPANY_INFO. ' AS e','a.my_busi_id=e.busi_id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS f','d.id=f.user_id','inner');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES. ' AS g','d.user_subcategory_id = g.id','inner');
-    	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS h','b.id=h.busi_id','left');
     	$this->db->where('a.busi_id',$busi_id);
     	$this->db->where('a.is_deleted',0);
-    	$this->db->where('d.admin_user_id', 0);
+    	$this->db->where('a.status',0);
+    	$this->db->where('d.account_activated', 1);
+    	$this->db->where('d.is_suspend', 0);
+    	$this->db->where('d.is_deleted', 0);
+    	$this->db->where('d.is_contactperson',1);
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;
@@ -112,5 +118,15 @@ class Community_Model extends CI_Model {
     	$this->db->where('my_busi_id',$busi_id);
     	$this->db->where('busi_id IN('.$members.')','',false);
     	return $this->db->delete(TABLES::$COMMUNITY_MEMBER);
+    }
+    
+    public function deleteCommunityRequest($id) {
+    	$this->db->where('id',$id);
+    	return $this->db->delete(TABLES::$COMMUNITY_MEMBER);
+    }
+    
+    public function acceptCommunityRequest($params) {
+    	$this->db->where('id',$params['id']);
+    	return $this->db->update(TABLES::$COMMUNITY_MEMBER,$params);
     }
 }
