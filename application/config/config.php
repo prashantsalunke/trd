@@ -26,6 +26,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['base_url'] = 'http://localhost/trd/';
 
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on"){$ssl_set = "s";} else{$ssl_set = "";}
+$config['base_url'] = 'http'.$ssl_set.'://'.$_SERVER['HTTP_HOST'].(ENVIRONMENT == 'development')?'/trdstation':'';
+
 /*
 |--------------------------------------------------------------------------
 | Index File
@@ -373,6 +376,7 @@ $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 32140800;
 $config['sess_save_path'] = NULL;
 $config['sess_match_ip'] = FALSE;
+$config['sess_match_useragent'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 

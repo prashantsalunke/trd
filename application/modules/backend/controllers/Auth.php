@@ -21,7 +21,9 @@ class Auth extends REST_Controller {
 		$authenticateUser = $this->Admin_User_Model->authenticate($user);
 
 		if(isset($authenticateUser)){
-			$this->session->set_userdata('admin_user',json_encode($authenticateUser));
+            $this->session->set_userdata('admin_user',json_encode($authenticateUser));
+//            $user =  $this->session->userdata('admin_user');
+//            var_dump(json_decode($user));
 			$this->response($authenticateUser);
 		}else {
             $this->response(NULL, 404);
@@ -30,7 +32,7 @@ class Auth extends REST_Controller {
 
 	function getLoggetInUser_get(){
 		$user =  $this->session->userdata('admin_user');
-		
+		var_dump(json_decode($user));
 			if(isset($user)){
 				$this->response(json_decode($user));
 			}else {
