@@ -136,7 +136,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="Layer1" style="overflow: scroll;margin-top:2px;max-height:600px;">
+			<div id="Layer1" style="overflow: scroll;margin-top:2px;max-height:679px;">
           	<?php 
 			if (count ( $allposts ) > 0 && $allposts [0] ['id'] != '') {
 			foreach ( $allposts as $key=>$allpost ) {
@@ -191,11 +191,32 @@
 						</div>
 					</div>
                  <?php } }  else { ?>
-					<div class="row">
-						<h4 class="center">You don’t have members in your community..<br>
-							To add members, click on the suitable business type “ Sellers, Shippers, Buyers” shown under “ Add Member” in The Toolbox..<br>
-							In the related page, search for a certain members meet your requirement, view his Desksite, then click “Contact and select Add To My Community”..
+					<div style="background-color: #FFFFFF;padding:15px;height:637px;">
+						<?php if(count($communitymember) <= 0) { ?>
+						<h4 class="center" style="margin-top:50px;padding: 100px 240px;text-align: left;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;">
+								<strong>You don’t have members in your community.. </strong>
+								<br><br>
+								To add members, click on the suitable business type “ Sellers, Shippers, Buyers” shown under “ Add Member” in The Toolbox..<br><br>
+								In the related page, search for a certain members meet your requirement, view his Desksite, then click “Contact and select Add To My Community”..
+								<br><br>
+							</span>
 						</h4>
+						<?php } else if(count($firstpost) <= 0) { ?>
+						<div id="wb_Text25" style="position:absolute;left:311px;top:233px;width:351px;height:32px;text-align:center;z-index:570;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;">To add your first post, close this tab and click on "Add a post" button..</span>
+						</div>
+						<div id="wb_Text53" style="position:absolute;left:314px;top:204px;width:336px;height:29px;text-align:center;z-index:571;">
+							<span style="color:#303030;font-family:Impact;font-size:24px;">No Posts Yet</span>
+						</div>
+						<?php } else { ?>
+						<div id="wb_Text25" style="position:absolute;left:311px;top:233px;width:351px;height:32px;text-align:center;z-index:570;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;">We do not fount any post added by your community members..</span>
+						</div>
+						<div id="wb_Text53" style="position:absolute;left:314px;top:204px;width:336px;height:29px;text-align:center;z-index:571;">
+							<span style="color:#303030;font-family:Impact;font-size:24px;">Opps!!</span>
+						</div>	
+						<?php } ?>
 					</div>
 					<?php }  ?>
 				</div>
@@ -309,7 +330,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="Layer32" style="overflow: scroll;margin-top:2px;height:600px;">
+			<div id="Layer32" style="overflow: scroll;margin-top:2px;height:679px;">
              <?php 
 				if (count ( $myposts ) > 0 && $myposts [0] ['id'] != '') {
 					foreach ( $myposts as $key=>$mypost ) {
@@ -352,10 +373,13 @@
 						</div>
 					</div>
                  <?php } }  else { ?>
-						<div class="row">
-							<h4 class="center">Yet you don’t publish any post..<br>
-								Click on post icon to boost your first post and share it among you community members..
-							</h4>
+						<div style="height:637px;">
+							<div id="wb_Text25" style="position:absolute;left:311px;top:233px;width:351px;height:32px;text-align:center;z-index:570;">
+								<span style="color:#000000;font-family:Arial;font-size:13px;">To add your first post, close this tab and click on "Add a post" button..</span>
+							</div>
+							<div id="wb_Text53" style="position:absolute;left:314px;top:204px;width:336px;height:29px;text-align:center;z-index:571;">
+								<span style="color:#303030;font-family:Impact;font-size:24px;">No Posts Yet</span>
+							</div>
 						</div>
 				<?php }  ?>
 				</div>

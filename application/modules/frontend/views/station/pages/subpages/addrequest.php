@@ -5,8 +5,8 @@
 					<span style="color:#A9A9A9;font-family:Georgia;font-size:19px;">Community Add Requests</span>
 				</div>
 				<div class="col-md-7" style="text-align: left;" >
-					<a href="javascript:openAddedRequest();" class="btn btn-default btn-custom alerts-btn alerts-btn-selected"   id="addcominityrequest_btn">Add Request</a>
-	  				<a href="javascript:openInvitation();" class="btn btn-default btn-custom alerts-btn" id="communityinvitation_btn">Invitations</a>
+					<a href="javascript:openCommunityInvites();" class="btn btn-default btn-custom alerts-btn alerts-btn-selected"   id="addcominityrequest_btn" style="width: 200px !important;">Members Like to add you</a>
+	  				<a href="javascript:openMyInvites();" class="btn btn-default btn-custom alerts-btn" id="communityinvitation_btn" style="width: 200px !important;">Members you like to add them</a>
 				</div>
 				<div class="col-md-1" style="text-align: right">
 					<span class="pull-right-close" style="text-align: right"><a href="javascript:ShowObjectWithEffect('Layer180', 0, 'dropup', 500, 'easeInBounce');ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');" class="btn-custom-close">X</a></span>
@@ -15,10 +15,10 @@
 		</div>
   		
   	</div>
-	<div class="panel-body panel-body-custom" id="" style="padding-top: 15px;"><br>
+	<div class="panel-body panel-body-custom" style="padding-top: 15px;" id="request_to_me"><br>
 		<div class="row">
 			<div class="col-md-12" style="text-align: left">
-				<span style="color:#F05539;font-family:Arial;font-size:32px;"><?php echo count($sendcommunityrequest);?>   </span>
+				<span style="color:#F05539;font-family:Arial;font-size:32px;" id="req"><?php echo count($sendcommunityrequest);?>   </span>
 				<span style="color:#696969;font-family:Arial;font-size:12px;">Requests</span>
 			</div>
 		</div><br>
@@ -29,146 +29,231 @@
 		</div><br><br>
 	
 		<?php $i =1;
-		foreach($sendcommunityrequest as $seller) { ?>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="col-md-1" style="padding-top: 66px;">
-							<input type="checkbox" id="chkseller-<?php echo $i;?>" onclick="ShowObjectWithEffect('btndelete-<?php echo $seller['community_id'];?>', 1, 'scale', 500, 'swing');return false;"
-							name="chkseller-<?php echo $i;?>"  value="on" >
-							<div id="btndelete-<?php echo $seller['community_id'];?>" style="width: 24px; height: 24px; visibility: hidden;">
-								<a href="#" onclick="delete_request(<?php echo $seller['community_id'];?>);"><img src="<?php echo asset_url();?>images/delete.png" id="Image160" alt=""></a>
+		foreach($sendcommunityrequest as $key=>$seller) { ?>
+			<?php 
+				$burl = "";
+				if($seller['user_category_id'] == 1) { 
+					$burl = "desksite/".$seller['id'];
+				} elseif ($seller['user_category_id'] == 2) {
+					$burl = "shipper/profile/".$seller['id'];
+				} elseif ($seller['user_category_id'] == 3) {
+					$burl = "buyer/profile/".$seller['id'];
+				}
+					
+			?>
+				<div id="Layer-contact-<?php echo $key;?>" style="position:relative;text-align:left;left:51px;top:0px;width:957px;height:162px;z-index:1375;" onmouseenter="ShowObjectWithEffect('Layer-button-<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer222-<?php echo $key;?>', 0);ShowObject('Layer-button-<?php echo $key;?>', 0);return false;">
+					<div id="Layer220" style="position:absolute;text-align:left;left:2px;top:1px;width:774px;height:143px;z-index:1368;">
+						<div id="wb_Text748" style="position:absolute;left:74px;top:20px;width:351px;height:16px;z-index:1357;text-align:left;">
+							<span style="color:#303030;font-family:Georgia;font-size:15px;"><strong><a href="<?php echo base_url().$burl;?>" target="_blank" class="style5"><?php echo $seller['company_name'];?></a></strong></span>
+						</div>
+						<div id="Layer221" style="position:absolute;text-align:left;left:554px;top:0px;width:218px;height:141px;z-index:1358;">
+							<div id="wb_Text750" style="position:absolute;left:95px;top:26px;width:117px;height:16px;text-align:center;z-index:1351;">
+								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['sub_category'];?></span>
 							</div>
-					</div>			
-						<div class="col-md-11" >			
-							<div id="Layer178" style="width: 1000px; height: 185px;" onmouseenter="ShowObjectWithEffect('Layer525', 1, 'slideright', 300, 'swing');return false;"
-									onmouseleave="ShowObject('Layer213', 0);ShowObject('Layer525', 0);return false;">
-							<div id="Layer179" style="position: absolute; text-align: left; left: 1px; top: 1px; width: 1029px; height: 174px; z-index: 1258;">
-								<div id="Layer210" style="position: absolute; text-align: left; left: 808px; top: 0px; width: 220px; height: 172px; z-index: 1244;">
-									<div id="wb_Text591" style="position: absolute; left: 108px; top: 72px; width: 97px; height: 15px; z-index: 1233; text-align: left;">
-											<span style="color: #808080; font-family: Georgia; font-size: 12px;"><?php echo $seller['sub_category'];?></span>
-									</div>
-									<div id="wb_Text592" style="position: absolute; left: 23px; top: 72px; width: 96px; height: 15px; z-index: 1234; text-align: left;">
-										<span style="color: #303030; font-family: Georgia; font-size: 12px;"><strong>Seller Type | </strong></span>
-									</div>
-									<div id="wb_Text618" style="position: absolute; left: 53px; top: 95px; width: 76px; height: 15px; z-index: 1235; text-align: left;">
-										<span style="color: #303030; font-family: Georgia; font-size: 12px;"><strong><?php echo $seller['company_country']; ?> | </strong></span>
-									</div>
-									<div id="wb_Text619" style="position: absolute; left: 104px; top: 95px; width: 86px; height: 15px; z-index: 1236; text-align: left;">
-										<span style="color: #808080; font-family: Georgia; font-size: 12px;"><?php echo $seller['company_province'];?></span>
-									</div>
-									<div id="wb_Image115" style="position: absolute; left: 50px; top: 28px; width: 25px; height: 25px; z-index: 1237;">
-										<img src="<?php echo asset_url();?>images/CommMember.png" id="Image115" alt="Member In My Community"
-										title="Member In My Community">
-									</div>
-									<div id="wb_Image116" style="position: absolute; left: 77px; top: 28px; width: 34px; height: 26px; z-index: 1238;">
-										<img src="<?php echo asset_url();?>images/guarantee.png" id="Image116" alt="Products Guarantee" title="Products Guarantee">
-									</div>
-									<div id="wb_Image117" style="position: absolute; left: 114px; top: 29px; width: 25px; height: 25px; z-index: 1239;">
-										<img src="<?php echo asset_url();?>images/trusted.png" id="Image117" alt="" title="Verified Member">
-									</div>
-									<div id="wb_Image118" style="position: absolute; left: 146px; top: 29px; width: 25px; height: 25px; z-index: 1240;">
-										<img src="<?php echo asset_url();?>images/member-logo.png" id="Image118" alt="Black Horse Member"  title="Black Horse Member">
-									</div>
-									<div id="Layer211"  style="position: absolute; text-align: left; left: 20px; top: 145px; width: 181px; height: 3px; z-index: 1241;">
-										<div id="Layer212" style="position: absolute; text-align: left; left: 0px; top: 0px; width: 127px; height: 3px; z-index: 1232;">
-										</div>
-									</div>
-									<div id="wb_Text620" style="position: absolute; left: 123px; top: 152px; width: 40px; height: 14px; z-index: 1242; text-align: left;">
-										<span style="color: #FF6347; font-family: Arial; font-size: 11px;"><strong>% 85</strong></span>
-									</div>
-									<div id="wb_Text651" style="position: absolute; left: 20px; top: 130px; width: 41px; height: 12px; z-index: 1243; text-align: left;">
-										<span style="color: #3C3C3C; font-family: Arial; font-size: 9.3px;">Rank</span>
-									</div>
-								</div>
-								<div id="wb_Text652" style="position: absolute; left: 236px; top: 132px; width: 130px; height: 16px; z-index: 1245; text-align: left;">
-									<span style="color: #303030; font-family: Georgia; font-size: 13px;"><strong>Main Products | </strong></span>
-								</div>
-								<div id="wb_Text653" style="position: absolute; left: 282px; top: 20px; width: 351px; height: 18px; z-index: 1246; text-align: left;">
-									<span style="color: #303030; font-family: Georgia; font-size: 15px;"><strong><a href="./desksite.php" target="_blank" class="style5"><?php echo $seller['company_name'];?> </a></strong></span>
-								</div>
-								<div id="wb_Text654" style="position: absolute; left: 235px; top: 69px; width: 548px; height: 62px; z-index: 1247; text-align: left;">
-									<span
-										style="color: #696969; font-family: Arial; font-size: 12px;"><?php $string1 = (strlen($seller['hot_presentation']) > 13) ? substr($seller['hot_presentation'],0,80).'...' : $seller['hot_presentation']; echo $string1;?><br>
-									<br>
-									</span>
-								</div>
-								<div id="wb_Text655" style="position: absolute; left: 358px; top: 132px; width: 376px; height: 30px; z-index: 1248; text-align: left;">
-									<span style="color: #4B4B4B; font-family: Arial; font-size: 12px;"><?php //$string = (strlen($seller['productname']) > 13) ? substr($seller['productname'],0,80).'...' : $seller['productname']; echo $string;?></span>
-								</div>
-						   </div>
-							<div id="wb_Text656" style="position: absolute; left: 285px; top: 44px; width: 177px; height: 15px; z-index: 1259; text-align: left;">
-								<span style="color: #4B4B4B; font-family: Arial; font-size: 12px;">Presented
-									By: <?php echo $seller['name_prefix']." ".$seller['name'];?></span>
+							<div id="wb_Text751" style="position:absolute;left:50px;top:25px;width:96px;height:16px;z-index:1352;text-align:left;">
+								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php if($seller['user_category_id'] == 1) { ?>Seller<?php } elseif ($seller['user_category_id'] == 2) { ?>Shipper<?php } else{ ?>Buyer<?php } ?>&nbsp; |</strong></span>
 							</div>
-							<div id="wb_Image119" style="position: absolute; left: 233px; top: 18px; width: 45px; height: 45px; z-index: 1260;">
-								<img src="<?php echo asset_url();?><?php echo $seller['profile_image']?>" id="Image119" alt="" style="border-radius: 50px 50px 50px 50px;">
+							<div id="wb_Text752" style="position:absolute;left:13px;top:47px;width:96px;height:16px;z-index:1353;text-align:right;">
+								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php echo $seller['company_country'];?> | </strong></span>
 							</div>
-							<div id="SlideShow2" style="position: absolute; left: 2px; top: 2px; width: 210px; height: 173px; z-index: 1261;">
-								<img class="image" style="border: solid;border-color: honeydew;" src="<?php echo asset_url();?><?php echo $seller['info_img1'];?>" alt="" title="">
-								 <img class="image"  src="<?php echo asset_url();?><?php echo $seller['info_img2'];?>" style="display: none;" alt="" title="">
+							<div id="wb_Text753" style="position:absolute;left:116px;top:47px;width:86px;height:16px;z-index:1354;text-align:left;">
+								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['company_province'];?></span>
 							</div>
-							<div id="Layer213" style="position: absolute; text-align: left; visibility: hidden; left: 212px; top: 1px; width: 780px; height: 174px; z-index: 1262;">
-									<div id="RollOver6"  style="position: absolute; left: 132px; top: 27px; overflow: hidden; width: 50px; height: 50px; z-index: 1249">
-											<a href="./desksite.php" target="_blank"> <img class="hover"
-												alt="" src="<?php echo asset_url();?>images/Desktopblue.png">
-												<span><img alt="" src="<?php echo asset_url();?>images/desktopblack.png"></span>
-											</a>
-									</div>
-									<div id="wb_Text657" style="position: absolute; left: 97px; top: 86px; width: 121px; height: 64px; text-align: center; z-index: 1250;">
-										<span style="color: #4B4B4B; font-family: Arial; font-size: 13px;">DESKSITE</span>
-										<span style="color: #4B4B4B; font-family: Arial; font-size: 12px;"><br></span>
-										<span  style="color: #808080; font-family: Arial; font-size: 9.3px;">To
-											View Seller Desktop Source products, Videos, Contact, Chat
-											and much more.. </span>
-									</div>
-									<div id="wb_Text658" style="position: absolute; left: 238px; top: 86px; width: 121px; height: 40px; text-align: center; z-index: 1251;">
-										<span  style="color: #4B4B4B; font-family: Arial; font-size: 13px;">CATALOUGE</span>
-										<span style="color: #4B4B4B; font-family: Arial; font-size: 12px;"><br></span>
-										<span style="color: #808080; font-family: Arial; font-size: 9.3px;">To View Seller Products In a Quick Way..</span>
-									</div>
-									<div id="wb_Text659"  style="position: absolute; left: 386px; top: 87px; width: 121px; height: 64px; text-align: center; z-index: 1252;">
-										<span  style="color: #DCDCDC; font-family: Arial; font-size: 13px;">ADD TO FAVORITE</span><span
-											style="color: #DCDCDC; font-family: Arial; font-size: 12px;"><br></span><span
-											style="color: #DCDCDC; font-family: Arial; font-size: 9.3px;">To
-											Save Seller in Your Favorite Box, So As You Will Be Able To
-											View It Later On..</span>
-									</div>
-									<div id="RollOver8" style="position: absolute; left: 575px; top: 27px; overflow: hidden; width: 50px; height: 50px; z-index: 1253">
-										<a href="javascript:popupwnd('./chat_window.php','no','no','no','no','no','no','750','50','440','750')" target="_self">
-										<img class="hover" alt=""  src="<?php echo asset_url();?>images/chatblue.png"> <span>
-										<img alt="" src="<?php echo asset_url();?>images/chaTBLACK.png"></span>
-										</a>
-									</div>
-									<div id="wb_Text1434" style="position: absolute; left: 540px; top: 86px; width: 121px; height: 28px; text-align: center; z-index: 1254;">
-										<span style="color: #4B4B4B; font-family: Arial; font-size: 13px;">CHAT</span>
-										<span  style="color: #4B4B4B; font-family: Arial; font-size: 12px;"><br></span>
-										<span style="color: #808080; font-family: Arial; font-size: 9.3px;">To Chat With Seller .. </span>
-									</div>
-									<div id="wb_Image120"  style="position: absolute; left: 272px; top: 28px; width: 50px; height: 50px; z-index: 1255;">
-										<a href="#" onclick="ShowObjectWithEffect('Layer527', 1, 'scale', 500, 'swing');return false;">
-										<img  src="<?php echo asset_url();?>images/vacticonblack.png"  id="Image120" alt=""></a>
-									</div>
-									<div id="wb_Image114"  style="position: absolute; left: 417px; top: 32px; width: 50px; height: 50px; z-index: 1256;">
-										<img src="<?php echo asset_url();?>images/img1242.png" id="Image114" alt="">
-									</div>
-								</div>
-								<div id="Layer525"  style="position: absolute; text-align: left; visibility: hidden; left: 982px; top: 1px; width: 48px; height: 174px; z-index: 1263;"
-									onclick="ShowObjectWithEffect('Layer213', 1, 'slideright', 500, 'swing');return false;">
-									<div id="wb_Shape1"  style="position: absolute; left: 18px; top: 59px; width: 11px; height: 48px; z-index: 1257;">
-										<a href="#" onclick="ShowObjectWithEffect('Layer213', 1, 'slideright', 500, 'swing');return false;"><img
-											src="<?php echo asset_url();?>images/img1243.png" id="Shape1"
-											alt="" style="width: 11px; height: 48px;"></a>
-									</div>
-								</div>
+							<div id="wb_Text754" style="position:absolute;left:45px;top:75px;width:147px;height:16px;z-index:1355;text-align:left;">
+								<span style="color:#303030;font-family:Georgia;font-size:11px;"><strong>Annual Trade Volume&nbsp; </strong></span>
+							</div>
+							<div id="wb_Text755" style="position:absolute;left:44px;top:95px;width:144px;height:16px;z-index:1356;text-align:center;">
+								<span style="color:#808080;font-family:Arial;font-size:12px;"><?php echo $seller['annual_trad_volume'];?> Container / Year</span>
 							</div>
 						</div>
+						<?php if($seller['user_category_id'] == 2) { ?>
+						<div id="wb_Text756" style="position:absolute;left:22px;top:82px;width:130px;height:16px;z-index:1359;text-align:left;">
+							<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>Main Services | </strong></span>
+						</div>
+						<div id="wb_Text757" style="position:absolute;left:144px;top:82px;width:400px;height:16px;z-index:1360;text-align:left;">
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo substr($seller['mainservices'],0,130);?><?php if(strlen($seller['mainproducts']) > 130){ ?>...<?php } ?></span>
+						</div>
+						<?php } else { ?>
+						<div id="wb_Text756" style="position:absolute;left:22px;top:82px;width:130px;height:16px;z-index:1359;text-align:left;">
+							<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>Main Products | </strong></span>
+						</div>
+						<div id="wb_Text757" style="position:absolute;left:144px;top:82px;width:400px;height:16px;z-index:1360;text-align:left;">
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo substr($seller['mainproducts'],0,130);?><?php if(strlen($seller['mainproducts']) > 130){ ?>...<?php } ?></span>
+						</div>
+						<?php } ?>
+						<div id="wb_Text759" style="position:absolute;left:75px;top:41px;width:250px;height:16px;z-index:1361;text-align:left;">
+							<span style="color:#4B4B4B;font-family:Arial;font-size:12px;">Presented By: <?php echo $seller['name_prefix'];?> <?php echo $seller['name'];?></span>
+						</div>
+						<div id="wb_Shape2" style="position:absolute;left:19px;top:14px;width:45px;height:45px;z-index:1362;">
+							<img src="<?php echo asset_url();?><?php echo $seller['profile_image']?>" id="Shape2" alt="" style="width:45px;height:45px;border-radius:50%;border:2px solid #ccc;">
+						</div>
+						
+						<div id="wb_Image121" style="position:absolute;left:427px;top:16px;width:25px;height:25px;z-index:1363;">
+							<img src="<?php echo asset_url();?>images/CommMember.png" id="Image121" alt="">
+						</div>
+						<div id="wb_Image122" style="position:absolute;left:459px;top:14px;width:30px;height:30px;z-index:1364;">
+							<img src="<?php echo asset_url();?>images/buyer-request.png" id="Image122" alt="" style="opacity:0.15;">
+						</div>
+						<?php if(($seller['accept_chat'] + $seller['accept_offer'] + $seller['accept_community'] + $seller['accept_email']) > 2) { ?>
+						<div id="wb_Image123" style="position:absolute;left:500px;top:16px;width:28px;height:28px;z-index:1365;">
+							<img src="<?php echo asset_url();?>images/Active.png" id="Image123" alt="">
+						</div>
+						<?php } else { ?>
+						<div id="wb_Image123" style="position:absolute;left:500px;top:16px;width:28px;height:28px;z-index:1365;">
+							<img src="<?php echo asset_url();?>images/Active.png" id="Image123" alt="" style="opacity:0.15;">
+						</div>
+						<?php } ?>
 					</div>
-				</div>		
+					<div id="Layer-button-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: hidden; left: 778px; top: 1px; width: 177px; height: 145px; z-index: 1369;">
+						<div id="wb_Shape3" style="position:absolute;left:23px;top:76px;width:170px;height:31px;z-index:1366;">
+							<a href="javascript:deleteCommunityRequest(<?php echo $seller['community_id'];?>,'Layer-contact-<?php echo $key;?>','req');" class="bluebtn">
+								Ignore & Delete
+							</a>
+						</div>
+						<div id="wb_Shape292" style="position:absolute;left:23px;top:36px;width:170px;height:31px;z-index:1367;">
+							<a href="javascript:acceptCommunityRequest(<?php echo $seller['community_id'];?>,'Layer-contact-<?php echo $key;?>','req');" class="bluebtn">
+								Accept
+							</a>
+						</div>
+					</div>
+				</div>
 				<?php $i++; } ?>
 			</div>	
-			<script>
+			
+			<div class="panel-body panel-body-custom" style="padding-top: 15px;display:none;" id="request_by_me"><br>
+				<div class="row">
+					<div class="col-md-12" style="text-align: left">
+						<span style="color:#F05539;font-family:Arial;font-size:32px;" id="vreq"><?php echo count($mycommunityrequest);?>   </span>
+						<span style="color:#696969;font-family:Arial;font-size:12px;">Requests</span>
+					</div>
+				</div><br>
+				<div class="row">
+					<div class="col-md-12" style="text-align: left">
+						<span id="request_type" style="color:#696969;font-family:Arial;font-size:12px;">You have been sent requests to the following members to add you to their business community&nbsp; </span>
+					</div>
+				</div><br><br>
+			
+				<?php $i =1;
+				foreach($mycommunityrequest as $key=>$seller) { ?>
+					<?php 
+						$burl = "";
+						if($seller['user_category_id'] == 1) { 
+							$burl = "desksite/".$seller['id'];
+						} elseif ($seller['user_category_id'] == 2) {
+							$burl = "shipper/profile/".$seller['id'];
+						} elseif ($seller['user_category_id'] == 3) {
+							$burl = "buyer/profile/".$seller['id'];
+						}
+							
+					?>
+				<div id="VLayer-contact-<?php echo $key;?>" style="position:relative;text-align:left;left:51px;top:0px;width:957px;height:162px;z-index:1375;" onmouseenter="ShowObjectWithEffect('VLayer-button-<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer222-<?php echo $key;?>', 0);ShowObject('VLayer-button-<?php echo $key;?>', 0);return false;">
+					<div id="Layer220" style="position:absolute;text-align:left;left:2px;top:1px;width:774px;height:143px;z-index:1368;">
+						<div id="wb_Text748" style="position:absolute;left:74px;top:20px;width:351px;height:16px;z-index:1357;text-align:left;">
+							<span style="color:#303030;font-family:Georgia;font-size:15px;"><strong><a href="<?php echo base_url().$burl;?>" target="_blank" class="style5"><?php echo $seller['company_name'];?></a></strong></span>
+						</div>
+						<div id="Layer221" style="position:absolute;text-align:left;left:554px;top:0px;width:218px;height:141px;z-index:1358;">
+							<div id="wb_Text750" style="position:absolute;left:95px;top:26px;width:117px;height:16px;text-align:center;z-index:1351;">
+								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['sub_category'];?></span>
+							</div>
+							<div id="wb_Text751" style="position:absolute;left:50px;top:25px;width:96px;height:16px;z-index:1352;text-align:left;">
+								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php if($seller['user_category_id'] == 1) { ?>Seller<?php } elseif ($seller['user_category_id'] == 2) { ?>Shipper<?php } else{ ?>Buyer<?php } ?>&nbsp; |</strong></span>
+							</div>
+							<div id="wb_Text752" style="position:absolute;left:13px;top:47px;width:96px;height:16px;z-index:1353;text-align:right;">
+								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php echo $seller['company_country'];?> | </strong></span>
+							</div>
+							<div id="wb_Text753" style="position:absolute;left:116px;top:47px;width:86px;height:16px;z-index:1354;text-align:left;">
+								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['company_province'];?></span>
+							</div>
+							<div id="wb_Text754" style="position:absolute;left:45px;top:75px;width:147px;height:16px;z-index:1355;text-align:left;">
+								<span style="color:#303030;font-family:Georgia;font-size:11px;"><strong>Annual Trade Volume&nbsp; </strong></span>
+							</div>
+							<div id="wb_Text755" style="position:absolute;left:44px;top:95px;width:144px;height:16px;z-index:1356;text-align:center;">
+								<span style="color:#808080;font-family:Arial;font-size:12px;"><?php echo $seller['annual_trad_volume'];?> Container / Year</span>
+							</div>
+						</div>
+						<?php if($seller['user_category_id'] == 2) { ?>
+						<div id="wb_Text756" style="position:absolute;left:22px;top:82px;width:130px;height:16px;z-index:1359;text-align:left;">
+							<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>Main Services | </strong></span>
+						</div>
+						<div id="wb_Text757" style="position:absolute;left:144px;top:82px;width:400px;height:16px;z-index:1360;text-align:left;">
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo substr($seller['mainservices'],0,130);?><?php if(strlen($seller['mainproducts']) > 130){ ?>...<?php } ?></span>
+						</div>
+						<?php } else { ?>
+						<div id="wb_Text756" style="position:absolute;left:22px;top:82px;width:130px;height:16px;z-index:1359;text-align:left;">
+							<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>Main Products | </strong></span>
+						</div>
+						<div id="wb_Text757" style="position:absolute;left:144px;top:82px;width:400px;height:16px;z-index:1360;text-align:left;">
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo substr($seller['mainproducts'],0,130);?><?php if(strlen($seller['mainproducts']) > 130){ ?>...<?php } ?></span>
+						</div>
+						<?php } ?>
+						<div id="wb_Text759" style="position:absolute;left:75px;top:41px;width:250px;height:16px;z-index:1361;text-align:left;">
+							<span style="color:#4B4B4B;font-family:Arial;font-size:12px;">Presented By: <?php echo $seller['name_prefix'];?> <?php echo $seller['name'];?></span>
+						</div>
+						<div id="wb_Shape2" style="position:absolute;left:19px;top:14px;width:45px;height:45px;z-index:1362;">
+							<img src="<?php echo asset_url();?><?php echo $seller['profile_image']?>" id="Shape2" alt="" style="width:45px;height:45px;border-radius:50%;border:2px solid #ccc;">
+						</div>
+						
+						<div id="wb_Image121" style="position:absolute;left:427px;top:16px;width:25px;height:25px;z-index:1363;">
+							<img src="<?php echo asset_url();?>images/CommMember.png" id="Image121" alt="">
+						</div>
+						<div id="wb_Image122" style="position:absolute;left:459px;top:14px;width:30px;height:30px;z-index:1364;">
+							<img src="<?php echo asset_url();?>images/buyer-request.png" id="Image122" alt="" style="opacity:0.15;">
+						</div>
+						<?php if(($seller['accept_chat'] + $seller['accept_offer'] + $seller['accept_community'] + $seller['accept_email']) > 2) { ?>
+						<div id="wb_Image123" style="position:absolute;left:500px;top:16px;width:28px;height:28px;z-index:1365;">
+							<img src="<?php echo asset_url();?>images/Active.png" id="Image123" alt="">
+						</div>
+						<?php } else { ?>
+						<div id="wb_Image123" style="position:absolute;left:500px;top:16px;width:28px;height:28px;z-index:1365;">
+							<img src="<?php echo asset_url();?>images/Active.png" id="Image123" alt="" style="opacity:0.15;">
+						</div>
+						<?php } ?>
+					</div>
+					<div id="VLayer-button-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: hidden; left: 778px; top: 1px; width: 177px; height: 145px; z-index: 1369;">
+						<div id="wb_Shape3" style="position:absolute;left:23px;top:76px;width:170px;height:31px;z-index:1366;">
+							<a href="javascript:deleteCommunityRequest(<?php echo $seller['community_id'];?>,'VLayer-contact-<?php echo $key;?>','vreq');" class="bluebtn">
+								Ignore & Delete
+							</a>
+						</div>
+						<div id="wb_Shape292" style="position:absolute;left:23px;top:36px;width:170px;height:31px;z-index:1367;">
+							<a href="javascript:false;" class="bluebtn">
+								Waiting
+							</a>
+						</div>
+					</div>
+				</div>
+				<?php $i++; } ?>
+			</div>	
+<script>
+function openCommunityInvites() {
+	$("#request_to_me").show();
+	$("#request_by_me").hide();
+}
+function openMyInvites() {
+	$("#request_to_me").hide();
+	$("#request_by_me").show();
+}
+function acceptCommunityRequest(id,lid,req) {
+	ajaxindicatorstart('');
+	$.get(base_url+"mycommunity/member/accept/"+id,{},function(data){
+		customAlert(data.msg);
+		$("#"+lid).remove();
+		var rcount = parseInt($("#"+req).html());
+		rcount--;
+		$("#"+req).html(rcount);
+		ajaxindicatorstop();
+	},'json');
+}
 
-document.getElementById('totalrequest').innerHTML = <?php echo count($sendcommunityrequest);?>
-
-
-			</script>
+function deleteCommunityRequest(id,lid,req) {
+	ajaxindicatorstart('');
+	$.get(base_url+"mycommunity/member/delete/"+id,{},function(data){
+		customAlert(data.msg);
+		$("#"+lid).remove();
+		var rcount = parseInt($("#"+req).html());
+		rcount--;
+		$("#"+req).html(rcount);
+		ajaxindicatorstop();
+	},'json');
+}
+</script>

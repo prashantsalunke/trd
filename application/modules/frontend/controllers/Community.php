@@ -28,14 +28,16 @@ class Community extends MX_Controller {
 		$this->template->set ('userinfo', $userinfo);
 		$usertype = $this->product->getUserTypebyBusinessId($busi_id);
 		$this->template->set ('usertype', $usertype);
-		$allposts = $this->product->communityPostListByAlluser();
+		$allposts = $this->product->communityPostListByAlluser($busi_id);
 		$this->template->set ('allposts', $allposts);
 		$myposts = $this->product->communityPostListByBusinessId($busi_id);
 		$this->template->set ('myposts', $myposts);
 		$productslist = $this->product->getProductlist($busi_id);
 		$this->template->set ( 'products', $productslist);
 		$communitymember = $this->product->getCommunityMember($busi_id);
+		$firstpost = $this->product->communityMemberFirstPost($busi_id);
 		$this->template->set ( 'communitymember', $communitymember);
+		$this->template->set ( 'firstpost', $firstpost);
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
 		$this->template->set ( 'userId', '' );
@@ -355,6 +357,33 @@ class Community extends MX_Controller {
 			$resp['status'] = 1;
 		} else {
 			$resp['status'] = 0;
+		}
+		echo json_encode($resp);
+	}
+	
+	public function deleteCommunityRequest($id) {
+		$this->load->model('Community_Model','communitymodel');
+		$result = $this->communitymodel->deleteCommunityRequest($id);
+		$resp = array();
+		if($result) {
+			$resp['msg'] = "Community add request deleted successfully.";
+		} else {
+			$resp['status'] = "Failed to delete request";
+		}
+		echo json_encode($resp);
+	}
+	
+	public function acceptCommunityRequest($id) {
+		$this->load->model('Community_Model','communitymodel');
+		$params = array();
+		$params['id'] = $id;
+		$params['status'] = 1;
+		$result = $this->communitymodel->acceptCommunityRequest($params);
+		$resp = array();
+		if($result) {
+			$resp['msg'] = "Community add request accepted successfully.";
+		} else {
+			$resp['status'] = "Failed to accept request";
 		}
 		echo json_encode($resp);
 	}

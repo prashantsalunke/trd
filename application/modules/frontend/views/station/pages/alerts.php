@@ -31,6 +31,34 @@
     border: 0px;
     background-color: #F05539 !important;
 }
+.bluebtn {
+	background-color:#1e90ff;
+	text-decoration:none;
+	border-radius:10px;
+	min-width:150px;
+	padding:7px 15px;
+	text-align:center;
+	color:#fff;
+	font-size:13px;
+	cursor:pointer;
+	display:block;
+}
+.bluebtn:visited {
+	color:#fff;
+}
+.bluebtn:hover {
+	background-color:#1e70ff;
+	color:#fff;
+	text-decoration:none;
+}
+.bluebtn:active {
+	color:#fff;
+}
+.bluebtn:focus {
+	background-color:#1e70ff;
+	color:#fff;
+	text-decoration:none;
+}
 -->
 </style>
 <div class="row editaccount_outer">
@@ -125,6 +153,32 @@
 			</div>
 	</div>
 </div>
+<div id="customAlertBox" class="modal fade" role="dialog" style="z-index:13000;">
+  	<div class="modal-dialog" style="width:400px;">
+    	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
+      		<div class="modal-body">
+      			<div class="row" style="padding-top:10px;">
+      				<div class="col-sm-2"></div>
+      				<div class="col-sm-8">
+	      				<div style="text-align: center;">
+							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;"></span>
+						</div>
+						<br><br>
+						<div style="text-align: center;" id="customAlertText">
+							My Alert
+						</div>
+					</div>
+					<div class="col-sm-2"></div>
+      			</div>
+      			<br>
+      			<div class="row text-center">
+      				<a href="" class="btn btn-sm btn-danger-custom" data-dismiss="modal" style="width:100px;">OK</a>
+      			</div>
+      			<br><br>
+      		</div>
+    	</div>
+  	</div>
+</div>
 <script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 <script>
 $( document ).ready(function() {
@@ -183,5 +237,9 @@ function ajaxindicatorstop()
     jQuery('#resultLoading .bg').height('100%');
        jQuery('#resultLoading').fadeOut(300);
     jQuery('body').css('cursor', 'default');
+}
+function customAlert(msg) {
+	$("#customAlertText").html(msg);
+	$('#customAlertBox').modal({show:true,backdrop: 'static',keyboard: false});
 }
 </script>
