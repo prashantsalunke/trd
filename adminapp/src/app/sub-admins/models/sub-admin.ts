@@ -28,7 +28,7 @@ export class Permissions {
     view_errors:number=0;
     statistic:number=0;
     account_alarm:number=0;
-    created_at?:Date    
+    created_at?:Date
 }
     
 export const PermissionsArray =  [{value:'as_admin',name: 'Login as an admin'},
