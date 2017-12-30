@@ -154,10 +154,12 @@ class Alerts extends MX_Controller {
 		$this->load->library('mylib/CommunityLib');
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
+		$mycommunityrequest = $this->communitylib->getSendCommunityRequest($busi_id);
 		if($sendcommunityrequest[0]['community_id'] == "" ) {
 			$sendcommunityrequest = array();
 		}
 		$this->template->set ( 'sendcommunityrequest', $sendcommunityrequest);
+		$this->template->set ( 'mycommunityrequest', $mycommunityrequest);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);

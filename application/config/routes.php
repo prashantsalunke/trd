@@ -447,6 +447,8 @@ $route['mybusiness/profile/update'] = 'frontend/Community/updateMyNickName';
 $route['mybusiness/profile/isonline'] = 'frontend/Community/updateOnlineStatus';
 $route['community/members/search'] = 'frontend/Community/searchMyCommunityMemberByName';
 $route['community/members/delete'] = 'frontend/Community/deleteMyCommunityMembers';
+$route['mycommunity/member/delete/([0-9]+)'] = 'frontend/Community/deleteCommunityRequest/$1';
+$route['mycommunity/member/accept/([0-9]+)'] = 'frontend/Community/acceptCommunityRequest/$1';
 
 
 
