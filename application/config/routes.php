@@ -494,7 +494,9 @@ $route['api/current-user'] = 'backend/auth/getLoggetInUser';
 $route['api/logout'] = 'backend/auth/logout';
 $route['api/sub-admins']['post'] = 'backend/subadmins/add';
 $route['api/sub-admins']['put'] = 'backend/subadmins/edit';
-$route['api/sub-admins']['get'] = 'backend/subadmins/getAll';
+$route['api/sub-admins/delete']['put'] = 'backend/subadmins/delete';
+$route['api/sub-admins/suspend/(:num)']['put'] = 'backend/subadmins/suspend/$1';
+$route['api/sub-admins/(:num)']['get'] = 'backend/subadmins/getAll/$1';
 $route['api/sub-admins/permissions']['put'] = 'backend/subadmins/permissions';
 $route['api/sub-admins/permissions/([0-9]+)'] = 'backend/subadmins/permissions/$1';
 

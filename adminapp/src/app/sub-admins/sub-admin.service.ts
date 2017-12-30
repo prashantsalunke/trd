@@ -47,7 +47,6 @@ export class SubAdminService {
 
   getIndexOfAdmin(admin:SubAdmin){
     const index = this.subAdmins.indexOf(admin);
-    console.log(index);
     return index;
   }
 
@@ -62,12 +61,41 @@ this.subAdmins[adminIndex] = admin;
     this.subAdminChanged.next(this.subAdmins.slice());
   }
 
-  getSubAdmins(){
-      return this.http.get<SubAdmin[]>(`${this.apiUrl}sub-admins`)
+  getSubAdmins(suspended=0){
+      return this.http.get<SubAdmin[]>(`${this.apiUrl}sub-admins/${suspended}`)
           .subscribe((subAdmins:SubAdmin[])=>{
               this.subAdmins = subAdmins;
               this.subAdminChanged.next(this.subAdmins.slice())
           });
+  }
+
+  delete(adminIds:Array<number>){
+    return this.http.put<boolean>(`${this.apiUrl}sub-admins/delete`,adminIds);
+  }
+
+  suspend(adminIds:Array<number>, status=1){
+    return this.http.put<boolean>(`${this.apiUrl}sub-admins/suspend/${status}`,adminIds);
+  }
+
+  deleteLocal(adminIds:Array<number>){
+    let subAdminCopy = this.subAdmins;
+    adminIds.forEach(id=>{
+      subAdminCopy = subAdminCopy.filter(admin=>{
+        return admin.id !== id;
+      })
+    });
+    this.subAdmins=subAdminCopy;
+    this.subAdminChanged.next(this.subAdmins.slice());
+  }
+
+  filterAdmin(value){
+      if(!value) {
+          this.subAdminChanged.next(this.subAdmins.slice());
+      }; //when nothing has typed
+      const filteredItems = Object.assign([], this.subAdmins.slice()).filter(
+          item => (item.username.toLowerCase().indexOf(value.toLowerCase()) > -1 || item.email.toLowerCase().indexOf(value.toLowerCase()) > -1)
+      );
+      this.subAdminChanged.next(filteredItems);
   }
 
 }

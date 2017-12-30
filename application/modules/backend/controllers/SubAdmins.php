@@ -22,9 +22,9 @@ class SubAdmins extends REST_Controller
 
     }
 
-    public function getAll_get()
+    public function getAll_get($suspended)
     {
-        $subAdmins = $this->Admin_User_Model->getAll();
+        $subAdmins = $this->Admin_User_Model->getAll($suspended);
         if ($subAdmins) {
             $this->response($subAdmins, 200);
         } else {
@@ -120,6 +120,26 @@ class SubAdmins extends REST_Controller
             } else {
                 $this->response(NULL);
             }
+        }
+    }
+
+    public function delete_put(){
+        $adminIds = $this->put();
+
+        if ($result = $this->Admin_User_Model->delete($adminIds)) {
+            $this->response($result);
+        } else {
+            $this->response(NULL);
+        }
+    }
+
+    public function suspend_put($status){
+        $adminIds = $this->put();
+
+        if ($result = $this->Admin_User_Model->suspend($adminIds,$status)) {
+            $this->response($result);
+        } else {
+            $this->response(NULL);
         }
     }
 

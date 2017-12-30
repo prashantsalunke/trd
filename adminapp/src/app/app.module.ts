@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { MainRouteComponent } from './main-route.component';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './core/auth.service';
+import {SweetAlert2Module} from "@toverux/ngx-sweetalert2";
 
 
 @NgModule({
@@ -25,8 +26,8 @@ import { AuthService } from './core/auth.service';
     HttpClientModule,
     ReactiveFormsModule,
     CoreModule,
-    AppRoutingModule
-    
+    AppRoutingModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [AuthService ],
     bootstrap: [AppComponent]
