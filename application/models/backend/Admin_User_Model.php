@@ -35,8 +35,10 @@ class Admin_User_Model extends CI_Model
         return null;
     }
 
-    public function getAll()
+    public function getAll($suspended)
     {
+        $this->db->where('id !=', 1);
+        $this->db->where('is_suspended', $suspended);
         $result = $this->db->get($this->table_name);
         return $result->result_array();
     }
@@ -99,6 +101,36 @@ class Admin_User_Model extends CI_Model
 
         return $query->row();
 
+    }
+
+    public function delete($adminIds)
+    {
+        $this->db->trans_start();
+        $this->db->where_in('id', $adminIds);
+        $result = $this->db->delete($this->table_name);
+        if ($result) {
+            $this->load->model('backend/Permissions_Model');
+
+            $permitionResult = $this->Permissions_Model->delete($adminIds);
+            if ($permitionResult) {
+                $this->db->trans_complete();
+                return true;
+            }
+        }
+        return null;
+    }
+    public function suspend($adminIds,$status)
+    {
+        $this->db->trans_start();
+        $this->db->set('is_suspended', $status);
+
+        $this->db->where_in('id', $adminIds);
+        $result = $this->db->update($this->table_name);
+        if ($result) {
+                $this->db->trans_complete();
+                return $result;
+        }
+        return null;
     }
 
     public function check_unique_user_email($id = '', $email)

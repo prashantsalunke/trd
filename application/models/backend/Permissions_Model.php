@@ -35,6 +35,11 @@ class Permissions_Model extends CI_Model{
         return $query->row();
     }
 
+    public function delete($adminIds){
+        $this->db->where_in('admin_user_id',$adminIds);
+        return $this->db->delete('admin_permissions');
+    }
+
     public function updatePermissions($user_id, $permisson){
         $this->db->trans_start();
         $permitions = array(

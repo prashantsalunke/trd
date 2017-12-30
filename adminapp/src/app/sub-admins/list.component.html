@@ -17,27 +17,42 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="col-sm-7">
+                            <swal
+                                    #deleteSwal
+                                    title="Delete selected sub admins?"
+                                    text="This cannot be undone"
+                                    [showCancelButton]="true"
+                                    [focusCancel]="true"
+                                    (confirm)="deleteAdmins()">
+                            </swal>
+                            <swal
+                                    #suspendSwal
+                                    title="Suspend selected sub admins?"
+                                    [showCancelButton]="true"
+                                    [focusCancel]="true"
+                                    (confirm)="deleteAdmins(true)">
+                            </swal>
                             <button class="btn btn-login" [disabled]="!enableOtherButtons || editEnabled">Logs</button>
-                            <button class="btn btn-login" [disabled]="!enableOtherButtons || editEnabled">Delete</button>
-                            <button class="btn btn-login" [disabled]="!enableOtherButtons || editEnabled">Suspend</button>
+                            <button class="btn btn-login" [swal]="deleteSwal"  [disabled]="!enableOtherButtons || editEnabled">Delete</button>
+                            <button class="btn btn-login" [swal]="suspendSwal" [disabled]="!enableOtherButtons || editEnabled">Suspend</button>
                             <button (click)="openEditable()" [disabled]="!enableEditButtons" class="btn btn-login">Edit</button>
                             <button class="btn btn-login" (click)="redirectToPermssion()" [disabled]="!enableEditButtons">Permissions</button> </div>
                         <div class="col-sm-5">
                             <div class="row" style="margin:0px;">
                                 <div class="col-xs-10">
                                     <div class="row">
-                                        <input type="text" class="form-control input-box" placeholder="Search for sub admin" style="margin-top:20px;">
+                                        <input type="text" class="form-control input-box" ngModel="searchText" #searchText placeholder="Search for sub admin" style="margin-top:20px;">
                                     </div>
                                 </div>
                                 <div class="col-xs-2">
-                                    <div class="row"> <button class="btn btn-login">Search</button> </div>
+                                    <div class="row"> <button class="btn btn-login" (click)="search(searchText.value)">Search</button> </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row tabel-div">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12" *ngIf="subAdminList && subAdminList.length">
                         <div class="panel panel-default" *ngFor="let adminUser of subAdminList; let adminI = index;">
                             <div class="panel-body">
                                 <div class="row" *ngIf="(this.selectedAdminEdit?.id != adminUser?.id)">
@@ -189,7 +204,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="col-xs-12" *ngIf="subAdminList && !subAdminList.length">
+                        No subadmins added yet
+                    </div>
             </div>
         </div>
     </div>

@@ -76,7 +76,7 @@ export class ListComponent implements OnInit {
                     this.subAdminService.updateLocalAdmin(adminIndex, admin);
                     this.submitted = false;
                     this.selectedAdminEdit = {};
-                    this.editEnabled = false;
+                    this.toggleActionButtons();
                 }, error => {
                     if (error.status === 422) {
                         this.serverErrors = error.error;
@@ -101,7 +101,6 @@ export class ListComponent implements OnInit {
         this.enableEditButtons = false;
         this.enableOtherButtons = false;
         this.editEnabled = false;
-        ``
         setTimeout(()=> {
             this.enableEditButtons = selected === 1;
             this.enableOtherButtons = selected >= 1;
@@ -109,10 +108,31 @@ export class ListComponent implements OnInit {
     }
 
     private initPermissionForm() {
-this.showPermissionForm = true;
+        this.showPermissionForm = true;
     }
 
-    togglePermissionEdit(showValue:boolean){
+    togglePermissionEdit(showValue: boolean) {
         this.showPermissionForm = showValue;
+    }
+
+    deleteAdmins(suspend: boolean = false) {
+        const selectedAdmins = []
+        this.subAdminList.forEach((admin: SubAdmin)=> {
+            if (admin.selected) {
+                return selectedAdmins.push(admin['id']);
+            }
+        });
+        // this.subAdminService.deleteLocal(selectedAdmins);
+        let serviceOption = (suspend) ? this.subAdminService.suspend(selectedAdmins) : this.subAdminService.delete(selectedAdmins);
+        serviceOption.subscribe(deleteStatus=> {
+            if (deleteStatus) {
+                this.subAdminService.deleteLocal(selectedAdmins);
+                this.toggleActionButtons();
+            }
+        })
+    }
+
+    search(searchValue){
+        this.subAdminService.filterAdmin(searchValue);
     }
 }
