@@ -262,7 +262,7 @@ class Bstation extends MX_Controller {
 			$this->load->library('mylib/StorageLib');
 			$storage = array();
 			$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
-			$storage['field'] = 'bstation';
+			$storage['field'] = 'inquiries';
 			$storage['datasize'] = round($size/1024,2);
 			$this->storagelib->updateStorageByBusiId($storage);
 		}
@@ -327,7 +327,7 @@ class Bstation extends MX_Controller {
 			$this->load->library('mylib/StorageLib');
 			$storage = array();
 			$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
-			$storage['field'] = 'bstation';
+			$storage['field'] = 'offers';
 			$storage['datasize'] = round($size/1024,2);
 			$this->storagelib->updateStorageByBusiId($storage);
 		}

@@ -41,10 +41,8 @@ class Alerts extends MX_Controller {
 		
 		$order = $this->orderlib->getOrderByBusiId($busi_id);
 		$favoritearray= $this->myfavoritelib->getMyfavoriteseller($busi_id,1);
+		$sendcommunityrequest = array();
 		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
-		if($sendcommunityrequest[0]['community_id'] == "" ) {
-			$sendcommunityrequest = array();
-		}
 		$this->template->set ( 'favoritearray', $favoritearray);
 		$this->template->set ( 'inquiry', $inquiry);
 		$this->template->set ( 'offer', $offer);
@@ -153,11 +151,9 @@ class Alerts extends MX_Controller {
 		
 		$this->load->library('mylib/CommunityLib');
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$sendcommunityrequest = array();
 		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
 		$mycommunityrequest = $this->communitylib->getSendCommunityRequest($busi_id);
-		if($sendcommunityrequest[0]['community_id'] == "" ) {
-			$sendcommunityrequest = array();
-		}
 		$this->template->set ( 'sendcommunityrequest', $sendcommunityrequest);
 		$this->template->set ( 'mycommunityrequest', $mycommunityrequest);
 		$this->template->set ( 'page', 'home' );
