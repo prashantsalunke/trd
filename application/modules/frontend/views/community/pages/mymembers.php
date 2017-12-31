@@ -1,6 +1,6 @@
 <?php foreach($communitymember as $member) {?>
 <div class="memberclass1  hover3">
-	<input type="hidden" class="comm_member_id" value="<?php echo $member['busi_id'];?>"/>
+	<input type="hidden" class="comm_member_id" value="<?php echo $member['mbid'];?>"/>
 	<div class="col-sm-3 image-cover">
 		<img src="<?php echo asset_url(); ?><?php if(!empty($member['memberimg'])) { echo $member['memberimg'];} else { echo "images/img3470.png";}?>" id="Image28" alt="" class="memberimg">
 		<span class="notification"><?php echo $member['messages'];?></span>

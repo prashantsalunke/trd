@@ -1223,13 +1223,14 @@ class Product_Model extends CI_Model {
     }
     
     public function communityPostListByAlluser($busi_id) {
-    	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,  e.*, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment');
+    	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,d.accept_offer,d.accept_email,e.*,f.user_category_id, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment,b.step,"" as share_cname,"" as share_profile_image');
     	$this->db->from(TABLES::$COMMMUNITY_POST.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS i','i.busi_id=h.busi_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_STAGE. ' AS b','d.id = b.busi_id','left');
     	$this->db->where('i.my_busi_id',$busi_id);
     	$this->db->where('h.status',1);
     	$this->db->where('f.account_activated', 1);
@@ -1238,13 +1239,15 @@ class Product_Model extends CI_Model {
     	$this->db->where('f.is_contactperson',1);
     	$this->db->group_by('h.id');
     	$query_1 = $this->db->get_compiled_select ();
-    	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,  e.*, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment');
+    	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,d.accept_offer,d.accept_email,e.*,f.user_category_id, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment,b.step,(select j.name from tbl_user as j where j.busi_id=h.share_id and j.account_activated = 1 and j.is_suspend = 0 and j.is_deleted = 0 and j.is_contactperson = 1 limit 1) as share_cname,(select l.profile_image from tbl_user as k inner join tbl_userinfo as l on k.id=l.user_id where k.busi_id=h.share_id and k.account_activated = 1 and k.is_suspend = 0 and k.is_deleted = 0 and k.is_contactperson = 1 limit 1) as share_profile_image');
     	$this->db->from(TABLES::$COMMMUNITY_POST.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
-    	$this->db->where('h.busi_id',$busi_id);
+    	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS i','i.my_busi_id=h.share_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_STAGE. ' AS b','d.id = b.busi_id','left');
+    	$this->db->where('i.busi_id',$busi_id);
     	$this->db->where('h.status',1);
     	$this->db->where('f.account_activated', 1);
     	$this->db->where('f.is_suspend', 0);
@@ -1252,7 +1255,22 @@ class Product_Model extends CI_Model {
     	$this->db->where('f.is_contactperson',1);
     	$this->db->group_by('h.id');
     	$query_2 = $this->db->get_compiled_select ();
-    	$sql = "SELECT t.* FROM (".$query_1." UNION ".$query_2.") as t order by t.created_date desc";
+    	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,d.accept_offer,d.accept_email,e.*,f.user_category_id, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment,b.step,"" as share_cname,"" as share_profile_image');
+    	$this->db->from(TABLES::$COMMMUNITY_POST.' AS h');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
+    	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
+    	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
+    	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
+    	$this->db->join(TABLES::$PRODUCT_STAGE. ' AS b','d.id = b.busi_id','left');
+    	$this->db->where('h.busi_id',$busi_id);
+    	$this->db->where('h.status',1);
+    	$this->db->where('f.account_activated', 1);
+    	$this->db->where('f.is_suspend', 0);
+    	$this->db->where('f.is_deleted', 0);
+    	$this->db->where('f.is_contactperson',1);
+    	$this->db->group_by('h.id');
+    	$query_3 = $this->db->get_compiled_select ();
+    	$sql = "SELECT t.* FROM (".$query_1." UNION ".$query_2." UNION ".$query_3.") as t group by t.postid order by t.created_date desc";
     	$query = $this->db->query($sql);
     	$result = $query->result_array();
     	return $result;
@@ -1275,12 +1293,13 @@ class Product_Model extends CI_Model {
     }
     
     public function communityPostListByBusinessId($id) {
-    	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,  e.*, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment');
+    	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,d.accept_offer,d.accept_email,e.*,f.user_category_id, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment,b.step');
     	$this->db->from(TABLES::$COMMMUNITY_POST.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
+    	$this->db->join(TABLES::$PRODUCT_STAGE. ' AS b','d.id = b.busi_id','inner');
     	$this->db->where('h.busi_id',$id);
     	$this->db->where('h.status',1);
     	$this->db->where('f.account_activated', 1);
@@ -1290,7 +1309,6 @@ class Product_Model extends CI_Model {
     	$this->db->order_by('h.id','desc');
     	$this->db->group_by('h.id');
     	$query = $this->db->get();
-    	//echo $this->db->last_query();
     	$result = $query->result_array();
     	return $result;
     }
@@ -1338,23 +1356,22 @@ class Product_Model extends CI_Model {
     	$rowcount = $query->num_rows();
     	if($rowcount > 0)
     	{
-    		$likes =$likeCount-1;
+    		/*$likes =$likeCount-1;
     		$this->db->set('likes', $likes);
     		$this->db->where('id', $data['post_id']);
-    		$this->db->update(TABLES::$POST);
+    		$this->db->update(TABLES::$COMMMUNITY_POST);
     		
     		$this -> db -> where('liked_by', $data['liked_by']);
     		$this -> db -> where('post_id', $data['post_id']);
-    		return $this->db-> delete(TABLES::$POSTLIKE);
+    		return $this->db-> delete(TABLES::$POSTLIKE);*/
+    		return 0;
     		
-    	}
-    	
-    	else{
+    	} else {
     		
     		$likes =$likeCount+1;
     		$this->db->set('likes', $likes);
     		$this->db->where('id', $data['post_id']);
-    		$this->db->update(TABLES::$POST);
+    		$this->db->update(TABLES::$COMMMUNITY_POST);
     		
     		$this->db->insert ( TABLES::$POSTLIKE, $data);
     		$this->db->insert_id ();
@@ -1362,6 +1379,14 @@ class Product_Model extends CI_Model {
     		
     	}
     	
+    }
+    
+    public function addCommunityPostRequest($params) {
+    	return $this->db->insert(TABLES::$COMMUNITY_POST_REQUESTS,$params);
+    }
+    
+    public function addCommunityPostOffer($params) {
+    	return $this->db->insert(TABLES::$COMMUNITY_POST_OFFERS,$params);
     }
     
     /*
@@ -1379,7 +1404,7 @@ class Product_Model extends CI_Model {
      }*/
     
     public function getCommunityMember($id) {
-    	$this->db->select('a.*,b.company_name as cname,b.company_country as country,b.company_province as state,
+    	$this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
     			b.company_city as city,b.plan_id,b.is_logo_verified,b.gaurantee_period,
     			(CASE WHEN d.nickname IS NULL OR d.nickname = "" THEN d.name ELSE d.nickname END) as membername,
     			d.user_category_id,(CASE WHEN d.nickname IS NULL OR d.nickname = "" THEN e.profile_image ELSE "images/img3470.png" END) as memberimg,f.sub_category as subcategory,
@@ -1391,10 +1416,28 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$USER.' AS d','d.busi_id=a.busi_id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS e','e.user_id=d.id','inner');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS f','f.id=d.user_subcategory_id','inner');
-    	$this->db->where('a.my_busi_id',$id);
+    	$this->db->where("a.my_busi_id",$id);
     	$this->db->where('d.is_contactperson',1);
     	$this->db->where('a.status',1);
-    	$query = $this->db->get();
+    	$query_1 = $this->db->get_compiled_select ();
+    	$this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
+    			b.company_city as city,b.plan_id,b.is_logo_verified,b.gaurantee_period,
+    			(CASE WHEN d.nickname IS NULL OR d.nickname = "" THEN d.name ELSE d.nickname END) as membername,
+    			d.user_category_id,(CASE WHEN d.nickname IS NULL OR d.nickname = "" THEN e.profile_image ELSE "images/img3470.png" END) as memberimg,f.sub_category as subcategory,
+    			(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
+    			(select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages');
+    	$this->db->from(TABLES::$COMMUNITY_MEMBER.' AS a');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.my_busi_id=b.id','inner');
+    	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS c','c.busi_id=b.id','inner');
+    	$this->db->join(TABLES::$USER.' AS d','d.busi_id=b.id','inner');
+    	$this->db->join(TABLES::$USER_INFO.' AS e','e.user_id=d.id','inner');
+    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS f','f.id=d.user_subcategory_id','inner');
+    	$this->db->where("a.busi_id",$id);
+    	$this->db->where('d.is_contactperson',1);
+    	$this->db->where('a.status',1);
+    	$query_2 = $this->db->get_compiled_select ();
+    	$sql = "SELECT t.* FROM (".$query_1." UNION ".$query_2.") as t group by t.mbid order by t.created_date desc";
+    	$query = $this->db->query($sql);
     	$result = $query->result_array();
     	return $result;
     }
@@ -1415,6 +1458,25 @@ class Product_Model extends CI_Model {
     	//echo $this->db->last_query();
     	$result = $query->result_array();
     	return $result;
+    }
+    
+    public function getInvitationCommunityCount($busi_id)
+    {
+    
+    	$this->db->select('count(a.id) as members');
+    	$this->db->from(TABLES::$COMMUNITY_MEMBER . ' AS a');
+    	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.my_busi_id=b.id','inner');
+    	$this->db->join(TABLES::$USER. ' AS d','a.my_busi_id=d.busi_id','inner');
+    	$this->db->where('a.busi_id',$busi_id);
+    	$this->db->where('a.is_deleted',0);
+    	$this->db->where('a.status',0);
+    	$this->db->where('d.account_activated', 1);
+    	$this->db->where('d.is_suspend', 0);
+    	$this->db->where('d.is_deleted', 0);
+    	$this->db->where('d.is_contactperson',1);
+    	$query = $this->db->get();
+    	$row = $query->result_array();
+    	return $row;
     }
     
     public function getWebsiteProductVideos($busi_id)
@@ -1530,8 +1592,8 @@ class Product_Model extends CI_Model {
     public function getCommunityPostLike($id){
     	$this->db->select('a.*,b.*,d.company_name as cname,d.company_country as country,d.company_province as state,d.company_city as city,c.*,f.profile_image,g.sub_category as subcategory');
     	$this->db->from(TABLES::$POSTLIKE.' AS a');
-    	$this->db->from(TABLES::$COMMMUNITY_POST.' AS b','a.post_id=b.id','inner');
-    	$this->db->from(TABLES::$USER.' AS c','c.busi_id=b.busi_id','inner');
+    	$this->db->join(TABLES::$COMMMUNITY_POST.' AS b','a.post_id=b.id','inner');
+    	$this->db->join(TABLES::$USER.' AS c','c.busi_id=b.busi_id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','b.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS f','f.user_id=c.id','inner');
@@ -1550,8 +1612,8 @@ class Product_Model extends CI_Model {
     public function getCommunityPostComment($id){
     	$this->db->select('a.*,d.company_name as cname,d.company_country as country,d.company_province as state,d.company_city as city,c.*,f.profile_image,g.sub_category as subcategory');
     	$this->db->from(TABLES::$POSTCOMMENT.' AS a');
-    	$this->db->from(TABLES::$COMMMUNITY_POST.' AS b','a.post_id=b.id','inner');
-    	$this->db->from(TABLES::$USER.' AS c','c.busi_id=b.busi_id','inner');
+    	$this->db->join(TABLES::$COMMMUNITY_POST.' AS b','a.post_id=b.id','inner');
+    	$this->db->join(TABLES::$USER.' AS c','c.busi_id=b.busi_id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','b.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS f','f.user_id=c.id','inner');

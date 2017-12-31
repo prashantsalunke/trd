@@ -57,11 +57,6 @@ ul.typeahead li a:hover {
 						<div class="col-sm-6" style="padding:0px;margin-top:-5px;">
 							<div>
 							<input type="hidden" name="product_id" id="select_product_id" value=""/>
-							<!-- select id="select_product_id" onchange="getval(this);" name="product_id" style="width: 160px;padding-top:4px;display:inline;" class="form-control post-input-control">
-			                    <?php foreach($items as $item) { ?>
-								  <option value="<?php echo $item['id'];?>"><?php echo $item['name'];?></option>
-							    <?php } ?>	
-							</select-->
 							<input type="text" style="width:190px;padding-top:4px;display:inline;" id="product_select" class="form-control post-input-control" placeholder="Type the product no."/>
 							<button id="buttonselect" style="width:60px;height:25px;" type="button" onclick="getProductImages();">Link</button>
 							</div>

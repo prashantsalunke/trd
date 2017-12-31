@@ -449,7 +449,13 @@ $route['community/members/search'] = 'frontend/Community/searchMyCommunityMember
 $route['community/members/delete'] = 'frontend/Community/deleteMyCommunityMembers';
 $route['mycommunity/member/delete/([0-9]+)'] = 'frontend/Community/deleteCommunityRequest/$1';
 $route['mycommunity/member/accept/([0-9]+)'] = 'frontend/Community/acceptCommunityRequest/$1';
-
+$route['mycommunity/member/request'] = 'frontend/Community/getCommunityRequests';
+$route['mycommunity/new/offer/([0-9]+)'] = 'frontend/Community/newSellerOffer/$1';
+$route['mycommunity/new/request/([0-9]+)'] = 'frontend/Community/newBuyerRequest/$1';
+$route['mycommunity/save/offer'] = 'frontend/Community/saveSellerOffer';
+$route['mycommunity/save/request'] = 'frontend/Community/saveBuyerRequest';
+$route['mycommunity/post/share/([0-9]+)'] = 'frontend/Community/shareCommunityPost/$1';
+$route['mycommunity/post/visit/([0-9]+)'] = 'frontend/Community/visitCommunityPost/$1';
 
 
 $route['stats/business/markvisit'] = 'frontend/Tools/updateBusinessStats';

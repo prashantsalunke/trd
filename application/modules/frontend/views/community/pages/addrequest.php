@@ -1,20 +1,33 @@
-	<div class="panel-heading custom-panel-heading">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="col-md-4" style="text-align: left; padding-top: 13px;">
-					<span style="color:#A9A9A9;font-family:Georgia;font-size:19px;">Community Add Requests</span>
-				</div>
-				<div class="col-md-7" style="text-align: left;" >
-					<a href="javascript:openCommunityInvites();" class="btn btn-default btn-custom alerts-btn alerts-btn-selected"   id="addcominityrequest_btn" style="width: 200px !important;">Members Like to add you</a>
-	  				<a href="javascript:openMyInvites();" class="btn btn-default btn-custom alerts-btn" id="communityinvitation_btn" style="width: 200px !important;">Members you like to add them</a>
-				</div>
-				<div class="col-md-1" style="text-align: right">
-					<span class="pull-right-close" style="text-align: right"><a href="javascript:ShowObjectWithEffect('Layer180', 0, 'dropup', 500, 'easeInBounce');ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');" class="btn-custom-close">X</a></span>
-				</div>
-			</div>
-		</div>
-  		
-  	</div>
+<style>
+.bluebtn {
+	background-color:#1e90ff;
+	text-decoration:none;
+	border-radius:10px;
+	min-width:150px;
+	padding:7px 15px;
+	text-align:center;
+	color:#fff;
+	font-size:13px;
+	cursor:pointer;
+	display:block;
+}
+.bluebtn:visited {
+	color:#fff;
+}
+.bluebtn:hover {
+	background-color:#1e70ff;
+	color:#fff;
+	text-decoration:none;
+}
+.bluebtn:active {
+	color:#fff;
+}
+.bluebtn:focus {
+	background-color:#1e70ff;
+	color:#fff;
+	text-decoration:none;
+}
+</style>
 	<div class="panel-body panel-body-custom" style="padding-top: 15px;" id="request_to_me"><br>
 		<div class="row">
 			<div class="col-md-12" style="text-align: left">
@@ -44,12 +57,12 @@
 				<div id="wb_Text365" style="width:850px;height:18px;z-index:598;text-align:center;">
 					<span style="color:#303030;font-family:Arial;font-size:11px;"><?php if(date('Y-m-d',strtotime($seller['added_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($seller['added_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($seller['added_date']));?></span>
 				</div>
-				<div id="Layer-contact-<?php echo $key;?>" style="position:relative;text-align:left;left:51px;top:0px;width:957px;height:162px;z-index:1375;" onmouseenter="ShowObjectWithEffect('Layer-button-<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer222-<?php echo $key;?>', 0);ShowObject('Layer-button-<?php echo $key;?>', 0);return false;">
-					<div id="Layer220" style="position:absolute;text-align:left;left:2px;top:1px;width:774px;height:143px;z-index:1368;">
+				<div id="Layer-contact-<?php echo $key;?>" style="position:relative;text-align:left;left:0px;top:0px;width:940px;height:162px;z-index:1375;" onmouseenter="ShowObjectWithEffect('Layer-button-<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer222-<?php echo $key;?>', 0);ShowObject('Layer-button-<?php echo $key;?>', 0);return false;">
+					<div id="Layer220" style="position:absolute;text-align:left;left:2px;top:1px;width: 757px;height:143px;z-index:1368;">
 						<div id="wb_Text748" style="position:absolute;left:74px;top:20px;width:351px;height:16px;z-index:1357;text-align:left;">
 							<span style="color:#303030;font-family:Georgia;font-size:15px;"><strong><a href="<?php echo base_url().$burl;?>" target="_blank" class="style5"><?php echo $seller['company_name'];?></a></strong></span>
 						</div>
-						<div id="Layer221" style="position:absolute;text-align:left;left:554px;top:0px;width:218px;height:141px;z-index:1358;">
+						<div id="Layer221" style="position:absolute;text-align:left;left: 550px;top:0px;width: 205px;height:141px;z-index:1358;">
 							<div id="wb_Text750" style="position:absolute;left:120px;top:26px;width:100px;height:16px;text-align:left;z-index:1351;">
 								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['sub_category'];?></span>
 							</div>
@@ -176,13 +189,13 @@
 							<?php } ?>
 						<?php } ?>
 					</div>
-					<div id="Layer-button-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: hidden; left: 778px; top: 1px; width: 177px; height: 145px; z-index: 1369;">
-						<div id="wb_Shape3" style="position:absolute;left:23px;top:76px;width:170px;height:31px;z-index:1366;">
+					<div id="Layer-button-<?php echo $key;?>" style="position: absolute;text-align: left;visibility: hidden;left: 755px;top: 1px;width: 180px;height: 145px;z-index: 1369;">
+						<div id="wb_Shape3" style="position:absolute;left:10px;top:76px;width:170px;height:31px;z-index:1366;">
 							<a href="javascript:deleteCommunityRequest(<?php echo $seller['community_id'];?>,'Layer-contact-<?php echo $key;?>','req');" class="bluebtn">
 								Ignore & Delete
 							</a>
 						</div>
-						<div id="wb_Shape292" style="position:absolute;left:23px;top:36px;width:170px;height:31px;z-index:1367;">
+						<div id="wb_Shape292" style="position:absolute;left:10px;top:36px;width:170px;height:31px;z-index:1367;">
 							<a href="javascript:acceptCommunityRequest(<?php echo $seller['community_id'];?>,'Layer-contact-<?php echo $key;?>','req');" class="bluebtn">
 								Accept
 							</a>
@@ -221,12 +234,12 @@
 				<div id="wb_Text365" style="width:850px;height:18px;z-index:598;text-align:center;">
 					<span style="color:#303030;font-family:Arial;font-size:11px;"><?php if(date('Y-m-d',strtotime($seller['added_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($seller['added_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($seller['added_date']));?></span>
 				</div>
-				<div id="VLayer-contact-<?php echo $key;?>" style="position:relative;text-align:left;left:51px;top:0px;width:957px;height:162px;z-index:1375;" onmouseenter="ShowObjectWithEffect('VLayer-button-<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer222-<?php echo $key;?>', 0);ShowObject('VLayer-button-<?php echo $key;?>', 0);return false;">
-					<div id="Layer220" style="position:absolute;text-align:left;left:2px;top:1px;width:774px;height:143px;z-index:1368;">
+				<div id="VLayer-contact-<?php echo $key;?>" style="position:relative;text-align:left;left:0px;top:0px;width:940px;height:162px;z-index:1375;" onmouseenter="ShowObjectWithEffect('VLayer-button-<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer222-<?php echo $key;?>', 0);ShowObject('VLayer-button-<?php echo $key;?>', 0);return false;">
+					<div id="Layer220" style="position:absolute;text-align:left;left:2px;top:1px;width: 757px;height:143px;z-index:1368;">
 						<div id="wb_Text748" style="position:absolute;left:74px;top:20px;width:351px;height:16px;z-index:1357;text-align:left;">
 							<span style="color:#303030;font-family:Georgia;font-size:15px;"><strong><a href="<?php echo base_url().$burl;?>" target="_blank" class="style5"><?php echo $seller['company_name'];?></a></strong></span>
 						</div>
-						<div id="Layer221" style="position:absolute;text-align:left;left:554px;top:0px;width:218px;height:141px;z-index:1358;">
+						<div id="Layer221" style="position:absolute;text-align:left;left: 550px;top:0px;width: 205px;height:141px;z-index:1358;">
 							<div id="wb_Text750" style="position:absolute;left:120px;top:26px;width:100px;height:16px;text-align:left;z-index:1351;">
 								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['sub_category'];?></span>
 							</div>
@@ -353,13 +366,13 @@
 							<?php } ?>
 						<?php } ?>
 					</div>
-					<div id="VLayer-button-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: hidden; left: 778px; top: 1px; width: 177px; height: 145px; z-index: 1369;">
-						<div id="wb_Shape3" style="position:absolute;left:23px;top:76px;width:170px;height:31px;z-index:1366;">
+					<div id="VLayer-button-<?php echo $key;?>" style="position: absolute;text-align: left;visibility: hidden;left: 755px;top: 1px;width: 180px;height: 145px;z-index: 1369;">
+						<div id="wb_Shape3" style="position:absolute;left:10px;top:76px;width:170px;height:31px;z-index:1366;">
 							<a href="javascript:deleteCommunityRequest(<?php echo $seller['community_id'];?>,'VLayer-contact-<?php echo $key;?>','vreq');" class="bluebtn">
 								Ignore & Delete
 							</a>
 						</div>
-						<div id="wb_Shape292" style="position:absolute;left:23px;top:36px;width:170px;height:31px;z-index:1367;">
+						<div id="wb_Shape292" style="position:absolute;left:10px;top:36px;width:170px;height:31px;z-index:1367;">
 							<a href="javascript:false;" class="bluebtn">
 								Waiting
 							</a>
@@ -372,15 +385,20 @@
 function openCommunityInvites() {
 	$("#request_to_me").show();
 	$("#request_by_me").hide();
+	$("#myinvt").removeClass("ractive");
+	$("#myreq").addClass("ractive");
 }
 function openMyInvites() {
 	$("#request_to_me").hide();
 	$("#request_by_me").show();
+	$("#myinvt").addClass("ractive");
+	$("#myreq").removeClass("ractive");
 }
 function acceptCommunityRequest(id,lid,req) {
 	ajaxindicatorstart('');
 	$.get(base_url+"mycommunity/member/accept/"+id,{},function(data){
-		customAlert(data.msg);
+		$("#msg_cont").html(data.msg);
+		ShowObject('Layer99', 1);
 		$("#"+lid).remove();
 		var rcount = parseInt($("#"+req).html());
 		rcount--;
@@ -392,7 +410,8 @@ function acceptCommunityRequest(id,lid,req) {
 function deleteCommunityRequest(id,lid,req) {
 	ajaxindicatorstart('');
 	$.get(base_url+"mycommunity/member/delete/"+id,{},function(data){
-		customAlert(data.msg);
+		$("#msg_cont").html(data.msg);
+		ShowObject('Layer99', 1);
 		$("#"+lid).remove();
 		var rcount = parseInt($("#"+req).html());
 		rcount--;

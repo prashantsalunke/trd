@@ -802,7 +802,7 @@ function stopWiggle(input) {
 								   	<img src="<?php echo asset_url(); ?>images/desksite/D-search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								   	<p class="font2">Search</p>
 								</a>
-						        <a href="javascript:showWebsite();" class="navigation2">
+						        <a href="javascript:showWebsite();" class="navigation2" style="display:none;">
 								   	<img src="<?php echo asset_url(); ?>images/exit.png" id="Image47" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 								  	<p class="font2" style="font-size:10px;width:81px;">Switch to <br> Classic Mode</p>
 								</a>
