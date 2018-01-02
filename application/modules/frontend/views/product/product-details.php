@@ -252,11 +252,11 @@ pre {
 	    			<hr id="Line10" style="height: 1px; width: 357px; margin: 10px 0px;"/>
 	    			<div class="row">
 			    		<div class="col-md-4" ><p>Port</p></div>
-			    		<div class="col-md-8" ><p>Ningbo</p></div>
+			    		<div class="col-md-8" ><p><?php if(!empty($trade_info[0]['part1'])) { echo $trade_info[0]['part1']; } ?> <?php if(!empty($trade_info[0]['part2'])) { echo ", ".$trade_info[0]['part2']; } ?></p></div>
 	    			</div>
 		    		<div class="row">
 			    		<div class="col-md-4" ><p>Accepted Payment</p></div>
-			    		<div class="col-md-8" ><p>T/T, LC ...</p></div>
+			    		<div class="col-md-8" ><p><?php $curr_text = "N/A"; foreach ($currency as $curr) { if($curr_text == "N/A") { $curr_text = $curr['payment_currency'];} else { $curr_text = $curr_text.", ".$curr['payment_currency'];}} echo $curr_text;?></p></div>
 		    		</div>
 		    		<div style="position:relative;">
 		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;">
@@ -289,7 +289,7 @@ pre {
 							</a>
 						</div>
 						<div id="RollOver34" style="position:absolute;left:88px;top:8px;overflow:hidden;width:40px;height:40px;z-index:180">
-							<a href="javascript:popupwnd('./item_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self">
+							<a href="javascript:popupwnd('<?php echo base_url();?>desksite/item_enquiry/<?php echo $product['busi_id'];?>/<?php echo $product['id'];?>','no','no','no','no','no','no','200','50','1055','680')" target="_self">
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_inquiry.png">
 								<span><img alt="" src="<?php echo asset_url();?>images/items_inquiry0.png"></span>
 							</a>

@@ -476,7 +476,7 @@ class Community extends MX_Controller {
 		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'Country', $Country);
 		$this->template->set('post',$post);
-		$this->template->set('buyer_id',$post);
+		$this->template->set('seller_id',$post[0]['busi_id']);
 		$this->template->set('busi_id',$busi_id);
 		$this->template->set('contact_details',$contact_details);
 		$this->template->set ( 'page', 'bstation' );
@@ -537,7 +537,7 @@ class Community extends MX_Controller {
 		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'Country', $Country);
 		$this->template->set('post',$post);
-		$this->template->set('buyer_id',$post);
+		$this->template->set('seller_id',$post[0]['busi_id']);
 		$this->template->set('busi_id',$busi_id);
 		$this->template->set('contact_details',$contact_details);
 		$this->template->set ( 'page', 'bstation' );

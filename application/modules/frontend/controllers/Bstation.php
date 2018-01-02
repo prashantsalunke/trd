@@ -218,7 +218,7 @@ class Bstation extends MX_Controller {
 		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'Country', $Country);
 		$this->template->set('post',$post);
-		$this->template->set('buyer_id',$post);
+		$this->template->set('seller_id',$post[0]['busi_id']);
 		$this->template->set('busi_id',$busi_id);
 		$this->template->set('contact_details',$contact_details);
 		$this->template->set ( 'page', 'bstation' );
@@ -274,13 +274,12 @@ class Bstation extends MX_Controller {
 		$this->load->model ( 'Account_Model', 'account' );
 		$busi_id = $this->session->userdata('busi_id');
 		$this->load->model('Product_Model', 'product' );
-		$this->load->model('Product_Model', 'product' );
 		$post = $this->product->getBstationPostById($id);
 		$Country= $this->account->getCountry();
 		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'Country', $Country);
 		$this->template->set('post',$post);
-		$this->template->set('buyer_id',$post);
+		$this->template->set('seller_id',$post[0]['busi_id']);
 		$this->template->set('busi_id',$busi_id);
 		$this->template->set('contact_details',$contact_details);
 		$this->template->set ( 'page', 'bstation' );

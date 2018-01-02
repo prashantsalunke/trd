@@ -16,9 +16,8 @@ class Offer_model extends CI_Model {
     	$this->db->join(TABLES::$USER. ' AS d','d.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS e','d.id=e.user_id','inner');
     	$this->db->where('a.offer_sender_id', $busi_id);
-    	$this->db->where('d.admin_user_id', 0);
+    	$this->db->where('d.is_contactperson', 1);
     	$this->db->where('a.is_deleted', 0);
-    	//$this->db->group_by('sellerbusi_id');
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -35,9 +34,8 @@ class Offer_model extends CI_Model {
     	$this->db->join(TABLES::$USER. ' AS d','d.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS e','d.id=e.user_id','inner');
     	$this->db->where('a.busi_id', $busi_id);
-    	$this->db->where('d.admin_user_id', 0);
+    	$this->db->where('d.is_contactperson', 1);
     	$this->db->where('a.is_deleted', 0);
-    	//$this->db->group_by('sellerbusi_id');
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -51,17 +49,17 @@ class Offer_model extends CI_Model {
     }
     public function getOfferById($offer_id)
     {
-    	$this->db->select('a.id as offer_id,a.offer_product_item_id,a.busi_id as offer_receiver_id,a.offer_subject,a.offer_body,a.attachment1,a.attachment2,'.
+    	$this->db->select('a.id as offer_id,a.product_id,a.busi_id as offer_receiver_id,a.offer_subject,a.offer_body,a.attachment1,a.attachment2,'.
     			'a.attachment3,a.attachment4,a.created_date,b.offer_type,c.name as product_name,c.model_no,c.sub_image1,c.sub_image2,'.
     			'c.sub_image3,c.sub_image4,c.main_image,d.*,e.name_prefix,e.name,f.profile_image');
     	$this->db->from(TABLES::$OFFER. ' AS a');
     	$this->db->join(TABLES::$OFFER_TYPE. ' AS b','a.offer_type_id=b.id','inner');
-    	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS c','a.offer_product_item_id=c.id','inner');
+    	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS c','a.product_id=c.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS d','a.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER. ' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS f','e.id=f.user_id','inner');
     	$this->db->where('a.id', $offer_id);
-    	$this->db->where('e.admin_user_id', 0);
+    	$this->db->where('e.is_contactperson', 1);
     	$this->db->where('a.is_deleted', 0);
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();

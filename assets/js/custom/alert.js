@@ -234,7 +234,7 @@ function sellerOrder()
 function delete_request(community_id)
 {
 	$.post(base_url+"mystation/deleterequest",{community_id:community_id},function(data){
-		alert(data.msg);
+		customAlert(data.msg);
 		openRequest();
 	},'json');
 }
@@ -243,7 +243,7 @@ function readInquiryURL(input) {
 	if(filecount <5) {
 		
 	} else {
-		alert('You can not select more than 4 files');
+		customAlert('You can not select more than 4 files');
 		$('#inquiryreplay').val('');
 		 
 	}
@@ -263,10 +263,10 @@ function offerreplay()
 				$("#alertbodypanel").html(data);
 		 	});
 		} else {
-			alert('Please select only one offer for replay.');
+			customAlert('Please select only one offer for replay.');
 		}
 	} else {
-		alert('Please select offer.');
+		customAlert('Please select offer.');
 	}
 	
 }
@@ -279,7 +279,7 @@ function deleteoffer()
 	values = values.filter(v=>v!=null);
 	if(values.length > 0 ) {
 			$.post(base_url+"mystation/deleteoffer",{values:values},function(data) {
-		 		alert(data.msg);
+				customAlert(data.msg);
 		 		openOffer();
 		 	},'json');
 			
@@ -296,7 +296,7 @@ function unreadoffer()
 	values = values.filter(v=>v!=null);
 	if(values.length > 0 ) {
 			$.post(base_url+"mystation/unreadoffer",{values:values},function(data) {
-		 		alert(data.msg);
+				customAlert(data.msg);
 		 		openOffer();
 		 	},'json');
 			
@@ -304,6 +304,13 @@ function unreadoffer()
 		alert('Please select offer.');
 	}
 }
+function markOfferAsread(id)
+{
+	$.post(base_url+"mystation/readoffer",{id: id},function(data) {
+		//customAlert(data.msg);
+ 	},'json');
+}
+
 function pinoffer()
 {
 	var values = new Array();
@@ -313,7 +320,7 @@ function pinoffer()
 	values = values.filter(v=>v!=null);
 	if(values.length > 0 ) {
 			$.post(base_url+"mystation/pinoffer",{values:values},function(data) {
-		 		alert(data.msg);
+				customAlert(data.msg);
 		 		openOffer();
 		 	},'json');
 			

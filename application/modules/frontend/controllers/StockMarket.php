@@ -193,7 +193,7 @@ class StockMarket extends MX_Controller {
 		$this->template->set ( 'Country', $Country);
 		$this->template->set('contact_details',$contact_details);
 		$this->template->set('post',$post);
-		$this->template->set('buyer_id',$post);
+		$this->template->set('seller_id',$id);
 		$this->template->set('busi_id',$busi_id);
 		$this->template->set ( 'page', 'bstation' );
 		$this->template->set_theme('default_theme');

@@ -37,7 +37,7 @@
 	  		<div class="row">
 	  			<div class="col-md-12">
 	  				<div class="col-md-1" >
-	  					<img src="<?php echo asset_url().$row['profile_image'];?>" id="Image163" alt="" style="width: 45px;border-radius: 50px;">
+	  					<img src="<?php echo asset_url().$row['profile_image'];?>" id="Image163" alt="" style="width: 45px;height:45px;border-radius: 50px;">
 	  				</div>
 	  				<div class="col-md-10" style="text-align: left">
 	  					<span style="color: #303030; font-family: Georgia; font-size: 15px;"><strong><a href="./desksite.php" target="_blank" class="style5"><?php echo $row['company_name'];?></a></strong></span><br>
@@ -47,7 +47,7 @@
 	  			</div>
 	  		</div><br><br>
 	  		<div class="row" style="background-color: #D3D3D3">
-	  			<div class="col-md-12" >
+	  			<div class="col-md-12" style="padding:5px;">
 	  				<div class="col-md-8">
 	  					<div class="row">
 	  						<div class="col-sm-12" >
