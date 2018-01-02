@@ -94,6 +94,10 @@ class TABLES {
 	public static $ORDER= 'tbl_order';
 	public static $ORDER_ITEM = 'tbl_order_item';
 	public static $COMMUNITY_MEMBER = 'tbl_community_member';
+	public static $POSTCOMMENT = 'tbl_community_post_comment';
+	public static $POSTLIKE = 'tbl_community_post_like';
+	public static $COMMUNITY_POST_OFFERS = 'tbl_community_post_offers';
+	public static $COMMUNITY_POST_REQUESTS = 'tbl_community_post_requests';
 	
 	/* ***********    Stock-Goods  ********    */
 	public static $STOCK_GOODS = 'tbl_stocks_goods';

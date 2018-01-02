@@ -56,5 +56,9 @@ class Alert_model extends CI_Model {
     }
     
     
+    public function getMyOffers() {
+    	
+    }
+    
     
 }

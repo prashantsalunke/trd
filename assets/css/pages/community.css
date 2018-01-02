@@ -41,17 +41,29 @@ hr {
     }
 }
 .likesection{
-	    width: 92%;
+	width: 92%;
     padding: 5px 10px;
-    background: white;
+    background-color: white;
     border-bottom: 1px solid #DCDCDC;
 }
+.likesection:hover {
+	background-color: #AFEEEE;
+   -webkit-transition: background-color 100ms linear 0ms;
+   -moz-transition: background-color 100ms linear 0ms;
+   -ms-transition: background-color 100ms linear 0ms;
+   transition: background-color 100ms linear 0ms;
+}
 .likesection1{
-	height:100px;
-	margin-bottom:10px;
 	width: 92%;
-    padding: 10px 0px;
-    background: white;
+    background-color: white;
+}
+
+.likesection1:hover{
+	background-color: #AFEEEE;
+   -webkit-transition: background-color 100ms linear 0ms;
+   -moz-transition: background-color 100ms linear 0ms;
+   -ms-transition: background-color 100ms linear 0ms;
+   transition: background-color 100ms linear 0ms;
 }
 .stylefont1{
 	    color: #4169E1;
@@ -128,6 +140,15 @@ h3{
 .font2{
 	color:#1E90FF;font-family:Arial;font-size:12px;
 }
+.font2:active{
+	color:#1E90FF;font-family:Arial;font-size:12px;text-decoration:none;
+}
+.font2:focus{
+	color:#1E90FF;font-family:Arial;font-size:12px;text-decoration:none;
+}
+.font2:visited{
+	color:#1E90FF;font-family:Arial;font-size:12px;text-decoration:none;
+}
 .background2{
 	    width: 100%;
 	display:inline-flex;
@@ -140,6 +161,7 @@ h3{
 .font4{
 	color:#FFFFFF;font-family:Arial;font-size:12px;
     display: -webkit-inline-box;font-weight: 600;
+    cursor:pointer;
 }
 .col-lg-10{
 	padding-left:20px;
@@ -307,7 +329,8 @@ a:hover .hover {
     height: 500px !important;;;
 }
 .background11 {
-    background-color: #00C9D0;
+    background-color: #00D4C3;
+    background-color: rgba(0,212,195,0.99);
     color:white;
     font-family: Georgia;
     font-size: 13px;
@@ -350,6 +373,7 @@ a:hover .hover {
 #Layer10 {
     padding: 5px;
    	width: 100%;
+   	cursor:pointer;
 }
 #Layer29 {
     width: 90px;
@@ -9244,6 +9268,53 @@ a.style5:hover
 {
    background-color: #FFFFFF;
 }
+.crreqbtn {
+	background-color: #2d2d2d;
+    color: #fff;
+    border: 1px solid #3e3838;
+    cursor:pointer;
+}
+.ractive {
+	background-color: #f55341;
+    color: #fff;
+    border: 1px solid #da756a;
+}
+.post-img-section {
+	border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    height: 130px;
+    margin:2px;
+}
+.postimg {
+	width:100%;padding:1px;;
+}
+.post-background {
+	display: inline-block;
+	width:57px !important;
+	padding: 55px 0 0 0;
+	height: 55px;
+	overflow: hidden;
+	box-sizing: border-box;
+	background-color: #d3d3d3;
+	background-image:url('../../images/img1264.png');
+	background-size:cover; 
+    margin-bottom: 15px;
+    margin-right:15px;
+    border:1px solid #ccc;
+    cursor:pointer;
+}
 
-
+.post-input-control {
+	border: 1px #A9A9A9 solid;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: Arial;
+    font-weight: normal;
+    font-size: 13px;
+    padding-left: 5px;
+    text-align: left;
+    vertical-align: middle;
+    border-radius:0px;
+    height:25px;
+}
 

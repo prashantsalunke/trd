@@ -21,21 +21,39 @@ class Community extends MX_Controller {
 			redirect ( base_url () );
 		}
 		$busi_id = $this->session->userdata('busi_id');
+		$plan_id = $this->session->userdata('tsuser')['plan_id'];
+		$cat_id = $this->session->userdata('tsuser')['category_id'];
 		$Country= $this->account->getCountry();
 		$this->template->set ('Country', $Country);
 		$this->load->model('Product_Model', 'product' );
+		$this->load->model('Tool_Model', 'toolmodel' );
 		$userinfo = $this->product->getUserInfoByBussId($busi_id);
 		$this->template->set ('userinfo', $userinfo);
 		$usertype = $this->product->getUserTypebyBusinessId($busi_id);
 		$this->template->set ('usertype', $usertype);
 		$allposts = $this->product->communityPostListByAlluser($busi_id);
 		$this->template->set ('allposts', $allposts);
+		$add_requests = $this->product->getInvitationCommunityCount($busi_id);
+		$this->template->set ('add_requests', $add_requests);
 		$myposts = $this->product->communityPostListByBusinessId($busi_id);
 		$this->template->set ('myposts', $myposts);
 		$productslist = $this->product->getProductlist($busi_id);
 		$this->template->set ( 'products', $productslist);
 		$communitymember = $this->product->getCommunityMember($busi_id);
 		$firstpost = $this->product->communityMemberFirstPost($busi_id);
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
+		$this->template->set('contact_details',$contact_details);
+		$this->load->library('mylib/StorageLib');
+		$storage = $this->storagelib->getMyBusinessStorage($busi_id);
+		$this->template->set ( 'storage', $storage);
+		$mystorage = $this->toolmodel->getCommunityPlan($plan_id,$cat_id);
+		$oisstorage = $this->toolmodel->getEnquiryPlan($plan_id,$cat_id);
+		if($cat_id == 3) {
+			$oisstorage[0]['intvalue'] = 250;
+			$mystorage[0]['intvalue'] = 250;
+		}
+		$this->template->set ( 'mystorage', $mystorage);
+		$this->template->set ( 'oisstorage', $oisstorage);
 		$this->template->set ( 'communitymember', $communitymember);
 		$this->template->set ( 'firstpost', $firstpost);
 		$this->template->set ( 'page', 'community' );
@@ -70,43 +88,66 @@ class Community extends MX_Controller {
 		$files = $_FILES;
 		$cpt = 0;
 		$k =1;
-		if(!empty($_FILES ['userfile'] ['name'])) {
-			$cpt = count ( $_FILES ['userfile'] ['name'] );
-			$data['images'] =array();
-			for($i = 0; $i < $cpt; $i ++) {
-				$_FILES ['user'] ['name'] = $_FILES ['userfile'] ['name'] [$i];
-				$_FILES ['user'] ['type'] = $_FILES ['userfile'] ['type'] [$i];
-				$_FILES ['user'] ['tmp_name'] = $_FILES ['userfile'] ['tmp_name'] [$i];
-				$_FILES ['user'] ['error'] = $_FILES ['userfile'] ['error'] [$i];
-				$_FILES ['user'] ['size'] = $_FILES ['userfile'] ['size'] [$i];
-					
-				$config = array ();
-				//$config ['upload_path'] = 'assets/images/stock_images/';
-				$config ['upload_path'] = 'assets/images/' . $pathname . '/';
-				$config ['allowed_types'] = 'gif|jpg|png|PNG|JPEG';
-				$config ['max_size'] = 204800;
-				$config ['max_width'] = 2048;
-				$config ['max_height'] = 2048;
-					
-				$this->load->library ( 'upload', $config );
-				if ($this->upload->do_upload ( 'user' )) {
-						
-					$params['image'.$k] = $config ['upload_path'] . '' . $this->upload->data ( 'file_name' );
-						
-				} else {
-					echo "No Image.";
-				}
-				$k++;
+		$size = 0;
+		$cimages = $this->input->post('cimg');
+		$location =  "assets/images/".$pathname."/";
+		if (!empty($_FILES['postphoto1']['name'])) {
+			$Img = uploadImage($_FILES['postphoto1'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation');
+			if($Img['status'] == 1) {
+				$params['image1'] = $Img['image'];
+				$size = $size + $_FILES['postphoto1']['size'];
+			} else {
+				$params['image1'] = $cimages[0];
 			}
 		} else {
-			$cimages = $this->input->post('cimg');
-			foreach ($cimages as $key=>$row) {
-				$params['image'.($key+1)] = $row;
+			$params['image1'] = $cimages[0];
+		}
+		if (!empty($_FILES['postphoto2']['name'])) {
+			$Img1 = uploadImage($_FILES['postphoto2'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation1');
+			if($Img1['status'] == 1) {
+				$params['image2'] = $Img1['image'];
+				$size = $size + $_FILES['postphoto2']['size'];
+			} else {
+				$params['image2'] = $cimages[1];
 			}
+		} else {
+			$params['image2'] = $cimages[1];
+		}
+		if (!empty($_FILES['postphoto3']['name'])) {
+			$Img2 = uploadImage($_FILES['postphoto3'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation2');
+			if($Img2['status'] == 1) {
+				$params['image3'] = $Img2['image'];
+				$size = $size + $_FILES['postphoto3']['size'];
+			} else {
+				$params['image3'] = $cimages[2];
+			}
+		} else {
+			$params['image3'] = $cimages[2];
+		}
+		if (!empty($_FILES['postphoto4']['name'])) {
+			$Img3 = uploadImage($_FILES['postphoto4'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation3');
+			if($Img3['status'] == 1) {
+				$params['image4'] = $Img3['image'];
+				$size = $size + $_FILES['postphoto4']['size'];
+			} else {
+				$params['image4'] = $cimages[3];
+			}
+		} else {
+			$params['image4'] = $cimages[3];
 		}
 	
 		$this->load->model('Product_Model', 'product' );
 		$response = $this->product->communityPostInsert($params);
+		/* ************** Storage Implementation *************** */
+		if($size != 0) {
+			$this->load->library('mylib/StorageLib');
+			$storage = array();
+			$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			$storage['field'] = 'community';
+			$storage['datasize'] = round($size/1024,2);
+			$this->storagelib->updateStorageByBusiId($storage);
+		}
+		/* ***************************************************** */
 		echo json_encode($response);
 	
 	}
@@ -121,9 +162,34 @@ class Community extends MX_Controller {
 		//$this->load->library ( 'mylib/PostLib', 'postlib' );
 		//$result = $this->postlib->deletePost($data);
 		$this->load->model('Product_Model', 'product' );
+		$this->load->model('Community_Model', 'communitymodel' );
 		$result = $this->product->deleteCommunityPost($data);
-	
+		$path = FCPATH."assets";
 		if ($result == true){
+			$pdetail = $this->communitymodel->getCommunityPostDetailById($data['id']);
+			if(!empty($pdetail[0]['image1'])) {
+				$size = $size - filesize(FCPATH."assets/".$pdetail[0]['image1']);
+				unlink( $path . $pdetail[0]['image1'] );
+			} elseif(!empty($pdetail[0]['image2'])) {
+				$size = $size - filesize(FCPATH."assets/".$pdetail[0]['image2']);
+				unlink( $path . $pdetail[0]['image2'] );
+			} elseif(!empty($pdetail[0]['image3'])) {
+				$size = $size - filesize(FCPATH."assets/".$pdetail[0]['image3']);
+				unlink( $path . $pdetail[0]['image3'] );
+			} elseif(!empty($pdetail[0]['image4'])) {
+				$size = $size - filesize(FCPATH."assets/".$pdetail[0]['image4']);
+				unlink( $path . $pdetail[0]['image4'] );
+			}
+			/* ************** Storage Implementation *************** */
+			if($size != 0) {
+				$this->load->library('mylib/StorageLib');
+				$storage = array();
+				$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+				$storage['field'] = 'community';
+				$storage['datasize'] = round($size/1024,2);
+				$this->storagelib->updateStorageByBusiId($storage);
+			}
+			/* ***************************************************** */
 			$results['status'] = '1';
 			$results['msg'] = 'Post Deleted successfully';
 		}else{
@@ -214,7 +280,6 @@ class Community extends MX_Controller {
 		$busi_id = $this->session->userdata('busi_id');
 		$this->load->model('Product_Model', 'product' );
 		$userinfo = $this->product->getUserInfoByBussId($busi_id);
-		print_r($userinfo);
 		$this->template->set ('userinfo', $userinfo);
 		$this->template->set ( 'page', 'edit_profile' );
 		$this->template->set_theme('default_theme');
@@ -259,10 +324,10 @@ class Community extends MX_Controller {
 		$params['my_busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		$params['busi_id'] = $id;
 		$this->load->model('Product_Model','product');
-		$mydetails = $this->product->getCommunicationInfo($params['my_busi_id']);
 		$tscat_id = $this->session->userdata('tsuser')['category_id'];
 		$resp = array();
 		if(!empty($this->session->userdata('tsuser')['busi_id'])) { 
+			$mydetails = $this->product->getCommunicationInfo($params['my_busi_id']);
 			if($params['my_busi_id'] != $params['busi_id']) {
 				if(($tscat_id == 1 && $mydetails[0]['step'] == 4) || ($tscat_id == 2 && $mydetails[0]['step'] == 2) || ($tscat_id == 3 && $mydetails[0]['step'] == 2)) {
 					if($tscat_id != 3) {
@@ -275,7 +340,7 @@ class Community extends MX_Controller {
 							$resp['msg'] = 'ALREADY ADDED TO YOUR COMMUNITY';
 						}
 					} else {
-						if($mydetails['accept_community'] == 1) {
+						if($mydetails[0]['accept_community'] == 1) {
 							$isadded = $this->mycommunity->addToMyCommunity($params);
 							if($isadded) {
 								$resp['status'] = 1;
@@ -386,6 +451,164 @@ class Community extends MX_Controller {
 			$resp['status'] = "Failed to accept request";
 		}
 		echo json_encode($resp);
+	}
+	
+	public function getCommunityRequests() {
+		$this->load->library('mylib/CommunityLib');
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$sendcommunityrequest = array();
+		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
+		$mycommunityrequest = $this->communitylib->getSendCommunityRequest($busi_id);
+		$this->template->set ( 'sendcommunityrequest', $sendcommunityrequest);
+		$this->template->set ( 'mycommunityrequest', $mycommunityrequest);
+		$this->template->set ( 'page', 'home' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('community/pages/addrequest','',true);
+		echo $html;
+	}
+	public function newBuyerRequest($id) {
+		$this->load->model ( 'Account_Model', 'account' );
+		$busi_id = $this->session->userdata('busi_id');
+		$this->load->model('Community_Model', 'communitymodel' );
+		$post = $this->communitymodel->getCommunityPostById($id);
+		$Country= $this->account->getCountry();
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
+		$this->template->set ( 'Country', $Country);
+		$this->template->set('post',$post);
+		$this->template->set('seller_id',$post[0]['busi_id']);
+		$this->template->set('busi_id',$busi_id);
+		$this->template->set('contact_details',$contact_details);
+		$this->template->set ( 'page', 'bstation' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('community/pages/sendrequest');
+	}
+	
+	public function saveBuyerRequest() {
+		$userId = $this->session->userdata('tsuser')['userid'];
+		$params = array();
+		$params['post_id'] = $this->input->post('post_id');
+		$params['message'] = $this->input->post('TextArea3');
+		$params['details'] = $this->input->post('TextArea4');
+		$params['contact_person'] = $this->input->post('name');
+		$params['company'] = $this->input->post('Company');
+		$params['additional_email'] = $this->input->post('email');
+		$params['phone'] = $this->input->post('phone');
+		$params['country'] = $this->input->post('country');
+		$params['seller_id'] = $this->input->post('seller_id');
+		$params['buyer_id'] = $this->session->userdata('busi_id');
+		$params['created_date'] = date('Y-m-d H:i:s');
+		$size = 0;
+		if (!empty($_FILES['FileUpload3']['name'])) {
+			$certiPath = FCPATH . "assets/images/user_images/$userId/buyerrequest";
+			if (!file_exists($certiPath)) {
+				mkdir($certiPath, 0777, true);
+				chmod($certiPath, 0777);
+			}
+			$certiPath = "assets/images/user_images/$userId/buyerrequest";
+			$imgupload = uploadImage($_FILES['FileUpload3'],$certiPath,array('jpeg','jpg','png','gif','pdf','doc','docx','xls','xlsx'),20971521,'br');
+			if($imgupload['status'] == 1) {
+				$params['attachment'] = $imgupload['image'];
+				$size = $size + $_FILES['FileUpload3'] ['size'];
+			}
+		}
+		$this->load->model('Product_Model', 'product' );
+		$this->product->addCommunityPostRequest($params);
+		/* ************** Storage Implementation *************** */
+		if($size != 0) {
+			$this->load->library('mylib/StorageLib');
+			$storage = array();
+			$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			$storage['field'] = 'inquiries';
+			$storage['datasize'] = round($size/1024,2);
+			$this->storagelib->updateStorageByBusiId($storage);
+		}
+		/* ***************************************************** */
+		echo json_encode(array('status'=>1));
+	}
+	
+	public function newSellerOffer($id) {
+		$this->load->model ( 'Account_Model', 'account' );
+		$busi_id = $this->session->userdata('busi_id');
+		$this->load->model('Community_Model', 'communitymodel' );
+		$post = $this->communitymodel->getCommunityPostById($id);
+		$Country= $this->account->getCountry();
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
+		$this->template->set ( 'Country', $Country);
+		$this->template->set('post',$post);
+		$this->template->set('seller_id',$post[0]['busi_id']);
+		$this->template->set('busi_id',$busi_id);
+		$this->template->set('contact_details',$contact_details);
+		$this->template->set ( 'page', 'bstation' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('community/pages/sendoffer');
+	}
+	
+	public function saveSellerOffer() {
+		$userId = $this->session->userdata('tsuser')['userid'];
+		$params = array();
+		$params['post_id'] = $this->input->post('post_id');
+		$params['message'] = $this->input->post('TextArea3');
+		$params['details'] = $this->input->post('TextArea4');
+		$params['contact_person'] = $this->input->post('name');
+		$params['price'] = $this->input->post('Price');
+		$params['unit_type'] = $this->input->post('Combobox1');
+		$params['quantity'] = $this->input->post('Qty');
+		$params['company'] = $this->input->post('Company');
+		$params['additional_email'] = $this->input->post('email');
+		$params['phone'] = $this->input->post('phone');
+		$params['country'] = $this->input->post('country');
+		$params['buyer_id'] = $this->input->post('buyer_id');
+		$params['seller_id'] = $this->session->userdata('busi_id');
+		$params['created_date'] = date('Y-m-d H:i:s');
+		$size = 0;
+		if (!empty($_FILES['FileUpload3']['name'])) {
+			$certiPath = FCPATH . "assets/images/user_images/$userId/selleroffer";
+			if (!file_exists($certiPath)) {
+				mkdir($certiPath, 0777, true);
+				chmod($certiPath, 0777);
+			}
+			$certiPath = "assets/images/user_images/$userId/selleroffer";
+			$imgupload = uploadImage($_FILES['FileUpload3'],$certiPath,array('jpeg','jpg','png','gif','pdf','doc','docx','xls','xlsx'),20971521,'br');
+			if($imgupload['status'] == 1) {
+				$params['attachment'] = $imgupload['image'];
+				$size = $size + $_FILES['FileUpload3'] ['size'];
+			}
+		}
+		$this->load->model('Product_Model', 'product' );
+		$this->product->addCommunityPostOffer($params);
+		/* ************** Storage Implementation *************** */
+		if($size != 0) {
+			$this->load->library('mylib/StorageLib');
+			$storage = array();
+			$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			$storage['field'] = 'offers';
+			$storage['datasize'] = round($size/1024,2);
+			$this->storagelib->updateStorageByBusiId($storage);
+		}
+		/* ***************************************************** */
+		echo json_encode(array('status'=>1));
+	}
+	
+	public function shareCommunityPost($postid) {
+		$share_id = $this->session->userdata('busi_id');
+		$params = array();
+		$params['id'] = $postid;
+		$params['share_id'] = $share_id;
+		$this->load->model('Community_Model', 'communitymodel' );
+		$result = $this->communitymodel->updateCommunityPost($params);
+		if($result) {
+			echo json_encode(array('msg'=>'Post shared in your community'));
+		} else {
+			echo json_encode(array('msg'=>'Failed to share post'));
+		}
+	}
+	
+	public function visitCommunityPost($postid) {
+		$this->load->model('Community_Model', 'communitymodel' );
+		$result = $this->communitymodel->updateCommunityVisit($postid);
 	}
 		
 }

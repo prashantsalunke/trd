@@ -467,7 +467,7 @@ pre {
 	    			</div>
 		    		<div class="row">
 			    		<div class="col-md-4" ><p>Accepted Payment</p></div>
-			    		<div class="col-md-8" ><p><?php $curr_text = ""; foreach ($currency as $curr) { if($curr_text == "") { $curr_text = $curr['payment_currency'];} else { $curr_text = $curr_text.", ".$curr['payment_currency'];}} echo $curr_text;?></p></div>
+			    		<div class="col-md-8" ><p><?php $curr_text = "N/A"; foreach ($currency as $curr) { if($curr_text == "N/A") { $curr_text = $curr['payment_currency'];} else { $curr_text = $curr_text.", ".$curr['payment_currency'];}} echo $curr_text;?></p></div>
 		    		</div>
 		    		<div style="position:relative;">
 		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;">
@@ -500,7 +500,7 @@ pre {
 							</a>
 						</div>
 						<div id="RollOver34" style="position:absolute;left:88px;top:8px;overflow:hidden;width:40px;height:40px;z-index:180">
-							<a href="javascript:popupwnd('./item_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self">
+							<a href="javascript:popupwnd('<?php echo base_url();?>desksite/item_enquiry/<?php echo $product['busi_id'];?>/<?php echo $product['id'];?>','no','no','no','no','no','no','200','50','1055','680')" target="_self">
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_inquiry.png">
 								<span><img alt="" src="<?php echo asset_url();?>images/items_inquiry0.png"></span>
 							</a>

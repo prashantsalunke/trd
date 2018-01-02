@@ -300,7 +300,7 @@ function showAddResponse(resp, statusText, xhr, $form){
 <div id="wb_Form1" style="position:absolute;left:7px;top:154px;width:509px;height:540px;z-index:31;">
 <form name="Offer_for_you_post_in_RT_Business" method="post" action="" enctype="multipart/form-data" id="seller_bstation_offer" onsubmit="return ValidateOffer_for_you_post_in_RT_Business(this)">
 <input type="hidden" name="post_id" value="<?php echo $post[0]['id'];?>" />
-<input type="hidden" name="post_type" id="post_type" value="1" />
+<input type="hidden" name="post_type" id="post_type" value="3" />
 <input type="hidden" name="product_id" id="product_id" value="0" />
 <input type="hidden" name="busi_id" value="<?php echo $post[0]['busi_id'];?>" />
 <input type="hidden" name="my_busi_id" value="<?php echo $busi_id;?>" />

@@ -295,6 +295,7 @@ $route['mystation/sellerorder'] = 'frontend/Alerts/sellerOrder';
 $route['mystation/initiatorder'] = 'frontend/Alerts/InitiatOrder';
 $route['mystation/pininquiry'] = 'frontend/Alerts/pinInquiry';
 $route['mystation/unreadinquiry'] = 'frontend/Alerts/unreadInquiry';
+$route['mystation/readinquiry'] = 'frontend/Alerts/readInquiry';
 $route['mystation/deleteorder'] = 'frontend/Alerts/deleteOrder';
 $route['mystation/inquiryreplay'] = 'frontend/Alerts/inquiryReplay';
 $route['mystation/addedrequest'] = 'frontend/Alerts/addedRequest';
@@ -305,6 +306,7 @@ $route['mystation/offerreplay'] = 'frontend/Alerts/offerReplay';
 $route['mystation/saveofferreplay'] = 'frontend/Alerts/saveOfferReplay';
 $route['mystation/deleteoffer'] = 'frontend/Alerts/deleteOffer';
 $route['mystation/unreadoffer'] = 'frontend/Alerts/unreadOffer';
+$route['mystation/readoffer'] = 'frontend/Alerts/readOffer';
 $route['mystation/pinoffer'] = 'frontend/Alerts/pinOffer';
 $route['mystation/invoice/([0-9]+)'] = 'frontend/Alerts/invoice/$1';
 $route['mystation/editinvoice/([0-9]+)'] = 'frontend/Alerts/editInvoice/$1';
@@ -423,7 +425,9 @@ $route['([0-9]+)/subscription-checkout'] = 'frontend/Home/getSubscriptionCheckou
 $route['desksite/like/([0-9]+)'] = 'frontend/Home/likeBusiness/$1';
 $route['desksite/catalogue/like/([0-9]+)'] = 'frontend/Home/likeCatalogue/$1';
 $route['desksite/general_enquiry/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
+$route['desksite/item_enquiry/([0-9]+)/([0-9]+)'] = 'frontend/Home/getItemInquiry/$1/$2';
 $route['desksite/saveenquiry'] = 'frontend/Home/saveGeneralInquiry';
+$route['desksite/saveoffer'] = 'frontend/Home/saveGeneralOffer';
 $route['desksite/product/like/([0-9]+)'] = 'frontend/Product/likeProduct/$1';
 $route['desksite/share'] = 'frontend/Product/shareWithWorld';
 
@@ -449,7 +453,13 @@ $route['community/members/search'] = 'frontend/Community/searchMyCommunityMember
 $route['community/members/delete'] = 'frontend/Community/deleteMyCommunityMembers';
 $route['mycommunity/member/delete/([0-9]+)'] = 'frontend/Community/deleteCommunityRequest/$1';
 $route['mycommunity/member/accept/([0-9]+)'] = 'frontend/Community/acceptCommunityRequest/$1';
-
+$route['mycommunity/member/request'] = 'frontend/Community/getCommunityRequests';
+$route['mycommunity/new/offer/([0-9]+)'] = 'frontend/Community/newSellerOffer/$1';
+$route['mycommunity/new/request/([0-9]+)'] = 'frontend/Community/newBuyerRequest/$1';
+$route['mycommunity/save/offer'] = 'frontend/Community/saveSellerOffer';
+$route['mycommunity/save/request'] = 'frontend/Community/saveBuyerRequest';
+$route['mycommunity/post/share/([0-9]+)'] = 'frontend/Community/shareCommunityPost/$1';
+$route['mycommunity/post/visit/([0-9]+)'] = 'frontend/Community/visitCommunityPost/$1';
 
 
 $route['stats/business/markvisit'] = 'frontend/Tools/updateBusinessStats';

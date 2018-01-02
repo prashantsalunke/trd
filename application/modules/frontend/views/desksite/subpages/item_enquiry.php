@@ -130,29 +130,40 @@ function showAddResponse(resp, statusText, xhr, $form){
 <div id="Layer130" style="position:fixed;text-align:center;left:0;top:0;right:0;bottom:0;z-index:29;">
 <div id="Layer130_Container" style="width:1048px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
 <div id="wb_Form4" style="position:absolute;left:175px;top:16px;width:827px;height:632px;z-index:14;">
+<div id="wb_Shape2" style="position:absolute;left: 0px;top: 110px;width:67px;height:63px;z-index:19;">
+	<img src="<?php echo asset_url();?><?php echo $item[0]['main_image'];?>" id="Shape2" alt="" style="width:67px;height:63px;border: 1px solid #e1e1e1;border-radius: 3px;">
+</div>
+<div id="wb_Text5" style="position:absolute;left: 85px;top: 115px;width:287px;height:17px;z-index:16;text-align:left;">
+	<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">I'de like to inquire about</span>
+	<br>
+	<span style="color:#4B4B4B;font-family:Arial;font-size:16px;"><strong><?php echo $item[0]['name'];?></strong></span>
+	<br>
+	<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">item no.</span>
+	<span style="color:#4B4B4B;font-family:Arial;font-size:16px;"><strong><?php echo $item[0]['model_no'];?></strong></span>
+</div>
 <form name="contact" method="post" action="" enctype="application/x-www-form-urlencoded" id="Form4" >
 <input type="hidden" name="busi_id" id="busi_id" value="<?php echo $desksite[0]['busi_id'];?>" />
 <input type="hidden" name="my_busi_id" id="my_busi_id" value="<?php echo $mydesksite[0]['busi_id'];?>" />
-<input type="hidden" name="product_id" id="product_id" value="0" />
+<input type="hidden" name="product_id" id="product_id" value="<?php echo $item[0]['id'];?>" />
 <input type="hidden" name="post_type" id="post_type" value="0" />
 <input type="hidden" name="post_id" id="post_id" value="0" />
-<input type="hidden" name="inquiry_type_id" id="inquiry_type_id" value="1" />
-<input type="hidden" name="title" id="title" value="General Enquiry" />
-<input type="text" id="Editbox5" style="position:absolute;left:0px;top:157px;width:327px;height:46px;line-height:46px;z-index:0;" name="name" value="<?php if(!empty($mydesksite[0]['name'])) { echo $mydesksite[0]['name']; }?>" maxlength="50" placeholder="Name">
-<textarea name="message" id="TextArea2" style="position:absolute;left:0px;top:328px;width:682px;height:232px;z-index:1;" rows="16" cols="95" maxlength="500" placeholder="Message"></textarea>
-<input type="button" id="Button5" name="" value="Send" style="position:absolute;left:600px;top:588px;width:96px;height:25px;z-index:2;" onclick="saveRequest();">
-<input type="number" id="Editbox11" style="position:absolute;left:353px;top:218px;width:327px;height:46px;line-height:46px;z-index:3;" name="phone" value="<?php if(!empty($mydesksite[0]['telephone_number'])) { echo $mydesksite[0]['telephone_number']; }?>" maxlength="15" placeholder="Phone">
-<input type="text" id="Editbox12" style="position:absolute;left:354px;top:157px;width:327px;height:46px;line-height:46px;z-index:4;" name="company" value="<?php if(!empty($mydesksite[0]['company_name'])) { echo $mydesksite[0]['company_name']; }?>" maxlength="50" placeholder="Company">
-<input type="email" id="Editbox13" style="position:absolute;left:0px;top:218px;width:327px;height:46px;line-height:46px;z-index:5;" name="email" value="<?php if(!empty($mydesksite[0]['company_email'])) { echo $mydesksite[0]['company_email']; }?>" maxlength="30" placeholder="Email">
-<input type="file" id="FileUpload1" style="position:absolute;left:128px;top:285px;width:198px;height:21px;line-height:21px;z-index:6;" name="FileUpload1[]" multiple="multiple" />
-<div id="wb_Image1" style="position:absolute;left:1px;top:281px;width:38px;height:38px;z-index:7;">
+<input type="hidden" name="inquiry_type_id" id="inquiry_type_id" value="2" />
+<input type="hidden" name="title" id="title" value="Item Enquiry" />
+<input type="text" id="Editbox5" style="position:absolute;left:0px;top: 190px;width:327px;height:46px;line-height:46px;z-index:0;" name="name" value="<?php if(!empty($mydesksite[0]['name'])) { echo $mydesksite[0]['name']; }?>" maxlength="50" placeholder="Name">
+<textarea name="message" id="TextArea2" style="position:absolute;left:0px;top:360px;width:682px;height:232px;z-index:1;" rows="16" cols="95" maxlength="500" placeholder="Message"></textarea>
+<input type="button" id="Button5" name="" value="Send" style="position:absolute;left:600px;top:610px;width:96px;height:25px;z-index:2;" onclick="saveRequest();">
+<input type="number" id="Editbox11" style="position:absolute;left:353px;top:255px;width:327px;height:46px;line-height:46px;z-index:3;" name="phone" value="<?php if(!empty($mydesksite[0]['telephone_number'])) { echo $mydesksite[0]['telephone_number']; }?>" maxlength="15" placeholder="Phone">
+<input type="text" id="Editbox12" style="position:absolute;left:354px;top:190px;width:327px;height:46px;line-height:46px;z-index:4;" name="company" value="<?php if(!empty($mydesksite[0]['company_name'])) { echo $mydesksite[0]['company_name']; }?>" maxlength="50" placeholder="Company">
+<input type="email" id="Editbox13" style="position:absolute;left:0px;top:255px;width:327px;height:46px;line-height:46px;z-index:5;" name="email" value="<?php if(!empty($mydesksite[0]['company_email'])) { echo $mydesksite[0]['company_email']; }?>" maxlength="30" placeholder="Email">
+<input type="file" id="FileUpload1" style="position:absolute;left:128px;top:318px;width:198px;height:21px;line-height:21px;z-index:6;" name="FileUpload1[]" multiple="multiple" />
+<div id="wb_Image1" style="position:absolute;left:1px;top:315px;width:38px;height:38px;z-index:7;">
 <img src="<?php echo asset_url();?>images/insert-image-3.png" id="Image1" alt=""></div>
-<div id="wb_Text4" style="position:absolute;left:49px;top:288px;width:77px;height:17px;z-index:8;text-align:left;">
+<div id="wb_Text4" style="position:absolute;left:49px;top:320px;width:77px;height:17px;z-index:8;text-align:left;">
 <span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Attachment<br></span></div>
 <div id="wb_Text2" style="position:absolute;left:1px;top:90px;width:44px;height:17px;z-index:9;text-align:left;">
 <span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Attn.: <br></span></div>
 <div id="wb_Text278" style="position:absolute;left:1px;top:34px;width:166px;height:19px;z-index:10;text-align:left;">
-<span style="color:#4B4B4B;font-family:Arial;font-size:17px;"><strong>General Inquiry</strong></span></div>
+<span style="color:#4B4B4B;font-family:Arial;font-size:17px;"><strong>Item Inquiry</strong></span></div>
 <div id="wb_Text3" style="position:absolute;left:33px;top:88px;width:166px;height:19px;z-index:11;text-align:left;">
 <span style="color:#4B4B4B;font-family:Arial;font-size:16px;"><strong><?php echo $desksite[0]['name_prefix'];?> <?php echo $desksite[0]['name'];?></strong></span></div>
 <div id="wb_Text308" style="position:absolute;left:1px;top:68px;width:460px;height:17px;z-index:12;text-align:left;">
