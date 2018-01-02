@@ -89,9 +89,9 @@
 				<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">My Cart</span>
 			</div>
 			<div id="RollOver54" style="position: absolute; left: 74px; top:297px; overflow: hidden; width: 50%; height: 40px; z-index: 1683">
-				<a href="javascript:openRequest();"> <img class="hover" alt=""
-					src="<?php echo asset_url();?>images/addrequescolort.png" style="width:40px;"> <span><img
-						alt="" src="<?php echo asset_url();?>images/addrequest.png" style="width:40px;"></span>
+				<a href="javascript:openRequest();"> 
+					<img class="hover" alt="" src="<?php echo asset_url();?>images/addrequescolort.png" style="width:40px;"> 
+					<span><img alt="" src="<?php echo asset_url();?>images/addrequest.png" style="width:40px;"></span>
 				</a>
 				<div id="totalrequest" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($sendcommunityrequest) ?></div>
 			</div><br><br>
@@ -112,7 +112,7 @@
 				<a href="javascript:openInquiry();"> <img class="hover" alt="" src="<?php echo asset_url();?>images/inquiryoffwhite.png" style="width:40px;"> <span>
 					<img alt="" src="<?php echo asset_url();?>images/inquiry.png" style="width:40px;"></span>
 				</a>
-				<div id="totalinquiry" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($inquiry);?>0</div>
+				<div id="totalinquiry" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($inquiry);?></div>
 			</div>
 			<br><br>
 			<div style="position:absolute;top:509px;text-align:center;width: 160px;">
@@ -120,9 +120,9 @@
 			</div>
 			<div id="RollOver53"
 				style="position: absolute; left: 74px; top: 543px; overflow: hidden; width: 50%; height: 40px; z-index: 1691">
-				<a href="javascript:openOffer();"> <img class="hover" alt=""
-					src="<?php echo asset_url();?>images/offer-tool2.png" style="width:40px;"> <span><img
-						alt="" src="<?php echo asset_url();?>images/offer-tool1.png" style="width:40px;"></span>
+				<a href="javascript:openOffer();"> 
+					<img class="hover" alt="" src="<?php echo asset_url();?>images/offer-tool2.png" style="width:40px;"> 
+					<span><img alt="" src="<?php echo asset_url();?>images/offer-tool1.png" style="width:40px;"></span>
 				</a>
 				<div id="totaloffer" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($offer);?></div>
 			</div>

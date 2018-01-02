@@ -209,10 +209,14 @@ class Alerts extends MX_Controller {
 		echo $html;
 	}
 	public function inquiryReplay() {
+		$this->load->model ( 'Account_Model', 'account' );
+		$busi_id = $this->session->userdata('busi_id');
 		$this->load->library('mylib/InquiryLib');
 		$inquiryid = $this->input->post('inquiryid');
 		$inquirydata = $this->inquirylib->getInquiryById($inquiryid);
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'inquirydata', $inquirydata);
+		$this->template->set('contact_details',$contact_details);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
@@ -428,13 +432,34 @@ class Alerts extends MX_Controller {
 		if($response > 0)
 		{
 			$map['status'] = 1;
-			$map['msg'] = 'Inquiry mark as unread Successfully';
+			$map['msg'] = 'Inquiry marked as unread Successfully';
 		} else {
 			$map['status'] = 0;
-			$map['msg'] = 'Fail to mark as unread.';
+			$map['msg'] = 'Inquiry marked as unread.';
 		}
 		echo json_encode($map);
 	}
+	
+	public function readInquiry() {
+		$response = 0;
+		$map = array();
+		$this->load->library('mylib/InquiryLib');
+		$id = $this->input->post('id');
+		$data = array();
+		$data['id'] = $id;
+		$data['unreadmark'] = 1;
+		$response = $this->inquirylib->updateInquiry($data);
+		if($response > 0)
+		{
+			$map['status'] = 1;
+			$map['msg'] = 'Inquiry marked as read Successfully';
+		} else {
+			$map['status'] = 0;
+			$map['msg'] = 'Inquiry marked as read.';
+		}
+		echo json_encode($map);
+	}
+	
 	public function deleteOrder() {
 		$map = array();
 		$this->load->library('mylib/OrderLib');
@@ -539,10 +564,14 @@ class Alerts extends MX_Controller {
 	}
 	public  function  offerReplay()
 	{
+		$this->load->model ( 'Account_Model', 'account' );
+		$busi_id = $this->session->userdata('busi_id');
 		$this->load->library('mylib/OfferLib');
 		$offerid = $this->input->post('offerid');
 		$offerdata = $this->offerlib->getOfferById($offerid);
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'offerdata', $offerdata);
+		$this->template->set ( 'contact_details', $contact_details);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
@@ -672,13 +701,34 @@ class Alerts extends MX_Controller {
 		if($response > 0)
 		{
 			$map['status'] = 1;
-			$map['msg'] = 'Offer mark as unread Successfully';
+			$map['msg'] = 'Offer marked as unread Successfully';
 		} else {
 			$map['status'] = 0;
-			$map['msg'] = 'Fail to mark as unread.';
+			$map['msg'] = 'Offer marked as unread.';
 		}
 		echo json_encode($map);
 	}
+	
+	public function readOffer() {
+		$response = 0;
+		$map = array();
+		$this->load->library('mylib/OfferLib');
+		$id = $this->input->post('id');
+		$data = array();
+		$data['id'] = $id;
+		$data['unreadmark'] = 1;
+		$response = $this->offerlib->updateOffer($data);
+		if($response > 0)
+		{
+			$map['status'] = 1;
+			$map['msg'] = 'Offer marked as read Successfully';
+		} else {
+			$map['status'] = 0;
+			$map['msg'] = 'Offer marked as read.';
+		}
+		echo json_encode($map);
+	}
+	
 	public function invoice($order_id)
 	{
 		$this->load->library('mylib/OrderLib');

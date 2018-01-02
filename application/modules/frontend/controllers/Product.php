@@ -166,12 +166,17 @@ class Product extends MX_Controller {
 			$this->mytoolmodel->addProductVisit($map);
 		}
 		$this->load->model('Product_Model', 'product' );
+		$this->load->model('Account_Model', 'account' );
 		$getProductdetailsById = $this->product->getProductdetailsById($id);
 		$this->template->set ( 'Productdetails', $getProductdetailsById);
 		$colors = $this->product->getProductColorById($id);
 		$this->template->set ( 'colors', $colors);
 		$Specifications = $this->product->getProductSpecificationById($id);
 		$this->template->set ( 'specifications', $Specifications);
+		$trade_info = $this->product->getCompanyTradeInfo($busi_id);
+		$currency = $this->account->getTradePaymentCurrencyByTradId($trade_info[0]['id']);
+		$this->template->set ( 'currency', $currency);
+		$this->template->set ( 'trade_info', $trade_info);
 		$this->template->set ( 'page', 'pro-details');
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');

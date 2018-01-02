@@ -1133,28 +1133,34 @@ function openEnquiryAndOfferForm(postid) {
 	<?php if($tscategory_id != 3) { ?>
 		<?php if($contact_details[0]['plan_id'] > 3) { ?>
 			<?php if(($tscategory_id == 1 && $contact_details[0]['step'] == 4) || ($tscategory_id == 2 && $contact_details[0]['step'] == 2)) { ?>
-				<?php if($oisstorage[0]['intvalue'] <= ($storage[0]['offers'] + $storage[0]['inquiries'])) { ?>
-					customAlert('Your offer/enquiry box is full. Please delete offer/enquiries to send more enquiries');
+				<?php if($oisstorage[0]['intvalue'] <= (($storage[0]['offers'] + $storage[0]['inquiries'])/1024)) { ?>
+					$("#msg_cont").html('Your offer/enquiry box is full. Please delete offer/enquiries to send more enquiries');
+					ShowObject('Layer99', 1);
 				<?php } else { ?>
 					popupwnd('<?php echo base_url();?>mycommunity/new/offer/'+postid,'no','no','no','yes','yes','no','600','50','555','750');
 				<?php } ?>
 			<?php } else { ?>
-				customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+				$("#msg_cont").html('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+				ShowObject('Layer99', 1);
 			<?php } ?>
 		<?php } else { ?>
-			customAlert("You subscription plan doesn’t allow you to reply any post, please upgrade your account or chat with the post publisher.");
+			$("#msg_cont").html("You subscription plan doesn’t allow you to reply any post, please upgrade your account or chat with the post publisher.");
+			ShowObject('Layer99', 1);
 		<?php } ?>
 	<?php } else { ?>
 		<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-			<?php if($oisstorage[0]['intvalue'] <= ($storage[0]['offers'] + $storage[0]['inquiries'])) { ?>
-				customAlert('Your offer/enquiry box is full. Please delete offer/enquiries to send more enquiries');
+			<?php if($oisstorage[0]['intvalue'] <= (($storage[0]['offers'] + $storage[0]['inquiries'])/1024)) { ?>
+				$("#msg_cont").html('Your offer/enquiry box is full. Please delete offer/enquiries to send more enquiries');
+				ShowObject('Layer99', 1);
 			<?php } else { ?>
 				popupwnd('<?php echo base_url();?>mycommunity/new/request/'+postid,'no','no','no','yes','yes','no','600','50','555','750');
 			<?php } ?>
 		<?php } else if($contact_details[0]['step'] < 2) { ?>
-			customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+			$("#msg_cont").html('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+			ShowObject('Layer99', 1);
 		<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
-			customAlert('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+			$("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+			ShowObject('Layer99', 1);
 		<?php } ?>
 	<?php } ?>
 }
@@ -1234,12 +1240,15 @@ function resetMyForm() {
 
 function showAddPost() {
 	<?php if($tscategory_id != 3 && $tsplanid < 4) { ?>
-		customAlert('You subscription plan doesn\'t allow you to send posts, please upgrade your subscription plan to "Elite"');
+		$("#msg_cont").html('You subscription plan doesn\'t allow you to send posts, please upgrade your subscription plan to "Elite"');
+		ShowObject('Layer99', 1);
 	<?php } elseif($tscategory_id == 3 && $myds_stage != 4) { ?>
-		customAlert('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+		$("#msg_cont").html('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+		ShowObject('Layer99', 1);
 	<?php } else { ?>
 		<?php if($mystorage[0]['intvalue'] <= round($storage[0]['community']/1024,2)) { ?>
-			customAlert('Your posts storage box is full please delete some of your old posts');
+			$("#msg_cont").html('Your posts storage box is full please delete some of your old posts');
+			ShowObject('Layer99', 1);
 		<?php } else { ?>
 			ShowObjectWithEffect('Layer6', 1, 'slideup', 550, 'easeOutBounce');
 		<?php } ?>

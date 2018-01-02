@@ -8,32 +8,6 @@
 		</div>
 	</div>
 </div>
-<div id="customAlertBox" class="modal fade" role="dialog" style="z-index:13000;">
-  	<div class="modal-dialog" style="width:400px;">
-    	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
-      		<div class="modal-body">
-      			<div class="row" style="padding-top:10px;">
-      				<div class="col-sm-2"></div>
-      				<div class="col-sm-8">
-	      				<div style="text-align: center;">
-							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;"></span>
-						</div>
-						<br><br>
-						<div style="text-align: center;" id="customAlertText">
-							My Alert
-						</div>
-					</div>
-					<div class="col-sm-2"></div>
-      			</div>
-      			<br>
-      			<div class="row text-center">
-      				<a href="" class="btn btn-sm btn-danger-custom" data-dismiss="modal" style="width:100px;">OK</a>
-      			</div>
-      			<br><br>
-      		</div>
-    	</div>
-  	</div>
-</div>
 <script>
 function addToMyFavourite(fav_id,type) {
 	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(data) {
@@ -51,9 +25,5 @@ function openChatWithBuyer(postid,buyer_id,accept_chat) {
 	} else {
 		customAlert('Sorry.. Buyer status is " Don\'t Disturb".. Please try again on other time, status may be changed soon.');
 	}
-}
-function customAlert(msg) {
-	$("#customAlertText").html(msg);
-	$('#customAlertBox').modal({show:true,backdrop: 'static',keyboard: false});
 }
 </script>
