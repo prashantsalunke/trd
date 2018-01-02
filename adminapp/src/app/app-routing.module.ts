@@ -5,7 +5,9 @@ import { MainRouteComponent } from './main-route.component';
 const routes: Routes = [
   {path:'login',loadChildren:'app/login/login.module#LoginModule'},  
   {path:'',component:MainRouteComponent,children:[
-    {path:'sub-admins',loadChildren:'app/sub-admins/sub-admins.module#SubAdminsModule'}]}
+    {path:'sub-admins',loadChildren:'app/sub-admins/sub-admins.module#SubAdminsModule'},
+    {path:'members',loadChildren:'app/members/members.module#MembersModule'}
+  ]}
 ];
 
 @NgModule({

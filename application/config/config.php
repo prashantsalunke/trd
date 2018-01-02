@@ -24,10 +24,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
+<<<<<<< HEAD
 //$config['base_url'] = 'http://trdstation.prashantkadam.in';
+=======
+$config['base_url'] = 'http://localhost/trd/';
+>>>>>>> 86b489493d731e9390a4884827c60e0f4fbd9363
 
 if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on"){$ssl_set = "s";} else{$ssl_set = "";}
 $config['base_url'] = 'http'.$ssl_set.'://'.$_SERVER['HTTP_HOST'].(ENVIRONMENT == 'development')?'/trdstation':'';
+
 /*
 |--------------------------------------------------------------------------
 | Index File

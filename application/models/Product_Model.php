@@ -1222,40 +1222,73 @@ class Product_Model extends CI_Model {
     	
     }
     
-    public function communityPostListByAlluser() {
-    	//$this->db->select('a.*,b.name as subproduct,c.name as mainproduct,d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,  e.*, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4');
+    public function communityPostListByAlluser($busi_id) {
     	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,  e.*, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment');
     	$this->db->from(TABLES::$COMMMUNITY_POST.' AS h');
-    	//$this->db->join(TABLES::$PRODUCT_ITEM. ' AS a', 'h.product_item_id = a.id','left' );
-    	//$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','inner');
-    	//$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','b.mproduct_id=c.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
-    	//$this->db->where('a.busi_id',$id);
-    	$this->db->order_by('h.id','desc');
-    	//$this->db->group_by('h.id');
-    	$query = $this->db->get();
-    	//echo $this->db->last_query();
+    	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS i','i.busi_id=h.busi_id','inner');
+    	$this->db->where('i.my_busi_id',$busi_id);
+    	$this->db->where('h.status',1);
+    	$this->db->where('f.account_activated', 1);
+    	$this->db->where('f.is_suspend', 0);
+    	$this->db->where('f.is_deleted', 0);
+    	$this->db->where('f.is_contactperson',1);
+    	$this->db->group_by('h.id');
+    	$query_1 = $this->db->get_compiled_select ();
+    	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,  e.*, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment');
+    	$this->db->from(TABLES::$COMMMUNITY_POST.' AS h');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
+    	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
+    	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
+    	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
+    	$this->db->where('h.busi_id',$busi_id);
+    	$this->db->where('h.status',1);
+    	$this->db->where('f.account_activated', 1);
+    	$this->db->where('f.is_suspend', 0);
+    	$this->db->where('f.is_deleted', 0);
+    	$this->db->where('f.is_contactperson',1);
+    	$this->db->group_by('h.id');
+    	$query_2 = $this->db->get_compiled_select ();
+    	$sql = "SELECT t.* FROM (".$query_1." UNION ".$query_2.") as t order by t.created_date desc";
+    	$query = $this->db->query($sql);
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
+    public function communityMemberFirstPost($busi_id) {
+    	$this->db->select('h.id');
+    	$this->db->from(TABLES::$COMMMUNITY_POST.' AS h');
+    	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS i','i.busi_id=h.busi_id','inner');
+    	$this->db->where('i.my_busi_id',$busi_id);
+    	$query_1 = $this->db->get_compiled_select ();
+    	$this->db->select('h.id');
+    	$this->db->from(TABLES::$COMMMUNITY_POST.' AS h');
+    	$this->db->where('h.busi_id',$busi_id);
+    	$query_2 = $this->db->get_compiled_select ();
+    	$sql = "SELECT t.* FROM (".$query_1." UNION ".$query_2.") as t order by t.id desc limit 1";
+    	$query = $this->db->query($sql);
     	$result = $query->result_array();
     	return $result;
     }
     
     public function communityPostListByBusinessId($id) {
-    	//$this->db->select('a.*,b.name as subproduct,c.name as mainproduct,d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,  e.*, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4');
     	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,  e.*, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment');
     	$this->db->from(TABLES::$COMMMUNITY_POST.' AS h');
-    	//$this->db->join(TABLES::$PRODUCT_ITEM. ' AS a', 'h.product_item_id = a.id','left' );
-    	//$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
-    	//$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','b.mproduct_id=c.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS g','g.user_id=f.id','inner');
     	$this->db->where('h.busi_id',$id);
+    	$this->db->where('h.status',1);
+    	$this->db->where('f.account_activated', 1);
+    	$this->db->where('f.is_suspend', 0);
+    	$this->db->where('f.is_deleted', 0);
+    	$this->db->where('f.is_contactperson',1);
     	$this->db->order_by('h.id','desc');
-    	//$this->db->group_by('h.id');
+    	$this->db->group_by('h.id');
     	$query = $this->db->get();
     	//echo $this->db->last_query();
     	$result = $query->result_array();
@@ -1360,6 +1393,7 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS f','f.id=d.user_subcategory_id','inner');
     	$this->db->where('a.my_busi_id',$id);
     	$this->db->where('d.is_contactperson',1);
+    	$this->db->where('a.status',1);
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
