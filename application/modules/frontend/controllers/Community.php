@@ -26,7 +26,7 @@ class Community extends MX_Controller {
 		$Country= $this->account->getCountry();
 		$this->template->set ('Country', $Country);
 		$this->load->model('Product_Model', 'product' );
-		$this->load->model('Tool_Model', 'toolmodel' );
+		$this->load->model('Tool_model', 'toolmodel' );
 		$userinfo = $this->product->getUserInfoByBussId($busi_id);
 		$this->template->set ('userinfo', $userinfo);
 		$usertype = $this->product->getUserTypebyBusinessId($busi_id);

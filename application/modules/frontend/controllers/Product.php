@@ -526,6 +526,12 @@ class Product extends MX_Controller {
 		$this->template->set ( 'products', $products);
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);
+		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+		$this->template->set ( 'featuredSellers', $featuredSellers);
+		$featuredBuyers = $this->sellers->getFeaturedWorldBuyer();
+		$this->template->set ( 'featuredBuyers', $featuredBuyers);
+		$featuredProducts = $this->sellers->getFeaturedProduct();
+		$this->template->set ( 'featuredProducts', $featuredProducts);
 		$procategories = $this->general->getProductCategories();
 		$this->template->set ( 'categories', $procategories);
 		$maincats = $this->product->getActiveProductMainAndSubCategories();
@@ -549,7 +555,7 @@ class Product extends MX_Controller {
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
-		->title ( 'Find Products' )
+		->title ( '3D Pro' )
 		->set_partial ( 'header', 'default/inner-header' )
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('product/product3D');
@@ -576,6 +582,12 @@ class Product extends MX_Controller {
 		$this->template->set ( 'vCatalogues', $vCatalogues);
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);
+		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+		$this->template->set ( 'featuredSellers', $featuredSellers);
+		$featuredBuyers = $this->sellers->getFeaturedWorldBuyer();
+		$this->template->set ( 'featuredBuyers', $featuredBuyers);
+		$featuredProducts = $this->sellers->getFeaturedProduct();
+		$this->template->set ( 'featuredProducts', $featuredProducts);
 		$procategories = $this->general->getProductCategories();
 		$this->template->set ( 'categories', $procategories);
 		$maincats = $this->product->getActiveProductMainAndSubCategories();
@@ -599,9 +611,10 @@ class Product extends MX_Controller {
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
-		->title ( 'Find Products' )
+		->title ( 'V-Catalogues' )
 		->set_partial ( 'header', 'default/inner-header' )
-		->set_partial ( 'footer', 'default/footer' );
+		->set_partial ( 'footer', 'default/footer' )
+		->set_partial ( 'vcatalogue', 'default/vcatalogue' );
 		$this->template->build ('product/Vcatalogue');
 	}
 	

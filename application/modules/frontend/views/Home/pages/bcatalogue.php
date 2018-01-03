@@ -11,7 +11,7 @@
 		<div class="b-load row">
 <?php foreach ($products as $key=>$product) { ?>
 	<div>
-		<div class="col-sm-12">
+		<div class="col-sm-12" style="padding:0px;height:438px;">
 			<div class="row" style="margin:0px;">
 				<div class="col-sm-12 catalogue_page_item_name">
 					<strong>
@@ -32,7 +32,7 @@
 						<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url();?><?php echo $product['main_image'];?>" class="catalogue_main_img"/>
 					</a>
 				</div>
-				<div class="col-sm-12 catalogue_page_left_num">
+				<div style="position:absolute;bottom:0px;background-color: #fff;padding: 0px 10px;right:0px;">
 					<div class="pull-right">
 						<span class="catalogue_page_no_text">Page</span>
 						<span class="catalogue_page_no_num"><?php echo ($key*2+1);?></span>
@@ -42,24 +42,24 @@
 		</div>
 	</div>
 	<div>
-		<div class="col-sm-12" style="padding-top:7px;">
-			<div class="row" style="margin:0px;">
-				<div class="col-sm-12 catalogue_page_item_mimg">
+		<div class="col-sm-12" style="height:438px;padding-top:5px;">
+			<div class="row" style="margin:0px;width:380px;">
+				<div class="col-sm-12" style="padding:2px;width:348px;margin-bottom:5px;">
 					<a href="<?php echo base_url();?>deskdetails/<?php echo $product['id'];?>" target="_blank">
-						<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url();?><?php echo $product['sub_image1'];?>" class="catalogue_main_img">
+						<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url();?><?php echo $product['sub_image1'];?>" style="height:265px;border:1px solid #f1f1f1;">
 					</a>
 				</div>
-				<div class="col-sm-6 catalogue_page_item_mimg-sm" style="padding-left:0px;">
+				<div class="col-sm-6" style="width:175px;padding:2px;float:left;">
 					<a href="<?php echo base_url();?>deskdetails/<?php echo $product['id'];?>" target="_blank">
-						<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url();?><?php echo $product['sub_image2'];?>" class="catalogue_sub_img">
+						<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url();?><?php echo $product['sub_image2'];?>" style="width:168px;border:1px solid #f1f1f1;">
 					</a>
 				</div>
-				<div class="col-sm-6 catalogue_page_item_mimg-sm" style="padding-left:0px;">
+				<div class="col-sm-6" style="width:175px;padding:2px;float:left;">
 					<a href="<?php echo base_url();?>deskdetails/<?php echo $product['id'];?>" target="_blank">
-						<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url();?><?php echo $product['sub_image3'];?>" class="catalogue_sub_img">
+						<img alt="<?php echo $product['name'];?>" src="<?php echo asset_url();?><?php echo $product['sub_image3'];?>" style="width:168px;border:1px solid #f1f1f1;">
 					</a>
 				</div>
-				<div class="col-sm-12 catalogue_page_right_num">
+				<div style="position:absolute;bottom:0px;background-color: #fff;padding: 0px 10px;">
 					<div class="pull-left">
 						<span class="catalogue_page_no_text">Page</span>
 						<span class="catalogue_page_no_num"><?php echo ($key*2+2);?></span>

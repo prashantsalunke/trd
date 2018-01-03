@@ -158,6 +158,48 @@ a.style16:hover
    color: #FF7F50;
    text-decoration: underline;
 }
+#RollOver5 a
+{
+   display: block;
+   position: relative;
+   height: 100%;
+   width: 100%;
+}
+#RollOver5 a img
+{
+   position: absolute;
+   z-index: 1;
+   border-width: 0;
+}
+#RollOver5 span
+{
+   display: block;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   z-index: 2;
+}
+#RollOver5 a .hover
+{
+   visibility: hidden;
+}
+#RollOver5 a:hover .hover
+{
+   visibility: visible;
+}
+#RollOver5 a:hover span
+{
+   visibility: hidden;
+}
+#RollOver5 img
+{
+   border-width: 0;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
 </style>
 
 <style>
@@ -631,12 +673,12 @@ function stopWiggle(input) {
 			<!-- Main Slider -->
 			<div id="Layer46" style="text-align:left;left:0;top:0;right:0;bottom:0;z-index:33;">
 				<?php if(!empty($Desksite['desksite_bg1'])) { ?>
-			    <div id="SlideShow1" >
-			        <img class="image d1" src="<?php echo asset_url().$Desksite['desksite_bg1']; ?>" alt="" title="" style="width:100%;"/>
-			        <img class="image d2" src="<?php echo asset_url().$Desksite['desksite_bg2']; ?>" alt="" title="" style="width:100%;"/>
+			    <div id="SlideShow1" style="width:100%;height:100%;">
+			    	<div class="image d1" style="width:100%;height:100%;background-image:url(<?php echo asset_url().$Desksite['desksite_bg1']; ?>);background-size:cover;">&nbsp;</div>
+			    	<div class="image d1" style="width:100%;height:100%;background-image:url(<?php echo asset_url().$Desksite['desksite_bg2']; ?>);background-size:cover;">&nbsp;</div>
 				</div>
 				<?php } else { ?>
-			        <img class="image d1" src="<?php echo asset_url(); ?>images/member-desksite.jpg" alt="" title="" style="width:100%;"/>
+					<div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
 			    <?php } ?>
 			</div>
 		    <!-- slider ends -->
@@ -841,13 +883,13 @@ function stopWiggle(input) {
 				</div>
 			    <!-- verified member end -->
 			    <!-- product popup -->
-				<div id="Layer44" style="position:absolute;text-align:left;visibility:hidden;left:23px;top:174px;width:48%;height:609px;z-index:3865;" onmouseleave="ShowObjectWithEffect('Layer18', 0, 'slidedown', 500);return false;">
+				<div id="Layer44" style="position:absolute;text-align:left;visibility:hidden;left:0;top:174px;width:48%;height:609px;z-index:3865;" onmouseleave="ShowObjectWithEffect('Layer18', 0, 'slidedown', 500);return false;">
 					<div id="Layer45">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer44', 0, 'slidedown', 300, 'swing');return false;">
-						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
+						<img src="<?php echo asset_url(); ?>images/newicons/closeround.png" id="Image135" alt="" class="imgre"></a>
 				        <div style=" width: 240px;">
 				            <br>
-				            <p class="box1font1"><img src="<?php echo asset_url(); ?>images/MENUICON.png" alt="" class="img32">PRODUCT CATEGORY</p>
+				            <p class="box1font1" style="padding-left:5px;"><img src="<?php echo asset_url(); ?>images/newicons/MENUICON.png" alt="" class="img32" style="width:24px !important;height:24px !important;"> PRODUCT CATEGORY</p>
 				            <div id="wb_desktop_menu">
 				                <br>
 				            </div>
@@ -1360,40 +1402,35 @@ function stopWiggle(input) {
 <div id="vcatalogue_overlay" class="modal fade" style="background-color:#404040;z-index: 4000;">
 	<div class="modal-dialog" style="background-color:#404040;width:1050px;">
 		<div class="modal-content" style="background: transparent;box-shadow:none;-webkit-box-shadow:none;border: 0px;">
-				<div style="position:absolute;right:0;width:50px;height:50px;z-index:5000;"><button type="button" class="pull-right" data-dismiss="modal" aria-hidden="true" style="background:transparent;border:0px;"><img src="<?php echo asset_url();?>images/closeround.png" id="Image47" alt="" style="width:35px;"></button></div>
-				<div class="modal-body catalogue_modal_body_bg" style="width:1050px;height:603px;">
-					<input type="hidden" id="pcatalogue_id" value="" />
-					<div class="row">
-						<div class="col-md-1" style="float:left;padding:0px;width:150px;">
-							<?php foreach ($catalogues as $catalogue) { ?>
-							<div style="text-align: center; margin-bottom: 5px; width:140px;height:155px;">
-								<div style="position:relative;width: 140px;top:-10px;">
-									<a href="javascript:viewNextCatalogueBook(<?php echo $catalogue['id'];?>);">
-										<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $catalogue['catalogue_title'];?></strong></span>
-									</a>
-								</div>
+			<div style="position:absolute;right:0;width:50px;height:50px;z-index:5000;"><button type="button" class="pull-right" data-dismiss="modal" aria-hidden="true" style="background:transparent;border:0px;"><img src="<?php echo asset_url();?>images/newicons/closeround.png" id="Image47" alt="" style="width:35px;"></button></div>
+			<div class="modal-body catalogue_modal_body_bg" style="width:1050px;height:640px;">
+				<input type="hidden" id="pcatalogue_id" value="" />
+				<div class="row">
+					<div class="col-md-1" style="float:left;padding:0px;width:140px;">
+						<?php foreach ($catalogues as $catalogue) { ?>
+						<div style="text-align: center; margin-bottom: 5px; width:140px;height:155px;">
+							<div style="position:relative;width: 140px;top:-10px;">
 								<a href="javascript:viewNextCatalogueBook(<?php echo $catalogue['id'];?>);">
-								<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block;width:77px;" >
-								<div style="position:relative;width:65px;top:-70px;left:38px;">
-									<img src="<?php echo asset_url().$catalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
-								</div>
+									<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $catalogue['catalogue_title'];?></strong></span>
 								</a>
 							</div>
-							<?php } ?>
-						</div>
-						<div class="col-md-9" style="width:770px;padding-top:25px;">
-							<div id="catalogue_page_content" class="catalogue_outer_body">
+							<a href="javascript:viewNextCatalogueBook(<?php echo $catalogue['id'];?>);">
+							<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block;width:77px;" >
+							<div style="position:relative;width:65px;top:-70px;left:38px;">
+								<img src="<?php echo asset_url().$catalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
 							</div>
+							</a>
 						</div>
-						<div class="col-md-1" style="padding:0px;width:80px;" id="share_it">
+						<?php } ?>
+					</div>
+					<div class="col-md-9" style="width:770px;padding-top:42px;">
+						<div id="catalogue_page_content" class="catalogue_outer_body">
 						</div>
 					</div>
+					<div class="col-md-1" style="padding:0px;width:80px;" id="share_it">
+					</div>
 				</div>
-				<!-- <div class="modal-footer" style="border:0px;text-align:center;padding-top:0px;">
-					<button type="button" id="publish_catalogue" class="btn btn-sm btn-danger-custom" onclick="publishCatalogue();">Publish</button>
-					<button type="button" id="edit_catalogue" class="btn btn-sm btn-danger-custom" onclick="editCatalogue();">Edit</button>
-				</div>  -->
-			
+			</div>
 		</div>
 	</div>
 </div>
@@ -1522,12 +1559,27 @@ function viewCatalogueBook(id) {
 			$("#pcatalogue_id").val(data.id);
 			$("#vcatalogue_overlay").modal('show');
 			var shareIt = '<ul class="share pull-right text-center">'
-						 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
-						 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
-						 +'<li class="share-button"><a href="javascript:likeCatalogue('+data.id+');"><i class="fa fa-thumbs-up" aria-hidden="true" style="margin-left:2px;">&nbsp;</i></a></li>'
-						 +'<li class="share-button"><a href="javascript:openChatWithBuyer(<?php echo $busi_id;?>);"><i class="fa fa-comments" aria-hidden="true" style="margin-left:2px;">&nbsp;</i></a></li>'
-						 +'<li class="share-button"><a href="javascript:addCatalogueToFavourite(<?php echo $busi_id;?>);"><i class="fa fa-star" aria-hidden="true" style="margin-left:2px;">&nbsp;</i></a></li>'
-						 +'</ul>';
+				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
+				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
+				 +'</ul>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
+				 +'</a>'
+				 +'</div>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 290px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:likeCatalogue('+data.id+');">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/items_likewhite.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/items_like2.png"></span>'
+				 +'</a>'
+				 +'</div>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 335px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:addToMyFavourite('+data.busi_id+',7);">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/addtofav.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/favorite_chery.gif"></span>'
+				 +'</a>'
+				 +'</div>';
 			$("#share_it").html(shareIt);
 			var $mybook 		= $('#mybook');
 			var $bttn_next		= $('#next_page_button');
@@ -1609,13 +1661,28 @@ function viewNextCatalogueBook(id) {
 			$("#catalogue_page_content").html(data.html);
 			$("#pcatalogue_id").val(data.id);
 			$("#vcatalogue_overlay").modal('show');
-			var shareIt = '<ul class="share pull-right">'
-						 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
-				 		 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
-						 +'<li class="share-button"><a href="javascript:likeCatalogue('+data.id+');"><i class="fa fa-thumbs-up" aria-hidden="true" style="margin-left:2px;">&nbsp;</i></a></li>'
-				 		 +'<li class="share-button"><a href="javascript:openChatWithBuyer(<?php echo $busi_id;?>);"><i class="fa fa-comments" aria-hidden="true" style="margin-left:2px;">&nbsp;</i></a></li>'
-				 		 +'<li class="share-button"><a href="javascript:addCatalogueToFavourite(<?php echo $busi_id;?>);"><i class="fa fa-star" aria-hidden="true" style="margin-left:2px;">&nbsp;</i></a></li>'
-						 +'</ul>';
+			var shareIt = '<ul class="share pull-right text-center">'
+				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
+				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
+				 +'</ul>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
+				 +'</a>'
+				 +'</div>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 290px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:likeCatalogue('+data.id+');">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/items_likewhite.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/items_like2.png"></span>'
+				 +'</a>'
+				 +'</div>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 335px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:addToMyFavourite('+data.busi_id+',7);">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/addtofav.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/favorite_chery.gif"></span>'
+				 +'</a>'
+				 +'</div>';
 			$("#share_it").html(shareIt);
 			var $mybook 		= $('#mybook');
 			var $bttn_next		= $('#next_page_button');
@@ -1836,4 +1903,9 @@ function productDetail(id) {
 		$("#details").html(data);
 	},'html');
 }
+/*$(document).ready(function() {
+    $("body").on("contextmenu",function(){
+       return false;
+    }); 
+}); */
 </script>

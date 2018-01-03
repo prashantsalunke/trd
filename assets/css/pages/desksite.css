@@ -387,7 +387,7 @@ body{
    width: 228px;
    height: auto;
    white-space: normal;
-   padding: 15px 10px 14px 10px;
+   padding: 10px 10px 10px 10px;
    background-color: #FF8C00;
    background-image: none;
    border: 1px #FFA500 solid;
@@ -2487,7 +2487,7 @@ a.style24:hover
 #Layer45 {
 	position:absolute;
 	text-align:left;
-	left:156px;
+	left:0px;
 	top:55px;
 	width:270px;
 	height:550px;

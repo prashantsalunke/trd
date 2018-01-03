@@ -53,7 +53,8 @@ class Home extends MX_Controller {
 		$this->template->set_layout ('default')
 		->title ( 'TRADE STATION' )
 		->set_partial ( 'header', 'default/header' )
-		->set_partial ( 'footer', 'default/footer' );
+		->set_partial ( 'footer', 'default/footer' )
+		->set_partial ( 'vcatalogue', 'default/vcatalogue' );
 		$this->template->build ('Home/home');
 	}
 	
