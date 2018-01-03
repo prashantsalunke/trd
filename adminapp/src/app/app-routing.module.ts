@@ -6,7 +6,8 @@ const routes: Routes = [
   {path:'login',loadChildren:'app/login/login.module#LoginModule'},  
   {path:'',component:MainRouteComponent,children:[
     {path:'sub-admins',loadChildren:'app/sub-admins/sub-admins.module#SubAdminsModule'},
-    {path:'members',loadChildren:'app/members/members.module#MembersModule'}
+    {path:'members',loadChildren:'app/members/members.module#MembersModule'},
+    {path:'advt-management',loadChildren:'app/advertise-management/advertise-management.module#AdvertiseManagementModule'}
   ]}
 ];
 

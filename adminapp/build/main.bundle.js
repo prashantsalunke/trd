@@ -4,9 +4,17 @@ webpackJsonp(["main"],{
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"app/advertise-management/advertise-management.module": [
+		"../../../../../src/app/advertise-management/advertise-management.module.ts",
+		"advertise-management.module"
+	],
 	"app/login/login.module": [
 		"../../../../../src/app/login/login.module.ts",
 		"login.module"
+	],
+	"app/members/members.module": [
+		"../../../../../src/app/members/members.module.ts",
+		"members.module"
 	],
 	"app/sub-admins/sub-admins.module": [
 		"../../../../../src/app/sub-admins/sub-admins.module.ts",
@@ -49,7 +57,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var routes = [
     { path: 'login', loadChildren: 'app/login/login.module#LoginModule' },
     { path: '', component: __WEBPACK_IMPORTED_MODULE_2__main_route_component__["a" /* MainRouteComponent */], children: [
-            { path: 'sub-admins', loadChildren: 'app/sub-admins/sub-admins.module#SubAdminsModule' }
+            { path: 'sub-admins', loadChildren: 'app/sub-admins/sub-admins.module#SubAdminsModule' },
+            { path: 'members', loadChildren: 'app/members/members.module#MembersModule' },
+            { path: 'advt-management', loadChildren: 'app/advertise-management/advertise-management.module#AdvertiseManagementModule' }
         ] }
 ];
 var AppRoutingModule = (function () {
@@ -316,7 +326,7 @@ var MainRouteComponent = (function () {
     MainRouteComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'trd-main-route',
-            template: "\n    <router-outlet></router-outlet>\n    <nav class=\"navbar admin-nav navbar-fixed-top\" *ngIf=\"loggedInUser\">\n    <div class=\"container\">\n      <ul class=\"nav navbar-right navbar-nav\">\n        <li class=\"dropdown\" trdDropdown>\n        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n        <img src=\"images/rseller2.png\" style=\"width:35px;\"> {{loggedInUser?.username}}</a>\n          <ul class=\"dropdown-menu\">\n            <li><a >Edit</a></li>\n            <li><a (click)=\"logout()\">Logout</a></li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n    </nav>\n    <nav class=\"navbar navbar-fixed-bottom footerNav-div\" *ngIf=\"loggedInUser\">\n    <div class=\"container\">\n      <nav class=\"navbar  footer-nav\">\n        <div class=\"navbar-header\"> \n        <a href=\"#\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" \n        data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\" \n        style=\"padding: 0px; margin: 4px 0px;\"><img src=\"images/5-128.png\" width=\"40px\"></a> </div>\n        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n          <ul class=\"nav navbar-nav navbar-right\">\n            <li> <a href=\"#\"> <img src=\"images/videosok.png\" style=\"height:40px;\"><br>\n              Monitor </a> </li>\n            <li> <a [routerLink]=\"['sub-admins']\"> <img src=\"images/user-new-3.png\" style=\"height:40px;\"><br>\n              Sub Admins </a> </li>\n            <li> <a [routerLink]=\"['members']\"> <img src=\"images/img2539.png\" style=\"height:40px;\"><br>\n              Member Info </a> </li>\n            <li> <a [routerLink]=\"['audit']\"> <img src=\"images/trusted.png\" style=\"height:40px;\"><br>\n              Audit </a> </li>\n            <li> <a [routerLink]=\"['ad-management']\"> <img src=\"images/advertising1.png\" style=\"height:40px;\"><br>\n              Carousels </a> </li>\n            <li> <a [routerLink]=\"['chat']\"> <img src=\"images/support.png\" style=\"height:40px;\"><br> Support </a> </li>\n            <li> <a [routerLink]=\"['newsletters']\"> <img src=\"images/NewsWeather.png\" style=\"height:40px;\"><br> Newsletter </a> </li>\n            <li> <a href=\"#\"> <img src=\"images/battery-charging.png\" style=\"height:40px;\"><br>  Statistics </a> </li>\n            <li> <a href=\"#\"> <img src=\"images/battery-caution-2.png\" style=\"height:40px;\"><br>  Errors </a> </li>\n            <li> <a href=\"#\"> <img src=\"images/exit.png\" style=\"height:40px;\"><br> Logout </a> </li>\n            <li> <a [routerLink]=\"['account-alarm']\"> <img src=\"images/Alerts2.png\" style=\"height:40px;\"><br> Accounts Alarm </a> </li>\n          </ul>\n        </div>\n      </nav>\n\n  ",
+            template: "\n    <router-outlet></router-outlet>\n    <nav class=\"navbar admin-nav navbar-fixed-top\" *ngIf=\"loggedInUser\">\n    <div class=\"container\">\n      <ul class=\"nav navbar-right navbar-nav\">\n        <li class=\"dropdown\" trdDropdown>\n        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n        <img src=\"images/rseller2.png\" style=\"width:35px;\"> {{loggedInUser?.username}}</a>\n          <ul class=\"dropdown-menu\">\n            <li><a >Edit</a></li>\n            <li><a (click)=\"logout()\">Logout</a></li>\n          </ul>\n        </li>\n      </ul>\n    </div>\n    </nav>\n    <nav class=\"navbar navbar-fixed-bottom footerNav-div\" *ngIf=\"loggedInUser\">\n    <div class=\"container\">\n      <nav class=\"navbar  footer-nav\">\n        <div class=\"navbar-header\"> \n        <a href=\"#\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" \n        data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\" \n        style=\"padding: 0px; margin: 4px 0px;\"><img src=\"images/5-128.png\" width=\"40px\"></a> </div>\n        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\n          <ul class=\"nav navbar-nav navbar-right\">\n            <li> <a href=\"#\"> <img src=\"images/videosok.png\" style=\"height:40px;\"><br>\n              Monitor </a> </li>\n            <li> <a [routerLink]=\"['sub-admins']\"> <img src=\"images/user-new-3.png\" style=\"height:40px;\"><br>\n              Sub Admins </a> </li>\n            <li> <a [routerLink]=\"['members']\"> <img src=\"images/img2539.png\" style=\"height:40px;\"><br>\n              Member Info </a> </li>\n            <li> <a [routerLink]=\"['audit']\"> <img src=\"images/trusted.png\" style=\"height:40px;\"><br>\n              Audit </a> </li>\n            <li> <a [routerLink]=\"['advt-management']\"> <img src=\"images/advertising1.png\" style=\"height:40px;\"><br>\n              Carousels </a> </li>\n            <li> <a [routerLink]=\"['chat']\"> <img src=\"images/support.png\" style=\"height:40px;\"><br> Support </a> </li>\n            <li> <a [routerLink]=\"['newsletters']\"> <img src=\"images/NewsWeather.png\" style=\"height:40px;\"><br> Newsletter </a> </li>\n            <li> <a href=\"#\"> <img src=\"images/battery-charging.png\" style=\"height:40px;\"><br>  Statistics </a> </li>\n            <li> <a href=\"#\"> <img src=\"images/battery-caution-2.png\" style=\"height:40px;\"><br>  Errors </a> </li>\n            <li> <a href=\"#\"> <img src=\"images/exit.png\" style=\"height:40px;\"><br> Logout </a> </li>\n            <li> <a [routerLink]=\"['account-alarm']\"> <img src=\"images/Alerts2.png\" style=\"height:40px;\"><br> Accounts Alarm </a> </li>\n          </ul>\n        </div>\n      </nav>\n\n  ",
             styles: []
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__core_auth_service__["a" /* AuthService */]])

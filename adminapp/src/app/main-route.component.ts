@@ -37,7 +37,7 @@ import { Subscription } from 'rxjs/Subscription';
               Member Info </a> </li>
             <li> <a [routerLink]="['audit']"> <img src="images/trusted.png" style="height:40px;"><br>
               Audit </a> </li>
-            <li> <a [routerLink]="['ad-management']"> <img src="images/advertising1.png" style="height:40px;"><br>
+            <li> <a [routerLink]="['advt-management']"> <img src="images/advertising1.png" style="height:40px;"><br>
               Carousels </a> </li>
             <li> <a [routerLink]="['chat']"> <img src="images/support.png" style="height:40px;"><br> Support </a> </li>
             <li> <a [routerLink]="['newsletters']"> <img src="images/NewsWeather.png" style="height:40px;"><br> Newsletter </a> </li>
