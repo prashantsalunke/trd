@@ -17,8 +17,8 @@
 			</div>
 			<div class="account-main-nav" style="padding-top: 55px;">
 				<ul class="nav nav-tabs nav-tabs-custom">
-				  	<li class="active"><a data-toggle="tab" href="#addproduct" onclick="openAdd3Dproduct();">Add <br><span>Real In 3D Products</span></a></li>
-				  	<li><a data-toggle="tab" href="#editproduct" onclick="openEdit3Dproduct();">"View | Edit" <br><span>Real In 3D Products</span></a></li>
+				  	<li class="active"><a data-toggle="tab" href="#addproduct" onclick="openAdd3Dproduct();" id="add3dpro">Add <br><span>Real In 3D Products</span></a></li>
+				  	<li><a data-toggle="tab" href="#editproduct" onclick="openEdit3Dproduct();" id="edit3dpro">"View | Edit" <br><span>Real In 3D Products</span></a></li>
 				</ul>
 			</div>
 			<div class="account-image" style="padding-top: 40px;">
@@ -86,6 +86,9 @@
       		</div>
     	</div>
   	</div>
+</div>
+<div id="promodal">
+
 </div>
 <script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 <script>

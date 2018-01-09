@@ -15,6 +15,6 @@
 					<?php } ?>
 					<?php if(count($Company) <= 0) { ?>
 					<div style="padding-top:200px;font-size:14px;">
-						<strong>The seller has not created UD Projects yet.</strong>
+						<strong>The seller has not created UDtalks projects  yet.</strong>
 					</div>
 					<?php } ?>

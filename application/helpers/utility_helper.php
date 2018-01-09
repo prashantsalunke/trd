@@ -506,4 +506,21 @@ function getFileName($file) {
 	return $fileName;
 }
 
+function fulltext_search_str($field_name,$str) {
+	$str = strtolower($str);
+	$common_keywords = explode(" ",$str);
+	$keywords = array_values(array_unique($common_keywords));
+	$str_sql = "";
+	foreach ($keywords as $keyword) {
+		if(strlen(trim($keyword)) > 0) {
+			if($str_sql == "") {
+				$str_sql = $field_name." LIKE '%".$keyword."%' ";
+			} else {
+				$str_sql = $str_sql."OR ".$field_name." LIKE '%".$keyword."%' ";
+			}
+		}
+	}
+	return $str_sql;
+}
+
 

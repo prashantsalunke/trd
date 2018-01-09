@@ -242,29 +242,23 @@ a.style5:hover
 					</div>
 				</div>
 				<div>
-					<div id="wb_Text591" style="position: absolute; left: 108px; top: 72px; width: 97px; height: 15px; z-index: 1233; text-align: left;">
+					<div id="wb_Text591" style="position: absolute; left: 110px; top: 72px; width: 100px; height: 15px; z-index: 1233; text-align: left;">
 						<span class="georgia-12px"><?php echo $seller['sub_category'];?></span>
 					</div>
-					<div id="wb_Text592" style="position: absolute; left: 23px; top: 72px; width: 96px; height: 15px; z-index: 1234; text-align: left;">
-						<span class="georgia-12px-dark"><strong>Seller Type | </strong></span>
+					<div id="wb_Text592" style="position: absolute; left: 10px; top: 72px; width: 96px; height: 15px; z-index: 1234; text-align: right;">
+						<span class="georgia-12px-dark"><strong>Buyer | </strong></span>
 					</div>
-					<div id="wb_Text618" style="position: absolute; left: 53px; top: 95px; width: 76px; height: 15px; z-index: 1235; text-align: left;">
+					<div id="wb_Text618" style="position: absolute; left: 10px; top: 95px; width: 95px; height: 15px; z-index: 1235; text-align: right;">
 						<span class="georgia-12px-dark"><strong><?php echo $seller['company_country']; ?> | </strong></span>
 					</div>
-					<div id="wb_Text619" style="position: absolute; left: 104px; top: 95px; width: 86px; height: 15px; z-index: 1236; text-align: left;">
+					<div id="wb_Text619" style="position: absolute; left: 110px; top: 95px; width: 86px; height: 15px; z-index: 1236; text-align: left;">
 						<span class="georgia-12px"><?php echo $seller['company_province'];?></span>
 					</div>
 				</div>
-				<div>
-					<div id="Layer280" style="position:absolute;text-align:left;left:20px;top:145px;width:181px;height:3px;">
-						<div class="ranking-percent-line" style="position:absolute;text-align:left;left:0px;top:0px;width:<?php echo $seller['rank'];?>%;height:3px;">
-						</div>
-					</div>
-					<div id="wb_Text620" style="position: absolute; left: 123px; top: 152px; width: 40px; height: 14px; z-index: 1242; text-align: left;">
-						<span style="color: #FF6347; font-family: Arial; font-size: 11px;"><strong>% <?php echo $seller['rank'];?></strong></span>
-					</div>
-					<div id="wb_Text651" style="position: absolute; left: 20px; top: 130px; width: 41px; height: 12px; z-index: 1243; text-align: left;">
-						<span style="color: #3C3C3C; font-family: Arial; font-size: 9.3px;">Rank</span>
+				<div class="text-center" style="position: absolute; left:0px; top:95px; width: 100%; height: 15px; z-index: 1236; text-align: center;">
+					<br><br>
+					<div>
+						<strong class="georgia-12px-dark">Annual Trade Volume</strong><br><span class="georgia-12px"><?php echo $seller['annual_trad_volume'];?> / Year</span>
 					</div>
 				</div>
 				<div id="Layer5253-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: hidden; right: -2px; top: 0px; width: 48px; height: 174px; z-index: 5521;" onclick="ShowObjectWithEffect('Layer2133', 1, 'slideright', 500, 'swing');return false;" class="product-left-arrow">

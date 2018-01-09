@@ -59,6 +59,48 @@
 	color:#fff;
 	text-decoration:none;
 }
+#RollOver5 a
+{
+   display: block;
+   position: relative;
+   height: 100%;
+   width: 100%;
+}
+#RollOver5 a img
+{
+   position: absolute;
+   z-index: 1;
+   border-width: 0;
+}
+#RollOver5 span
+{
+   display: block;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   z-index: 2;
+}
+#RollOver5 a .hover
+{
+   visibility: hidden;
+}
+#RollOver5 a:hover .hover
+{
+   visibility: visible;
+}
+#RollOver5 a:hover span
+{
+   visibility: hidden;
+}
+#RollOver5 img
+{
+   border-width: 0;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
 -->
 </style>
 <div class="row editaccount_outer">

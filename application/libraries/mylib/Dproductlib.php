@@ -20,11 +20,24 @@ class Dproductlib {
 		$this->CI->load->model ( 'Product_Model', 'product' );
 		return $res = $this->CI->product->save3DProduct($data);
 	}
-	public  function getProductdataById($data)
+	
+	public function save3DProductImages($data) {
+		$this->CI->load->model ( 'Product_Model', 'product' );
+		return $res = $this->CI->product->save3DProductImages($data);
+	}
+	
+	public  function getProduct3DdataById($data)
 	{
 		$this->CI->load->model ( 'Product_Model', 'product' );
-		return $res = $this->CI->product->getProductdataById($data);
+		return $res = $this->CI->product->getProduct3DdataById($data);
 	}
+	
+	public  function getProduct3DDetailById($data)
+	{
+		$this->CI->load->model ( 'Product_Model', 'product' );
+		return $res = $this->CI->product->getProduct3DDetailById($data);
+	}
+	
 	public  function getProduct3Dimages($data)
 	{
 		$this->CI->load->model ( 'Product_Model', 'product' );
@@ -35,10 +48,15 @@ class Dproductlib {
 		$this->CI->load->model ( 'Product_Model', 'product' );
 		return $res = $this->CI->product->getProductlist($busi_id);
 	}
-	public  function deleteProduct($data)
+	public  function getProduct3Dlist($busi_id)
 	{
 		$this->CI->load->model ( 'Product_Model', 'product' );
-		return $res = $this->CI->product->deleteProduct($data);
+		return $res = $this->CI->product->getProduct3Dlist($busi_id);
+	}
+	public  function delete3DProduct($data)
+	{
+		$this->CI->load->model ( 'Product_Model', 'product' );
+		return $res = $this->CI->product->delete3DProduct($data);
 	}
 	public  function getProductById($id)
 	{

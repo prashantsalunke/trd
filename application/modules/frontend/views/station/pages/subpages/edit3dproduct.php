@@ -31,14 +31,14 @@
 		  		<div class="row">
 			  		<div class="col-md-12" style="background-color: #DCDCDC;text-align: left;padding: 22px; width: 974px; height: 166px;">
 			  				<div class="col-md-1">
-			  					<input type="checkbox" id="productlist" name="productlist[]" value="<?php echo $productdata[$i]['id'];?>" style="position: absolute; left:61px;top: 44px;">
+			  					<input type="checkbox" id="productlist" name="productlist[]" value="<?php echo $productdata[$i]['did'];?>" style="position: absolute; left:61px;top: 44px;">
 			  				</div>
 			  				<div class="col-md-2">
-			  					<a href="./desk_details.php" target="_blank"><img src="<?php echo asset_url().$productdata[$i]['main_image'];?>" id="Shape49" alt="" style="width:129px;height:103px;"></a>
+			  					<a href="<?php echo base_url();?>products/details/<?php echo $productdata[$i]['id'];?>" target="_blank"><img src="<?php echo asset_url().$productdata[$i]['main_image'];?>" id="Shape49" alt="3D Pro" style="width: 135px;border: 2px solid #ccc;border-radius: 7px;"></a>
 			  				</div>
 			  				<div class="col-md-4">
 			  					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo $productdata[$i]['name'];?></span>
-			  					<span style="color:#808080;font-family:Arial;font-size:11px;"><?php echo $productdata[$i]['description'];?></span>
+			  					<span style="color:#808080;font-family:Arial;font-size:11px;"><?php echo substr($productdata[$i]['description'],0,280);?><?php if(strlen($productdata[$i]['description']) > 280) {?>...<?php } ?></span>
 			  					<br><span style="color:#3C3C3C;font-family:Arial;font-size:12px;">USD <?php echo $productdata[$i]['name'];?><span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Min. Qty :<?php echo $productdata[$i]['quantity'];?> Containers</span></span>
 			  					
 			  				</div>
@@ -52,14 +52,14 @@
 			  	<div class="row">
 			  		<div class="col-md-12" style="background-color: #F5FFFA;text-align: left;padding: 22px; width: 974px; height: 166px;">
 			  				<div class="col-md-1">
-			  					<input type="checkbox" id="productlist" name="productlist[]" value="<?php echo $productdata[$i]['id'];?>" style="position: absolute; left:61px;top: 44px;">
+			  					<input type="checkbox" id="productlist" name="productlist[]" value="<?php echo $productdata[$i]['did'];?>" style="position: absolute; left:61px;top: 44px;">
 			  				</div>
 			  				<div class="col-md-2">
-			  					<a href="./desk_details.php" target="_blank"><img src="<?php echo asset_url().$productdata[$i]['main_image'];?>" id="Shape66" alt="" style="width:129px;height:103px;"></a>
+			  					<a href="<?php echo base_url();?>products/details/<?php echo $productdata[$i]['id'];?>" target="_blank"><img src="<?php echo asset_url().$productdata[$i]['main_image'];?>" id="Shape49" alt="3D Pro" style="width: 135px;border: 2px solid #ccc;border-radius: 7px;"></a>
 			  				</div>
 			  				<div class="col-md-4">
 			  					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo $productdata[$i]['name'];?></span>
-			  					<span style="color:#808080;font-family:Arial;font-size:11px;"><?php echo $productdata[$i]['description'];?></span>
+			  					<span style="color:#808080;font-family:Arial;font-size:11px;"><?php echo substr($productdata[$i]['description'],0,280);?><?php if(strlen($productdata[$i]['description']) > 280) {?>...<?php } ?></span>
 			  					<br><span style="color:#3C3C3C;font-family:Arial;font-size:12px;">USD <?php echo $productdata[$i]['name'];?> <span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Min. Qty : <?php echo $productdata[$i]['quantity'];?> Containers</span></span>
 			  					
 			  				</div>

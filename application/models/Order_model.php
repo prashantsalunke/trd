@@ -13,7 +13,7 @@ class Order_model extends CI_Model {
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.buyer_id=b.id','inner');
     	$this->db->join(TABLES::$USER. ' AS c','b.id=c.busi_id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS d','c.id=d.user_id','inner');
-    	$this->db->where('c.admin_user_id', 0);
+    	$this->db->where('c.is_contactperson', 1);
     	$this->db->where('a.is_deleted', 0);
     	$this->db->where('a.is_deleted = 0 and (a.sellerbusi_id = '.$busi_id.' or  a.buyer_id = '.$busi_id.')');
     	$this->db->group_by('a.orderid');
@@ -32,10 +32,11 @@ class Order_model extends CI_Model {
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS d','a.buyer_id=d.id','inner');
     	$this->db->join(TABLES::$USER. ' AS e','d.id=e.busi_id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS f','e.id=f.user_id','inner');
-    	$this->db->where('e.admin_user_id', 0);
+    	$this->db->where('e.is_contactperson', 1);
     	$this->db->where('a.is_deleted', 0);
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('a.is_deleted = 0 and (a.sellerbusi_id = '.$busi_id.' or  a.buyer_id = '.$busi_id.')');
+    	$this->db->group_by('b.id');
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;

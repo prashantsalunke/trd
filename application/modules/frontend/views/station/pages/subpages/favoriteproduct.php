@@ -10,13 +10,13 @@
 						<div class="col-md-11" style="padding:0px;">			
 							<div id="prLayer178-<?php echo $key;?>" style="width:970px; height: 185px;" onmouseenter="ShowObjectWithEffect('prLayer525-<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;"
 									onmouseleave="ShowObject('prLayer213-<?php echo $key;?>', 0);ShowObject('prLayer525-<?php echo $key;?>', 0);return false;">
-							<div id="Layer179" style="position: absolute; text-align: left; left: 1px; top: 1px; width: 970px; height: 175px; z-index: 1258;">
-								<div id="Layer210" style="position: absolute; text-align: left; left: 748px; top: 0px; width: 220px; height: 172px; z-index: 1244;">
+							<div id="Layer179" style="position: absolute; text-align: left; left: 1px; top: 1px; width: 970px; height: 175px; z-index: 1258;background-color: #FAFAFA;border: 1px #D3D3D3 solid;">
+								<div id="Layer210" style="position: absolute; text-align: left; left: 748px; top: 1px; width: 220px; height: 172px; z-index: 1244;background-color: #FFFFFF;">
 									<div id="wb_Text591" style="position: absolute; left: 108px; top: 72px; width: 97px; height: 15px; z-index: 1233; text-align: left;">
-											<span style="color: #808080; font-family: Georgia; font-size: 12px;"><?php //echo $seller['sub_category'];?></span>
+											<span style="color: #808080; font-family: Georgia; font-size: 12px;"><?php echo $seller['sub_category'];?></span>
 									</div>
-									<div id="wb_Text592" style="position: absolute; left: 23px; top: 72px; width: 96px; height: 15px; z-index: 1234; text-align: left;">
-										<span style="color: #303030; font-family: Georgia; font-size: 12px;"><strong>Seller Type | </strong></span>
+									<div id="wb_Text592" style="position: absolute; left: 10px; top: 72px; width: 96px; height: 15px; z-index: 1234; text-align: right;">
+										<span style="color: #303030; font-family: Georgia; font-size: 12px;"><strong>Seller | </strong></span>
 									</div>
 									<div id="wb_Text618" style="position: absolute; left: 53px; top: 95px; width: 76px; height: 15px; z-index: 1235; text-align: left;">
 										<span style="color: #303030; font-family: Georgia; font-size: 12px;"><strong><?php echo $seller['company_country']; ?> | </strong></span>
@@ -26,19 +26,19 @@
 									</div>
 									<div id="wb_Image115" style="position: absolute; left: 50px; top: 28px; width: 25px; height: 25px; z-index: 1237;">
 										<img src="<?php echo asset_url();?>images/CommMember.png" id="Image115" alt="Member In My Community"
-										title="Member In My Community">
+										title="Member In My Community" style="width:100%;">
 									</div>
 									<div id="wb_Image116" style="position: absolute; left: 77px; top: 28px; width: 34px; height: 26px; z-index: 1238;">
-										<img src="<?php echo asset_url();?>images/guarantee.png" id="Image116" alt="Products Guarantee" title="Products Guarantee">
+										<img src="<?php echo asset_url();?>images/guarantee.png" id="Image116" alt="Products Guarantee" title="Products Guarantee" style="width:100%;">
 									</div>
 									<div id="wb_Image117" style="position: absolute; left: 114px; top: 29px; width: 25px; height: 25px; z-index: 1239;">
-										<img src="<?php echo asset_url();?>images/trusted.png" id="Image117" alt="" title="Verified Member">
+										<img src="<?php echo asset_url();?>images/trusted.png" id="Image117" alt="" title="Verified Member" style="width:100%;">
 									</div>
 									<div id="wb_Image118" style="position: absolute; left: 146px; top: 29px; width: 25px; height: 25px; z-index: 1240;">
-										<img src="<?php echo asset_url();?>images/member-logo.png" id="Image118" alt="Black Horse Member"  title="Black Horse Member">
+										<img src="<?php echo asset_url();?>images/member-logo.png" id="Image118" alt="Black Horse Member"  title="Black Horse Member" style="width:100%;">
 									</div>
-									<div id="Layer211"  style="position: absolute; text-align: left; left: 20px; top: 145px; width: 181px; height: 3px; z-index: 1241;">
-										<div id="Layer212" style="position: absolute; text-align: left; left: 0px; top: 0px; width: 127px; height: 3px; z-index: 1232;">
+									<div id="Layer211"  style="position: absolute; text-align: left; left: 20px; top: 145px; width: 181px; height: 3px; z-index: 1241;background-color: #D3D3D3;">
+										<div id="Layer212" style="position: absolute; text-align: left; left: 0px; top: 0px; width: 127px; height: 3px; z-index: 1232;background-color: #FF6347;">
 										</div>
 									</div>
 									<div id="wb_Text620" style="position: absolute; left: 123px; top: 152px; width: 40px; height: 14px; z-index: 1242; text-align: left;">
@@ -65,7 +65,7 @@
 									<?php echo $seller['unit_price'];?></span><br>
 							</div>
 							<div id="wb_Image119" style="position: absolute; left: 233px; top: 18px; width: 45px; height: 45px; z-index: 1260;">
-								<img src="<?php echo asset_url();?><?php echo $seller['profile_image']?>" id="Image119" alt="" style="border-radius: 50px 50px 50px 50px;">
+								<img src="<?php echo asset_url();?><?php echo $seller['profile_image']?>" id="Image119" alt="" style="border-radius: 50px 50px 50px 50px;width:100%;border:1px solid #ccc;">
 							</div>
 							<div id="SlideShow2" style="position: absolute; left: 2px; top: 2px; width: 210px; height: 173px; z-index: 1261;">
 								<div class="carousel slide product-carousel alertcarousel4" data-ride="carousel" >
@@ -82,8 +82,8 @@
 							<div id="prLayer213-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: hidden; left: 212px; top: 1px; width: 720px; height: 174px; z-index: 1262;background-color: #FFFFFF;border: 1px #D3D3D3 solid;">
 									<div id="RollOver6"  style="position: absolute; left: 132px; top: 27px; overflow: hidden; width: 50px; height: 50px; z-index: 1249">
 										<a href="<?php echo base_url();?>desksite/<?php echo $seller['id'];?>" target="_blank"> 
-											<img class="hover" alt="" src="<?php echo asset_url();?>images/Desktopblue.png">
-											<span><img alt="" src="<?php echo asset_url();?>images/desktopblack.png"></span>
+											<img class="hover" alt="" src="<?php echo asset_url();?>images/Desktopblue.png" style="width:100%;">
+											<span><img alt="" src="<?php echo asset_url();?>images/desktopblack.png" style="width:100%;"></span>
 										</a>
 									</div>
 									<div id="wb_Text657" style="position: absolute; left: 97px; top: 86px; width: 121px; height: 64px; text-align: center; z-index: 1250;">
@@ -107,8 +107,8 @@
 									</div>
 									<div id="RollOver8" style="position: absolute; left: 575px; top: 27px; overflow: hidden; width: 50px; height: 50px; z-index: 1253">
 										<a href="javascript:popupwnd('./chat_window.php','no','no','no','no','no','no','750','50','440','750')" target="_self">
-										<img class="hover" alt=""  src="<?php echo asset_url();?>images/chatblue.png"> <span>
-										<img alt="" src="<?php echo asset_url();?>images/chaTBLACK.png"></span>
+										<img class="hover" alt=""  src="<?php echo asset_url();?>images/chatblue.png" style="width:100%;"> <span>
+										<img alt="" src="<?php echo asset_url();?>images/chaTBLACK.png" style="width:100%;"></span>
 										</a>
 									</div>
 									<div id="wb_Text1434" style="position: absolute; left: 540px; top: 86px; width: 121px; height: 28px; text-align: center; z-index: 1254;">
@@ -118,11 +118,11 @@
 									</div>
 									<div id="wb_Image120" style="position: absolute; left: 272px; top: 28px; width: 50px; height: 50px; z-index: 1255;opacity:0.3;">
 										<a href="javascript:return false;" onclick="//viewMyCatalogueBook(<?php echo $seller['id'];?>);">
-											<img  src="<?php echo asset_url();?>images/vacticonblack.png"  id="Image120" alt="">
+											<img  src="<?php echo asset_url();?>images/vacticonblack.png"  id="Image120" alt="" style="width:100%;">
 										</a>
 									</div>
 									<div id="wb_Image114"  style="position: absolute; left: 417px; top: 32px; width: 50px; height: 50px; z-index: 1256;">
-										<img src="<?php echo asset_url();?>images/img1242.png" id="Image114" alt="">
+										<img src="<?php echo asset_url();?>images/img1242.png" id="Image114" alt="" style="width:100%;">
 									</div>
 								</div>
 								<div id="prLayer525-<?php echo $key;?>"  style="position: absolute; text-align: left; visibility: hidden; left: 923px; top: 1px; width: 48px; height: 174px; z-index: 1263;background-color: #FFFFFF;border: 1px #C0C0C0 solid;" onclick="ShowObjectWithEffect('Layer213-<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">

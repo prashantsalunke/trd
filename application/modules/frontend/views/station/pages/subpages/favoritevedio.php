@@ -110,7 +110,7 @@ a.style5:hover
 		  ?>	
 			<div class="col-lg-4 colpadbottom" style="padding:0px;padding-right:28px;margin-bottom: 15px;">
 		
-				<div id="Layer66" onmouseenter="showMenu('Layer8_<?php echo $key;?>');" onmouseleave="hideMenu('Layer8_<?php echo $key;?>');" style="z-index: 434;padding:20px;background-color: #FAFAFA;border: 1px #D3D3D3 solid;">
+				<div id="Layer66" onmouseenter="showMenu('Layer8_<?php echo $key;?>');" onmouseleave="hideMenu('Layer8_<?php echo $key;?>');" style="z-index: 434;padding:20px 14px;background-color: #FAFAFA;border: 1px #D3D3D3 solid;">
 					<div>
 						<span class="video-title">
 							<strong><a href="<?php echo base_url();?>video/details/<?php echo $video['id'];?>" target="_blank" class="style16"><?php echo $video['name'];?></a></strong>
@@ -130,7 +130,7 @@ a.style5:hover
 					</div>
 					<br>
 					<div>
-						<div class="video-area">
+						<div class="video-area" style="text-align:center;">
 							<video src="<?php echo asset_url(); ?><?php echo $video['vedio_file'];?>" controls="controls" style="max-height:164px;"></video>
 						</div>
 						<br>

@@ -2092,7 +2092,7 @@ function readCertImageURL(input) {
             	setup_readercert($(input)[0].files, i);
             }
 	} else {
-		alert('You can not select more than 4 files');
+		customAlert('You can not select more than 4 files');
 	}
 }
 
@@ -2329,7 +2329,7 @@ function suspendsubuser(id)
 				{
 					//alert(data.msg);
 				} else {
-					alert(data.msg);
+					customAlert(data.msg);
 				}
 				ajaxindicatorstop();
 				openSubuserInfo();
@@ -2420,7 +2420,7 @@ function readCompanyImageURL(input) {
             	setup_readercert($(input)[0].files, i);
             }
 	} else {
-		alert('You can not select more than 4 files');
+		customAlert('You can not select more than 4 files');
 	}
 }
 function removeCompanyImage() {
@@ -2440,7 +2440,7 @@ function deleteBusinessAccount() {
 	var r = confirm("Are you sure, you want to delete this account?");
 	if (r == true) {
 		$.post(base_url+"account/business/delete",{},function(data){
-			alert(data.msg);
+			customAlert(data.msg);
 			window.location.reload();
 		},'json');
 	}
@@ -2528,7 +2528,7 @@ function verifiedLogoRequeted() {
 			$("#vlogo-area").html(html);
 			$("#vlogo-area").addClass('vlogo-wbg');
 		} else {
-			alert("Failed to upload logo.");
+			customAlert("Failed to upload logo.");
 		}
 	},'json');
 	
@@ -2552,7 +2552,7 @@ function showBReqRequest(formData, jqForm, options){
 		return true;
 	} else {
 		ajaxindicatorstop();
-		alert("Please attach files.");
+		customAlert("Please attach files.");
 		return false;
 	}
 }
@@ -2714,26 +2714,34 @@ function viewMyCatalogueBook(id) {
 
 function addToMyFavourite(fav_id,type) {
 	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(data) {
-		alert(data.msg);
+		customAlert(data.msg);
 	},'json');
 }
 
 function likeCatalogue() {
 	var id = $("#mypcatalogue_id").val();
-	$.get(base_url+"catalogue/like/"+id,{},function(data) {
-		alert(data.msg);
+	$.get(base_url+"desksite/catalogue/like/"+id,{},function(data) {
+		customAlert(data.msg);
+	},'json');
+}
+function likeCatalogue(id) {
+	$.get(base_url+"desksite/catalogue/like/"+id,{},function(data) {
+		customAlert(data.msg);
+		var likes = parseInt($("#sdiv"+id).html());
+		likes++;
+		$("#sdiv"+id).html(likes);
 	},'json');
 }
 function commentCatalogue() {
 	var id = $("#mypcatalogue_id").val();
 	$.get(base_url+"catalogue/like/"+id,{},function(data) {
-		alert(data.msg);
+		customAlert(data.msg);
 	},'json');
 }
 function shareCatalogue() {
 	var id = $("#mypcatalogue_id").val();
 	$.get(base_url+"catalogue/like/"+id,{},function(data) {
-		alert(data.msg);
+		customAlert(data.msg);
 	},'json');
 }
 

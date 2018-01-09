@@ -390,7 +390,6 @@
                     <div id="Carousel3" style="position:absolute">
                       <?php 
                       $i= 0;
-                     //   print_r($featuredBuyer);
                         foreach($featuredBuyers as $featuredBuyer){
                         $i++;
                         	?>

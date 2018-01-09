@@ -16,9 +16,9 @@
 	} 
 ?>
    	<li>
-   		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">New&nbsp;Arrivals</a>
+   		<a href="javascript:viewSCatProducts(<?php echo $mybid;?>,1);" target="_self">New&nbsp;Arrivals</a>
    	</li>
   	<li>
-  		<a href="javascript:displaylightbox('./desk_products.php',{'transitionIn':'elastic','transitionOut':'elastic','speedIn':600,'speedOut':200,'overlayShow':true,'overlayColor':'#000000','autoDimensions':true})" target="_self">Hot&nbsp;Sales</a>
+  		<a href="javascript:viewSCatProducts(<?php echo $mybid;?>,2);" target="_self">Hot&nbsp;Sales</a>
   	</li>
 </ul>
