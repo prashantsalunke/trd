@@ -39,8 +39,8 @@ class Sellers_Model extends CI_Model {
     public function searchSellers($params) {
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,b.likes,
 		b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
-		c.user_id, c.alternative_email, c.mobile_number,c.position, IFNULL(n.picture,c.profile_image) as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
- 		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id) as main_product,j.id as catalouge_id,l.id as community_id,n.name as contact_name,n.name_prefix as contact_prefix,a.id as user_id');
+		c.user_id, c.alternative_email, c.mobile_number,c.position,c.profile_image as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
+ 		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id) as main_product,j.id as catalouge_id,l.id as community_id,a.name as contact_name,a.name_prefix as contact_prefix,a.id as user_id');
     	$this->db->from(TABLES::$USER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -53,10 +53,10 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','h.subcat_id = k.id ','left');
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS m ','b.id = m.busi_id ','left');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','b.id = n.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
     	$this->db->where('a.user_category_id', 1);
     	$this->db->where('a.account_activated', 1);
+    	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.is_suspend', 0);
     	$this->db->where('a.is_deleted', 0);
     	$this->db->where('b.is_disable', 0);
@@ -75,7 +75,7 @@ class Sellers_Model extends CI_Model {
 		    		}
 		    	}
 	    		if(!empty($params['keyword'])) {
-	    			$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR b.company_name like '%".trim($params['keyword'])."%' OR h.name like'%".trim($params['keyword'])."%' OR n.name like '%".trim($params['keyword'])."%')",'',false);
+	    			$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);
 	    		}
     	} else {
     		if(!empty($params['country'])) {
@@ -129,10 +129,10 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','h.subcat_id = k.id ','left');
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS m ','b.id = m.busi_id ','left');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','b.id = n.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
     	$this->db->where('a.user_category_id', 1);
     	$this->db->where('a.account_activated', 1);
+    	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.is_suspend', 0);
     	$this->db->where('a.is_deleted', 0);
     	$this->db->where('b.is_disable', 0);
@@ -151,7 +151,7 @@ class Sellers_Model extends CI_Model {
 		    		}
 		    	}
 	    		if(!empty($params['keyword'])) {
-	    			$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR b.company_name like '%".trim($params['keyword'])."%' OR h.name like'%".trim($params['keyword'])."%' OR n.name like '%".trim($params['keyword'])."%')",'',false);
+	    			$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);
 	    		}
     	} else {
     		if(!empty($params['country'])) {
@@ -190,8 +190,8 @@ class Sellers_Model extends CI_Model {
     public function searchBuyers($params) {
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_subcategory_id, a.user_role, a.account_activated, b.company_name,(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
 		b.company_country, b.company_province, b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
-		c.user_id, c.alternative_email, c.mobile_number,c.position, IFNULL(n.picture,c.profile_image) as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
- 		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id and mp.status=1) as main_product,j.id as catalouge_id,k.id as pmk_id,l.id as community_id, m.id as have_request,n.name as contact_name,n.name_prefix as contact_prefix');
+		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
+ 		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id and mp.status=1) as main_product,j.id as catalouge_id,k.id as pmk_id,l.id as community_id, m.id as have_request,a.name as contact_name,a.name_prefix as contact_prefix');
     	$this->db->from(TABLES::$USER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -204,8 +204,8 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','h.subcat_id = k.id ','left');
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
     	$this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','b.id = n.busi_id ','left');
     	$this->db->where('a.account_activated', 1);
+    	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.is_suspend', 0);
     	$this->db->where('a.is_deleted', 0);
     	$this->db->where('b.is_disable', 0);
@@ -218,6 +218,9 @@ class Sellers_Model extends CI_Model {
 	    	if(!empty($params['keyword'])) {
 	    		$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR b.company_name like '%".trim($params['keyword'])."%' OR h.name like'%".trim($params['keyword'])."%' OR n.name like'%".trim($params['keyword'])."%')",'',false);
 	    	}
+	    	/*if(!empty($params['keyword'])) {
+	    		$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);
+	    	}*/
 	    	if(!empty($params['type'])) {
 	    		if($params['type'] ==1){
 	    			$this->db->order_by('(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email)', 'ASC');
@@ -258,8 +261,8 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','h.subcat_id = k.id ','left');
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
     	$this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','b.id = n.busi_id ','left');
     	$this->db->where('a.account_activated', 1);
+    	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.is_suspend', 0);
     	$this->db->where('a.is_deleted', 0);
     	$this->db->where('b.is_disable', 0);
@@ -269,8 +272,11 @@ class Sellers_Model extends CI_Model {
 	    	if(!empty($params['country'])) {
 	    		$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
 	    	}
-	    	if(!empty($params['keyword'])) {
+	    	/*if(!empty($params['keyword'])) {
 	    		$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR b.company_name like '%".trim($params['keyword'])."%' OR h.name like'%".trim($params['keyword'])."%' OR n.name like'%".trim($params['keyword'])."%')",'',false);
+	    	}*/
+	    	if(!empty($params['keyword'])) {
+	    		$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);
 	    	}
 	    	if(!empty($params['type'])) {
 	    		if($params['type'] ==1){
@@ -353,10 +359,10 @@ class Sellers_Model extends CI_Model {
     }
     
     public function searchShippers($params) {
-    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
+    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,b.likes,
 		b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
-		c.user_id, c.alternative_email, c.mobile_number,c.position, IFNULL(n.picture,c.profile_image) as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction,f.hot_presentation, f.contact_person, f.contact_person_flag,
- 		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_shipper_service as mp where mp.busi_id=b.id and mp.is_special=0 and status=1) as main_product, j.id as catalouge_id , l.id as community_id,n.name as contact_name,n.name_prefix as contact_prefix');
+		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction,f.hot_presentation, f.contact_person, f.contact_person_flag,
+ 		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_shipper_service as mp where mp.busi_id=b.id and mp.is_special=0 and status=1) as main_product, j.id as catalouge_id , l.id as community_id,a.name as contact_name,a.name_prefix as contact_prefix');
     	$this->db->from(TABLES::$USER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -369,9 +375,9 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_CATALOGUE.' AS j ','b.id = j.busi_id ','left');
     	$this->db->join(TABLES::$TRADE_INFO.' AS k','a.busi_id=k.busi_id','left');
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l','a.busi_id=l.my_busi_id','left');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','b.id = n.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
     	$this->db->where('a.user_category_id', 2);
+    	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.account_activated', 1);
     	$this->db->where('a.is_suspend', 0);
     	$this->db->where('a.is_deleted', 0);
@@ -385,8 +391,11 @@ class Sellers_Model extends CI_Model {
 	    	if(!empty($params['city'])) {
 	    		$this->db->where("b.company_city like '%".$params['city']."%'",'',false);
 	    	}
-	    	if(!empty($params['keyword'])) {
+	    	/*if(!empty($params['keyword'])) {
 	    		$this->db->where("(b.company_name like '%".$params['keyword']."%' OR h.name like '%".$params['keyword']."%' OR n.name like '%".trim($params['keyword'])."%' OR a.name like '%".$params['keyword']."%' OR sc.alias like '%".$params['keyword']."%')",'',false);
+	    	}*/
+	    	if(!empty($params['keyword'])) {
+	    		$this->db->where("(".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword'])." OR ".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('sc.alias',$params['keyword']).")",'',false);
 	    	}
     	} else {
     		if(!empty($params['service'])) {
@@ -430,9 +439,9 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_CATALOGUE.' AS j ','b.id = j.busi_id ','left');
     	$this->db->join(TABLES::$TRADE_INFO.' AS k','a.busi_id=k.busi_id','left');
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l','a.busi_id=l.my_busi_id','left');
-    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','b.id = n.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
     	$this->db->where('a.user_category_id', 2);
+    	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.account_activated', 1);
     	$this->db->where('a.is_suspend', 0);
     	$this->db->where('a.is_deleted', 0);
@@ -446,8 +455,11 @@ class Sellers_Model extends CI_Model {
 	    	if(!empty($params['city'])) {
 	    		$this->db->where("b.company_city like '%".$params['city']."%'",'',false);
 	    	}
-	    	if(!empty($params['keyword'])) {
+	    	/*if(!empty($params['keyword'])) {
 	    		$this->db->where("(b.company_name like '%".$params['keyword']."%' OR h.name like '%".$params['keyword']."%' OR n.name like '%".trim($params['keyword'])."%' OR a.name like '%".$params['keyword']."%' OR sc.alias like '%".$params['keyword']."%')",'',false);
+	    	}*/
+    		if(!empty($params['keyword'])) {
+	    		$this->db->where("(".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword'])." OR ".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('sc.alias',$params['keyword']).")",'',false);
 	    	}
     	} else {
     		if(!empty($params['service'])) {
@@ -1060,14 +1072,16 @@ class Sellers_Model extends CI_Model {
     	$result = $query->result_array();
     	return $result;
     }
+    
     public function search3DProducts($params){
-    	$this->db->select('a.*,b.*, c.company_name, c.company_country, c.company_province,c.company_city, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank ');
-    	$this->db->from(TABLES::$PRODUCT_3DPRODUCT.' AS a');
-    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b', 'a.product_item_id = b.id', 'inner');
+    	$this->db->select('a.id as did,b.*, c.company_name, c.company_country, c.company_province,c.company_city, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank ');
+    	$this->db->from(TABLES::$MY_3DPRODUCT.' AS a');
+    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b', 'a.product_id = b.id', 'inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','b.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','b.busi_id=f.busi_id','inner');
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=b.sproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','b.mproduct_id=d.id','left');
+    	$this->db->where('f.is_contactperson', 1);
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
@@ -1076,7 +1090,7 @@ class Sellers_Model extends CI_Model {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
     		if(!empty($params['keyword'])) {
-    			$this->db->where("(b.name like '%".trim($params['keyword'])."%' OR b.model_no like '%".trim($params['keyword'])."%')",'',false);
+    			$this->db->where("(".fulltext_search_str('b.name',$params['keyword'])." OR ".fulltext_search_str('b.model_no',$params['keyword']).")",'',false);
     		}
     		if(!empty($params['city'])) {
     			$this->db->where("c.company_city like '%".trim($params['city'])."%'",'',false);
@@ -1101,7 +1115,6 @@ class Sellers_Model extends CI_Model {
     		$this->db->limit($start,25);
     	}
     	$query = $this->db->get();
-    	//echo $this->db->last_query();
     	$result = $query->result_array();
     	return $result;
     	
@@ -1109,13 +1122,14 @@ class Sellers_Model extends CI_Model {
     }
     
     public function count3DProducts($params){
-    	$this->db->select('count(DISTINCT a.product_item_id) as products');
-    	$this->db->from(TABLES::$PRODUCT_3DPRODUCT.' AS a');
-    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b', 'a.product_item_id = b.id', 'inner');
+    	$this->db->select('count(DISTINCT a.id) as products');
+    	$this->db->from(TABLES::$MY_3DPRODUCT.' AS a');
+    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b', 'a.product_id = b.id', 'inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','b.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','b.busi_id=f.busi_id','inner');
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=b.sproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','b.mproduct_id=d.id','left');
+    	$this->db->where('f.is_contactperson', 1);
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
@@ -1124,7 +1138,7 @@ class Sellers_Model extends CI_Model {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
     		if(!empty($params['keyword'])) {
-    			$this->db->where("(b.name like '%".trim($params['keyword'])."%' OR b.model_no like '%".trim($params['keyword'])."%')",'',false);
+    			$this->db->where("(".fulltext_search_str('b.name',$params['keyword'])." OR ".fulltext_search_str('b.model_no',$params['keyword']).")",'',false);
     		}
     		if(!empty($params['city'])) {
     			$this->db->where("c.company_city like '%".trim($params['city'])."%'",'',false);
@@ -1160,6 +1174,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS h', 'g.item_id = h.id', 'left');
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=h.sproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','h.mproduct_id=d.id','left');
+    	$this->db->where('f.is_contactperson', 1);
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
@@ -1167,8 +1182,11 @@ class Sellers_Model extends CI_Model {
     		if(!empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['keyword'])) {
+    		/*if(!empty($params['keyword'])) {
     			$this->db->where("(b.catalogue_title like '%".trim($params['keyword'])."%')",'',false);
+    		}*/
+    		if(!empty($params['keyword'])) {
+    			$this->db->where("(".fulltext_search_str('b.catalogue_title',$params['keyword']).")",'',false);
     		}
     		if(!empty($params['city'])) {
     			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
@@ -1203,6 +1221,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS h', 'g.item_id = h.id', 'left');
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=h.sproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','h.mproduct_id=d.id','left');
+    	$this->db->where('f.is_contactperson', 1);
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
@@ -1210,8 +1229,11 @@ class Sellers_Model extends CI_Model {
     		if(!empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['keyword'])) {
+    		/*if(!empty($params['keyword'])) {
     			$this->db->where("(b.catalogue_title like '%".trim($params['keyword'])."%')",'',false);
+    		}*/
+    		if(!empty($params['keyword'])) {
+    			$this->db->where("(".fulltext_search_str('b.catalogue_title',$params['keyword']).")",'',false);
     		}
     		if(!empty($params['city'])) {
     			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
@@ -1234,5 +1256,157 @@ class Sellers_Model extends CI_Model {
     	}
     	 
     }
+    
+    public function searchSellerDesksites($params) {
+    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,b.likes,(select group_concat(n.main_image) from tbl_product_item as n where n.busi_id=b.id and n.status=1 group by n.busi_id) as pro_images, 
+		b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
+		c.user_id, c.alternative_email, c.mobile_number,c.position,c.profile_image as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
+ 		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id) as main_product,j.id as catalouge_id,l.id as community_id,a.name as contact_name,a.name_prefix as contact_prefix,a.id as user_id');
+    	$this->db->from(TABLES::$USER.' AS a');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
+    	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
+    	$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
+    	$this->db->join(TABLES::$USER_CATEGORIES.' AS d','a.user_category_id=d.id','left');
+    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','a.user_subcategory_id=e.id','left');
+    	$this->db->join(TABLES::$COMPANY_INFO.' AS f','b.id=f.busi_id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
+    	$this->db->join(TABLES::$PRODUCT_CATALOGUE.' AS j ','b.id = j.busi_id ','left');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','h.subcat_id = k.id ','left');
+    	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
+    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS m ','b.id = m.busi_id ','left');
+    	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
+    	$this->db->where('a.user_category_id', 1);
+    	$this->db->where('a.account_activated', 1);
+    	$this->db->where('a.is_contactperson', 1);
+    	$this->db->where('a.is_suspend', 0);
+    	$this->db->where('a.is_deleted', 0);
+    	$this->db->where('b.is_disable', 0);
+    	$this->db->where('b.is_deleted', 0);
+    	$this->db->where('o.step', 4);
+    	if(!empty($params['keyword'])) {
+    		if(!empty($params['country'])) {
+    			$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
+    		}
+    		if(!empty($params['city'])) {
+    			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
+    		}
+    		if(!empty($params['type'])) {
+    			if($params['type'] ==1) {
+    				$this->db->order_by('b.is_logo_verified', 'DESC');
+    			}
+    		}
+    		if(!empty($params['keyword'])) {
+    			$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);
+    		}
+    	} else {
+    		if(!empty($params['country'])) {
+    			$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
+    		}
+    		if(!empty($params['city'])) {
+    			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
+    		}
+    		if(!empty($params['cat_id'])) {
+    			$this->db->where('k.id', $params['cat_id']);
+    		}
+    	}
+    	if(!empty($params['busi_id'])) {
+    		if(!empty($params['community_only'])) {
+    			$this->db->where("l.my_busi_id",$params['busi_id']);
+    		}
+    		if(!empty($params['community_hide'])) {
+    			$this->db->where("l.my_busi_id !=",$params['busi_id']);
+    		}
+    	}
+    	if(!empty($params['plan_id'])) {
+    		if($params['plan_id'] > 1) {
+    			$this->db->order_by('b.plan_id', 'DESC');
+    		}
+    	}
+    	$this->db->order_by('b.rank','DESC');
+    	$this->db->order_by('b.plan_id','DESC');
+    	$this->db->order_by('b.is_logo_verified','DESC');
+    	$this->db->order_by('b.gaurantee_period','DESC');
+    	$this->db->group_by('b.id');
+    	if(!empty($params['page'])) {
+    		$start = $params['page']*25 - 25;
+    		$this->db->limit($start,25);
+    	}
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
+    public function countSellerDesksites($params) {
+    	$this->db->select('count(DISTINCT a.id) as sellers');
+    	$this->db->from(TABLES::$USER.' AS a');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
+    	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
+    	$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
+    	$this->db->join(TABLES::$USER_CATEGORIES.' AS d','a.user_category_id=d.id','left');
+    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','a.user_subcategory_id=e.id','left');
+    	$this->db->join(TABLES::$COMPANY_INFO.' AS f','b.id=f.busi_id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
+    	$this->db->join(TABLES::$PRODUCT_CATALOGUE.' AS j ','b.id = j.busi_id ','left');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','h.subcat_id = k.id ','left');
+    	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
+    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS m ','b.id = m.busi_id ','left');
+    	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
+    	$this->db->where('a.user_category_id', 1);
+    	$this->db->where('a.account_activated', 1);
+    	$this->db->where('a.is_contactperson', 1);
+    	$this->db->where('a.is_suspend', 0);
+    	$this->db->where('a.is_deleted', 0);
+    	$this->db->where('b.is_disable', 0);
+    	$this->db->where('b.is_deleted', 0);
+    	$this->db->where('o.step', 4);
+    	if(!empty($params['keyword'])) {
+    		if(!empty($params['country'])) {
+    			$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
+    		}
+    		if(!empty($params['city'])) {
+    			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
+    		}
+    		if(!empty($params['type'])) {
+    			if($params['type'] ==1) {
+    				$this->db->order_by('b.is_logo_verified', 'DESC');
+    			}
+    		}
+    		if(!empty($params['keyword'])) {
+    			$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);
+    		}
+    	} else {
+    		if(!empty($params['country'])) {
+    			$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
+    		}
+    		if(!empty($params['city'])) {
+    			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
+    		}
+    		if(!empty($params['cat_id'])) {
+    			$this->db->where('k.id', $params['cat_id']);
+    		}
+    	}
+    	if(!empty($params['busi_id'])) {
+    		if(!empty($params['community_only'])) {
+    			$this->db->where("l.my_busi_id",$params['busi_id']);
+    		}
+    		if(!empty($params['community_hide'])) {
+    			$this->db->where("l.my_busi_id !=",$params['busi_id']);
+    		}
+    	}
+    	if(!empty($params['plan_id'])) {
+    		if($params['plan_id'] > 1) {
+    			$this->db->order_by('b.plan_id', 'DESC');
+    		}
+    	}
+    	$this->db->order_by('a.created_date','DESC');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	if(count($result) > 0) {
+    		return ceil($result[0]['sellers']/25);
+    	} else {
+    		return 0;
+    	}
+    }
+    
     
 }

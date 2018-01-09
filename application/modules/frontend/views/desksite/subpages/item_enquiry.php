@@ -89,10 +89,78 @@ function Validatecontact()
       	theForm.FileUpload1.focus();
       	return false;
    	}
-   	if(theForm.FileUpload1.value == "") {
-		alert("Please select file");
-		return false;
-   	}
+   	if (theForm.Editbox5.value == "")
+    {
+       alert("Please Enter The Contact Name");
+       theForm.Editbox5.focus();
+       return false;
+    }
+    if (theForm.Editbox5.value.length < 2)
+    {
+       alert("Please Enter The Contact Name");
+       theForm.Editbox5.focus();
+       return false;
+    }
+    if (theForm.Editbox5.value.length > 100)
+    {
+       alert("Please Enter The Contact Name");
+       theForm.Editbox5.focus();
+       return false;
+    }
+    if (theForm.Editbox12.value == "")
+    {
+       alert("Please Enter Your Company Name");
+       theForm.Editbox12.focus();
+       return false;
+    }
+    if (theForm.Editbox12.value.length < 2)
+    {
+       alert("Please Enter Your Company Name");
+       theForm.Editbox12.focus();
+       return false;
+    }
+    if (theForm.Editbox12.value.length > 100)
+    {
+       alert("Please Enter Your Company Name");
+       theForm.Editbox12.focus();
+       return false;
+    }
+    if (theForm.Editbox13.value == "")
+    {
+       alert("Please Enter A Valid Email");
+       theForm.Editbox13.focus();
+       return false;
+    }
+    if (theForm.Editbox13.value.length < 10)
+    {
+       alert("Please Enter A Valid Email");
+       theForm.Editbox13.focus();
+       return false;
+    }
+    if (theForm.Editbox13.value.length > 128)
+    {
+       alert("Please Enter A Valid Email");
+       theForm.Editbox13.focus();
+       return false;
+    }
+    if (theForm.Editbox11.value == "")
+    {
+       alert("Please Enter Your Phone Including The Country Code");
+       theForm.Editbox11.focus();
+       return false;
+    }
+    if (theForm.Editbox11.value.length < 10)
+    {
+       alert("Please Enter Your Phone Including The Country Code");
+       theForm.Editbox11.focus();
+       return false;
+    }
+    if (theForm.Editbox11.value.length > 20)
+    {
+       alert("Please Enter Your Phone Including The Country Code");
+       theForm.Editbox11.focus();
+       return false;
+    }
    	return true;
 }
 function saveRequest() {
@@ -152,7 +220,7 @@ function showAddResponse(resp, statusText, xhr, $form){
 <input type="text" id="Editbox5" style="position:absolute;left:0px;top: 190px;width:327px;height:46px;line-height:46px;z-index:0;" name="name" value="<?php if(!empty($mydesksite[0]['name'])) { echo $mydesksite[0]['name']; }?>" maxlength="50" placeholder="Name">
 <textarea name="message" id="TextArea2" style="position:absolute;left:0px;top:360px;width:682px;height:232px;z-index:1;" rows="16" cols="95" maxlength="500" placeholder="Message"></textarea>
 <input type="button" id="Button5" name="" value="Send" style="position:absolute;left:600px;top:610px;width:96px;height:25px;z-index:2;" onclick="saveRequest();">
-<input type="number" id="Editbox11" style="position:absolute;left:353px;top:255px;width:327px;height:46px;line-height:46px;z-index:3;" name="phone" value="<?php if(!empty($mydesksite[0]['telephone_number'])) { echo $mydesksite[0]['telephone_number']; }?>" maxlength="15" placeholder="Phone">
+<input type="number" id="Editbox11" style="position:absolute;left:353px;top:255px;width:327px;height:46px;line-height:46px;z-index:3;" name="phone" value="<?php if(!empty($mydesksite[0]['telephone_code'])) { echo $mydesksite[0]['telephone_code']; }?><?php if(!empty($mydesksite[0]['telephone_number'])) { echo $mydesksite[0]['telephone_number']; }?>" maxlength="15" placeholder="Phone">
 <input type="text" id="Editbox12" style="position:absolute;left:354px;top:190px;width:327px;height:46px;line-height:46px;z-index:4;" name="company" value="<?php if(!empty($mydesksite[0]['company_name'])) { echo $mydesksite[0]['company_name']; }?>" maxlength="50" placeholder="Company">
 <input type="email" id="Editbox13" style="position:absolute;left:0px;top:255px;width:327px;height:46px;line-height:46px;z-index:5;" name="email" value="<?php if(!empty($mydesksite[0]['company_email'])) { echo $mydesksite[0]['company_email']; }?>" maxlength="30" placeholder="Email">
 <input type="file" id="FileUpload1" style="position:absolute;left:128px;top:318px;width:198px;height:21px;line-height:21px;z-index:6;" name="FileUpload1[]" multiple="multiple" />

@@ -79,12 +79,13 @@ class Myfavorite_model extends CI_Model {
     }
     public function getMyfavoriteProduct($busi_id,$type)
     {
-    	$this->db->select('a.id as favorite_id,c.*,b.name as product_name,b.model_no,b.unit_price,b.description,b.main_image,b.sub_image2,d.name_prefix,d.name,e.profile_image');
+    	$this->db->select('a.id as favorite_id,c.*,b.name as product_name,b.model_no,b.unit_price,b.description,b.main_image,b.sub_image2,d.name_prefix,d.name,e.profile_image,g.sub_category');
     	$this->db->from(TABLES::$FAVORITE. ' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS b','a.favorite_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS c','b.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER. ' AS d','c.id=d.busi_id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS e','d.id=e.user_id','inner');
+    	$this->db->join(TABLES::$USER_SUBCATEGORIES. ' AS g','d.user_subcategory_id = g.id','inner');
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('a.type',$type);
     	$this->db->where('a.is_deleted', 0);
@@ -130,17 +131,22 @@ class Myfavorite_model extends CI_Model {
     }
     public function getMyfavoriteCatalouge($busi_id,$type)
     {
-    	$this->db->select('a.id as favorite_id,c.*,b.catalogue_title,b.catalogue_cover,e.name_prefix,e.name,f.profile_image,'.
-    			'c.company_country,c.company_province,d.hot_presentation');
+    	$this->db->select('a.id as favorite_id,b.*,b.id as catalogue_id, c.company_name, c.company_country, c.company_province,c.company_city, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank,(select id from tbl_community_member as cm where cm.my_busi_id=c.id and cm.busi_id = '.$busi_id.' limit 1) as incommunity');
     	$this->db->from(TABLES::$FAVORITE. ' AS a');
-    	$this->db->join(TABLES::$PRODUCT_CATALOGUE. ' AS b','a.favorite_id=b.id','inner');
-    	$this->db->join(TABLES::$BUSINESS_INFO. ' AS c','b.busi_id=c.id','inner');
-    	$this->db->join(TABLES::$COMPANY_INFO. ' AS d','c.id=d.busi_id','inner');
-    	$this->db->join(TABLES::$USER. ' AS e','c.id=e.busi_id','inner');
-    	$this->db->join(TABLES::$USER_INFO. ' AS f','e.id=f.user_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_CATALOGUE.' as b','a.favorite_id=b.id');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','b.busi_id=c.id','inner');
+    	$this->db->join(TABLES::$USER.' AS f','b.busi_id=f.busi_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_CATALOGUE_ITEM.' AS g','b.id=g.catalogue_id','left');
+    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS h', 'g.item_id = h.id', 'left');
+    	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=h.sproduct_id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','h.mproduct_id=d.id','left');
+    	$this->db->where('b.status', 1);
+    	$this->db->where('c.is_disable', 0);
+    	$this->db->where('c.is_deleted', 0);
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('a.type',$type);
     	$this->db->where('a.is_deleted', 0);
+    	$this->db->group_by('b.id', 0);
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;
@@ -189,6 +195,11 @@ class Myfavorite_model extends CI_Model {
     		return 1;
     		else
     			return 0;
+    }
+    
+    public function deleteFavorite($id) {
+    	$this->db->where('id',$id);
+    	return $this->db->delete(TABLES::$FAVORITE);
     }
     
     public function addToFavourite($map) {

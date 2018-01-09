@@ -237,7 +237,7 @@ $route['mystation/edit3dproductForm'] = 'frontend/Dproduct/edit3dProductForm';
 $route['mystation/product_item'] = 'frontend/Dproduct/getProductByName';
 $route['mystation/save3dproducttempararyimage'] = 'frontend/Dproduct/save3DProductTemparary';
 $route['mystation/add3dproductpicture'] = 'frontend/Dproduct/add3dProductpicture';
-$route['mystation/deleteproduct'] = 'frontend/Dproduct/deleteProduct';
+$route['mystation/delete3dproduct'] = 'frontend/Dproduct/delete3DProduct';
 $route['mystation/editproduct'] = 'frontend/Dproduct/editProduct';
 $route['mystation/linkproduct'] = 'frontend/Dproduct/linkProduct'; 
 $route['mystation/getproductlist'] = 'frontend/Dproduct/getProductList'; 
@@ -245,7 +245,8 @@ $route['mystation/getproductbyid'] = 'frontend/Dproduct/getProductById';
 $route['mystation/changimage'] = 'frontend/Dproduct/changImage'; 
 $route['mystation/changelinkproduct'] = 'frontend/Dproduct/changeLinkProduct'; 
 $route['mystation/messagedproduct'] = 'frontend/Dproduct/messageDproduct'; 
-$route['mystation/getdproductbyid'] = 'frontend/Dproduct/getDproductById'; 
+$route['mystation/getdproductbyid'] = 'frontend/Dproduct/getDproductById';
+$route['mystation/3dpro/show/([0-9]+)'] = 'frontend/Dproduct/show3Dpro/$1'; 
 
 
 /*catalouge */
@@ -338,7 +339,8 @@ $route['mystation/udtalk/delete/([0-9]+)'] = 'frontend/Udtalks/deleteImage/$1';
 
 /* Frontend Pages .. */
 $route['seller'] = 'frontend/Home/sellersList';
-$route['seller/desksites'] = 'frontend/Product/getAllDesksites';
+$route['seller/desksites'] = 'frontend/Product/getAllSellerDesksites';
+$route['shipper/desksites'] = 'frontend/Product/getAllShipperDesksites';
 $route['buyer'] = 'frontend/Home/buyersList';
 $route['shipper'] = 'frontend/Home/shippersList';
 $route['search'] = 'frontend/Home/search';
@@ -352,6 +354,7 @@ $route['product/subcategory/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListB
 $route['product/mainproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListByMainProduct/$1/$2';
 $route['product/subproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListBySubProduct/$1/$2';
 $route['product/csmproduct/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListByCat/$1/$2/$3/$4';
+$route['product/spproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/specialProductList/$1/$2';
 $route['product/details/page/([0-9]+)'] = 'frontend/Product/productDetailsPage/$1';
 $route['seller/video/view/([0-9]+)'] = 'frontend/Home/getSellerVideo/$1';
 $route['seller/product/view/([0-9]+)'] = 'frontend/Home/getSellerProduct/$1';
@@ -430,6 +433,7 @@ $route['desksite/saveenquiry'] = 'frontend/Home/saveGeneralInquiry';
 $route['desksite/saveoffer'] = 'frontend/Home/saveGeneralOffer';
 $route['desksite/product/like/([0-9]+)'] = 'frontend/Product/likeProduct/$1';
 $route['desksite/share'] = 'frontend/Product/shareWithWorld';
+$route['desksite/savecontactus'] = 'frontend/Home/saveContactUs';
 
 
 /********************  Community **************/

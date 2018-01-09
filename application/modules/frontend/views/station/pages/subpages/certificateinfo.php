@@ -74,6 +74,7 @@ div.pp_overlay {
 }
 div.pp_pic_holder {
 	z-index:12801 !important;
+	overflow:scroll;
 }
   </style>
 

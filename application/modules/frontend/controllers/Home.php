@@ -1102,6 +1102,7 @@ class Home extends MX_Controller {
 		$this->load->model('Product_Model', 'product' );
 		$productCategories = $this->product->getActiveProductAndSubProduct($busi_id);
 		$this->template->set ( 'productCategories', $productCategories);
+		$this->template->set ( 'mybid', $busi_id );
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
@@ -1409,9 +1410,14 @@ class Home extends MX_Controller {
 		$resp = array();
 		if(!empty($mybusi_id)) { 
 			$this->load->model('Product_Model', 'product' );
-			$this->product->updateBusinessLikes($busi_id,$mybusi_id);
-			$resp['status'] = 1;
-			$resp['msg'] = "WE HAVE RECORDED YOUR RESPONSE";
+			$result = $this->product->updateBusinessLikes($busi_id,$mybusi_id);
+			if($result) {
+				$resp['status'] = 1;
+				$resp['msg'] = "WE HAVE RECORDED YOUR RESPONSE";
+			} else {
+				$resp['status'] = 0;
+				$resp['msg'] = "YOU HAVE ALREADY LIKED THIS DESKSITE";
+			}
 		} else {
 			$resp['status'] = 0;
 			$resp['msg'] = "LOGIN TO LIKE";
@@ -1516,25 +1522,27 @@ class Home extends MX_Controller {
 			mkdir ($pathname, 0777, TRUE );
 		}
 		$this->load->library('upload', $config);
-		$files = $_FILES['FileUpload1'];
-		$k = 1;
-		foreach ($files['name'] as $key => $image) {
-			$_FILES['FileUpload1']['name']= $files['name'][$key];
-			$_FILES['FileUpload1']['type']= $files['type'][$key];
-			$_FILES['FileUpload1']['tmp_name']= $files['tmp_name'][$key];
-			$_FILES['FileUpload1']['error']= $files['error'][$key];
-			$_FILES['FileUpload1']['size']= $files['size'][$key];
-			$file_name = microtime(true)."-".$image;
-			$config['file_name'] = $file_name;
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('FileUpload1')) {
-				$file_name = $this->upload->data('file_name');
-				$params['attachment'.$k] = 'images/user_images/'.$userId.'/buyerrequest/'. $file_name;
-				$size = $size + $files['size'][$key];
-				$params['attachment'.$k.'_size'] = $files['size'][$key];
-				$k++;
-			} else {
-				//
+		if(!empty($_FILES['FileUpload1'])) {
+			$files = $_FILES['FileUpload1'];
+			$k = 1;
+			foreach ($files['name'] as $key => $image) {
+				$_FILES['FileUpload1']['name']= $files['name'][$key];
+				$_FILES['FileUpload1']['type']= $files['type'][$key];
+				$_FILES['FileUpload1']['tmp_name']= $files['tmp_name'][$key];
+				$_FILES['FileUpload1']['error']= $files['error'][$key];
+				$_FILES['FileUpload1']['size']= $files['size'][$key];
+				$file_name = microtime(true)."-".$image;
+				$config['file_name'] = $file_name;
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('FileUpload1')) {
+					$file_name = $this->upload->data('file_name');
+					$params['attachment'.$k] = 'images/user_images/'.$userId.'/buyerrequest/'. $file_name;
+					$size = $size + $files['size'][$key];
+					$params['attachment'.$k.'_size'] = $files['size'][$key];
+					$k++;
+				} else {
+					//
+				}
 			}
 		}
 		$this->load->model('Inquiry_model', 'inquirymodel' );
@@ -1615,25 +1623,27 @@ class Home extends MX_Controller {
 			mkdir ($pathname, 0777, TRUE );
 		}
 		$this->load->library('upload', $config);
-		$files = $_FILES['FileUpload1'];
-		$k = 1;
-		foreach ($files['name'] as $key => $image) {
-			$_FILES['FileUpload1']['name']= $files['name'][$key];
-			$_FILES['FileUpload1']['type']= $files['type'][$key];
-			$_FILES['FileUpload1']['tmp_name']= $files['tmp_name'][$key];
-			$_FILES['FileUpload1']['error']= $files['error'][$key];
-			$_FILES['FileUpload1']['size']= $files['size'][$key];
-			$file_name = microtime(true)."-".$image;
-			$config['file_name'] = $file_name;
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('FileUpload1')) {
-				$file_name = $this->upload->data('file_name');
-				$params['attachment'.$k] = 'images/user_images/'.$userId.'/selleroffer/'. $file_name;
-				$size = $size + $files['size'][$key];
-				$params['attachment'.$k.'_size'] = $files['size'][$key];
-				$k++;
-			} else {
-				//
+		if(!empty($_FILES['FileUpload1'])) {
+			$files = $_FILES['FileUpload1'];
+			$k = 1;
+			foreach ($files['name'] as $key => $image) {
+				$_FILES['FileUpload1']['name']= $files['name'][$key];
+				$_FILES['FileUpload1']['type']= $files['type'][$key];
+				$_FILES['FileUpload1']['tmp_name']= $files['tmp_name'][$key];
+				$_FILES['FileUpload1']['error']= $files['error'][$key];
+				$_FILES['FileUpload1']['size']= $files['size'][$key];
+				$file_name = microtime(true)."-".$image;
+				$config['file_name'] = $file_name;
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('FileUpload1')) {
+					$file_name = $this->upload->data('file_name');
+					$params['attachment'.$k] = 'images/user_images/'.$userId.'/selleroffer/'. $file_name;
+					$size = $size + $files['size'][$key];
+					$params['attachment'.$k.'_size'] = $files['size'][$key];
+					$k++;
+				} else {
+					//
+				}
 			}
 		}
 		$this->load->model('Offer_model', 'offermodel' );
@@ -1655,6 +1665,31 @@ class Home extends MX_Controller {
 		} else {
 			$resp['status'] = 0;
 			$resp['msg'] = "Failed to add Offer.";
+		}
+		echo json_encode($resp);
+	}
+	
+	public function saveContactUs() {
+		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
+		$params = array();
+		$params['busi_id'] = $this->input->post('busi_id');
+		$params['sender_id'] = $mybusi_id;
+		$params['name'] = $this->input->post('name');
+		$params['email'] = $this->input->post('email');
+		$params['mobile'] = $this->input->post('mobile');
+		$params['country'] = $this->input->post('country');
+		$params['city'] = $this->input->post('city');
+		$params['message'] = $this->input->post('message');
+		$params['created_date'] = date('Y-m-d H:i:s');
+		$this->load->model('Alert_model', 'alertmodel' );
+		$id = $this->alertmodel->saveContactUs($params);
+		$resp = array();
+		if(!empty($id)) {
+			$resp['status'] = 1;
+			$resp['msg'] = "Query added successfully.";
+		} else {
+			$resp['status'] = 0;
+			$resp['msg'] = "Failed to add Query.";
 		}
 		echo json_encode($resp);
 	}

@@ -231,7 +231,7 @@ class Alerts extends MX_Controller {
 		$data = array();
 		$data['id'] = $id;
 		$data['is_deleted'] = 1;
-		$response = $this->myfavoritelib->updateFavorite($data);
+		$response = $this->myfavoritelib->deleteFavorite($id);
 		if($response > 0)
 		{
 			$map['status'] = 1;

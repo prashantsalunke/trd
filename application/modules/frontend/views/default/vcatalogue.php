@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?php echo asset_url(); ?>css/pages/v-catalogue.css" />
-<div id="vcatalogue_overlay" class="modal fade" style="background-color:#404040;z-index:5051;">
+<div id="vcatalogue_overlay" class="modal fade" style="background-color:#404040;z-index:10000;">
 	<div class="modal-dialog" style="background-color:#404040;width:1000px;">
 		<div class="modal-content" style="background: transparent;box-shadow:none;-webkit-box-shadow:none;border: 0px;">
 				<div style="position:absolute;right:0;width:50px;height:50px;z-index:5000;"><button type="button" class="pull-right" data-dismiss="modal" aria-hidden="true" style="background:transparent;border:0px;"><img src="<?php echo asset_url();?>images/newicons/closeround.png" id="Image47" alt="" style="width:35px;height:35px;"></button></div>
@@ -8,7 +8,7 @@
 					<div class="row" style="margin-left:-15px;margin-right:-15px;">
 						<div class="col-md-1" style="float:left;padding:0px;width:115px;"></div>
 						<div class="col-md-9" style="width:770px;padding:0px;padding-top:10px;">
-							<div id="catalogue_page_content_inner" class="catalogue_outer_body">
+							<div id="catalogue_page_content_inner" class="catalogue_outer_body" style="margin-left:0px;">
 							</div>
 						</div>
 						<div class="col-md-1" style="padding:0px;width:80px;float:right;" id="share_it">

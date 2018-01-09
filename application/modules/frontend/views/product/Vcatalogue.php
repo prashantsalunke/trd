@@ -132,7 +132,7 @@
 						<?php if (($i % 3)==0){?>
 							<div class="row">
 							<?php }?>
-								<div class="col-md-3">
+								<div class="col-md-4">
 									<div id="Layer5" style="text-align:left;left:0px;top:463px;width:320px;height:510px;z-index:420;margin-bottom:10px;" onmouseenter="ShowObjectWithEffect('Layer279-<?php echo $key;?>', 1, 'slideleft', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer279-<?php echo $key;?>', 0, 'slideleft', 300, 'swing');return false;">
 										<div id="wb_Text12" style="position:absolute;left:28px;top:29px;width:278px;height:16px;text-align:center;z-index:384;">
 											<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $item['catalogue_title']; ?></strong></span>

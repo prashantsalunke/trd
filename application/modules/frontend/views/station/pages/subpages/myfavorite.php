@@ -33,7 +33,7 @@
 			</div>
 		</div>
   	</div>
-  	<div class="panel-body panel-body-custom" id="" style="padding-top: 22px;">		
+  	<div class="panel-body panel-body-custom" id="" style="padding-top: 22px;height:700px;">		
   		<div id="seller_div">
 			<?php include 'favoriteseller.php';?>
    		</div>
@@ -63,7 +63,8 @@
    		</div>
    		<br><br>
    </div>
- </form>
+</form>
+<?php include APPPATH.'modules/frontend/views/default/vcatalogue.php';?> 
 <style>
 .catalog_c_img {
 	border: none;
@@ -183,51 +184,33 @@ function delete_favorite(id,type)
 	$.post("<?php echo base_url();?>mystation/deletefavorite",{id:id},function(data) {
 		if(data.status == 1)
 		{
-			alert(data.msg);
+			customAlert(data.msg);
 		} else {
-			alert(data.msg);
+			customAlert(data.msg);
 		}
 		
 	},'json');
 	openFavoriteInfo(type);
-	
 }
-// 	ajaxindicatorstart("Please wait .. System is Processing...");
-// 	var options = {
-//  			target : '#response', // target element(s) to be updated with server response 
-//  			beforeSubmit : showDeleteFavoriteRequest, // pre-submit callback 
-//  			success :  showDeleteFavoriteResponse,
- //			url : '<?php //echo base_url()?> mystation/deletefavorite',
-//  			semantic : true,
-//  			dataType : 'json'
-//  		};
-// 		$('#frm_favorite').ajaxSubmit(options);
-
 
 function showDeleteFavoriteRequest(formData, jqForm, options){
 	var queryString = $.param(formData);
-return true;
+	return true;
 }
 function showDeleteFavoriteResponse(resp, statusText, xhr, $form){
-if(resp.status == 0) {
-	$("#response").addClass('alert-danger');
-	$("#response").html(resp.msg);
-	$("#response").show();
-	//alert(resp.msg);
-	//getChangepassword();
+	if(resp.status == 0) {
+		$("#response").addClass('alert-danger');
+		$("#response").html(resp.msg);
+		$("#response").show();
 	} else {
-	$('#photo').attr('src', resp.msg);
-	$("#response").addClass('alert-success');
-	$("#response").html(resp.msg);
-	$("#response").show();
-	//alert(resp.msg);
-	$('#dproductphoto').attr('src', resp.msg);
-	$('#productimage_name').val(resp.msg);
-	
-	//getMyAccount();
-	//window.location.reload();
+		$('#photo').attr('src', resp.msg);
+		$("#response").addClass('alert-success');
+		$("#response").html(resp.msg);
+		$("#response").show();
+		$('#dproductphoto').attr('src', resp.msg);
+		$('#productimage_name').val(resp.msg);
 	}
-ajaxindicatorstop();
+	ajaxindicatorstop();
 }
 
 function toggleDeleteDive(icon,chkbx) {

@@ -526,6 +526,13 @@ class Product_Model extends CI_Model {
     }
     public function save3DProduct($params)
     {
+    	if ($this->db->insert(TABLES::$MY_3DPRODUCT, $params)) {
+    		return $this->db->insert_id();
+    	}
+    
+    }
+    public function save3DProductImages($params)
+    {
     	if ($this->db->insert(TABLES::$PRODUCT_3DPRODUCT, $params)) {
     		return $this->db->insert_id();
     	}
@@ -542,6 +549,32 @@ class Product_Model extends CI_Model {
     	return $result;
     
     }
+    public function getProduct3DdataById($product_id)
+    {
+    	$this->db->select('a.*,d.id as did');
+    	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
+    	$this->db->join(TABLES::$MY_3DPRODUCT . ' AS d','a.id=d.product_id','inner');
+    	$this->db->where('d.id',$product_id);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    
+    }
+    
+    public function getProduct3DDetailById($id)
+    {
+    	$this->db->select('b.*,group_concat(c.image) as pro_images');
+    	$this->db->from(TABLES::$MY_3DPRODUCT.' AS a');
+    	$this->db->join(TABLES::$PRODUCT_ITEM . ' AS b','a.product_id=b.id','inner');
+    	$this->db->join(TABLES::$PRODUCT_3DPRODUCT . ' AS c','a.id=c.product_item_id','inner');
+    	$this->db->where('a.id',$id);
+    	$this->db->group_by('a.id');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    
+    }
+    
     public function getProduct3Dimages($product_id)
     {
     	$this->db->select('*');
@@ -569,12 +602,37 @@ class Product_Model extends CI_Model {
     	return $result;
     
     }
-    public function deleteProduct($data)
+    
+    public function getProduct3Dlist($busi_id)
     {
-    	$this->db->where('id', $data['id']);
-    	$this->db->update(TABLES::$PRODUCT_ITEM, $data);
-    	return $this->db->affected_rows();
+    	$this->db->select('d.id as did,a.*,b.name as subproduct,c.name as mainproduct');
+    	$this->db->from(TABLES::$MY_3DPRODUCT . ' AS d');
+    	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS a','d.product_id = a.id','inner');
+    	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+    	$this->db->where('d.busi_id',$busi_id);
+    	$this->db->where('a.status',1);
+    	$this->db->where('(b.status = 1 OR b.status IS NULL)','',false);
+    	$this->db->where('c.status',1);
+    	$this->db->order_by('id','ASC');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    
     }
+    
+    public function delete3DProduct($data)
+    {
+    	$this->db->where('product_item_id', $data['id']);
+    	if($this->db->delete(TABLES::$PRODUCT_3DPRODUCT)) {
+    		$this->db->where('id', $data['id']);
+    		$this->db->delete(TABLES::$MY_3DPRODUCT);
+    		return 1;
+    	} else {
+    		return 0;
+    	}
+    }
+    
     public function getMainProduct()
     {
     	$this->db->select('*');
@@ -603,11 +661,11 @@ class Product_Model extends CI_Model {
         	$this->db->update(TABLES::$PRODUCT_3DPRODUCT, $data);
     		return $this->db->affected_rows();
     }
-    public function update3dproduct($oldid,$newid) {
+    public function update3dproduct($id,$newid) {
     
-    	$data['product_item_id'] = $newid;
-    	$this->db->where('product_item_id', $oldid);
-    	$this->db->update(TABLES::$PRODUCT_3DPRODUCT, $data);
+    	$data['product_id'] = $newid;
+    	$this->db->where('id', $id);
+    	$this->db->update(TABLES::$MY_3DPRODUCT, $data);
     	return $this->db->affected_rows();
     }
     
@@ -717,6 +775,44 @@ class Product_Model extends CI_Model {
     	if(!empty($map['subcat_id']))
     		$this->db->where('f.id',$map['subcat_id']);
     	$this->db->where('a.busi_id',$map['busi_id']);
+    	$this->db->order_by('id','ASC');
+    	$query = $this->db->get();
+    	//echo $this->db->last_query();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
+    public function productListByHotsales($map) {
+    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id');
+    	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
+    	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+    	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
+    	$this->db->join(TABLES::$HOTSALE_PRODUCTS. ' AS g','g.item_id=a.id','inner');
+    	$this->db->where('a.status',1);
+    	$this->db->where('(b.status = 1 OR b.status IS NULL)','',false);
+    	$this->db->where('c.status',1);
+    	$this->db->where('g.busi_id',$map['busi_id']);
+    	$this->db->order_by('id','ASC');
+    	$query = $this->db->get();
+    	//echo $this->db->last_query();
+    	$result = $query->result_array();
+    	return $result;
+    }
+    
+    public function productListByNewArrival($map) {
+    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id');
+    	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
+    	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+    	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
+    	$this->db->join(TABLES::$NEW_ARRIVAL_PRODUCT. ' AS g','g.item_id=a.id','inner');
+    	$this->db->where('a.status',1);
+    	$this->db->where('(b.status = 1 OR b.status IS NULL)','',false);
+    	$this->db->where('c.status',1);
+    	$this->db->where('g.busi_id',$map['busi_id']);
     	$this->db->order_by('id','ASC');
     	$query = $this->db->get();
     	//echo $this->db->last_query();
@@ -1768,7 +1864,19 @@ class Product_Model extends CI_Model {
     }
 
     public function addItemToCart($params) {
-    	return $this->db->insert(TABLES::$MYCART,$params);
+    	$this->db->select('*');
+    	$this->db->from(TABLES::$MYCART);
+    	$this->db->where('product_item_id',$params['product_item_id']);
+    	$this->db->where('busi_id',$params['busi_id']);
+    	$this->db->where('is_deleted',0);
+    	$this->db->order_by('id','ASC');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	if(count($result) <= 0) { 
+    		return $this->db->insert(TABLES::$MYCART,$params);
+    	} else {
+    		return 0;
+    	}
     }
     
     public function addBstationPostRequest($params) {
@@ -2295,21 +2403,31 @@ class Product_Model extends CI_Model {
    	}
    	
    	public function updateBusinessLikes($busi_id,$visitor_id = 0) {
-   		$ip_address = getRealIP();
-   		$ipinfo = ip_info($ip_address,'location');
-   		$params = array();
-   		$params['busi_id'] = $busi_id;
-   		$params['visitor_id'] = $visitor_id;
-   		$params['city'] = $ipinfo['city'];
-   		$params['country'] = $ipinfo['country'];
-   		$params['ip_address'] = $ip_address;
-   		$params['likes'] = 1;
-   		$params['shares'] = 0;
-   		$params['visit_date'] = date('Y-m-d');
-   		$this->db->insert(TABLES::$BUSINESS_VISITORS,$params);
-   		$sql = "UPDATE ".TABLES::$BUSINESS_INFO." SET visit = visit + 1, likes = likes + 1 where id=".$busi_id;
-   		$this->db->query($sql);
-   		return $this->db->affected_rows();
+   		$this->db->select('a.id');
+   		$this->db->from(TABLES::$BUSINESS_VISITORS.' AS a');
+   		$this->db->where('a.busi_id',$busi_id);
+   		$this->db->where('a.visitor_id',$visitor_id);
+   		$query = $this->db->get();
+   		$result = $query->result_array();
+   		if(count($result) <= 0) {
+	   		$ip_address = getRealIP();
+	   		$ipinfo = ip_info($ip_address,'location');
+	   		$params = array();
+	   		$params['busi_id'] = $busi_id;
+	   		$params['visitor_id'] = $visitor_id;
+	   		$params['city'] = $ipinfo['city'];
+	   		$params['country'] = $ipinfo['country'];
+	   		$params['ip_address'] = $ip_address;
+	   		$params['likes'] = 1;
+	   		$params['shares'] = 0;
+	   		$params['visit_date'] = date('Y-m-d');
+	   		$this->db->insert(TABLES::$BUSINESS_VISITORS,$params);
+	   		$sql = "UPDATE ".TABLES::$BUSINESS_INFO." SET visit = visit + 1, likes = likes + 1 where id=".$busi_id;
+	   		$this->db->query($sql);
+	   		return $this->db->affected_rows();
+   		} else {
+   			return 0;
+   		}
    	}
    	
    	public function updateCatalogueLikes($catalogue_id){
@@ -2403,11 +2521,12 @@ class Product_Model extends CI_Model {
    	
    	public function getBusinessContactInfo($map) {
    		$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,
-    			b.id as busi_id,b.company_name, b.company_country, b.company_province, b.company_city,b.telephone_code,
-    			b.telephone_city_code,b.telephone_number,b.company_street,b.company_email, b.business_logo,
+    			b.id as busi_id,b.company_name, b.company_country, b.company_province, b.company_city,c.mobile_code as telephone_code,
+    			b.telephone_city_code,c.mobile_number as telephone_number,b.company_street,b.company_email, b.business_logo,
     			b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank');
    		$this->db->from(TABLES::$USER.' AS a');
    		$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
+   		$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','inner');
    		$this->db->where('a.account_activated', 1);
    		$this->db->where('a.is_suspend', 0);
    		$this->db->where('a.is_deleted', 0);

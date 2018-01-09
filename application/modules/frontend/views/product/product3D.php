@@ -112,7 +112,7 @@
 			<?php if (($i % 3)==0){?>
 			<div class="row">
 			<?php }?>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div id="Layer228" class="Layer228" onmouseenter="ShowObjectWithEffect('Layer105', 1, 'fade', 500);return false;" onmouseleave="ShowObjectWithEffect('Layer105', 0, 'fade', 500);return false;">
 						<div id="wb_Text495" style="">
 						<span class="product_name"><a href="<?php echo base_url();?>products/details/<?php echo $item['id']; ?>" target="_blank" class="style16"><?php echo $item['name']; ?></a></span></div>
@@ -122,8 +122,8 @@
 						<span class="usd" style="">USD</span><span style="color:#C0C0C0;font-family:Arial;font-size:13px;"> </span><span style="color:#3C3C3C;font-family:Arial;font-size:24px;"><?php echo $item['unit_price'];?>.00</span></div>
 						<div id="wb_Text498" class="wb_Text498" style="">
 						<span class="min-order" style="">Min. Order: <?php echo $item['quantity'].' '.$item['unit'];?>&nbsp;&nbsp;&nbsp; </span></div>
-						<div id="wb_Shape75" class="wb_Shape75" style="">
-						<img src="<?php echo asset_url().$item['main_image']?>" id="Shape75" alt="" style="width:236px;"></div>
+						<div id="wb_Shape75" class="wb_Shape75" style="cursor:pointer;" onclick="open3DProduct(<?php echo $item['did']; ?>);">
+							<img src="<?php echo asset_url().$item['main_image']?>" id="Shape75" alt="" style="width:236px;"></div>
 						<div id="wb_Text2"  class ="wb_Text2" >
 						<span style=""  class="like-count"><?php echo $item['likes'];?></span></div>
 						<div id="wb_Image1" class ="wb_Image1" style="position:absolute;left:137px;top:373px;width:25px;height:25px;z-index:226;">
@@ -361,6 +361,9 @@
         	</div>
 	</div>
 </div>
+<div id="promodal">
+
+</div>
 <script>
 function changeCountry(a){
 	var country = $(a).val();
@@ -368,5 +371,12 @@ function changeCountry(a){
 		$('#city').html(data);
 	},'html');
 	
-}					
+}
+function open3DProduct(id) {
+	$.get(base_url+"mystation/3dpro/show/"+id, {}, function(data){
+		$("#promodal").html(data);
+		$("#my3DModal").modal('show');
+		init3D('my3dimg');
+	},'html');
+ }
 </script>			
