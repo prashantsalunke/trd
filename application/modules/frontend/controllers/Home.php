@@ -1015,7 +1015,7 @@ class Home extends MX_Controller {
 	}
 	public function get3DProduct($id) {
 		$this->load->model('Product_Model', 'product' );
-		$Products = $this->product->get3dproduct($id);
+		$Products = $this->product->getProduct3Dlist($id);
 		$this->template->set ( 'Products', $Products);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );

@@ -17,7 +17,7 @@
 <div class="container" style="width: 1280px;">
 	<div class="row m1" style="margin:30px 30px;">
 		<div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px;">
-			<div id="Layer68" style="height:100%;">
+			<div id="Layer68" style="height:720px;">
 				<div class="maxheight1">
 					<br>
 					<br>
@@ -73,8 +73,8 @@
 						<div class="col-xs-8 ptop">
 							<strong class="font1 ">View / Manage</strong><br> 
 							<a href="#" class="font2" onclick="ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);ShowObjectWithEffect('Layer51', 1, 'slideright', 500);ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);return false;">My Posts</a><br> 
-							<a href="# " class="font2" onclick="ShowObjectWithEffect( 'Layer71', 1, 'slideright', 600);ShowObjectWithEffect( 'Layer72', 1, 'fade', 500);ShowObjectWithEffect( 'Layer90', 0, 'fade', 5);ShowObjectWithEffect( 'Layer76', 1, 'blindvertical', 500);ShowObjectWithEffect( 'Layer74', 1, 'fold', 500);ShowObject( 'Layer20', 0);ShowObject( 'Layer101', 0);hideObjects( 'Layer18', 0);return false; ">My Members <span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;">0</span></a><br> 
-							<a href="javascript:displayCommunityRequests();" class="font2" >Add Requests <span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;"><?php if(!empty($add_requests[0]['members'])) { echo $add_requests[0]['members']; } else { echo 0;}?></span></a>
+							<a href="# " class="font2" onclick="ShowObjectWithEffect( 'Layer71', 1, 'slideright', 600);ShowObjectWithEffect( 'Layer72', 1, 'fade', 500);ShowObjectWithEffect( 'Layer90', 0, 'fade', 5);ShowObjectWithEffect( 'Layer76', 1, 'blindvertical', 500);ShowObjectWithEffect( 'Layer74', 1, 'fold', 500);ShowObject( 'Layer20', 0);ShowObject( 'Layer101', 0);hideObjects( 'Layer18', 0);return false; ">My Members <span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;display:none;">0</span></a><br> 
+							<a href="javascript:displayCommunityRequests();" class="font2" >Add Requests <?php if(!empty($add_requests[0]['members'])) { ?><span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;"><?php if(!empty($add_requests[0]['members'])) { echo $add_requests[0]['members']; } else { echo 0;}?></span><?php } ?></a>
 						</div>
 					</div>
 					<br>
@@ -132,11 +132,14 @@
 					</div>
 				</div>
 			</div>
-			<div id="Layer1" style="overflow: scroll;margin-top:2px;height:679px;">
+			<div id="Layer1" style="overflow: scroll;margin-top:2px;height:683px;">
           	<?php 
 			if (count ( $allposts ) > 0 && $allposts [0] ['id'] != '') {
 			foreach ( $allposts as $key=>$allpost ) {
 			?>
+					<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
+						<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($allpost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($allpost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($allpost['created_date']));?></span>
+					</div>
 					<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="ShowObject('Layer20', 0);ShowObject('Layer101', 0);ShowObjectWithEffect('Layer18_<?php echo $key;?>', 1, 'slideright', 500, 'swing');ShowObject('Layer71', 0);addPageVisit(<?php echo $allpost['postid'];?>);return false;">
 						<div class="col-md-2 col-sm-2 inline text-center">
 							<a href="#" id="showmenulist<?php echo $allpost['postid'];?>" class="showmenulist" data-id="<?php echo $allpost['postid'];?>"> 
@@ -156,13 +159,13 @@
 						</div>
 						<div class="col-md-6 col-sm-6" style="padding-left:0px;">
 							<div class="row" style="margin:0px;">
-								<div class="col-sm-8" style="padding-left:0px;">
+								<div class="col-sm-7" style="padding-left:0px;">
 									<p class="font6" style="font-size:14px;"><?php echo $allpost['company_name'];?> </p>
 									<p class="font7">Presented by &nbsp;&nbsp;<span class="style5 font8"><?php echo $allpost['prefix'].' '.$allpost['username'];?> </span></p>
 									<span class="s1" style="font-size:15px;"><strong><?php echo $allpost['title'];?></strong></span><br>
 								</div>
 								<?php if(!empty($allpost['share_cname'])) { ?>
-								<div class="col-sm-4" style="padding:0px;">
+								<div class="col-sm-5" style="padding:0px;">
 									<div class="col-sm-3" style="padding:0px;">
 										<img src="<?php echo asset_url(); ?><?php echo $allpost['share_profile_image'];?>" id="Shape25" alt="" style="width:41px;border-radius:50%;border: 1px solid #FF6347;">
 									</div>
@@ -184,9 +187,9 @@
 										$lb = 0;
 										$cb = 0;
 									} else {
-										$vb = round($allpost['postviews']/$tb*3);
-										$lb = round($allpost['likes']/$tb*3);
-										$cb = round($allpost['comment']/$tb*3);
+										$vb = round($allpost['postviews']/$tb*3,1);
+										$lb = round($allpost['likes']/$tb*3,1);
+										$cb = round($allpost['comment']/$tb*3,1);
 									}
 								?>
 								<div>
@@ -201,37 +204,34 @@
 						</div>
 						<div class="col-md-4 col-sm-4">
 							<div class="col-sm-6" style="padding:0px;">
-								<div class="post-img-section">
+								<div class="post-img-section" <?php if(!empty($allpost['image1'])) { ?>style="background-image:url('<?php echo asset_url(); ?><?php echo $allpost['image1'];?>');background-size:cover;"<?php } ?>>
 									<?php if(!empty($allpost['image1'])) { ?>
-									<img src="<?php echo asset_url(); ?><?php echo $allpost['image1'];?>" id="" alt="" class="postimg">
+									<!-- img src="<?php echo asset_url(); ?><?php echo $allpost['image1'];?>" id="" alt="" class="postimg"-->
 									<?php } ?>
 								</div>
 							</div>
 							<div class="col-sm-6" style="padding:0px;">
-								<div class="post-img-section">
+								<div class="post-img-section" <?php if(!empty($allpost['image2'])) { ?>style="background-image:url('<?php echo asset_url(); ?><?php echo $allpost['image2'];?>');background-size:cover;"<?php } ?>>
 									<?php if(!empty($allpost['image2'])) { ?>
-									<img src="<?php echo asset_url(); ?><?php echo $allpost['image2'];?>" id="" alt="" class="postimg">
+									<!-- img src="<?php echo asset_url(); ?><?php echo $allpost['image2'];?>" id="" alt="" class="postimg"-->
 									<?php } ?>
 								</div>
 							</div>
 							<div class="col-sm-6" style="padding:0px;">
-								<div class="post-img-section">
+								<div class="post-img-section" <?php if(!empty($allpost['image3'])) { ?>style="background-image:url('<?php echo asset_url(); ?><?php echo $allpost['image3'];?>');background-size:cover;"<?php } ?>>
 									<?php if(!empty($allpost['image3'])) { ?>
-									<img src="<?php echo asset_url(); ?><?php echo $allpost['image3'];?>" id="" alt="" class="postimg">
+									<!-- img src="<?php echo asset_url(); ?><?php echo $allpost['image3'];?>" id="" alt="" class="postimg" -->
 									<?php } ?>
 								</div>
 							</div>
 							<div class="col-sm-6" style="padding:0px;">
-								<div class="post-img-section">
+								<div class="post-img-section" <?php if(!empty($allpost['image4'])) { ?>style="background-image:url('<?php echo asset_url(); ?><?php echo $allpost['image4'];?>');background-size:cover;"<?php } ?>>
 									<?php if(!empty($allpost['image4'])) { ?>
-									<img src="<?php echo asset_url(); ?><?php echo $allpost['image4'];?>" id="" alt="" class="postimg">
+									<!-- img src="<?php echo asset_url(); ?><?php echo $allpost['image4'];?>" id="" alt="" class="postimg"-->
 									<?php } ?>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
-						<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($allpost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($allpost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($allpost['created_date']));?></span>
 					</div>
                  <?php } }  else { ?>
 					<div style="background-color: #FFFFFF;padding:15px;height:637px;">
@@ -313,7 +313,7 @@
 					<div class="boxsize row" style="margin-top:21px;margin-right:19px;" onclick="ShowObject('Layer20', 0);ShowObject('Layer101', 0);ShowObjectWithEffect('delLayer18_<?php echo $key;?>', 1, 'slideright', 500, 'swing');ShowObject('Layer71', 0);return false;">
 						<div class="col-md-2 col-sm-2 text-center">
 							<br><br><br><br><br>
-							<input type="checkbox"><br><br>
+							<input type="checkbox" style="display:none;"><br><br>
 							<button type="button" id="Button4" class="m2" onclick="deletePost(<?php echo $mypost['postid'];?>);">Delete</button>
 						</div>
 						<div class="col-md-6 col-sm-6" style="padding-left:0px;">
@@ -346,30 +346,30 @@
 						</div>
 						<div class="col-md-4 col-sm-4">
 							<div class="col-sm-6" style="padding:0px;">
-								<div class="post-img-section">
+								<div class="post-img-section" <?php if(!empty($mypost['image1'])) { ?>style="background-image:url('<?php echo asset_url(); ?><?php echo $mypost['image1'];?>');background-size:cover;"<?php } ?>>
 									<?php if(!empty($mypost['image1'])) { ?>
-									<img src="<?php echo asset_url(); ?><?php echo $mypost['image1'];?>" id="" alt="" class="postimg">
+									<!-- img src="<?php echo asset_url(); ?><?php echo $mypost['image1'];?>" id="" alt="" class="postimg"-->
 									<?php } ?>
 								</div>
 							</div>
 							<div class="col-sm-6" style="padding:0px;">
-								<div class="post-img-section">
+								<div class="post-img-section" <?php if(!empty($mypost['image2'])) { ?>style="background-image:url('<?php echo asset_url(); ?><?php echo $mypost['image2'];?>');background-size:cover;"<?php } ?>>
 									<?php if(!empty($mypost['image2'])) { ?>
-									<img src="<?php echo asset_url(); ?><?php echo $mypost['image2'];?>" id="" alt="" class="postimg">
+									<!-- img src="<?php echo asset_url(); ?><?php echo $mypost['image2'];?>" id="" alt="" class="postimg"-->
 									<?php } ?>
 								</div>
 							</div>
 							<div class="col-sm-6" style="padding:0px;">
-								<div class="post-img-section">
+								<div class="post-img-section" <?php if(!empty($mypost['image3'])) { ?>style="background-image:url('<?php echo asset_url(); ?><?php echo $mypost['image3'];?>');background-size:cover;"<?php } ?>>
 									<?php if(!empty($mypost['image3'])) { ?>
-									<img src="<?php echo asset_url(); ?><?php echo $mypost['image3'];?>" id="" alt="" class="postimg">
+									<!-- img src="<?php echo asset_url(); ?><?php echo $mypost['image3'];?>" id="" alt="" class="postimg" -->
 									<?php } ?>
 								</div>
 							</div>
 							<div class="col-sm-6" style="padding:0px;">
-								<div class="post-img-section">
+								<div class="post-img-section" <?php if(!empty($mypost['image4'])) { ?>style="background-image:url('<?php echo asset_url(); ?><?php echo $mypost['image4'];?>');background-size:cover;"<?php } ?>>
 									<?php if(!empty($mypost['image4'])) { ?>
-									<img src="<?php echo asset_url(); ?><?php echo $mypost['image4'];?>" id="" alt="" class="postimg">
+									<!-- img src="<?php echo asset_url(); ?><?php echo $mypost['image4'];?>" id="" alt="" class="postimg"-->
 									<?php } ?>
 								</div>
 							</div>
@@ -519,7 +519,7 @@
 	<div id="Layer71" style="position:absolute; text-align:right; visibility:hidden; right:0px; bottom:0px; width:434px; height:100%; z-index:2250; top: 0px;">
 		<div id="Layer71_Container">
 			<div class="likehead" style="text-align:left;">
-				<span class="like">Members <span class="likecount" style="padding:0px 20px;vertical-align: middle;">&nbsp;&nbsp;<strong><?php echo count($communitymember);?></strong></span></span>
+				<span class="like">Members <span class="likecount" id="likecountid" style="padding:0px 20px;vertical-align: middle;">&nbsp;&nbsp;<strong><?php echo count($communitymember);?></strong></span></span>
 				<a href="#" onclick="ShowObjectWithEffect('Layer71', 0, 'slideright', 600);return false;">
 					<img src="<?php echo asset_url(); ?>images/img0313.gif" id="Shape14" alt="" class="img42" style="margin-bottom: 30px;">
 				</a>
@@ -537,7 +537,9 @@
 	            	<input type="hidden" class="comm_member_id" value="<?php echo $member['mbid'];?>"/>
 					<div class="col-sm-3 image-cover">
 						<img src="<?php echo asset_url(); ?><?php echo $member['memberimg'];?>" id="Image28" alt="" class="memberimg">
+						<?php if($member['messages'] > 0) { ?>
 						<span class="notification"><?php echo $member['messages'];?></span>
+						<?php } ?>
 					</div>
 					<div class="col-sm-9 padding-top-10">
 						<?php if($member['user_category_id'] == 1 || $member['user_category_id'] == 2) { ?>
@@ -547,7 +549,7 @@
 						<?php } ?>
 						<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image10" alt="" class="img25" style="opacity:<?php if($member['is_logo_verified'] > 1) { ?>1<?php } else { ?>0.15<?php } ?>;"/>
 						<?php if($member['user_category_id'] == 1) { ?>
-						<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image10" alt="" class="img25" style="opacity:<?php if($member['plan_id'] > 1 && $member['gaurantee_period'] !=''){ ?>1<?php } else { ?>0.15<?php }?>;"/>
+						<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image10" alt="" class="img25" style="width:30px !important;opacity:<?php if($member['plan_id'] > 1 && $member['gaurantee_period'] !=''){ ?>1<?php } else { ?>0.15<?php }?>;"/>
 						<?php } ?>
 						<p class="membername"><?php echo $member['membername'];?></p>
 						<p class="membername"><?php echo $member['cname'];?></p>
@@ -557,14 +559,21 @@
 				</div>
             <?php } ?>
             <?php if(count($communitymember) <= 0) { ?>
-            	You don’t have members in your community..<br>
-				To add members, click on the suitable business type “ Sellers, Shippers, Buyers” shown under “ Add Member” in The Toolbox..<br>
-				In the related page, search for a certain members meet your requirement, view his Desksite, then click “Contact and select Add To My Community”..
+            	<h4 class="center" style="margin-top:50px;padding: 60px 30px;text-align: left;">
+					<span style="color:#000000;font-family:Arial;font-size:13px;">
+						<strong>You don’t have members in your community.. </strong>
+						<br><br>
+						To add members, click on the suitable business type “ Sellers, Shippers, Buyers” shown under “ Add Member” in The Toolbox..<br><br>
+						In the related page, search for a certain members meet your requirement, view his Desksite, then click “Contact and select Add To My Community”..
+						<br><br>
+					</span>
+				</h4>
             <?php } ?>
             </div>
 		</div>
 	</div>
 	<!-- my members end -->
+	<div id="rtimepostdetail">
 	<?php 
 		if (count ( $allposts ) > 0 && $allposts [0] ['id'] != '') {
 		foreach ( $allposts as $key=>$allpost ) {
@@ -608,10 +617,16 @@
 					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/favorite.png" class="img35 margin3" /></span>
 				</a>
 				<br> 
+				<?php if($allpost['busi_id'] != $busi_id) { ?>
 				<a href="javascript:openEnquiryAndOfferForm(<?php echo $allpost['postid'];?>);" target="_self"> 
 					<img class="hover img35" alt="" src="<?php echo asset_url(); ?>images/community-icons/reply-active.png" /> 
 					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/reply.png" class="img35 margin3" /></span>
 				</a>
+				<?php } else { ?>
+				<a href="javascript:return false;" target="_self"> 
+					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/reply.png" class="img35 margin3" style="opacity:0.5;"/></span>
+				</a>
+				<?php } ?>
 				<br> 
 				<a href="javascript:shareThePost(<?php echo $allpost['postid'];?>);">
 					<img src="<?php echo asset_url(); ?>images/community-icons/share-active.png" alt="" class="hover img35" />
@@ -626,10 +641,13 @@
 			</div>
 		</div>
 	</div>
+	</div>
 	<?php 
 		}
 	}
 	?>
+	</div>
+	<div id="mypostdetail">
 	<?php 
 	if (count ( $myposts ) > 0 && $myposts [0] ['id'] != '') {
 		foreach ( $myposts as $key=>$mypost ) {
@@ -657,13 +675,21 @@
 					<span class="cstyle2">&nbsp; USD <?php echo $mypost['postprice'];?>&nbsp;&nbsp;&nbsp; </span> <span
 						class="cstyle3">&nbsp; Min. Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 				</div>
+				<?php if(!empty($mypost['image1'])) { ?>
 				<img src="<?php echo asset_url(); ?><?php echo $mypost['image1'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
+				<?php } ?>
+				<?php if(!empty($mypost['image2'])) { ?>
 				<img src="<?php echo asset_url(); ?><?php echo $mypost['image2'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
+				<?php } ?>
+				<?php if(!empty($mypost['image3'])) { ?>
 				<img src="<?php echo asset_url(); ?><?php echo $mypost['image3'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
+				<?php } ?>
+				<?php if(!empty($mypost['image4'])) { ?>
 				<img src="<?php echo asset_url(); ?><?php echo $mypost['image4'];?>" class="img500" alt="" style="width:100% !important;"><br>
+				<?php } ?>
 			</div>
 			<div class="col-sm-1" style="width:30px;padding:3px;margin-top: -45px;">
-				<a href="#" onclick="ShowObject('Layer18_<?php echo $key;?>', 0);return false;"> 
+				<a href="#" onclick="ShowObject('delLayer18_<?php echo $key;?>', 0);return false;"> 
 					<img src="<?php echo asset_url(); ?>images/close.png" id="Image14" alt="" class="img35 margin3">
 				</a>
 				<br> 
@@ -672,10 +698,16 @@
 					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/favorite.png" class="img35 margin3" /></span>
 				</a>
 				<br> 
+				<?php if($mypost['busi_id'] != $busi_id) { ?>
 				<a href="javascript:openEnquiryAndOfferForm(<?php echo $mypost['postid'];?>);" target="_self"> 
 					<img class="hover img35" alt="" src="<?php echo asset_url(); ?>images/community-icons/reply-active.png" /> 
 					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/reply.png" class="img35 margin3" /></span>
 				</a>
+				<?php } else { ?>
+				<a href="javascript:return false;" target="_self"> 
+					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/reply.png" class="img35 margin3" style="opacity:0.5;"/></span>
+				</a>
+				<?php } ?>
 				<br> 
 				<a href="javascript:shareThePost(<?php echo $mypost['postid'];?>);">
 					<img src="<?php echo asset_url(); ?>images/community-icons/share-active.png" alt="" class="hover img35" />
@@ -825,6 +857,18 @@ $("#Layer47<?php echo $allpost['postid'];?>").mouseleave(function(){
 <?php } ?>
 
 <script>
+function loadRealtimePosts(){
+    $.post(base_url+"mycommunity/posts/realtime", {}, function(data){
+		$('#Layer1').html(data.html1);
+		$('#rtimepostdetail').html(data.html2);
+	},'json');
+}
+function loadMyPosts(){
+    $.post(base_url+"mycommunity/posts/myposts", {}, function(data){
+       $('#Layer32').html(data.html1);
+       $('#mypostdetail').html(data.html2);
+    },'json');
+}
 function deletePost(id){
     var del = confirm('Are you sure to delete Post.');
 	    if(del != true){
@@ -981,10 +1025,12 @@ function setup_readerpost(files, i) {
 function postLike(id){
 		Toggle('', 'blindhorizontal', 500);
 		$.post(base_url+"community/post/like", {post_id : id }, function(data){
-			$("#msg_cont").html(data.msg);
-    		ShowObject('Layer99', 1);
+			//$("#msg_cont").html(data.msg);
+    		//ShowObject('Layer99', 1);
 			if(data.status!=''){
 				viewPostLike(id);
+				loadRealtimePosts();
+				loadMyPosts();
 			}
 		},'json');
 }
@@ -994,9 +1040,11 @@ function commentPost(post_id, user_id){
     if(comment !=''){
         $.post(base_url+"community/post/comment", {post_id : post_id , user_id : user_id, comment : comment }, function(data){
             if(data.status==1){
-	            $("#msg_cont").html(data.msg);
-	    		ShowObject('Layer99', 1);
+	            //$("#msg_cont").html(data.msg);
+	    		//ShowObject('Layer99', 1);
 	            viewPostComment(post_id);
+	            loadRealtimePosts();
+				loadMyPosts();
             }
         }, 'json');
     }
@@ -1110,10 +1158,11 @@ function deleteMembers() {
 			members = members+","+$(this).val();
 		}
 	});
-	var ans = confirm("Are you sure ? You want to delete all members?");
-	if(members != "" && ans) {
+	//var ans = confirm("Are you sure ? You want to delete all members?");
+	if(members != "") {
 		$.get(base_url+"community/members/delete",{ members: members},function(data) {
 			$("#comm_members").html('<div style="text-align:center;padding: 25px;font-size: 14px;">All Members Deleted Successfully.</div>');
+			$("#likecountid").html("&nbsp;&nbsp;<strong>0</strong>");
 		},'html');
 	}
 }

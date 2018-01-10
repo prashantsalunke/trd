@@ -188,7 +188,7 @@ if(count($posts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver5" class="img45">
-						<a href="<?php if($contact_details[0]['accept_community'] == 1) { ?>addToCommunity(<?php echo $product['busi_id'];?>);<?php } else { ?>javascript:addToMyCommunityAlert();<?php } ?>" target="_blank"> 
+						<a href="<?php if($contact_details[0]['accept_community'] == 1) { ?>javascript:addToCommunity(<?php echo $product['busi_id'];?>);<?php } else { ?>javascript:addToMyCommunityAlert();<?php } ?>" target="_blank"> 
 							<img class="hover" alt="Add To My Community" src="<?php echo asset_url(); ?>images/Active/addcommunity_button2.png" />
 							<span><img alt="Add To My Community" src="<?php echo asset_url(); ?>images/Link/addcommunity_button2.png" /></span>
 						</a>

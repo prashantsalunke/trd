@@ -152,22 +152,22 @@ div.panel1 {
 					  	</div><br><br>
 					  	<div style="text-align:center;">
 					  		<?php if($row['attachment1'] != "") { ?>
-						  		<a href="<?php echo asset_url().getFileName($row['attachment1']);?>" download="<?php echo basename(asset_url().getFileName($row['attachment1']));?>" class="imgdownload">
+						  		<a href="<?php echo asset_url().$row['attachment1'];?>" download="<?php echo basename(asset_url().$row['attachment1']);?>" class="imgdownload">
 						  			<img src="<?php echo asset_url().getFileName($row['attachment1']);?>"  style="width:100px;height:100px;">
 						  		</a>
 					  		<?php } ?>	
 					  		<?php if($row['attachment2'] != "") { ?>
-					  			<a href="<?php echo asset_url().getFileName($row['attachment2']);?>" download="<?php echo basename(asset_url().getFileName($row['attachment2']));?>" class="imgdownload">
+					  			<a href="<?php echo asset_url().$row['attachment2'];?>" download="<?php echo basename(asset_url().$row['attachment2']);?>" class="imgdownload">
 					  				<img src="<?php echo asset_url().getFileName($row['attachment2']);?>" style="width:100px;height:100px;">
 					  			</a>
 					  		<?php } ?>
 					  		<?php if($row['attachment3'] != "") { ?>
-					  			<a href="<?php echo asset_url().getFileName($row['attachment3']);?>" download="<?php echo basename(asset_url().getFileName($row['attachment3']));?>" class="imgdownload">	
+					  			<a href="<?php echo asset_url().$row['attachment3'];?>" download="<?php echo basename(asset_url().$row['attachment3']);?>" class="imgdownload">	
 					  				<img src="<?php echo asset_url().getFileName($row['attachment3']);?>" style="width:100px;height:100px;">
 					  			</a>
 					  		<?php } ?>
 					  		<?php if($row['attachment4'] != "") { ?>	
-					  			<a href="<?php echo asset_url().getFileName($row['attachment4']);?>" download="<?php echo basename(asset_url().getFileName($row['attachment4']));?>" class="imgdownload">
+					  			<a href="<?php echo asset_url().$row['attachment4'];?>" download="<?php echo basename(asset_url().$row['attachment4']);?>" class="imgdownload">
 					  				<img  src="<?php echo asset_url().getFileName($row['attachment4']);?>" style="width:100px;height:100px;">
 					  			</a>
 					  		<?php } ?>	

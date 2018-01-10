@@ -101,7 +101,9 @@ function customAlert(msg) {
 </script>
 </head>
 <body>
+	<?php if($page == 'desksite') { ?>
 	<div class="loader"></div>
+	<?php } ?>
     <?php echo $template['partials']['header']; ?>
     <?php echo $template['body']; ?>
 	<?php echo $template['partials']['footer']; ?>
@@ -119,7 +121,7 @@ function customAlert(msg) {
 							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;">ALERT</span>
 						</div>
 						<br>
-						<div style="text-align: left;font-size:13px;font-family:Arial;" id="customAlertText">
+						<div style="text-align: center;font-size:13px;font-family:Arial;" id="customAlertText">
 							My Alert
 						</div>
 					</div>
@@ -248,7 +250,9 @@ $(window).scroll(function(){
 $("#totop").on("click",function(){
 	return $("html, body").animate({scrollTop:0},"fast"),!1
 });
+<?php if($page == 'desksite') { ?>
 $(window).load(function() {
     $(".loader").fadeOut("slow");
 });
+<?php } ?>
 </script>

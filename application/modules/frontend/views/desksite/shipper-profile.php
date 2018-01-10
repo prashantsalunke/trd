@@ -784,8 +784,8 @@ function stopWiggle(input) {
 			<!-- product popup ends -->
 				
 			<!--about us-->
-			<div id="Layer23" style="position:absolute;text-align:center;visibility:hidden;left:378px;top:34px;width:45%;height:670px;z-index:3864;">
-				<div id="Layer23_Container" style="width:584px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+			<div id="Layer23" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:34px;width:45%;height:670px;z-index:3864;">
+				<div id="Layer23_Container" style="width:584px;text-align:left;">
 					<div id="Layer42" class="a4" >
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -800,8 +800,8 @@ function stopWiggle(input) {
 			
 			<!-- about us end -->
 			<!-- certification -->
-			<div id="Layer144" style="position:absolute;text-align:center;visibility:hidden;left:143px;top:126px;width:61%;height:554px;z-index:3853;">
-				<div id="Layer144_Container" style="width:788px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+			<div id="Layer144" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:126px;width:61%;height:554px;z-index:3853;">
+				<div id="Layer144_Container" style="width:788px;text-align:left;">
 					<div id="Layer145" class="a4">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer144', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -814,7 +814,7 @@ function stopWiggle(input) {
 			<!-- certification ends -->
 			
 			<!-- company profile -->
-			<div id="Layer48" class="box1" style="left:36%; top:3%;width: 316px;padding:15px;">
+			<div id="Layer48" class="box1" style="left:0;right:0;margin:0 auto; top:3%;width: 316px;padding:15px;">
 			    <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
 				 	<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
 			    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/barcompany-profile.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE
@@ -841,7 +841,7 @@ function stopWiggle(input) {
 			<!-- advantages ends-->
 			
 			<!-- Routes -->
-			<div id="Layer33" class="box1 a3" style="width:314px;padding:15px;">
+			<div id="Layer33" class="box1 a3" style="left:0;right:0;margin:0 auto;width:314px;padding:15px;">
 			    <div id="Layer79_Container">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer33', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:94%;">
@@ -854,8 +854,8 @@ function stopWiggle(input) {
 			<!-- routes ends-->
 			
 			<!-- my files -->
-			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:245px;top:198px;width:53%;height:462px;z-index:3850;">
-				<div id="Layer148_Container" style="width:432px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:198px;width:53%;height:462px;z-index:3850;">
+				<div id="Layer148_Container" style="width:432px;text-align:left;">
 					<div id="Layer150" style="position:absolute;text-align:left;left:65px;top:28px;width:517px;height:402px;z-index:3616;">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer148', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -1013,8 +1013,8 @@ function stopWiggle(input) {
 			</div>
 			<!-- contact us form end -->
 				<!-- contact person -->
-				<div id="Layer62" style="position:absolute;text-align:right;visibility:hidden;left:19%;top:166px;width:51%;height:447px;z-index:3854;">
-					<div id="Layer62_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+				<div id="Layer62" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:166px;width:51%;height:447px;z-index:3854;">
+					<div id="Layer62_Container" style="width:656px;text-align:left;">
 						<div id="Layer63" class="a1">
 					        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer62', 0, 'slidedown', 300, 'swing');return false;">
 								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -1027,8 +1027,8 @@ function stopWiggle(input) {
 				</div>
 				<!-- contact person end -->
 			<!-- world wide offices -->
-			<div id="Layer16" style="position:absolute;text-align:right;visibility:hidden;left:25%;top:225px;width:51%;height:411px;z-index:3863;">
-				<div id="Layer16_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+			<div id="Layer16" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:225px;width:51%;height:411px;z-index:3863;">
+				<div id="Layer16_Container" style="width:656px;text-align:left;">
 					<div id="Layer15" class="s9" style="height:285px;">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer16', 0, 'slidedown', 300, 'swing');return false;">
 				            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -1083,8 +1083,8 @@ function stopWiggle(input) {
 			</div>
 			<!-- world wide end -->
 			<!--  current post -->
-			<div id="Layer58" style="position:absolute;text-align:right;visibility:hidden;left:134px;top:2px;width:69%;height:702px;z-index:3861;">
-				<div id="Layer58_Container" style="width:890px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+			<div id="Layer58" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:2px;width:69%;height:702px;z-index:3861;">
+				<div id="Layer58_Container" style="width:890px;text-align:left;">
 					<div id="Layer8" class="s5">
 					   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer58', 0, 'slidedown', 300, 'swing');return false; ">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -1114,8 +1114,8 @@ function stopWiggle(input) {
 			</div>
 			<!--  current post end-->
 				<!-- UDtalk images -->
-				<div id="Layer72" style="position:absolute;text-align:center;visibility:hidden;left:50px;top:64px;width:66%;height:616px;z-index:3848;">
-					<div id="Layer72_Container" style="width:850px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+				<div id="Layer72" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:64px;width:66%;height:616px;z-index:3848;">
+					<div id="Layer72_Container" style="width:850px;text-align:left;">
 						<div id="Layer73" class="c19">
 						   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer72', 0, 'slidedown', 300, 'swing');return false; ">
 								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left: 96%;">
@@ -1153,7 +1153,7 @@ function stopWiggle(input) {
 				</div>
 				<!-- UDtalk images end -->
 				<!-- Videos section -->
-				<div id="Layer65" style="position:absolute;text-align:center;visibility:hidden;left:305px;top:73px;width:50%;height:628px;z-index:3847;">
+				<div id="Layer65" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:73px;width:50%;height:628px;z-index:3847;">
 					<div id="Layer65_Container" style="width:644px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
 						<div id="Layer66" class="c19">
 							<a href="#" onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer65', 0, 'slidedown', 300, 'swing');return false;">

@@ -342,7 +342,7 @@ class Dproduct extends MX_Controller {
 		$map = array();
 		$param =array();
 		$pid = 0;
-		
+		$size = 0;
 		if (!empty($_FILES['file3dimages']['name'])) {
 			
 			$path = getcwd() . "/assets/images/business_images/$busi_id";
@@ -376,11 +376,22 @@ class Dproduct extends MX_Controller {
 							//
 						}
 						$pid = $this->dproductlib->save3DProductImages($param);
+						$size = $size + $_FILES['file3dimages']['size'][$i];
 					}
 				} // end for
 			}
 			if($pid > 0)
 			{
+				/* ************** Storage Implementation *************** */
+				if($size != 0) {
+					$this->load->library('mylib/StorageLib');
+					$storage = array();
+					$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+					$storage['field'] = 'products';
+					$storage['datasize'] = round($size/1024,2);
+					$this->storagelib->updateStorageByBusiId($storage);
+				}
+				/* ***************************************************** */
 				$map['status'] = 1;
 				$map['msg'] = "Product 3DImage added Successfully.";
 				$map['id'] = $id;
@@ -429,6 +440,8 @@ class Dproduct extends MX_Controller {
 		$dproid = $this->input->post('fileid');
 		$busi_id = $this->session->userdata('busi_id');
 		$params['id'] = $dproid;
+		$size = 0;
+		$dpfile = $this->dproductlib->getProductImageById($dproid);
 		if (!empty($_FILES['filechangeimage']['name'])) {
 			$mainproductimage = $_FILES['filechangeimage']['name'];
 			$path = getcwd() . "/assets/images/business_images/$busi_id";
@@ -448,7 +461,7 @@ class Dproduct extends MX_Controller {
 			$product_Img = uploadImage($_FILES['filechangeimage'],$location,array('jpeg','jpg','png','gif'),2097152,'product');
 			if($product_Img['status'] == 1) {
 				$params['image'] =  $product_Img['image'];
-				
+				$size = $size + $_FILES['filechangeimage']['size'];
 			} else {
 				$error = array("publicfile"=>$product_Img['msg']);
 				if (! empty ( $error )) {
@@ -460,6 +473,18 @@ class Dproduct extends MX_Controller {
 				exit;
 			}
 			$updatedid  = $this->dproductlib->change3dproduct($params);
+			$size = $size - filesize(FCPATH."assets/".$dpfile[0]['image']);
+			unlink(FCPATH."assets/".$dpfile[0]['image']);
+			/* ************** Storage Implementation *************** */
+			if($size != 0) {
+				$this->load->library('mylib/StorageLib');
+				$storage = array();
+				$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+				$storage['field'] = 'products';
+				$storage['datasize'] = round($size/1024,2);
+				$this->storagelib->updateStorageByBusiId($storage);
+			}
+			/* ***************************************************** */
 			$map['status'] = 1;
 			$map['msg'] = "Image Changed Successfully.";
 			$map['pid'] = $dproid;
