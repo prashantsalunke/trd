@@ -182,7 +182,7 @@ if(count($bposts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver5" class="img45">
-							<a href="addToCommunity(<?php echo $product['busi_id'];?>);" target="_blank"> 
+							<a href="javascript:addToCommunity(<?php echo $product['busi_id'];?>);" target="_blank"> 
 							<img class="hover" alt="Add To My Community" src="<?php echo asset_url(); ?>images/Active/addcommunity_button2.png" />
 							<span><img alt="Add To My Community" src="<?php echo asset_url(); ?>images/Link/addcommunity_button2.png" /></span>
 						</a>

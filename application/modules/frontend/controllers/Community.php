@@ -67,6 +67,47 @@ class Community extends MX_Controller {
 		$this->template->build ('community/community');
 	}
 	
+	public function getCommunityRealtimePosts() {
+		$busi_id = $this->session->userdata('busi_id');
+		$allposts = $this->product->communityPostListByAlluser($busi_id);
+		$this->template->set ('allposts', $allposts);
+		$this->template->set ( 'page', 'community' );
+		$this->template->set ( 'browser_icon', 'community.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('community/pages/posts','',true);
+		$this->template->set ('allposts', $allposts);
+		$this->template->set ( 'page', 'community' );
+		$this->template->set ( 'browser_icon', 'community.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html1 = $this->template->build ('community/pages/postdetails','',true);
+		echo json_encode(array('html1'=>$html,'html2'=>$html1));
+	}
+	
+	public function getCommunityMyPosts() {
+		$busi_id = $this->session->userdata('busi_id');
+		$myposts = $this->product->communityPostListByBusinessId($busi_id);
+		$this->template->set ('myposts', $myposts);
+		$this->template->set ( 'page', 'community' );
+		$this->template->set ( 'browser_icon', 'community.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('community/pages/myposts','',true);
+		$this->template->set ('myposts', $myposts);
+		$this->template->set ( 'page', 'community' );
+		$this->template->set ( 'browser_icon', 'community.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html1 = $this->template->build ('community/pages/mypostdetails','',true);
+		echo json_encode(array('html1'=>$html,'html2'=>$html1));
+	}
+	
+	
 	public function communityPostInsert(){
 		//$busi_id = $this->session->userdata('busi_id');
 		//$usertype = $this->session->userdata('usertype');

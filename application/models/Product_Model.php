@@ -605,15 +605,17 @@ class Product_Model extends CI_Model {
     
     public function getProduct3Dlist($busi_id)
     {
-    	$this->db->select('d.id as did,a.*,b.name as subproduct,c.name as mainproduct');
+    	$this->db->select('d.id as did,a.*,b.name as subproduct,c.name as mainproduct,group_concat(e.image) as pro_images');
     	$this->db->from(TABLES::$MY_3DPRODUCT . ' AS d');
     	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS a','d.product_id = a.id','inner');
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+    	$this->db->join(TABLES::$PRODUCT_3DPRODUCT. ' AS e','d.id=e.product_item_id','inner');
     	$this->db->where('d.busi_id',$busi_id);
     	$this->db->where('a.status',1);
     	$this->db->where('(b.status = 1 OR b.status IS NULL)','',false);
     	$this->db->where('c.status',1);
+    	$this->db->group_by('d.id');
     	$this->db->order_by('id','ASC');
     	$query = $this->db->get();
     	$result = $query->result_array();
@@ -667,6 +669,15 @@ class Product_Model extends CI_Model {
     	$this->db->where('id', $id);
     	$this->db->update(TABLES::$MY_3DPRODUCT, $data);
     	return $this->db->affected_rows();
+    }
+    
+    public function getProductImageById($id) {
+    	$this->db->select('*');
+    	$this->db->from(TABLES::$PRODUCT_3DPRODUCT);
+    	$this->db->where('id',$id);
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
     }
     
     public function getProductdetailsById($id) {

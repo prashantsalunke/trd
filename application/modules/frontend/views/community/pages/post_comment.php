@@ -4,10 +4,10 @@
                 <span class="like">Comments
 		    <span class="likecount" style="vertical-align:middle;font-size:20px;padding: 0px 10px;"><?php echo count($postcomment);?></span></span>
                 <a href="#" onclick="ShowObjectWithEffect('Layer101', 0, 'slideright', 600);return false;">
-		    <img src="<?php echo asset_url(); ?>images/img0313.gif" id="Shape14" alt="" style="width:42px;height:42px; 
-		    float: right;">
+		    <img src="<?php echo asset_url(); ?>images/img0313.gif" id="Shape14" alt="" style="width:42px;height:42px;float: right;margin-top: 5px;">
 		    </a>
             </div>
+            <div style="max-height:400px;overflow-y:scroll;">
             <?php foreach($postcomment as $comment) {?>
             <div class="likesection1 row" style="margin:5px 0px;padding:10px 0px;">
                 <div class="col-sm-2">
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <?php } ?>
-            
+            </div>
             <div class="center block">
                 <textarea name="comment" id="comment<?php echo $post_id ?>"></textarea>
                 <button id="Button11" onclick="commentPost(<?php echo $post_id.', '. $busi_id; ?>);" value="Send" style="margin-top:5px;width:285px;height:24px;z-index:1122;">Send</button>

@@ -63,6 +63,13 @@ class Dproductlib {
 		$this->CI->load->model ( 'Product_Model', 'product' );
 		return $res = $this->CI->product->getProductById($id);
 	}
+	
+	public  function getProductImageById($id)
+	{
+		$this->CI->load->model ( 'Product_Model', 'product' );
+		return $res = $this->CI->product->getProductImageById($id);
+	}
+	
 	public  function change3dproduct($params)
 	{
 		$this->CI->load->model ( 'Product_Model', 'product' );

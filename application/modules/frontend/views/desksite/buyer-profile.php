@@ -170,7 +170,9 @@ line-height:4px;
 #Layer48 {
    	position: absolute;
    	text-align: left;
-   	left: 391px;
+   	left:0;
+   	right:0;
+   	margin:0 auto;
    	top: 50px;
    	width: 477px;
    	height: 414px;
@@ -599,7 +601,7 @@ $(document).ready(function() {
     //searchParseURL();
     $("#Layer58").stickylayer({
         orientation: 1,
-        position: ['33%', 50],
+        position: [0, 50],
         delay: 0
     });
     $("a[data-rel='PhotoGallery7']").attr('rel', 'PhotoGallery7');
@@ -923,7 +925,7 @@ function stopWiggle(input) {
 			<!-- product popup ends -->
 				
 			<!--about us-->
-			<div id="Layer23" style="position:absolute;text-align:center;visibility:hidden;left:378px;top:34px;width:45%;height:670px;z-index:3864;">
+			<div id="Layer23" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:34px;width:45%;height:670px;z-index:3864;">
 				<div id="Layer23_Container" style="width:584px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
 					<div id="Layer42" class="a4" >
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
@@ -977,9 +979,9 @@ function stopWiggle(input) {
 			</div>
 			<!-- advantages ends-->
 			<!-- my files -->
-			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:245px;top:198px;width:53%;height:462px;z-index:3850;">
-				<div id="Layer148_Container" style="width:432px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
-					<div id="Layer150" style="position:absolute;text-align:left;left:65px;top:28px;width:517px;height:402px;z-index:3616;">
+			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:198px;width:53%;height:462px;z-index:3850;">
+				<div id="Layer148_Container" style="width:432px;text-align:left;">
+					<div id="Layer150" style="position:absolute;text-align:left;left:0;right:0;margin:0 auto;top:28px;width:517px;height:402px;z-index:3616;">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer148', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 						</a>
@@ -1117,7 +1119,7 @@ function stopWiggle(input) {
 			</div>
 			<!-- contact us form end -->
 				<!-- contact person -->
-				<div id="Layer62" style="position:absolute;text-align:right;visibility:hidden;left:19%;top:166px;width:51%;height:447px;z-index:3854;">
+				<div id="Layer62" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:166px;width:51%;height:447px;z-index:3854;">
 					<div id="Layer62_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
 						<div id="Layer63" class="a1">
 					        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer62', 0, 'slidedown', 300, 'swing');return false;">
@@ -1126,9 +1128,6 @@ function stopWiggle(input) {
 					        <div class="box222 row" id="contact-person" style="margin:0px;">
 					            
 					        </div>
-					        <div class="center">
-						        <a href="javascript:printInvoice();"><img src="<?php echo asset_url(); ?>images/print.png" id="Image26" alt="" class="img32"></a>
-						    </div>
 					    </div>
 					</div>
 				</div>
@@ -1154,7 +1153,7 @@ function stopWiggle(input) {
 			</div>
 			<!-- world wide end -->
 			<!--  current post -->
-			<div id="Layer58" class="box1 s5" style="width:453px;padding:15px;">
+			<div id="Layer58" class="box1 s5" style="right:0;margin:0 auto;width:453px;padding:15px;">
 			   <div id=" Layer58_Container ">
 			   		<a href="# " onclick="ShowObjectWithEffect('Layer58', 0, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 1, 'slidedown', 500, 'swing');return false;">
 						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">

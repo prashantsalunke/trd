@@ -8,7 +8,7 @@
                 <li class="inline"><a href="#" onclick="ShowObjectWithEffect('Layer106', 1, 'fold', 500, 'easeOutBounce');return false;" style="padding-left:5px;padding-top:15px;"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#D3D3D3;font-family:Impact;font-size:16px;">STATION</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right top-nav" style="padding-right: 80px;">
-                <li><a href="#" class="headerMenu" style="padding-right: 0px;">GOOD LUCK</a></li>
+                <li><a href="#" class="headerMenu1" style="padding-right: 0px;color:#C0C0C0 !important;">GOOD LUCK</a></li>
                 
                 <?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
                      <li><a data-toggle="modal" style="color:#FFFFFF;font-family:Georgia;font-size:15px;">&nbsp;</a></li>
@@ -17,7 +17,7 @@
                 <?php  } ?>
                 
                 <li class="dropdown ">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-bottom:13px;">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-bottom: 10px;padding-top: 10px;">
                         <?php if ($profile_img == '') { ?>
 							 <img src="<?php echo asset_url(); ?>images/rseller2.png" id="Image24" alt="" class="img35" style="border-radius:50%;width:30px !important;height:30px !important;">
 	                    <?php } else { ?>

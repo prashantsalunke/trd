@@ -24,19 +24,19 @@ ul, li {
 	cursor:pointer;
 }
 </style>
-<div id="my3DModal" class="modal fade" role="dialog">
-  	<div class="modal-dialog" style="width:400px;padding-top:4%;">
+<div id="my3DModal" class="modal fade" role="dialog" style="z-index:10000;">
+  	<div class="modal-dialog" style="width:400px;">
     	<div class="modal-content">
       		<div class="modal-body" style="padding-top:15px;">
       			<form name="frmedit_product" method="post" action="" enctype="multipart/form-data" id="frmedit_product">
-      				<div class="row">
+      				<div class="row" style="margin:0px;">
       					<div class="col-md-12" style="text-align: center;">
       						<a href="<?php echo asset_url();?>products/details/<?php echo $productdata[0]['id'];?>" target="_blank" class="style16" style="font-family: Arial;font-size: 16px;"><?php echo $productdata[0]['name'];?></a>
       					</div>
       				</div>
-      				<div class="row">
+      				<div class="row" style="margin:0px;">
       					<div class="col-md-12" style="text-align: center;">
-      						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo substr($productdata[0]['description'],0,120);?> <?php if(strlen($productdata[0]['description']) > 120) {?>...<?php } ?></span>
+      						<span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo substr($productdata[0]['description'],0,110);?> <?php if(strlen($productdata[0]['description']) > 110) {?>...<?php } ?></span>
       					</div>
       				</div>
         			<div id="divtestproduct" class="menu" style="padding-bottom:0px;" onmouseenter="init3D('my3dimg');">
@@ -61,7 +61,7 @@ ul, li {
       				</div>
       				<div class="row">
       					<div class="col-md-12" style="text-align: center;">
-      						<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Likes</span> <img src="<?php echo asset_url();?>images/items_like0.png" id="Image1" alt="" style="width:25px;" /><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">1000</span>
+      						<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Likes</span> <img src="<?php echo asset_url();?>images/items_like0.png" id="Image1" alt="" style="width:25px;" /><span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo $productdata[0]['likes'];?></span>
       					</div>
       				</div>
         		</form>

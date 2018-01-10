@@ -72,19 +72,16 @@ hr {
 }
 .likehead{
 	padding:20px;
-	    height: 156px;
+	height: 156px;
     background-color: #DCDCDC;
-    -moz-box-shadow: -6px 0px 23px #000000;
-    -webkit-box-shadow: -6px 0px 23px #000000;
-    box-shadow: -6px 0px 23px #000000;
-
     background-image: url(../../images/Comm_background.jpg);
     background-repeat: no-repeat;
     background-position: left top;
     background-size: cover;
+    border-bottom: 1px solid #ccc;
 }
 .likeimg{
-width: 38px !important;;
+	width: 38px !important;;
     height: 38px !important;;
     border-radius:50%;
 }
@@ -324,9 +321,7 @@ a:hover .hover {
 	padding:20px;
 }
 .img500{
-	
-    width: 500px !important;;;
-    height: 500px !important;;;
+    width: 100% !important;;;
 }
 .background11 {
     background-color: #00D4C3;
@@ -397,10 +392,10 @@ a:hover .hover {
     font-size: 13px;padding: 7px 20px;
 }
 #Layer20{
-	position: absolute;visibility: hidden; right: 0px; bottom: 0px; width: 315px; height: 776px;overflow:auto; z-index: 2247;
+	position: absolute;visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 776px;overflow:auto; z-index: 2247;
 }
 #Layer101{
-	position: absolute; text-align: right; visibility: hidden; right: 0px; bottom: 0px; width: 315px; height: 776px;overflow:auto;  z-index: 2248; display: block;
+	position: absolute; text-align: right; visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 776px;overflow:auto;  z-index: 2248; display: block;
 }
 .img42{
 	width:42px !important;
@@ -441,7 +436,7 @@ color:#3C3C3C;font-family:Arial;font-size:12px;
 	background-color:#FFFFFF;color:#3C3C3C;font-family:Arial;font-size:13px;
 }
 #Layer5{
-	position:absolute;    height: 679px;overflow: auto;
+	position:relative;height:100%;overflow-y: auto;overflow-x:hidden;bottom:0;
 }
 .cstyle5{
 	color:#303030;font-family:Georgia;font-size:35px;
