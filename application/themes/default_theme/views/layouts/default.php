@@ -82,6 +82,9 @@ a:focus,.btn:active {
    width: 100%;
    height: 100%;
 }
+img.withloader {
+  background: url('<?php echo asset_url();?>images/loading.gif') no-repeat center;
+}
 </style>
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

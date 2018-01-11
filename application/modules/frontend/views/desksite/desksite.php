@@ -2148,5 +2148,11 @@ function showContactUsResponse(resp, statusText, xhr, $form){
 function resetForm() {
 	document.contactusfrm.reset();
 }
-
+function open3DProduct(id) {
+	$.get(base_url+"mystation/3dpro/show/"+id, {}, function(data){
+		$("#promodal").html(data);
+		$("#my3DModal").modal('show');
+		init3D('my3dimg');
+	},'html');
+ }
 </script>

@@ -113,6 +113,9 @@ class Home extends MX_Controller {
 	}
 	public function signin()
 	{
+		if(!empty($this->session->userdata('tsuser')['busi_id'])) {
+			redirect(base_url());
+		}
 		$this->load->library('mylib/General');
 		//$subcategories = $this->general->getUserSubCategories();
 		//	$this->template->set ( 'subcategories', $subcategories);
@@ -1363,9 +1366,15 @@ class Home extends MX_Controller {
 			$this->template->set ( 'page', 'home' );
 			$this->template->set_theme('default_theme');
 			$this->template->set_layout (false);
-			$html= $this->template->build ('Home/pages/bcatalogue', '', true);
+			$html = $this->template->build ('Home/pages/bcatalogue', '', true);
+			$this->template->set ( 'catalogues', $catalogues );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout (false);
+			$html2 = $this->template->build ('default/catalogue-links', '', true);
 			$params['html'] = $html;
+			$params['html2'] = $html2;
 			$params['id'] = $id;
+			$params['busi_id'] = $busi_id;
 			$params['views'] = $catalogues[0]['views'];
 			$params['likes'] = $catalogues[0]['likes'];
 			echo json_encode($params);

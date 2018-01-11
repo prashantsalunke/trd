@@ -87,7 +87,7 @@
 	.Layer228{
 		text-align:center;
 		top:0px;
-		width:294px;
+		width:100%;
 		height:406px;
 		z-index:255;
 		background: #fff;
@@ -113,23 +113,27 @@
 			<div class="row">
 			<?php }?>
 				<div class="col-md-4">
-					<div id="Layer228" class="Layer228" onmouseenter="ShowObjectWithEffect('Layer105', 1, 'fade', 500);return false;" onmouseleave="ShowObjectWithEffect('Layer105', 0, 'fade', 500);return false;">
-						<div id="wb_Text495" style="">
-						<span class="product_name"><a href="<?php echo base_url();?>products/details/<?php echo $item['id']; ?>" target="_blank" class="style16"><?php echo $item['name']; ?></a></span></div>
-						<div id="wb_Text496" class="wb_Text496" style="">
-						<span class="desc" style=""><?php echo substr($item['description'],0,80);?> <?php if(strlen($item['description']) > 80) { ?>...<?php } ?></span></div>
-						<div id="wb_Text497" class="wb_Text497" style="">
-						<span class="usd" style="">USD</span><span style="color:#C0C0C0;font-family:Arial;font-size:13px;"> </span><span style="color:#3C3C3C;font-family:Arial;font-size:24px;"><?php echo $item['unit_price'];?>.00</span></div>
-						<div id="wb_Text498" class="wb_Text498" style="">
-						<span class="min-order" style="">Min. Order: <?php echo $item['quantity'].' '.$item['unit'];?>&nbsp;&nbsp;&nbsp; </span></div>
-						<div id="wb_Shape75" class="wb_Shape75" style="cursor:pointer;" onclick="open3DProduct(<?php echo $item['did']; ?>);">
-							<img src="<?php echo asset_url().$item['main_image']?>" id="Shape75" alt="" style="width:236px;"></div>
-						<div id="wb_Text2"  class ="wb_Text2" >
-						<span style=""  class="like-count"><?php echo $item['likes'];?></span></div>
-						<div id="wb_Image1" class ="wb_Image1" style="position:absolute;left:137px;top:373px;width:25px;height:25px;z-index:226;">
-						<img src="<?php echo asset_url();?>images/items_like0.png" id="Image1" alt="" width="25px" height="25px"></div>
-						<div id="wb_Text1" class="wb_Text1" >
-						<span class="like-text" style="">Likes</span></div>
+					<div id="Layer228" class="Layer228" onmouseenter="ShowObjectWithEffect('Layer105', 1, 'fade', 500);return false;" onmouseleave="ShowObjectWithEffect('Layer105', 0, 'fade', 500);return false;" style="height:450px;">
+						<div style="padding:0px 15px;">
+							<span class="product_name"><a href="<?php echo base_url();?>products/details/<?php echo $item['id']; ?>" target="_blank" class="style16"><?php echo $item['name']; ?></a></span>
+						</div>
+						<div style="padding:7px 15px;">
+							<span class="desc" style=""><?php echo substr($item['description'],0,80);?> <?php if(strlen($item['description']) > 80) { ?>...<?php } ?></span>
+						</div>
+						<div style="cursor:pointer;" onclick="open3DProduct(<?php echo $item['did']; ?>);">
+							<img src="<?php echo asset_url().$item['image']?>" id="Shape75" alt="" style="width:236px;" class="withloader">
+							<div style="padding-top:10px;">
+								<span class="usd" style="">USD</span><span style="color:#C0C0C0;font-family:Arial;font-size:13px;"> </span><span style="color:#3C3C3C;font-family:Arial;font-size:24px;"><?php echo $item['unit_price'];?>.00</span>
+							</div>
+							<div>
+								<span class="min-order" style="">Min. Order: <?php echo $item['quantity'].' '.$item['unit'];?>&nbsp;&nbsp;&nbsp; </span>
+							</div>
+							<div>
+								<span style=""  class="like-count"><?php echo $item['likes'];?></span>
+								<img src="<?php echo asset_url();?>images/items_like0.png" alt="" width="25px" height="25px">
+								<span class="like-text" style="">Likes</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			<?php if (($i % 3)==2 || ($i+1) == count($products)){?>
@@ -379,4 +383,9 @@ function open3DProduct(id) {
 		init3D('my3dimg');
 	},'html');
  }
+$(document).ready(function() {
+    $("body").on("contextmenu",function(){
+       return false;
+    }); 
+});
 </script>			
