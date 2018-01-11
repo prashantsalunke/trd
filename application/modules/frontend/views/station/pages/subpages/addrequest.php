@@ -49,23 +49,19 @@
 						<div id="wb_Text748" style="position:absolute;left:74px;top:20px;width:351px;height:16px;z-index:1357;text-align:left;">
 							<span style="color:#303030;font-family:Georgia;font-size:15px;"><strong><a href="<?php echo base_url().$burl;?>" target="_blank" class="style5"><?php echo $seller['company_name'];?></a></strong></span>
 						</div>
-						<div id="Layer221" style="position:absolute;text-align:left;left:554px;top:0px;width:218px;height:141px;z-index:1358;">
-							<div id="wb_Text750" style="position:absolute;left:120px;top:26px;width:100px;height:16px;text-align:left;z-index:1351;">
+						<div id="Layer221" style="position:absolute;text-align:left;left:554px;top:0px;width:218px;height:141px;z-index:1358;padding-top: 10px;">
+							<div style="text-align:center;padding-top: 10px;">
+								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php if($seller['user_category_id'] == 1) { ?>Seller<?php } elseif ($seller['user_category_id'] == 2) { ?>Shipper<?php } else{ ?>Buyer<?php } ?>&nbsp; |</strong></span>
 								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['sub_category'];?></span>
 							</div>
-							<div id="wb_Text751" style="position:absolute;left:20px;top:25px;width:96px;height:16px;z-index:1352;text-align:right;">
-								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php if($seller['user_category_id'] == 1) { ?>Seller<?php } elseif ($seller['user_category_id'] == 2) { ?>Shipper<?php } else{ ?>Buyer<?php } ?>&nbsp; |</strong></span>
-							</div>
-							<div id="wb_Text752" style="position:absolute;left:13px;top:47px;width:96px;height:16px;z-index:1353;text-align:right;">
+							<div style="text-align:center;padding-top: 10px;">
 								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php echo $seller['company_country'];?> | </strong></span>
-							</div>
-							<div id="wb_Text753" style="position:absolute;left:116px;top:47px;width:86px;height:16px;z-index:1354;text-align:left;">
 								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['company_province'];?></span>
 							</div>
-							<div id="wb_Text754" style="position:absolute;left:45px;top:75px;width:147px;height:16px;z-index:1355;text-align:left;">
+							<div style="text-align:center;padding-top: 10px;">
 								<span style="color:#303030;font-family:Georgia;font-size:11px;"><strong>Annual Trade Volume&nbsp; </strong></span>
 							</div>
-							<div id="wb_Text755" style="position:absolute;left:44px;top:95px;width:144px;height:16px;z-index:1356;text-align:center;">
+							<div style="text-align:center;">
 								<span style="color:#808080;font-family:Arial;font-size:12px;"><?php echo $seller['annual_trad_volume'];?> Container / Year</span>
 							</div>
 						</div>
@@ -226,23 +222,19 @@
 						<div id="wb_Text748" style="position:absolute;left:74px;top:20px;width:351px;height:16px;z-index:1357;text-align:left;">
 							<span style="color:#303030;font-family:Georgia;font-size:15px;"><strong><a href="<?php echo base_url().$burl;?>" target="_blank" class="style5"><?php echo $seller['company_name'];?></a></strong></span>
 						</div>
-						<div id="Layer221" style="position:absolute;text-align:left;left:554px;top:0px;width:218px;height:141px;z-index:1358;">
-							<div id="wb_Text750" style="position:absolute;left:120px;top:26px;width:100px;height:16px;text-align:left;z-index:1351;">
+						<div id="Layer221" style="position:absolute;text-align:left;left:554px;top:0px;width:218px;height:141px;z-index:1358;padding-top: 10px;">
+							<div style="text-align:center;padding-top: 10px;">
+								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php if($seller['user_category_id'] == 1) { ?>Seller<?php } elseif ($seller['user_category_id'] == 2) { ?>Shipper<?php } else{ ?>Buyer<?php } ?>&nbsp; |</strong></span>
 								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['sub_category'];?></span>
 							</div>
-							<div id="wb_Text751" style="position:absolute;left:20px;top:25px;width:96px;height:16px;z-index:1352;text-align:right;">
-								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php if($seller['user_category_id'] == 1) { ?>Seller<?php } elseif ($seller['user_category_id'] == 2) { ?>Shipper<?php } else{ ?>Buyer<?php } ?>&nbsp; |</strong></span>
-							</div>
-							<div id="wb_Text752" style="position:absolute;left:13px;top:47px;width:96px;height:16px;z-index:1353;text-align:right;">
+							<div style="text-align:center;padding-top: 10px;">
 								<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php echo $seller['company_country'];?> | </strong></span>
-							</div>
-							<div id="wb_Text753" style="position:absolute;left:116px;top:47px;width:86px;height:16px;z-index:1354;text-align:left;">
 								<span style="color:#808080;font-family:Georgia;font-size:12px;"><?php echo $seller['company_province'];?></span>
 							</div>
-							<div id="wb_Text754" style="position:absolute;left:45px;top:75px;width:147px;height:16px;z-index:1355;text-align:left;">
+							<div style="text-align:center;padding-top: 10px;">
 								<span style="color:#303030;font-family:Georgia;font-size:11px;"><strong>Annual Trade Volume&nbsp; </strong></span>
 							</div>
-							<div id="wb_Text755" style="position:absolute;left:44px;top:95px;width:144px;height:16px;z-index:1356;text-align:center;">
+							<div style="text-align:center;">
 								<span style="color:#808080;font-family:Arial;font-size:12px;"><?php echo $seller['annual_trad_volume'];?> Container / Year</span>
 							</div>
 						</div>

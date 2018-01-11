@@ -1445,5 +1445,9 @@ function showContactUsResponse(resp, statusText, xhr, $form){
 function resetForm() {
 	document.contactusfrm.reset();
 }
-
+$(document).ready(function() {
+    $("body").on("contextmenu",function(){
+       return false;
+    }); 
+}); 
 </script>

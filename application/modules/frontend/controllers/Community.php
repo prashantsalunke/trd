@@ -77,13 +77,14 @@ class Community extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html = $this->template->build ('community/pages/posts','',true);
-		$this->template->set ('allposts', $allposts);
+		$myposts = $this->product->communityPostListByBusinessId($busi_id);
+		$this->template->set ('myposts', $myposts);
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
-		$html1 = $this->template->build ('community/pages/postdetails','',true);
+		$html1 = $this->template->build ('community/pages/myposts','',true);
 		echo json_encode(array('html1'=>$html,'html2'=>$html1));
 	}
 	
@@ -105,6 +106,19 @@ class Community extends MX_Controller {
 		$this->template->set_layout (false);
 		$html1 = $this->template->build ('community/pages/mypostdetails','',true);
 		echo json_encode(array('html1'=>$html,'html2'=>$html1));
+	}
+	
+	public function getCommunityPostDetail($postid) {
+		$busi_id = $this->session->userdata('busi_id');
+		$myposts = $this->product->getPostDetailsById($postid);
+		$this->template->set ('allpost', $myposts[0]);
+		$this->template->set ( 'page', 'community' );
+		$this->template->set ( 'browser_icon', 'community.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('community/pages/post_detail','',true);
+		echo $html;
 	}
 	
 	
@@ -450,7 +464,7 @@ class Community extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html = $this->template->build ('community/pages/mymembers','',true);
-		echo $html;
+		echo json_encode(array('html'=>$html,'members'=>count($result)));
 	}
 	
 	public function deleteMyCommunityMembers() {
