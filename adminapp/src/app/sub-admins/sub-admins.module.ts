@@ -14,7 +14,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { CustomFormsModule } from '@floydspace/ngx-validation';
 import { SharedModule } from '../shared/shared.module';
 import { FileUploadModule } from 'ng2-file-upload';
-
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     SharedModule,
     ModalModule.forRoot(),
     CustomFormsModule,
-    FileUploadModule 
+    FileUploadModule,
+      SweetAlert2Module
   ],
   declarations: [IndexComponent, 
     ListComponent, AddComponent,

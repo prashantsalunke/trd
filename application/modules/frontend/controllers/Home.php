@@ -53,7 +53,8 @@ class Home extends MX_Controller {
 		$this->template->set_layout ('default')
 		->title ( 'TRADE STATION' )
 		->set_partial ( 'header', 'default/header' )
-		->set_partial ( 'footer', 'default/footer' );
+		->set_partial ( 'footer', 'default/footer' )
+		->set_partial ( 'vcatalogue', 'default/vcatalogue' );
 		$this->template->build ('Home/home');
 	}
 	
@@ -112,6 +113,9 @@ class Home extends MX_Controller {
 	}
 	public function signin()
 	{
+		if(!empty($this->session->userdata('tsuser')['busi_id'])) {
+			redirect(base_url());
+		}
 		$this->load->library('mylib/General');
 		//$subcategories = $this->general->getUserSubCategories();
 		//	$this->template->set ( 'subcategories', $subcategories);
@@ -1014,7 +1018,7 @@ class Home extends MX_Controller {
 	}
 	public function get3DProduct($id) {
 		$this->load->model('Product_Model', 'product' );
-		$Products = $this->product->get3dproduct($id);
+		$Products = $this->product->getProduct3Dlist($id);
 		$this->template->set ( 'Products', $Products);
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
@@ -1101,6 +1105,7 @@ class Home extends MX_Controller {
 		$this->load->model('Product_Model', 'product' );
 		$productCategories = $this->product->getActiveProductAndSubProduct($busi_id);
 		$this->template->set ( 'productCategories', $productCategories);
+		$this->template->set ( 'mybid', $busi_id );
 		$this->template->set ( 'page', 'desksite' );
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
@@ -1361,9 +1366,15 @@ class Home extends MX_Controller {
 			$this->template->set ( 'page', 'home' );
 			$this->template->set_theme('default_theme');
 			$this->template->set_layout (false);
-			$html= $this->template->build ('Home/pages/bcatalogue', '', true);
+			$html = $this->template->build ('Home/pages/bcatalogue', '', true);
+			$this->template->set ( 'catalogues', $catalogues );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout (false);
+			$html2 = $this->template->build ('default/catalogue-links', '', true);
 			$params['html'] = $html;
+			$params['html2'] = $html2;
 			$params['id'] = $id;
+			$params['busi_id'] = $busi_id;
 			$params['views'] = $catalogues[0]['views'];
 			$params['likes'] = $catalogues[0]['likes'];
 			echo json_encode($params);
@@ -1408,9 +1419,14 @@ class Home extends MX_Controller {
 		$resp = array();
 		if(!empty($mybusi_id)) { 
 			$this->load->model('Product_Model', 'product' );
-			$this->product->updateBusinessLikes($busi_id,$mybusi_id);
-			$resp['status'] = 1;
-			$resp['msg'] = "WE HAVE RECORDED YOUR RESPONSE";
+			$result = $this->product->updateBusinessLikes($busi_id,$mybusi_id);
+			if($result) {
+				$resp['status'] = 1;
+				$resp['msg'] = "WE HAVE RECORDED YOUR RESPONSE";
+			} else {
+				$resp['status'] = 0;
+				$resp['msg'] = "YOU HAVE ALREADY LIKED THIS DESKSITE";
+			}
 		} else {
 			$resp['status'] = 0;
 			$resp['msg'] = "LOGIN TO LIKE";
@@ -1448,39 +1464,98 @@ class Home extends MX_Controller {
 		echo $html;
 	}
 	
+	public function getItemInquiry($busi_id,$item_id) {
+		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
+		$this->load->model('Product_Model','product');
+		$mydesksite = $this->product->getBusinessContactInfo(array('id'=>$mybusi_id));
+		$desksites = $this->product->getBusinessContactInfo(array('id'=>$busi_id));
+		$item = $this->product->getProductById($item_id);
+		$this->template->set ( 'mydesksite', $mydesksite);
+		$this->template->set ( 'desksite', $desksites);
+		$this->template->set ( 'item', $item);
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('desksite/subpages/item_enquiry', '', true);
+		echo $html;
+	}
+	
 	public function saveGeneralInquiry() {
 		$this->load->model('Product_Model','product');
 		$userId = $this->session->userdata('tsuser')['userid'];
+		if(!empty($this->input->post('product_id'))) {
+			$product_id = $this->input->post('product_id');
+		} else {
+			$product_id = 0;
+		}
+		if(!empty($this->input->post('post_type'))) {
+			$post_type = $this->input->post('post_type');
+		} else {
+			$post_type = 0;
+		}
+		if(!empty($this->input->post('post_id'))) {
+			$post_id = $this->input->post('post_id');
+		} else {
+			$post_id = 0;
+		}
 		$size = 0;
 		$params = array();
 		$params['busi_id'] = $this->input->post('busi_id');
 		$params['requester_busi_id'] = $this->input->post('my_busi_id');
-		$params['inquiry_subject'] = 'General Enquiry';
+		$params['inquiry_subject'] = $this->input->post('title');
 		$params['inquiry_body'] = $this->input->post('message');
-		$params['product_item_id'] = 0;
-		$params['inquiry_type_id'] = 1;
+		$params['product_id'] = $product_id;
+		$params['inquiry_type_id'] = $this->input->post('inquiry_type_id');
+		$params['post_type'] = $post_type;
+		$params['post_id'] = $post_id;
 		$params['name'] = $this->input->post('name');
 		$params['company'] = $this->input->post('company');
 		$params['email'] = $this->input->post('email');
 		$params['phone'] = $this->input->post('phone');
 		$params['created_date'] = date('Y-m-d H:i:s');
+		$params['attachment1'] = "";
+		$params['attachment1_size'] = 0;
+		$params['attachment2'] = "";
+		$params['attachment2_size'] = 0;
+		$params['attachment3'] = "";
+		$params['attachment3_size'] = 0;
+		$params['attachment4'] = "";
+		$params['attachment4_size'] = 0;
 		$size = 0;
-		if (!empty($_FILES['FileUpload1']['name'])) {
-			$certiPath = FCPATH . "assets/images/user_images/$userId/buyerrequest";
-			if (!file_exists($certiPath)) {
-				mkdir($certiPath, 0777, true);
-				chmod($certiPath, 0777);
-			}
-			$certiPath = "assets/images/user_images/$userId/buyerrequest";
-			$imgupload = uploadImage($_FILES['FileUpload1'],$certiPath,array('jpeg','jpg','png','gif','pdf','doc','docx','xls','xlsx'),20971521,'br');
-			if($imgupload['status'] == 1) {
-				$params['attachment1'] = $imgupload['image'];
-				$size = $size + $_FILES['FileUpload1'] ['size'];
-				$params['attachment1_size'] = $size;
+		$pathname = FCPATH."assets/images/user_images/$userId/buyerrequest";
+		$config = array(
+				'upload_path'   => "assets/images/user_images/$userId/buyerrequest",
+				'allowed_types' => 'gif|jpg|png|PNG|JPEG|pdf|doc|docx|xls|xlsx',
+				'overwrite'     => 1,
+		);
+		if (! is_dir ($pathname)) {
+			mkdir ($pathname, 0777, TRUE );
+		}
+		$this->load->library('upload', $config);
+		if(!empty($_FILES['FileUpload1'])) {
+			$files = $_FILES['FileUpload1'];
+			$k = 1;
+			foreach ($files['name'] as $key => $image) {
+				$_FILES['FileUpload1']['name']= $files['name'][$key];
+				$_FILES['FileUpload1']['type']= $files['type'][$key];
+				$_FILES['FileUpload1']['tmp_name']= $files['tmp_name'][$key];
+				$_FILES['FileUpload1']['error']= $files['error'][$key];
+				$_FILES['FileUpload1']['size']= $files['size'][$key];
+				$file_name = microtime(true)."-".$image;
+				$config['file_name'] = $file_name;
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('FileUpload1')) {
+					$file_name = $this->upload->data('file_name');
+					$params['attachment'.$k] = 'images/user_images/'.$userId.'/buyerrequest/'. $file_name;
+					$size = $size + $files['size'][$key];
+					$params['attachment'.$k.'_size'] = $files['size'][$key];
+					$k++;
+				} else {
+					//
+				}
 			}
 		}
-		$this->load->model('Product_Model', 'product' );
-		$id = $this->product->addGeneralEnquiry($params);
+		$this->load->model('Inquiry_model', 'inquirymodel' );
+		$id = $this->inquirymodel->saveInquiry($params);
 		$resp = array();
 		if(!empty($id)) {
 			/* ************** Storage Implementation *************** */
@@ -1488,7 +1563,7 @@ class Home extends MX_Controller {
 				$this->load->library('mylib/StorageLib');
 				$storage = array();
 				$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
-				$storage['field'] = 'bstation';
+				$storage['field'] = 'inquiries';
 				$storage['datasize'] = round($size/1024,2);
 				$this->storagelib->updateStorageByBusiId($storage);
 			}
@@ -1498,6 +1573,132 @@ class Home extends MX_Controller {
 		} else {
 			$resp['status'] = 0;
 			$resp['msg'] = "Failed to add Enquiry.";
+		}
+		echo json_encode($resp);
+	}
+	
+	public function saveGeneralOffer() {
+		$this->load->model('Product_Model','product');
+		$userId = $this->session->userdata('tsuser')['userid'];
+		if(!empty($this->input->post('product_id'))) {
+			$product_id = $this->input->post('product_id');
+		} else {
+			$product_id = 0;
+		}
+		if(!empty($this->input->post('post_type'))) {
+			$post_type = $this->input->post('post_type');
+		} else {
+			$post_type = 0;
+		}
+		if(!empty($this->input->post('post_id'))) {
+			$post_id = $this->input->post('post_id');
+		} else {
+			$post_id = 0;
+		}
+		$size = 0;
+		$params = array();
+		$params['busi_id'] = $this->input->post('busi_id');
+		$params['offer_sender_id'] = $this->input->post('my_busi_id');
+		$params['offer_subject'] = $this->input->post('title');
+		$params['offer_body'] = $this->input->post('message');
+		$params['product_id'] = $product_id;
+		$params['offer_type_id'] = $this->input->post('offer_type_id');
+		$params['post_type'] = $post_type;
+		$params['post_id'] = $post_id;
+		$params['name'] = $this->input->post('name');
+		$params['company'] = $this->input->post('company');
+		$params['email'] = $this->input->post('email');
+		$params['phone'] = $this->input->post('phone');
+		$params['price'] = $this->input->post('price');
+		$params['qty'] = $this->input->post('qty');
+		$params['fob'] = $this->input->post('fob');
+		$params['created_date'] = date('Y-m-d H:i:s');
+		$params['attachment1'] = "";
+		$params['attachment1_size'] = 0;
+		$params['attachment2'] = "";
+		$params['attachment2_size'] = 0;
+		$params['attachment3'] = "";
+		$params['attachment3_size'] = 0;
+		$params['attachment4'] = "";
+		$params['attachment4_size'] = 0;
+		$size = 0;
+		$config = array(
+				'upload_path'   => "assets/images/user_images/$userId/selleroffer",
+				'allowed_types' => 'gif|jpg|png|PNG|JPEG|pdf|doc|docx|xls|xlsx',
+				'overwrite'     => 1,
+		);
+		$pathname = FCPATH."assets/images/user_images/$userId/selleroffer";
+		if (! is_dir ($pathname)) {
+			mkdir ($pathname, 0777, TRUE );
+		}
+		$this->load->library('upload', $config);
+		if(!empty($_FILES['FileUpload1'])) {
+			$files = $_FILES['FileUpload1'];
+			$k = 1;
+			foreach ($files['name'] as $key => $image) {
+				$_FILES['FileUpload1']['name']= $files['name'][$key];
+				$_FILES['FileUpload1']['type']= $files['type'][$key];
+				$_FILES['FileUpload1']['tmp_name']= $files['tmp_name'][$key];
+				$_FILES['FileUpload1']['error']= $files['error'][$key];
+				$_FILES['FileUpload1']['size']= $files['size'][$key];
+				$file_name = microtime(true)."-".$image;
+				$config['file_name'] = $file_name;
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('FileUpload1')) {
+					$file_name = $this->upload->data('file_name');
+					$params['attachment'.$k] = 'images/user_images/'.$userId.'/selleroffer/'. $file_name;
+					$size = $size + $files['size'][$key];
+					$params['attachment'.$k.'_size'] = $files['size'][$key];
+					$k++;
+				} else {
+					//
+				}
+			}
+		}
+		$this->load->model('Offer_model', 'offermodel' );
+		$id = $this->offermodel->saveOffer($params);
+		$resp = array();
+		if(!empty($id)) {
+			/* ************** Storage Implementation *************** */
+			if($size != 0) {
+				$this->load->library('mylib/StorageLib');
+				$storage = array();
+				$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+				$storage['field'] = 'offers';
+				$storage['datasize'] = round($size/1024,2);
+				$this->storagelib->updateStorageByBusiId($storage);
+			}
+			/* ***************************************************** */
+			$resp['status'] = 1;
+			$resp['msg'] = "Offer added successfully.";
+		} else {
+			$resp['status'] = 0;
+			$resp['msg'] = "Failed to add Offer.";
+		}
+		echo json_encode($resp);
+	}
+	
+	public function saveContactUs() {
+		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
+		$params = array();
+		$params['busi_id'] = $this->input->post('busi_id');
+		$params['sender_id'] = $mybusi_id;
+		$params['name'] = $this->input->post('name');
+		$params['email'] = $this->input->post('email');
+		$params['mobile'] = $this->input->post('mobile');
+		$params['country'] = $this->input->post('country');
+		$params['city'] = $this->input->post('city');
+		$params['message'] = $this->input->post('message');
+		$params['created_date'] = date('Y-m-d H:i:s');
+		$this->load->model('Alert_model', 'alertmodel' );
+		$id = $this->alertmodel->saveContactUs($params);
+		$resp = array();
+		if(!empty($id)) {
+			$resp['status'] = 1;
+			$resp['msg'] = "Query added successfully.";
+		} else {
+			$resp['status'] = 0;
+			$resp['msg'] = "Failed to add Query.";
 		}
 		echo json_encode($resp);
 	}

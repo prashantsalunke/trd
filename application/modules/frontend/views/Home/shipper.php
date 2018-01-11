@@ -364,9 +364,9 @@
 				</div>
 				<div id="Layer3" class="box8">
 				<div id="wb_Text328" class="innersection">
-					<span class="text2"><strong><a href="#" target="_blank" class="style5">SHIPPERS DESKSITES</a></strong></span>
+					<span class="text2"><strong><a href="<?php echo base_url();?>shipper/desksites" target="_blank" class="style5">SHIPPERS DESKSITES</a></strong></span>
 					<p class="text3">Experience A New Vision Of Websites Techniques With Quick Access, Rich Information And Much More..</p>
-					<span class="text2"><strong><a href="#" target="_blank" class="style5">LATEST SHIPPING POSTS </a></strong></span>
+					<span class="text2"><strong><a href="<?php echo base_url();?>b-station" target="_blank" class="style5">LATEST SHIPPING POSTS </a></strong></span>
 					<p class="text3">Follow Up The Latest Shipping Posts Boosted By Global Shippers</p>
 			    </div>
 			   </div>

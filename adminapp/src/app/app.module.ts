@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { MainRouteComponent } from './main-route.component';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './core/auth.service';
-import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
+import {SweetAlert2Module} from "@toverux/ngx-sweetalert2";
 
 
 @NgModule({
@@ -27,11 +27,9 @@ import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
     ReactiveFormsModule,
     CoreModule,
     AppRoutingModule,
-    NgxSmartModalModule.forRoot()
-    
+    SweetAlert2Module.forRoot()
   ],
-  providers: [AuthService,
-    NgxSmartModalService ],
+  providers: [AuthService ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

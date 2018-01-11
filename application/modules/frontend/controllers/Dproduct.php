@@ -47,7 +47,7 @@ class Dproduct extends MX_Controller {
 	public function edit3dproduct() {
 		$this->load->library('mylib/Dproductlib');
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		$productdata = $this->dproductlib->getProductlist($busi_id);
+		$productdata = $this->dproductlib->getProduct3Dlist($busi_id);
 		$this->template->set ( 'productdata', $productdata);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
@@ -59,7 +59,7 @@ class Dproduct extends MX_Controller {
 		$this->load->library('mylib/Dproductlib');
 		$product_id = $this->input->get('product_id');
 		$this->template->set ( 'product_id', $product_id);
-		$productdata = $this->dproductlib->getProductdataById($product_id);
+		$productdata = $this->dproductlib->getProduct3DdataById($product_id);
 		$this->template->set ( 'productdata', $productdata);
 		$productimage = $this->dproductlib->getProduct3Dimages($product_id);
 		$this->template->set ( 'productimage', $productimage);
@@ -260,7 +260,7 @@ class Dproduct extends MX_Controller {
 		echo json_encode($map);
 			
 	}
-	public function deleteProduct()
+	public function delete3DProduct()
 	{
 		$this->load->library('mylib/Dproductlib');
 		$param = $this->input->post('productlist');
@@ -269,7 +269,7 @@ class Dproduct extends MX_Controller {
 			$data = array();
 			$data['id'] = $param[$i];
 			$data['status'] = 0;
-			$boolean = $this->dproductlib->deleteProduct($data);
+			$boolean = $this->dproductlib->delete3DProduct($data);
 		}
 		if($boolean == 1) {
 			$map['status'] = 1;
@@ -342,7 +342,7 @@ class Dproduct extends MX_Controller {
 		$map = array();
 		$param =array();
 		$pid = 0;
-		
+		$size = 0;
 		if (!empty($_FILES['file3dimages']['name'])) {
 			
 			$path = getcwd() . "/assets/images/business_images/$busi_id";
@@ -358,25 +358,43 @@ class Dproduct extends MX_Controller {
 			}
 			
 			$total = count($_FILES['file3dimages']['name']);
-			for($i=0; $i<$total; $i++) {
-				$tmpFilePath = $_FILES['file3dimages']['tmp_name'][$i];
-				if ($tmpFilePath != ""){
-					$newFilePath = $userPath. $_FILES['file3dimages']['name'][$i];
-					$param['image'] = "images/business_images/$busi_id/myProduct/".$_FILES['file3dimages']['name'][$i];
-					$param['product_item_id'] = $productid[0];
-					$param['created_date'] = date('Y-m-d H:i:s');
-					if(move_uploaded_file($tmpFilePath, $newFilePath)) {
-						//
+			if($total > 0) {
+				$dparam = array();
+				$dparam['busi_id'] = $busi_id;
+				$dparam['product_id'] = $productid;
+				$dparam['created_date'] = date('Y-m-d H:i:s');
+				$dparam['status'] = 1;
+				$id = $this->dproductlib->save3DProduct($dparam);
+				for($i=0; $i<$total; $i++) {
+					$tmpFilePath = $_FILES['file3dimages']['tmp_name'][$i];
+					if ($tmpFilePath != ""){
+						$newFilePath = $userPath. $_FILES['file3dimages']['name'][$i];
+						$param['image'] = "images/business_images/$busi_id/myProduct/".$_FILES['file3dimages']['name'][$i];
+						$param['product_item_id'] = $id;
+						$param['created_date'] = date('Y-m-d H:i:s');
+						if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+							//
+						}
+						$pid = $this->dproductlib->save3DProductImages($param);
+						$size = $size + $_FILES['file3dimages']['size'][$i];
 					}
-					$pid = $this->dproductlib->save3DProduct($param);
-					
-				}
-			} // end for
+				} // end for
+			}
 			if($pid > 0)
 			{
+				/* ************** Storage Implementation *************** */
+				if($size != 0) {
+					$this->load->library('mylib/StorageLib');
+					$storage = array();
+					$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+					$storage['field'] = 'products';
+					$storage['datasize'] = round($size/1024,2);
+					$this->storagelib->updateStorageByBusiId($storage);
+				}
+				/* ***************************************************** */
 				$map['status'] = 1;
 				$map['msg'] = "Product 3DImage added Successfully.";
-				$map['product_id'] = $productid;
+				$map['id'] = $id;
 			} else {
 				$map['status'] = 0;
 				$map['msg'] = "Product 3DImage Fail to add.";
@@ -422,6 +440,8 @@ class Dproduct extends MX_Controller {
 		$dproid = $this->input->post('fileid');
 		$busi_id = $this->session->userdata('busi_id');
 		$params['id'] = $dproid;
+		$size = 0;
+		$dpfile = $this->dproductlib->getProductImageById($dproid);
 		if (!empty($_FILES['filechangeimage']['name'])) {
 			$mainproductimage = $_FILES['filechangeimage']['name'];
 			$path = getcwd() . "/assets/images/business_images/$busi_id";
@@ -441,7 +461,7 @@ class Dproduct extends MX_Controller {
 			$product_Img = uploadImage($_FILES['filechangeimage'],$location,array('jpeg','jpg','png','gif'),2097152,'product');
 			if($product_Img['status'] == 1) {
 				$params['image'] =  $product_Img['image'];
-				
+				$size = $size + $_FILES['filechangeimage']['size'];
 			} else {
 				$error = array("publicfile"=>$product_Img['msg']);
 				if (! empty ( $error )) {
@@ -453,6 +473,18 @@ class Dproduct extends MX_Controller {
 				exit;
 			}
 			$updatedid  = $this->dproductlib->change3dproduct($params);
+			$size = $size - filesize(FCPATH."assets/".$dpfile[0]['image']);
+			unlink(FCPATH."assets/".$dpfile[0]['image']);
+			/* ************** Storage Implementation *************** */
+			if($size != 0) {
+				$this->load->library('mylib/StorageLib');
+				$storage = array();
+				$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+				$storage['field'] = 'products';
+				$storage['datasize'] = round($size/1024,2);
+				$this->storagelib->updateStorageByBusiId($storage);
+			}
+			/* ***************************************************** */
 			$map['status'] = 1;
 			$map['msg'] = "Image Changed Successfully.";
 			$map['pid'] = $dproid;
@@ -468,13 +500,13 @@ class Dproduct extends MX_Controller {
 	{
 		$map = array();
 		$newid = $this->input->post('newproductid');
-		$oldid = $this->input->post('oldproductid');
+		$id = $this->input->post('did');
 		$this->load->library('mylib/Dproductlib');
-		$updatedid = $this->dproductlib->update3dproduct($oldid,$newid);
+		$updatedid = $this->dproductlib->update3dproduct($id,$newid);
 		if($updatedid > 0)
 		{
 			$map['status'] = 1;
-			$map['msg'] = "Product Successfully Link.";
+			$map['msg'] = "Product Successfully Linked.";
 		} else {
 			$map['status'] = 0;
 			$map['msg'] = "Product Fail to Link.";
@@ -504,6 +536,17 @@ class Dproduct extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html = $this->template->build ('station/pages/subpages/partial3dpro','',true);
+		echo $html;
+	}
+	
+	public function show3Dpro($id) {
+		$this->load->library('mylib/Dproductlib');
+		$productdata = $this->dproductlib->getProduct3DDetailById($id);
+		$this->template->set ( 'productdata', $productdata );
+		$this->template->set ( 'page', 'home' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('default/my3dpro','',true);
 		echo $html;
 	}
 	

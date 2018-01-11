@@ -159,6 +159,13 @@ a.style16:hover
    color: #FF7F50;
    text-decoration: underline;
 }
+.form-group {
+	margin-bottom:0px;
+}
+.help-block {
+	margin-top:1px;
+	margin-bottom:3px;
+}
 </style>
 
 <style>
@@ -314,7 +321,7 @@ $(document).ready(function() {
             collision: "flipfit"
         }
     };
-    $("#wb_Image89").tooltip(jQueryToolTip2Opts);
+    $("#wb_Image89").tooltip(jQueryToolTip2Opts); */
     $("#SlideShow1").slideshow({
         interval: 8000,
         type: 'sequence',
@@ -323,7 +330,7 @@ $(document).ready(function() {
         pagination: false,
         fullscreen: 3,
         effectlength: 1000
-    }); */
+    });
     var Carousel3Opts = {
         delay: 3000,
         duration: 500,
@@ -462,7 +469,7 @@ $(document).ready(function() {
         $('#Carousel2').carousel('next');
     });
     var Carousel1Opts = {
-        delay: 3000,
+        delay: 300000,
         duration: 500,
         easing: 'linear',
         mode: 'forward',
@@ -631,14 +638,16 @@ function stopWiggle(input) {
 			<!-- profile end -->
 			<!-- Main Slider -->
 			<div id="Layer46" style="text-align:left;left:0;top:0;right:0;bottom:0;z-index:33;">
+				<?php if(!empty($Desksite['desksite_bg1'])) { ?>
 			    <div id="SlideShow1" >
-			    	<?php if(!empty($Desksite['desksite_bg1'])) { ?>
-			        <img class="image d1" src=" <?php echo asset_url().$Desksite['desksite_bg1']; ?> " alt="" title="" />
-			        <img class="image d2" src="<?php echo asset_url().$Desksite['desksite_bg2']; ?>" alt="" title="" />
-			        <?php } else { ?>
-			        <img class="image d1" src=" <?php echo asset_url(); ?>images/member-desksite.jpg" alt="" title="" />
-			        <?php } ?>
+			    	<div class="image d1" style="width:100%;height:100%;background-image:url(<?php echo asset_url().$Desksite['desksite_bg1']; ?>);background-size:cover;">&nbsp;</div>
+			    	<?php if(!empty($Desksite['desksite_bg2'])) { ?>
+			    	<div class="image d2" style="width:100%;height:100%;background-image:url(<?php echo asset_url().$Desksite['desksite_bg2']; ?>);background-size:cover;">&nbsp;</div>
+			    	<?php } ?>
 				</div>
+				<?php } else { ?>
+				<div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
+			    <?php } ?>
 			</div>
 		    <!-- slider ends -->
 		    <!-- left navigation -->
@@ -690,7 +699,7 @@ function stopWiggle(input) {
 						          	</a>
 						            <a href="javascript:getComapnyAbout(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
 								    <img src="<?php echo asset_url(); ?>images/desksite/D-company.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-								    <p class="font2">About Us</p>
+								    <p class="font2">About Shipper</p>
 								    </a>
 								    <a href="javascript:getRoutes(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
 								    <img src="<?php echo asset_url(); ?>images/Airplane.png" id="Image43" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
@@ -775,8 +784,8 @@ function stopWiggle(input) {
 			<!-- product popup ends -->
 				
 			<!--about us-->
-			<div id="Layer23" style="position:absolute;text-align:center;visibility:hidden;left:378px;top:34px;width:45%;height:670px;z-index:3864;">
-				<div id="Layer23_Container" style="width:584px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+			<div id="Layer23" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:34px;width:45%;height:670px;z-index:3864;">
+				<div id="Layer23_Container" style="width:584px;text-align:left;">
 					<div id="Layer42" class="a4" >
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -791,8 +800,8 @@ function stopWiggle(input) {
 			
 			<!-- about us end -->
 			<!-- certification -->
-			<div id="Layer144" style="position:absolute;text-align:center;visibility:hidden;left:143px;top:126px;width:61%;height:554px;z-index:3853;">
-				<div id="Layer144_Container" style="width:788px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+			<div id="Layer144" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:126px;width:61%;height:554px;z-index:3853;">
+				<div id="Layer144_Container" style="width:788px;text-align:left;">
 					<div id="Layer145" class="a4">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer144', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -805,7 +814,7 @@ function stopWiggle(input) {
 			<!-- certification ends -->
 			
 			<!-- company profile -->
-			<div id="Layer48" class="box1" style="left:36%; top:3%;width: 316px;padding:15px;">
+			<div id="Layer48" class="box1" style="left:0;right:0;margin:0 auto; top:3%;width: 316px;padding:15px;">
 			    <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
 				 	<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
 			    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/barcompany-profile.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE
@@ -832,7 +841,7 @@ function stopWiggle(input) {
 			<!-- advantages ends-->
 			
 			<!-- Routes -->
-			<div id="Layer33" class="box1 a3" style="width:314px;padding:15px;">
+			<div id="Layer33" class="box1 a3" style="left:0;right:0;margin:0 auto;width:314px;padding:15px;">
 			    <div id="Layer79_Container">
 			        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer33', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:94%;">
@@ -845,8 +854,8 @@ function stopWiggle(input) {
 			<!-- routes ends-->
 			
 			<!-- my files -->
-			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:245px;top:198px;width:53%;height:462px;z-index:3850;">
-				<div id="Layer148_Container" style="width:432px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:198px;width:53%;height:462px;z-index:3850;">
+				<div id="Layer148_Container" style="width:432px;text-align:left;">
 					<div id="Layer150" style="position:absolute;text-align:left;left:65px;top:28px;width:517px;height:402px;z-index:3616;">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer148', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -933,7 +942,7 @@ function stopWiggle(input) {
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/Mail.ico" id="Image19" alt="" class="img32">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer216', 1, 'slideleft', 500, 'swing');return false;" target="_self" class="antag">
-				        Contact Us
+				        Contact Shipper
 						</a>
 				    </div>
 				</div>
@@ -942,7 +951,7 @@ function stopWiggle(input) {
 			<!-- contact us form -->
 			<div id="Layer216" style="position:absolute;text-align:right;visibility:hidden;left:224px;top:18px;width:55%;height:627px;z-index:3851;">
 				<div id="Layer216_Container" style="width:607px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
-					<div id="Layer217" class="a1">
+					<div id="Layer217" class="a1" style="height:534px;">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer216', 0, 'slideleft', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 						</a>
@@ -950,29 +959,62 @@ function stopWiggle(input) {
 				        	<img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">
 				        	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>CONTACT US</strong></span>
 				        </p>
-				        <div class="box2">
-				            <input type="text" class="input" name="name" value="" placeholder="Name">
-				            <input type="text" class="input" name="phone" value="" placeholder="Phone">
-				            <input type="email" class="input" name="email" value="" placeholder="Email">
-				            <select name="country" size="1" id="Combobox1" class="input">
-				            	<?php foreach ($countries as $country) { ?>
-				                <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
-				                <?php } ?>
-				            </select>
-				            <input type="text" class="input" name="city" value="" placeholder="City">
-				            <textarea name="TextArea2" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;">Message</textarea>
-				            <div style="width:99%;">
-				                <input type="submit" id="Button5" name="Send" value="Send" style="margin-left:5px;" onclick="submitContactForm();">
-				                <input type="submit" id="Button5" name="Reset" value="Reset">
-				            </div>
+				        <div class="box2" style="height:472px;">
+				            <form action="" name="contactusfrm" id="contactusfrm" method="post">
+				        		<input type="hidden" name="busi_id" value="<?php echo $Desksites[0]['busi_id']?>"/>
+				        		<div class="form-group">
+				        			<div>
+				        				<input type="text" class="input" name="name" value="" placeholder="Name">
+				        			</div>
+				        			<div class="messageContainer"></div>
+				        		</div>
+					            <div class="form-group">
+				        			<div>
+					            		<input type="text" class="input" name="mobile" value="" placeholder="Phone">
+					            	</div>
+					            	<div class="messageContainer"></div>
+					            </div>
+					            <div class="form-group">
+				        			<div>
+					            		<input type="email" class="input" name="email" value="" placeholder="Email">
+					            	</div>
+					            	<div class="messageContainer"></div>
+					            </div>
+					            <div class="form-group">
+				        			<div>
+							            <select name="country" size="1" id="Combobox1" class="input">
+							            	<?php foreach ($countries as $country) { ?>
+							                <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
+							                <?php } ?>
+							            </select>
+							       	</div>
+							       	<div class="messageContainer"></div>
+							   	</div>
+							   	<div class="form-group">
+				        			<div>
+					            		<input type="text" class="input" name="city" value="" placeholder="City">
+					            	</div>
+					            	<div class="messageContainer"></div>
+					            </div>
+					            <div class="form-group">
+				        			<div>
+					            		<textarea name="message" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;" placeholder="Message"></textarea>
+					            	</div>
+					            	<div class="messageContainer"></div>
+					            </div>
+					            <div style="width:99%;">
+					                <input type="submit" id="Button5" name="Send" value="Send" style="margin-left:5px;">
+					                <input type="button" id="Button5" name="Reset" value="Reset" onclick="resetForm();">
+					            </div>
+				            </form>
 				        </div>
 				    </div>
 				</div>
 			</div>
 			<!-- contact us form end -->
 				<!-- contact person -->
-				<div id="Layer62" style="position:absolute;text-align:right;visibility:hidden;left:19%;top:166px;width:51%;height:447px;z-index:3854;">
-					<div id="Layer62_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+				<div id="Layer62" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:166px;width:51%;height:447px;z-index:3854;">
+					<div id="Layer62_Container" style="width:656px;text-align:left;">
 						<div id="Layer63" class="a1">
 					        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer62', 0, 'slidedown', 300, 'swing');return false;">
 								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -980,17 +1022,14 @@ function stopWiggle(input) {
 					        <div class="box222 row" id="contact-person" style="margin:0px;">
 					            
 					        </div>
-					        <div class="center">
-						        <a href="javascript:printInvoice();"><img src="<?php echo asset_url(); ?>images/print.png" id="Image26" alt="" class="img32"></a>
-						    </div>
 					    </div>
 					</div>
 				</div>
 				<!-- contact person end -->
 			<!-- world wide offices -->
-			<div id="Layer16" style="position:absolute;text-align:right;visibility:hidden;left:25%;top:225px;width:51%;height:411px;z-index:3863;">
-				<div id="Layer16_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
-					<div id="Layer15" class="s9">
+			<div id="Layer16" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:225px;width:51%;height:411px;z-index:3863;">
+				<div id="Layer16_Container" style="width:656px;text-align:left;">
+					<div id="Layer15" class="s9" style="height:285px;">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer16', 0, 'slidedown', 300, 'swing');return false;">
 				            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 				        </a>
@@ -1044,8 +1083,8 @@ function stopWiggle(input) {
 			</div>
 			<!-- world wide end -->
 			<!--  current post -->
-			<div id="Layer58" style="position:absolute;text-align:right;visibility:hidden;left:134px;top:2px;width:69%;height:702px;z-index:3861;">
-				<div id="Layer58_Container" style="width:890px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+			<div id="Layer58" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:2px;width:69%;height:702px;z-index:3861;">
+				<div id="Layer58_Container" style="width:890px;text-align:left;">
 					<div id="Layer8" class="s5">
 					   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer58', 0, 'slidedown', 300, 'swing');return false; ">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
@@ -1075,14 +1114,14 @@ function stopWiggle(input) {
 			</div>
 			<!--  current post end-->
 				<!-- UDtalk images -->
-				<div id="Layer72" style="position:absolute;text-align:center;visibility:hidden;left:50px;top:64px;width:66%;height:616px;z-index:3848;">
-					<div id="Layer72_Container" style="width:850px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+				<div id="Layer72" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:64px;width:66%;height:616px;z-index:3848;">
+					<div id="Layer72_Container" style="width:850px;text-align:left;">
 						<div id="Layer73" class="c19">
 						   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer72', 0, 'slidedown', 300, 'swing');return false; ">
 								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left: 96%;">
 						   	</a>
 						    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/udLOGO.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;AMAZING BUSINESS COMMUNICATION APP</p>
-						    <div class="box732" id="ud-talk" style="height:495px;background-color: #DCDCDC;border: 1px #FFFFFF solid;padding:10px;">
+						    <div class="box732" id="ud-talk" style="height:495px;background-color: #DCDCDC;border: 1px #FFFFFF solid;padding:10px;overflow-y: scroll;overflow-x: hidden;">
 						    	<br>
 							   	<div id="wb_Text93" style="text-align:center;">
 									<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Discover more ( View products, Catalouge or Watch videos), contact with this member through an amazing way, add him to your mobile contacts, chat with him on you phone, make an Instant call, send SMS, Email, get your own business platform and much more..</span>
@@ -1096,7 +1135,7 @@ function stopWiggle(input) {
 								<div id="wb_Text98" style="text-align:center;padding-top:10px;">
 									<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Click the image to enlarge, open UDtalks and scan</span>
 								</div>
-								<div id="wb_PhotoGallery1" style="height:288px;overflow-y:scroll;">
+								<div id="wb_PhotoGallery1" style="overflow-x: hidden;">
 									<table id="PhotoGallery1">
 									   	<tbody>
 									   		<?php for ($i=0; $i < count($images); ) { ?>
@@ -1114,7 +1153,7 @@ function stopWiggle(input) {
 				</div>
 				<!-- UDtalk images end -->
 				<!-- Videos section -->
-				<div id="Layer65" style="position:absolute;text-align:center;visibility:hidden;left:305px;top:73px;width:50%;height:628px;z-index:3847;">
+				<div id="Layer65" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:73px;width:50%;height:628px;z-index:3847;">
 					<div id="Layer65_Container" style="width:644px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
 						<div id="Layer66" class="c19">
 							<a href="#" onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer65', 0, 'slidedown', 300, 'swing');return false;">
@@ -1179,6 +1218,8 @@ function stopWiggle(input) {
 				<!-- products in 3d end -->
 	</div>
 </div>
+<script src="<?php echo asset_url();?>js/bootstrapValidator.min.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 <script>
 
 function getComapnyProfile(id) {
@@ -1439,6 +1480,117 @@ function openGeneralEnquiry(id) {
 		ShowObject('Layer99', 1);
 	<?php } ?>
 }
+$(document).ready(function(){
+	$('#contactusfrm').bootstrapValidator({
+	 container: function($field, validator) {
+     	return $field.parent().next('.messageContainer');
+     },
+    feedbackIcons: {
+        validating: 'glyphicon glyphicon-refresh'
+    },
+    excluded: ':disabled',
+    fields: {
+    		name: {
+    	   		validators: {
+                 	notEmpty: {
+                     	message: 'Please enter name'
+                 	}
+             	}
+    	   	},
+    	   	email: {
+    	   		validators: {
+                 	notEmpty: {
+                     	message: 'Please enter email'
+                 	},
+                 	regexp: {
+                        regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
+                        message: 'Invalid Email'
+                    }
+             	}
+    	   	},
+    	   	mobile: {
+    	   		validators: {
+                 	notEmpty: {
+                     	message: 'Please enter Phone Number'
+                 	}
+             	}
+    	   	},
+    	   	country: {
+    	   		validators: {
+                 	notEmpty: {
+                     	message: 'Please select country'
+                 	}
+             	}
+    	   	},
+    	   	city: {
+    	   		validators: {
+                 	notEmpty: {
+                     	message: 'Please enter city name'
+                 	}
+             	}
+    	   	},
+    	   	message: {
+    	   		validators: {
+                 	notEmpty: {
+                     	message: 'Please enter message'
+                 	}
+             	}
+    	   	}
+		     
+		}
+    }).on('success.form.bv', function(e) {
+	   // Prevent form submission
+	   e.preventDefault();
+	   saveContactUsForm();
+	});
+});
+function saveContactUsForm() {
+	ajaxindicatorstart("Please wait .. while we save query...");
+	var options = {
+			target : '#response', // target element(s) to be updated with server response 
+			beforeSubmit : showContactUsRequest, // pre-submit callback 
+			success :  showContactUsResponse,
+			url : base_url+'desksite/savecontactus',
+			semantic : true,
+			dataType : 'json'
+		};
+	$('#contactusfrm').ajaxSubmit(options);
+}
+function showContactUsRequest(formData, jqForm, options){
+	var queryString = $.param(formData);
+	<?php if($tscategory_id != 3) { ?>
+		return true;
+	<?php } else { ?>
+		<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
+			return true;
+		<?php } else if($contact_details[0]['step'] < 2) { ?>
+			$("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
+			ShowObject('Layer99', 1);
+			return false;
+		<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
+			$("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+			ShowObject('Layer99', 1);
+			return false;
+		<?php } ?>
+	<?php } ?>
+	return true;
+}
+function showContactUsResponse(resp, statusText, xhr, $form){
+	ajaxindicatorstop();
+	if(resp.status == 1) {
+		$("#msg_cont").html("We have recorded your enquiry.");
+		ShowObject('Layer99', 1);
+		ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
+	}
+}
+function resetForm() {
+	document.contactusfrm.reset();
+}
+$(document).ready(function() {
+    $("body").on("contextmenu",function(){
+       return false;
+    }); 
+}); 
 $("a[data-rel='prettyPhoto_SlideShow31[SlideShow31]']").attr('rel', 'prettyPhoto_SlideShow31[SlideShow31]');
 $("a[rel^='prettyPhoto_SlideShow31']").prettyPhoto({theme:'facebook',social_tools:false});
 </script>

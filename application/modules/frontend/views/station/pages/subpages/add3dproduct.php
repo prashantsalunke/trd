@@ -119,6 +119,7 @@
 		</div>
 		<?php } ?>
    </div>
+   <input type="hidden" id="dpid" value="0"/>
  </form>
  <div id="example_modal" class="modal fade" style="background-color: #404040;width:100%;height:100%; text-align:center">
 	<div class="modal-dialog" >
@@ -174,24 +175,15 @@
 <script>
 function addexample()
 {
-	var values = new Array();
-    $.each($("input[name='product_id']:checked"), function(){            
-    	values.push($(this).val());
-    });
-	values = values.filter(v=>v!=null);
-	if(values.length > 0 ) {
-		if(values.length > 1)
-		{
-			alert('Please select Only one product to link 3d  Images.');
-		} else {
-			 	var pid = values[0];
-			 	$.post("<?php echo base_url();?>mystation/getdproductbyid",{pid:pid},function(data) {
-				 	document.getElementById('example').innerHTML = data;
-				 	$('#example_modal').modal({show:true,backdrop: 'static',keyboard: false});
-			 	});
-		}
+	var id = $("#dpid").val();
+	if(id != 0 ) {
+		customAlert('Upload 3d images first.');
 	} else {
-		alert('Please select product to link 3d  Images.');
+		$.get(base_url+"mystation/3dpro/show/"+id, {}, function(data){
+			$("#promodal").html(data);
+			$("#my3DModal").modal('show');
+			init3D('my3dimg');
+		},'html');
 	}
 }
 function uploaddimg(id,input,width,height,size)
@@ -207,8 +199,9 @@ function uploaddimg(id,input,width,height,size)
 		}
 	}
 	//alert(flag);
-	if(count == 0)
+	if(count == 16)
 	{
+		ajaxindicatorstart('');
 		read3dimages(input);
 	}
 }
@@ -228,20 +221,20 @@ function setup_readercert(files, i,size,width,height,id)
                 var imgwidth = this.width;
                 if(ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif') {
 	                if(filesizeinkb > size) {
-	                	alert("Image size should be "+size+"kb max.");
+	                	customAlert("Image size should be "+size+"kb max.");
 	                    $('#'+id).val('');
 	                } else {
 		                if (imgwidth != width || imgheight != height) {
-		                    alert("Image dimensions should be "+width+"*"+height+" Pixel.");
+		                	customAlert("Image dimensions should be "+width+"*"+height+" Pixel.");
 		                    $('#'+id).val('');
 		                    flag = false;
 		                } else {
-								flag = true;
-		                	//$('#'+id).css('background-image', 'url('+e.target.result+')').css('background-size','cover');
+							flag = true;
+		                	$('#'+id).css('background-image', 'url('+e.target.result+')').css('background-size','cover');
 		                }
 	                }
                 } else {
-                	alert("Image should be JPG or JPEG.");
+                	customAlert("Image should be JPG or JPEG.");
                     $('#'+id).val('');
                     flag = false;
                 }
@@ -261,7 +254,7 @@ function uploadimage()
 	if(values.length > 0 ) {
 		if(values.length > 1)
 		{
-			alert('Please select Only one product to link 3d  Images.');
+			customAlert('Please select Only one product to link 3d  Images.');
 		} else {
 			 	//e.preventDefault();
 			 	var maxproduct = document.getElementById('maxproduct').value;
@@ -270,38 +263,25 @@ function uploadimage()
 			 	{
 		        	$("#file3dimages").trigger('click');
 			 	} else {
-				 	alert('you can not upload more than '+maxproduct+' 3D images of product');
+			 		customAlert('you can not upload more than '+maxproduct+' 3D images of product');
 			 	}
 		}
 	} else {
-		alert('Please select product to link 3d  Images.');
+		customAlert('Please select product to link 3d  Images.');
 	}
 }
 function read3dimages(input) {
 	var filecount = $(input)[0].files.length;
 	if(filecount < 17) {
 		if(filecount == 0) {
-			alert('Please select at least one image.');
+			customAlert('Please select at least one image.');
 		} else {
             linkProduct();
 		}
 	} else {
-		alert('You can not select more than 16 files');
+		customAlert('You can not select more than 16 files');
 	}
 }
-// function uploadimage()
-// {
-// 	var id = document.getElementById('product_id').value;
-// 	if(id > 0)
-// 	{
-// 		jQuery('#3dproduct_modal').modal({show:true,backdrop: 'static',keyboard: false});
-// 		$('#dproductphoto').css('display', 'none');
-// 		jQuery("#dproductfile").val('');
-// 		jQuery('.imgareaselect-outer').css('display','none');
-// 	} else {
-// 		alert('Please Select Proctduct from list');
-// 	}
-// }
  function uploadimagepopup()
  {
 	 
@@ -410,7 +390,7 @@ jQuery('#save_dcrop').unbind().on('click', function(e){
 			$('#dproductphoto').imgAreaSelect( {remove: true} );
 			saveCropImage(params);
 	} else {
-		alert('Please select Image for crop');
+		customAlert('Please select Image for crop');
 	}
 });
 function saveCropImage(params) {
@@ -446,7 +426,7 @@ function saveCropImage(params) {
 				//$('#divfileprofileImg').css('display', 'none');
 				jQuery("#dproductfile").val('');
 				jQuery('#3dproduct_modal').modal('hide');
-				alert(response.msg);
+				customAlert(response.msg);
 				product_id = jQuery('#product_id').val();
 				openEdit3DproductFormByaddproduct(product_id);
 			},
@@ -456,34 +436,6 @@ function saveCropImage(params) {
 $('#3dproduct_modal').on('hidden.bs.modal' , function() {
 	$('#dproductphoto').imgAreaSelect( {remove: true} );
 });
-// $("#product_item").typeahead({
-//     onSelect: function(item) {
-//     	$("#productitem").attr('data-value',item.value);
-//     	$("#product_id").val(dataname[0].id);
-//     },
-//     ajax: {
-//         url: base_url+"mystation/product_item",
-//         timeout: 500,
-//         displayField: "name",
-//         triggerLength: 1,
-//         method: "get",
-//         loadingClass: "loading-circle",
-//         preDispatch: function (query) {
-//             return {
-//             	name: query,
-//             	model_no: query
-//             }
-//         },
-//         preProcess: function (data) {
-//           //  alert(JSON.stringify(data));
-//             if (data.success === false) {
-//                 return false;
-//             }
-//             dataname = data;
-//             return data;
-//         }
-//     }
-// });	
 
 </script>
  

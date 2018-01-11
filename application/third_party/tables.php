@@ -31,6 +31,7 @@ class TABLES {
 	public static $SUBSCRIPTION_PLAN = 'tbl_subscription_plan';
 	public static $SUBSCRIPTION_ITEMS = 'tbl_subscription_plan_item';
 	public static $GAURANTEE_TERMS = 'tbl_gaurantee_terms';
+	public static $MY_3DPRODUCT = 'tb_product_3d';
 	public static $PRODUCT_3DPRODUCT = 'tb_product_3dimage';
 	public static $BUSINESS_INFO_IMAGE = 'tbl_business_info_image';
 	public static $PAYMENT_TABLE = 'tbl_payments';
@@ -94,6 +95,10 @@ class TABLES {
 	public static $ORDER= 'tbl_order';
 	public static $ORDER_ITEM = 'tbl_order_item';
 	public static $COMMUNITY_MEMBER = 'tbl_community_member';
+	public static $POSTCOMMENT = 'tbl_community_post_comment';
+	public static $POSTLIKE = 'tbl_community_post_like';
+	public static $COMMUNITY_POST_OFFERS = 'tbl_community_post_offers';
+	public static $COMMUNITY_POST_REQUESTS = 'tbl_community_post_requests';
 	
 	/* ***********    Stock-Goods  ********    */
 	public static $STOCK_GOODS = 'tbl_stocks_goods';
@@ -121,7 +126,7 @@ class TABLES {
 	public static $BUSINESS_LIKE_COMMENTS = 'tbl_business_like_comments';
 	public static $MYSTORAGE = 'tbl_mystorage';
 	public static $CHAT_MESSAGES = 'tbl_chat_messages';
-	
+	public static $CONTACT_US = 'tbl_contact_us';
 	
 	
 	

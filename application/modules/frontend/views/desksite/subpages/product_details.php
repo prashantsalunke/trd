@@ -22,13 +22,14 @@ color: blue;
 }
 img.sm-image-border{
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
     border-radius: 10px;
     text-align:center;
     padding:8px;
     width: 80px;
     margin-bottom: 4px;
     margin-top:4px;
+    border-color: #ccc;
 }
 .text-grey{
 	color : #696969;
@@ -346,6 +347,26 @@ pre {
    margin: 0;
    padding: 0;
 }
+a.style16
+{
+   color: #4169E1;
+   text-decoration: underline;
+}
+a.style16:visited
+{
+   color: #4169E1;
+   text-decoration: underline;
+}
+a.style16:active
+{
+   color: #4169E1;
+   text-decoration: underline;
+}
+a.style16:hover
+{
+   color: #FF7F50;
+   text-decoration: underline;
+}
 </style>
 <div style="background-color:#EBECEE;">
 	<div id="body" style="padding-top: 15px;">
@@ -356,14 +377,14 @@ pre {
 				  <li style="width:1000px;"><a href="javascript:viewCatProducts(0,0,<?php echo $product['mainproduct_id'];?>,<?php echo $product['busi_id'];?>);" class="pull-left"> <img src="<?php echo asset_url()?>images/img0892.png" id="Shape17" alt="" width="10px"> Same by this seller</a></li>
 				  <li class="pull-right">
 					<a href="javascript:saveToPdf()" >
-						/  &nbsp; <img src="<?php echo asset_url();?>images/i_145.gif" class="pull-right" width="20px" alt="" title="Save as PDF">
+						  &nbsp; <img src="<?php echo asset_url();?>images/i_145.gif" class="pull-right" width="20px" alt="" title="Save as PDF">
 					</a>
 				 </li>
-				 <li class="pull-right">
+				 <!-- li class="pull-right">
 				 	<a href="javascript:printProductDetail();">
 						/ &nbsp; <img src="<?php echo asset_url()?>images/folder-print.png" class="pull-right" width="20px" alt="" title="Print this page">
 					</a>
-				 </li>
+				 </li-->
 				</ol>
 			</div>
 			<div class="panel panel-default">
@@ -372,10 +393,10 @@ pre {
 				   <div class="row"> 
 				   		<div class="row">
 				    		<p class="product-braedcrumbs" style="padding-left:30px;">
-					    		<a href="<?php echo base_url();?>desksite">Desktop</a> 
-						    	&gt; <a href="javascript:viewCatProducts(<?php echo $product['subcategory_id'];?>,0,0,<?php echo $product['busi_id'];?>)" > <?php echo $product['subcategory']?></a> 
-								&gt;<a href="javascript:viewCatProducts(0,0,<?php echo $product['mainproduct_id'];?>,<?php echo $product['busi_id'];?>)"  > <?php echo $product['mainproduct']?></a>
-								&gt; <a href="javascript:viewCatProducts(0,<?php echo $product['subproduct_id'];?>,0,<?php echo $product['busi_id'];?>)" > <?php echo $product['subproduct']?> </a>&gt;
+					    		<a href="<?php echo base_url();?>desksite" class="style16">Desktop</a> 
+						    	<!-- &gt; <a href="javascript:viewCatProducts(<?php echo $product['subcategory_id'];?>,0,0,<?php echo $product['busi_id'];?>)" class="style16"> <?php echo $product['subcategory']?></a>  -->
+								&gt;<a href="javascript:viewCatProducts(0,0,<?php echo $product['mainproduct_id'];?>,<?php echo $product['busi_id'];?>)"  class="style16"> <?php echo $product['mainproduct']?></a>
+								&gt; <a href="javascript:viewCatProducts(0,<?php echo $product['subproduct_id'];?>,0,<?php echo $product['busi_id'];?>)" class="style16"> <?php echo $product['subproduct']?> </a>&gt;
 							</p>
 				    	</div>
 				    	<div class="row">&nbsp;</div>
@@ -413,7 +434,7 @@ pre {
 					    	<br><br><br>
 					    	<div class="row">
 				    			<div class="col-md-6"><p>Viewed  <?php echo $product['visit']; ?></p></div>	
-				    			<div class="col-md-6"><p>Likes  <i class="fa fa-thumbs-up like" aria-hidden="true"></i> <?php echo $product['likes']; ?></p></div>
+				    			<div class="col-md-6"><p><span style="padding-top:3px;">Likes</span>  <img style="width:26px;height:26px;margin-top:-3px;" src="<?php echo asset_url();?>images/items_like0.png"></i> <span style="padding-top:3px;" id="sdiv"><?php echo $product['likes']; ?></span></p></div>
 					    	</div>
 						</div>
 						
@@ -421,7 +442,7 @@ pre {
 			    </div>
 			    <div class="col-md-5 text-left">
 			    	<h3 class="blue"><img src="<?php echo asset_url();?>images/page_location.png" class="sm-img" alt=""><span><?php echo $product['name']; ?></span></h3>
-			    	<p ><?php echo substr($product['description'], 0, 150); ?> ...</p>
+			    	<p ><?php echo substr($product['description'], 0, 150); ?> <?php if(strlen($product['description']) > 150) { ?>... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#bookmark1" class="style16">Read More</a><?php }?></p>
 			    	<div class="row">&nbsp;</div>
 			    	<p> <h6>Quick Specifications</h6><hr id="Line10" style="height: 1px; width: 357px; margin: 10px 0px;"/> </p>
 			    	<div class="row">
@@ -467,7 +488,7 @@ pre {
 	    			</div>
 		    		<div class="row">
 			    		<div class="col-md-4" ><p>Accepted Payment</p></div>
-			    		<div class="col-md-8" ><p><?php $curr_text = ""; foreach ($currency as $curr) { if($curr_text == "") { $curr_text = $curr['payment_currency'];} else { $curr_text = $curr_text.", ".$curr['payment_currency'];}} echo $curr_text;?></p></div>
+			    		<div class="col-md-8" ><p><?php $curr_text = "N/A"; foreach ($currency as $curr) { if($curr_text == "N/A") { $curr_text = $curr['payment_currency'];} else { $curr_text = $curr_text.", ".$curr['payment_currency'];}} echo $curr_text;?></p></div>
 		    		</div>
 		    		<div style="position:relative;">
 		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;">
@@ -500,7 +521,7 @@ pre {
 							</a>
 						</div>
 						<div id="RollOver34" style="position:absolute;left:88px;top:8px;overflow:hidden;width:40px;height:40px;z-index:180">
-							<a href="javascript:popupwnd('./item_inquiry.php','no','no','no','no','no','no','200','50','1055','680')" target="_self">
+							<a href="javascript:popupwnd('<?php echo base_url();?>desksite/item_enquiry/<?php echo $product['busi_id'];?>/<?php echo $product['id'];?>','no','no','no','no','no','no','200','50','1055','680')" target="_self">
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_inquiry.png">
 								<span><img alt="" src="<?php echo asset_url();?>images/items_inquiry0.png"></span>
 							</a>
@@ -512,12 +533,13 @@ pre {
 			    </div>
 			  </div>
 			</div>
+			<a name="bookmark1" style="visibility:hidden">&nbsp;</a>
 			<div class="row" style="padding-left:43px;"><span style="color:#3C3C3C;font-family:Arial;font-size:15px;"><strong>About This Product</strong></span></div>
 			<div class="row clearfix">&nbsp;</div>
 			<div class="panel panel-default">
 			  <div class="panel-body">
 				  <div class="row">
-				  	<div class="col-md-10"><pre><?php echo $product['about']; ?></pre></div>
+				  	<div class="col-md-10"><pre style="overflow: hidden;font-size: 14px;"><?php echo $product['about']; ?></pre></div>
 				  </div>
 				  <br><br>
 			  </div>
@@ -527,7 +549,7 @@ pre {
 			<div class="panel panel-default">
 			  <div class="panel-body">
 				  <div class="row">
-				  	<div class="col-md-10"><pre><?php echo $product['description']; ?></pre></div>
+				  	<div class="col-md-10"><pre style="overflow: hidden;"><?php echo $product['description']; ?></pre></div>
 				  </div>
 				  <div class="row">
 				  	<div class="col-md-12">
@@ -541,10 +563,10 @@ pre {
 			<div class="panel panel-default">
 			  <div class="panel-body">
 				  <div class="row">
-				  	<div class="col-md-8">
+				  	<div class="col-md-8" style="font-size: 14px;">
 					  	<?php foreach ($specifications as $specification) {?>
 							<div class="col-md-12" style="padding:5px 0px;">
-								<div class="col-sm-5"><span style="color:#000000;font-family:Arial;font-size:13px;"><?php echo $specification['spec_name']; ?></span></div> <div class="col-sm-7"><span style="color:#000000;font-family:Arial;font-size:13px;"><?php echo $specification['spec_value']; ?></span></div>
+								<div class="col-sm-5"><span style="color:#000000;font-family:Arial;font-size:14px;"><?php echo $specification['spec_name']; ?></span></div> <div class="col-sm-7"><span style="color:#000000;font-family:Arial;font-size:14px;"><?php echo $specification['spec_value']; ?></span></div>
 							</div>
 						<?php }?>
 					</div>
@@ -597,6 +619,9 @@ function likeProduct(id) {
 			$("#msg_cont").html(data.msg);
 		}
 		ShowObject('Layer99', 1);
+		var likes = parseInt($("#sdiv"+id).html());
+		likes++;
+		$("#sdiv"+id).html(likes);
 	},'json');
 }
 </script>

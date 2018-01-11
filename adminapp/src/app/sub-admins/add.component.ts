@@ -8,7 +8,6 @@ import { CustomValidators } from '@floydspace/ngx-validation';
 import { FileUploader } from 'ng2-file-upload';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-
 @Component({
   selector: 'trd-add',
   templateUrl: './add.component.html',

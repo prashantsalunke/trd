@@ -56,5 +56,11 @@ class Alert_model extends CI_Model {
     }
     
     
+    public function saveContactUs($params) {
+    	if ($this->db->insert(TABLES::$CONTACT_US, $params)) {
+    		return $this->db->insert_id();
+    	}
+    }
+    
     
 }

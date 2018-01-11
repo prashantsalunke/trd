@@ -166,12 +166,17 @@ class Product extends MX_Controller {
 			$this->mytoolmodel->addProductVisit($map);
 		}
 		$this->load->model('Product_Model', 'product' );
+		$this->load->model('Account_Model', 'account' );
 		$getProductdetailsById = $this->product->getProductdetailsById($id);
 		$this->template->set ( 'Productdetails', $getProductdetailsById);
 		$colors = $this->product->getProductColorById($id);
 		$this->template->set ( 'colors', $colors);
 		$Specifications = $this->product->getProductSpecificationById($id);
 		$this->template->set ( 'specifications', $Specifications);
+		$trade_info = $this->product->getCompanyTradeInfo($busi_id);
+		$currency = $this->account->getTradePaymentCurrencyByTradId($trade_info[0]['id']);
+		$this->template->set ( 'currency', $currency);
+		$this->template->set ( 'trade_info', $trade_info);
 		$this->template->set ( 'page', 'pro-details');
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
@@ -341,6 +346,25 @@ class Product extends MX_Controller {
 	
 	}
 	
+	public function specialProductList($busi_id,$type){
+		$map = array();
+		$map['busi_id'] = $busi_id;
+		$this->load->model('Product_Model', 'product' );
+		if($type == 1) {
+			$products = $this->product->productListByHotsales($map);
+		} else {
+			$products = $this->product->productListByNewArrival($map);
+		}
+		$this->template->set ( 'productList', $products);
+		$this->template->set ( 'page', 'product' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('product/pages/pro-list', '', true);
+		echo $html;
+	
+	}
+	
 	public function itemDetailById($id, $busi_id){
 		$this->load->library('mylib/FactoryLib');
 		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
@@ -450,8 +474,8 @@ class Product extends MX_Controller {
 				$resp['status'] = 1;
 				$resp['msg'] = 'Item added to cart';
 			} else {
-				$resp['status'] = 1;
-				$resp['msg'] = 'Failed to add item to cart';
+				$resp['status'] = 0;
+				$resp['msg'] = 'The item already added to you cart';
 			}
 		} else {
 			$resp = array();
@@ -521,6 +545,12 @@ class Product extends MX_Controller {
 		$this->template->set ( 'products', $products);
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);
+		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+		$this->template->set ( 'featuredSellers', $featuredSellers);
+		$featuredBuyers = $this->sellers->getFeaturedWorldBuyer();
+		$this->template->set ( 'featuredBuyers', $featuredBuyers);
+		$featuredProducts = $this->sellers->getFeaturedProduct();
+		$this->template->set ( 'featuredProducts', $featuredProducts);
 		$procategories = $this->general->getProductCategories();
 		$this->template->set ( 'categories', $procategories);
 		$maincats = $this->product->getActiveProductMainAndSubCategories();
@@ -544,7 +574,7 @@ class Product extends MX_Controller {
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
-		->title ( 'Find Products' )
+		->title ( '3D Pro' )
 		->set_partial ( 'header', 'default/inner-header' )
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('product/product3D');
@@ -571,6 +601,12 @@ class Product extends MX_Controller {
 		$this->template->set ( 'vCatalogues', $vCatalogues);
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);
+		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+		$this->template->set ( 'featuredSellers', $featuredSellers);
+		$featuredBuyers = $this->sellers->getFeaturedWorldBuyer();
+		$this->template->set ( 'featuredBuyers', $featuredBuyers);
+		$featuredProducts = $this->sellers->getFeaturedProduct();
+		$this->template->set ( 'featuredProducts', $featuredProducts);
 		$procategories = $this->general->getProductCategories();
 		$this->template->set ( 'categories', $procategories);
 		$maincats = $this->product->getActiveProductMainAndSubCategories();
@@ -594,13 +630,14 @@ class Product extends MX_Controller {
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
-		->title ( 'Find Products' )
+		->title ( 'V-Catalogues' )
 		->set_partial ( 'header', 'default/inner-header' )
-		->set_partial ( 'footer', 'default/footer' );
+		->set_partial ( 'footer', 'default/footer' )
+		->set_partial ( 'vcatalogue', 'default/vcatalogue' );
 		$this->template->build ('product/Vcatalogue');
 	}
 	
-	public function getAllDesksites() {
+	public function getAllSellerDesksites() {
 		$this->load->model ( 'Account_Model', 'account' );
 		$params = $this->input->get();
 		$keyword = "";
@@ -620,8 +657,8 @@ class Product extends MX_Controller {
 		$this->load->library('mylib/General');
 		$this->load->model('Sellers_Model', 'sellers' );
 		$this->load->model('Product_Model','product');
-		$sellers = $this->sellers->searchSellers($params);
-		$total_pages = $this->sellers->countSellers($params);
+		$sellers = $this->sellers->searchSellerDesksites($params);
+		$total_pages = $this->sellers->countSellerDesksites($params);
 		$this->template->set ( 'Sellers', $sellers);
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);
@@ -664,6 +701,71 @@ class Product extends MX_Controller {
 		->set_partial ( 'header', 'default/inner-header' )
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('Home/sellerdesksite');
+	}
+	public function getAllShipperDesksites() {
+		$this->load->model ( 'Account_Model', 'account' );
+		$params = $this->input->get();
+		$keyword = "";
+		if(!empty($params['keyword']))
+			$keyword = $params['keyword'];
+		if(empty($params)) {
+			if(!empty($_COOKIE['dseller_keywd'])) {
+				$params['keyword'] = $_COOKIE['dseller_keywd'];
+			}
+		} else {
+			setcookie('dseller_keywd', $params['keyword'], time() + (86400 * 30), "/");
+		}
+		$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+		if(empty($params['page'])) {
+			$params['page'] = 1;
+		}
+		$this->load->library('mylib/General');
+		$this->load->model('Sellers_Model', 'sellers' );
+		$this->load->model('Product_Model','product');
+		$sellers = $this->sellers->searchShippers($params);
+		$total_pages = $this->sellers->countShippers($params);
+		$this->template->set ( 'Sellers', $sellers);
+		$Country= $this->account->getCountry();
+		$this->template->set ( 'Country', $Country);
+		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+		$this->template->set ( 'featuredSellers', $featuredSellers);
+		$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
+		$featuredProducts = $this->sellers->getFeaturedProduct();
+		$this->template->set ( 'featuredProducts', $featuredProducts);
+		$procategories = $this->general->getProductCategories();
+		$this->template->set ( 'categories', $procategories);
+		unset($params['community_only']);
+		unset($params['community_hide']);
+		if(empty($keyword)) {
+			unset($params['keyword']);
+		}
+		$url = base_url()."shipper/desksites?".http_build_query($params);
+		$maincats = $this->product->getActiveProductMainAndSubCategories();
+		if(!empty($params['country'])) {
+			$city= $this->sellers->getCityByCountry($params['country'],1);
+			$this->template->set ( 'cities', $city);
+		}
+		$this->template->set ( 'mcats', $maincats );
+		$this->template->set('sellerurl',$url);
+		$this->template->set('page',$params['page']);
+		$this->template->set('total_pages',$total_pages);
+		$this->template->set ( 'params', $params);
+		unset($params['page']);
+		if(http_build_query($params) != "")
+			$wpurl = base_url()."shipper/desksites?".http_build_query($params)."&";
+		else
+			$wpurl = base_url()."shipper/desksites?";
+		$this->template->set('wpsellerurl',$wpurl);
+		$this->template->set ( 'page', 'shipperdesksite' );
+		$this->template->set ( 'browser_icon', 'shipper.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout ('default')
+		->title ( 'Find Desksite' )
+		->set_partial ( 'header', 'default/inner-header' )
+		->set_partial ( 'footer', 'default/footer' );
+		$this->template->build ('Home/shipperdesksite');
 	}
 	
 	public function shareWithWorld() {

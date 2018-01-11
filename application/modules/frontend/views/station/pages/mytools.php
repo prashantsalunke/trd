@@ -438,7 +438,7 @@
 					<div id="myperformance_stats" class="mytoolsts-div">
 						<div class="row" style="margin:0px;">
 							<div class="col-sm-1 text-right">
-								<img src="<?php echo asset_url();?>images/Desksite-small.png" id="Image139" alt="" style="width:30px;">
+								<img src="<?php echo asset_url();?>images/Desksite-small.png" id="Image139" alt="" style="width:30px;height:30px;">
 							</div>
 							<div class="col-sm-4">
 								<span style="color:#292929;font-family:Georgia;font-size:16px;">Desksite ( website ) Statistics</span><br>
@@ -524,7 +524,7 @@
 					<div id="myproduct_stats" style="display:none;overflow-y:scroll;max-height:500px;" class="mytoolsts-div">
 						<div class="row" style="margin:0px;">
 							<div class="col-sm-1 text-right">
-								<img src="<?php echo asset_url();?>images/products.png" id="Image139" alt="" style="width:30px;">
+								<img src="<?php echo asset_url();?>images/products.png" id="Image139" alt="" style="width:30px;height: 30px;">
 							</div>
 							<div class="col-sm-4">
 								<span style="color:#292929;font-family:Georgia;font-size:16px;">Products Statistics</span><br>
@@ -621,7 +621,7 @@
 					<div id="myaproduct_stats" style="display:none;overflow-y:scroll;" class="mytoolsts-div">
 						<div class="row" style="margin:0px;">
 							<div class="col-sm-1 text-right">
-								<img src="<?php echo asset_url();?>images/img2078.png" id="Image139" alt="" style="width:30px;">
+								<img src="<?php echo asset_url();?>images/img2078.png" id="Image139" alt="" style="width:30px;height:30px;">
 							</div>
 							<div class="col-sm-4">
 								<span style="color:#292929;font-family:Georgia;font-size:16px;">Active Products Statistics</span><br>

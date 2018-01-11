@@ -31,6 +31,76 @@
     border: 0px;
     background-color: #F05539 !important;
 }
+.bluebtn {
+	background-color:#1e90ff;
+	text-decoration:none;
+	border-radius:10px;
+	min-width:150px;
+	padding:7px 15px;
+	text-align:center;
+	color:#fff;
+	font-size:13px;
+	cursor:pointer;
+	display:block;
+}
+.bluebtn:visited {
+	color:#fff;
+}
+.bluebtn:hover {
+	background-color:#1e70ff;
+	color:#fff;
+	text-decoration:none;
+}
+.bluebtn:active {
+	color:#fff;
+}
+.bluebtn:focus {
+	background-color:#1e70ff;
+	color:#fff;
+	text-decoration:none;
+}
+#RollOver5 a
+{
+   display: block;
+   position: relative;
+   height: 100%;
+   width: 100%;
+}
+#RollOver5 a img
+{
+   position: absolute;
+   z-index: 1;
+   border-width: 0;
+}
+#RollOver5 span
+{
+   display: block;
+   height: 100%;
+   width: 100%;
+   position: absolute;
+   z-index: 2;
+}
+#RollOver5 a .hover
+{
+   visibility: hidden;
+}
+#RollOver5 a:hover .hover
+{
+   visibility: visible;
+}
+#RollOver5 a:hover span
+{
+   visibility: hidden;
+}
+#RollOver5 img
+{
+   border-width: 0;
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
 -->
 </style>
 <div class="row editaccount_outer">
@@ -61,9 +131,9 @@
 				<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">My Cart</span>
 			</div>
 			<div id="RollOver54" style="position: absolute; left: 74px; top:297px; overflow: hidden; width: 50%; height: 40px; z-index: 1683">
-				<a href="javascript:openRequest();"> <img class="hover" alt=""
-					src="<?php echo asset_url();?>images/addrequescolort.png" style="width:40px;"> <span><img
-						alt="" src="<?php echo asset_url();?>images/addrequest.png" style="width:40px;"></span>
+				<a href="javascript:openRequest();"> 
+					<img class="hover" alt="" src="<?php echo asset_url();?>images/addrequescolort.png" style="width:40px;"> 
+					<span><img alt="" src="<?php echo asset_url();?>images/addrequest.png" style="width:40px;"></span>
 				</a>
 				<div id="totalrequest" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($sendcommunityrequest) ?></div>
 			</div><br><br>
@@ -84,7 +154,7 @@
 				<a href="javascript:openInquiry();"> <img class="hover" alt="" src="<?php echo asset_url();?>images/inquiryoffwhite.png" style="width:40px;"> <span>
 					<img alt="" src="<?php echo asset_url();?>images/inquiry.png" style="width:40px;"></span>
 				</a>
-				<div id="totalinquiry" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($inquiry);?>0</div>
+				<div id="totalinquiry" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($inquiry);?></div>
 			</div>
 			<br><br>
 			<div style="position:absolute;top:509px;text-align:center;width: 160px;">
@@ -92,9 +162,9 @@
 			</div>
 			<div id="RollOver53"
 				style="position: absolute; left: 74px; top: 543px; overflow: hidden; width: 50%; height: 40px; z-index: 1691">
-				<a href="javascript:openOffer();"> <img class="hover" alt=""
-					src="<?php echo asset_url();?>images/offer-tool2.png" style="width:40px;"> <span><img
-						alt="" src="<?php echo asset_url();?>images/offer-tool1.png" style="width:40px;"></span>
+				<a href="javascript:openOffer();"> 
+					<img class="hover" alt="" src="<?php echo asset_url();?>images/offer-tool2.png" style="width:40px;"> 
+					<span><img alt="" src="<?php echo asset_url();?>images/offer-tool1.png" style="width:40px;"></span>
 				</a>
 				<div id="totaloffer" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($offer);?></div>
 			</div>
@@ -124,6 +194,32 @@
 				</div>
 			</div>
 	</div>
+</div>
+<div id="customAlertBox" class="modal fade" role="dialog" style="z-index:13000;">
+  	<div class="modal-dialog" style="width:400px;">
+    	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
+      		<div class="modal-body">
+      			<div class="row" style="padding-top:10px;">
+      				<div class="col-sm-2"></div>
+      				<div class="col-sm-8">
+	      				<div style="text-align: center;">
+							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;"></span>
+						</div>
+						<br><br>
+						<div style="text-align: center;" id="customAlertText">
+							My Alert
+						</div>
+					</div>
+					<div class="col-sm-2"></div>
+      			</div>
+      			<br>
+      			<div class="row text-center">
+      				<a href="" class="btn btn-sm btn-danger-custom" data-dismiss="modal" style="width:100px;">OK</a>
+      			</div>
+      			<br><br>
+      		</div>
+    	</div>
+  	</div>
 </div>
 <script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 <script>
@@ -183,5 +279,9 @@ function ajaxindicatorstop()
     jQuery('#resultLoading .bg').height('100%');
        jQuery('#resultLoading').fadeOut(300);
     jQuery('body').css('cursor', 'default');
+}
+function customAlert(msg) {
+	$("#customAlertText").html(msg);
+	$('#customAlertBox').modal({show:true,backdrop: 'static',keyboard: false});
 }
 </script>

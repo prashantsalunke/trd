@@ -387,7 +387,7 @@ body{
    width: 228px;
    height: auto;
    white-space: normal;
-   padding: 15px 10px 14px 10px;
+   padding: 10px 10px 10px 10px;
    background-color: #FF8C00;
    background-image: none;
    border: 1px #FFA500 solid;
@@ -791,10 +791,10 @@ position:absolute;left:8px;top:98px;width:39px;height:39px;z-index:1094;
 	 top: 10%;    left: 40%;   width: 27%;
 }
 .s10{
-	position:absolute;left:75px;top:94%;width:35px;height:13px;z-index:999
+	position:absolute;left:75px;top:92%;width:35px;height:13px;z-index:999
 }
 .s11{
-	position:absolute;right:75px;top:94%;width:35px;height:13px;z-index:999
+	position:absolute;right:75px;top:92%;width:35px;height:13px;z-index:999
 }
 a{
 	cursor:pointer;
@@ -828,7 +828,7 @@ width:74px;height:15px;z-index:3560;text-align:left;
 .c12{
 	position: absolute;
     text-align: left;
-    left: 1042px;
+    left: 1120px;
     top: 14px;
     width: 200px;
     height: 53px;
@@ -1937,7 +1937,9 @@ a.style5:hover
 #Layer42 {
 	position:absolute;
 	text-align:left;
-	left:53px;
+	left:0;
+	right:0;
+	margin:0 auto;
 	top:15px;
 	width:500px !important;
 	height:651px;
@@ -1955,7 +1957,9 @@ a.style5:hover
 #Layer145 {
 	position:absolute;
 	text-align:left;
-	left:233px;
+	left:0;
+	right:0;
+	margin:0 auto;
 	top:20px;
 	width:503px;
 	height:529px;
@@ -1973,7 +1977,9 @@ a.style5:hover
 #Layer80 {
 	position:absolute;
 	text-align:left;
-	left:122px;
+	left:0;
+	right:0;
+	margin:0 auto;
 	top:29px;
 	width:337px;
 	height:519px;
@@ -1997,7 +2003,9 @@ a.style5:hover
 #Layer150 {
 	position:absolute;
 	text-align:left;
-	left:65px;
+	left:0;
+	right:0;
+	margin:0 auto;
 	top:28px;
 	width:340px;
 	height:402px;
@@ -2015,7 +2023,9 @@ a.style5:hover
 #Layer66 {
 	position:absolute;
 	text-align:left;
-	left:95px;
+	left:0;
+	right:0;
+	margin:0 auto;
 	top:18px;
 	width:501px;
 	height:556px;
@@ -2039,7 +2049,9 @@ a.style5:hover
 #Layer73 {
 	position:absolute;
 	text-align:left;
-	left:328px;
+	left:0;
+	right:0;
+	margin:0 auto;
 	top:27px;
 	width:509px;
 	height:574px;
@@ -2063,7 +2075,9 @@ a.style5:hover
 #Layer8 {
 	position:absolute;
 	text-align:left;
-	left:293px;
+	left:0;
+	right:0;
+	margin:0 auto;
 	top:20px;
 	width:454px;
 	height:635px;
@@ -2229,7 +2243,9 @@ a.style5:hover
 #Layer15 {
 	position:absolute;
 	text-align:left;
-	left:117px;
+	left:0;
+	right:0;
+	margin:0 auto;
 	top:50px;
 	width:437px;
 	height:271px;
@@ -2336,13 +2352,15 @@ a.style5:hover
 #Layer63 {
 	position:absolute;
 	text-align:left;
-	left:117px;
+	left:0;
+	right:0;
+	margin:0 auto;
 	top:50px;
-	width:518px;
+	width:470px;
 	height:240px;
 	z-index:3655;
 	background-color: rgba(0,0,0,.6);
-    padding: 15px;
+    padding:25px 15px;
     border: 1px #FFFFFF solid;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -2418,10 +2436,10 @@ a.style5:hover
 }
 #Layer27 {
     background-color: transparent;
-    background-image: url(../../images/Car0.jpg);
+    /*background-image: url(../../images/Car0.jpg);
     background-repeat: no-repeat;
     background-position: center bottom;
-    background-size: cover;
+    background-size: cover;*/
     -moz-box-shadow: -2px 2px 8px #000000;
     -webkit-box-shadow: -2px 2px 8px #000000;
     box-shadow: -2px 2px 8px #000000;
@@ -2444,7 +2462,7 @@ a.style5:hover
 #Layer30 {
     background-color: #000000;
     filter: alpha(opacity=60);
-    opacity: 0.60;
+    opacity: 0.70;
 }
 a.style24
 {
@@ -2487,13 +2505,33 @@ a.style24:hover
 #Layer45 {
 	position:absolute;
 	text-align:left;
-	left:156px;
+	left:0px;
 	top:55px;
 	width:270px;
 	height:550px;
 	z-index:3796;
     background-color: rgba(0,0,0,.6);
     padding: 15px;
+    border: 1px #FFFFFF solid;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -moz-box-shadow: 2px -1px 12px #000000;
+    -webkit-box-shadow: 2px -1px 12px #000000;
+    box-shadow: 2px -1px 12px #000000;
+}
+.slideboxlayer {
+    width: 434px;
+    position: absolute;
+    top:10%;
+    left:0;
+    right:0;
+    margin:0 auto;
+    text-align: left;
+    visibility: hidden;
+    z-index: 3866;
+    background-color: rgba(0,0,0,.6);
+    padding: 20px;
     border: 1px #FFFFFF solid;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;

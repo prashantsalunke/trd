@@ -594,7 +594,7 @@ position:absolute;left:10px;top:63px;width:190px;height:155px;z-index:174;
     position: absolute !important;;
     text-align: left !important;;
     left: 0 !important;; 
-    top: 0px; 
+    top: 1px; 
     width:100% !important;; 
     height: 172px; 
     z-index: 137; 
@@ -1388,7 +1388,7 @@ a:visited {
     color: #666666;
 }
 .section8{
-	position:absolute;text-align:left;right:0;top:0px;width:220px;height:172px;z-index:137;
+	position:absolute;text-align:left;right:0;top:1px;width:220px;height:172px;z-index:137;
 }
 .section9{
 	position: absolute; text-align: left; right:-1px;visibility: hidden;   width: 48px; height: 174px; z-index: 155;

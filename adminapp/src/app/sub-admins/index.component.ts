@@ -9,11 +9,9 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 export class IndexComponent implements OnInit {
   @ViewChild('autoShownModal') autoShownModal: ModalDirective;
   
-  constructor() {    console.log('dfdf');
-}
+  constructor() {}
 
   ngOnInit() {
-    console.log('dfdf');
   }
 
 }

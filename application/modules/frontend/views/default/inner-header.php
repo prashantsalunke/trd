@@ -6,102 +6,6 @@
  .blue-color {
  	color:#1E90FF;
  }
-.catalog_c_img {
-	border: none;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-image: url(../../../assets/images/img2096.png);
-    background-repeat: no-repeat;
-    background-position: 50%;
-}
-.catalogue_modal_body {
-	background-color:transparent;background-image:url('.../../assets/images/vcat_insider.png');background-size:cover;padding-top: 110px;
-}
-.catalogue_outer_body {
-	width: 700px;
-    margin-left: 110px;
-}
-.catalogue_page_item_name {
-	color:#303030;font-family:Georgia;font-size:13px;padding-bottom:5px;padding-top:8px;
-}
-.catalogue_page_item_details {
-	color:#787878;font-family:Arial;font-size:11px;padding-bottom:10px;
-}
-.catalogue_page_item_quantity {
-	color:#1E90FF;font-family:Arial;font-size:11px;padding-bottom:25px;
-}
-.catalogue_page_item_price_div {
-	text-align: center;
-	margin-bottom: -10px;
-    z-index: 1;
-}
-.catalogue_page_item_price {
-	background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:17px;padding: 2px 10px;
-}
-.catalogue_page_item_mimg {
-	width:303px;height:268px;padding-bottom:5px;
-}
-.catalogue_page_left_num {
-	padding-top: 10px;
-	background-color:#fff;
-}
-.catalogue_page_no_text {
-	color:#D3D3D3;font-family:Arial;font-size:11px;
-}
-.catalogue_page_no_num {
-	color:#FF6347;font-family:'Arial Black';font-size:16px;
-}
-.catalogue_page_item_mimg-sm {
-	width:150px;height:115px;margin-top: 10px;
-}
-.catalogue_page_right_num {
-	padding-top: 10px;
-	background-color:#fff;
-}
-.catalogue_main_img {
-	border: 1px solid #eee;
-	width: 303px;
-    height: 268px;
-}
-.catalogue_sub_img {
-	border: 1px solid #eee;
-	width: 150px;
-    height: 115px;
-}
-.catalogue_modal_close {
-	width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #fff !important;
-    font-size: 19px;
-    opacity: 1;
-}
-li.share-button a{
-	font-size:20px;
-	color:#fa5c43;
-	border :2px solid;
-	margin-top: 20px;
-	border-radius :50%;
-	padding: 4px;
-	width:25px;
-	height :25px;
-}
-li.share-button a:hover{
-	font-size:20px;
-	color:#ffffff;
-	border :2px solid;
-	margin-top: 20px;
-	border-radius :50%;
-	padding: 4px;
-	width:30px;
-	height :30px;
-}
-ul.share{
-	list-style-type: none;
-	margin-top:  100%;
-	line-height: 50px;
-}
 .dropdownsection {
 	width: 216px;
     height: 27px;
@@ -157,13 +61,16 @@ ul.share{
 	color: #D3D3D3;
     border: 0px #FFFFFF solid;
     background-color: #3C3C3C;
-    background-image: none;
     font-family: Arial;
     font-weight: bold;
     font-size: 13px;
     font-style: normal;
     width: 100%;
     border-radius: 0px;
+    background-image: url(<?php echo asset_url();?>images/MENUICON.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 24px;
 }
 .btn-main-cat:focus {
 	color: #212121;
@@ -333,7 +240,7 @@ ul.hover-red-menu li.open a.firstmain{
 								<a href="<?php echo base_url();?>b-station"><img src="<?php echo base_url();?>assets/images/ts/trade.png" style="width: 50px;">
 								<h5>B-Station</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-							<a href="<?php echo base_url();?>pro-video"><img src="assets/images/ts/vidtube0.png" style="width: 50px;">
+							<a href="<?php echo base_url();?>pro-video"><img src="<?php echo base_url();?>assets/images/ts/vidtube0.png" style="width: 50px;">
 								<h5 <?php if($page == 'pro-videos'){?>class="blue-color"<?php }?>>Pro-Videos</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
 								<a href="<?php echo base_url();?>buyer"><img src="<?php echo base_url();?>assets/images/ts/buyer.png" style="width: 50px;">
@@ -1227,7 +1134,7 @@ ul.hover-red-menu li.open a.firstmain{
 										
 									</div>
 								</div>
-								<div class="col-sm-5 padding-0" style="padding-right: 3px;">
+								<div class="col-sm-5 padding-0" style="padding-right: 3px;width:187px;">
 									<div class="dropdown">
 										<select class="search-box search-dp" id="city" name='city'>
 											<option value="">City</option>
@@ -1237,16 +1144,7 @@ ul.hover-red-menu li.open a.firstmain{
 										</select>
 									</div>
 								</div>
-								<!-- div class="col-sm-8 padding-0">
-									<div class="dropdown">
-										<select class="search-box search-dp" name='type'>
-											<option value="">More</option>
-											<option value="0" <?php if(!empty($params['type']) && $params['type'] == 0) { ?>selected<?php } ?>>Show Audited First</option>
-											<option value="1" <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show All</option>
-										</select>
-									</div>
-								</div-->
-								<div class="col-sm-2 padding-0">
+								<div class="col-sm-2 padding-0" style="width:60px;">
 									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
 								</div>
 							</div>
@@ -1311,16 +1209,16 @@ ul.hover-red-menu li.open a.firstmain{
 								</div>
 							</div>
 							<div class="col-sm-5" style="padding:0px;">
-								<div class="col-sm-8" style="padding:0px;">
+								<div class="col-sm-9" style="padding: 0px 2px;width: 161px;">
 									<div class="dropdown">
 										<select class="search-box search-dp"  name='type'>
 											<option value="">More</option>
-											<option value="1"  <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show Verified Member First</option>
+											<option value="1"  <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show Verified First</option>
 											<option value="2"  <?php if(!empty($params['type']) && $params['type'] == 2) { ?>selected<?php } ?>>Show All</option>
 										</select>
 									</div>
 								</div>
-								<div class="col-sm-4" style="padding:0px;padding-left:2px;">
+								<div class="col-sm-3" style="padding:0px;padding-left: 0px;width: 60px;">
 									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
 								</div>
 							</div>
@@ -1399,35 +1297,83 @@ ul.hover-red-menu li.open a.firstmain{
 							</div>
 						</div>
 					</form>
+				<?php } else if($page == 'shipperdesksite') { ?>
+					<form method="get" action="<?php echo base_url();?>shipper/desksites" style="padding-top:25px;" name="shipperdfrm" onsubmit="return validateForm('shipperdfrm');">
+						<div class="col-sm-2 col-xs-11" style="padding: 0px;">
+							<a class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" id="shipper_dcat_label">
+						   		<?php 
+						   		$subcat = "";
+						   		foreach ($mcats as $mcat) {
+					   				foreach ($mcat['subcats'] as $scat) {
+					   					if(!empty($params['cat_id']) && $params['cat_id'] == $scat['id']) {
+					   						$subcat = $scat['name'];
+					   					}
+					   				}
+						   		}
+						   		if(!empty($subcat)) {
+						   			echo $subcat;
+						   		} else { ?>
+						   		Categories<?php } ?> <span class="caret pull-right caret-vmiddle"></span>
+						  	</a>
+							<input type="hidden" name="cat_id" id="shipper_dcat_id" value="<?php if(!empty($params['cat_id'])) { echo $params['cat_id'];}?>"/>
+							<ul class="dropdown-menu hover-red-menu">
+						  		<?php foreach ($mcats as $mcat) { ?>
+						    	<li class="dropdown">
+						      		<a href="#" class="firstmain"><?php echo $mcat['name'];?></a>
+						      		<ul class="dropdown-menu">
+						      			<?php foreach ($mcat['subcats'] as $scat) { ?>
+						        		<li><a href="javascript:selectShipperDScat(<?php echo $scat['id'];?>,`<?php echo $scat['name'];?>`);"><?php echo $scat['name'];?></a></li>
+						        		<?php } ?>
+						       		</ul>
+						    	</li>
+						    	<?php } ?>
+						  	</ul>
+						</div>
+						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+						</div>
+						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
+							<div>
+								<div class="col-sm-5 padding-0" style="padding-right: 3px;">
+									<div class="dropdown">
+										<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
+											<option value="">Country</option>
+											<?php foreach ($Country as $country){?>
+												<option value="<?php echo $country['name'];?>" <?php if(!empty($params['country']) && $params['country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
+											<?php }?>
+										</select>
+										
+									</div>
+								</div>
+								<div class="col-sm-5 padding-0" style="padding-right: 3px;">
+									<div class="dropdown">
+										<select class="search-box search-dp" id="city" name='city'>
+											<option value="">City</option>
+											<?php foreach($cities as $city){?>
+												<option value="<?php echo $city['company_city']?>" <?php if(!empty($params['city']) && $params['city'] == $city['company_city']) { ?>selected<?php } ?>><?php echo $city['company_city']?></option>
+											<?php }?>
+										</select>
+									</div>
+								</div>
+								<!-- div class="col-sm-8 padding-0">
+									<div class="dropdown">
+										<select class="search-box search-dp" name='type'>
+											<option value="">More</option>
+											<option value="0" <?php if(!empty($params['type']) && $params['type'] == 0) { ?>selected<?php } ?>>Show Audited First</option>
+											<option value="1" <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show All</option>
+										</select>
+									</div>
+								</div-->
+								<div class="col-sm-2 padding-0">
+									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+								</div>
+							</div>
+						</div>
+					</form>
 				<?php } ?>
 			</div>
 		</div>
 	</div>
-<div id="vcatalogue_overlay" class="modal fade" style="background-color:#404040;z-index:5051;">
-	<div class="modal-dialog" style="background-color:#404040;width:990px;">
-		<div class="modal-content" style="background: transparent;box-shadow:none;-webkit-box-shadow:none;border: 0px;">
-				<div class="modal-header" style="border:0px;">
-					<button type="button" class="close catalogue_modal_close" data-dismiss="modal" aria-hidden="true">x</button>
-				</div>
-				<div class="modal-body catalogue_modal_body" style="width:960px;height:603px;">
-					<input type="hidden" id="pcatalogue_id" value="" />
-					<div class="row">
-						<div class="col-md-10">
-							<div id="catalogue_page_content_inner" class="catalogue_outer_body">
-							</div>
-						</div>
-						<div class="col-md-2 " style="float:left">
-							<ul class="share pull-right">
-								<li class="share-button"><a href=""><i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i></a></li>
-								<li class="share-button"><a href=""><i class="fa fa-comments" aria-hidden="true">&nbsp;</i></a></li>
-								<li class="share-button"><a href=""><i class="fa fa-share-alt" aria-hidden="true">&nbsp;</i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-		</div>
-	</div>
-</div>
 <div id="accessDeniedModalLogin" class="modal fade" role="dialog">
   	<div class="modal-dialog" style="width:400px;">
     	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
@@ -1481,8 +1427,6 @@ ul.hover-red-menu li.open a.firstmain{
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-slide.min.js"></script> 
 <script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/slick.js"></script>
-<link href="<?php echo asset_url();?>css/jquery.booklet.1.1.0.css?1.1" rel="stylesheet">
-<script src="<?php echo asset_url();?>js/jquery.booklet.1.1.0.min.js?1.1"></script>
 <script src="<?php echo asset_url();?>js/jquery.easing.1.3.js?1.1"></script>
 	<script type="text/javascript">
  
@@ -1711,81 +1655,6 @@ $(document).ready(function()
    $("#wb_Image10").tooltip(jQueryToolTip1Opts);
    $("#Layer_buyer").stickylayer({orientation: 9, position: [0, 0], delay: 0, keepOriginalPos: true});
 });
-function viewCatalogueBook(id) {
-	$.get(base_url+"catalogue/popup/"+id,{},function(data){
-		$("#catalogue_page_content_inner").html(data);
-		$("#pcatalogue_id").val(id);
-		$("#vcatalogue_overlay").modal('show');
-		var $mybook 		= $('#mybook');
-		var $bttn_next		= $('#next_page_button');
-		var $bttn_prev		= $('#prev_page_button');
-		var $loading		= $('#loading');
-		var $mybook_images	= $mybook.find('img');
-		var cnt_images		= $mybook_images.length;
-		var loaded			= 0;
-		//preload all the images in the book,
-		//and then call the booklet plugin
-		$mybook_images.each(function(){
-			var $img 	= $(this);
-			var source	= $img.attr('src');
-			$('<img/>').load(function(){
-				++loaded;
-				if(loaded == cnt_images){
-					$loading.hide();
-					$bttn_next.show();
-					$bttn_prev.show();
-					$mybook.show().booklet({
-						name:               null,                            // name of the booklet to display in the document title bar
-						width:              740,                             // container width
-						height:             450,                             // container height
-						speed:              600,                             // speed of the transition between pages
-						direction:          'LTR',                           // direction of the overall content organization, default LTR, left to right, can be RTL for languages which read right to left
-						startingPage:       0,                               // index of the first page to be displayed
-						easing:             'easeInOutQuad',                 // easing method for complete transition
-						easeIn:             'easeInQuad',                    // easing method for first half of transition
-						easeOut:            'easeOutQuad',                   // easing method for second half of transition
-
-						closed:             false,                           // start with the book "closed", will add empty pages to beginning and end of book
-						closedFrontTitle:   null,                            // used with "closed", "menu" and "pageSelector", determines title of blank starting page
-						closedFrontChapter: null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank starting page
-						closedBackTitle:    null,                            // used with "closed", "menu" and "pageSelector", determines chapter name of blank ending page
-						closedBackChapter:  null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank ending page
-						covers:             false,                           // used with  "closed", makes first and last pages into covers, without page numbers (if enabled)
-
-						pagePadding:        10,                              // padding for each page wrapper
-						pageNumbers:        false,                            // display page numbers on each page
-
-						hovers:             false,                            // enables preview pageturn hover animation, shows a small preview of previous or next page on hover
-						overlays:           false,                            // enables navigation using a page sized overlay, when enabled links inside the content will not be clickable
-						tabs:               false,                           // adds tabs along the top of the pages
-						tabWidth:           60,                              // set the width of the tabs
-						tabHeight:          20,                              // set the height of the tabs
-						arrows:             true,                           // adds arrows overlayed over the book edges
-						cursor:             'pointer',                       // cursor css setting for side bar areas
-
-						hash:               false,                           // enables navigation using a hash string, ex: #/page/1 for page 1, will affect all booklets with 'hash' enabled
-						keyboard:           true,                            // enables navigation with arrow keys (left: previous, right: next)
-						next:               $bttn_next,          			// selector for element to use as click trigger for next page
-						prev:               $bttn_prev,          			// selector for element to use as click trigger for previous page
-
-						menu:               null,                            // selector for element to use as the menu area, required for 'pageSelector'
-						pageSelector:       false,                           // enables navigation with a dropdown menu of pages, requires 'menu'
-						chapterSelector:    false,                           // enables navigation with a dropdown menu of chapters, determined by the "rel" attribute, requires 'menu'
-
-						shadows:            true,                            // display shadows on page animations
-						shadowTopFwdWidth:  166,                             // shadow width for top forward anim
-						shadowTopBackWidth: 166,                             // shadow width for top back anim
-						shadowBtmWidth:     50,                              // shadow width for bottom shadow
-
-						before:             function(){},                    // callback invoked before each page turn animation
-						after:              function(){}                     // callback invoked after each page turn animation
-					});
-					//Cufon.refresh();
-				}
-			}).attr('src',source);
-		});
-	},'html');
-}
 
 function addToMyFavourite(fav_id,type) {
 	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(data) {
@@ -1835,6 +1704,11 @@ function selectSellerDScat(scat_id,name) {
 	$("#seller_dcat_id").val(scat_id);
 	$("#seller_dcat_label").html(name+' <span class="caret pull-right caret-vmiddle"></span>');
 	document.sellerdfrm.submit();
+}
+function selectShipperDScat(scat_id,name) {
+	$("#shipper_dcat_id").val(scat_id);
+	$("#shipper_dcat_label").html(name+' <span class="caret pull-right caret-vmiddle"></span>');
+	document.shipperdfrm.submit();
 }
 function addToCommunity(id) {
 	$.get(base_url+"addtomycommunity/"+id,{},function(data) {

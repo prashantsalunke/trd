@@ -15,20 +15,21 @@
 	  			<span style="padding-left:22px;color:#2D2D2D;font-family:Arial;font-size:11px;">The following product has beeb linked successfully</span>
 	  		</div>
 	  	</div><br><br>
-	  	<input type="hidden" name="oldproductid" value="<?php echo $product_id;?>" id="oldproductid" />
-	  	<input type="hidden" name="newproductid" value="<?php echo $product_id;?>" id="newproductid" />
+	  	<input type="hidden" name="did" value="<?php echo $productdata[0]['did'];?>" id="did" />
+	  	<input type="hidden" name="oldproductid" value="<?php echo $productdata[0]['id'];?>" id="oldproductid" />
+	  	<input type="hidden" name="newproductid" value="<?php echo $productdata[0]['id'];?>" id="newproductid" />
   		<div class="row">
 	  		<div class="col-md-12" >
 	  			<div class="col-md-3" style="padding-top: 18px;background-color: #DCDCDC;text-align:left;width:562px;height:136px;">
 	  				<div class="col-sm-12" >
-	  					<div class="col-sm-3" style="border:solid;border-radius: 7px;" >
-							<a href="./desk_details.php" target="_blank"><img id="pimg" src="<?php echo asset_url().$productdata[0]['main_image'];?>" style="width:104px;height:103px;"></a>
+	  					<div class="col-sm-3" style="padding:0px;" >
+							<a href="<?php echo base_url();?>products/details/<?php echo $productdata[0]['id'];?>" target="_blank"><img id="pimg" src="<?php echo asset_url().$productdata[0]['main_image'];?>" style="width:104px;height:103px;border:2px solid #ccc;border-radius: 7px;"></a>
 						</div>
-	  					<div class="col-sm-8"  style="padding-left: 70px;">
+	  					<div class="col-sm-9">
 							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;" id="pmodel_no">Product No.: <?php echo $productdata[0]['model_no']?></span><br>
 							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Product Name: </span>
-							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;" id="pname"><?php echo $productdata[0]['name']?></span><br><br>
-							<span style="color:#808080;font-family:Arial;font-size:11px;" id="pdescription"><?php echo $productdata[0]['description']?></span>
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;" id="pname"><?php echo $productdata[0]['name'];?></span><br><br>
+							<span style="color:#808080;font-family:Arial;font-size:11px;" id="pdescription"><?php echo substr($productdata[0]['description'],0,200);?><?php if(strlen($productdata[0]['description']) > 200) { ?>...<?php } ?></span>
 						</div>
 					</div>
 				</div>
@@ -50,8 +51,8 @@
 	  			<input type="hidden" id="fileid" name="fileid" />
 	  			<input type="file"  name="filechangeimage"   id="filechangeimage"  onchange="setBackground('filechangeimage',this,350,400,500);"  style="display: none"/>
 	  			<?php  $i=1; foreach($productimage as $row) { ?>
-	  				<div class="col-md-2" style="padding-left: 22px;">
-	  					<img src="<?php echo asset_url().$row['image'];?>" id="frame_<?php echo $row['id'];?>" style="width:100px;height: 200px;">
+	  				<div class="col-md-2 text-center" style="padding-bottom:10px;">
+	  					<img src="<?php echo asset_url().$row['image'];?>" id="frame_<?php echo $row['id'];?>" style="width:100%;">
 	  					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">frame_<?php echo $i;?>.png</span><br>
 	  					<a href="#" style="color:#1E90FF;font-family:'Arial Black';font-size:12px;" id="changeimage" onclick="changeimage(<?php echo $row['id'];?>);"><u>Change</u></a>
 	  				</div>
@@ -65,59 +66,16 @@
 		  			<button type="button"  onclick="openEdit3Dproduct();" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Cancel</span></button>
 	  			</div>
 	  			<div class="col-md-2" >
-	  				<button type="button"  data-toggle="modal"  data-target="#testproduct_modal"  style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Test</span></button>
+	  				<button type="button" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;" onclick="open3DProduct(<?php echo $productdata[0]['did'];?>);"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Test</span></button>
 	  			</div>
 	  			<div class="col-md-2" >
-	  				<button type="button"  onclick="createlink();" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Create</span></button>
+	  				<button type="button"  onclick="createlink();" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Link Product</span></button>
 	  			</div>
 			</div>
 	  	</div><br><br>
    </div>
  </div>
  </form>
- <div id="testproduct_modal" class="modal fade" role="dialog">
-  	<div class="modal-dialog" style="width: 294px;height: 406px;padding-top:4%;">
-    	<div class="modal-content">
-      		<div class="modal-body" style="background-color: #FAFAFA;">
-      			<form name="frmedit_product" method="post" action="" enctype="multipart/form-data" id="frmedit_product">
-      				<div class="row">
-      					<div class="col-md-12" style="text-align: center;">
-      						<a href=".#" target="_blank" class="style16"><?php echo $productdata[0]['name'];?></a>
-      					</div>
-      				</div>
-      				<div class="row">
-      					<div class="col-md-12" style="text-align: center;">
-      						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo $productdata[0]['description'];?></span>
-      					</div>
-      				</div>
-        			<div id="divtestproduct" style="max-height: 300px;overflow-y: scroll;text-align: justify;padding-bottom:22px;">
-        					<img alt=""  style="width:350px;height:400px;" id="popuptestimg"  src="<?php echo asset_url().$productdata[0]['main_image'];?>">
-        			</div>
-        			<div class="row">
-      					<div class="col-md-12" style="text-align: center;">
-      						<span style="color:#A9A9A9;font-family:Arial;font-size:13px;">USD <span style="color:#3C3C3C;font-family:Arial;font-size:24px;"><?php echo $productdata[0]['unit_price'];?></span></span>
-      					</div>
-      				</div>
-      				<div class="row">
-      					<div class="col-md-12" style="text-align: center;">
-      						<span style="background-color:#FFFFFF;color:#3C3C3C;font-family:Arial;font-size:13px;">Min. Order: <?php echo $productdata[0]['quantity'];?> Set&nbsp;&nbsp;&nbsp; </span>
-      					</div>
-      				</div>
-      				<div class="row">
-      					<div class="col-md-12" style="text-align: center;">
-      						<span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Likes</span> <i class="fa fa-thumbs-up" aria-hidden="true" style="color:red"></i><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">1000</span>
-      					</div>
-      				</div>
-        		</form>
-      		</div>
-    	</div>
-	    <div style="padding-left: 40%;padding-top: 22px;">
-	    	<div class="modal-footer" style="width: 105px; height: 10px; background-color: #FF6347;border: 1px #FF6347 solid;">
-	        		<button type="button" class="close"  style="text-align: center; width: 60px; height: 10px;color: #FFFFFF; font-family: Arial;font-size: 13px;" data-dismiss="modal">Close</button>
-	      	</div>
-	    </div>	
-  	</div>
-</div>
 
  <div id="editdproduct_modal" class="modal fade" role="dialog">
   	<div class="modal-dialog" style="width:80%;padding-top:4%;">
@@ -141,6 +99,13 @@
   	</div>
 </div>
  <script>
+ function open3DProduct(id) {
+	$.get(base_url+"mystation/3dpro/show/"+id, {}, function(data){
+		$("#promodal").html(data);
+		$("#my3DModal").modal('show');
+		init3D('my3dimg');
+	},'html');
+ }
  function setBackground(id,input,width,height,size) {
 	  	if (input.files && input.files[0]) {
 	    	var reader = new FileReader();
@@ -155,19 +120,20 @@
 	                var imgwidth = this.width;
 	                if(ext == 'jpg' || ext == 'jpeg' || ext == 'png') {
 		                if(filesizeinkb > size) {
-		                	alert("Image size should be "+size+"kb max.");
+		                	customAlert("Image size should be "+size+"kb max.");
 		                    $('#'+id).val('');
 		                } else {
 			                if (imgwidth != width || imgheight != height) {
-			                    alert("Image dimensions should be "+width+"*"+height+" Pixel.");
+			                	customAlert("Image dimensions should be "+width+"*"+height+" Pixel.");
 			                    $('#'+id).val('');
 			                } else {
 			                	changeDimage();
-			                	//$('#'+id).css('background-image', 'url('+e.target.result+')').css('background-size','cover');
+			                	var id = "frame_"+document.getElementById('fileid').value
+			                	$('#'+id).css('background-image', 'url('+e.target.result+')').css('background-size','cover');
 			                }
 		                }
 	                } else {
-	                	alert("Image should be JPG or JPEG.");
+	                	customAlert("Image should be JPG or JPEG.");
 	                    $('#'+id).val('');
 	                }
 	            };
@@ -183,9 +149,9 @@
 	 
 	 if(newproductid != "")
 	 {
-		 linkproduct();
+		 linkProductUpdate();
 	 } else {
-		 alert('Please Select New Product to Link with 3D Images.');
+		 customAlert('Please Select New Product to Link with 3D Images.');
 	 }
  }
  function changeimage(id)
@@ -193,9 +159,9 @@
 	 document.getElementById('fileid').value = id;
 	 $("#filechangeimage").trigger('click');
  }
- $('#filechangeimage').on('change', function() {
+ /*$('#filechangeimage').on('change', function() {
 	 setBackground();
- });
+ });*/
  var asseturl = '<?php echo asset_url();?>';
  function chooseproduct()
  {
@@ -207,7 +173,7 @@
 		if(values.length > 0 ) {
 			if(values.length > 1)
 			{
-				alert('Please select Only one product to link 3d  Images.');
+				customAlert('Please select Only one product to link 3d  Images.');
 			} else {
 				 	var productid = values[0];
 				 	$.post("<?php echo base_url();?>mystation/getproductbyid",{productid:productid},function(data) {
@@ -220,7 +186,7 @@
 				 	},'json');
 			}
 		} else {
-			alert('Please select product to link 3d  Images.');
+			customAlert('Please select product to link 3d  Images.');
 		}
  }
  function getproductlist()
@@ -388,10 +354,11 @@ if(resp.status == 0) {
 	//getMyAccount();
 	//window.location.reload();
 	}
-ajaxindicatorstop();
+	ajaxindicatorstop();
 }
 $('#profile_pic_modal').on('hidden.bs.modal' , function() {
 	$('#photo').imgAreaSelect( {remove: true} );
 });
+
 </script>
  

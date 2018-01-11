@@ -126,7 +126,7 @@ pre {
 				<div class="panel panel-default product-box" style="height:485px;">
 				    <div class="panel-body center">
 				    	<div class="row">
-				    		<h6><a href="javascript:productDetail(<?php echo $item['id'];?>);" target="_self"><?php echo $item['name']?></a></h6>
+				    		<h6><span style="color:#1E90FF;font-family:Arial;font-size:16px;"><?php echo $item['name']?></span></h6>
 			    		</div>
 				    	<div class="row" style="padding:0px 30px;">
 					    	<div style="padding-bottom:15px;"><?php echo substr($item['description'],0,90);?> <?php if(strlen($item['description']) > 90) { ?>...<?php } ?></div>
@@ -134,7 +134,7 @@ pre {
 					    	<br>
 				    		<div><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">USD</span>&nbsp;&nbsp; <span style="color:#3C3C3C;font-family:Arial;font-size:24px;"><?php echo $item['unit_price'];?></span></div>
 		    				<div><span style="background-color:#FFFFFF;color:#3C3C3C;font-family:Arial;font-size:13px;">Min. Order: <?php echo $item['quantity'].' '.$item['unit'];?> </span></div>
-		    				<div><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Likes</span> <i class="fa fa-thumbs-up" style="color:#fa5036;"></i> <span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo $item['likes'];?></span></div>
+		    				<div><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Likes</span> <img src="<?php echo asset_url();?>images/items_like0.png" id="Image31" alt="" style="width:26px;height:26px;"> <span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo $item['likes'];?></span></div>
 	    				</div>
 			    	</div>
 		    	</div>
@@ -145,3 +145,16 @@ pre {
 			<h4>Opps there are no products for this category.</h4>
 		<?php } ?>
 	</div>
+	<div id="Layer89" class="container" style="margin-top:80px;">
+		<div id="Layer89_Container" style="width:1280px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+			<div id="Layer90" style="position:absolute;text-align:center;height:53px;z-index:190;background-color: #4B4B4B;">
+				<div id="Layer90_Container" style="width:1067px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+				<div id="wb_Text76" style="position:absolute;left:344px;top:12px;width:415px;height:12px;z-index:188;text-align:left;">
+				<span style="color:#FFFFFF;font-family:Georgia;font-size:9.3px;">All contents in this Desksite ( Images, Information, Videos ...etc) are a private property for </span></div>
+				<div id="wb_Text131" style="position:absolute;left:482px;top:29px;width:102px;height:15px;z-index:189;text-align:left;">
+				<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">Company Name</span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br>

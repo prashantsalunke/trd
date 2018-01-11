@@ -13,6 +13,14 @@
 <script src="<?php echo asset_url(); ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 <script>
+$(document).ready(function() {
+	$("#FileUpload1").change(function() {
+	    if($("#FileUpload1")[0].files.length > 4) {
+	        alert("You can select only 4 files");
+	        $("#FileUpload1").val('');
+	    }
+	});
+});
 function ajaxindicatorstart(text)
 {
 	if(jQuery('body').find('#resultLoading').attr('id') != 'resultLoading'){
@@ -81,6 +89,78 @@ function Validatecontact()
       	theForm.FileUpload1.focus();
       	return false;
    	}
+   	if (theForm.Editbox5.value == "")
+    {
+       alert("Please Enter The Contact Name");
+       theForm.Editbox5.focus();
+       return false;
+    }
+    if (theForm.Editbox5.value.length < 2)
+    {
+       alert("Please Enter The Contact Name");
+       theForm.Editbox5.focus();
+       return false;
+    }
+    if (theForm.Editbox5.value.length > 100)
+    {
+       alert("Please Enter The Contact Name");
+       theForm.Editbox5.focus();
+       return false;
+    }
+    if (theForm.Editbox12.value == "")
+    {
+       alert("Please Enter Your Company Name");
+       theForm.Editbox12.focus();
+       return false;
+    }
+    if (theForm.Editbox12.value.length < 2)
+    {
+       alert("Please Enter Your Company Name");
+       theForm.Editbox12.focus();
+       return false;
+    }
+    if (theForm.Editbox12.value.length > 100)
+    {
+       alert("Please Enter Your Company Name");
+       theForm.Editbox12.focus();
+       return false;
+    }
+    if (theForm.Editbox13.value == "")
+    {
+       alert("Please Enter A Valid Email");
+       theForm.Editbox13.focus();
+       return false;
+    }
+    if (theForm.Editbox13.value.length < 10)
+    {
+       alert("Please Enter A Valid Email");
+       theForm.Editbox13.focus();
+       return false;
+    }
+    if (theForm.Editbox13.value.length > 128)
+    {
+       alert("Please Enter A Valid Email");
+       theForm.Editbox13.focus();
+       return false;
+    }
+    if (theForm.Editbox11.value == "")
+    {
+       alert("Please Enter Your Phone Including The Country Code");
+       theForm.Editbox11.focus();
+       return false;
+    }
+    if (theForm.Editbox11.value.length < 10)
+    {
+       alert("Please Enter Your Phone Including The Country Code");
+       theForm.Editbox11.focus();
+       return false;
+    }
+    if (theForm.Editbox11.value.length > 20)
+    {
+       alert("Please Enter Your Phone Including The Country Code");
+       theForm.Editbox11.focus();
+       return false;
+    }
    	return true;
 }
 function saveRequest() {
@@ -109,6 +189,7 @@ function showAddResponse(resp, statusText, xhr, $form){
 		ajaxindicatorstop();
   	} else {
   		ajaxindicatorstop();
+  		alert("Enquiry added successfully.");
   		window.close();
   	}
 }
@@ -121,13 +202,18 @@ function showAddResponse(resp, statusText, xhr, $form){
 <form name="contact" method="post" action="" enctype="application/x-www-form-urlencoded" id="Form4" >
 <input type="hidden" name="busi_id" id="busi_id" value="<?php echo $desksite[0]['busi_id'];?>" />
 <input type="hidden" name="my_busi_id" id="my_busi_id" value="<?php echo $mydesksite[0]['busi_id'];?>" />
+<input type="hidden" name="product_id" id="product_id" value="0" />
+<input type="hidden" name="post_type" id="post_type" value="0" />
+<input type="hidden" name="post_id" id="post_id" value="0" />
+<input type="hidden" name="inquiry_type_id" id="inquiry_type_id" value="1" />
+<input type="hidden" name="title" id="title" value="General Enquiry" />
 <input type="text" id="Editbox5" style="position:absolute;left:0px;top:157px;width:327px;height:46px;line-height:46px;z-index:0;" name="name" value="<?php if(!empty($mydesksite[0]['name'])) { echo $mydesksite[0]['name']; }?>" maxlength="50" placeholder="Name">
 <textarea name="message" id="TextArea2" style="position:absolute;left:0px;top:328px;width:682px;height:232px;z-index:1;" rows="16" cols="95" maxlength="500" placeholder="Message"></textarea>
 <input type="button" id="Button5" name="" value="Send" style="position:absolute;left:600px;top:588px;width:96px;height:25px;z-index:2;" onclick="saveRequest();">
-<input type="number" id="Editbox11" style="position:absolute;left:353px;top:218px;width:327px;height:46px;line-height:46px;z-index:3;" name="phone" value="<?php if(!empty($mydesksite[0]['telephone_number'])) { echo $mydesksite[0]['telephone_number']; }?>" maxlength="15" placeholder="Phone">
+<input type="number" id="Editbox11" style="position:absolute;left:353px;top:218px;width:327px;height:46px;line-height:46px;z-index:3;" name="phone" value="<?php if(!empty($mydesksite[0]['telephone_code'])) { echo $mydesksite[0]['telephone_code']; }?><?php if(!empty($mydesksite[0]['telephone_number'])) { echo $mydesksite[0]['telephone_number']; }?>" maxlength="15" placeholder="Phone">
 <input type="text" id="Editbox12" style="position:absolute;left:354px;top:157px;width:327px;height:46px;line-height:46px;z-index:4;" name="company" value="<?php if(!empty($mydesksite[0]['company_name'])) { echo $mydesksite[0]['company_name']; }?>" maxlength="50" placeholder="Company">
 <input type="email" id="Editbox13" style="position:absolute;left:0px;top:218px;width:327px;height:46px;line-height:46px;z-index:5;" name="email" value="<?php if(!empty($mydesksite[0]['company_email'])) { echo $mydesksite[0]['company_email']; }?>" maxlength="30" placeholder="Email">
-<input type="file" id="FileUpload1" style="position:absolute;left:128px;top:285px;width:198px;height:21px;line-height:21px;z-index:6;" name="FileUpload1">
+<input type="file" id="FileUpload1" style="position:absolute;left:128px;top:285px;width:198px;height:21px;line-height:21px;z-index:6;" name="FileUpload1[]" multiple="multiple" />
 <div id="wb_Image1" style="position:absolute;left:1px;top:281px;width:38px;height:38px;z-index:7;">
 <img src="<?php echo asset_url();?>images/insert-image-3.png" id="Image1" alt=""></div>
 <div id="wb_Text4" style="position:absolute;left:49px;top:288px;width:77px;height:17px;z-index:8;text-align:left;">

@@ -1730,7 +1730,6 @@ abstract class REST_Controller extends MX_Controller {
 	protected function _check_php_session() {
 		// Get the auth_source config item
 		$key = $this->config->item ( 'auth_source' );
-		
 		// If falsy, then the user isn't logged in
 		if (! $this->session->userdata ( $key )) {
 			// Display an error response

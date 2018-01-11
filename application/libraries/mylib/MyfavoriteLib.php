@@ -60,6 +60,11 @@ class MyfavoriteLib {
 		$this->CI->load->model ( 'Myfavorite_model', 'favorite' );
 		return $res = $this->CI->favorite->updateFavorite($data);
 	}
+	public  function deleteFavorite($id)
+	{
+		$this->CI->load->model ( 'Myfavorite_model', 'favorite' );
+		return $res = $this->CI->favorite->deleteFavorite($id);
+	}
 	
 	
 }

@@ -237,7 +237,7 @@ $route['mystation/edit3dproductForm'] = 'frontend/Dproduct/edit3dProductForm';
 $route['mystation/product_item'] = 'frontend/Dproduct/getProductByName';
 $route['mystation/save3dproducttempararyimage'] = 'frontend/Dproduct/save3DProductTemparary';
 $route['mystation/add3dproductpicture'] = 'frontend/Dproduct/add3dProductpicture';
-$route['mystation/deleteproduct'] = 'frontend/Dproduct/deleteProduct';
+$route['mystation/delete3dproduct'] = 'frontend/Dproduct/delete3DProduct';
 $route['mystation/editproduct'] = 'frontend/Dproduct/editProduct';
 $route['mystation/linkproduct'] = 'frontend/Dproduct/linkProduct'; 
 $route['mystation/getproductlist'] = 'frontend/Dproduct/getProductList'; 
@@ -245,7 +245,8 @@ $route['mystation/getproductbyid'] = 'frontend/Dproduct/getProductById';
 $route['mystation/changimage'] = 'frontend/Dproduct/changImage'; 
 $route['mystation/changelinkproduct'] = 'frontend/Dproduct/changeLinkProduct'; 
 $route['mystation/messagedproduct'] = 'frontend/Dproduct/messageDproduct'; 
-$route['mystation/getdproductbyid'] = 'frontend/Dproduct/getDproductById'; 
+$route['mystation/getdproductbyid'] = 'frontend/Dproduct/getDproductById';
+$route['mystation/3dpro/show/([0-9]+)'] = 'frontend/Dproduct/show3Dpro/$1'; 
 
 
 /*catalouge */
@@ -295,6 +296,7 @@ $route['mystation/sellerorder'] = 'frontend/Alerts/sellerOrder';
 $route['mystation/initiatorder'] = 'frontend/Alerts/InitiatOrder';
 $route['mystation/pininquiry'] = 'frontend/Alerts/pinInquiry';
 $route['mystation/unreadinquiry'] = 'frontend/Alerts/unreadInquiry';
+$route['mystation/readinquiry'] = 'frontend/Alerts/readInquiry';
 $route['mystation/deleteorder'] = 'frontend/Alerts/deleteOrder';
 $route['mystation/inquiryreplay'] = 'frontend/Alerts/inquiryReplay';
 $route['mystation/addedrequest'] = 'frontend/Alerts/addedRequest';
@@ -305,6 +307,7 @@ $route['mystation/offerreplay'] = 'frontend/Alerts/offerReplay';
 $route['mystation/saveofferreplay'] = 'frontend/Alerts/saveOfferReplay';
 $route['mystation/deleteoffer'] = 'frontend/Alerts/deleteOffer';
 $route['mystation/unreadoffer'] = 'frontend/Alerts/unreadOffer';
+$route['mystation/readoffer'] = 'frontend/Alerts/readOffer';
 $route['mystation/pinoffer'] = 'frontend/Alerts/pinOffer';
 $route['mystation/invoice/([0-9]+)'] = 'frontend/Alerts/invoice/$1';
 $route['mystation/editinvoice/([0-9]+)'] = 'frontend/Alerts/editInvoice/$1';
@@ -336,7 +339,8 @@ $route['mystation/udtalk/delete/([0-9]+)'] = 'frontend/Udtalks/deleteImage/$1';
 
 /* Frontend Pages .. */
 $route['seller'] = 'frontend/Home/sellersList';
-$route['seller/desksites'] = 'frontend/Product/getAllDesksites';
+$route['seller/desksites'] = 'frontend/Product/getAllSellerDesksites';
+$route['shipper/desksites'] = 'frontend/Product/getAllShipperDesksites';
 $route['buyer'] = 'frontend/Home/buyersList';
 $route['shipper'] = 'frontend/Home/shippersList';
 $route['search'] = 'frontend/Home/search';
@@ -350,6 +354,7 @@ $route['product/subcategory/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListB
 $route['product/mainproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListByMainProduct/$1/$2';
 $route['product/subproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListBySubProduct/$1/$2';
 $route['product/csmproduct/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListByCat/$1/$2/$3/$4';
+$route['product/spproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/specialProductList/$1/$2';
 $route['product/details/page/([0-9]+)'] = 'frontend/Product/productDetailsPage/$1';
 $route['seller/video/view/([0-9]+)'] = 'frontend/Home/getSellerVideo/$1';
 $route['seller/product/view/([0-9]+)'] = 'frontend/Home/getSellerProduct/$1';
@@ -423,9 +428,12 @@ $route['([0-9]+)/subscription-checkout'] = 'frontend/Home/getSubscriptionCheckou
 $route['desksite/like/([0-9]+)'] = 'frontend/Home/likeBusiness/$1';
 $route['desksite/catalogue/like/([0-9]+)'] = 'frontend/Home/likeCatalogue/$1';
 $route['desksite/general_enquiry/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
+$route['desksite/item_enquiry/([0-9]+)/([0-9]+)'] = 'frontend/Home/getItemInquiry/$1/$2';
 $route['desksite/saveenquiry'] = 'frontend/Home/saveGeneralInquiry';
+$route['desksite/saveoffer'] = 'frontend/Home/saveGeneralOffer';
 $route['desksite/product/like/([0-9]+)'] = 'frontend/Product/likeProduct/$1';
 $route['desksite/share'] = 'frontend/Product/shareWithWorld';
+$route['desksite/savecontactus'] = 'frontend/Home/saveContactUs';
 
 
 /********************  Community **************/
@@ -447,7 +455,18 @@ $route['mybusiness/profile/update'] = 'frontend/Community/updateMyNickName';
 $route['mybusiness/profile/isonline'] = 'frontend/Community/updateOnlineStatus';
 $route['community/members/search'] = 'frontend/Community/searchMyCommunityMemberByName';
 $route['community/members/delete'] = 'frontend/Community/deleteMyCommunityMembers';
-
+$route['mycommunity/member/delete/([0-9]+)'] = 'frontend/Community/deleteCommunityRequest/$1';
+$route['mycommunity/member/accept/([0-9]+)'] = 'frontend/Community/acceptCommunityRequest/$1';
+$route['mycommunity/member/request'] = 'frontend/Community/getCommunityRequests';
+$route['mycommunity/new/offer/([0-9]+)'] = 'frontend/Community/newSellerOffer/$1';
+$route['mycommunity/new/request/([0-9]+)'] = 'frontend/Community/newBuyerRequest/$1';
+$route['mycommunity/save/offer'] = 'frontend/Community/saveSellerOffer';
+$route['mycommunity/save/request'] = 'frontend/Community/saveBuyerRequest';
+$route['mycommunity/post/share/([0-9]+)'] = 'frontend/Community/shareCommunityPost/$1';
+$route['mycommunity/post/visit/([0-9]+)'] = 'frontend/Community/visitCommunityPost/$1';
+$route['mycommunity/posts/realtime'] = 'frontend/Community/getCommunityRealtimePosts';
+$route['mycommunity/posts/myposts'] = 'frontend/Community/getCommunityMyPosts';
+$route['mycommunity/posts/detail/([0-9]+)'] = 'frontend/Community/getCommunityPostDetail/$1';
 
 
 $route['stats/business/markvisit'] = 'frontend/Tools/updateBusinessStats';
@@ -494,7 +513,9 @@ $route['api/current-user'] = 'backend/auth/getLoggetInUser';
 $route['api/logout'] = 'backend/auth/logout';
 $route['api/sub-admins']['post'] = 'backend/subadmins/add';
 $route['api/sub-admins']['put'] = 'backend/subadmins/edit';
-$route['api/sub-admins']['get'] = 'backend/subadmins/getAll';
+$route['api/sub-admins/delete']['put'] = 'backend/subadmins/delete';
+$route['api/sub-admins/suspend/(:num)']['put'] = 'backend/subadmins/suspend/$1';
+$route['api/sub-admins/(:num)']['get'] = 'backend/subadmins/getAll/$1';
 $route['api/sub-admins/permissions']['put'] = 'backend/subadmins/permissions';
 $route['api/sub-admins/permissions/([0-9]+)'] = 'backend/subadmins/permissions/$1';
 

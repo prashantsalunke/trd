@@ -14,6 +14,14 @@
 <script src="<?php echo asset_url(); ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 <script>
+$(document).ready(function() {
+	$("#FileUpload1").change(function() {
+	    if($("#FileUpload1")[0].files.length > 4) {
+	        alert("You can select only 4 files");
+	        $("#FileUpload1").val('');
+	    }
+	});
+});
 function ajaxindicatorstart(text)
 {
 	if(jQuery('body').find('#resultLoading').attr('id') != 'resultLoading'){
@@ -155,6 +163,10 @@ function ValidateOffer_for_you_post_in_RT_Business()
       theForm.FileUpload1.focus();
       return false;
    }
+   if(theForm.FileUpload1.value == "") {
+		alert("Please select file");
+		return false;
+   }
    if (theForm.TextArea1.value == "")
    {
       alert("Please Enter Enough Description");
@@ -199,7 +211,7 @@ function saveRequest() {
 	 		target : '#response', 
 	 		beforeSubmit : showAddRequest,
 	 		success :  showAddResponse,
-	 		url : '<?php echo base_url();?>stockmarket/savebuyerrequest',
+	 		url : '<?php echo base_url();?>desksite/saveenquiry',
 	 		semantic : true,
 	 		dataType : 'json'
 	 	};
@@ -243,9 +255,13 @@ function showAddResponse(resp, statusText, xhr, $form){
 <div id="wb_Form1" style="position:absolute;left:7px;top:194px;width:509px;height:504px;z-index:25;">
 <form name="Offer_for_you_post_in_RT_Business" method="post" action="" enctype="multipart/form-data" id="bstbuyerrequest" onsubmit="return ValidateOffer_for_you_post_in_RT_Business(this);">
 <input type="hidden" name="post_id" value="<?php echo $post[0]['id'];?>" />
-<input type="hidden" name="seller_id" value="<?php echo $post[0]['busi_id'];?>" />
+<input type="hidden" name="post_type" id="post_type" value="2" />
+<input type="hidden" name="product_id" id="product_id" value="0" />
+<input type="hidden" name="busi_id" value="<?php echo $seller_id;?>" />
+<input type="hidden" name="my_busi_id" value="<?php echo $busi_id;?>" />
+<input type="hidden" name="inquiry_type_id" id="inquiry_type_id" value="3" />
 <input type="text" id="Editbox1" style="position:absolute;left:230px;top:288px;width:252px;height:19px;line-height:19px;z-index:0;" name="name" value="<?php echo $contact_details[0]['name'];?>" maxlength="20">
-<input type="text" id="Editbox2" style="position:absolute;left:230px;top:318px;width:252px;height:19px;line-height:19px;z-index:1;" name="Company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
+<input type="text" id="Editbox2" style="position:absolute;left:230px;top:318px;width:252px;height:19px;line-height:19px;z-index:1;" name="company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
 <input type="number" id="Editbox6" style="position:absolute;left:230px;top:380px;width:252px;height:19px;line-height:19px;z-index:2;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
 <input type="email" id="Editbox7" style="position:absolute;left:230px;top:349px;width:252px;height:19px;line-height:19px;z-index:3;" name="email" value="<?php echo $contact_details[0]['email'];?>" maxlength="30">
 <select name="country" size="1" id="Combobox2" style="position:absolute;left:230px;top:411px;width:258px;height:25px;z-index:4;">
@@ -270,9 +286,9 @@ function showAddResponse(resp, statusText, xhr, $form){
 <span style="color:#696969;font-family:Arial;font-size:11px;">Attachement</span></div>
 <div id="wb_Text5" style="position:absolute;left:27px;top:100px;width:180px;height:14px;z-index:13;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">More Details</span></div>
-<input type="file" id="FileUpload1" style="position:absolute;left:284px;top:215px;width:200px;height:25px;line-height:25px;z-index:14;" name="FileUpload3">
-<textarea name="TextArea4" id="TextArea1" style="position:absolute;left:222px;top:96px;width:257px;height:84px;z-index:15;" rows="2" cols="34" maxlength="4000"></textarea>
-<textarea name="TextArea3" id="TextArea2" style="position:absolute;left:222px;top:34px;width:258px;height:27px;z-index:16;" rows="5" cols="34" maxlength="4000"></textarea>
+<input type="file" id="FileUpload1" style="position:absolute;left:284px;top:215px;width:200px;height:25px;line-height:25px;z-index:14;" name="FileUpload1[]" multiple="multiple" />
+<textarea name="message" id="TextArea1" style="position:absolute;left:222px;top:96px;width:257px;height:84px;z-index:15;" rows="2" cols="34" maxlength="4000"></textarea>
+<textarea name="title" id="TextArea2" style="position:absolute;left:222px;top:34px;width:258px;height:27px;z-index:16;" rows="5" cols="34" maxlength="4000"></textarea>
 <div id="wb_Text6" style="position:absolute;left:29px;top:40px;width:180px;height:14px;z-index:17;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">Message to the seller:</span></div>
 </form>

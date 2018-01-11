@@ -1,5 +1,7 @@
 <script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>/cometchat/js.php"></script>
 <link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>cometchat/css.php" />
+<link href="<?php echo asset_url();?>css/jquery.booklet.1.1.0.css" rel="stylesheet">
+<script src="<?php echo asset_url();?>js/jquery.booklet.1.1.0.min.js"></script>
 <style>
 #RollOver26 a
 {
@@ -218,6 +220,101 @@ a.style5:hover
     font-weight: normal;
     font-size: 13px;
 }
+.catalog_c_img {
+	border: none;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-image: url('<?php echo asset_url();?>images/img2096.png');
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+.catalogue_modal_body {
+	background-color:transparent;background-image:url('<?php echo asset_url();?>images/vcat_insider.png');background-size:cover;padding-top: 110px;
+}
+.catalogue_modal_body_bg {
+	background-color:transparent;background-image:url('<?php echo asset_url();?>images/vcat_insider.png');background-repeat:no-repeat;background-size:cover;padding-top: 80px;background-size:initial;background-position:center;
+}
+.catalogue_page_item_name {
+	color:#303030;font-family:Georgia;font-size:13px;padding-bottom:5px;padding-top:0px;
+}
+.catalogue_page_item_details {
+	color:#787878;font-family:Arial;font-size:11px;padding-bottom:10px;min-height:55px;
+}
+.catalogue_page_item_quantity {
+	color:#1E90FF;font-family:Arial;font-size:11px;padding-bottom:25px;
+}
+.catalogue_page_item_price_div {
+	text-align: center;
+	margin-bottom: -10px;
+    z-index: 1;
+}
+.catalogue_page_item_price {
+	background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:17px;padding: 2px 10px;
+}
+.catalogue_page_item_mimg {
+	width:303px;height:268px;padding-bottom:5px;
+}
+.catalogue_page_left_num {
+	padding-top: 10px;
+	background-color:#fff;
+}
+.catalogue_page_no_text {
+	color:#D3D3D3;font-family:Arial;font-size:11px;
+}
+.catalogue_page_no_num {
+	color:#FF6347;font-family:'Arial Black';font-size:16px;
+}
+.catalogue_page_item_mimg-sm {
+	width:150px;height:115px;margin-top: 10px;
+}
+.catalogue_page_right_num {
+	padding-top: 10px;
+	background-color:#fff;
+}
+.catalogue_main_img {
+	border: 1px solid #eee;
+	width: 303px;
+    height: 268px;
+}
+.catalogue_sub_img {
+	border: 1px solid #eee;
+	width: 150px;
+    height: 115px;
+}
+.catalogue_modal_close {
+	width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff !important;
+    font-size: 19px;
+    opacity: 1;
+}
+li.share-button a{
+	font-size:20px;
+	color:#fa5c43;
+	border :2px solid;
+	margin-top: 20px;
+	border-radius :50%;
+	padding: 4px;
+	width:25px;
+	height :25px;
+}
+li.share-button a:hover{
+	font-size:20px;
+	color:#ffffff;
+	border :2px solid;
+	margin-top: 20px;
+	border-radius :50%;
+	padding: 4px;
+	width:30px;
+	height :30px;
+}
+ul.share{
+	list-style-type: none;
+	margin-top:  100%;
+	line-height: 50px;
+}
 
 </style>
 <div>   
@@ -274,7 +371,7 @@ a.style5:hover
 					<div class="col-md-3">
 					<?php if(!empty($seller['catalouge_id'])) { ?>
 					 	<div id="RollOver21"  class="box2" >
-					        <a href="javascript:viewCatalogueBook(<?php echo $seller['catalouge_id'];?>);">
+					        <a href="javascript:viewCatalogueBook(<?php echo $seller['busi_id'];?>);">
 					            <img class="hover" alt="" src="<?php echo asset_url() ?>images/vacticonblue.png">
 					            <span><img alt="" src="<?php echo asset_url() ?>images/vacticonblack.png"></span>
 					        </a>
@@ -644,6 +741,41 @@ a.style5:hover
         <div id="Layer_details_Container2" class="class2">
         </div>
     </div>
+<div id="vcatalogue_overlay" class="modal fade" style="background-color:#404040;z-index: 4000;">
+	<div class="modal-dialog" style="background-color:#404040;width:1050px;">
+		<div class="modal-content" style="background: transparent;box-shadow:none;-webkit-box-shadow:none;border: 0px;">
+			<div style="position:absolute;right:0;width:50px;height:50px;z-index:5000;"><button type="button" class="pull-right" data-dismiss="modal" aria-hidden="true" style="background:transparent;border:0px;"><img src="<?php echo asset_url();?>images/newicons/closeround.png" id="Image47" alt="" style="width:35px;"></button></div>
+			<div class="modal-body catalogue_modal_body_bg" style="width:1050px;height:640px;">
+				<input type="hidden" id="pcatalogue_id" value="" />
+				<div class="row">
+					<div class="col-md-1" style="float:left;padding:0px;width:155px;" id="catalogue_links">
+						<?php /*foreach ($catalogues as $catalogue) { ?>
+						<div style="text-align: center; margin-bottom: 5px; width:140px;height:155px;">
+							<div style="position:relative;width: 140px;top:-10px;">
+								<a href="javascript:viewNextCatalogueBook(<?php echo $catalogue['id'];?>);">
+									<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $catalogue['catalogue_title'];?></strong></span>
+								</a>
+							</div>
+							<a href="javascript:viewNextCatalogueBook(<?php echo $catalogue['id'];?>);">
+							<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block;width:77px;" >
+							<div style="position:relative;width:65px;top:-70px;left:38px;">
+								<img src="<?php echo asset_url().$catalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
+							</div>
+							</a>
+						</div>
+						<?php }*/ ?>
+					</div>
+					<div class="col-md-9" style="width:770px;padding-top:42px;">
+						<div id="catalogue_page_content" class="catalogue_outer_body">
+						</div>
+					</div>
+					<div class="col-md-1" style="padding:0px;width:80px;" id="share_it">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
 $(document).ready(function() {
     $(".mysellercarousel").slideshow({
@@ -845,6 +977,216 @@ function changeCountry(a){
 		$('#city').html(data);
 	},'html');
 	
+}
+function viewCatalogueBook(id) {
+	ajaxindicatorstart("Please wait while we load catalogue.");
+	$.get(base_url+"catalogue/business/"+id,{},function(data){
+		ajaxindicatorstop();
+		if(data.html == '0') {
+			alert("Sorry no catalogues created.");
+		} else {
+			$("#catalogue_page_content").html(data.html);
+			$("#catalogue_links").html(data.html2);
+			$("#pcatalogue_id").val(data.id);
+			$("#vcatalogue_overlay").modal('show');
+			var shareIt = '<ul class="share pull-right text-center">'
+				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
+				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
+				 +'</ul>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
+				 +'</a>'
+				 +'</div>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 290px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:likeCatalogue('+data.id+');">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/items_likewhite.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/items_like2.png"></span>'
+				 +'</a>'
+				 +'</div>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 335px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:addToMyFavourite('+data.busi_id+',7);">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/addtofav.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/favorite_chery.gif"></span>'
+				 +'</a>'
+				 +'</div>';
+			$("#share_it").html(shareIt);
+			var $mybook 		= $('#mybook');
+			var $bttn_next		= $('#next_page_button');
+			var $bttn_prev		= $('#prev_page_button');
+			var $loading		= $('#loading');
+			var $mybook_images	= $mybook.find('img');
+			var cnt_images		= $mybook_images.length;
+			var loaded			= 0;
+			//preload all the images in the book,
+			//and then call the booklet plugin
+			$mybook_images.each(function(){
+				var $img 	= $(this);
+				var source	= $img.attr('src');
+				$('<img/>').load(function(){
+					++loaded;
+					if(loaded == cnt_images){
+						$loading.hide();
+						$bttn_next.show();
+						$bttn_prev.show();
+						$mybook.show().booklet({
+							name:               null,                            // name of the booklet to display in the document title bar
+							width:              690,                             // container width
+							height:             450,                             // container height
+							speed:              600,                             // speed of the transition between pages
+							direction:          'LTR',                           // direction of the overall content organization, default LTR, left to right, can be RTL for languages which read right to left
+							startingPage:       0,                               // index of the first page to be displayed
+							easing:             'easeInOutQuad',                 // easing method for complete transition
+							easeIn:             'easeInQuad',                    // easing method for first half of transition
+							easeOut:            'easeOutQuad',                   // easing method for second half of transition
+	
+							closed:             false,                           // start with the book "closed", will add empty pages to beginning and end of book
+							closedFrontTitle:   null,                            // used with "closed", "menu" and "pageSelector", determines title of blank starting page
+							closedFrontChapter: null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank starting page
+							closedBackTitle:    null,                            // used with "closed", "menu" and "pageSelector", determines chapter name of blank ending page
+							closedBackChapter:  null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank ending page
+							covers:             false,                           // used with  "closed", makes first and last pages into covers, without page numbers (if enabled)
+	
+							pagePadding:        10,                              // padding for each page wrapper
+							pageNumbers:        false,                            // display page numbers on each page
+	
+							hovers:             false,                            // enables preview pageturn hover animation, shows a small preview of previous or next page on hover
+							overlays:           false,                            // enables navigation using a page sized overlay, when enabled links inside the content will not be clickable
+							tabs:               false,                           // adds tabs along the top of the pages
+							tabWidth:           60,                              // set the width of the tabs
+							tabHeight:          20,                              // set the height of the tabs
+							arrows:             true,                           // adds arrows overlayed over the book edges
+							cursor:             'pointer',                       // cursor css setting for side bar areas
+	
+							hash:               false,                           // enables navigation using a hash string, ex: #/page/1 for page 1, will affect all booklets with 'hash' enabled
+							keyboard:           true,                            // enables navigation with arrow keys (left: previous, right: next)
+							next:               $bttn_next,          			// selector for element to use as click trigger for next page
+							prev:               $bttn_prev,          			// selector for element to use as click trigger for previous page
+	
+							menu:               null,                            // selector for element to use as the menu area, required for 'pageSelector'
+							pageSelector:       false,                           // enables navigation with a dropdown menu of pages, requires 'menu'
+							chapterSelector:    false,                           // enables navigation with a dropdown menu of chapters, determined by the "rel" attribute, requires 'menu'
+	
+							shadows:            true,                            // display shadows on page animations
+							shadowTopFwdWidth:  166,                             // shadow width for top forward anim
+							shadowTopBackWidth: 166,                             // shadow width for top back anim
+							shadowBtmWidth:     50,                              // shadow width for bottom shadow
+	
+							before:             function(){},                    // callback invoked before each page turn animation
+							after:              function(){}                     // callback invoked after each page turn animation
+						});
+						//Cufon.refresh();
+					}
+				}).attr('src',source);
+			});
+		}
+	},'json');
+}
+
+function viewNextCatalogueBook(id) {
+	myloaderon('');
+	$.get(base_url+"catalogue/business/next/"+id,{},function(data){
+		if(data.html == '0') {
+			alert("Sorry no catalogues created.");
+		} else {
+			myloaderoff();
+			$("#catalogue_page_content").html(data.html);
+			$("#pcatalogue_id").val(data.id);
+			$("#vcatalogue_overlay").modal('show');
+			var shareIt = '<ul class="share pull-right text-center">'
+				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
+				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
+				 +'</ul>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
+				 +'</a>'
+				 +'</div>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 290px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:likeCatalogue('+data.id+');">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/items_likewhite.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/items_like2.png"></span>'
+				 +'</a>'
+				 +'</div>'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 335px;width:35px;height:35px;z-index:380;">'
+				 +'<a href="javascript:addToMyFavourite('+data.busi_id+',7);">'
+				 +'<img class="hover" src="<?php echo asset_url()?>images/addtofav.png" alt="view">'
+				 +'<span><img alt="View" src="<?php echo asset_url()?>images/favorite_chery.gif"></span>'
+				 +'</a>'
+				 +'</div>';
+			$("#share_it").html(shareIt);
+			var $mybook 		= $('#mybook');
+			var $bttn_next		= $('#next_page_button');
+			var $bttn_prev		= $('#prev_page_button');
+			var $loading		= $('#loading');
+			var $mybook_images	= $mybook.find('img');
+			var cnt_images		= $mybook_images.length;
+			var loaded			= 0;
+			//preload all the images in the book,
+			//and then call the booklet plugin
+			$mybook_images.each(function(){
+				var $img 	= $(this);
+				var source	= $img.attr('src');
+				$('<img/>').load(function(){
+					++loaded;
+					if(loaded == cnt_images){
+						$loading.hide();
+						$bttn_next.show();
+						$bttn_prev.show();
+						$mybook.show().booklet({
+							name:               null,                            // name of the booklet to display in the document title bar
+							width:              690,                             // container width
+							height:             450,                             // container height
+							speed:              600,                             // speed of the transition between pages
+							direction:          'LTR',                           // direction of the overall content organization, default LTR, left to right, can be RTL for languages which read right to left
+							startingPage:       0,                               // index of the first page to be displayed
+							easing:             'easeInOutQuad',                 // easing method for complete transition
+							easeIn:             'easeInQuad',                    // easing method for first half of transition
+							easeOut:            'easeOutQuad',                   // easing method for second half of transition
+	
+							closed:             false,                           // start with the book "closed", will add empty pages to beginning and end of book
+							closedFrontTitle:   null,                            // used with "closed", "menu" and "pageSelector", determines title of blank starting page
+							closedFrontChapter: null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank starting page
+							closedBackTitle:    null,                            // used with "closed", "menu" and "pageSelector", determines chapter name of blank ending page
+							closedBackChapter:  null,                            // used with "closed", "menu" and "chapterSelector", determines chapter name of blank ending page
+							covers:             false,                           // used with  "closed", makes first and last pages into covers, without page numbers (if enabled)
+	
+							pagePadding:        10,                              // padding for each page wrapper
+							pageNumbers:        false,                            // display page numbers on each page
+	
+							hovers:             false,                            // enables preview pageturn hover animation, shows a small preview of previous or next page on hover
+							overlays:           false,                            // enables navigation using a page sized overlay, when enabled links inside the content will not be clickable
+							tabs:               false,                           // adds tabs along the top of the pages
+							tabWidth:           60,                              // set the width of the tabs
+							tabHeight:          20,                              // set the height of the tabs
+							arrows:             true,                           // adds arrows overlayed over the book edges
+							cursor:             'pointer',                       // cursor css setting for side bar areas
+	
+							hash:               false,                           // enables navigation using a hash string, ex: #/page/1 for page 1, will affect all booklets with 'hash' enabled
+							keyboard:           true,                            // enables navigation with arrow keys (left: previous, right: next)
+							next:               $bttn_next,          			// selector for element to use as click trigger for next page
+							prev:               $bttn_prev,          			// selector for element to use as click trigger for previous page
+	
+							menu:               null,                            // selector for element to use as the menu area, required for 'pageSelector'
+							pageSelector:       false,                           // enables navigation with a dropdown menu of pages, requires 'menu'
+							chapterSelector:    false,                           // enables navigation with a dropdown menu of chapters, determined by the "rel" attribute, requires 'menu'
+	
+							shadows:            true,                            // display shadows on page animations
+							shadowTopFwdWidth:  166,                             // shadow width for top forward anim
+							shadowTopBackWidth: 166,                             // shadow width for top back anim
+							shadowBtmWidth:     50,                              // shadow width for bottom shadow
+	
+							before:             function(){},                    // callback invoked before each page turn animation
+							after:              function(){}                     // callback invoked after each page turn animation
+						});
+						//Cufon.refresh();
+					}
+				}).attr('src',source);
+			});
+		}
+	},'json');
 }
 
 </script>

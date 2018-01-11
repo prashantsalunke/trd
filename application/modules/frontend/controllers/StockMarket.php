@@ -61,12 +61,14 @@ class StockMarket extends MX_Controller {
 		}
 		$cpt = 0;
 		$k =1;
+		$size = 0;
 		$cimages = $this->input->post('cimg');
 		$location =  "assets/images/".$pathname."/";
 		if (!empty($_FILES['postphoto1']['name'])) {
 			$Img = uploadImage($_FILES['postphoto1'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation');
 			if($Img['status'] == 1) {
 				$params['image1'] = $Img['image'];
+				$size = $size + $_FILES['postphoto1']['size'];
 			} else {
 				$params['image1'] = $cimages[0];
 			}
@@ -77,6 +79,7 @@ class StockMarket extends MX_Controller {
 			$Img1 = uploadImage($_FILES['postphoto2'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation1');
 			if($Img1['status'] == 1) {
 				$params['image2'] = $Img1['image'];
+				$size = $size + $_FILES['postphoto2']['size'];
 			} else {
 				$params['image2'] = $cimages[1];
 			}
@@ -87,6 +90,7 @@ class StockMarket extends MX_Controller {
 			$Img2 = uploadImage($_FILES['postphoto3'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation2');
 			if($Img2['status'] == 1) {
 				$params['image3'] = $Img2['image'];
+				$size = $size + $_FILES['postphoto3']['size'];
 			} else {
 				$params['image3'] = $cimages[2];
 			}
@@ -97,6 +101,7 @@ class StockMarket extends MX_Controller {
 			$Img3 = uploadImage($_FILES['postphoto4'],$location,array('jpeg','jpg','png','gif'),2097152,'bstation3');
 			if($Img3['status'] == 1) {
 				$params['image4'] = $Img3['image'];
+				$size = $size + $_FILES['postphoto4']['size'];
 			} else {
 				$params['image4'] = $cimages[3];
 			}
@@ -105,6 +110,16 @@ class StockMarket extends MX_Controller {
 		}
 		$this->load->model('Product_Model', 'product' );
 		$response = $this->product->stockPostInsert($params);
+		/* ************** Storage Implementation *************** */
+		if($size != 0) {
+			$this->load->library('mylib/StorageLib');
+			$storage = array();
+			$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			$storage['field'] = 'stockmarket';
+			$storage['datasize'] = round($size/1024,2);
+			$this->storagelib->updateStorageByBusiId($storage);
+		}
+		/* ***************************************************** */
 		echo json_encode($response);
 
 	}
@@ -125,6 +140,7 @@ class StockMarket extends MX_Controller {
 		$files = $_FILES;
 		$cpt = 0;
 		$k =1;
+		$size = 0;
 		if(!empty($_FILES ['bpostphoto'] ['name']))
 			$cpt = count ( $_FILES ['bpostphoto'] ['name'] );
 		$data['images'] =array();
@@ -143,6 +159,7 @@ class StockMarket extends MX_Controller {
 			$this->load->library ( 'upload', $config );
 			if ($this->upload->do_upload ( 'user' )) {
 				$params['image'.$k] = 'images/' . $pathname . '/'. $this->upload->data ( 'file_name' );
+				$size = $size + $_FILES ['bpostphoto'] ['size'] [$i];
 			} else {
 				echo "No Image.";
 			}
@@ -151,6 +168,16 @@ class StockMarket extends MX_Controller {
 	
 		$this->load->model('Product_Model', 'product' );
 		$response = $this->product->stockPostInsert($params);
+		/* ************** Storage Implementation *************** */
+		if($size != 0) {
+			$this->load->library('mylib/StorageLib');
+			$storage = array();
+			$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			$storage['field'] = 'stockmarket';
+			$storage['datasize'] = round($size/1024,2);
+			$this->storagelib->updateStorageByBusiId($storage);
+		}
+		/* ***************************************************** */
 		echo json_encode($response);
 	
 	}
@@ -166,7 +193,7 @@ class StockMarket extends MX_Controller {
 		$this->template->set ( 'Country', $Country);
 		$this->template->set('contact_details',$contact_details);
 		$this->template->set('post',$post);
-		$this->template->set('buyer_id',$post);
+		$this->template->set('seller_id',$id);
 		$this->template->set('busi_id',$busi_id);
 		$this->template->set ( 'page', 'bstation' );
 		$this->template->set_theme('default_theme');
@@ -188,6 +215,7 @@ class StockMarket extends MX_Controller {
 		$params['seller_id'] = $this->input->post('seller_id');
 		$params['buyer_id'] = $this->session->userdata('busi_id');
 		$params['created_date'] = date('Y-m-d H:i:s');
+		$size = 0;
 		if (!empty($_FILES['FileUpload3']['name'])) {
 			$certiPath = FCPATH . "assets/images/user_images/$userId/buyerrequest";
 			if (!file_exists($certiPath)) {
@@ -198,10 +226,21 @@ class StockMarket extends MX_Controller {
 			$imgupload = uploadImage($_FILES['FileUpload3'],$certiPath,array('jpeg','jpg','png','gif','pdf','doc','docx','xls','xlsx'),20971521,'br');
 			if($imgupload['status'] == 1) {
 				$params['attachment'] = $imgupload['image'];
+				$size = $size + $_FILES['FileUpload3'] ['size'];
 			}
 		}
 		$this->load->model('Product_Model', 'product' );
 		$this->product->addStockMarketPostRequest($params);
+		/* ************** Storage Implementation *************** */
+		if($size != 0) {
+			$this->load->library('mylib/StorageLib');
+			$storage = array();
+			$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			$storage['field'] = 'inquiries';
+			$storage['datasize'] = round($size/1024,2);
+			$this->storagelib->updateStorageByBusiId($storage);
+		}
+		/* ***************************************************** */
 		echo json_encode(array('status'=>1));
 	}
 	
@@ -241,6 +280,7 @@ class StockMarket extends MX_Controller {
 		$params['buyer_id'] = $this->input->post('buyer_id');
 		$params['seller_id'] = $this->session->userdata('busi_id');
 		$params['created_date'] = date('Y-m-d H:i:s');
+		$size = 0;
 		if (!empty($_FILES['FileUpload3']['name'])) {
 			$certiPath = FCPATH . "assets/images/user_images/$userId/selleroffer";
 			if (!file_exists($certiPath)) {
@@ -251,10 +291,21 @@ class StockMarket extends MX_Controller {
 			$imgupload = uploadImage($_FILES['FileUpload3'],$certiPath,array('jpeg','jpg','png','gif','pdf','doc','docx','xls','xlsx'),20971521,'br');
 			if($imgupload['status'] == 1) {
 				$params['attachment'] = $imgupload['image'];
+				$size = $size + $_FILES['FileUpload3'] ['size'];
 			}
 		}
 		$this->load->model('Product_Model', 'product' );
 		$this->product->addStockMarketPostOffer($params);
+		/* ************** Storage Implementation *************** */
+		if($size != 0) {
+			$this->load->library('mylib/StorageLib');
+			$storage = array();
+			$storage['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			$storage['field'] = 'offers';
+			$storage['datasize'] = round($size/1024,2);
+			$this->storagelib->updateStorageByBusiId($storage);
+		}
+		/* ***************************************************** */
 		echo json_encode(array('status'=>1));
 	}
 	

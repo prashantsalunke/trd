@@ -335,6 +335,17 @@ class Tool_model extends CI_Model {
     	return $row;
     }
     
+    public function getEnquiryPlan($plan_id,$cust_type) {
+    	$this->db->select('intvalue');
+    	$this->db->from(TABLES::$SUBSCRIPTION_ITEMS);
+    	$this->db->where('plan_id',$plan_id);
+    	$this->db->where('cust_type',$cust_type);
+    	$this->db->where('code','ois');
+    	$query = $this->db->get();
+    	$row = $query->result_array();
+    	return $row;
+    }
+    
     public function getCommunityPosts($busi_id) {
     	$this->db->select('count(id) as posts');
     	$this->db->from(TABLES::$COMMMUNITY_POST);

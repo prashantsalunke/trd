@@ -482,4 +482,45 @@ function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE) {
 	return $output;
 }
 
+function getFileName($file) {
+	$ext = pathinfo($file, PATHINFO_EXTENSION);
+	$fileName = "";
+	if($ext == 'pdf') {
+		$fileName = 'images/pdfimg.png';
+	} elseif($ext =='doc' || $ext =='docx') {
+		$fileName = 'images/word.png';
+	} elseif($ext =='xls' || $ext =='xlsx') {
+		$fileName = 'images/excel.jpg';
+	} elseif($ext =='ppt' || $ext =='pptx') {
+		$fileName = 'images/ppt.jpg';
+	} elseif($ext =='zip' || $ext =='rar' || $ext =='tar') {
+		$fileName = 'images/zipfile.png';
+	} elseif($ext =='txt') {
+		$fileName = 'images/txtfile.png';
+	} elseif($ext =='jpg' || $ext =='JPG' || $ext =='png' || $ext =='PNG' || $ext =='gif' || $ext =='GIF' || $ext =='jpeg' || $ext =='JPEG') {
+		//$fileName = 'images/imagicon.jpeg';
+		$fileName = $file;
+	} else {
+		$fileName = $file;
+	}
+	return $fileName;
+}
+
+function fulltext_search_str($field_name,$str) {
+	$str = strtolower($str);
+	$common_keywords = explode(" ",$str);
+	$keywords = array_values(array_unique($common_keywords));
+	$str_sql = "";
+	foreach ($keywords as $keyword) {
+		if(strlen(trim($keyword)) > 0) {
+			if($str_sql == "") {
+				$str_sql = $field_name." LIKE '%".$keyword."%' ";
+			} else {
+				$str_sql = $str_sql."OR ".$field_name." LIKE '%".$keyword."%' ";
+			}
+		}
+	}
+	return $str_sql;
+}
+
 

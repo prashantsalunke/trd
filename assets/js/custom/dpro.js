@@ -164,11 +164,12 @@ function deleteproductlist()
 }	
 function deleteProduct()
 {
+	ajaxindicatorstart('Loading...');
 	var options = {
  			target : '#response', // target element(s) to be updated with server response 
  			beforeSubmit : showDeleteFileRequest, // pre-submit callback 
  			success :  showDeleteFileResponse,
- 			url : base_url+'mystation/deleteproduct',
+ 			url : base_url+'mystation/delete3dproduct',
  			semantic : true,
  			dataType : 'json'
  		};
@@ -176,10 +177,11 @@ function deleteProduct()
 }
 function showDeleteFileRequest(formData, jqForm, options){
 	var queryString = $.param(formData);
-return true;
+	return true;
 }
 function showDeleteFileResponse(resp, statusText, xhr, $form){
-if(resp.status == 0) {
+	ajaxindicatorstop();
+	if(resp.status == 0) {
 		$("#response").addClass('alert-danger');
 		$("#response").html(resp.msg);
 		$("#response").show();
@@ -189,7 +191,7 @@ if(resp.status == 0) {
 		$("#response").addClass('alert-success');
 		$("#response").html(resp.msg);
 		$("#response").show();
-		alert(resp.msg);
+		//alert(resp.msg);
 		openEdit3Dproduct();
 	}
 }
@@ -237,21 +239,24 @@ function linkProduct()
 }
 function showLinkProductRequest(formData, jqForm, options){
 	var queryString = $.param(formData);
-return true;
+	return true;
 }
 function showLinkProductResponse(resp, statusText, xhr, $form){
-if(resp.status == 0) {
+	ajaxindicatorstop();
+	if(resp.status == 0) {
 		$("#response").addClass('alert-danger');
 		$("#response").html(resp.msg);
 		$("#response").show();
-		alert(resp.msg);
-		//openEdit3DproductFormByaddproduct();
+		customAlert(resp.msg);
 	} else {
 		$("#response").addClass('alert-success');
 		$("#response").html(resp.msg);
 		$("#response").show();
-		alert(resp.msg);
-		openEdit3DproductFormByaddproduct(resp.product_id);
+		$("#dpid").val(resp.id);
+		//openEdit3DproductFormByaddproduct(resp.product_id);
+		//$("#edit3dpro").trigger("click");
+		//$('.nav-tabs > .active').next('li').find('a').trigger('click');
+		//openEdit3Dproduct();
 	}
 }
 function changeDimage()
@@ -268,49 +273,51 @@ function changeDimage()
 }
 function showChangeimageRequest(formData, jqForm, options){
 	var queryString = $.param(formData);
-return true;
+	return true;
 }
 function showChangeimageResponse(resp, statusText, xhr, $form){
-if(resp.status == 0) {
+	if(resp.status == 0) {
 		$("#response").addClass('alert-danger');
 		$("#response").html(resp.msg);
 		$("#response").show();
-		alert(resp.msg);
+		customAlert(resp.msg);
 	} else {
 		$("#response").addClass('alert-success');
 		$("#response").html(resp.msg);
 		$("#response").show();
-		alert(resp.msg);
+		customAlert(resp.msg);
 		$('#frame_'+resp.pid).attr('src',asset_url+resp.src);
 	}
 }
-function linkproduct()
+function linkProductUpdate()
 {
 	var options = {
- 			target : '#response', // target element(s) to be updated with server response 
- 			beforeSubmit : showLinkProductRequest, // pre-submit callback 
- 			success :  showLinkProductResponse,
- 			url : base_url+'mystation/changelinkproduct',
- 			semantic : true,
- 			dataType : 'json'
- 		};
-		$('#frmchangeproductlink').ajaxSubmit(options);
+		target : '#response', // target element(s) to be updated with server response 
+		beforeSubmit: showELinkProductRequest, // pre-submit callback 
+		success: showELinkProductResponse,
+		url : base_url+'mystation/changelinkproduct',
+		semantic : true,
+		dataType : 'json'
+	};
+	$('#frmchangeproductlink').ajaxSubmit(options);
 }
-function showLinkProductRequest(formData, jqForm, options){
+function showELinkProductRequest(formData, jqForm, options){
 	var queryString = $.param(formData);
-return true;
+	return true;
 }
-function showLinkProductResponse(resp, statusText, xhr, $form){
-if(resp.status == 0) {
+function showELinkProductResponse(resp, statusText, xhr, $form){
+	ajaxindicatorstop();
+	if(resp.status == 0) {
 		$("#response").addClass('alert-danger');
 		$("#response").html(resp.msg);
 		$("#response").show();
-		alert(resp.msg);
+		customAlert(resp.msg);
 	} else {
 		$("#response").addClass('alert-success');
 		$("#response").html(resp.msg);
 		$("#response").show();
-		alert(resp.msg);
-		
+		$("#edit3dpro").trigger("click");
+		$('.nav-tabs > .active').next('li').find('a').trigger('click');
+		openEdit3Dproduct();
 	}
 }

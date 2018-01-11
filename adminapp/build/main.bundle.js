@@ -97,11 +97,11 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.getLoggedInUser().subscribe(function (res) {
-            if (res['status_code'] == 400) {
+            if (res['error'] == 'Unauthorized') {
                 _this.router.navigate(['login']);
             }
         }, function (err) {
-            if (err['status'] == 404) {
+            if (err['status'] == 401) {
                 _this.router.navigate(['login']);
             }
         });
@@ -137,7 +137,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__main_route_component__ = __webpack_require__("../../../../../src/app/main-route.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__core_core_module__ = __webpack_require__("../../../../../src/app/core/core.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__core_auth_service__ = __webpack_require__("../../../../../src/app/core/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_ngx_smart_modal__ = __webpack_require__("../../../../ngx-smart-modal/modules/ngx-smart-modal.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__toverux_ngx_sweetalert2__ = __webpack_require__("../../../../@toverux/ngx-sweetalert2/@toverux/ngx-sweetalert2.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -172,10 +172,9 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_4__angular_forms__["ReactiveFormsModule"],
                 __WEBPACK_IMPORTED_MODULE_9__core_core_module__["a" /* CoreModule */],
                 __WEBPACK_IMPORTED_MODULE_6__app_routing_module__["a" /* AppRoutingModule */],
-                __WEBPACK_IMPORTED_MODULE_11_ngx_smart_modal__["a" /* NgxSmartModalModule */].forRoot()
+                __WEBPACK_IMPORTED_MODULE_11__toverux_ngx_sweetalert2__["a" /* SweetAlert2Module */].forRoot()
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_10__core_auth_service__["a" /* AuthService */],
-                __WEBPACK_IMPORTED_MODULE_11_ngx_smart_modal__["b" /* NgxSmartModalService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_10__core_auth_service__["a" /* AuthService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);

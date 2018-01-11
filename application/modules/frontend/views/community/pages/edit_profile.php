@@ -115,7 +115,7 @@ function ValidateLayer4(theForm)
 					<a href="javascript:window.open('','_parent','');window.close()">
 						<div id="Shape5">
 							<div id="Shape5_text">
-								<span style="color: #FFFFFF; font-family: 'MS Shell Dlg'; font-size: 12px;">Cancel</span>
+								<span style="color: #FFFFFF; font-family: 'MS Shell Dlg'; font-size: 12px;">Close</span>
 							</div>
 						</div>
 					</a>
@@ -124,12 +124,7 @@ function ValidateLayer4(theForm)
 					<span style="color: #1E90FF; font-family: Georgia; font-size: 13px;"><strong>Your Hidden Profile Is On</strong></span>
 				</div>
 				<div id="wb_Text1" style="position: absolute; left: 15px; top: 298px; width: 282px; height: 84px; text-align: justify; z-index: 15;">
-					<span style="color: #696969; font-family: Arial; font-size: 11px;">When
-						you communicate in active way with others, and share your opinion
-						with them through (Like or Comments) features, you may not prefer
-						other member of the same industry come to know that you are a
-						member of some sellers or buyers community, which could leads to
-						affect or even limit your actives.. </span>
+					<span style="color: #696969; font-family: Arial; font-size: 11px;">Use hidden profile feature in your community, when you want to share a like or send a comment to a certain member and you don’t prefer other member know that you are a member of his community, so you can keep your profile image and name hidden.. </span>
 				</div>
 				<div id="wb_Text3" style="position: absolute; left: 52px; top: 265px; width: 203px; height: 16px; text-align: center; z-index: 16;">
 					<span style="color: #1E90FF; font-family: Georgia; font-size: 13px;"><strong id="nickname-label"><?php if(!empty($userinfo[0]['nickname'])) {echo $userinfo[0]['nickname'];}?></strong></span>
