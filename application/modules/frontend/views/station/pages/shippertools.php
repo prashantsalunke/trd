@@ -413,8 +413,8 @@
 				<div class="panel-heading custom-panel-heading sts-heading" style="text-align:left;padding-top: 5px !important;border-bottom: 0px;background-color:#fff !important;">
 					<br>
 					<a href="javascript:showStatPerformance();" id="busi_performance_sts" class="btn btn-sm btn-tool btn-tool-active" style="margin-left:20px;">Desksite Statistics</a>
-					<a href="javascript:showStatProduct();" id="busi_product_sts" class="btn btn-sm btn-tool btn-tool">Services Statistics</a>
-					<a href="javascript:showStatActiveProduct();" id="busi_aproduct_sts" class="btn btn-sm btn-tool btn-tool">Active Services Statistics</a>
+					<!-- a href="javascript:showStatProduct();" id="busi_product_sts" class="btn btn-sm btn-tool btn-tool">Services Statistics</a>
+					<a href="javascript:showStatActiveProduct();" id="busi_aproduct_sts" class="btn btn-sm btn-tool btn-tool">Active Services Statistics</a-->
 					<span class="pull-right-close" style="padding-top: 0px;padding-right: 5px;margin-top: -5px;"><a href="javascript:closeStatsDiv();" class="btn-custom-close" style="padding:6px 12px;font-size:22px;">x</a></span>
 				</div>
 				<div class="panel-inner">
@@ -473,8 +473,8 @@
 													<td><?php echo $busi_history_stat['visits'];?></td>
 													<td><?php echo $busi_history_stat['likes'];?></td>
 													<td><?php echo $busi_history_stat['shares'];?></td>
-													<td><?php echo $busi_history_stat['country_name'];?></td>
-													<td><?php echo $busi_history_stat['city_name'];?></td>
+													<td><?php echo !empty($busi_history_stat['country_name']) ? $busi_history_stat['country_name']:'Unknown';?></td>
+													<td><?php echo !empty($busi_history_stat['city_name']) ? $busi_history_stat['city_name']:'Unknown';?></td>
 													<td><?php echo date('d M Y',strtotime($busi_history_stat['visit_date']));?></td>
 												</tr>
 												<?php } ?>

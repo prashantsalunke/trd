@@ -1074,13 +1074,14 @@ class Sellers_Model extends CI_Model {
     }
     
     public function search3DProducts($params){
-    	$this->db->select('a.id as did,b.*, c.company_name, c.company_country, c.company_province,c.company_city, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank ');
+    	$this->db->select('a.id as did,b.*, c.company_name, c.company_country, c.company_province,c.company_city, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank,g.image');
     	$this->db->from(TABLES::$MY_3DPRODUCT.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b', 'a.product_id = b.id', 'inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','b.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER.' AS f','b.busi_id=f.busi_id','inner');
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS e','e.id=b.sproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','b.mproduct_id=d.id','left');
+    	$this->db->join(TABLES::$PRODUCT_3DPRODUCT.' AS g','a.id=g.product_item_id','left');
     	$this->db->where('f.is_contactperson', 1);
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
@@ -1109,7 +1110,7 @@ class Sellers_Model extends CI_Model {
     		}
     	}
     	
-    	$this->db->group_by('b.id');
+    	$this->db->group_by('a.id');
     	if(!empty($params['page'])) {
     		$start = $params['page']*25 - 25;
     		$this->db->limit($start,25);

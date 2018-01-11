@@ -32,7 +32,7 @@
 		   	<p class="c20 text-center" style="margin:0px;">
 	        	<a href="javascript:productDetail(<?php echo $product['id'];?>);" class="style16"><?php echo $product['name']; ?></a>
 	        </p>
-	        <div class="menu3d text-center" onmouseenter="init3D('my3dimg-<?php echo $product['did'];?>');">
+	        <div class="menu3d text-center" onclick="open3DProduct(<?php echo $product['did'];?>);">
 	        	<?php 
 	        		$images = explode(",",$product['pro_images']);
 	        	?>		
@@ -62,4 +62,3 @@
 	<strong>The seller has not created products in 3D yet.</strong>
 </div>
 <?php } ?>
-<script src="<?php echo asset_url();?>js/custom/3dlib.js"></script>
