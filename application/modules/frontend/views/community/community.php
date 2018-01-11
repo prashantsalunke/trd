@@ -73,7 +73,7 @@
 						<div class="col-xs-8 ptop">
 							<strong class="font1 ">View / Manage</strong><br> 
 							<a href="#" class="font2" onclick="ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);ShowObjectWithEffect('Layer51', 1, 'slideright', 500);ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);return false;">My Posts</a><br> 
-							<a href="# " class="font2" onclick="ShowObjectWithEffect( 'Layer71', 1, 'slideright', 600);ShowObjectWithEffect( 'Layer72', 1, 'fade', 500);ShowObjectWithEffect( 'Layer90', 0, 'fade', 5);ShowObjectWithEffect( 'Layer76', 1, 'blindvertical', 500);ShowObjectWithEffect( 'Layer74', 1, 'fold', 500);ShowObject( 'Layer20', 0);ShowObject( 'Layer101', 0);hideObjects( 'Layer18', 0);return false; ">My Members <span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;display:none;">0</span></a><br> 
+							<a href="#" class="font2" onclick="showMymembers();">My Members <span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;display:none;">0</span></a><br> 
 							<a href="javascript:displayCommunityRequests();" class="font2" >Add Requests <?php if(!empty($add_requests[0]['members'])) { ?><span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;"><?php if(!empty($add_requests[0]['members'])) { echo $add_requests[0]['members']; } else { echo 0;}?></span><?php } ?></a>
 						</div>
 					</div>
@@ -132,7 +132,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="Layer1" style="overflow: scroll;margin-top:2px;height:683px;">
+			<div id="Layer1" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:683px;">
           	<?php 
 			if (count ( $allposts ) > 0 && $allposts [0] ['id'] != '') {
 			foreach ( $allposts as $key=>$allpost ) {
@@ -140,7 +140,7 @@
 					<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
 						<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($allpost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($allpost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($allpost['created_date']));?></span>
 					</div>
-					<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="ShowObject('Layer20', 0);ShowObject('Layer101', 0);ShowObjectWithEffect('Layer18_<?php echo $key;?>', 1, 'slideright', 500, 'swing');ShowObject('Layer71', 0);addPageVisit(<?php echo $allpost['postid'];?>);return false;">
+					<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="openPostDetails(<?php echo $allpost['postid'];?>);">
 						<div class="col-md-2 col-sm-2 inline text-center">
 							<a href="#" id="showmenulist<?php echo $allpost['postid'];?>" class="showmenulist" data-id="<?php echo $allpost['postid'];?>"> 
 								<hr id="Line19" style="position:absolute;left:30px;top:35px;width:5px;height:4px;z-index:227;">
@@ -150,7 +150,7 @@
 							</a> 
 							<img src="<?php echo asset_url(); ?><?php echo $allpost['profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
 							<!-- chat and other all -->
-							<div id="Layer47<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
+							<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 								<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
 								<a href="#" class="afont viewpst" data-id="<?php echo $allpost['postid'];?>">View Posts</a> 
 								<a href="#" class="afont viewdsksite" data-id="<?php echo $allpost['busi_id'];?>" data-catid="<?php echo $allpost['user_category_id'];?>">DeskSite</a> 
@@ -305,16 +305,19 @@
 					</div>
 				</div>
 			</div>
-			<div id="Layer32" style="overflow: scroll;margin-top:2px;height:679px;">
+			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:683px;">
              <?php 
 				if (count ( $myposts ) > 0 && $myposts [0] ['id'] != '') {
 					foreach ( $myposts as $key=>$mypost ) {
 						?>
-					<div class="boxsize row" style="margin-top:21px;margin-right:19px;" onclick="ShowObject('Layer20', 0);ShowObject('Layer101', 0);ShowObjectWithEffect('delLayer18_<?php echo $key;?>', 1, 'slideright', 500, 'swing');ShowObject('Layer71', 0);return false;">
+					<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
+						<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($mypost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($mypost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($mypost['created_date']));?></span>
+					</div>
+					<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="openPostDetails(<?php echo $mypost['postid'];?>);">
 						<div class="col-md-2 col-sm-2 text-center">
 							<br><br><br><br><br>
 							<input type="checkbox" style="display:none;"><br><br>
-							<button type="button" id="Button4" class="m2" onclick="deletePost(<?php echo $mypost['postid'];?>);">Delete</button>
+							<button type="button" id="Button4" class="m2" onclick="deletePost(<?php echo $mypost['postid'];?>,event);">Delete</button>
 						</div>
 						<div class="col-md-6 col-sm-6" style="padding-left:0px;">
 							<p class="font6" style="font-size:14px;"><?php echo $mypost['company_name'];?> </p>
@@ -375,9 +378,6 @@
 							</div>
 						</div>
 					</div>
-					<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
-						<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($mypost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($mypost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($mypost['created_date']));?></span>
-					</div>
                  <?php } }  else { ?>
 						<div style="height:637px;">
 							<div id="wb_Text25" style="position:absolute;left:311px;top:233px;width:351px;height:32px;text-align:center;z-index:570;">
@@ -403,10 +403,19 @@
 					<form id="addPostContent" name="addPostContent" action="" method="post" enctype="multipart/form-data">
 						<div id="postdatacontent">
 							<div class="box2">
-								<input type="text" id="Editbox1" name="title" value="" maxlength="30" placeholder="Post Title" style="width:385px;"> <br> <br>
-								<textarea name="description" id="TextArea2" rows="5" cols="54" maxlength="800" placeholder="Post Details"></textarea>
+								<div class="form-group">
+									<div>
+										<input type="text" id="Editbox1" name="title" value="" maxlength="30" placeholder="Post Title" style="width:385px;">
+									</div>
+									<div class="messageContainer"></div>
+								</div>
+								<div class="form-group">
+									<div>
+										<textarea name="description" id="TextArea2" rows="5" cols="54" maxlength="800" placeholder="Post Details"></textarea>
+									</div>
+									<div class="messageContainer"></div>
+								</div>
 								<div class="row">
-									<br>
 									<?php if($tscategory_id == 1) { ?>
 									<div class="inline">
 										<input type="radio" name="gender" value="productimage" style="width: 25px;">
@@ -436,7 +445,7 @@
 										<input type="hidden" name="product_id" value="0" />
 										<label class="hh" style="font-weight:normal;">4 jpg images, Each image with Max. size 75KB</label>
 									</div>
-									<div class="col-sm-12">
+									<div class="col-sm-12 form-group">
 										<div>
 											<input type="file" name="postphoto1" id="postphoto1" class="post-background" onchange="setBackgroundSize('postphoto1',this,75);" style="display:inline;"/>
 											<input type="file" name="postphoto2" id="postphoto2" class="post-background" onchange="setBackgroundSize('postphoto2',this,75);" style="display:inline;"/>
@@ -454,8 +463,20 @@
 									<br>
 									<?php if($tscategory_id == 1 || $tscategory_id == 3) { ?>
 									<div class="inline">
-										<input type="number" id="Editbox3" name="usd_price" value="" maxlength="10" placeholder="USD Price"> 
-										<input type="text" placeholder="Qty" name="quantity" class="margin1">
+										<div class="row">
+											<div class="col-sm-6 form-group">
+												<div>
+													<input type="text" id="Editbox3" name="usd_price" value="" maxlength="10" placeholder="USD Price"> 
+												</div>
+												<div class="messageContainer"></div>
+											</div>
+											<div class="col-sm-6 form-group">
+												<div>
+													<input type="text" placeholder="Qty" name="quantity" class="">
+												</div>
+												<div class="messageContainer"></div>
+											</div>
+										</div>
 									</div>
 									<?php } else { ?>
 										<input type="hidden" id="Editbox3" name="usd_price" value="0"> 
@@ -521,7 +542,7 @@
 			<div class="likehead" style="text-align:left;">
 				<span class="like">Members <span class="likecount" id="likecountid" style="padding:0px 20px;vertical-align: middle;">&nbsp;&nbsp;<strong><?php echo count($communitymember);?></strong></span></span>
 				<a href="#" onclick="ShowObjectWithEffect('Layer71', 0, 'slideright', 600);return false;">
-					<img src="<?php echo asset_url(); ?>images/img0313.gif" id="Shape14" alt="" class="img42" style="margin-bottom: 30px;">
+					<img src="<?php echo asset_url(); ?>images/img0313.gif" id="Shape14" alt="" class="img42" style="margin-bottom: 22px;">
 				</a>
 			</div>
 			<div class="memberheader">
@@ -533,7 +554,7 @@
 			</div>
 			<div id="comm_members" style="text-align:center;">
             <?php foreach($communitymember as $member) {?>
-	            <div class="memberclass1  hover3">
+	            <div class="memberclass1  hover3" style="padding-left:5px;">
 	            	<input type="hidden" class="comm_member_id" value="<?php echo $member['mbid'];?>"/>
 					<div class="col-sm-3 image-cover">
 						<img src="<?php echo asset_url(); ?><?php echo $member['memberimg'];?>" id="Image28" alt="" class="memberimg">
@@ -573,162 +594,13 @@
 		</div>
 	</div>
 	<!-- my members end -->
-	<div id="rtimepostdetail">
-	<?php 
-		if (count ( $allposts ) > 0 && $allposts [0] ['id'] != '') {
-		foreach ( $allposts as $key=>$allpost ) {
-	?>
-	<div style="position:absolute;top:0px;width:1280px;margin:auto auto;">
+</div>
+<div style="position:absolute;top:0px;left: 0;right: 0;width:1280px;margin: 0 auto;">
 	<!-- post details -->
-	<div class="Layer18" id="Layer18_<?php echo $key;?>" style="position: absolute; text-align: left; visibility: hidden; right:15px; top: 1px; width: 545px; height: 804px; z-index: 587;background: rgba(0,0,0,0.6);">
-		<h3 class="background11" style="height:47px;padding:18px;">
-			<strong>Post Details</strong>
-		</h3>
-		<div class="row" style="margin:0px;margin-top:2px;">
-			<div class="col-sm-11" id="Layer11" style="width: 505px;">
-				<div class="cstyle5" style="background-color: #DCDCDC;margin: 5px -10px;padding: 0px 15px;"><strong><?php echo $allpost['title'];?></strong></div>
-				<br> 
-				<?php if(empty($userinfo[0]['profile_image'])) {?>
-				    <img src="<?php echo asset_url(); ?>images/buyerorange0.png" id="Shape54" alt="" class="img65" style="border-radius:50%;border:1px solid #ccc;">
-				<?php } else {?>
-					<img src="<?php echo asset_url(); ?><?php echo $userinfo[0]['profile_image'];?>" id="Shape54" alt="" class="img65" style="border-radius:50%;border:1px solid #ccc;">
-				<?php } ?>
-				<strong class="cstyle1"><?php echo $allpost['prefix'].' '.$allpost['username'];?> &nbsp;|&nbsp; <?php echo $allpost['company_name'];?> </strong> <br>
-				<div class="space1">
-					<span class="cstyle4"><?php echo substr($allpost['postdesc'],0,400);?> <?php if(strlen($allpost['postdesc']) > 400){?>...<?php }?>
-					</span> <br>
-				</div>
-				<div class="center1 padding1">
-					<span class="cstyle2">&nbsp; USD <?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span> <span
-						class="cstyle3">&nbsp; Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
-				</div>
-				<img src="<?php echo asset_url(); ?><?php echo $allpost['image1'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-				<img src="<?php echo asset_url(); ?><?php echo $allpost['image2'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-				<img src="<?php echo asset_url(); ?><?php echo $allpost['image3'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-				<img src="<?php echo asset_url(); ?><?php echo $allpost['image4'];?>" class="img500" alt="" style="width:100% !important;"><br>
-			</div>
-			<div class="col-sm-1" style="width:30px;padding:3px;margin-top: -45px;">
-				<a href="#" onclick="ShowObject('Layer18_<?php echo $key;?>', 0);return false;"> 
-					<img src="<?php echo asset_url(); ?>images/close.png" id="Image14" alt="" class="img35 margin3">
-				</a>
-				<br> 
-				<a href="javascript:addToMyFavourite(<?php echo $allpost['postid'];?>,9);"> 
-					<img class="hover img35" alt="" src="<?php echo asset_url(); ?>images/community-icons/favorite-active.png" /> 
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/favorite.png" class="img35 margin3" /></span>
-				</a>
-				<br> 
-				<?php if($allpost['busi_id'] != $busi_id) { ?>
-				<a href="javascript:openEnquiryAndOfferForm(<?php echo $allpost['postid'];?>);" target="_self"> 
-					<img class="hover img35" alt="" src="<?php echo asset_url(); ?>images/community-icons/reply-active.png" /> 
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/reply.png" class="img35 margin3" /></span>
-				</a>
-				<?php } else { ?>
-				<a href="javascript:return false;" target="_self"> 
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/reply.png" class="img35 margin3" style="opacity:0.5;"/></span>
-				</a>
-				<?php } ?>
-				<br> 
-				<a href="javascript:shareThePost(<?php echo $allpost['postid'];?>);">
-					<img src="<?php echo asset_url(); ?>images/community-icons/share-active.png" alt="" class="hover img35" />
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/share.png" class="img35 margin3" /></span>
-				</a>
-				<br> 
-				<a href="javascript:translateToLang();"> 
-					<img class="hover img35" alt="" src="<?php echo asset_url(); ?>images/community-icons/translate-active.png" /> 
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/translate.png" class="img35 margin3" /></span>
-				</a> 
-				<br>
-			</div>
-		</div>
-	</div>
-	</div>
-	<?php 
-		}
-	}
-	?>
-	</div>
-	<div id="mypostdetail">
-	<?php 
-	if (count ( $myposts ) > 0 && $myposts [0] ['id'] != '') {
-		foreach ( $myposts as $key=>$mypost ) {
-	?>
-	<!-- post details -->
-	<div class="Layer18" id="delLayer18_<?php echo $key;?>" style="position: absolute; text-align: left; visibility: hidden; right:15px; top: 1px; width: 545px; height: 804px; z-index: 587;background: rgba(0,0,0,0.6);">
-		<h3 class="background11" style="height:47px;padding:18px;">
-			<strong>Post Details</strong>
-		</h3>
-		<div class="row" style="margin:0px;margin-top:2px;">
-			<div class="col-sm-11" id="Layer11" style="width: 505px;">
-				<span class="cstyle5" style="background-color: #DCDCDC;margin: 5px -10px;padding: 0px 15px;"><strong><?php echo $mypost['title'];?></strong></span>
-				<br> 
-				<?php if(empty($userinfo[0]['profile_image'])) {?>
-				    <img src="<?php echo asset_url(); ?>images/buyerorange0.png" id="Shape54" alt="" class="img65" style="border-radius:50%;border:1px solid #ccc;">
-				<?php } else {?>
-					<img src="<?php echo asset_url(); ?><?php echo $userinfo[0]['profile_image'];?>" id="Shape54" alt="" class="img65" style="border-radius:50%;border:1px solid #ccc;">
-				<?php } ?>
-				<strong class="cstyle1"><?php echo $mypost['prefix'].' '.$mypost['username'];?> &nbsp;|&nbsp; <?php echo $mypost['company_name'];?> </strong> <br>
-				<div class="space1">
-					<span class="cstyle4"><?php echo substr($mypost['postdesc'],0,400);?> <?php if(strlen($mypost['postdesc']) > 400){?>...<?php }?>
-					</span> <br>
-				</div>
-				<div class="center1 padding1">
-					<span class="cstyle2">&nbsp; USD <?php echo $mypost['postprice'];?>&nbsp;&nbsp;&nbsp; </span> <span
-						class="cstyle3">&nbsp; Min. Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
-				</div>
-				<?php if(!empty($mypost['image1'])) { ?>
-				<img src="<?php echo asset_url(); ?><?php echo $mypost['image1'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-				<?php } ?>
-				<?php if(!empty($mypost['image2'])) { ?>
-				<img src="<?php echo asset_url(); ?><?php echo $mypost['image2'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-				<?php } ?>
-				<?php if(!empty($mypost['image3'])) { ?>
-				<img src="<?php echo asset_url(); ?><?php echo $mypost['image3'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-				<?php } ?>
-				<?php if(!empty($mypost['image4'])) { ?>
-				<img src="<?php echo asset_url(); ?><?php echo $mypost['image4'];?>" class="img500" alt="" style="width:100% !important;"><br>
-				<?php } ?>
-			</div>
-			<div class="col-sm-1" style="width:30px;padding:3px;margin-top: -45px;">
-				<a href="#" onclick="ShowObject('delLayer18_<?php echo $key;?>', 0);return false;"> 
-					<img src="<?php echo asset_url(); ?>images/close.png" id="Image14" alt="" class="img35 margin3">
-				</a>
-				<br> 
-				<a href="javascript:addToMyFavourite(<?php echo $mypost['postid'];?>,9);"> 
-					<img class="hover img35" alt="" src="<?php echo asset_url(); ?>images/community-icons/favorite-active.png" /> 
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/favorite.png" class="img35 margin3" /></span>
-				</a>
-				<br> 
-				<?php if($mypost['busi_id'] != $busi_id) { ?>
-				<a href="javascript:openEnquiryAndOfferForm(<?php echo $mypost['postid'];?>);" target="_self"> 
-					<img class="hover img35" alt="" src="<?php echo asset_url(); ?>images/community-icons/reply-active.png" /> 
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/reply.png" class="img35 margin3" /></span>
-				</a>
-				<?php } else { ?>
-				<a href="javascript:return false;" target="_self"> 
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/reply.png" class="img35 margin3" style="opacity:0.5;"/></span>
-				</a>
-				<?php } ?>
-				<br> 
-				<a href="javascript:shareThePost(<?php echo $mypost['postid'];?>);">
-					<img src="<?php echo asset_url(); ?>images/community-icons/share-active.png" alt="" class="hover img35" />
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/share.png" class="img35 margin3" /></span>
-				</a>
-				<br> 
-				<a href="javascript:translateToLang();"> 
-					<img class="hover img35" alt="" src="<?php echo asset_url(); ?>images/community-icons/translate-active.png" /> 
-					<span><img alt="" src="<?php echo asset_url(); ?>images/community-icons/translate.png" class="img35 margin3" /></span>
-				</a> 
-				<br>
-			</div>
-		</div>
-	</div>
-	<?php 
-		}
-	}
-	?>
+	<div class="Layer18" id="mainLayer18" style="position: absolute; text-align: left; visibility: hidden; right:0; top: 1px; width: 545px; height: 804px; z-index: 587;background: rgba(0,0,0,0.6);">
 	</div>
 </div>
-
+</div>
 <script src="<?php echo asset_url();?>js/bootstrapValidator.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 
@@ -840,12 +712,12 @@ function myajaxindicatorstop(id)
        jQuery('#resultLoading').fadeOut(300);
     jQuery('#'+id).css('cursor', 'default');
 }
-$("#showmenulist<?php echo $allpost['postid'];?>").click(function (event) {
+$(".showmenulist").click(function (event) {
 	event.stopImmediatePropagation();
-    if ($("#Layer47<?php echo $allpost['postid'];?>").is(":hidden")) {
-        $("#Layer47<?php echo $allpost['postid'];?>").slideDown("slow");
+    if ($("#Layer47-"+$(this).attr("data-id")).is(":hidden")) {
+        $("#Layer47-"+$(this).attr("data-id")).slideDown("slow");
     } else {
-        $("#Layer47<?php echo $allpost['postid'];?>").hide();
+        $("#Layer47-"+$(this).attr("data-id")).hide();
     }
 });
 
@@ -858,38 +730,44 @@ $("#Layer47<?php echo $allpost['postid'];?>").mouseleave(function(){
 
 <script>
 function loadRealtimePosts(){
+	/*myajaxindicatorstart('Layer1');
+	myajaxindicatorstart('Layer32');*/
     $.post(base_url+"mycommunity/posts/realtime", {}, function(data){
-		$('#Layer1').html(data.html1);
-		$('#rtimepostdetail').html(data.html2);
+    	myajaxindicatorstop('Layer1');
+    	myajaxindicatorstop('Layer32');
+		/*$('#Layer1').html(data.html1);
+		$('#Layer32').html(data.html2);*/
 	},'json');
 }
-function loadMyPosts(){
-    $.post(base_url+"mycommunity/posts/myposts", {}, function(data){
-       $('#Layer32').html(data.html1);
-       $('#mypostdetail').html(data.html2);
-    },'json');
+function openPostDetails(id){
+	ShowObject('Layer20', 0);
+	ShowObject('Layer101', 0);
+	ShowObjectWithEffect('mainLayer18', 1, 'slideright', 500, 'swing');
+	ShowObject('Layer71', 0);
+	addPageVisit(id);
+	myajaxindicatorstart('mainLayer18');
+    $.post(base_url+"mycommunity/posts/detail/"+id, {}, function(data){
+       $('#mainLayer18').html(data);
+    },'html');
 }
-function deletePost(id){
-    var del = confirm('Are you sure to delete Post.');
-	    if(del != true){
-		 	return false;
-		} else {
-	        $.post(base_url+"community/deletepost", {id : id}, function(data){
-	        $("#msg_cont").html(data.msg);
-	    	ShowObject('Layer99', 1);
-	        window.location.href=base_url+"community";
-	    }, 'html');
-	}
+function deletePost(id,event){
+	event.stopImmediatePropagation();
+    confirmbox("Are you sure to delete Post ?",
+		function() {
+			ajaxindicatorstart("");
+			$.post(base_url+"community/deletepost", {id : id}, function(data){
+				ajaxindicatorstop();
+				loadRealtimePosts();
+		        $("#msg_cont").html(data.msg);
+		    	ShowObject('Layer99', 1);
+		    }, 'html');
+		},
+		function() {
+           //
+        }
+	);
 }
     
-/*$('#buttonselect').click(function() {
-    var id = $('#select_product_id').val(); 
-    $('#postdatacontent').hide();
-    $.get(base_url+"community/product/images/"+id, {}, function(data){
-	    $('#view_Product_image').html(data);
-	 },'html');
-});*/
-
 function selectProductImage() {
     $('#postviewimage').hide();
     $('#postdatacontent').show();
@@ -954,7 +832,8 @@ $('#addPostContent').bootstrapValidator({
                     message: 'Atleast one image required'
                 }
             }
-        }
+        },
+        
     }
 }).on('success.form.bv', function(event,data) {
 	// Prevent form submission
@@ -993,7 +872,7 @@ function showAddResponse(resp, statusText, xhr, $form){
         $("#response").addClass('alert-success');
         $("#response").html(resp.msg);
         $("#response").show();
-        window.location.href = base_url+"community";
+        loadRealtimePosts();
   	}
 }
 
@@ -1025,12 +904,12 @@ function setup_readerpost(files, i) {
 function postLike(id){
 		Toggle('', 'blindhorizontal', 500);
 		$.post(base_url+"community/post/like", {post_id : id }, function(data){
-			//$("#msg_cont").html(data.msg);
-    		//ShowObject('Layer99', 1);
-			if(data.status!=''){
+			if(data.status == 1){
 				viewPostLike(id);
 				loadRealtimePosts();
-				loadMyPosts();
+			} else {
+				$("#msg_cont").html(data.msg);
+	    		ShowObject('Layer99', 1);
 			}
 		},'json');
 }
@@ -1044,7 +923,6 @@ function commentPost(post_id, user_id){
 	    		//ShowObject('Layer99', 1);
 	            viewPostComment(post_id);
 	            loadRealtimePosts();
-				loadMyPosts();
             }
         }, 'json');
     }
@@ -1145,12 +1023,21 @@ $("#SiteSearch01").keypress(function() {
 });
 function searchPage() {
 	$.get(base_url+"community/members/search",{ name: $("#SiteSearch01").val()},function(data) {
-		$("#comm_members").html(data);
-	},'html');
+		$("#comm_members").html(data.html);
+	},'json');
 }
 
 function deleteMembers() {
 	var members = "";
+	var nillmembers = '<h4 class="center" style="margin-top:50px;padding: 60px 30px;text-align: left;">'
+					  +'<span style="color:#000000;font-family:Arial;font-size:13px;">'
+					  +'<strong>You don’t have members in your community.. </strong>'
+					  +'<br><br>'
+					  +'To add members, click on the suitable business type “ Sellers, Shippers, Buyers” shown under “ Add Member” in The Toolbox..<br><br>'
+					  +'In the related page, search for a certain members meet your requirement, view his Desksite, then click “Contact and select Add To My Community”..'
+					  +'<br><br>'
+					  +'</span>'
+					  +'</h4>';
 	$(".comm_member_id").each(function(){
 		if(members == "") {
 			members = $(this).val();
@@ -1158,12 +1045,20 @@ function deleteMembers() {
 			members = members+","+$(this).val();
 		}
 	});
-	//var ans = confirm("Are you sure ? You want to delete all members?");
 	if(members != "") {
-		$.get(base_url+"community/members/delete",{ members: members},function(data) {
-			$("#comm_members").html('<div style="text-align:center;padding: 25px;font-size: 14px;">All Members Deleted Successfully.</div>');
-			$("#likecountid").html("&nbsp;&nbsp;<strong>0</strong>");
-		},'html');
+		confirmbox("Are you sure ? You want to delete all members?",
+			function() {
+				$.get(base_url+"community/members/delete",{ members: members},function(data) {
+					$("#comm_members").html(nillmembers);
+					$("#likecountid").html("&nbsp;&nbsp;<strong>0</strong>");
+					$("#memdeleteimg").hide();
+					$("#deleteMem").removeAttr('checked');
+				},'html');
+			},
+			function() {
+	           //
+	        }
+		);
 	}
 }
 
@@ -1215,10 +1110,18 @@ function openEnquiryAndOfferForm(postid) {
 }
 
 function shareThePost(postid) {
-	$.get(base_url+"mycommunity/post/share/"+postid,{},function(data) {
-		$("#msg_cont").html(data.msg);
-		ShowObject('Layer99', 1);
-	},'json');
+	confirmbox("Do you like to share this post to your community?",
+		function() {
+		$.get(base_url+"mycommunity/post/share/"+postid,{},function(data) {
+			loadRealtimePosts();
+			$("#msg_cont").html(data.msg);
+			ShowObject('Layer99', 1);
+		},'json');
+		},
+		function() {
+           //
+        }
+	);
 }
 
 function addPageVisit(postid) {
@@ -1249,6 +1152,7 @@ function selectProductImage() {
 	        $('#postphoto'+(index+1)).css('background-image','url('+base_url+'assets/'+$(this).val()+')').css('background-size','cover');
 	        $("#cimg"+(index+1)).val($(this).val());
 	        $("#imgcnt").val(1);
+	        $('#addPostContent').bootstrapValidator ('revalidateField', 'imgcnt');	
 	   	});
 	    $('#view_Product_image').html("");
 	} else {
@@ -1273,6 +1177,7 @@ function setBackgroundSize(id,input,size) {
 	                } else {
 		                $('#'+id).css('background-image', 'url('+e.target.result+')').css('background-size','cover');
 		                $("#imgcnt").val(1);
+		                $('#addPostContent').bootstrapValidator ('revalidateField', 'imgcnt');	
 	                }
                 } else {
                 	alert("Image should be JPG or JPEG.");
@@ -1285,6 +1190,11 @@ function setBackgroundSize(id,input,size) {
 }
 function resetMyForm() {
 	document.getElementById("addPostContent").reset();
+	$("#imgcnt").val(0);
+	$("#postphoto1").css('background-image', 'url("<?php echo asset_url();?>images/img1264.png")').css('background-size','cover').val('');
+	$("#postphoto2").css('background-image', 'url("<?php echo asset_url();?>images/img1264.png")').css('background-size','cover').val('');
+	$("#postphoto3").css('background-image', 'url("<?php echo asset_url();?>images/img1264.png")').css('background-size','cover').val('');
+	$("#postphoto4").css('background-image', 'url("<?php echo asset_url();?>images/img1264.png")').css('background-size','cover').val('');
 } 
 
 function showAddPost() {
@@ -1304,4 +1214,28 @@ function showAddPost() {
 	<?php } ?>
 }
 
+function showMymembers() {
+	ShowObjectWithEffect( 'Layer71', 1, 'slideright', 600);
+	ShowObjectWithEffect( 'Layer72', 1, 'fade', 500);
+	ShowObjectWithEffect( 'Layer90', 0, 'fade', 5);
+	ShowObjectWithEffect( 'Layer76', 1, 'blindvertical', 500);
+	ShowObjectWithEffect( 'Layer74', 1, 'fold', 500);
+	ShowObject( 'Layer20', 0);
+	ShowObject( 'Layer101', 0);
+	hideObjects( 'Layer18', 0);
+	myajaxindicatorstart('mainLayer18');
+	$.get(base_url+"community/members/search",{ name: ''},function(data) {
+       $('#comm_members').html(data.html);
+       $("#likecountid").html("&nbsp;&nbsp;<strong>"+data.members+"</strong>");
+    },'json');
+}
+
+$(document).ready(function(){
+	setInterval(loadRealtimePosts,15000);
+});
+$(document).ready(function() {
+    $("body").on("contextmenu",function(){
+       return false;
+    }); 
+}); 
 </script>

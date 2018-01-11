@@ -5,7 +5,7 @@
 	<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
 		<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($allpost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($allpost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($allpost['created_date']));?></span>
 	</div>
-	<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="ShowObject('Layer20', 0);ShowObject('Layer101', 0);ShowObjectWithEffect('Layer18_<?php echo $key;?>', 1, 'slideright', 500, 'swing');ShowObject('Layer71', 0);addPageVisit(<?php echo $allpost['postid'];?>);return false;">
+	<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="openPostDetails(<?php echo $allpost['postid'];?>);">
 		<div class="col-md-2 col-sm-2 inline text-center">
 			<a href="#" id="showmenulist<?php echo $allpost['postid'];?>" class="showmenulist" data-id="<?php echo $allpost['postid'];?>"> 
 				<hr id="Line19" style="position:absolute;left:30px;top:35px;width:5px;height:4px;z-index:227;">
@@ -15,7 +15,7 @@
 			</a> 
 			<img src="<?php echo asset_url(); ?><?php echo $allpost['profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
 			<!-- chat and other all -->
-			<div id="Layer47<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
+			<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 				<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
 				<a href="#" class="afont viewpst" data-id="<?php echo $allpost['postid'];?>">View Posts</a> 
 				<a href="#" class="afont viewdsksite" data-id="<?php echo $allpost['busi_id'];?>" data-catid="<?php echo $allpost['user_category_id'];?>">DeskSite</a> 

@@ -466,6 +466,7 @@ $route['mycommunity/post/share/([0-9]+)'] = 'frontend/Community/shareCommunityPo
 $route['mycommunity/post/visit/([0-9]+)'] = 'frontend/Community/visitCommunityPost/$1';
 $route['mycommunity/posts/realtime'] = 'frontend/Community/getCommunityRealtimePosts';
 $route['mycommunity/posts/myposts'] = 'frontend/Community/getCommunityMyPosts';
+$route['mycommunity/posts/detail/([0-9]+)'] = 'frontend/Community/getCommunityPostDetail/$1';
 
 
 $route['stats/business/markvisit'] = 'frontend/Tools/updateBusinessStats';

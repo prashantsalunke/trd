@@ -1586,6 +1586,11 @@ function showContactUsResponse(resp, statusText, xhr, $form){
 function resetForm() {
 	document.contactusfrm.reset();
 }
+$(document).ready(function() {
+    $("body").on("contextmenu",function(){
+       return false;
+    }); 
+}); 
 $("a[data-rel='prettyPhoto_SlideShow31[SlideShow31]']").attr('rel', 'prettyPhoto_SlideShow31[SlideShow31]');
 $("a[rel^='prettyPhoto_SlideShow31']").prettyPhoto({theme:'facebook',social_tools:false});
 </script>

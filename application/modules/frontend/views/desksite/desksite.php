@@ -2037,11 +2037,11 @@ function productDetail(id) {
 		$("#details").html(data);
 	},'html');
 }
-/*$(document).ready(function() {
+$(document).ready(function() {
     $("body").on("contextmenu",function(){
        return false;
     }); 
-}); */
+}); 
 $(document).ready(function(){
 	$('#contactusfrm').bootstrapValidator({
 	 container: function($field, validator) {

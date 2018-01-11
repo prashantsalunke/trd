@@ -2,7 +2,10 @@
 	if (count ( $myposts ) > 0 && $myposts [0] ['id'] != '') {
 	foreach ( $myposts as $key=>$mypost ) {
 ?>
-	<div class="boxsize row" style="margin-top:21px;margin-right:19px;" onclick="ShowObject('Layer20', 0);ShowObject('Layer101', 0);ShowObjectWithEffect('delLayer18_<?php echo $key;?>', 1, 'slideright', 500, 'swing');ShowObject('Layer71', 0);return false;">
+	<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
+		<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($mypost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($mypost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($mypost['created_date']));?></span>
+	</div>
+	<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="openPostDetails(<?php echo $mypost['postid'];?>);">
 		<div class="col-md-2 col-sm-2 text-center">
 			<br><br><br><br><br>
 			<input type="checkbox" style="display:none;"><br><br>
@@ -66,9 +69,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
-		<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($mypost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($mypost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($mypost['created_date']));?></span>
 	</div>
 <?php } }  else { ?>
 	<div style="height:637px;">

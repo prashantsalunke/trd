@@ -98,6 +98,20 @@ function customAlert(msg) {
 	$("#customAlertText").html(msg);
 	$('#customAlertBox').modal({show:true,backdrop: 'static',keyboard: false});
 }
+function confirmbox(msg, yesCallback, noCallback) {
+    $('#cnb_message').html(msg);
+    $('#confirmBoxModal').modal({show:true,backdrop: 'static',keyboard: false});
+
+    $('#cnbYes').click(function() {
+        $("#confirmBoxModal").modal('hide');
+        yesCallback();
+    });
+
+    $('#cnbNo').click(function() {
+    	$("#confirmBoxModal").modal('hide');
+        noCallback();
+    });
+}
 </script>
 </head>
 <body>
@@ -107,8 +121,6 @@ function customAlert(msg) {
     <?php echo $template['partials']['header']; ?>
     <?php echo $template['body']; ?>
 	<?php echo $template['partials']['footer']; ?>
-</body>
-</html>
 <div id="customAlertBox" class="modal fade" role="dialog" style="z-index:13000;">
   	<div class="modal-dialog" style="width:500px;">
     	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
@@ -136,6 +148,35 @@ function customAlert(msg) {
     	</div>
   	</div>
 </div>
+<div id="confirmBoxModal" class="modal fade" role="dialog" style="z-index:13000;">
+  	<div class="modal-dialog" style="width:400px;">
+    	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
+      		<div class="modal-body">
+      			<div class="row" style="padding-top:10px;">
+      				<div class="col-sm-2"></div>
+      				<div class="col-sm-8">
+	      				<div style="text-align: center;">
+							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;">WARNING</span>
+						</div>
+						<br><br>
+						<div style="text-align: center;" id="cnb_message">
+							
+						</div>
+					</div>
+					<div class="col-sm-2"></div>
+      			</div>
+      			<br>
+      			<div class="row text-center">
+      				<input type="button" class="btn btn-sm btn-danger-custom" style="width:100px;" id="cnbYes" value="Yes"/>
+      				<input type="button" class="btn btn-sm btn-danger-custom" style="width:100px;" id="cnbNo" value="No"/>
+      			</div>
+      			<br><br>
+      		</div>
+    	</div>
+  	</div>
+</div>
+</body>
+</html>
 <script src="<?php echo asset_url(); ?>js/custom/account.js"></script>
 <script>
 function ajaxindicatorstart(text)
