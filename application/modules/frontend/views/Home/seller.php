@@ -1,5 +1,5 @@
-<script type="text/javascript" charset="utf-8" src="/trd/cometchat/js.php"></script>
-<link type="text/css" rel="stylesheet" media="all" href="/trd/cometchat/css.php" />
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>/cometchat/js.php"></script>
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>cometchat/css.php" />
 <style>
 #RollOver26 a
 {
