@@ -55,15 +55,35 @@
 						$vb = round($allpost['postviews']/$tb*3,1);
 						$lb = round($allpost['likes']/$tb*3,1);
 						$cb = round($allpost['comment']/$tb*3,1);
+						$total_count_for_percentage = $allpost['postviews'] + $allpost['likes'];
+						if($total_count_for_percentage == 0)
+						{
+							$percentage_views = 0;
+							$percentage_likes = 0;
+							}else{
+							$percentage_views = ($allpost['postviews'] * 100)/$total_count_for_percentage;
+
+							$percentage_likes = ($allpost['likes'] * 100)/$total_count_for_percentage;
+							//below code is for showing likes line when there is no like so that we dont affect the view
+							if($percentage_views == 100)
+							{
+								$percentage_views = 95;
+								$percentage_likes = 5;
+							}
+						}
 					}
 				?>
 				<div>
 					<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
-					<span class="font11" style="border-top: <?php echo $vb;?>px solid #00c9d0;">Views </span> <span class="font11"><?php echo $allpost['postviews'];?></span>
-					<a href="#" class="style5 font11 plbtn" data-id="<?php echo $allpost['postid'];?>" style="border-top: <?php echo $lb;?>px solid #00c9d0;">Likes</a> 
-					<span class="font11" style="border-top: 0px solid #00c9d0;"><?php echo $allpost['likes'];?></span>
-					<a href="#" class="style5 font11 commbtn" data-id="<?php echo $allpost['postid'];?>" style="border-top: <?php echo $cb;?>px solid #00c9d0;">Comments</a> 
-					<span class="font11" style="border-top: 0px solid #00c9d0;"><?php echo $allpost['comment'];?></span>
+					<div class="percentage_display">
+    					<div class="percentage_views" style="width: <?php echo $percentage_views;?>%">&nbsp;</div>
+    					<div class="percentage_likes" style="width: <?php echo $percentage_likes;?>%">&nbsp;</div>
+					</div>
+					<span class="font11">Views </span> <span class="font11"><?php echo $allpost['postviews'];?></span>
+					<a href="#" class="style5 font11 plbtn" data-id="<?php echo $allpost['postid'];?>">Likes</a> 
+					<span class="font11"><?php echo $allpost['likes'];?></span>
+					<a href="#" class="style5 font11 commbtn" data-id="<?php echo $allpost['postid'];?>">Comments</a> 
+					<span class="font11"><?php echo $allpost['comment'];?></span>
 				</div>
 			</div>
 		</div>
