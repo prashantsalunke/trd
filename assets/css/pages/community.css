@@ -41,7 +41,7 @@ hr {
     }
 }
 .likesection{
-	width: 92%;
+	width: 100%;
     padding: 5px 10px;
     background-color: white;
     border-bottom: 1px solid #DCDCDC;
@@ -54,7 +54,7 @@ hr {
    transition: background-color 100ms linear 0ms;
 }
 .likesection1{
-	width: 92%;
+	width: 100%;
     background-color: white;
 }
 

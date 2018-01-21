@@ -7,7 +7,7 @@
 		    <img src="<?php echo asset_url(); ?>images/img0313.gif" id="Shape14" alt="" style="width:42px;height:42px;float: right;margin-top: 5px;">
 		    </a>
             </div>
-            <div style="max-height:400px;overflow-y:scroll;">
+            <div style="overflow-y:scroll;">
             <?php foreach($postcomment as $comment) {?>
             <div class="likesection1 row" style="margin:5px 0px;padding:10px 0px;">
                 <div class="col-sm-2">
