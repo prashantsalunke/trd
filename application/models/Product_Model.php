@@ -1345,7 +1345,7 @@ class Product_Model extends CI_Model {
     	$this->db->where('f.is_deleted', 0);
     	$this->db->where('f.is_contactperson',1);
     	$this->db->group_by('h.id');
-        $this->db->order_by('h.id','desc');
+        //$this->db->order_by('h.id','desc');
 
     	$query_1 = $this->db->get_compiled_select ();
     	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,d.accept_offer,d.accept_email,e.*,f.user_category_id, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment,b.step,(select j.name from tbl_user as j where j.busi_id=h.share_id and j.account_activated = 1 and j.is_suspend = 0 and j.is_deleted = 0 and j.is_contactperson = 1 limit 1) as share_cname,(select l.profile_image from tbl_user as k inner join tbl_userinfo as l on k.id=l.user_id where k.busi_id=h.share_id and k.account_activated = 1 and k.is_suspend = 0 and k.is_deleted = 0 and k.is_contactperson = 1 limit 1) as share_profile_image');
@@ -1363,7 +1363,7 @@ class Product_Model extends CI_Model {
     	$this->db->where('f.is_deleted', 0);
     	$this->db->where('f.is_contactperson',1);
     	$this->db->group_by('h.id');
-        $this->db->order_by('h.id','desc');
+        //$this->db->order_by('h.id','desc');
 
     	$query_2 = $this->db->get_compiled_select ();
     	$this->db->select('d.company_name, d.company_country, d.company_province, d.company_email, d.business_logo, d.annual_trad_volume, d.plan_id, d.gaurantee_period, d.is_logo_verified, d.rank,d.accept_offer,d.accept_email,e.*,f.user_category_id, f.name as username, f.name_prefix as prefix, f.user_subcategory_id as catid, g.*,h.id as postid,h.title as title,h.description as postdesc,h.usd_price as postprice,h.quantity as postqty,h.created_date as create,h.image1,h.image2,h.image3,h.image4, h.postviews,h.likes,h.comment,b.step,"" as share_cname,"" as share_profile_image');
@@ -1380,7 +1380,7 @@ class Product_Model extends CI_Model {
     	$this->db->where('f.is_deleted', 0);
     	$this->db->where('f.is_contactperson',1);
     	$this->db->group_by('h.id');
-        $this->db->order_by('h.id','desc');
+        //$this->db->order_by('h.id','desc');
         
     	$query_3 = $this->db->get_compiled_select ();
     	$sql = "SELECT t.* FROM (".$query_1." UNION ".$query_2." UNION ".$query_3.") as t group by t.postid order by t.create desc";
