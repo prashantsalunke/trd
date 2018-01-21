@@ -29,14 +29,34 @@
 					$vb = round($mypost['postviews']/$tb*3);
 					$lb = round($mypost['likes']/$tb*3);
 					$cb = round($mypost['comment']/$tb*3);
+					$total_count_for_percentage = $mypost['postviews'] + $mypost['likes'];
+					if($total_count_for_percentage == 0)
+					{
+						$percentage_views = 0;
+						$percentage_likes = 0;
+					}else{
+						$percentage_views = ($mypost['postviews'] * 100)/$total_count_for_percentage;
+
+						$percentage_likes = ($mypost['likes'] * 100)/$total_count_for_percentage;
+						//below code is for showing likes line when there is no like so that we dont affect the view
+						if($percentage_views == 100)
+						{
+							$percentage_views = 95;
+							$percentage_likes = 5;
+						}
+					}
 				}
 			?>
 			<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
-			<span class="font11" style="border-top: <?php echo $vb;?>px solid #00c9d0;">Views </span> <span class="font11"><?php echo $mypost['postviews'];?></span>
-			<a href="#" class="style5 font11 plbtn" data-id="<?php echo $mypost['postid'];?>" style="border-top: <?php echo $lb;?>px solid #00c9d0;">Likes</a> 
-			<span class="font11" style="border-top: 0px solid #00c9d0;"><?php echo $mypost['likes'];?></span>
-			<a href="#" class="style5 font11 commbtn" data-id="<?php echo $mypost['postid'];?>" style="border-top: <?php echo $cb;?>px solid #00c9d0;">Comments</a> 
-			<span class="font11" style="border-top: 0px solid #00c9d0;"><?php echo $mypost['comment'];?></span>
+			<div class="percentage_display">
+    			<div class="percentage_views" style="width: <?php echo $percentage_views;?>%">&nbsp;</div>
+    			<div class="percentage_likes" style="width: <?php echo $percentage_likes;?>%">&nbsp;</div>
+			</div>
+			<span class="font11">Views </span> <span class="font11"><?php echo $mypost['postviews'];?></span>
+			<a href="#" class="style5 font11 plbtn" data-id="<?php echo $mypost['postid'];?>">Likes</a> 
+			<span class="font11"><?php echo $mypost['likes'];?></span>
+			<a href="#" class="style5 font11 commbtn" data-id="<?php echo $mypost['postid'];?>">Comments</a> 
+			<span class="font11"><?php echo $mypost['comment'];?></span>
 
 		</div>
 		<div class="col-md-4 col-sm-4">

@@ -376,15 +376,15 @@
 									$vb = round($mypost['postviews']/$tb*3);
 									$lb = round($mypost['likes']/$tb*3);
 									$cb = round($mypost['comment']/$tb*3);
-									$total_count_for_percentage = $allpost['postviews'] + $allpost['likes'];
+									$total_count_for_percentage = $mypost['postviews'] + $mypost['likes'];
 									if($total_count_for_percentage == 0)
 									{
 										$percentage_views = 0;
 										$percentage_likes = 0;
 									}else{
-										$percentage_views = ($allpost['postviews'] * 100)/$total_count_for_percentage;
+										$percentage_views = ($mypost['postviews'] * 100)/$total_count_for_percentage;
 
-										$percentage_likes = ($allpost['likes'] * 100)/$total_count_for_percentage;
+										$percentage_likes = ($mypost['likes'] * 100)/$total_count_for_percentage;
 										//below code is for showing likes line when there is no like so that we dont affect the view
 										if($percentage_views == 100)
 										{
