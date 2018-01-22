@@ -1726,7 +1726,7 @@ class Product_Model extends CI_Model {
     	$this->db->select('a.*,b.*,d.company_name as cname,d.company_country as country,d.company_province as state,d.company_city as city,c.*,f.profile_image,g.sub_category as subcategory');
     	$this->db->from(TABLES::$POSTLIKE.' AS a');
     	$this->db->join(TABLES::$COMMMUNITY_POST.' AS b','a.post_id=b.id','inner');
-    	$this->db->join(TABLES::$USER.' AS c','c.busi_id=b.busi_id','inner');
+    	$this->db->join(TABLES::$USER.' AS c','c.busi_id=a.liked_by','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','b.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS f','f.user_id=c.id','inner');
@@ -1746,7 +1746,7 @@ class Product_Model extends CI_Model {
     	$this->db->select('a.*,d.company_name as cname,d.company_country as country,d.company_province as state,d.company_city as city,c.*,f.profile_image,g.sub_category as subcategory');
     	$this->db->from(TABLES::$POSTCOMMENT.' AS a');
     	$this->db->join(TABLES::$COMMMUNITY_POST.' AS b','a.post_id=b.id','inner');
-    	$this->db->join(TABLES::$USER.' AS c','c.busi_id=b.busi_id','inner');
+    	$this->db->join(TABLES::$USER.' AS c','c.busi_id=a.commented_by','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','b.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS f','f.user_id=c.id','inner');
