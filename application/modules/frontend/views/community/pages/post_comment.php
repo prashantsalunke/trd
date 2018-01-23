@@ -14,7 +14,7 @@
                 	<img src="<?php echo asset_url(); ?><?php echo $comment['profile_image'];?>" id="Image28" alt="" class="likeimg">
                 </div>
                 <div class="col-sm-10">
-                    <span class="stylefont1"><?php echo $comment['name'];?></span>
+                    <span class="stylefont1"><?php if($comment['nickname'] == "" && $comment['nickname'] == NULL ) { echo $comment['name']; } else { echo $comment['nickname']; } ?></span>
                     <span class="pull-right"><?php if(date('Y-m-d',strtotime($comment['created_datetime'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($comment['created_datetime'])); }?>&nbsp; | <?php echo date('H:i',strtotime($comment['created_datetime']));?></span>
                     <br>
                     <div style="padding-top:5px;">

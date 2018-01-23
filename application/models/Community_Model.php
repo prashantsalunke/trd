@@ -101,13 +101,20 @@ class Community_Model extends CI_Model {
     }
     
     public function searchCommunityMember($id,$name) {
-    	$this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
+    	/*$this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
     			b.company_city as city,b.plan_id,b.is_logo_verified,b.gaurantee_period,
     			(CASE WHEN d.nickname IS NULL OR d.nickname = "" THEN d.name ELSE d.nickname END) as membername,
     			d.user_category_id,(CASE WHEN d.nickname IS NULL OR d.nickname = "" THEN e.profile_image ELSE "images/img3470.png" END) as memberimg,f.sub_category as subcategory,
     			(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
     			(select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,
-    			(select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and is_deleted = 0) as have_request');
+    			(select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and is_deleted = 0) as have_request');*/
+        $this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
+                b.company_city as city,b.plan_id,b.is_logo_verified,b.gaurantee_period,
+                d.name as membername,
+                d.user_category_id,e.profile_image as memberimg,f.sub_category as subcategory,
+                (b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
+                (select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,
+                (select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and is_deleted = 0) as have_request');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS c','c.busi_id=b.id','inner');
