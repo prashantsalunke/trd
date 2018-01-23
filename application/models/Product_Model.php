@@ -1723,7 +1723,7 @@ class Product_Model extends CI_Model {
     }
     
     public function getCommunityPostLike($id){
-    	$this->db->select('a.*,b.*,d.company_name as cname,d.company_country as country,d.company_province as state,d.company_city as city,c.*,f.profile_image,g.sub_category as subcategory');
+    	$this->db->select('a.*,b.*,d.company_name as cname,d.company_country as country,d.company_province as state,d.company_city as city,c.*,(CASE WHEN c.nickname IS NULL OR c.nickname = "" THEN f.profile_image ELSE "images/img3470.png" END) as profile_image,g.sub_category as subcategory');
     	$this->db->from(TABLES::$POSTLIKE.' AS a');
     	$this->db->join(TABLES::$COMMMUNITY_POST.' AS b','a.post_id=b.id','inner');
     	$this->db->join(TABLES::$USER.' AS c','c.busi_id=a.liked_by','inner');
@@ -1743,7 +1743,7 @@ class Product_Model extends CI_Model {
     
     
     public function getCommunityPostComment($id){
-    	$this->db->select('a.*,d.company_name as cname,d.company_country as country,d.company_province as state,d.company_city as city,c.*,f.profile_image,g.sub_category as subcategory');
+    	$this->db->select('a.*,d.company_name as cname,d.company_country as country,d.company_province as state,d.company_city as city,c.*,(CASE WHEN c.nickname IS NULL OR c.nickname = "" THEN f.profile_image ELSE "images/img3470.png" END) as profile_image,g.sub_category as subcategory');
     	$this->db->from(TABLES::$POSTCOMMENT.' AS a');
     	$this->db->join(TABLES::$COMMMUNITY_POST.' AS b','a.post_id=b.id','inner');
     	$this->db->join(TABLES::$USER.' AS c','c.busi_id=a.commented_by','inner');
