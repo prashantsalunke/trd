@@ -442,6 +442,7 @@ $route['add/community/([0-9]+)'] = 'frontend/Home/AddCommunity/$1';
 $route['community'] = 'frontend/Community';
 $route['community/communitypost'] = 'frontend/Community/communityPostInsert';
 $route['community/deletepost'] = 'frontend/Community/deleteCommunityPost';
+$route['community/viewpost'] = 'frontend/Community/viewUserPost';
 $route['community/editprofile'] = 'frontend/Community/editProfile';
 $route['community/post/like'] = 'frontend/Community/postLike';
 $route['community/post/viewlike'] = 'frontend/Community/viewPostLike';
