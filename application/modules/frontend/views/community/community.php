@@ -91,7 +91,7 @@
 						</div>
 						<div class="col-xs-8 ptop">
 							<strong class="font1 ">View / Manage</strong><br> 
-							<a href="#" class="font2" onclick="ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);ShowObjectWithEffect('Layer51', 1, 'slideright', 500);ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);return false;">My Posts</a><br> 
+							<a href="#" class="font2" onclick="ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);ShowObjectWithEffect('Layer51', 1, 'slideright', 500);ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);return false;">My Posts</a><br> 
 							<a href="#" class="font2" onclick="showMymembers();">My Members <span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;display:none;">0</span></a><br> 
 							<a href="javascript:displayCommunityRequests();" class="font2" >Add Requests <?php if(!empty($add_requests[0]['members'])) { ?><span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;"><?php if(!empty($add_requests[0]['members'])) { echo $add_requests[0]['members']; } else { echo 0;}?></span><?php } ?></a>
 						</div>
@@ -171,7 +171,7 @@
 							<!-- chat and other all -->
 							<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 								<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
-								<a href="#" class="afont viewpst" data-id="<?php echo $allpost['postid'];?>">View Posts</a> 
+								<a href="#" class="afont viewpst" data-id="<?php echo $allpost['busi_id'];?>" data-busid="<?php echo $busi_id;?>">View Posts</a> 
 								<a href="#" class="afont viewdsksite" data-id="<?php echo $allpost['busi_id'];?>" data-catid="<?php echo $allpost['user_category_id'];?>">DeskSite</a> 
 							</div>
 							<!-- chat end -->
@@ -340,7 +340,7 @@
 				</div>
 				<div class="col-md-1 col-sm-1 col-xs-1 text-right" style="padding-left:0px;padding-right: 0px;">
 					<div id="wb_Shape67">
-						<a href="#" onclick="ShowObjectWithEffect('Layer51', 0, 'slideright', 500);ShowObjectWithEffect('Layer9', 0, 'slideright', 500);ShowObjectWithEffect('Layer5', 1, 'slideleft', 500);return false;"><img src="<?php echo asset_url();?>images/img0334.gif" id="Shape67" alt="" style="width:38px;height:37px;"></a>
+						<a href="#" onclick="ShowObjectWithEffect('Layer51', 0, 'slideright', 500);ShowObjectWithEffect('Layer52', 0, 'slideright', 500);ShowObjectWithEffect('Layer9', 0, 'slideright', 500);ShowObjectWithEffect('Layer5', 1, 'slideleft', 500);return false;"><img src="<?php echo asset_url();?>images/img0334.gif" id="Shape67" alt="" style="width:38px;height:37px;"></a>
 					</div>
 				</div>
 			</div>
@@ -454,6 +454,8 @@
 
 			<!-- my post section end-->
 			<!-- add post section -->
+			<div id="Layer52" style="visibility:hidden; position:absolute;min-width:971px;">
+			</div>
 			<div id="Layer6" style="top:0px;width:472px;z-index:513;position:absolute;left:382px;visibility:hidden;">
 				<div id="Layer15" style="background: #3C3C3C; padding: 11px;">
 					<div style="padding-bottom:5px;">
@@ -1039,9 +1041,23 @@ $(".chatcomet").click(function(event){
 });
 $(".viewpst").click(function(event){
     event.stopImmediatePropagation();
-    var id = $(this).attr("data-id");
-    ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
-    ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+    var busi_id = $(this).attr("data-id");
+    var logged_in_busi_id = $(this).attr("data-busid");
+    if(busi_id == logged_in_busi_id)
+    {
+    	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+    	ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+    }else{
+    	ajaxindicatorstart("");
+		$.post(base_url+"community/viewpost", {busi_id : busi_id}, function(data){
+				ajaxindicatorstop();
+				//loadRealtimePosts();
+		        $('#Layer52').html(data);
+		    	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+    			ShowObjectWithEffect('Layer52', 1, 'slideright', 500);
+		}, 'html');
+    }
+    
 });
 $(".viewdsksite").click(function(event){
     event.stopImmediatePropagation();
@@ -1128,6 +1144,7 @@ function displayCommunityRequests() {
 		ajaxindicatorstop();
 		ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
 		ShowObjectWithEffect('Layer51', 0, 'slideleft', 500);
+		ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);
 		ShowObjectWithEffect('Layer120', 1, 'slideright', 500);
 		ShowObjectWithEffect( 'Layer71', 0, 'fade', 600);
 	});

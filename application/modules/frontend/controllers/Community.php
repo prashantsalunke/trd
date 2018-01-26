@@ -25,6 +25,7 @@ class Community extends MX_Controller {
 		$cat_id = $this->session->userdata('tsuser')['category_id'];
 		$Country= $this->account->getCountry();
 		$this->template->set ('Country', $Country);
+		$this->template->set ('busi_id', $busi_id);
 		$this->load->model('Product_Model', 'product' );
 		$this->load->model('Tool_model', 'toolmodel' );
 		$userinfo = $this->product->getUserInfoByBussId($busi_id);
@@ -254,6 +255,26 @@ class Community extends MX_Controller {
 		echo json_encode($results);
 	}
 	
+	public function viewUserPost(){
+		if (! isset ( $_SESSION ['busi_id'] )) {
+			redirect ( base_url () );
+		}
+		$this->load->model('Community_Model','communitymodel');
+		$data = array ();
+		$busi_id =$this->input->post('busi_id');
+		$data['busi_id'] = $_SESSION['busi_id'];
+
+		$posts = $this->product->communityPostListByBusinessId($busi_id);
+		//$this->template->set ('myposts', $myposts);
+		$this->template->set ('allposts', $posts);
+		$this->template->set ( 'page', 'community' );
+		$this->template->set ( 'browser_icon', 'community.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('community/pages/memberpost','',true);
+		echo $html;
+	}
 	public function postLike() {
 		if (! isset ( $_SESSION ['busi_id'] )) {
 			redirect ( base_url () );
