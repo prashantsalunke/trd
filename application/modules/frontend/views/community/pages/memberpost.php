@@ -132,3 +132,27 @@
 		</div>
 	</div>
 <?php } } ?>
+<script>
+$(document).ready(function(){
+	$(".commbtn").click(function(event){
+	    event.stopImmediatePropagation();
+	    var id = $(this).attr("data-id");
+	    $.post(base_url+"community/post/viewcomment", {id : id}, function(data){
+	       $('#view_post_comment').html(data);
+	       ShowObject('Layer20', 0);
+	       ShowObjectWithEffect('Layer101', 1, 'slideright', 500);
+	       ShowObject('Layer71', 0);
+	    },'html');
+	});
+	$(".plbtn").click(function(event){
+	    event.stopImmediatePropagation();
+	    var id = $(this).attr("data-id");
+	    $.post(base_url+"community/post/viewlike", {id : id}, function(data){
+	       $('#view_post_like').html(data);
+	       ShowObject('Layer101', 0);
+	       ShowObjectWithEffect('Layer20', 1, 'slideright', 500);
+	       ShowObject('Layer71', 0);
+	    },'html');
+	});
+});
+</script>
