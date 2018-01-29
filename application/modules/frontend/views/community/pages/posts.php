@@ -47,6 +47,8 @@
 				<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 				<?php 
 					$tb = $allpost['postviews'] + $allpost['likes']+ $allpost['comment'];
+					$percentage_views = 0;
+					$percentage_likes = 0;
 					if($tb == 0) {
 						$vb = 0;
 						$lb = 0;
