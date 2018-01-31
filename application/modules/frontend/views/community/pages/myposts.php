@@ -3,7 +3,7 @@
 	foreach ( $myposts as $key=>$mypost ) {
 ?>
 	<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
-		<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($mypost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($mypost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($mypost['created_date']));?></span>
+		<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($mypost['create'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($mypost['create'])); }?>&nbsp; | <?php echo date('H:i',strtotime($mypost['create']));?></span>
 	</div>
 	<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="openPostDetails(<?php echo $mypost['postid'];?>);">
 		<div class="col-md-2 col-sm-2 text-center">
@@ -21,6 +21,8 @@
 			<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 			<?php 
 				$tb = $mypost['postviews'] + $mypost['likes']+ $mypost['comment'];
+				$percentage_views = 0;
+				$percentage_likes = 0;
 				if($tb == 0) {
 					$vb = 0;
 					$lb = 0;

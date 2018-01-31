@@ -199,4 +199,12 @@ class Community_Model extends CI_Model {
     	return $this->db->affected_rows();
     }
     
+    public function communityPostShareInsert($params)
+    {
+        $this->db->insert( TABLES::$COMMMUNITY_POST_SHARE, $params );
+        $last_id = $this->db->insert_id ();
+        $data ['status'] = 1;
+        $data ['msg'] = "Added successfully";
+        return $data;
+    }
 }
