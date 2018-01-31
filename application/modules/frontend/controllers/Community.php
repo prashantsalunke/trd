@@ -671,10 +671,11 @@ class Community extends MX_Controller {
 	public function shareCommunityPost($postid) {
 		$share_id = $this->session->userdata('busi_id');
 		$params = array();
-		$params['id'] = $postid;
+		$params['post_id'] = $postid;
 		$params['share_id'] = $share_id;
-		$this->load->model('Community_Model', 'communitymodel' );
-		$result = $this->communitymodel->updateCommunityPost($params);
+		$params['shared_date'] = date('Y-m-d H:i:s');
+		$this->load->model('Community_Model','communitymodel' );
+		$result = $this->communitymodel->communityPostShareInsert($params);
 		if($result) {
 			echo json_encode(array('msg'=>'Post shared in your community'));
 		} else {
