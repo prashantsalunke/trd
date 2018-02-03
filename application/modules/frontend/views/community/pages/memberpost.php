@@ -60,7 +60,7 @@
 				<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 				<?php 
 					$tb = $allpost['postviews'] + $allpost['likes']+ $allpost['comment'];
-					$percentage_views = 0;
+					$total_count_for_percentage = 0;
 					$percentage_likes = 0;
 					if($tb == 0) {
 						$vb = 0;
@@ -70,30 +70,27 @@
 						$vb = round($allpost['postviews']/$tb*3,1);
 						$lb = round($allpost['likes']/$tb*3,1);
 						$cb = round($allpost['comment']/$tb*3,1);
-						$total_count_for_percentage = $allpost['postviews'] + $allpost['likes'];
+						$total_count_for_percentage = $allpost['postviews'];
 						if($total_count_for_percentage == 0)
 						{
-							$percentage_views = 0;
 							$percentage_likes = 0;
-							}else{
-							$percentage_views = ($allpost['postviews'] * 100)/$total_count_for_percentage;
-
+						}else{
 							$percentage_likes = ($allpost['likes'] * 100)/$total_count_for_percentage;
 							//below code is for showing likes line when there is no like so that we dont affect the view
-							if($percentage_views == 100)
+							if($percentage_likes == 100)
 							{
-								$percentage_views = 95;
-								$percentage_likes = 5;
+								$percentage_likes = 95;
 							}
 						}
 					}
 				?>
 				<div>
 					<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
-					<div class="percentage_display">
-    					<div class="percentage_views" style="width: <?php echo $percentage_views;?>%">&nbsp;</div>
-    					<div class="percentage_likes" style="width: <?php echo $percentage_likes;?>%">&nbsp;</div>
-					</div>
+					<?php if($total_count_for_percentage != 0) { ?>
+						<hr id="Line16" style="position: absolute;z-index: 336; height: 1px; width: 100%">
+						<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;">
+						<br/>
+					<?php } ?>
 					<span class="font11">Views </span> <span class="font11"><?php echo $allpost['postviews'];?></span>
 					<a href="#" class="style5 font11 plbtn" data-id="<?php echo $allpost['postid'];?>">Likes</a> 
 					<span class="font11"><?php echo $allpost['likes'];?></span>
