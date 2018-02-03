@@ -99,7 +99,7 @@ function forgetpassword()
     } else {
     	$('#forgotemail').focus();
         $('#forgotemail').css('border', '1px solid red');
-        $('#forgotEmailErrMsg').html('Please enter valid Email Id').css('font-weight', 'bold').css('padding-bottom', '5px');
+        $('#forgotEmailErrMsg').html('Please enter your registered Email ID').css('font-weight', 'bold').css('padding-bottom', '5px');
         $('#forgotEmailErrMsg').show();
         ajaxindicatorstop();
         return false;
@@ -108,14 +108,20 @@ function forgetpassword()
     $.ajax({
         url: base_url + "account/forgotemail",
         type: "post",
-        data: {"name": name, "email": email},
+        data: {"email": email},
         success: function (response) {
-        	$('#forgotEmailsuccessMsg').html('An email with the password has been sent to you.').css('font-weight', 'bold').css('padding-bottom', '5px');
+             
+            $('#forgotEmailsuccessMsg').html('');
         	$('#forgotEmailsuccessMsg').show();
         	$('#forgotemail').val('');
-        	ShowObject('Login_layer', 1);ShowObject('Recover_password', 0);
         	$("#recovery-message").show();
-        	$("#recovery-message").html('An email with the password has been sent to you');
+            if (window.confirm('A password retrieve code has been sent to your email please check your inbox or junk folder')) {
+                $(".retrievePassword").show();
+                $(".PasswordRecovery1_button").attr("onclick","return retrievePassword();");
+                $("#forgotemail").val(email);
+            } else {
+
+            }
         	ajaxindicatorstop();
         }
     })
@@ -1025,7 +1031,7 @@ $(document).ready(function () {
             this.checked = status; //change ".checkbox" checked status
         });
     });
-
+    $(".retrievePassword").hide();
 
 });
 
@@ -1131,5 +1137,40 @@ function validateCertificateInfo() {
         $('#scope').css('border', '1px solid #DCDCDC');
     }
 
+}
+
+function retrievePassword() {
+    var email,securityCode,securityPassword,securityConfirmPassword;
+    email = $('#forgotemail').val();
+    securityCode = $('#securityCode').val();
+    securityPassword = $('#securityPassword').val();
+    securityConfirmPassword = $('#securityConfirmPassword').val();
+    if(securityPassword != securityConfirmPassword) {
+        $('#forgotEmailErrMsg').html('Password and confirm Password do not match.').css('font-weight', 'bold').css('padding-bottom', '5px');
+        $('#forgotEmailErrMsg').show();
+        return false;
+
+    } else {
+        $('#forgotEmailErrMsg').hide();
+    }
+    $.ajax({
+        url: base_url + "account/saveNewpassword",
+        type: "post",
+        dataType:'json',
+        data: {"email": email,"securityCode": securityCode,"securityPassword": securityPassword},
+        success: function (response) {
+            if(response.action == 'success') { 
+            $('#recovery-message').html('');
+            $('#recovery-message').html('New Password saved successfully.Please continue to login.');
+            ShowObject('Login_layer', 1);ShowObject('Recover_password', 0);
+            $("#recovery-message").show();
+            ajaxindicatorstop();
+        } else {
+            $('#forgotEmailsuccessMsg').html('');
+            $('#forgotEmailsuccessMsg').html('Please Enter Correct Acivation Code.');
+            $('#forgotEmailsuccessMsg').show();
+        }
+        }
+    })
 }
 
