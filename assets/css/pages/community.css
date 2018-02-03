@@ -275,7 +275,7 @@ position: absolute; text-align: left; visibility: hidden;
 top:20px;  z-index: 587;
 
 }
-#Layer1, #Layer32, #Layer33{
+#Layer33{
 	
     border-bottom: 38px solid #dcdcdc;
 }
@@ -392,10 +392,10 @@ a:hover .hover {
     font-size: 13px;padding: 7px 20px;
 }
 #Layer20{
-	position: absolute;visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 776px;overflow:auto; z-index: 2247;
+	position: absolute;visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 803px;overflow:auto; z-index: 2247;
 }
 #Layer101{
-	position: absolute; text-align: right; visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 776px;overflow:auto;  z-index: 2248; display: block;
+	position: absolute; text-align: right; visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 800px;overflow:auto;  z-index: 2248; display: block;
 }
 .img42{
 	width:42px !important;

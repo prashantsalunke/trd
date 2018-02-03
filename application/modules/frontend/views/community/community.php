@@ -346,7 +346,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:683px;">
+			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:675px;">
              <?php 
 				if (count ( $myposts ) > 0 && $myposts [0] ['id'] != '') {
 					foreach ( $myposts as $key=>$mypost ) {

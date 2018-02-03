@@ -10,7 +10,7 @@
 					<div class="col-sm-2" style="padding-top: 10px;"></div>
 				</div>
 			</div>
-			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:683px;">
+			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:675px;">
              <?php 
 				if (count ( $allposts ) > 0 && $allposts [0] ['id'] != '') {
 					foreach ( $allposts as $key=>$allpost ) {
