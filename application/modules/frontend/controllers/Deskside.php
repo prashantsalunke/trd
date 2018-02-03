@@ -22,6 +22,7 @@ class Deskside extends MX_Controller {
 		->title ( 'My Station' );
 		$this->template->build ('station/mystation');
 	}
+
 	public function myDeskside() {
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$this->load->model('Product_Model','product');
