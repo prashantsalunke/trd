@@ -204,7 +204,8 @@ class Home extends MX_Controller {
 				$params['keyword'] = $_COOKIE['buyer_keywd'];
 			}
 		} else {
-			setcookie('buyer_keywd', $params['keyword'], time() + (86400 * 30), "/");
+			
+			setcookie('buyer_keywd', $keyword, time() + (86400 * 30), "/");
 		}
 		$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		if(empty($params['page'])) {
@@ -239,9 +240,9 @@ class Home extends MX_Controller {
 		$this->template->set ( 'params', $params);
 		unset($params['page']);
 		if(http_build_query($params) != "")
-			$wpurl = base_url()."buyer?".http_build_query($params)."&";
+          $wpurl = base_url()."buyer?".http_build_query($params)."&";
 		else
-			$wpurl = base_url()."buyer?";
+		  $wpurl = base_url()."buyer?";
 		$this->template->set('wpbuyerurl',$wpurl);
 		$this->template->set ( 'page', 'buyers' );
 		$this->template->set ( 'browser_icon', 'buyer.ico' );
@@ -265,7 +266,7 @@ class Home extends MX_Controller {
 				$params['keyword'] = $_COOKIE['shipper_keywd'];
 			}
 		} else {
-			setcookie('shipper_keywd', $params['keyword'], time() + (86400 * 30), "/");
+			setcookie('shipper_keywd', $keyword, time() + (86400 * 30), "/");
 		}
 		$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		if(empty($params['page'])) {
