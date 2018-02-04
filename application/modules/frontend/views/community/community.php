@@ -755,13 +755,17 @@ function myajaxindicatorstop(id)
        jQuery('#resultLoading').fadeOut(300);
     jQuery('#'+id).css('cursor', 'default');
 }
-$(".showmenulist").click(function (event) {
+
+//$(".showmenulist").click(function (event) {
+$('div').on('click', '.showmenulist', function(event) {
 	event.stopImmediatePropagation();
     if ($("#Layer47-"+$(this).attr("data-id")).is(":hidden")) {
         $("#Layer47-"+$(this).attr("data-id")).slideDown("slow");
     } else {
         $("#Layer47-"+$(this).attr("data-id")).hide();
     }
+    event.preventDefault();
+    ShowObject('mainLayer18', 0);
 });
 
 $("#Layer47<?php echo $allpost['postid'];?>").mouseleave(function(){
@@ -1036,7 +1040,8 @@ $(".chatcomet").click(function(event){
     ShowObjectWithEffect('Layer74', 0, 'slideup', 500);
     ShowObjectWithEffect('Layer76', 0, 'slideright', 500);
 });
-$(".viewpst").click(function(event){
+$('div').on('click', '.viewpst', function(event) {
+//$(".viewpst").click(function(event){
     event.stopImmediatePropagation();
     var busi_id = $(this).attr("data-id");
     var logged_in_busi_id = $(this).attr("data-busid");
@@ -1054,7 +1059,7 @@ $(".viewpst").click(function(event){
     			ShowObjectWithEffect('Layer52', 1, 'slideright', 500);
 		}, 'html');
     }
-    
+    ShowObject('mainLayer18', 0);
 });
 $(".viewdsksite").click(function(event){
     event.stopImmediatePropagation();

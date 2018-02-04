@@ -48,7 +48,7 @@
 			<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
 			<?php if($total_count_for_percentage != 0) { ?>
 				<hr id="Line16" style="position: absolute;z-index: 336; height: 1px; width: 100%">
-				<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;">
+				<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;bottom:33px;">
 			<br/>
 			<?php } ?>
 			<span class="font11">Views </span> <span class="font11"><?php echo $mypost['postviews'];?></span>

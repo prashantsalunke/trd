@@ -17,7 +17,7 @@
 			<!-- chat and other all -->
 			<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 				<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
-				<a href="#" class="afont viewpst" data-id="<?php echo $allpost['postid'];?>">View Posts</a> 
+				<a href="#" class="afont viewpst" data-id="<?php echo $allpost['busi_id'];?>" data-busid="<?php echo $busi_id;?>">View Posts</a> 
 				<a href="#" class="afont viewdsksite" data-id="<?php echo $allpost['busi_id'];?>" data-catid="<?php echo $allpost['user_category_id'];?>">DeskSite</a> 
 			</div>
 			<!-- chat end -->
@@ -34,7 +34,7 @@
 					<div class="col-sm-3" style="padding:0px;">
 						<img src="<?php echo asset_url(); ?><?php echo $allpost['share_profile_image'];?>" id="Shape25" alt="" style="width:41px;border-radius:50%;border: 1px solid #FF6347;">
 					</div>
-					<div style="color:#000000;font-family:Arial;font-size:13px;padding-left:10px;" class="col-sm-9">
+					<div style="color:#000000;font-family:Arial;font-size:13px;padding-left:10px;" class="col-sm-11">
 						Shared Post By<br><?php echo $allpost['share_cname'];?>
 					</div>
 				</div>
@@ -75,7 +75,7 @@
 					<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
 					<?php if($total_count_for_percentage != 0) { ?>
 						<hr id="Line16" style="position: absolute;z-index: 336; height: 1px; width: 100%">
-						<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;">
+						<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;bottom:33px;">
 						<br/>
 					<?php } ?>
 					<span class="font11">Views </span> <span class="font11"><?php echo $allpost['postviews'];?></span>
