@@ -110,19 +110,21 @@ function forgetpassword()
         type: "post",
         data: {"email": email},
         success: function (response) {
-             
+             if(response == 'sent') {
             $('#forgotEmailsuccessMsg').html('');
         	$('#forgotEmailsuccessMsg').show();
-        	$('#forgotemail').val('');
         	$("#recovery-message").show();
             if (window.confirm('A password retrieve code has been sent to your email please check your inbox or junk folder')) {
                 $(".retrievePassword").show();
                 $(".PasswordRecovery1_button").attr("onclick","return retrievePassword();");
-                $("#forgotemail").val(email);
-            } else {
-
             }
-        	ajaxindicatorstop();
+        	
+		} else {
+			$('#forgotEmailsuccessMsg').html('Error while sending Email.Please try after sometime.');
+        	$('#forgotEmailsuccessMsg').show();
+			$('#forgotEmailsuccessMsg').css('color', 'red').css('font-weight', 'bold');
+		}
+		ajaxindicatorstop();
         }
     })
 	   
