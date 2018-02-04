@@ -1,5 +1,6 @@
 <!-- css js -->
 <link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
+<link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
@@ -693,6 +694,7 @@ function myloaderoff()
     jQuery('body').css('cursor', 'default');
 }
 </script>
+<?php //print_r($Desksites);die;?>
 <div id="Layer89" style="position:fixed;overflow-x:hidden;text-align:center;visibility:visible;left:0;top:0;right:0;bottom:0;z-index:4930;">
 <!-- css js -->
 <!--  -->
@@ -738,6 +740,7 @@ function myloaderoff()
 			</div>
 			<!-- profile end -->
 			<!-- Main Slider -->
+			
 			<div id="Layer46" style="text-align:left;left:0;top:0;right:0;bottom:0;z-index:33;">
 				<?php if(!empty($Desksite['desksite_bg1'])) { ?>
 			    <div id="SlideShow1" style="width:100%;height:100%;">
@@ -1077,7 +1080,7 @@ function myloaderoff()
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/MENUFAVORITE.png" alt="Add To Favourite" class="add-share-img">
-				        <a href="javascript:addToMyFavourite(<?php echo $Desksites[0]['busi_id']?>,1);" target="_self" class="antag">
+				        <a href="javascript:addToMyFavourite(<?php echo isset($Desksites[0]['busi_id'])?>,1);" target="_self" class="antag">
 							Add To Favorite
 						</a>
 				    </div>
@@ -1089,7 +1092,7 @@ function myloaderoff()
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/cha0t.png" alt="Chat" class="add-share-img">
-				        <a href="javascript:openChatWithBuyer(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+				        <a href="javascript:openChatWithBuyer(<?php echo isset($Desksites[0]['busi_id'])?>);" target="_self" class="antag">
 				        	Chat
 						</a>
 				    </div>
@@ -1101,13 +1104,13 @@ function myloaderoff()
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/img0908.png" alt="Share" class="add-share-img">
-				        <a href="javascript:shareToWorld('<?php echo base_url();?>desksite/<?php echo $Desksites[0]['busi_id']?>','<?php echo $Desksites[0]['company_name']?> @ TRDSTATION',1,<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+				        <a href="javascript:shareToWorld('<?php echo base_url();?>desksite/<?php echo isset($Desksites[0]['busi_id'])?>','<?php echo isset($Desksites[0]['company_name'])?> @ TRDSTATION',1,<?php echo isset($Desksites[0]['busi_id'])?>);" target="_self" class="antag">
 				        	Share
 						</a>
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/buyer-request.png" alt="General Inquiry" class="add-share-img">
-				        <a href="javascript:openGeneralEnquiry(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+				        <a href="javascript:openGeneralEnquiry(<?php echo isset($Desksites[0]['busi_id'])?>);" target="_self" class="antag">
 				        	General Inquiry
 						</a>
 				    </div>
@@ -1133,7 +1136,7 @@ function myloaderoff()
 				        </p>
 				        <div class="box2" style="height:472px;">
 				            <form action="" name="contactusfrm" id="contactusfrm" method="post">
-				        		<input type="hidden" name="busi_id" value="<?php echo $Desksites[0]['busi_id']?>"/>
+				        		<input type="hidden" name="busi_id" value="<?php echo isset($Desksites[0]['busi_id'])?>"/>
 				        		<div class="form-group">
 				        			<div>
 				        				<input type="text" class="input" name="name" value="" placeholder="Name">
