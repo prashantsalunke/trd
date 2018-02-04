@@ -1868,7 +1868,7 @@ function updatePassword() {
 	}
 	//update password
 	$updatePassword = $this->Account_Model->setValue($userdetail['id'],'password',md5($securityPassword));
-	if($updatePassword > 0) {
+	if($updatePassword >= 0) {
 		echo '{"action":"success"}';
 		die;
 	}
