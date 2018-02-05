@@ -565,7 +565,7 @@
 							(Community) Box.
 						</span> 
 						<div style="text-align:center;">
-							<a href="#" onclick="ShowObjectWithEffect('Layer6', 0, 'slideup', 500);ShowObjectWithEffect('Layer118', 0, 'slideup', 500);return false;">
+							<a href="#" onclick="resetMyForm();ShowObjectWithEffect('Layer6', 0, 'slideup', 500);ShowObjectWithEffect('Layer118', 0, 'slideup', 500);return false;">
 								<img src="<?php echo asset_url(); ?>images/img0760.gif" id="Shape35" alt="" style="width: 248px; height: 26px;">
 							</a>
 						</div>
