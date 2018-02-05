@@ -921,6 +921,21 @@ class Account_Model extends CI_Model {
 		return $result;
 	}
 
+	public function getUserDataByBusiId($busi_id) {
+		//$array = array('busi_id' => $busi_id);
+		//$this->db->select('a.*,b.*,c.sub_category as subcatname');
+		$this->db->select('a.*');
+		$this->db->from(TABLES::$USER.' AS a');
+		$this->db->where('a.busi_id', $busi_id);
+		//$this->db->join(TABLES::$USER_CATEGORIES.' AS b', 'a.user_category_id =  b.id', 'left');
+		//$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS c', 'a.user_subcategory_id = c.id', 'left');
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+			$row = $query->row_array();
+			return $row;
+		}
+		//echo'<pre>';print_r($query->result());die;
+  }
 	/**
 	* function to check activation code of the user
 	*/

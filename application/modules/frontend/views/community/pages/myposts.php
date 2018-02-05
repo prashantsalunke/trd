@@ -17,11 +17,16 @@
 			<span class="s1" style="font-size:15px;"><strong><?php echo $mypost['title'];?></strong></span><br>
 			<span class="s2"><?php echo substr($mypost['postdesc'],0,290);?> <?php if(strlen($mypost['postdesc']) > 290){?>...<?php }?></span> 
 			<br><br>
-			<span class="s3">USD</span> <span class="s4"><?php echo $mypost['postprice'];?>.00&nbsp;&nbsp;&nbsp; </span>
+			<?php 
+					setlocale(LC_ALL, ''); // Locale will be different on each system.
+					$locale = localeconv();
+					$mypost['postprice'] = number_format($mypost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+			?>
+			<span class="s3">USD</span> <span class="s4"><?php echo $mypost['postprice'];?>&nbsp;&nbsp;&nbsp; </span>
 			<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 			<?php 
 				$tb = $mypost['postviews'] + $mypost['likes']+ $mypost['comment'];
-				$percentage_views = 0;
+				$total_count_for_percentage = 0;
 				$percentage_likes = 0;
 				if($tb == 0) {
 					$vb = 0;
@@ -31,29 +36,26 @@
 					$vb = round($mypost['postviews']/$tb*3);
 					$lb = round($mypost['likes']/$tb*3);
 					$cb = round($mypost['comment']/$tb*3);
-					$total_count_for_percentage = $mypost['postviews'] + $mypost['likes'];
+					$total_count_for_percentage = $mypost['postviews'];
 					if($total_count_for_percentage == 0)
 					{
-						$percentage_views = 0;
 						$percentage_likes = 0;
 					}else{
-						$percentage_views = ($mypost['postviews'] * 100)/$total_count_for_percentage;
-
 						$percentage_likes = ($mypost['likes'] * 100)/$total_count_for_percentage;
 						//below code is for showing likes line when there is no like so that we dont affect the view
-						if($percentage_views == 100)
+						if($percentage_likes == 100)
 						{
-							$percentage_views = 95;
-							$percentage_likes = 5;
+							$percentage_likes = 95;
 						}
 					}
 				}
 			?>
 			<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
-			<div class="percentage_display">
-    			<div class="percentage_views" style="width: <?php echo $percentage_views;?>%">&nbsp;</div>
-    			<div class="percentage_likes" style="width: <?php echo $percentage_likes;?>%">&nbsp;</div>
-			</div>
+			<?php if($total_count_for_percentage != 0) { ?>
+				<hr id="Line16" style="position: absolute;z-index: 336; height: 1px; width: 100%">
+				<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;bottom:33px;">
+			<br/>
+			<?php } ?>
 			<span class="font11">Views </span> <span class="font11"><?php echo $mypost['postviews'];?></span>
 			<a href="#" class="style5 font11 plbtn" data-id="<?php echo $mypost['postid'];?>">Likes</a> 
 			<span class="font11"><?php echo $mypost['likes'];?></span>

@@ -13,25 +13,6 @@
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-slide.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/searchindex.js"></script>
 <script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
-<style>
-.percentage_display{
-    width: 120px;
-    overflow: hidden;
-}
-.percentage_views{
-    width: 75%;
-    height:8px;
-    float:left; /* add this */
-    background-color : #00c9d0;
-}
-.percentage_likes{
-    width:25%;
-    height:2px;
-    background-color : #00c9d0;
-    margin-top:2px;
-    overflow: hidden;
-}
-</style>
 
 <div class="container" style="width: 1280px;">
 	<div class="row m1" style="margin:30px 30px;">
@@ -91,7 +72,7 @@
 						</div>
 						<div class="col-xs-8 ptop">
 							<strong class="font1 ">View / Manage</strong><br> 
-							<a href="#" class="font2" onclick="ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);ShowObjectWithEffect('Layer51', 1, 'slideright', 500);ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);return false;">My Posts</a><br> 
+							<a href="#" onclick="myPost();" class="font2">My Posts</a><br> 
 							<a href="#" class="font2" onclick="showMymembers();">My Members <span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;display:none;">0</span></a><br> 
 							<a href="javascript:displayCommunityRequests();" class="font2" >Add Requests <?php if(!empty($add_requests[0]['members'])) { ?><span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;"><?php if(!empty($add_requests[0]['members']) && $add_requests[0]['members'] > 0) { echo $add_requests[0]['members']; } ?></span><?php } ?></a>
 						</div>
@@ -167,7 +148,7 @@
 								<hr id="Line20" style="position:absolute;left:30px;top:45px;width:5px;height:4px;z-index:229;">
 								<img src="<?php echo asset_url(); ?>images/activecover.png" alt="img35" style="width:32px;height:38px;">
 							</a> 
-							<img src="<?php echo asset_url(); ?><?php echo $allpost['profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
+							<img src="<?php echo asset_url(); ?><?php echo $allpost['contact_profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
 							<!-- chat and other all -->
 							<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 								<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
@@ -197,12 +178,17 @@
 							<div class="row" style="margin:0px;">
 								<span class="s2"><?php echo substr($allpost['postdesc'],0,290);?> <?php if(strlen($allpost['postdesc']) > 290){?>...<?php }?></span> 
 								<br><br>
-								<span class="s3">USD</span> <span class="s4"><?php echo $allpost['postprice'];?>.00&nbsp;&nbsp;&nbsp; </span>
+								<?php 
+									setlocale(LC_ALL, ''); // Locale will be different on each system.
+									$locale = localeconv();
+									$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+								?>
+								<span class="s3">USD</span> <span class="s4"><?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span>
 								<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 								<?php 
 									$tb = $allpost['postviews'] + $allpost['likes']+ $allpost['comment'];
-									$percentage_views = 0;
 									$percentage_likes = 0;
+									$total_count_for_percentage = 0;
 									if($tb == 0) {
 										$vb = 0;
 										$lb = 0;
@@ -211,30 +197,28 @@
 										$vb = round($allpost['postviews']/$tb*3,1);
 										$lb = round($allpost['likes']/$tb*3,1);
 										$cb = round($allpost['comment']/$tb*3,1);
-                    					$total_count_for_percentage = $allpost['postviews'] + $allpost['likes'];
+                    					$total_count_for_percentage = $allpost['postviews'];
 										if($total_count_for_percentage == 0)
 										{
-											$percentage_views = 0;
 											$percentage_likes = 0;
 										}else{
-											$percentage_views = ($allpost['postviews'] * 100)/$total_count_for_percentage;
-
 											$percentage_likes = ($allpost['likes'] * 100)/$total_count_for_percentage;
 											//below code is for showing likes line when there is no like so that we dont affect the view
-											if($percentage_views == 100)
+											if($percentage_likes == 100)
 											{
-												$percentage_views = 95;
-												$percentage_likes = 5;
+												$percentage_likes = 95;
+												//$percentage_likes = 5;
 											}
 										}
 									}
 								?>
 								<div>
 									<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
-                  					<div class="percentage_display">
-    										<div class="percentage_views" style="width: <?php echo $percentage_views;?>%">&nbsp;</div>
-    										<div class="percentage_likes" style="width: <?php echo $percentage_likes;?>%">&nbsp;</div>
-									</div>
+									<?php if($total_count_for_percentage != 0) {?>
+										<hr id="Line16" style="position: absolute;z-index: 336; height: 1px; width: 100%">
+										<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;bottom:33px;">
+										<br/>
+									<?php } ?>
 									<span class="font11">Views </span> <span class="font11"><?php echo $allpost['postviews'];?></span>
 									<a href="#" class="style5 font11 plbtn" data-id="<?php echo $allpost['postid'];?>">Likes</a> 
 									<span class="font11"><?php echo $allpost['likes'];?></span>
@@ -326,7 +310,7 @@
 			</div>
 			<!-- Add request end -->
 			<!-- my post section -->
-			<div id="Layer51" style="visibility:hidden; position:absolute;min-width:971px;">
+			<div id="Layer51" style="position:absolute;visibility:hidden;top:0;min-width:971px;z-index:526;"> <!-- style="visibility:hidden; position:absolute;min-width:971px;"-->
 			<div class="background2">
 				<div class="col-md-11 col-sm-11 col-xs-11" style="padding-top: 4px;">
 					<div class="col-sm-2"><span class="font3">My Posts</span></div>
@@ -346,7 +330,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:683px;">
+			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:675px;">
              <?php 
 				if (count ( $myposts ) > 0 && $myposts [0] ['id'] != '') {
 					foreach ( $myposts as $key=>$mypost ) {
@@ -366,10 +350,17 @@
 							<span class="s1" style="font-size:15px;"><strong><?php echo $mypost['title'];?></strong></span><br>
 							<span class="s2"><?php echo substr($mypost['postdesc'],0,290);?> <?php if(strlen($mypost['postdesc']) > 290){?>...<?php }?></span> 
 							<br><br>
-							<span class="s3">USD</span> <span class="s4"><?php echo $mypost['postprice'];?>.00&nbsp;&nbsp;&nbsp; </span>
+							<?php 
+									setlocale(LC_ALL, ''); // Locale will be different on each system.
+									$locale = localeconv();
+									$mypost['postprice'] = number_format($mypost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+							?>
+							<span class="s3">USD</span> <span class="s4"><?php echo $mypost['postprice'];?>&nbsp;&nbsp;&nbsp; </span>
 							<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 							<?php 
 								$tb = $mypost['postviews'] + $mypost['likes']+ $mypost['comment'];
+								$total_count_for_percentage = 0;
+								$percentage_likes = 0;
 								if($tb == 0) {
 									$vb = 0;
 									$lb = 0;
@@ -378,29 +369,28 @@
 									$vb = round($mypost['postviews']/$tb*3);
 									$lb = round($mypost['likes']/$tb*3);
 									$cb = round($mypost['comment']/$tb*3);
-									$total_count_for_percentage = $mypost['postviews'] + $mypost['likes'];
+
+									$total_count_for_percentage = $mypost['postviews'];
 									if($total_count_for_percentage == 0)
 									{
-										$percentage_views = 0;
-										$percentage_likes = 0;
+											$percentage_likes = 0;
 									}else{
-										$percentage_views = ($mypost['postviews'] * 100)/$total_count_for_percentage;
-
 										$percentage_likes = ($mypost['likes'] * 100)/$total_count_for_percentage;
 										//below code is for showing likes line when there is no like so that we dont affect the view
-										if($percentage_views == 100)
+										if($percentage_likes == 100)
 										{
-											$percentage_views = 95;
-											$percentage_likes = 5;
+											$percentage_likes = 95;
 										}
 									}
 								}
 							?>
 							<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
-							<div class="percentage_display">
-    							<div class="percentage_views" style="width: <?php echo $percentage_views;?>%">&nbsp;</div>
-    							<div class="percentage_likes" style="width: <?php echo $percentage_likes;?>%">&nbsp;</div>
-							</div>
+							<?php if($total_count_for_percentage != 0) { ?>
+								<hr id="Line16" style="position: absolute;z-index: 336; height: 1px; width: 100%">
+								<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;bottom:33px;">
+								
+								<br/>
+							<?php } ?>
 							<span class="font11">Views </span> <span class="font11"><?php echo $mypost['postviews'];?></span>
 							<a href="#" class="style5 font11 plbtn" data-id="<?php echo $mypost['postid'];?>">Likes</a> 
 							<span class="font11"><?php echo $mypost['likes'];?></span>
@@ -575,7 +565,7 @@
 							(Community) Box.
 						</span> 
 						<div style="text-align:center;">
-							<a href="#" onclick="ShowObjectWithEffect('Layer6', 0, 'slideup', 500);ShowObjectWithEffect('Layer118', 0, 'slideup', 500);return false;">
+							<a href="#" onclick="resetMyForm();ShowObjectWithEffect('Layer6', 0, 'slideup', 500);ShowObjectWithEffect('Layer118', 0, 'slideup', 500);return false;">
 								<img src="<?php echo asset_url(); ?>images/img0760.gif" id="Shape35" alt="" style="width: 248px; height: 26px;">
 							</a>
 						</div>
@@ -775,13 +765,17 @@ function myajaxindicatorstop(id)
        jQuery('#resultLoading').fadeOut(300);
     jQuery('#'+id).css('cursor', 'default');
 }
-$(".showmenulist").click(function (event) {
+
+//$(".showmenulist").click(function (event) {
+$('div').on('click', '.showmenulist', function(event) {
 	event.stopImmediatePropagation();
     if ($("#Layer47-"+$(this).attr("data-id")).is(":hidden")) {
         $("#Layer47-"+$(this).attr("data-id")).slideDown("slow");
     } else {
         $("#Layer47-"+$(this).attr("data-id")).hide();
     }
+    event.preventDefault();
+    ShowObject('mainLayer18', 0);
 });
 
 $("#Layer47<?php echo $allpost['postid'];?>").mouseleave(function(){
@@ -1056,7 +1050,8 @@ $(".chatcomet").click(function(event){
     ShowObjectWithEffect('Layer74', 0, 'slideup', 500);
     ShowObjectWithEffect('Layer76', 0, 'slideright', 500);
 });
-$(".viewpst").click(function(event){
+$('div').on('click', '.viewpst', function(event) {
+//$(".viewpst").click(function(event){
     event.stopImmediatePropagation();
     var busi_id = $(this).attr("data-id");
     var logged_in_busi_id = $(this).attr("data-busid");
@@ -1074,7 +1069,7 @@ $(".viewpst").click(function(event){
     			ShowObjectWithEffect('Layer52', 1, 'slideright', 500);
 		}, 'html');
     }
-    
+    ShowObject('mainLayer18', 0);
 });
 $(".viewdsksite").click(function(event){
     event.stopImmediatePropagation();
@@ -1165,6 +1160,19 @@ function displayCommunityRequests() {
 		ShowObjectWithEffect('Layer120', 1, 'slideright', 500);
 		ShowObjectWithEffect( 'Layer71', 0, 'fade', 600);
 	});
+}
+
+function myPost() {
+	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+	ShowObjectWithEffect( 'Layer71', 0, 'fade', 600);
+
+	/*ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);*/
 }
 function openEnquiryAndOfferForm(postid) {
 	<?php if($tscategory_id != 3) { ?>

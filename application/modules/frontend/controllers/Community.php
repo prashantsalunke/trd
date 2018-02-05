@@ -20,6 +20,7 @@ class Community extends MX_Controller {
 		if (! isset ( $_SESSION ['busi_id'] )) {
 			redirect ( base_url () );
 		}
+
 		$busi_id = $this->session->userdata('busi_id');
 		$plan_id = $this->session->userdata('tsuser')['plan_id'];
 		$cat_id = $this->session->userdata('tsuser')['category_id'];
@@ -71,6 +72,7 @@ class Community extends MX_Controller {
 	public function getCommunityRealtimePosts() {
 		$busi_id = $this->session->userdata('busi_id');
 		$allposts = $this->product->communityPostListByAlluser($busi_id);
+		$this->template->set ('busi_id', $busi_id);
 		$this->template->set ('allposts', $allposts);
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
@@ -266,6 +268,7 @@ class Community extends MX_Controller {
 
 		$posts = $this->product->communityPostListByBusinessId($busi_id);
 		//$this->template->set ('myposts', $myposts);
+		$this->template->set ('busi_id', $busi_id);
 		$this->template->set ('allposts', $posts);
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
@@ -279,7 +282,10 @@ class Community extends MX_Controller {
 		if (! isset ( $_SESSION ['busi_id'] )) {
 			redirect ( base_url () );
 		}
+		
 		$post_id = $this->input->post('post_id');
+		$this->load->model('Account_Model', 'account' );
+		$user_data = $this->account->getUserDataByBusiId($_SESSION ['busi_id']);
 		$data = array(
 				'post_id' => $post_id,
 				'liked_by' => $_SESSION ['busi_id'],
@@ -287,6 +293,10 @@ class Community extends MX_Controller {
 				'created_datetime'=>date('Y-m-d H:i:s')
 	
 		);
+		if(!empty($user_data['nickname']) && $user_data['nickname'] != NULL){
+			$data['hidden'] = 1;
+			$data['hidden_name'] = $user_data['nickname'];
+		}
 		$this->load->model('Product_Model', 'product' );
 		$result['id'] = $this->product->postLike ( $data );
 	
@@ -306,8 +316,11 @@ class Community extends MX_Controller {
 		if (! isset ( $_SESSION ['busi_id'] )) {
 			redirect ( base_url () );
 		}
-			
+		$this->load->model('Account_Model', 'account' );
+		$user_data = $this->account->getUserDataByBusiId($this->input->post('user_id'));
+
 		$data = array ();
+
 		$data = array(
 				'post_id' => $this->input->post('post_id'),
 				'user_id' => $this->input->post('user_id'),
@@ -316,10 +329,15 @@ class Community extends MX_Controller {
 				'status' => '1',
 				'created_datetime' => date ( 'Y-m-d h:i:s' )
 		);
-	
+		
+		if(!empty($user_data['nickname']) && $user_data['nickname'] != NULL){
+			$data['hidden'] = 1;
+			$data['hidden_name'] = $user_data['nickname'];
+		}
 		$this->load->model('Product_Model', 'product' );
+		
 		$result['id'] = $this->product->commentPost($data);
-	
+		
 		if ( $result ['id']  > 0) {
 			$result ['status'] = 1;
 			$result ['msg'] = 'Comment Posted Successfully.';

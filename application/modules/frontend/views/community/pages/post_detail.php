@@ -5,16 +5,21 @@
 	<div class="col-sm-11" id="Layer11" style="width: 505px;">
 		<div class="cstyle5" style="background-color: #DCDCDC;margin: 5px -10px;padding: 0px 15px;"><strong><?php echo $allpost['title'];?></strong></div>
 		<br> 
-		<?php if(empty($allpost['profile_image'])) {?>
+		<?php if(empty($allpost['contact_profile_image'])) {?>
 		    <img src="<?php echo asset_url(); ?>images/buyerorange0.png" id="Shape54" alt="" class="img65" style="border-radius:50%;border:1px solid #ccc;">
 		<?php } else {?>
-			<img src="<?php echo asset_url(); ?><?php echo $allpost['profile_image'];?>" id="Shape54" alt="" class="img65" style="border-radius:50%;border:1px solid #ccc;">
+			<img src="<?php echo asset_url(); ?><?php echo $allpost['contact_profile_image'];?>" id="Shape54" alt="" class="img65" style="border-radius:50%;border:1px solid #ccc;">
 		<?php } ?>
 		<strong class="cstyle1"><?php echo $allpost['prefix'].' '.$allpost['username'];?> &nbsp;|&nbsp; <?php echo $allpost['company_name'];?> </strong> <br>
 		<div class="space1">
 			<span class="cstyle4"><?php echo substr($allpost['postdesc'],0,400);?> <?php if(strlen($allpost['postdesc']) > 400){?>...<?php }?>
 			</span> <br>
 		</div>
+		<?php 
+					setlocale(LC_ALL, ''); // Locale will be different on each system.
+					$locale = localeconv();
+					$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+		?>
 		<div class="center1 padding1">
 			<span class="cstyle2">&nbsp; USD <?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span> <span
 				class="cstyle3">&nbsp; Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>

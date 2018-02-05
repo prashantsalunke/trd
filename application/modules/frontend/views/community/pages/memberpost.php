@@ -1,6 +1,6 @@
 <div class="background2">
 				<div class="col-md-11 col-sm-11 col-xs-11" style="padding-top: 4px;">
-					<div class="col-sm-2"><span class="font3">Posts</span></div>
+					<div class="col-sm-2"><span class="font3">Member Posts</span></div>
 					<div class="col-sm-2">
 						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo count($allposts);?> </span>
 						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Posts</span>
@@ -10,7 +10,7 @@
 					<div class="col-sm-2" style="padding-top: 10px;"></div>
 				</div>
 			</div>
-			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:683px;">
+			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:675px;">
              <?php 
 				if (count ( $allposts ) > 0 && $allposts [0] ['id'] != '') {
 					foreach ( $allposts as $key=>$allpost ) {
@@ -26,11 +26,11 @@
 				<hr id="Line20" style="position:absolute;left:30px;top:45px;width:5px;height:4px;z-index:229;">
 				<img src="<?php echo asset_url(); ?>images/activecover.png" alt="img35" style="width:32px;height:38px;">
 			</a> 
-			<img src="<?php echo asset_url(); ?><?php echo $allpost['profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
+			<img src="<?php echo asset_url(); ?><?php echo $allpost['contact_profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
 			<!-- chat and other all -->
 			<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 				<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
-				<a href="#" class="afont viewpst" data-id="<?php echo $allpost['postid'];?>">View Posts</a> 
+				<a href="#" class="afont viewpst" data-id="<?php echo $allpost['busi_id'];?>" data-busid="<?php echo $busi_id;?>">View Posts</a> 
 				<a href="#" class="afont viewdsksite" data-id="<?php echo $allpost['busi_id'];?>" data-catid="<?php echo $allpost['user_category_id'];?>">DeskSite</a> 
 			</div>
 			<!-- chat end -->
@@ -43,7 +43,7 @@
 					<span class="s1" style="font-size:15px;"><strong><?php echo $allpost['title'];?></strong></span><br>
 				</div>
 				<?php if(!empty($allpost['share_cname'])) { ?>
-				<div class="col-sm-4" style="padding:0px;">
+				<div class="col-sm-5" style="padding:0px;">
 					<div class="col-sm-3" style="padding:0px;">
 						<img src="<?php echo asset_url(); ?><?php echo $allpost['share_profile_image'];?>" id="Shape25" alt="" style="width:41px;border-radius:50%;border: 1px solid #FF6347;">
 					</div>
@@ -53,14 +53,19 @@
 				</div>
 				<?php } ?>
 			</div>
+			<?php 
+				setlocale(LC_ALL, ''); // Locale will be different on each system.
+				$locale = localeconv();
+				$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+			?>
 			<div class="row" style="margin:0px;">
 				<span class="s2"><?php echo substr($allpost['postdesc'],0,290);?> <?php if(strlen($allpost['postdesc']) > 290){?>...<?php }?></span> 
 				<br><br>
-				<span class="s3">USD</span> <span class="s4"><?php echo $allpost['postprice'];?>.00&nbsp;&nbsp;&nbsp; </span>
+				<span class="s3">USD</span> <span class="s4"><?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span>
 				<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 				<?php 
 					$tb = $allpost['postviews'] + $allpost['likes']+ $allpost['comment'];
-					$percentage_views = 0;
+					$total_count_for_percentage = 0;
 					$percentage_likes = 0;
 					if($tb == 0) {
 						$vb = 0;
@@ -70,30 +75,27 @@
 						$vb = round($allpost['postviews']/$tb*3,1);
 						$lb = round($allpost['likes']/$tb*3,1);
 						$cb = round($allpost['comment']/$tb*3,1);
-						$total_count_for_percentage = $allpost['postviews'] + $allpost['likes'];
+						$total_count_for_percentage = $allpost['postviews'];
 						if($total_count_for_percentage == 0)
 						{
-							$percentage_views = 0;
 							$percentage_likes = 0;
-							}else{
-							$percentage_views = ($allpost['postviews'] * 100)/$total_count_for_percentage;
-
+						}else{
 							$percentage_likes = ($allpost['likes'] * 100)/$total_count_for_percentage;
 							//below code is for showing likes line when there is no like so that we dont affect the view
-							if($percentage_views == 100)
+							if($percentage_likes == 100)
 							{
-								$percentage_views = 95;
-								$percentage_likes = 5;
+								$percentage_likes = 95;
 							}
 						}
 					}
 				?>
 				<div>
 					<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
-					<div class="percentage_display">
-    					<div class="percentage_views" style="width: <?php echo $percentage_views;?>%">&nbsp;</div>
-    					<div class="percentage_likes" style="width: <?php echo $percentage_likes;?>%">&nbsp;</div>
-					</div>
+					<?php if($total_count_for_percentage != 0) { ?>
+						<hr id="Line16" style="position: absolute;z-index: 336; height: 1px; width: 100%">
+						<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;bottom:33px;">
+						<br/>
+					<?php } ?>
 					<span class="font11">Views </span> <span class="font11"><?php echo $allpost['postviews'];?></span>
 					<a href="#" class="style5 font11 plbtn" data-id="<?php echo $allpost['postid'];?>">Likes</a> 
 					<span class="font11"><?php echo $allpost['likes'];?></span>
