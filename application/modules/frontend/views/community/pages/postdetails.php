@@ -22,6 +22,11 @@
 					<span class="cstyle4"><?php echo substr($allpost['postdesc'],0,400);?> <?php if(strlen($allpost['postdesc']) > 400){?>...<?php }?>
 					</span> <br>
 				</div>
+				<?php 
+					setlocale(LC_ALL, ''); // Locale will be different on each system.
+					$locale = localeconv();
+					$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+				?>
 				<div class="center1 padding1">
 					<span class="cstyle2">&nbsp; USD <?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span> <span
 						class="cstyle3">&nbsp; Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>

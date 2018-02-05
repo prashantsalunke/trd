@@ -17,7 +17,12 @@
 			<span class="s1" style="font-size:15px;"><strong><?php echo $mypost['title'];?></strong></span><br>
 			<span class="s2"><?php echo substr($mypost['postdesc'],0,290);?> <?php if(strlen($mypost['postdesc']) > 290){?>...<?php }?></span> 
 			<br><br>
-			<span class="s3">USD</span> <span class="s4"><?php echo $mypost['postprice'];?>.00&nbsp;&nbsp;&nbsp; </span>
+			<?php 
+					setlocale(LC_ALL, ''); // Locale will be different on each system.
+					$locale = localeconv();
+					$mypost['postprice'] = number_format($mypost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+			?>
+			<span class="s3">USD</span> <span class="s4"><?php echo $mypost['postprice'];?>&nbsp;&nbsp;&nbsp; </span>
 			<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 			<?php 
 				$tb = $mypost['postviews'] + $mypost['likes']+ $mypost['comment'];
