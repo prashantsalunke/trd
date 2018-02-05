@@ -35,7 +35,6 @@ class Tools extends MX_Controller {
 		$aproduct_stats = $this->mytoolmodel->getMyStationActiveProductStats($busi_id);
 		$countries = $this->product->getAllCountries();
 		$busi_history_pages = $this->mytoolmodel->getBusinessVisitHistoryCount(array('busi_id'=>$busi_id));
-		$product_history_pages = $this->mytoolmodel->getProductVisitHistoryCount(array('busi_id'=>$busi_id));
 		$aproduct_history_pages = $this->mytoolmodel->getActiveProductVisitHistoryCount(array('busi_id'=>$busi_id));
 		$busi_history = $this->mytoolmodel->getBusinessVisitHistory(array('busi_id'=>$busi_id,'page'=>1));
 		$product_history = $this->mytoolmodel->getProductVisitHistory(array('busi_id'=>$busi_id,'page'=>1));
@@ -58,7 +57,6 @@ class Tools extends MX_Controller {
 		$this->template->set ( 'aproduct_stats', $aproduct_stats);
 		$this->template->set ( 'countries', $countries);
 		$this->template->set ( 'busi_history_pages', $busi_history_pages);
-		$this->template->set ( 'product_history_pages', $product_history_pages);
 		$this->template->set ( 'aproduct_history_pages', $aproduct_history_pages);
 		$this->template->set ( 'busi_history', $busi_history);
 		$this->template->set ( 'product_history', $product_history);
@@ -75,6 +73,7 @@ class Tools extends MX_Controller {
 		$this->template->set ( 'ois_plan', $ois_plan);
 		$this->template->set ( 'comm_plan', $comm_plan);
 		$this->template->set ( 'page', 'home' );
+		$this->template->set ( 'totalPages', $product_history['totalPages']);
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html = $this->template->build ('station/pages/mytools','',true);
@@ -262,10 +261,10 @@ class Tools extends MX_Controller {
 			$map['product_name'] = $this->input->post('product_name');
 		}
 		$product_history = $this->mytoolmodel->getProductVisitHistory($map);
-		$product_history_pages = $this->mytoolmodel->getProductVisitHistoryCount($map);
-		$this->template->set ( 'product_history_pages', $product_history_pages);
 		$this->template->set ( 'product_history', $product_history);
 		$this->template->set_theme('default_theme');
+		$this->template->set ( 'totalPages', $product_history['totalPages']);
+		$this->template->set ( 'currentPage', $map['page']);
 		$this->template->set_layout (false);
 		$html = $this->template->build ('station/pages/subpages/myproducthistory','',true);
 		echo $html;

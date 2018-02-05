@@ -81,6 +81,7 @@ $route['refresh/create_captcha']= 'frontend/home/create_captcha';
 $route['continueregistration'] = 'frontend/Account/continueRegistration';
 $route['signin'] = 'frontend/Home/signin';
 $route['account/forgotemail'] = 'frontend/Account/forgetsendMail';
+$route['account/saveNewpassword'] = 'frontend/Account/updatePassword';
 $route['account/changelogo'] = 'frontend/Account/changeBusinessLogo';
 $route['account/savebusinesslogotempararyImage'] = 'frontend/Account/saveBusinessLogoTempararyImage';
 $route['account/changeprofilepic'] = 'frontend/Account/changeProfilePic';
