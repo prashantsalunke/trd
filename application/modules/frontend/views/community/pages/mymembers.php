@@ -11,7 +11,7 @@
 		<?php if($member['user_category_id'] == 1 || $member['user_category_id'] == 2) { ?>
 		<img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image10" alt="" class="img25" style="opacity:<?php if($member['plan_id'] > 1) { ?>1<?php } else { ?>0.15<?php } ?>;"/>
 		<?php } else if($member['user_category_id'] == 3) { ?>
-		<img src="<?php echo asset_url(); ?>images/Active.png" id="Image10" alt="" class="img25" style="opacity:<?php if($member['is_active'] == 1) { ?>1<?php } else { ?>0.15<?php } ?>;"/>
+		<img src="<?php echo asset_url(); ?>images/Active.png" id="Image10" alt="" class="img25" style="opacity:<?php if($member['is_active'] == 4) { ?>1<?php } else { ?>0.15<?php } ?>;"/>
 		<?php } ?>
 		<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image10" alt="" class="img25" style="opacity:<?php if($member['is_logo_verified'] > 1) { ?>1<?php } else { ?>0.15<?php } ?>;"/>
 		<?php if($member['user_category_id'] == 1) { ?>

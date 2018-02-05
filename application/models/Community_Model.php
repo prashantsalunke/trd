@@ -113,8 +113,7 @@ class Community_Model extends CI_Model {
                 d.name as membername,
                 d.user_category_id,IFNULL(k.picture,e.profile_image) as memberimg,f.sub_category as subcategory,
                 (b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
-                (select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,
-                (select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and is_deleted = 0) as have_request');
+                (select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id and l.seller_id='.$id.') as have_request');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS c','c.busi_id=b.id','inner');
@@ -122,6 +121,7 @@ class Community_Model extends CI_Model {
     	$this->db->join(TABLES::$USER_INFO.' AS e','e.user_id=d.id','inner');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS f','f.id=d.user_subcategory_id','inner');
         $this->db->join(TABLES::$CONTACTPERSON.' AS k ','d.busi_id = k.busi_id ','left');
+        //$this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
     	$this->db->where('a.my_busi_id',$id);
     	$this->db->where('a.status',1);
     	$this->db->where('d.is_contactperson',1);
@@ -133,8 +133,7 @@ class Community_Model extends CI_Model {
     			d.name as membername,
     			d.user_category_id,IFNULL(k.picture,e.profile_image) as memberimg,f.sub_category as subcategory,
     			(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
-    			(select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,
-    			(select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and is_deleted = 0) as have_request');
+    			(select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id and l.seller_id='.$id.') as have_request');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.my_busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS c','c.busi_id=b.id','inner');
@@ -142,6 +141,7 @@ class Community_Model extends CI_Model {
     	$this->db->join(TABLES::$USER_INFO.' AS e','e.user_id=d.id','inner');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS f','f.id=d.user_subcategory_id','inner');
         $this->db->join(TABLES::$CONTACTPERSON.' AS k ','d.busi_id = k.busi_id ','left');
+        $this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
     	$this->db->where('a.busi_id',$id);
     	$this->db->where('a.status',1);
     	$this->db->where('d.is_contactperson',1);
