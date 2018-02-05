@@ -72,7 +72,7 @@
 						</div>
 						<div class="col-xs-8 ptop">
 							<strong class="font1 ">View / Manage</strong><br> 
-							<a href="#" class="font2" onclick="ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);ShowObjectWithEffect('Layer51', 1, 'slideright', 500);ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);return false;">My Posts</a><br> 
+							<a href="#" onclick="myPost();" class="font2">My Posts</a><br> 
 							<a href="#" class="font2" onclick="showMymembers();">My Members <span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;display:none;">0</span></a><br> 
 							<a href="javascript:displayCommunityRequests();" class="font2" >Add Requests <?php if(!empty($add_requests[0]['members'])) { ?><span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;"><?php if(!empty($add_requests[0]['members']) && $add_requests[0]['members'] > 0) { echo $add_requests[0]['members']; } ?></span><?php } ?></a>
 						</div>
@@ -148,7 +148,7 @@
 								<hr id="Line20" style="position:absolute;left:30px;top:45px;width:5px;height:4px;z-index:229;">
 								<img src="<?php echo asset_url(); ?>images/activecover.png" alt="img35" style="width:32px;height:38px;">
 							</a> 
-							<img src="<?php echo asset_url(); ?><?php echo $allpost['profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
+							<img src="<?php echo asset_url(); ?><?php echo $allpost['contact_profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
 							<!-- chat and other all -->
 							<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 								<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
@@ -305,7 +305,7 @@
 			</div>
 			<!-- Add request end -->
 			<!-- my post section -->
-			<div id="Layer51" style="visibility:hidden; position:absolute;min-width:971px;">
+			<div id="Layer51" style="position:absolute;visibility:hidden;top:0;min-width:971px;z-index:526;"> <!-- style="visibility:hidden; position:absolute;min-width:971px;"-->
 			<div class="background2">
 				<div class="col-md-11 col-sm-11 col-xs-11" style="padding-top: 4px;">
 					<div class="col-sm-2"><span class="font3">My Posts</span></div>
@@ -1150,6 +1150,19 @@ function displayCommunityRequests() {
 		ShowObjectWithEffect('Layer120', 1, 'slideright', 500);
 		ShowObjectWithEffect( 'Layer71', 0, 'fade', 600);
 	});
+}
+
+function myPost() {
+	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+	ShowObjectWithEffect( 'Layer71', 0, 'fade', 600);
+
+	/*ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);*/
 }
 function openEnquiryAndOfferForm(postid) {
 	<?php if($tscategory_id != 3) { ?>

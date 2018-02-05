@@ -1,6 +1,6 @@
 <div class="background2">
 				<div class="col-md-11 col-sm-11 col-xs-11" style="padding-top: 4px;">
-					<div class="col-sm-2"><span class="font3">Posts</span></div>
+					<div class="col-sm-2"><span class="font3">Member Posts</span></div>
 					<div class="col-sm-2">
 						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo count($allposts);?> </span>
 						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Posts</span>

@@ -13,7 +13,7 @@
 				<hr id="Line20" style="position:absolute;left:30px;top:45px;width:5px;height:4px;z-index:229;">
 				<img src="<?php echo asset_url(); ?>images/activecover.png" alt="img35" style="width:32px;height:38px;">
 			</a> 
-			<img src="<?php echo asset_url(); ?><?php echo $allpost['profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
+			<img src="<?php echo asset_url(); ?><?php echo $allpost['contact_profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
 			<!-- chat and other all -->
 			<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 				<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
@@ -24,20 +24,20 @@
 		</div>
 		<div class="col-md-6 col-sm-6" style="padding-left:0px;">
 			<div class="row" style="margin:0px;">
-				<div class="col-sm-8" style="padding-left:0px;">
+				<div class="col-sm-7" style="padding-left:0px;">
 					<p class="font6" style="font-size:14px;"><?php echo $allpost['company_name'];?> </p>
 					<p class="font7">Presented by &nbsp;&nbsp;<span class="style5 font8"><?php echo $allpost['prefix'].' '.$allpost['username'];?> </span></p>
 					<span class="s1" style="font-size:15px;"><strong><?php echo $allpost['title'];?></strong></span><br>
 				</div>
 				<?php if(!empty($allpost['share_cname'])) { ?>
-				<div class="col-sm-4" style="padding:0px;">
-					<div class="col-sm-3" style="padding:0px;">
-						<img src="<?php echo asset_url(); ?><?php echo $allpost['share_profile_image'];?>" id="Shape25" alt="" style="width:41px;border-radius:50%;border: 1px solid #FF6347;">
+					<div class="col-sm-5" style="padding:0px;">
+						<div class="col-sm-3" style="padding:0px;">
+										<img src="<?php echo asset_url(); ?><?php echo $allpost['share_profile_image'];?>" id="Shape25" alt="" style="width:41px;border-radius:50%;border: 1px solid #FF6347;">
+						</div>
+						<div style="color:#000000;font-family:Arial;font-size:13px;padding-left:10px;" class="col-sm-9">
+										Shared Post By<br><?php echo $allpost['share_cname'];?>
+						</div>
 					</div>
-					<div style="color:#000000;font-family:Arial;font-size:13px;padding-left:10px;" class="col-sm-11">
-						Shared Post By<br><?php echo $allpost['share_cname'];?>
-					</div>
-				</div>
 				<?php } ?>
 			</div>
 			<div class="row" style="margin:0px;">

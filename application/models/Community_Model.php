@@ -111,7 +111,7 @@ class Community_Model extends CI_Model {
         $this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
                 b.company_city as city,b.plan_id,b.is_logo_verified,b.gaurantee_period,
                 d.name as membername,
-                d.user_category_id,e.profile_image as memberimg,f.sub_category as subcategory,
+                d.user_category_id,IFNULL(k.picture,e.profile_image) as memberimg,f.sub_category as subcategory,
                 (b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
                 (select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,
                 (select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and is_deleted = 0) as have_request');
@@ -121,6 +121,7 @@ class Community_Model extends CI_Model {
     	$this->db->join(TABLES::$USER.' AS d','d.busi_id=a.busi_id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS e','e.user_id=d.id','inner');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS f','f.id=d.user_subcategory_id','inner');
+        $this->db->join(TABLES::$CONTACTPERSON.' AS k ','d.busi_id = k.busi_id ','left');
     	$this->db->where('a.my_busi_id',$id);
     	$this->db->where('a.status',1);
     	$this->db->where('d.is_contactperson',1);
@@ -129,8 +130,8 @@ class Community_Model extends CI_Model {
     	$query_1 = $this->db->get_compiled_select ();
     	$this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
     			b.company_city as city,b.plan_id,b.is_logo_verified,b.gaurantee_period,
-    			(CASE WHEN d.nickname IS NULL OR d.nickname = "" THEN d.name ELSE d.nickname END) as membername,
-    			d.user_category_id,(CASE WHEN d.nickname IS NULL OR d.nickname = "" THEN e.profile_image ELSE "images/img3470.png" END) as memberimg,f.sub_category as subcategory,
+    			d.name as membername,
+    			d.user_category_id,IFNULL(k.picture,e.profile_image) as memberimg,f.sub_category as subcategory,
     			(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
     			(select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,
     			(select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and is_deleted = 0) as have_request');
@@ -140,6 +141,7 @@ class Community_Model extends CI_Model {
     	$this->db->join(TABLES::$USER.' AS d','d.busi_id=b.id','inner');
     	$this->db->join(TABLES::$USER_INFO.' AS e','e.user_id=d.id','inner');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS f','f.id=d.user_subcategory_id','inner');
+        $this->db->join(TABLES::$CONTACTPERSON.' AS k ','d.busi_id = k.busi_id ','left');
     	$this->db->where('a.busi_id',$id);
     	$this->db->where('a.status',1);
     	$this->db->where('d.is_contactperson',1);
