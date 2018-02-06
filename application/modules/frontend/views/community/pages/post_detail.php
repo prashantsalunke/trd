@@ -21,8 +21,9 @@
 					$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
 		?>
 		<div class="center1 padding1">
+			<?php if($allpost['user_category_id'] == 3){ ?>Target Price <?php } ?>
 			<span class="cstyle2">&nbsp; USD <?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span> <span
-				class="cstyle3">&nbsp; Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
+				class="cstyle3">&nbsp; <?php if($allpost['user_category_id'] == 3) { ?>Max.<?php }else{?>Min.<?php } ?> Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 		</div>
 		<img src="<?php echo asset_url(); ?><?php echo $allpost['image1'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
 		<img src="<?php echo asset_url(); ?><?php echo $allpost['image2'];?>" class="img500" alt="" style="width:100% !important;"><br><br>

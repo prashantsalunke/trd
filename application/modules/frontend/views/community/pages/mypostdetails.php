@@ -26,9 +26,9 @@
 					$locale = localeconv();
 					$mypost['postprice'] = number_format($mypost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
 				?>
-				<div class="center1 padding1">
+				<div class="center1 padding1"><?php if($mypost['user_category_id'] == 3){ ?>Target Price <?php } ?>
 					<span class="cstyle2">&nbsp; USD <?php echo $mypost['postprice'];?>&nbsp;&nbsp;&nbsp; </span> <span
-						class="cstyle3">&nbsp; Min. Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
+						class="cstyle3">&nbsp; <?php if($mypost['user_category_id'] == 3) { ?>Max.<?php }else{?>Min.<?php } ?> Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 				</div>
 				<?php if(!empty($mypost['image1'])) { ?>
 				<img src="<?php echo asset_url(); ?><?php echo $mypost['image1'];?>" class="img500" alt="" style="width:100% !important;"><br><br>

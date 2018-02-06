@@ -61,8 +61,9 @@
 			<div class="row" style="margin:0px;">
 				<span class="s2"><?php echo substr($allpost['postdesc'],0,290);?> <?php if(strlen($allpost['postdesc']) > 290){?>...<?php }?></span> 
 				<br><br>
+				<?php if($allpost['user_category_id'] == 3){ ?>Target Price <?php } ?>
 				<span class="s3">USD</span> <span class="s4"><?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span>
-				<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
+				<span class="s5 pull-right" style="padding-top:12px;"><?php if($allpost['user_category_id'] == 3) { ?>Max.<?php }else{?>Min.<?php } ?> Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 				<?php 
 					$tb = $allpost['postviews'] + $allpost['likes']+ $allpost['comment'];
 					$total_count_for_percentage = 0;
