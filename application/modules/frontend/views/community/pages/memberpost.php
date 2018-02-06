@@ -48,7 +48,7 @@
 						<img src="<?php echo asset_url(); ?><?php echo $allpost['share_profile_image'];?>" id="Shape25" alt="" style="width:41px;border-radius:50%;border: 1px solid #FF6347;">
 					</div>
 					<div style="color:#000000;font-family:Arial;font-size:13px;padding-left:10px;" class="col-sm-9">
-						Shared Post By<br><?php echo $allpost['share_cname'];?>
+						Shared By<br><?php echo $allpost['share_cname'];?>
 					</div>
 				</div>
 				<?php } ?>
