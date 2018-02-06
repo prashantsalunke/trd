@@ -287,7 +287,8 @@
 						    	<img src="<?php echo asset_url(); ?>images/ts/community.png" id="Image1" style="opacity :0.15" > <?php }?>
 					        </div>
 						    <div id="wb_Image2" class="img-style">
-						    	<?php if(!empty($buyer['have_request'])){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" > 
+						    	<?php $buyer_request = $buyer['stock_buyer_count']+$buyer['bstation_post_count']; ?>
+						    	<?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" > 
 						    	<?php } else {?>
 						    	<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" style="opacity :0.15" ><?php }?>
 					        </div>

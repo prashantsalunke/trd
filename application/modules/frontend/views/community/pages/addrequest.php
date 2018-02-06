@@ -103,7 +103,8 @@
 							<div id="wb_Image121" style="position:absolute;left:400px;top:16px;width:25px;height:25px;z-index:1363;">
 								<img src="<?php echo asset_url();?>images/CommMember.png" id="Image121" alt="">
 							</div>
-							<?php if($seller['have_request'] > 0){?>
+							<?php $buyer_request = $seller['stock_buyer_count']+$seller['bstation_post_count'];
+							if($buyer_request > 0){?>
 							<div id="wb_Image122" style="position:absolute;left:430px;top:14px;width:30px;height:30px;z-index:1364;">
 								<img src="<?php echo asset_url();?>images/buyer-request.png" id="Image122" alt="">
 							</div>
@@ -276,7 +277,8 @@
 							<div id="wb_Image121" style="position:absolute;left:400px;top:16px;width:25px;height:25px;z-index:1363;">
 								<img src="<?php echo asset_url();?>images/CommMember.png" id="Image121" alt="">
 							</div>
-							<?php if($seller['have_request'] > 0){?>
+							<?php $buyer_request = $seller['stock_buyer_count']+$seller['bstation_post_count'];
+							if($buyer_request > 0){?>
 							<div id="wb_Image122" style="position:absolute;left:430px;top:14px;width:30px;height:30px;z-index:1364;">
 								<img src="<?php echo asset_url();?>images/buyer-request.png" id="Image122" alt="">
 							</div>
