@@ -16,8 +16,9 @@
 		<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image10" alt="" class="img25" style="opacity:<?php if($member['is_logo_verified'] > 1) { ?>1<?php } else { ?>0.15<?php } ?>;"/>
 		<?php if($member['user_category_id'] == 1) { ?>
 		<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image10" alt="" class="img25" style="width:30px !important;opacity:<?php if($member['plan_id'] > 1 && $member['gaurantee_period'] !=''){ ?>1<?php } else { ?>0.15<?php }?>;"/>
-		<?php } else if($member['user_category_id'] == 3) { ?>
-		<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image10" alt="" class="img25" style="width:30px !important;opacity:<?php if($member['have_request'] > 0){ ?>1<?php } else { ?>0.15<?php }?>;"/>
+		<?php } else if($member['user_category_id'] == 3) { 
+		$buyer_request = $member['stock_buyer_count']+$member['bstation_post_count']; ?>
+		<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image10" alt="" class="img25" style="width:30px !important;opacity:<?php if($buyer_request > 0){ ?>1<?php } else { ?>0.15<?php }?>;"/>
 		<?php } ?>
 		<p class="membername"><?php echo $member['membername'];?></p>
 		<p class="membername"><?php echo $member['cname'];?></p>
