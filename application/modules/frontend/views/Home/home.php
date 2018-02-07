@@ -51,7 +51,7 @@
 						<?php //print_r($procategories);
 						foreach($procategories as $product)
 							{  ?>
-							<a href="#" class="list-group-item"><?php echo $product['name']; ?> </a> 
+							<a href="#" class="list-group-item"><?php echo $product['name']."asd"; ?> </a> 
 				   		 <?php 	} ?>
 					</div>
 				</div>
