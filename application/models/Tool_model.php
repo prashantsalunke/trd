@@ -10,13 +10,14 @@ class Tool_model extends CI_Model {
 
     public function getMyStationStats($busi_id)
     {
-    	$this->db->select('a.id,a.visit,a.likes,a.shares,b.desksite_bg1');
-    	$this->db->from(TABLES::$BUSINESS_INFO.' AS a');
-    	$this->db->join(TABLES::$BUSINESSINFOIMAGE.' AS b','a.id=b.busi_id','inner');
-    	$this->db->where('a.id',$busi_id);
-    	$query = $this->db->get();
-    	$row = $query->result_array();
-    	return $row;
+        $this->db->select('b.id,COUNT(DISTINCT a.id) AS visit, SUM(a.likes) AS likes, SUM(a.shares) AS shares,c.desksite_bg1');
+        $this->db->from(TABLES::$BUSINESS_VISITORS.' AS a');
+        $this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
+        $this->db->join(TABLES::$BUSINESSINFOIMAGE.' AS c','b.id=c.busi_id','left');
+        $this->db->where('a.busi_id',$busi_id);
+        $query = $this->db->get();
+        $row = $query->result_array();
+        return $row;
     }
     
     public function getMyStationProductStats($busi_id)
