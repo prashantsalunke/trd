@@ -94,7 +94,7 @@
 							$msurl = base_url()."shipper/profile/".$business_stats[0]['id'];
 						?>
 						<div id="wb_Text1463" style="position:absolute;left:14px;top:229px;width:202px;height:16px;z-index:3363;text-align:left;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><a href="<?php echo base_url();?>shipper/profile/<?php echo $business_stats[0]['id'];?>" target="_blank" class="style16"><?php echo substr($msurl,0,38);?><?php if(strlen($msurl) > 38) {?>..<?php }?></a></strong></span>
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><a href="<?php echo base_url();?>shipper/profile/<?php echo $business_stats[0]['id'];?>" target="_blank" class="style16"><?php echo substr($msurl,0,37);?><?php if(strlen($msurl) > 37) {?>..<?php }?></a></strong></span>
 						</div>
 						<div id="wb_Shape364" style="position:absolute;left:40px;top:348px;width:164px;height:33px;z-index:3364;">
 							<a href="javascript:showStatHistory(1);"><div id="Shape364"><div id="Shape364_text"><span style="color:#FFFFFF;font-family:'MS Shell Dlg';font-size:11px;">VIEW</span></div></div></a></div>
@@ -186,6 +186,7 @@
 								<div class="text-center" id="pie-chart" style="height:300px;width:300px;margin: auto auto;">
 									<canvas id="myChart" width="300" height="300"></canvas>
 								</div>
+								<br>
 								<div class="row">
 									<div class="col-sm-4 text-center">
 										<span style="color:#2D2D2D;font-family:Arial;font-size:13px;"><strong>Community Usage</strong></span>
@@ -421,7 +422,7 @@
 					<div id="myperformance_stats" class="mytoolsts-div">
 						<div class="row" style="margin:0px;">
 							<div class="col-sm-1 text-right">
-								<img src="<?php echo asset_url();?>images/Desksite-small.png" id="Image139" alt="" style="width:30px;">
+								<img src="<?php echo asset_url();?>images/Desksite-small.png" id="Image139" alt="" style="width:30px;height:auto;">
 							</div>
 							<div class="col-sm-4">
 								<span style="color:#292929;font-family:Georgia;font-size:16px;">Desksite ( website ) Statistics</span><br>
