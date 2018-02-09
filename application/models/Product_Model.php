@@ -179,7 +179,7 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS b','a.subcat_id=b.id');
     	$this->db->where('a.status',1);
     	$this->db->where('a.busi_id',$busi_id);
-    	$this->db->order_by('a.sortorder','ASC');
+    	$this->db->order_by('a.sortorder','DESC');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;

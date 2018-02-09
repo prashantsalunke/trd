@@ -217,7 +217,7 @@ class Sellers_Model extends CI_Model {
 	    		$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
 	    	}
 	    	if(!empty($params['keyword'])) {
-	    		$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR b.company_name like '%".trim($params['keyword'])."%' OR h.name like'%".trim($params['keyword'])."%' OR n.name like'%".trim($params['keyword'])."%')",'',false);
+	    		$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR b.company_name like '%".trim($params['keyword'])."%' OR h.name like'%".trim($params['keyword'])."%' )",'',false);
 	    	}
 	    	/*if(!empty($params['keyword'])) {
 	    		$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);
