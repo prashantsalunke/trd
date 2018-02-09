@@ -260,10 +260,10 @@ function showAddResponse(resp, statusText, xhr, $form){
 <input type="hidden" name="busi_id" value="<?php echo $seller_id;?>" />
 <input type="hidden" name="my_busi_id" value="<?php echo $busi_id;?>" />
 <input type="hidden" name="inquiry_type_id" id="inquiry_type_id" value="3" />
-<input type="text" id="Editbox1" style="position:absolute;left:230px;top:288px;width:252px;height:19px;line-height:19px;z-index:0;" name="name" value="<?php echo $contact_details[0]['name'];?>" maxlength="20">
-<input type="text" id="Editbox2" style="position:absolute;left:230px;top:318px;width:252px;height:19px;line-height:19px;z-index:1;" name="company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
-<input type="number" id="Editbox6" style="position:absolute;left:230px;top:380px;width:252px;height:19px;line-height:19px;z-index:2;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
-<input type="email" id="Editbox7" style="position:absolute;left:230px;top:349px;width:252px;height:19px;line-height:19px;z-index:3;" name="email" value="<?php echo $contact_details[0]['email'];?>" maxlength="30">
+<input type="text" id="Editbox1" style="position:absolute;left:230px;top:288px;width:252px;height:19px;line-height:19px;z-index:0;" name="name" value="<?php echo isset($contact_details[0]['name']);?>" maxlength="20">
+<input type="text" id="Editbox2" style="position:absolute;left:230px;top:318px;width:252px;height:19px;line-height:19px;z-index:1;" name="company" value="<?php echo isset($contact_details[0]['company_name']);?>" maxlength="20">
+<input type="number" id="Editbox6" style="position:absolute;left:230px;top:380px;width:252px;height:19px;line-height:19px;z-index:2;" name="phone" value="<?php echo isset($contact_details[0]['mobile_number']);?>" maxlength="20">
+<input type="email" id="Editbox7" style="position:absolute;left:230px;top:349px;width:252px;height:19px;line-height:19px;z-index:3;" name="email" value="<?php echo isset($contact_details[0]['email']);?>" maxlength="30">
 <select name="country" size="1" id="Combobox2" style="position:absolute;left:230px;top:411px;width:258px;height:25px;z-index:4;">
 <option selected value="Select">Select your country</option>
 <?php foreach ($Country as $country){?>
