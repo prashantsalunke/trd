@@ -317,13 +317,23 @@
 					<div class="col-sm-2"><span class="font3">My Posts</span></div>
 					<div class="col-sm-2">
 						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo count($myposts);?> </span>
-						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Posts</span>
+						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;"><?php if(count($myposts) < 2) {?>Post<?php }else{?>Posts<?php } ?></span>
 					</div>
-					<div class="col-sm-6 text-right">
-						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Usage </span>
-						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo round($storage[0]['community']/1024,2);?> MB</span>
-					</div>
-					<div class="col-sm-2" style="padding-top: 10px;"><span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Out of <?php if(!empty($mystorage[0]['intvalue'])) { echo $mystorage[0]['intvalue'];} else { echo 0;}?> MB</span></div>
+					<?php if($tscategory_id != 3 && ($tsplanid == 2 || $tsplanid == 3)) { 
+						$total = 1;
+					?>
+						<div class="col-sm-6 text-right">
+							<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">&nbsp;</span>
+							<span style="color:#FFFFFF;font-family:Arial;font-size:24px;">&nbsp;</span>
+						</div>
+						<div class="col-sm-2" style="padding-top: 10px;"><span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Out of <?php echo $total; ?> Post</span></div>
+					<?php }else{ ?>
+						<div class="col-sm-6 text-right">
+							<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Usage </span>
+							<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo round($storage[0]['community']/1024,2);?> MB</span>
+						</div>
+						<div class="col-sm-2" style="padding-top: 10px;"><span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Out of <?php if(!empty($mystorage[0]['intvalue'])) { echo $mystorage[0]['intvalue'];} else { echo 0;}?> MB</span></div>
+					<?php } ?>
 				</div>
 				<div class="col-md-1 col-sm-1 col-xs-1 text-right" style="padding-left:0px;padding-right: 0px;">
 					<div id="wb_Shape67">
@@ -343,7 +353,7 @@
 						<div class="col-md-2 col-sm-2 text-center">
 							<br><br><br><br><br>
 							<input type="checkbox" style="display:none;"><br><br>
-							<button type="button" id="Button4" class="m2" onclick="deletePost(<?php echo $mypost['postid'];?>,event);">Delete</button>
+							<button type="button" id="Button4" class="m2 deletePost" data-id="<?php echo $mypost['postid'];?>">Delete</button>
 						</div>
 						<div class="col-md-6 col-sm-6" style="padding-left:0px;">
 							<p class="font6" style="font-size:14px;"><?php echo $mypost['company_name'];?> </p>
@@ -448,7 +458,7 @@
 
 			<!-- my post section end-->
 			<!-- add post section -->
-			<div id="Layer52" style="visibility:hidden; position:absolute;min-width:971px;">
+			<div id="Layer5_2" style="visibility:hidden; position:absolute;min-width:971px;z-index:526;">
 			</div>
 			<div id="Layer6" style="top:0px;width:472px;z-index:513;position:absolute;left:382px;visibility:hidden;">
 				<div id="Layer15" style="background: #3C3C3C; padding: 11px;">
@@ -809,7 +819,8 @@ function openPostDetails(id){
        $('#mainLayer18').html(data);
     },'html');
 }
-function deletePost(id,event){
+/*function deletePost(id,event){
+	ShowObject('mainLayer18', 0);
 	event.stopImmediatePropagation();
     confirmbox("Are you sure to delete Post ?",
 		function() {
@@ -825,7 +836,28 @@ function deletePost(id,event){
            //
         }
 	);
-}
+}*/
+$('div').on('click', '.deletePost', function(event) {
+//$(".viewpst").click(function(event){
+    event.stopImmediatePropagation();
+    var id = $(this).attr("data-id");
+    confirmbox("Are you sure to delete Post ?",
+		function() {
+			ajaxindicatorstart("");
+			$.post(base_url+"community/deletepost", {id : id}, function(data){
+				data = JSON.stringify(data);// alert(data.msg);
+				ajaxindicatorstop();
+				loadRealtimePosts();
+		        $("#msg_cont").html("Post Deleted successfully");
+		    	ShowObject('Layer99', 1);
+		    }, 'html');
+		},
+		function() {
+           //
+        }
+	);
+    ShowObject('mainLayer18', 0);
+});
     
 function selectProductImage() {
     $('#postviewimage').hide();
@@ -897,7 +929,21 @@ $('#addPostContent').bootstrapValidator({
 }).on('success.form.bv', function(event,data) {
 	// Prevent form submission
 	event.preventDefault();
-	addPostContent();
+	event.stopImmediatePropagation();
+	<?php if($tscategory_id != 3 && $tsplanid < 4 && count($myposts) == 0) { ?>
+		confirmbox("You subscription plan allows you to store only one post, so to send a post you have to delete the previous one",function(){
+				addPostContent();
+			}
+			,function(){
+				resetMyForm();
+				ShowObjectWithEffect('Layer6', 0, 'slideup', 500);
+				ShowObjectWithEffect('Layer118', 0, 'slideup', 500);
+				return false;
+		});
+	<?php }else{ ?>
+		addPostContent();
+
+	<?php } ?>
 });
 
 function addPostContent() {
@@ -918,6 +964,7 @@ function addPostContent() {
 						$("#response").show();
 				  	} else {
 				  		$("#msg_cont").html('Post Added successfully.');
+				  		resetMyForm();
 						ShowObject('Layer99', 1);
 						ShowObjectWithEffect('Layer6', 0, 'slideup', 550, 'easeOutBounce');
 				        loadRealtimePosts();
@@ -1066,9 +1113,9 @@ $('div').on('click', '.viewpst', function(event) {
 		$.post(base_url+"community/viewpost", {busi_id : busi_id}, function(data){
 				ajaxindicatorstop();
 				//loadRealtimePosts();
-		        $('#Layer52').html(data);
+		        $('#Layer5_2').html(data);
 		    	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
-    			ShowObjectWithEffect('Layer52', 1, 'slideright', 500);
+    			ShowObjectWithEffect('Layer5_2', 1, 'slideright', 500);
 		}, 'html');
     }
     ShowObject('mainLayer18', 0);
@@ -1158,7 +1205,7 @@ function displayCommunityRequests() {
 		ajaxindicatorstop();
 		ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
 		ShowObjectWithEffect('Layer51', 0, 'slideleft', 500);
-		ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);
+		ShowObjectWithEffect('Layer5_2', 0, 'slideleft', 500);
 		ShowObjectWithEffect('Layer120', 1, 'slideright', 500);
 		ShowObjectWithEffect( 'Layer71', 0, 'fade', 600);
 	});
@@ -1167,7 +1214,7 @@ function displayCommunityRequests() {
 function myPost() {
 	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
 	ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);
-	ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer5_2', 0, 'slideleft', 500);
 	ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
 	ShowObjectWithEffect( 'Layer71', 0, 'fade', 600);
 
@@ -1300,15 +1347,20 @@ function resetMyForm() {
 	$("#postphoto4").css('background-image', 'url("<?php echo asset_url();?>images/img1264.png")').css('background-size','cover').val('');
 } 
 
-function showAddPost() {
-	<?php if($tscategory_id != 3 && $tsplanid < 4) { ?>
+function showAddPost() { 
+	<?php if($tscategory_id != 3 && $tsplanid < 2) { ?>
 		$("#msg_cont").html('You subscription plan doesn\'t allow you to send posts, please upgrade your subscription plan to "Elite"');
 		ShowObject('Layer99', 1);
-	<?php } elseif($tscategory_id == 3 && $myds_stage != 4) { ?>
+	<?php } elseif($tscategory_id != 3 && $tsplanid < 4 && count($myposts) >= 1) { ?>
+				$("#msg_cont").html('Please delete the previous post to add a new one. To do this open "My Posts" tab, and delete the stored one,or upgrade your subscription plan to "Elite"');
+				ShowObject('Layer99', 1);
+ 		<?php } elseif($tscategory_id == 3 && $myds_stage != 4) { ?>
 		$("#msg_cont").html('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
 		ShowObject('Layer99', 1);
 	<?php } else { ?>
-		<?php if($mystorage[0]['intvalue'] <= round($storage[0]['community']/1024,2)) { ?>
+		<?php if($tscategory_id != 3 && ($tsplanid == 2 || $tsplanid == 3)){ ?>
+				ShowObjectWithEffect('Layer6', 1, 'slideup', 550, 'easeOutBounce');
+		<?php }elseif($mystorage[0]['intvalue'] <= round($storage[0]['community']/1024,2)) { ?>
 			$("#msg_cont").html('Your posts storage box is full please delete some of your old posts');
 			ShowObject('Layer99', 1);
 		<?php } else { ?>

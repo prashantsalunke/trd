@@ -215,6 +215,7 @@ class Community extends MX_Controller {
 			redirect ( base_url () );
 		}
 		$data = array ();
+		$size = 0;
 		$data['id'] =$this->input->post('id');
 		$data['busi_id'] = $_SESSION['busi_id'];
 		//$this->load->library ( 'mylib/PostLib', 'postlib' );
