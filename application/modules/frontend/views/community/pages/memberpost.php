@@ -1,15 +1,19 @@
 <div class="background2">
-				<div class="col-md-11 col-sm-11 col-xs-11" style="padding-top: 4px;">
-					<div class="col-sm-2"><span class="font3">Member Posts</span></div>
+			<div class="col-md-11 col-sm-11 col-xs-11" style="padding-top: 4px;">
+					<div class="col-sm-3"><span class="font3">Member Posts</span></div>
 					<div class="col-sm-2">
 						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo count($allposts);?> </span>
 						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Posts</span>
 					</div>
-					<div class="col-sm-6 text-right">
+					
+				</div>
+				<div class="col-md-1 col-sm-1 col-xs-1 text-right" style="padding-left:0px;padding-right: 0px;">
+					<div id="wb_Shape67">
+						<a href="#" onclick="ShowObjectWithEffect('Layer51', 0, 'slideright', 500);ShowObjectWithEffect('Layer5_2', 0, 'slideright', 500);ShowObjectWithEffect('Layer9', 0, 'slideright', 500);ShowObjectWithEffect('Layer5', 1, 'slideleft', 500);return false;"><img src="<?php echo asset_url();?>images/img0334.gif" id="Shape67" alt="" style="width:38px;height:37px;"></a>
 					</div>
-					<div class="col-sm-2" style="padding-top: 10px;"></div>
 				</div>
 			</div>
+
 			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:675px;">
              <?php 
 				if (count ( $allposts ) > 0 && $allposts [0] ['id'] != '') {
@@ -30,7 +34,6 @@
 			<!-- chat and other all -->
 			<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 				<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
-				<a href="#" class="afont viewpst" data-id="<?php echo $allpost['busi_id'];?>" data-busid="<?php echo $busi_id;?>">View Posts</a> 
 				<a href="#" class="afont viewdsksite" data-id="<?php echo $allpost['busi_id'];?>" data-catid="<?php echo $allpost['user_category_id'];?>">DeskSite</a> 
 			</div>
 			<!-- chat end -->
