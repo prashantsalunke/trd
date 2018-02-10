@@ -9,7 +9,7 @@
 		<div class="col-md-2 col-sm-2 text-center">
 			<br><br><br><br><br>
 			<input type="checkbox" style="display:none;"><br><br>
-			<button type="button" id="Button4" class="m2" onclick="deletePost(<?php echo $mypost['postid'];?>);">Delete</button>
+			<button type="button" id="Button4" class="m2 deletePost" data-id="<?php echo $mypost['postid'];?>">Delete</button>
 		</div>
 		<div class="col-md-6 col-sm-6" style="padding-left:0px;">
 			<p class="font6" style="font-size:14px;"><?php echo $mypost['company_name'];?> </p>
