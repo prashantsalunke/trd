@@ -124,8 +124,8 @@
 					<span class="font3">COMMUNITY REAL-TIME POSTS</span>
 				</div>
 				<div class="col-md-2 col-sm-2 col-xs-2" style="padding-right:0px;">
-					<div id="Layer10" onclick="showAddPost();">
-						<a href="javascript:showAddPost();">
+					<div id="Layer10" onclick="showAddPost();" data-id="<?php echo $mypost_count?>">
+						<a>
 							<img src="<?php echo asset_url(); ?>images/barsendpost0.png" id="Image11" alt="" class="img29"> 
 							<label class="font4">ADD POST</label>
 						</a>
@@ -845,10 +845,13 @@ $('div').on('click', '.deletePost', function(event) {
 		function() {
 			ajaxindicatorstart("");
 			$.post(base_url+"community/deletepost", {id : id}, function(data){
-				data = JSON.stringify(data);// alert(data.msg);
+				data = JSON.stringify(data);
 				ajaxindicatorstop();
 				loadRealtimePosts();
 		        $("#msg_cont").html("Post Deleted successfully");
+		    	var mypost_count = $("#Layer10").attr('data-id');
+		    	mypost_count = parseInt(mypost_count) - 1;
+		    	$("#Layer10").attr('data-id',mypost_count);
 		    	ShowObject('Layer99', 1);
 		    }, 'html');
 		},
@@ -930,9 +933,11 @@ $('#addPostContent').bootstrapValidator({
 	// Prevent form submission
 	event.preventDefault();
 	event.stopImmediatePropagation();
-	<?php if($tscategory_id != 3 && $tsplanid < 4 && count($myposts) == 0) { ?>
+	<?php if($tscategory_id != 3 && $tsplanid < 4) { ?>
 		confirmbox("You subscription plan allows you to store only one post, so to send a post you have to delete the previous one",function(){
 				addPostContent();
+		    	mypost_count = 1;
+		    	$("#Layer10").attr('data-id',mypost_count);
 			}
 			,function(){
 				resetMyForm();
@@ -1348,19 +1353,22 @@ function resetMyForm() {
 } 
 
 function showAddPost() { 
+	var mypost_count = $("#Layer10").attr('data-id');
 	<?php if($tscategory_id != 3 && $tsplanid < 2) { ?>
 		$("#msg_cont").html('You subscription plan doesn\'t allow you to send posts, please upgrade your subscription plan to "Elite"');
 		ShowObject('Layer99', 1);
-	<?php } elseif($tscategory_id != 3 && $tsplanid < 4 && count($myposts) >= 1) { ?>
-				$("#msg_cont").html('Please delete the previous post to add a new one. To do this open "My Posts" tab, and delete the stored one,or upgrade your subscription plan to "Elite"');
-				ShowObject('Layer99', 1);
- 		<?php } elseif($tscategory_id == 3 && $myds_stage != 4) { ?>
-		$("#msg_cont").html('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
-		ShowObject('Layer99', 1);
-	<?php } else { ?>
-		<?php if($tscategory_id != 3 && ($tsplanid == 2 || $tsplanid == 3)){ ?>
-				ShowObjectWithEffect('Layer6', 1, 'slideup', 550, 'easeOutBounce');
-		<?php }elseif($mystorage[0]['intvalue'] <= round($storage[0]['community']/1024,2)) { ?>
+	<?php } elseif($tscategory_id != 3 && ($tsplanid == 2 || $tsplanid == 3)) { ?>
+				if(parseInt(mypost_count) >= 1){
+					$("#msg_cont").html('Please delete the previous post to add a new one. To do this open "My Posts" tab, and delete the stored one,or upgrade your subscription plan to "Elite"');
+					ShowObject('Layer99', 1);
+				}else{
+					ShowObjectWithEffect('Layer6', 1, 'slideup', 550, 'easeOutBounce');
+				}
+ 	<?php } elseif($tscategory_id == 3 && $myds_stage != 4) { ?>
+			$("#msg_cont").html('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+			ShowObject('Layer99', 1);
+	<?php } else { 
+		if($mystorage[0]['intvalue'] <= round($storage[0]['community']/1024,2)) { ?>
 			$("#msg_cont").html('Your posts storage box is full please delete some of your old posts');
 			ShowObject('Layer99', 1);
 		<?php } else { ?>

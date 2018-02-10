@@ -39,6 +39,7 @@ class Community extends MX_Controller {
 		$this->template->set ('add_requests', $add_requests);
 		$myposts = $this->product->communityPostListByBusinessId($busi_id);
 		$this->template->set ('myposts', $myposts);
+		$this->template->set ('mypost_count', count($myposts));
 		$productslist = $this->product->getProductlist($busi_id);
 		$this->template->set ( 'products', $productslist);
 		$communitymember = $this->product->getCommunityMember($busi_id);
@@ -82,6 +83,7 @@ class Community extends MX_Controller {
 		$html = $this->template->build ('community/pages/posts','',true);
 		$myposts = $this->product->communityPostListByBusinessId($busi_id);
 		$this->template->set ('myposts', $myposts);
+		$this->template->set ('mypost_count', count($myposts));
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
 		$this->template->set ( 'userId', '' );
@@ -94,6 +96,7 @@ class Community extends MX_Controller {
 	public function getCommunityMyPosts() {
 		$busi_id = $this->session->userdata('busi_id');
 		$myposts = $this->product->communityPostListByBusinessId($busi_id);
+		$this->template->set ('mypost_count', count($myposts));
 		$this->template->set ('myposts', $myposts);
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
@@ -101,6 +104,7 @@ class Community extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html = $this->template->build ('community/pages/myposts','',true);
+		$this->template->set ('mypost_count', count($myposts));
 		$this->template->set ('myposts', $myposts);
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
