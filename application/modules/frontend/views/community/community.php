@@ -1230,7 +1230,7 @@ function myPost() {
 }
 function openEnquiryAndOfferForm(postid) {
 	<?php if($tscategory_id != 3) { ?>
-		<?php if($contact_details[0]['plan_id'] > 3) { ?>
+		<?php if($contact_details[0]['plan_id'] > 1) { ?>
 			<?php if(($tscategory_id == 1 && $contact_details[0]['step'] == 4) || ($tscategory_id == 2 && $contact_details[0]['step'] == 2)) { ?>
 				<?php if($oisstorage[0]['intvalue'] <= (($storage[0]['offers'] + $storage[0]['inquiries'])/1024)) { ?>
 					$("#msg_cont").html('Your offer/enquiry box is full. Please delete offer/enquiries to send more enquiries');
