@@ -316,8 +316,8 @@
 				<div class="col-md-11 col-sm-11 col-xs-11" style="padding-top: 4px;">
 					<div class="col-sm-2"><span class="font3">My Posts</span></div>
 					<div class="col-sm-2">
-						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo count($myposts);?> </span>
-						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;"><?php if(count($myposts) < 2) {?>Post<?php }else{?>Posts<?php } ?></span>
+						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;" id="post_count"><?php echo count($myposts);?> </span><!--  -->
+						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;" id="posttext"><?php if(count($myposts) < 2) {?>Post<?php }else{?>Posts<?php } ?></span>
 					</div>
 					<?php if($tscategory_id != 3 && ($tsplanid == 2 || $tsplanid == 3)) { 
 						$total = 1;
@@ -846,6 +846,7 @@ function openPostDetails(id){
 }*/
 $('div').on('click', '.deletePost', function(event) {
 //$(".viewpst").click(function(event){
+	ShowObject('mainLayer18', 0);
     event.stopImmediatePropagation();
     var id = $(this).attr("data-id");
     confirmbox("Are you sure to delete Post ?",
@@ -857,8 +858,10 @@ $('div').on('click', '.deletePost', function(event) {
 				loadRealtimePosts();
 		        $("#msg_cont").html("Post Deleted successfully");
 		    	var mypost_count = $("#Layer10").attr('data-id');
-		    	mypost_count = parseInt(mypost_count) - 1;
+		    	if(mypost_count > 0)
+		    		mypost_count = parseInt(mypost_count) - 1;
 		    	$("#Layer10").attr('data-id',mypost_count);
+		    	$("#post_count").html(mypost_count);
 		    	ShowObject('Layer99', 1);
 		    }, 'html');
 		},
@@ -866,7 +869,7 @@ $('div').on('click', '.deletePost', function(event) {
            //
         }
 	);
-    ShowObject('mainLayer18', 0);
+    //ShowObject('mainLayer18', 0);
 });
     
 function selectProductImage() {
@@ -945,6 +948,7 @@ $('#addPostContent').bootstrapValidator({
 				addPostContent();
 		    	mypost_count = 1;
 		    	$("#Layer10").attr('data-id',mypost_count);
+		    	$("#post_count").html(mypost_count);
 			}
 			,function(){
 				resetMyForm();
@@ -980,6 +984,7 @@ function addPostContent() {
 						ShowObject('Layer99', 1);
 						ShowObjectWithEffect('Layer6', 0, 'slideup', 550, 'easeOutBounce');
 				        loadRealtimePosts();
+				        jQuery('#resultLoading').remove();
 				  	}
                 }
 	 	};
