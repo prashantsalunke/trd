@@ -22,10 +22,11 @@ class Community_Model extends CI_Model {
     }
     public function getSendCommunityRequest($busi_id)
     {
+        $start_date = date('Y-m-d',strtotime("-15 days"));
     	$this->db->select('a.id as community_id,a.created_date as added_date,b.*,c.info_img1,c.info_img2,d.name_prefix,d.name,d.user_category_id,e.company_introduction,e.hot_presentation,f.profile_image,
 		g.sub_category,(select GROUP_CONCAT(j.name SEPARATOR ", ") from tbl_main_product as j where j.busi_id=b.id AND j.status != 0 group by j.busi_id) as mainproducts,
     			(select GROUP_CONCAT(k.name SEPARATOR ", ") from tbl_shipper_service as k where k.busi_id=b.id AND k.status != 0 group by k.busi_id) as mainservices,
-    			(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id) as bstation_post_count');
+    			(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER . ' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESSINFOIMAGE. ' AS c','a.busi_id=c.busi_id','inner');
@@ -47,11 +48,11 @@ class Community_Model extends CI_Model {
     }
     public function getInvitationCommunityRequest($busi_id)
     {
-    	
+    	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$this->db->select('a.id as community_id,a.created_date as added_date,b.*,c.info_img1,c.info_img2,d.name_prefix,d.user_category_id,d.name,e.company_introduction,e.hot_presentation,f.profile_image,
 		g.sub_category,(select GROUP_CONCAT(j.name SEPARATOR ", ") from tbl_main_product as j where j.busi_id=b.id AND j.status != 0 group by j.busi_id) as mainproducts,
     			(select GROUP_CONCAT(k.name SEPARATOR ", ") from tbl_shipper_service as k where k.busi_id=b.id AND k.status != 0 group by k.busi_id) as mainservices,
-    			(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id) as bstation_post_count');
+    			(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER . ' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.my_busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESSINFOIMAGE. ' AS c','a.my_busi_id=c.busi_id','inner');
@@ -101,6 +102,7 @@ class Community_Model extends CI_Model {
     }
     
     public function searchCommunityMember($id,$name) {
+        $start_date = date('Y-m-d',strtotime("-15 days"));
     	/*$this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
     			b.company_city as city,b.plan_id,b.is_logo_verified,b.gaurantee_period,
     			(CASE WHEN d.nickname IS NULL OR d.nickname = "" THEN d.name ELSE d.nickname END) as membername,
@@ -113,7 +115,7 @@ class Community_Model extends CI_Model {
                 d.name as membername,
                 d.user_category_id,IFNULL(k.picture,e.profile_image) as memberimg,f.sub_category as subcategory,
                 (b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
-                (select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id) as bstation_post_count');
+                (select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS c','c.busi_id=b.id','inner');
@@ -133,7 +135,7 @@ class Community_Model extends CI_Model {
     			d.name as membername,
     			d.user_category_id,IFNULL(k.picture,e.profile_image) as memberimg,f.sub_category as subcategory,
     			(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
-    			(select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id) as bstation_post_count');
+    			(select count(id) from tbl_chat_messages as cht where cht.from_busi_id = b.id and cht.is_read=0) as messages,(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.my_busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS c','c.busi_id=b.id','inner');

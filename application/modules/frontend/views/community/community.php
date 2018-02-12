@@ -260,24 +260,32 @@
 						</div>
 					</div>
                  <?php } }  else { ?>
-					<div style="background-color: #FFFFFF;padding:15px;height:637px;">
-						<?php if(count($communitymember) <= 0) { ?>
-						<h4 class="center" style="margin-top:50px;padding: 100px 240px;text-align: left;">
-							<span style="color:#000000;font-family:Arial;font-size:13px;">
-								<strong>You don’t have members in your community.. </strong>
-								<br><br>
-								To add members, click on the suitable business type “ Sellers, Shippers, Buyers” shown under “ Add Member” in The Toolbox..<br><br>
-								In the related page, search for a certain members meet your requirement, view his Desksite, then click “Contact and select Add To My Community”..
-								<br><br>
+					<div style="background-color: #FFFFFF;padding:15px;height:920px;position: relative;">
+						<?php if(count($firstpost) <= 0) { ?>
+						
+						<div id="wb_Text47" style="position:absolute;left:208px;top:476px;width:501px;height:384px;z-index:570;text-align:left;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;"><strong>Limitations.</strong><br>My Community is a social B2B platform, created specially to provide Black Horse/ (ELITE) member &amp; Buyers, with a private business platform in social media concept. So other members will experience a kind of limitation as follows:<br><br><strong><u>Sellers or Shippers / Black Horse ( VIP or BASIC) : <br></u></strong><br>Access and establish their own platform<br>Add or added by others members<br>View posts<br>Reply posts<br>Send posts<br><br>Chat, like, comment<strong><u><br><br><br>Free Sellers or Shippers: <br></u></strong><br>Access and establish their own platform<br>Add or added by others members<br>View posts<br>Reply posts<br>Send posts<br>Chat, like, comment
 							</span>
-						</h4>
-						<?php } else if(count($firstpost) <= 0) { ?>
-						<div id="wb_Text25" style="position:absolute;left:311px;top:233px;width:351px;height:32px;text-align:center;z-index:570;">
-							<span style="color:#000000;font-family:Arial;font-size:13px;">To add your first post, close this tab and click on "Add a post" button..</span>
+
 						</div>
-						<div id="wb_Text53" style="position:absolute;left:314px;top:204px;width:336px;height:29px;text-align:center;z-index:571;">
-							<span style="color:#303030;font-family:Impact;font-size:24px;">No Posts Yet</span>
+						<div id="wb_Text130" style="position:absolute;left:297px;top:82px;width:336px;height:29px;text-align:center;z-index:571;">
+							<span style="color:#303030;font-family:Impact;font-size:24px;">WELCOME TO COMMUNITY</span>
 						</div>
+						<div id="wb_Text135" style="position:absolute;left:208px;top:167px;width:501px;height:142px;z-index:572;text-align:left;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;"><strong>Get Started </strong>and add your community members.<br>Move your mouse to Toolbox, click on the business type “ </span><span style="color:#1E90FF;font-family:Arial;font-size:13px;">Sellers, Shippers, Buyers</span><span style="color:#000000;font-family:Arial;font-size:13px;">” shown under “ Add Member”.<br><br>In the related page, search for certain members ( by Name, Company, Products, or Country), open the member's Desksite, then click on “Contact, Add and Share&quot; icon, and select &quot;Add To My Community”..<br><br></span><span style="color:#1E90FF;font-family:Arial;font-size:11px;">Please, waiting for the member to accept your Add Request</span>
+						</div>
+						<div id="wb_Text8" style="position:absolute;left:386px;top:111px;width:161px;height:16px;text-align:center;z-index:573;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;">Social B2B Platform </span>
+						</div>
+						<hr id="Line9" style="position:absolute;left:209px;top:331px;width:527px;height:1px;z-index:574;">
+						<div id="wb_Text34" style="position:absolute;left:208px;top:357px;width:501px;height:96px;z-index:575;text-align:left;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;"><strong>Add Requests. </strong><br>Each &quot;Add Request&quot; you send to a member or received by a member stored in your Add Requests window, under View/Manage section in the Toolbox, where you can manage the add request invitations ( Accept or decline).<br><br></span>
+						</div>
+						<hr id="Line10" style="position:absolute;left:209px;top:451px;width:527px;height:1px;z-index:576;">
+						<div id="wb_Text1" style="position:absolute;left:483px;top:610px;width:271px;height:272px;z-index:577;text-align:left;">
+							<span style="color:#32CD32;font-family:Arial;font-size:13px;"><strong>Yes<br>Yes<br>Yes<br>Yes<br></strong></span><span style="color:#FF0000;font-family:Arial;font-size:13px;"><strong>Only one post, to send the second, delete the first one, and so on.</strong></span><span style="color:#000000;font-family:Arial;font-size:13px;"><strong><br></strong></span><span style="color:#32CD32;font-family:Arial;font-size:13px;"><strong>Yes<u><br></u></strong></span><span style="color:#000000;font-family:Arial;font-size:13px;"><strong><u><br><br><br></u><br></strong></span><span style="color:#32CD32;font-family:Arial;font-size:13px;"><strong>Yes<br>Yes<br>Yes</strong></span><span style="color:#1E90FF;font-family:Arial;font-size:13px;"><strong><br></strong></span><span style="color:#FF0000;font-family:Arial;font-size:13px;"><strong>No<br>No<br></strong></span><span style="color:#32CD32;font-family:Arial;font-size:13px;"><strong>Yes</strong></span>
+						</div>
+						<br/><br/>
 						<?php } else { ?>
 						<div id="wb_Text25" style="position:absolute;left:311px;top:233px;width:351px;height:32px;text-align:center;z-index:570;">
 							<span style="color:#000000;font-family:Arial;font-size:13px;">We do not fount any post added by your community members..</span>
