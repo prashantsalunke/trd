@@ -468,7 +468,7 @@
 
 			<!-- my post section end-->
 			<!-- add post section -->
-			<div id="Layer5_2" style="visibility:hidden; position:absolute;min-width:971px;z-index:526;">
+			<div id="Layer5_2" style="visibility:hidden; position:absolute;min-width:971px;z-index:526;top:0;">
 			</div>
 			<div id="Layer6" style="top:0px;width:472px;z-index:513;position:absolute;left:382px;visibility:hidden;">
 				<div id="Layer15" style="background: #3C3C3C; padding: 11px;">
@@ -1142,8 +1142,10 @@ $('div').on('click', '.viewpst', function(event) {
 				ajaxindicatorstop();
 				//loadRealtimePosts();
 		        $('#Layer5_2').html(data);
+		        ShowObjectWithEffect('Layer5_2', 1, 'slideright', 500);
 		    	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
-    			ShowObjectWithEffect('Layer5_2', 1, 'slideright', 500);
+    			
+    			
 		}, 'html');
     }
     ShowObject('mainLayer18', 0);
