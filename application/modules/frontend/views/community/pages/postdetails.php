@@ -25,7 +25,8 @@
 				<?php 
 					setlocale(LC_ALL, ''); // Locale will be different on each system.
 					$locale = localeconv();
-					$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+					if($allpost['postprice'] != "")
+						$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
 				?>
 				<div class="center1 padding1">
 					<?php if($allpost['user_category_id'] == 3){ ?>Target Price <?php } ?>

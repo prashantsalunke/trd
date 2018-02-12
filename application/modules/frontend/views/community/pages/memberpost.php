@@ -59,7 +59,8 @@
 			<?php 
 				setlocale(LC_ALL, ''); // Locale will be different on each system.
 				$locale = localeconv();
-				$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+				if($allpost['postprice'] != "")
+					$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
 			?>
 			<div class="row" style="margin:0px;">
 				<span class="s2"><?php echo substr($allpost['postdesc'],0,290);?> <?php if(strlen($allpost['postdesc']) > 290){?>...<?php }?></span> 

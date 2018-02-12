@@ -20,7 +20,8 @@
 			<?php 
 					setlocale(LC_ALL, ''); // Locale will be different on each system.
 					$locale = localeconv();
-					$mypost['postprice'] = number_format($mypost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+					if($mypost['postprice'] != "")
+						$mypost['postprice'] = number_format($mypost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
 			?>
 			<?php if($mypost['user_category_id'] == 3){ ?>Target Price <?php } ?>
 			<span class="s3">USD</span> <span class="s4"><?php echo $mypost['postprice'];?>&nbsp;&nbsp;&nbsp; </span>
