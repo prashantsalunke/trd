@@ -623,6 +623,7 @@
 			<div class="memberheader">
 				<input type="checkbox" onclick="showDeleteMenu();" id="deleteMem"> select <input type="text" id="SiteSearch01" class="searchbox" name="SiteSearch1" value="" placeholder="Search My Members" /> 
 				<input type="button" id="Button01" onclick="searchPage();return false;" name="Search" value="" style="width: 25px; height: 20px; z-index: 1808; margin-left: -33px; vertical-align: middle;" />
+				<input type="button" id="clear-search" onclick="clearSearch();return false;" name="clear" value="" style="width: 25px; height: 20px; z-index: 1808; margin-left: -33px; vertical-align: middle;display: none;" />
 				<a href="javascript:deleteMembers();" style="margin-left:15px;display:none;" id="memdeleteimg">
 					<img alt="Delete selected members" src="<?php echo asset_url();?>images/mem-delete.png" style="width:32px;">
 				</a>
@@ -1186,8 +1187,22 @@ function showDeleteMenu() {
 	}
 }
 $("#SiteSearch01").keyup(function() {
+	if($("#SiteSearch01").val().length > 0)
+	{
+		$("#clear-search").show();
+		$("#Button01").hide();
+	}else{
+		$("#clear-search").hide();
+		$("#Button01").show();
+	}
 	searchPage()
 });
+function clearSearch(){
+	$("#SiteSearch01").val("");
+	$("#clear-search").hide();
+	$("#Button01").show();
+	searchPage();
+}
 function searchPage() {
 	$.get(base_url+"community/members/search",{ name: $("#SiteSearch01").val()},function(data) {
 		$("#comm_members").html(data.html);
