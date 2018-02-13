@@ -26,10 +26,18 @@
 			<span class="cstyle2">&nbsp; USD <?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span> <span
 				class="cstyle3">&nbsp; <?php if($allpost['user_category_id'] == 3) { ?>Max.<?php }else{?>Min.<?php } ?> Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 		</div>
-		<img src="<?php echo asset_url(); ?><?php echo $allpost['image1'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-		<img src="<?php echo asset_url(); ?><?php echo $allpost['image2'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-		<img src="<?php echo asset_url(); ?><?php echo $allpost['image3'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-		<img src="<?php echo asset_url(); ?><?php echo $allpost['image4'];?>" class="img500" alt="" style="width:100% !important;"><br>
+		<?php if(!empty($allpost['image1'])) { ?>
+			<img src="<?php echo asset_url(); ?><?php echo $allpost['image1'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
+		<?php } ?>
+		<?php if(!empty($allpost['image2'])) { ?>
+			<img src="<?php echo asset_url(); ?><?php echo $allpost['image2'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
+		<?php } ?>
+		<?php if(!empty($allpost['image3'])) { ?>
+			<img src="<?php echo asset_url(); ?><?php echo $allpost['image3'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
+		<?php } ?>
+		<?php if(!empty($allpost['image4'])) { ?>
+			<img src="<?php echo asset_url(); ?><?php echo $allpost['image4'];?>" class="img500" alt="" style="width:100% !important;"><br>
+		<?php } ?>
 	</div>
 	<div class="col-sm-1" style="width:30px;padding:3px;margin-top: -45px;">
 		<a href="#" onclick="ShowObject('mainLayer18', 0);return false;"> 
