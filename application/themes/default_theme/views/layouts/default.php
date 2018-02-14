@@ -105,12 +105,14 @@ function confirmbox(msg, yesCallback, noCallback) {
     $('#cnb_message').html(msg);
     $('#confirmBoxModal').modal({show:true,backdrop: 'static',keyboard: false});
 
-    $('#cnbYes').click(function() {
+    $("#cnbYes").unbind("click");
+    $('#cnbYes').bind("click",function() {
         $("#confirmBoxModal").modal('hide');
         yesCallback();
     });
 
-    $('#cnbNo').click(function() {
+    $("#cnbNo").unbind("click");
+    $('#cnbNo').bind("click",function() {
     	$("#confirmBoxModal").modal('hide');
         noCallback();
     });

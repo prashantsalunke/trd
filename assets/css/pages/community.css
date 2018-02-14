@@ -9313,3 +9313,17 @@ a.style5:hover
     height:25px;
 }
 
+
+#clear-search
+{
+   border: 0px #A9A9A9 solid;
+   background-color: transparent;
+   background-image: url(../../images/Error.png);
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-size: contain;
+   color: #A9A9A9;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+}
