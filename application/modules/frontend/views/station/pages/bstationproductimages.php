@@ -8,7 +8,7 @@
       <span style="color:#303030;font-family:Georgia;font-size:19px;"><strong>Select up to 4 Images</strong></span>
   </div>
   <br><br>
-  <div class="row">
+  <div class="row" style="margin-left:25px;">
 	   <div class="col-md-2 col-sm-2 col-xs-2">
 	  	   <input type="checkbox" id="Checkbox1" name="cimgchk[]" value="<?php echo $prodata[0]['main_image'];?>" style="margin: 0px !important;">
 	  	  <img src="<?php echo asset_url()?><?php echo $prodata[0]['main_image'];?>" id="Image31" alt="" style="width:70px;height:50px;">
