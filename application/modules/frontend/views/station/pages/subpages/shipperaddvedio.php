@@ -54,7 +54,7 @@
 							</div>
 		  					<!-- a href="#"  style="padding-right: 22px;" class="style23"  id="oneproductupload">Upload</a>
 		  					<a href="#" class="style23" >Change</a-->
-		  					<input type="file"  name="uploadonepvedio"  id="uploadonepvedio" onchange="validatevediofile('uploadonepvedio',this,<?php echo $maxvediosizeinbyte ; ?>,<?php echo $total_videos;?>,<?php echo $max_videos; ?>);" style="display: none"/>
+		  					<input type="file"  name="uploadonepvedio"  id="uploadonepvedio" onchange="validatevediofile('uploadonepvedio',this,<?php echo $maxvediosizeinbyte ; ?>);" style="display: none"/>
 						</div>
 						<div class="messageContainer" ></div>
 					</div>
@@ -182,8 +182,7 @@ function showVedioResponse(resp, statusText, xhr, $form){
 	if(resp.status == '0') {
 		$("#response").addClass('alert-danger');
 		$("#response").html(resp.msg);
-		alert(resp.msg);
-		openAddvedio();
+			openAddvedio();
 		$("#save").prop('disabled',false);
 	} else {
 		$(".text-danger").hide();
@@ -205,7 +204,7 @@ $(function(){
     });
 });
 
-function validatevediofile(id,input,size,totalvdo,maxsize)
+function validatevediofile(id,input,size)
 {
 	var flag = true;
 	if (input.files && input.files[0]) {
@@ -215,9 +214,6 @@ function validatevediofile(id,input,size,totalvdo,maxsize)
        		var sizeinkb = (size/1024);
        		var filesizeinmb = (file_size/1048576).toFixed(2);
        		var sizeinmb = (size/1048576).toFixed(2);
-			alert(totalvdo);
-			alert(maxsize);
-			
        		if(ext == 'mp4') {
 	         	if(parseFloat(filesizeinmb) > parseFloat(sizeinmb)) {
                 	alert("File size should be 20 MB max.");
