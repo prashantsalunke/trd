@@ -13,12 +13,12 @@
 				<a href="javascript:false;"> <img class="hover" alt="" src="<?php echo asset_url();?>images/video%20%281%29.png"></a>
 			</div>
 			<div class="account-image" style="padding-top: 3px;">
-				<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Product Videos</span>
+				<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Services Videos</span>
 			</div>
 			<div class="account-main-nav" style="padding-top: 55px;">
 				<ul class="nav nav-tabs nav-tabs-custom">
-				  	<li class="active"><a data-toggle="tab" href="#addvedio" onclick="openAddvedio();">Add <br><span>Products Videos</span></a></li>
-				  	<li><a data-toggle="tab" href="#editvedio" onclick="openEditvedio();" id="myvideo_edit">"View | Edit" <br><span>Products Videos</span></a></li>
+				  	<li class="active"><a data-toggle="tab" href="#addvedio" onclick="openAddvedio();">Add <br><span>Services Videos</span></a></li>
+				  	<li><a data-toggle="tab" href="#editvedio" onclick="openEditvedio();" id="myvideo_edit">"View | Edit" <br><span>Services Videos</span></a></li>
 				</ul>
 			</div>
 			<div class="account-image" style="padding-top: 40px;">
