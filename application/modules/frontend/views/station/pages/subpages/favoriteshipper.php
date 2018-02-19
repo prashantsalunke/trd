@@ -125,6 +125,7 @@ a.style5:hover
 
 </style>
 <?php 
+  if(count($favoriteshipper) > 0 && $favoriteshipper[0]['id'] !='') { 
 	$i =1;
 	foreach($favoriteshipper as $key=>$shipper) { 
 ?>
@@ -257,4 +258,8 @@ a.style5:hover
 	</div>
 </div>
 <?php $i++;?>
+<?php } }  else { ?>
+  <div class="row" style="margin:0px;">
+ 	<h4 class="center"> No Videos Found!</h4>
+ </div>
 <?php } ?>

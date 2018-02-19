@@ -34,31 +34,31 @@
 		</div>
   	</div>
   	<div class="panel-body panel-body-custom" id="" style="padding-top: 22px;height:700px;">		
-  		<div id="seller_div">
+  		<div id="seller_div" style="text-align: center;">
 			<?php include 'favoriteseller.php';?>
    		</div>
-  		<div id="shipper_div">
+  		<div id="shipper_div" style="text-align: center;">
 			<?php include 'favoriteshipper.php';?>
    		</div>
-  		<div id="buyer_div">
+  		<div id="buyer_div" style="text-align: center;">
 			<?php include 'favoritebuyer.php';?>
    		</div>
-  		<div id="product_div">
+  		<div id="product_div" style="text-align: center;">
 			<?php include 'favoriteproduct.php';?>
    		</div>
-  		<div id="vedio_div">
+  		<div id="vedio_div" style="text-align: center;">
 			<?php include 'favoritevedio.php';?>
    		</div>
-  		<div id="dproduct_div">
+  		<div id="dproduct_div" style="text-align: center;">
 			<?php include 'favorite3dpro.php';?>
    		</div>
-  		<div id="catalouge_div">
+  		<div id="catalouge_div" style="text-align: center;">
 			<?php include 'favoritecatalouge.php';?>
    		</div>
-  		<div id="ads_div">
+  		<div id="ads_div" style="text-align: center;">
 			<?php include 'favoriteads.php';?>
    		</div>
-  		<div id="post_div">
+  		<div id="post_div" style="text-align: center;">
 			<?php include 'favoritepost.php';?>
    		</div>
    		<br><br>

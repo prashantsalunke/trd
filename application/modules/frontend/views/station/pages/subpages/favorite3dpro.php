@@ -1,4 +1,7 @@
-	<?php $i =1; foreach($favoritedproduct as $seller) { ?>
+	<?php 
+if(count($favoritedproduct) > 0 && $favoritedproduct[0]['id'] !='') { 
+
+	$i =1; foreach($favoritedproduct as $seller) { ?>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-1" style="padding-top: 66px;">
@@ -128,4 +131,8 @@
 						</div>
 					</div>
 				</div>		
-				<?php $i++; } ?>
+				<?php $i++; } }  else { ?>
+  <div class="row" style="margin:0px;">
+ 	<h4 class="center"> No Videos Found!</h4>
+ </div>
+<?php } ?>

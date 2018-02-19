@@ -294,7 +294,7 @@ a.style5_99:hover
 										<img alt="" src="<?php echo asset_url();?>images/incomingchatalerts.png" style="width:40px;">
 									</span>
 								</a>
-								<div style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;">4</div>
+								<div style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;">0</div>
 							</div><br>
 							<div style="position:absolute;top:404px;text-align:center;width: 160px;">
 								<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">Chat Alerts</span>

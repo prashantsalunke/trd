@@ -112,6 +112,11 @@ class Global_config {
 				$this->CI->template->set('gblorders',$gblmyorders);
 				$this->CI->template->set('gblrequests',$gblmyrequests);
 				
+			} else {
+				$this->CI->template->set('gbloffers',array(0=>array('offers'=>0)));
+				$this->CI->template->set('gblinquiries',array(0=>array('inquiries'=>0)));
+				$this->CI->template->set('gblorders',array(0=>array('orders'=>0)));
+				$this->CI->template->set('gblrequests',array(0=>array('requests'=>0)));
 			}
 			
 		}

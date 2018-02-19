@@ -58,29 +58,42 @@ class Alerts extends MX_Controller {
 		$type = $this->input->post('type');
 		$this->load->library('mylib/MyfavoriteLib');
 		$this->load->model('Product_Model','product');
+		 
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		
-		$favoriteseller = $this->myfavoritelib->getMyfavoriteseller($busi_id,1);
-		$favoriteshipper = $this->myfavoritelib->getMyfavoritesShipper($busi_id,2);
-		$favoritebuyer = $this->myfavoritelib->getMyfavoritesBuyer($busi_id,3);
-		$favoriteproduct = $this->myfavoritelib->getMyfavoriteProduct($busi_id,4);
-		$favoritevedio = $this->myfavoritelib->getMyfavoriteVedio($busi_id,5);
-		$favoritedproduct = $this->myfavoritelib->getMyfavoriteDProduct($busi_id,6);
-		$favoritecatalouge = $this->myfavoritelib->getMyfavoriteCatalouge($busi_id,7);
-		$favoriteads = $this->myfavoritelib->getMyfavoriteAds($busi_id,8);
-		$favoritepost = $this->myfavoritelib->getMyfavoritePost($busi_id,9);
-		
-		$this->template->set ( 'favoriteseller', $favoriteseller);
-		$this->template->set ( 'favoriteshipper', $favoriteshipper);
-		$this->template->set ( 'favoritebuyer', $favoritebuyer);
-		$this->template->set ( 'favoriteproduct', $favoriteproduct);
-		$this->template->set ( 'favoritevedio', $favoritevedio);
-		$this->template->set ( 'favoritedproduct', $favoritedproduct);
-		$this->template->set ( 'favoritecatalouge', $favoritecatalouge);
-		$this->template->set ( 'favoriteads', $favoriteads);
-		$this->template->set ( 'favoritepost', $favoritepost);
-		$this->template->set ( 'type', $type);
-		$this->template->set ( 'page', 'home' );
+		if(!empty($busi_id)) {
+			$favoriteseller = $this->myfavoritelib->getMyfavoriteseller($busi_id,1);			
+			$favoriteshipper = $this->myfavoritelib->getMyfavoritesShipper($busi_id,2);			
+			$favoritebuyer = $this->myfavoritelib->getMyfavoritesBuyer($busi_id,3);
+			$favoriteproduct = $this->myfavoritelib->getMyfavoriteProduct($busi_id,4);
+			$favoritevedio = $this->myfavoritelib->getMyfavoriteVedio($busi_id,5);
+			$favoritedproduct = $this->myfavoritelib->getMyfavoriteDProduct($busi_id,6);
+			$favoritecatalouge = $this->myfavoritelib->getMyfavoriteCatalouge($busi_id,7);
+			$favoriteads = $this->myfavoritelib->getMyfavoriteAds($busi_id,8);
+			$favoritepost = $this->myfavoritelib->getMyfavoritePost($busi_id,9);
+			
+			$this->template->set ( 'favoriteseller', $favoriteseller);
+			$this->template->set ( 'favoriteshipper', $favoriteshipper);
+			$this->template->set ( 'favoritebuyer', $favoritebuyer);
+			$this->template->set ( 'favoriteproduct', $favoriteproduct);
+			$this->template->set ( 'favoritevedio', $favoritevedio);
+			$this->template->set ( 'favoritedproduct', $favoritedproduct);
+			$this->template->set ( 'favoritecatalouge', $favoritecatalouge);
+			$this->template->set ( 'favoriteads', $favoriteads);
+			$this->template->set ( 'favoritepost', $favoritepost);
+			$this->template->set ( 'type', $type);
+	    } else {
+	    	$this->template->set ( 'favoriteseller', array());
+			$this->template->set ( 'favoriteshipper', array());
+			$this->template->set ( 'favoritebuyer', array());
+			$this->template->set ( 'favoriteproduct', array());
+			$this->template->set ( 'favoritevedio', array());
+			$this->template->set ( 'favoritedproduct', array());
+			$this->template->set ( 'favoritecatalouge', array());
+			$this->template->set ( 'favoriteads', array());
+			$this->template->set ( 'favoritepost', array());
+			$this->template->set ( 'type', $type);	
+	    }
+	    $this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html = $this->template->build ('station/pages/subpages/myfavorite','',true);
