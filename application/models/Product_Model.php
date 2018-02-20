@@ -2467,7 +2467,7 @@ class Product_Model extends CI_Model {
 	   		$this->db->query($sql);
 	   		return $this->db->affected_rows();
    		} else {
-   			return $this->db->last_query();
+   			return 0;
    		}
    	}
    	
