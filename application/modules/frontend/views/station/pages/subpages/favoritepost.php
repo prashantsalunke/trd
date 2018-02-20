@@ -1,4 +1,6 @@
-	<?php $i =1; foreach($favoritepost as $seller) { ?>
+	<?php 
+if(count($favoritepost) > 0 && $favoritepost[0]['id'] !='') {
+	$i =1; foreach($favoritepost as $seller) { ?>
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-1" style="padding-top: 66px;text-align:center;">
@@ -39,4 +41,8 @@
 				</div>
 			</div>
 		</div>		
-<?php $i++; } ?>
+<?php $i++; } }  else { ?>
+  <div class="row" style="margin:0px;">
+ 	<h4 class="center"> No Videos Found!</h4>
+ </div>
+<?php } ?>

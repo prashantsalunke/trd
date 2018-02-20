@@ -1,4 +1,6 @@
 <?php 
+if(count($favoritecatalouge) > 0 && $favoritecatalouge[0]['id'] !='') { 
+
 	$i = 0;
 	foreach ($favoritecatalouge as $key=>$item) {?>
 		<?php if (($i % 3)==0){?>
@@ -97,5 +99,8 @@
 				</div>
 		<?php if (($i % 3)==2  || ($i+1) == count($favoritecatalouge)){?>
 			</div>
-		<?php  } $i++; ?>
-<?php }?>	
+		<?php  }  $i++; } }  else { ?>
+  <div class="row" style="margin:0px;">
+ 	<h4 class="center"> No Videos Found!</h4>
+ </div>
+<?php } ?>
