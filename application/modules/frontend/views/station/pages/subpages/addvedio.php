@@ -35,15 +35,11 @@ To upload and link your video to a certain product, follow the two steps here-un
 						<br>
 						<div id="Layer980" style="text-align:left;height:200px;z-index:1056;">
 							<div id="img_div" class="col-sm-6" style="width:250px;height:150px;z-index:1036;padding-left:0px;padding-top: 14px;">
-								<a href="javascript:openFileInput();" id="oneproductupload"><img src="<?php echo asset_url();?>images/video-player.png" id="Image283" alt=""></a>
+								<a href="javascript:openFileInput(<?php echo $total_videos; ?>,<?php echo $max_videos; ?>);" id="oneproductupload"><img src="<?php echo asset_url();?>images/video-player.png" id="Image283" alt=""></a>
 							</div>
-							<div id="video_div" class="col-sm-6" style="width:250px;height:150px;z-index:1036;padding-left:0px;padding-top: 14px;display:none;">
-								<video src="" id="MediaPlayer1" controls="controls">
-									<source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-								</video>
-							</div>
+							
 							<div class="col-sm-6" id="upload_div" style="width:67px;height:150px;z-index:1037;text-align:left;padding-top: 14px;padding-top:80px;">
-								<span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u><a href="javascript:openFileInput();" class="style23" id="oneproductupload">Upload</a></u></span>
+								<span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u><a href="javascript:openFileInput(<?php echo $total_videos ?>,<?php echo $max_videos ?>);" class="style23" id="oneproductupload">Upload</a></u></span>
 							</div>
 							<div class="col-sm-6" id="change_div" style="width:67px;height:150px;z-index:1037;text-align:left;padding-top: 14px;padding-top:80px;display:none;">
 								<span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u><a href="javascript:openFileInput();" class="style23" id="oneproductupload">Change</a></u></span>
@@ -114,7 +110,7 @@ To upload and link your video to a certain product, follow the two steps here-un
 		  		<div class="col-md-12">
 		  			<div class="col-md-1">
 		  				<input type="file"  name="uploadmainpvedio"  id="uploadmainpvedio"  onchange="validatevediofile('uploadmainpvedio',this,<?php echo $maxvediosizeinbyte ; ?>);"  style="display: none" />
-		  				<a href="#" class="style23" id="multiprovedio_link">Upload</a><br><br>
+		  				<a href="#" class="style23" id="multiprovedio_link">Uploads</a><br><br>
 		  				<a href="#" class="style23"  id="multiprovedio_link" >Change</a>
 		  			</div>
 		  			<div class="col-md-2" id="wb_MediaPlayer1" >
@@ -325,16 +321,23 @@ function searchproduct()
 		alert('Please Enter ProductName');
 	}
 }
-function openFileInput() {
-	 $("#uploadonepvedio:hidden").trigger('click');
+function openFileInput(total_vdo,max_vdo) {
+	if(total_vdo > max_vdo){
+		customAlert('Access Denied');
+	}
+	else{
+	$("#uploadonepvedio:hidden").trigger('click');	
+	} 
 }
-$(function(){
+/*$(function(){
     $("#oneproductupload").unbind().on('click', function(e){
         e.preventDefault();
         //alert("Hi");
+		
         $("#uploadonepvedio:hidden").trigger('click');
+		
     });
-});
+});*/
 $(function(){
     $("#multiprovedio_link").unbind().on('click', function(e){
         e.preventDefault();

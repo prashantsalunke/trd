@@ -66,6 +66,7 @@
 						</div>	
 						<div class="col-md-4" >
 							<input type="text" class="form-control"  name="vediotitle" Placeholder="e.g. Door to door air freight" id="vediotitle" />
+							<span style="color:#2D2D2D;font-family:Arial;font-size:11px;">The title must contain the words that the visitor is likely to type to find your video above others in search result</span>
 						</div>
 						<div class="messageContainer" ></div>
 					</div>

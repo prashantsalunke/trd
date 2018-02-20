@@ -2455,6 +2455,7 @@ class Product_Model extends CI_Model {
    		$this->db->from(TABLES::$BUSINESS_VISITORS.' AS a');
    		$this->db->where('a.busi_id',$busi_id);
    		$this->db->where('a.visitor_id',$visitor_id);
+		$this->db->where('a.likes', 1);
    		$query = $this->db->get();
    		$result = $query->result_array();
    		if(count($result) <= 0) {
