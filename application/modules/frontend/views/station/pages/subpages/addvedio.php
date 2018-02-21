@@ -230,8 +230,49 @@ To upload and link your video to a certain product, follow the two steps here-un
 		</div>
 	</div>
 </div>
+<div id="accessDeniedModal5" class="modal fade" role="dialog">
+  	<div class="modal-dialog" style="width:525px;">
+    	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
+      		<div class="modal-body">
+      			<div class="row" style="padding-top:10px;">
+      				<div class="col-sm-2"></div>
+      				<div class="col-sm-8">
+	      				<div style="text-align: center;">
+							<span style="color: #F05539; font-family: 'Arial Black'; font-size: 16px;">ACCESS DENIED</span>
+						</div>
+						<br><br>
+						<div style="text-align: center;">
+							<img src="<?php echo asset_url();?>images/padlock-154684_640.png" width="100px;"/>
+						</div>
+						<div style="text-align: center;">
+							Opps.. Your subscription plan not allow you to use this services 
+						</div>
+					</div>
+					<div class="col-sm-2"></div>
+      			</div>
+      			<br>
+      			<div class="row text-center">
+      				<a href="javascript:upgradeMyBusinessPlan();" class="btn btn-sm btn-danger-custom" style="width:150px;">Upgrade</a>
+      				<a href="javascript:cancelAccessDeniedPopup();" class="btn btn-sm btn-danger-custom" style="width:150px;">Cancel</a>
+      			</div>
+      			<br><br>
+      		</div>
+    	</div>
+  	</div>
+</div>
 <script src="<?php echo asset_url();?>js/bootstrap-typeahead.min.js"></script>
 <script>
+<?php if($total_videos > $max_videos) { ?>
+$('#accessDeniedModal5').modal({show:true,backdrop: 'static',keyboard: false});
+function upgradeMyBusinessPlan() {
+	ShowObjectWithEffect('Layer149', 0, 'dropup', 500, 'easeInBounce');
+	getMyPackages();
+}
+function cancelAccessDeniedPopup() {
+	ShowObjectWithEffect('Layer149', 0, 'dropup', 500, 'easeInBounce');
+	ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');
+}
+<?php } ?>
 function validatevediofile(id,input,size)
 {
 	var flag = true;
@@ -321,13 +362,8 @@ function searchproduct()
 		alert('Please Enter ProductName');
 	}
 }
-function openFileInput(total_vdo,max_vdo) {
-	if(total_vdo > max_vdo){
-		customAlert('Access Denied');
-	}
-	else{
+function openFileInput() {
 	$("#uploadonepvedio:hidden").trigger('click');	
-	} 
 }
 /*$(function(){
     $("#oneproductupload").unbind().on('click', function(e){
