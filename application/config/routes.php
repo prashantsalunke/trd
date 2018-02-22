@@ -240,7 +240,11 @@ $route['mystation/save3dproducttempararyimage'] = 'frontend/Dproduct/save3DProdu
 $route['mystation/add3dproductpicture'] = 'frontend/Dproduct/add3dProductpicture';
 $route['mystation/delete3dproduct'] = 'frontend/Dproduct/delete3DProduct';
 $route['mystation/editproduct'] = 'frontend/Dproduct/editProduct';
-$route['mystation/linkproduct'] = 'frontend/Dproduct/linkProduct'; 
+$route['mystation/linkproduct'] = 'frontend/Dproduct/linkProduct';
+$route['mystation/show3dimages'] = 'frontend/Dproduct/show3dImages';
+$route['mystation/publish3dimages'] = 'frontend/Dproduct/publish3dImages';
+$route['mystation/change3dimages'] = 'frontend/Dproduct/change3dimages';
+
 $route['mystation/getproductlist'] = 'frontend/Dproduct/getProductList'; 
 $route['mystation/getproductbyid'] = 'frontend/Dproduct/getProductById'; 
 $route['mystation/changimage'] = 'frontend/Dproduct/changImage'; 
