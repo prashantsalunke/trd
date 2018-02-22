@@ -71,8 +71,7 @@ else{
 							<img src="<?php echo asset_url();?>images/padlock-154684_640.png" width="100px;"/>
 						</div>
 						<div style="text-align: center;">
-							We are so sorry. We have created this unique <br>feature
-							for only <strong>BLACK HORSE</strong> member
+							Opps.. Your subscription plan not allow you to use this services
 						</div>
 					</div>
 					<div class="col-sm-2"></div>
