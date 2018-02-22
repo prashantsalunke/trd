@@ -5,7 +5,15 @@
 <link rel="stylesheet" href="<?php echo asset_url();?>css/imgareaselect.css">
 <link rel="stylesheet" type="text/css" href="<?php echo asset_url();?>css/imgareaselect-default.css" />  
 <script type="text/javascript" src="<?php echo asset_url();?>js/jquery.imgareaselect.js" > </script>
-
+<?php
+//echo "<pre>";print_r($_SESSION);
+if($_SESSION['tsuser']['category'] == 'Shipper') {
+	$service_prod="Services";
+}
+else{
+	$service_prod="Product";
+}
+?>
 <div class="row editaccount_outer">
 	<div class="col-md-2 account-left-nav"> 
 		<div class="col-md-12" style="padding: 6px;">
@@ -13,12 +21,12 @@
 				<a href="javascript:false;"> <img class="hover" alt="" src="<?php echo asset_url();?>images/video%20%281%29.png"></a>
 			</div>
 			<div class="account-image" style="padding-top: 3px;">
-				<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Services Videos</span>
+				<span style="color:#FFFFFF;font-family:Arial;font-size:13px;"><?php echo $service_prod;?> Videos</span>
 			</div>
 			<div class="account-main-nav" style="padding-top: 55px;">
 				<ul class="nav nav-tabs nav-tabs-custom">
-				  	<li class="active"><a data-toggle="tab" href="#addvedio" onclick="openAddvedio();">Add <br><span>Services Videos</span></a></li>
-				  	<li><a data-toggle="tab" href="#editvedio" onclick="openEditvedio();" id="myvideo_edit">"View | Edit" <br><span>Services Videos</span></a></li>
+				  	<li class="active"><a data-toggle="tab" href="#addvedio" onclick="openAddvedio();">Add <br><span><?php echo $service_prod;?> Videos </span></a></li>
+				  	<li><a data-toggle="tab" href="#editvedio" onclick="openEditvedio();" id="myvideo_edit">"View | Edit" <br><span><?php echo $service_prod;?> Videos</span></a></li>
 				</ul>
 			</div>
 			<div class="account-image" style="padding-top: 40px;">
