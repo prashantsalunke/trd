@@ -11,8 +11,9 @@
 							<img id="uploaded_img<?php echo $i;?>" src="<?php echo asset_url();?><?php echo $uploaded_files[$i]['image'];?>" height="133px" width="63px" id="Image300" alt="">
 						</div>
 			<div id="wb_Text2035" style="left:103px;top:190px;width:63px;height:31px;z-index:4398;text-align:left;">
-							<span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"  onclick="changeimage(<?php echo $i;?>)"><u>Change</u></span><span style="color:#1E90FF;font-family:Arial;font-size:11px;"><u><br></u>
+						<a href="#" onclick="changeimage(<?php echo $i;?>)"><span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;" ><u>Change</u></span><span style="color:#1E90FF;font-family:Arial;font-size:11px;"><u><br></u>
 							</span>
+						</a>
 			</div>
 	</div>
 <?php } ?>
@@ -20,7 +21,7 @@
 <br/>
 
 <div id="Layer982" style="width:320px;display:inline;text-align:center;"><!--style="text-align:left;left:332px;top:493px;width:320px;height:85px;z-index:4446;"-->
-	<div id="wb_Shape305" style="width:150px;float: left;text-align:center;margin-left:250px;"><!--  style="left:5px;top:11px;width:150px;height:32px;z-index:4397;"-->
+	<div id="wb_Shape305" style="width:150px;float: left;text-align:center;margin-left:250px;" ><!--  style="left:5px;top:11px;width:150px;height:32px;z-index:4397;" -->
 			<a href="" onclick="ShowObjectWithEffect('Layer127', 1, 'fade', 300, 'swing');return false;">
 				<div id="Shape305" style="display: table;">
 				<div id="Shape305_text" style="vertical-align: middle;display: table-cell;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Test</span></div></div>
