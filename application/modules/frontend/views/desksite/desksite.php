@@ -228,7 +228,7 @@ $(document).ready(function() {
     
     var product_id = '<?php echo $product_id;?>';
     if(product_id != null && product_id != ""){
-        productDetail(17);
+        productDetail(product_id);
     }
     $("#Layer27").stickylayer({
         orientation: 1,
