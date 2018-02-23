@@ -298,7 +298,7 @@ function changeimage(index){
 	$("#image_index").val(index);
 }
 
-function change3DImage(){ alert('change3DImage');
+function change3DImage(){
 	var options = {
  			target : '#response', // target element(s) to be updated with server response 
  			beforeSubmit : showLinkProductRequest, // pre-submit callback 
@@ -322,7 +322,7 @@ function showChangeImageResponse(resp, statusText, xhr, $form){
 		uploaded_images = resp.uploaded_files;
 		$("#uploaded_files").val(uploaded_images);
 		$("#uploaded_img"+resp.image_index).attr("src",asseturl+uploaded_images[resp.image_index]['image']);
-		$("#uploaded_img_name"+resp.image_index).html(resp.img_name);
+		//$("#uploaded_img_name"+resp.image_index).html(resp.img_name);
 		$("#response").addClass('alert-success');
 		$("#response").html(resp.msg);
 		$("#response").show();

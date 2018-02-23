@@ -4,7 +4,7 @@
 <div style="float: left;width:110px;text-align:center;">
 		
 						<div id="wb_Text2036" style="left:96px;top:164px;width:80px;height:15px;z-index:4399;text-align:left;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;" id="uploaded_img_name<?php echo $i;?>"><?php echo pathinfo($uploaded_files[$i]['image'])['filename'];?></span>
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;" id="uploaded_img_name<?php echo $i;?>"><?php echo "frame_"$i+1;?></span>
 						</div>
 						<div id="wb_Image300" style="left:98px;top:24px;width:63px;height:133px;z-index:4400;">
 							<img id="uploaded_img<?php echo $i;?>" src="<?php echo asset_url();?><?php echo $uploaded_files[$i]['image'];?>" height="133px" width="63px" id="Image300" alt="">
