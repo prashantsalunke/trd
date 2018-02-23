@@ -12,7 +12,7 @@
 	  		<div class="row ">
 		  		<div class="col-md-12">
 		  			<input type="hidden"  value="<?php echo $max_3dpro;?>" name="maxproduct" id="maxproduct" />
-		  			<input type="hidden"  value="<?php echo count($product);?>" name="productcount" id="productcount" />
+		  			<input type="hidden"  value="<?php echo count($product3Ddata);?>" name="productcount" id="productcount" />
 		  			<span style="color:#2D2D2D;font-family:Georgia;font-size:21px;">Add Real 3D Effects To Your Products.</span>
 		  		</div>
 		  	</div><br><br>	
@@ -460,7 +460,7 @@ $("#Shape306").unbind().click(function(){
 });
 
 jQuery('.upload_images').unbind().click(function() {
-	var maxproduct = document.getElementById('maxproduct').value;
+				var maxproduct = document.getElementById('maxproduct').value;
 			 	var productcount = document.getElementById('productcount').value;
 			 	if(productcount <= maxproduct)
 			 	{
