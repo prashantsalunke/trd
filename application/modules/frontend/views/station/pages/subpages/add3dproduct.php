@@ -36,7 +36,7 @@
 			<!--<div id="wb_Shape245" style="margin-top:10px;margin-left:145px;top:321px;width:150px;height:32px;z-index:4451;">-->
 				<br/><br/>
 				<input type="file" name="file3dimages[]" id="file3dimages"  multiple="multiple" accept=".png,.jpg,.jpeg.gif" onchange="uploaddimg('file3dimages',this,350,400,500);"  style="display:none" />
-				<div id="Shape245" class="upload_images" style="display: table;margin-left: 100px;"><div id="Shape245_text" style="vertical-align: middle;display: table-cell;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">&nbsp;&nbsp;Upload&nbsp;&nbsp;</span></div></div>
+				<a href="#" class="upload_images"><div id="Shape245" style="display: table;margin-left: 100px;"><div id="Shape245_text" style="vertical-align: middle;display: table-cell;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">&nbsp;&nbsp;Upload&nbsp;&nbsp;</span></div></div></a>
 			<!--</div>-->
 			<br/>
 			<div id="wb_Text297" style="left:63px;top:386px;width:87px;height:29px;z-index:4453;text-align:left;">
@@ -71,7 +71,7 @@
 			</div>
 			<div id="pinfo_div" class="pinfo_div" style="position: relative; text-align: left; visibility: visible;left:440px;width: 532px; height: 154px;display:none;">
 				<div id="wb_Text511" style="position:absolute;left:265px;top:93px;width:300px;height:15px;text-align:left;">
-					<span style="color:#1E90FF;font-family:Arial;font-size:12px;" id="loc">Location: <span id="pmpro">Men Fashion</span> <span id="psubpro">/ Lether shoes</span></span>
+					<a href="./desk_details.php" class="product_link" target="_blank" ><span style="color:#1E90FF;font-family:Arial;font-size:12px;" id="loc">Location: <span id="pmpro">Men Fashion</span> <span id="psubpro">/ Lether shoes</span></span></a>
 				</div>
 				<div id="wb_Text510" style="position:absolute;left:384px;top:71px;width:150px;height:15px;text-align:left;">
 					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Min. Qty : <span id="pqty">2</span> <span id="punit">Containers</span></span>
@@ -79,8 +79,8 @@
 				<div id="wb_Text509" style="position:absolute;left:265px;top:70px;width:100px;height:15px;text-align:left;">
 					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">USD <span id="pprice">60.00</span></span>
 				</div>
-				<div id="wb_Shape603" style="position:absolute;left:117px;top:19px;width:200px;height:103px;">
-					<a href="./desk_details.php" target="_blank"><img src="<?php echo asset_url();?>images/img4386.png" id="mainproductimg" alt="" style="width:129px;height:103px;border: 1px solid #ccc;"></a>
+				<div id="wb_Shape603" style="position:absolute;left:117px;top:19px;width:140px;height:103px;">
+					<a href="./desk_details.php" class="product_link" target="_blank"><img src="<?php echo asset_url();?>images/img4386.png" id="mainproductimg" alt="" style="width:129px;height:103px;border: 1px solid #ccc;"></a>
 				</div>
 				<div id="wb_Text507" style="position:absolute;left:265px;top:50px;width:300px;height:15px;text-align:left;">
 					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;">Product No.: <span id="pnumber">JS0123</span></span>
@@ -221,9 +221,11 @@
 			    		document.getElementById("psubpro").textContent = " / "+data[0].sub_product;
 			    	}
 			    	$("#product_id").val(data[0].id);
+			    	$(".product_link").attr("href","./desksite/102/"+data[0].id);
 			    	$("#mainproductimg").attr("src", asseturl+data[0].main_image);
 			    	$("#pinfo_div").show();
 			    	document.getElementById('pinfo_div').style.display = "block";
+			    	$("#Layer983").css('margin-top','');
 				 	jQuery('#productlist_modal').modal('hide');
 			 	},'json');
 		}
