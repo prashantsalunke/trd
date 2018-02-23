@@ -403,6 +403,7 @@ $route['seller/bstationpostinsertbuyer'] = 'frontend/Bstation/bstationPostInsert
 $route['product/images'] = 'frontend/Bstation/ProductImages';
 
 $route['desksite/([0-9]+)'] = 'frontend/Home/DesksiteByBusiId/$1';
+$route['desksite/([0-9]+)/([0-9]+)'] = 'frontend/Home/DesksiteByBusiId/$1/$2';
 $route['desksite/company/([0-9]+)'] = 'frontend/Home/getComapnyProfile/$1';
 $route['desksite/company/shipper/([0-9]+)'] = 'frontend/Home/getShipperComapnyProfile/$1';
 $route['desksite/company/buyer/([0-9]+)'] = 'frontend/Home/getBuyerComapnyProfile/$1';

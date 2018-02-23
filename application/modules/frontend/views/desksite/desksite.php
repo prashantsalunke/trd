@@ -225,6 +225,11 @@ line-height:4px;
 <script src="<?php echo asset_url(); ?>js/jquery.ui.tooltip.min.js"></script>
 <script>
 $(document).ready(function() {
+    
+    var product_id = '<?php echo $product_id;?>';
+    if(product_id != null && product_id != ""){
+        productDetail(17);
+    }
     $("#Layer27").stickylayer({
         orientation: 1,
         position: [0, 0],
@@ -2007,6 +2012,7 @@ function viewProductDetails(id) {
 		$("#details").html(data);
 	},'html');
 }
+
 function viewCatProducts(catid,scatid,mcatid,busi_id) {
 	myloaderon('');
 	$.get(base_url+"product/csmproduct/"+catid+"/"+scatid+"/"+mcatid+"/"+busi_id,{ },function(data) {
