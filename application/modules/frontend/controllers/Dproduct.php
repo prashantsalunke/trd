@@ -23,10 +23,13 @@ class Dproduct extends MX_Controller {
 		$this->template->build ('station/mystation');
 	}
 	public function dproduct() {
+		$this->load->library('mylib/Dproductlib');
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$this->load->model('Product_Model','product');
 		$product = $this->product->getProductlist($busi_id);
+		$product3Ddata = $this->dproductlib->getProduct3Dlist($busi_id);
 		$this->template->set ( 'product', $product);
+		$this->template->set ( 'product3Ddata', $product3Ddata);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
@@ -34,10 +37,13 @@ class Dproduct extends MX_Controller {
 		echo $html;
 	}
 	public function add3dproduct() {
+		$this->load->library('mylib/Dproductlib');
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$this->load->model('Product_Model','product');
 		$product = $this->product->getProductlist($busi_id);
+		$product3Ddata = $this->dproductlib->getProduct3Dlist($busi_id);
 		$this->template->set ( 'product', $product);
+		$this->template->set ( 'product3Ddata', $product3Ddata);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
