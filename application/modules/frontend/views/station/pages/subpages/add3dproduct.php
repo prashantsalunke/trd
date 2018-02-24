@@ -464,7 +464,7 @@ $("#Shape306").unbind().click(function(){
 jQuery('.upload_images').unbind().click(function() {
 				var maxproduct = document.getElementById('maxproduct').value;
 			 	var productcount = document.getElementById('productcount').value;
-			 	if(paseInt(productcount) < parseInt(maxproduct))
+			 	if(parseInt(productcount) < parseInt(maxproduct))
 			 	{
 		        	$("#file3dimages").trigger('click');
 			 	} else {
