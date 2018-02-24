@@ -286,9 +286,9 @@ input.imgInp {
                         	<div class="col-md-6">
                         		<div class="form-group myaccount_formgroup" id="error-locality">
                         			<?php if($tsplanid == 1) {  ?>
-                        				<span class="myaccount_titlevalue"><strong>Free Memeber</strong></span>
+                        				<span class="myaccount_titlevalue"><strong>Free Member</strong></span>
                         			<?php } else { ?>	
-	                        			<span class="myaccount_titlevalue"><strong>BLACK HOURSE</strong></span><br>
+	                        			<span class="myaccount_titlevalue"><strong>Black Horse</strong></span><br>
 	                        			<span style="color: #FF8C00; font-family: Arial; font-size: 12px;"><strong>
 	                        				<?php if($tsplanid == 2) {  echo "Basic"; } else if($tsplanid == 3) { echo "VIP"; } else { echo "Elite"; }?>
 	                        			</strong></span>

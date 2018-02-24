@@ -5046,7 +5046,7 @@
 </html>
 <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 <script>
-var base_url = '<?php echo base_url();?>';												
+var base_url = '<?php echo base_url();?>';									
 paypal.Button.render({
 	env: 'sandbox',
 	style: {
@@ -5091,7 +5091,8 @@ function pkgPaymentReceived(paydata,id) {
 	},'json');
 }
 $(document).ready(function(){
-    var boxWidth = $(".open-div1").width();
+	$("#Layer106").show();
+    var boxWidth =$(".open-div1").width();
     $(".menu-arrow").click(function(){
         $(".reminder-div").animate({
             width: boxWidth

@@ -72,9 +72,9 @@
 						</div>
 						<div class="col-xs-8 ptop">
 							<strong class="font1 ">View / Manage</strong><br> 
-							<a href="#" class="font2" onclick="ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);ShowObjectWithEffect('Layer51', 1, 'slideright', 500);ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);return false;">My Posts</a><br> 
+							<a href="#" onclick="myPost();" class="font2">My Posts</a><br> 
 							<a href="#" class="font2" onclick="showMymembers();">My Members <span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;display:none;">0</span></a><br> 
-							<a href="javascript:displayCommunityRequests();" class="font2" >Add Requests <?php if(!empty($add_requests[0]['members'])) { ?><span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;"><?php if(!empty($add_requests[0]['members'])) { echo $add_requests[0]['members']; } else { echo 0;}?></span><?php } ?></a>
+							<a href="javascript:displayCommunityRequests();" class="font2" >Add Requests <?php if(!empty($add_requests[0]['members'])) { ?><span style="background-color:#FF0000;color:#FFFFFF;font-family:Arial;font-size:11px;letter-spacing:0.07px;padding:0px 5px;"><?php if(!empty($add_requests[0]['members']) && $add_requests[0]['members'] > 0) { echo $add_requests[0]['members']; } ?></span><?php } ?></a>
 						</div>
 					</div>
 					<br>
@@ -124,8 +124,8 @@
 					<span class="font3">COMMUNITY REAL-TIME POSTS</span>
 				</div>
 				<div class="col-md-2 col-sm-2 col-xs-2" style="padding-right:0px;">
-					<div id="Layer10" onclick="showAddPost();">
-						<a href="javascript:showAddPost();">
+					<div id="Layer10" onclick="showAddPost();" data-id="<?php echo $mypost_count?>">
+						<a>
 							<img src="<?php echo asset_url(); ?>images/barsendpost0.png" id="Image11" alt="" class="img29"> 
 							<label class="font4">ADD POST</label>
 						</a>
@@ -138,7 +138,7 @@
 			foreach ( $allposts as $key=>$allpost ) {
 			?>
 					<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
-						<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($allpost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($allpost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($allpost['created_date']));?></span>
+						<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($allpost['create'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($allpost['create'])); }?>&nbsp; | <?php echo date('H:i',strtotime($allpost['create']));?></span>
 					</div>
 					<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="openPostDetails(<?php echo $allpost['postid'];?>);">
 						<div class="col-md-2 col-sm-2 inline text-center">
@@ -148,11 +148,11 @@
 								<hr id="Line20" style="position:absolute;left:30px;top:45px;width:5px;height:4px;z-index:229;">
 								<img src="<?php echo asset_url(); ?>images/activecover.png" alt="img35" style="width:32px;height:38px;">
 							</a> 
-							<img src="<?php echo asset_url(); ?><?php echo $allpost['profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
+							<img src="<?php echo asset_url(); ?><?php echo $allpost['contact_profile_image'];?>" id="Shape25" alt="" style="width:74px;height:76px;border-radius:50%;border: 2px solid #FF6347;">
 							<!-- chat and other all -->
 							<div id="Layer47-<?php echo $allpost['postid'];?>" class="chat1" onmouseleave="ShowObjectWithEffect('Layer47-<?php echo $allpost['postid'];?>', 0, 'slideup', 500);return false;" style="display: none;text-align:center;width:140px;top:80px;">
 								<a href="#" class="afont chatcomet" data-id="<?php echo $allpost['busi_id'];?>">Chat</a>
-								<a href="#" class="afont viewpst" data-id="<?php echo $allpost['postid'];?>">View Posts</a> 
+								<a href="#" class="afont viewpst" data-id="<?php echo $allpost['busi_id'];?>" data-busid="<?php echo $busi_id;?>">View Posts</a> 
 								<a href="#" class="afont viewdsksite" data-id="<?php echo $allpost['busi_id'];?>" data-catid="<?php echo $allpost['user_category_id'];?>">DeskSite</a> 
 							</div>
 							<!-- chat end -->
@@ -170,7 +170,7 @@
 										<img src="<?php echo asset_url(); ?><?php echo $allpost['share_profile_image'];?>" id="Shape25" alt="" style="width:41px;border-radius:50%;border: 1px solid #FF6347;">
 									</div>
 									<div style="color:#000000;font-family:Arial;font-size:13px;padding-left:10px;" class="col-sm-9">
-										Shared Post By<br><?php echo $allpost['share_cname'];?>
+										Shared By<br><?php echo $allpost['share_cname'];?>
 									</div>
 								</div>
 								<?php } ?>
@@ -178,10 +178,19 @@
 							<div class="row" style="margin:0px;">
 								<span class="s2"><?php echo substr($allpost['postdesc'],0,290);?> <?php if(strlen($allpost['postdesc']) > 290){?>...<?php }?></span> 
 								<br><br>
-								<span class="s3">USD</span> <span class="s4"><?php echo $allpost['postprice'];?>.00&nbsp;&nbsp;&nbsp; </span>
-								<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
+								<?php 
+									setlocale(LC_ALL, ''); // Locale will be different on each system.
+									$locale = localeconv();
+									if($allpost['postprice'] != "")
+										$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+								?>
+								<?php if($allpost['user_category_id'] == 3){ ?>Target Price <?php } ?>
+								<span class="s3">USD</span> <span class="s4"><?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span>
+								<span class="s5 pull-right" style="padding-top:12px;"><?php if($allpost['user_category_id'] == 3) { ?>Max.<?php }else{?>Min.<?php } ?> Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 								<?php 
 									$tb = $allpost['postviews'] + $allpost['likes']+ $allpost['comment'];
+									$percentage_likes = 0;
+									$total_count_for_percentage = 0;
 									if($tb == 0) {
 										$vb = 0;
 										$lb = 0;
@@ -190,15 +199,33 @@
 										$vb = round($allpost['postviews']/$tb*3,1);
 										$lb = round($allpost['likes']/$tb*3,1);
 										$cb = round($allpost['comment']/$tb*3,1);
+                    					$total_count_for_percentage = $allpost['postviews'];
+										if($total_count_for_percentage == 0)
+										{
+											$percentage_likes = 0;
+										}else{
+											$percentage_likes = ($allpost['likes'] * 100)/$total_count_for_percentage;
+											//below code is for showing likes line when there is no like so that we dont affect the view
+											if($percentage_likes == 100)
+											{
+												$percentage_likes = 95;
+												//$percentage_likes = 5;
+											}
+										}
 									}
 								?>
 								<div>
 									<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
-									<span class="font11" style="border-top: <?php echo $vb;?>px solid #00c9d0;">Views </span> <span class="font11"><?php echo $allpost['postviews'];?></span>
-									<a href="#" class="style5 font11 plbtn" data-id="<?php echo $allpost['postid'];?>" style="border-top: <?php echo $lb;?>px solid #00c9d0;">Likes</a> 
-									<span class="font11" style="border-top: 0px solid #00c9d0;"><?php echo $allpost['likes'];?></span>
-									<a href="#" class="style5 font11 commbtn" data-id="<?php echo $allpost['postid'];?>" style="border-top: <?php echo $cb;?>px solid #00c9d0;">Comments</a> 
-									<span class="font11" style="border-top: 0px solid #00c9d0;"><?php echo $allpost['comment'];?></span>
+									<?php if($total_count_for_percentage != 0) {?>
+										<hr id="Line16" style="position: absolute;z-index: 336; height: 1px; width: 100%">
+										<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;bottom:33px;">
+										<br/>
+									<?php } ?>
+									<span class="font11">Views </span> <span class="font11"><?php echo $allpost['postviews'];?></span>
+									<a href="#" class="style5 font11 plbtn" data-id="<?php echo $allpost['postid'];?>">Likes</a> 
+									<span class="font11"><?php echo $allpost['likes'];?></span>
+									<a href="#" class="style5 font11 commbtn" data-id="<?php echo $allpost['postid'];?>">Comments</a> 
+									<span class="font11"><?php echo $allpost['comment'];?></span>
 								</div>
 							</div>
 						</div>
@@ -234,24 +261,32 @@
 						</div>
 					</div>
                  <?php } }  else { ?>
-					<div style="background-color: #FFFFFF;padding:15px;height:637px;">
-						<?php if(count($communitymember) <= 0) { ?>
-						<h4 class="center" style="margin-top:50px;padding: 100px 240px;text-align: left;">
-							<span style="color:#000000;font-family:Arial;font-size:13px;">
-								<strong>You don’t have members in your community.. </strong>
-								<br><br>
-								To add members, click on the suitable business type “ Sellers, Shippers, Buyers” shown under “ Add Member” in The Toolbox..<br><br>
-								In the related page, search for a certain members meet your requirement, view his Desksite, then click “Contact and select Add To My Community”..
-								<br><br>
+					<div style="background-color: #FFFFFF;padding:15px;height:920px;position: relative;">
+						<?php if(count($firstpost) <= 0) { ?>
+						
+						<div id="wb_Text47" style="position:absolute;left:208px;top:476px;width:501px;height:384px;z-index:570;text-align:left;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;"><strong>Limitations.</strong><br>My Community is a social B2B platform, created specially to provide Black Horse/ (ELITE) member &amp; Buyers, with a private business platform in social media concept. So other members will experience a kind of limitation as follows:<br><br><strong><u>Sellers or Shippers / Black Horse ( VIP or BASIC) : <br></u></strong><br>Access and establish their own platform<br>Add or added by others members<br>View posts<br>Reply posts<br>Send posts<br><br>Chat, like, comment<strong><u><br><br><br>Free Sellers or Shippers: <br></u></strong><br>Access and establish their own platform<br>Add or added by others members<br>View posts<br>Reply posts<br>Send posts<br>Chat, like, comment
 							</span>
-						</h4>
-						<?php } else if(count($firstpost) <= 0) { ?>
-						<div id="wb_Text25" style="position:absolute;left:311px;top:233px;width:351px;height:32px;text-align:center;z-index:570;">
-							<span style="color:#000000;font-family:Arial;font-size:13px;">To add your first post, close this tab and click on "Add a post" button..</span>
+
 						</div>
-						<div id="wb_Text53" style="position:absolute;left:314px;top:204px;width:336px;height:29px;text-align:center;z-index:571;">
-							<span style="color:#303030;font-family:Impact;font-size:24px;">No Posts Yet</span>
+						<div id="wb_Text130" style="position:absolute;left:297px;top:82px;width:336px;height:29px;text-align:center;z-index:571;">
+							<span style="color:#303030;font-family:Impact;font-size:24px;">WELCOME TO COMMUNITY</span>
 						</div>
+						<div id="wb_Text135" style="position:absolute;left:208px;top:167px;width:501px;height:142px;z-index:572;text-align:left;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;"><strong>Get Started </strong>and add your community members.<br>Move your mouse to Toolbox, click on the business type “ </span><span style="color:#1E90FF;font-family:Arial;font-size:13px;">Sellers, Shippers, Buyers</span><span style="color:#000000;font-family:Arial;font-size:13px;">” shown under “ Add Member”.<br><br>In the related page, search for certain members ( by Name, Company, Products, or Country), open the member's Desksite, then click on “Contact, Add and Share&quot; icon, and select &quot;Add To My Community”..<br><br></span><span style="color:#1E90FF;font-family:Arial;font-size:11px;">Please, waiting for the member to accept your Add Request</span>
+						</div>
+						<div id="wb_Text8" style="position:absolute;left:386px;top:111px;width:161px;height:16px;text-align:center;z-index:573;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;">Social B2B Platform </span>
+						</div>
+						<hr id="Line9" style="position:absolute;left:209px;top:331px;width:527px;height:1px;z-index:574;">
+						<div id="wb_Text34" style="position:absolute;left:208px;top:357px;width:501px;height:96px;z-index:575;text-align:left;">
+							<span style="color:#000000;font-family:Arial;font-size:13px;"><strong>Add Requests. </strong><br>Each &quot;Add Request&quot; you send to a member or received by a member stored in your Add Requests window, under View/Manage section in the Toolbox, where you can manage the add request invitations ( Accept or decline).<br><br></span>
+						</div>
+						<hr id="Line10" style="position:absolute;left:209px;top:451px;width:527px;height:1px;z-index:576;">
+						<div id="wb_Text1" style="position:absolute;left:483px;top:610px;width:271px;height:272px;z-index:577;text-align:left;">
+							<span style="color:#32CD32;font-family:Arial;font-size:13px;"><strong>Yes<br>Yes<br>Yes<br>Yes<br></strong></span><span style="color:#FF0000;font-family:Arial;font-size:13px;"><strong>Only one post, to send the second, delete the first one, and so on.</strong></span><span style="color:#000000;font-family:Arial;font-size:13px;"><strong><br></strong></span><span style="color:#32CD32;font-family:Arial;font-size:13px;"><strong>Yes<u><br></u></strong></span><span style="color:#000000;font-family:Arial;font-size:13px;"><strong><u><br><br><br></u><br></strong></span><span style="color:#32CD32;font-family:Arial;font-size:13px;"><strong>Yes<br>Yes<br>Yes</strong></span><span style="color:#1E90FF;font-family:Arial;font-size:13px;"><strong><br></strong></span><span style="color:#FF0000;font-family:Arial;font-size:13px;"><strong>No<br>No<br></strong></span><span style="color:#32CD32;font-family:Arial;font-size:13px;"><strong>Yes</strong></span>
+						</div>
+						<br/><br/>
 						<?php } else { ?>
 						<div id="wb_Text25" style="position:absolute;left:311px;top:233px;width:351px;height:32px;text-align:center;z-index:570;">
 							<span style="color:#000000;font-family:Arial;font-size:13px;">We do not fount any post added by your community members..</span>
@@ -285,39 +320,49 @@
 			</div>
 			<!-- Add request end -->
 			<!-- my post section -->
-			<div id="Layer51" style="visibility:hidden; position:absolute;min-width:971px;">
+			<div id="Layer51" style="position:absolute;visibility:hidden;top:0;min-width:971px;z-index:526;"> <!-- style="visibility:hidden; position:absolute;min-width:971px;"-->
 			<div class="background2">
 				<div class="col-md-11 col-sm-11 col-xs-11" style="padding-top: 4px;">
 					<div class="col-sm-2"><span class="font3">My Posts</span></div>
 					<div class="col-sm-2">
-						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo count($myposts);?> </span>
-						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Posts</span>
+						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;" id="post_count"><?php echo count($myposts);?> </span><!--  -->
+						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;" id="posttext"><?php if(count($myposts) < 2) {?>Post<?php }else{?>Posts<?php } ?></span>
 					</div>
-					<div class="col-sm-6 text-right">
-						<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Usage </span>
-						<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo round($storage[0]['community']/1024,2);?> MB</span>
-					</div>
-					<div class="col-sm-2" style="padding-top: 10px;"><span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Out of <?php if(!empty($mystorage[0]['intvalue'])) { echo $mystorage[0]['intvalue'];} else { echo 0;}?> MB</span></div>
+					<?php if($tscategory_id != 3 && ($tsplanid == 2 || $tsplanid == 3)) { 
+						$total = 1;
+					?>
+						<div class="col-sm-6 text-right">
+							<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">&nbsp;</span>
+							<span style="color:#FFFFFF;font-family:Arial;font-size:24px;">&nbsp;</span>
+						</div>
+						<div class="col-sm-2" style="padding-top: 10px;"><span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Out of <?php echo $total; ?> Post</span></div>
+					<?php }else{ ?>
+						<div class="col-sm-6 text-right">
+							<span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Usage </span>
+							<span style="color:#FFFFFF;font-family:Arial;font-size:24px;"><?php echo round($storage[0]['community']/1024,2);?> MB</span>
+						</div>
+						<div class="col-sm-2" style="padding-top: 10px;"><span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Out of <?php if(!empty($mystorage[0]['intvalue'])) { echo $mystorage[0]['intvalue'];} else { echo 0;}?> MB</span></div>
+					<?php } ?>
 				</div>
 				<div class="col-md-1 col-sm-1 col-xs-1 text-right" style="padding-left:0px;padding-right: 0px;">
 					<div id="wb_Shape67">
-						<a href="#" onclick="ShowObjectWithEffect('Layer51', 0, 'slideright', 500);ShowObjectWithEffect('Layer9', 0, 'slideright', 500);ShowObjectWithEffect('Layer5', 1, 'slideleft', 500);return false;"><img src="<?php echo asset_url();?>images/img0334.gif" id="Shape67" alt="" style="width:38px;height:37px;"></a>
+						<a href="#" onclick="ShowObjectWithEffect('Layer51', 0, 'slideright', 500);ShowObjectWithEffect('Layer52', 0, 'slideright', 500);ShowObjectWithEffect('Layer9', 0, 'slideright', 500);ShowObjectWithEffect('Layer5', 1, 'slideleft', 500);return false;"><img src="<?php echo asset_url();?>images/img0334.gif" id="Shape67" alt="" style="width:38px;height:37px;"></a>
 					</div>
 				</div>
 			</div>
-			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:683px;">
+			<div id="Layer32" style="overflow-y: scroll;overflow-x:hidden;margin-top:2px;height:675px;">
              <?php 
 				if (count ( $myposts ) > 0 && $myposts [0] ['id'] != '') {
 					foreach ( $myposts as $key=>$mypost ) {
 						?>
 					<div id="wb_Text227" style="text-align:center;height:10px;z-index:200;padding:5px;">
-						<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($mypost['created_date'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($mypost['created_date'])); }?>&nbsp; | <?php echo date('H:i',strtotime($mypost['created_date']));?></span>
+						<span style="color:#303030;font-family:Arial;font-size:11px;text-align:center;"><?php if(date('Y-m-d',strtotime($mypost['create'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($mypost['create'])); }?>&nbsp; | <?php echo date('H:i',strtotime($mypost['create']));?></span>
 					</div>
 					<div class="boxsize row" style="margin-top:21px;margin-right:19px;cursor:pointer;" onclick="openPostDetails(<?php echo $mypost['postid'];?>);">
 						<div class="col-md-2 col-sm-2 text-center">
 							<br><br><br><br><br>
 							<input type="checkbox" style="display:none;"><br><br>
-							<button type="button" id="Button4" class="m2" onclick="deletePost(<?php echo $mypost['postid'];?>,event);">Delete</button>
+							<button type="button" id="Button4" class="m2 deletePost" data-id="<?php echo $mypost['postid'];?>">Delete</button>
 						</div>
 						<div class="col-md-6 col-sm-6" style="padding-left:0px;">
 							<p class="font6" style="font-size:14px;"><?php echo $mypost['company_name'];?> </p>
@@ -325,10 +370,19 @@
 							<span class="s1" style="font-size:15px;"><strong><?php echo $mypost['title'];?></strong></span><br>
 							<span class="s2"><?php echo substr($mypost['postdesc'],0,290);?> <?php if(strlen($mypost['postdesc']) > 290){?>...<?php }?></span> 
 							<br><br>
-							<span class="s3">USD</span> <span class="s4"><?php echo $mypost['postprice'];?>.00&nbsp;&nbsp;&nbsp; </span>
-							<span class="s5 pull-right" style="padding-top:12px;">Min. Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
+							<?php 
+									setlocale(LC_ALL, ''); // Locale will be different on each system.
+									$locale = localeconv();
+									if($mypost['postprice'] != "")
+										$mypost['postprice'] = number_format($mypost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+							?>
+							<?php if($mypost['user_category_id'] == 3){ ?>Target Price <?php } ?>
+							<span class="s3">USD</span> <span class="s4"><?php echo $mypost['postprice'];?>&nbsp;&nbsp;&nbsp; </span>
+							<span class="s5 pull-right" style="padding-top:12px;"><?php if($mypost['user_category_id'] == 3) { ?>Max.<?php }else{?>Min.<?php } ?> Order: <?php echo $mypost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 							<?php 
 								$tb = $mypost['postviews'] + $mypost['likes']+ $mypost['comment'];
+								$total_count_for_percentage = 0;
+								$percentage_likes = 0;
 								if($tb == 0) {
 									$vb = 0;
 									$lb = 0;
@@ -337,14 +391,33 @@
 									$vb = round($mypost['postviews']/$tb*3);
 									$lb = round($mypost['likes']/$tb*3);
 									$cb = round($mypost['comment']/$tb*3);
+
+									$total_count_for_percentage = $mypost['postviews'];
+									if($total_count_for_percentage == 0)
+									{
+											$percentage_likes = 0;
+									}else{
+										$percentage_likes = ($mypost['likes'] * 100)/$total_count_for_percentage;
+										//below code is for showing likes line when there is no like so that we dont affect the view
+										if($percentage_likes == 100)
+										{
+											$percentage_likes = 95;
+										}
+									}
 								}
 							?>
 							<hr style="background-color:#fff;height:1px;margin-bottom:10px;border-top: 1px solid #fff;">
-							<span class="font11" style="border-top: <?php echo $vb;?>px solid #00c9d0;">Views </span> <span class="font11"><?php echo $mypost['postviews'];?></span>
-							<a href="#" class="style5 font11 plbtn" data-id="<?php echo $mypost['postid'];?>" style="border-top: <?php echo $lb;?>px solid #00c9d0;">Likes</a> 
-							<span class="font11" style="border-top: 0px solid #00c9d0;"><?php echo $mypost['likes'];?></span>
-							<a href="#" class="style5 font11 commbtn" data-id="<?php echo $mypost['postid'];?>" style="border-top: <?php echo $cb;?>px solid #00c9d0;">Comments</a> 
-							<span class="font11" style="border-top: 0px solid #00c9d0;"><?php echo $mypost['comment'];?></span>
+							<?php if($total_count_for_percentage != 0) { ?>
+								<hr id="Line16" style="position: absolute;z-index: 336; height: 1px; width: 100%">
+								<hr id="Line17" style="width: <?php echo $percentage_likes;?>%; height: 4px; z-index: 340;position: absolute;bottom:33px;">
+								
+								<br/>
+							<?php } ?>
+							<span class="font11">Views </span> <span class="font11"><?php echo $mypost['postviews'];?></span>
+							<a href="#" class="style5 font11 plbtn" data-id="<?php echo $mypost['postid'];?>">Likes</a> 
+							<span class="font11"><?php echo $mypost['likes'];?></span>
+							<a href="#" class="style5 font11 commbtn" data-id="<?php echo $mypost['postid'];?>">Comments</a> 
+							<span class="font11"><?php echo $mypost['comment'];?></span>
 
 						</div>
 						<div class="col-md-4 col-sm-4">
@@ -395,6 +468,8 @@
 
 			<!-- my post section end-->
 			<!-- add post section -->
+			<div id="Layer5_2" style="visibility:hidden; position:absolute;min-width:971px;z-index:526;top:0;">
+			</div>
 			<div id="Layer6" style="top:0px;width:472px;z-index:513;position:absolute;left:382px;visibility:hidden;">
 				<div id="Layer15" style="background: #3C3C3C; padding: 11px;">
 					<div style="padding-bottom:5px;">
@@ -512,7 +587,7 @@
 							(Community) Box.
 						</span> 
 						<div style="text-align:center;">
-							<a href="#" onclick="ShowObjectWithEffect('Layer6', 0, 'slideup', 500);ShowObjectWithEffect('Layer118', 0, 'slideup', 500);return false;">
+							<a href="#" onclick="resetMyForm();ShowObjectWithEffect('Layer6', 0, 'slideup', 500);ShowObjectWithEffect('Layer118', 0, 'slideup', 500);return false;">
 								<img src="<?php echo asset_url(); ?>images/img0760.gif" id="Shape35" alt="" style="width: 248px; height: 26px;">
 							</a>
 						</div>
@@ -548,6 +623,7 @@
 			<div class="memberheader">
 				<input type="checkbox" onclick="showDeleteMenu();" id="deleteMem"> select <input type="text" id="SiteSearch01" class="searchbox" name="SiteSearch1" value="" placeholder="Search My Members" /> 
 				<input type="button" id="Button01" onclick="searchPage();return false;" name="Search" value="" style="width: 25px; height: 20px; z-index: 1808; margin-left: -33px; vertical-align: middle;" />
+				<input type="button" id="clear-search" onclick="clearSearch();return false;" name="clear" value="" style="width: 25px; height: 20px; z-index: 1808; margin-left: -33px; vertical-align: middle;display: none;" />
 				<a href="javascript:deleteMembers();" style="margin-left:15px;display:none;" id="memdeleteimg">
 					<img alt="Delete selected members" src="<?php echo asset_url();?>images/mem-delete.png" style="width:32px;">
 				</a>
@@ -712,13 +788,24 @@ function myajaxindicatorstop(id)
        jQuery('#resultLoading').fadeOut(300);
     jQuery('#'+id).css('cursor', 'default');
 }
-$(".showmenulist").click(function (event) {
+
+//$(".showmenulist").click(function (event) {
+$('div').on('click', '.showmenulist', function(event) {
 	event.stopImmediatePropagation();
+
     if ($("#Layer47-"+$(this).attr("data-id")).is(":hidden")) {
         $("#Layer47-"+$(this).attr("data-id")).slideDown("slow");
     } else {
         $("#Layer47-"+$(this).attr("data-id")).hide();
     }
+
+    if ($("#Layer47-1-"+$(this).attr("data-id")).is(":hidden")) {
+        $("#Layer47-1-"+$(this).attr("data-id")).slideDown("slow");
+    } else {
+        $("#Layer47-1-"+$(this).attr("data-id")).hide();
+    }
+    event.preventDefault();
+    ShowObject('mainLayer18', 0);
 });
 
 $("#Layer47<?php echo $allpost['postid'];?>").mouseleave(function(){
@@ -735,8 +822,8 @@ function loadRealtimePosts(){
     $.post(base_url+"mycommunity/posts/realtime", {}, function(data){
     	myajaxindicatorstop('Layer1');
     	myajaxindicatorstop('Layer32');
-		/*$('#Layer1').html(data.html1);
-		$('#Layer32').html(data.html2);*/
+		$('#Layer1').html(data.html1);
+		$('#Layer32').html(data.html2);
 	},'json');
 }
 function openPostDetails(id){
@@ -750,7 +837,8 @@ function openPostDetails(id){
        $('#mainLayer18').html(data);
     },'html');
 }
-function deletePost(id,event){
+/*function deletePost(id,event){
+	ShowObject('mainLayer18', 0);
 	event.stopImmediatePropagation();
     confirmbox("Are you sure to delete Post ?",
 		function() {
@@ -766,7 +854,34 @@ function deletePost(id,event){
            //
         }
 	);
-}
+}*/
+$('div').on('click', '.deletePost', function(event) {
+//$(".viewpst").click(function(event){
+	ShowObject('mainLayer18', 0);
+    event.stopImmediatePropagation();
+    var id = $(this).attr("data-id");
+    confirmbox("Are you sure to delete Post ?",
+		function() {
+			ajaxindicatorstart("");
+			$.post(base_url+"community/deletepost", {id : id}, function(data){
+				data = JSON.stringify(data);
+				ajaxindicatorstop();
+				loadRealtimePosts();
+		        $("#msg_cont").html("Post Deleted successfully");
+		    	var mypost_count = $("#Layer10").attr('data-id');
+		    	if(mypost_count > 0)
+		    		mypost_count = parseInt(mypost_count) - 1;
+		    	$("#Layer10").attr('data-id',mypost_count);
+		    	$("#post_count").html(mypost_count);
+		    	ShowObject('Layer99', 1);
+		    }, 'html');
+		},
+		function() {
+           //
+        }
+	);
+    //ShowObject('mainLayer18', 0);
+});
     
 function selectProductImage() {
     $('#postviewimage').hide();
@@ -838,17 +953,51 @@ $('#addPostContent').bootstrapValidator({
 }).on('success.form.bv', function(event,data) {
 	// Prevent form submission
 	event.preventDefault();
-	addPostContent();
+	event.stopImmediatePropagation();
+	<?php if($tscategory_id != 3 && $tsplanid < 4) { ?>
+		confirmbox("You subscription plan allows you to store only one post, so to send a post you have to delete the previous one",function(){
+				addPostContent();
+		    	mypost_count = 1;
+		    	$("#Layer10").attr('data-id',mypost_count);
+		    	$("#post_count").html(mypost_count);
+			}
+			,function(){
+				resetMyForm();
+				ShowObjectWithEffect('Layer6', 0, 'slideup', 500);
+				ShowObjectWithEffect('Layer118', 0, 'slideup', 500);
+				return false;
+		});
+	<?php }else{ ?>
+		addPostContent();
+
+	<?php } ?>
 });
 
 function addPostContent() {
 	var options = {
 	 		target : '#response', 
 	 		beforeSubmit : showAddRequest,
-	 		success :  showAddResponse,
+	 		//success :  showAddResponse,
 	 		url : base_url+'community/communitypost',
 	 		semantic : true,
-	 		dataType : 'json'
+	 		dataType : 'json',
+	 		success: function(responseText, statusText, xhr, $form) {
+                    /**/
+					myajaxindicatorstop('addPostContent');
+					if(responseText.status == '0') {
+						$("#response").removeClass('alert-success');
+				       	$("#response").addClass('alert-danger');
+						$("#response").html(responseText.msg.name);
+						$("#response").show();
+				  	} else {
+				  		$("#msg_cont").html('Post Added successfully.');
+				  		resetMyForm();
+						ShowObject('Layer99', 1);
+						ShowObjectWithEffect('Layer6', 0, 'slideup', 550, 'easeOutBounce');
+				        loadRealtimePosts();
+				        jQuery('#resultLoading').remove();
+				  	}
+                }
 	 	};
    	$('#addPostContent').ajaxSubmit(options);
 }
@@ -971,20 +1120,39 @@ $(".plbtn").click(function(event){
        ShowObject('Layer71', 0);
     },'html');
 });
-$(".chatcomet").click(function(event){
+$('div').on('click', '.chatcomet', function(event) {
+//$(".chatcomet").click(function(event){
     event.stopImmediatePropagation();
     var id = $(this).attr("data-id");
     ShowObjectWithEffect('Layer72', 0, 'slideleft', 500);
     ShowObjectWithEffect('Layer74', 0, 'slideup', 500);
     ShowObjectWithEffect('Layer76', 0, 'slideright', 500);
 });
-$(".viewpst").click(function(event){
+$('div').on('click', '.viewpst', function(event) {
+//$(".viewpst").click(function(event){
     event.stopImmediatePropagation();
-    var id = $(this).attr("data-id");
-    ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
-    ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+    var busi_id = $(this).attr("data-id");
+    var logged_in_busi_id = $(this).attr("data-busid");
+    if(busi_id == logged_in_busi_id)
+    {
+    	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+    	ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+    }else{
+    	ajaxindicatorstart("");
+		$.post(base_url+"community/viewpost", {busi_id : busi_id}, function(data){
+				ajaxindicatorstop();
+				//loadRealtimePosts();
+		        $('#Layer5_2').html(data);
+		        ShowObjectWithEffect('Layer5_2', 1, 'slideright', 500);
+		    	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+    			
+    			
+		}, 'html');
+    }
+    ShowObject('mainLayer18', 0);
 });
-$(".viewdsksite").click(function(event){
+$('div').on('click', '.viewdsksite', function(event) {
+//$(".viewdsksite").click(function(event){
     event.stopImmediatePropagation();
     var busi_id = $(this).attr("data-id");
     var cat_id = $(this).attr("data-catid");
@@ -1018,9 +1186,23 @@ function showDeleteMenu() {
 		$("#memdeleteimg").hide();
 	}
 }
-$("#SiteSearch01").keypress(function() {
+$("#SiteSearch01").keyup(function() {
+	if($("#SiteSearch01").val().length > 0)
+	{
+		$("#clear-search").show();
+		$("#Button01").hide();
+	}else{
+		$("#clear-search").hide();
+		$("#Button01").show();
+	}
 	searchPage()
 });
+function clearSearch(){
+	$("#SiteSearch01").val("");
+	$("#clear-search").hide();
+	$("#Button01").show();
+	searchPage();
+}
 function searchPage() {
 	$.get(base_url+"community/members/search",{ name: $("#SiteSearch01").val()},function(data) {
 		$("#comm_members").html(data.html);
@@ -1069,13 +1251,27 @@ function displayCommunityRequests() {
 		ajaxindicatorstop();
 		ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
 		ShowObjectWithEffect('Layer51', 0, 'slideleft', 500);
+		ShowObjectWithEffect('Layer5_2', 0, 'slideleft', 500);
 		ShowObjectWithEffect('Layer120', 1, 'slideright', 500);
 		ShowObjectWithEffect( 'Layer71', 0, 'fade', 600);
 	});
 }
+
+function myPost() {
+	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer5_2', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+	ShowObjectWithEffect( 'Layer71', 0, 'fade', 600);
+
+	/*ShowObjectWithEffect('Layer51', 1, 'slideright', 500);
+	ShowObjectWithEffect('Layer5', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer52', 0, 'slideleft', 500);
+	ShowObjectWithEffect('Layer120', 0, 'slideleft', 500);*/
+}
 function openEnquiryAndOfferForm(postid) {
 	<?php if($tscategory_id != 3) { ?>
-		<?php if($contact_details[0]['plan_id'] > 3) { ?>
+		<?php if($contact_details[0]['plan_id'] > 1) { ?>
 			<?php if(($tscategory_id == 1 && $contact_details[0]['step'] == 4) || ($tscategory_id == 2 && $contact_details[0]['step'] == 2)) { ?>
 				<?php if($oisstorage[0]['intvalue'] <= (($storage[0]['offers'] + $storage[0]['inquiries'])/1024)) { ?>
 					$("#msg_cont").html('Your offer/enquiry box is full. Please delete offer/enquiries to send more enquiries');
@@ -1197,15 +1393,23 @@ function resetMyForm() {
 	$("#postphoto4").css('background-image', 'url("<?php echo asset_url();?>images/img1264.png")').css('background-size','cover').val('');
 } 
 
-function showAddPost() {
-	<?php if($tscategory_id != 3 && $tsplanid < 4) { ?>
+function showAddPost() { 
+	var mypost_count = $("#Layer10").attr('data-id');
+	<?php if($tscategory_id != 3 && $tsplanid < 2) { ?>
 		$("#msg_cont").html('You subscription plan doesn\'t allow you to send posts, please upgrade your subscription plan to "Elite"');
 		ShowObject('Layer99', 1);
-	<?php } elseif($tscategory_id == 3 && $myds_stage != 4) { ?>
-		$("#msg_cont").html('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
-		ShowObject('Layer99', 1);
-	<?php } else { ?>
-		<?php if($mystorage[0]['intvalue'] <= round($storage[0]['community']/1024,2)) { ?>
+	<?php } elseif($tscategory_id != 3 && ($tsplanid == 2 || $tsplanid == 3)) { ?>
+				if(parseInt(mypost_count) >= 1){
+					$("#msg_cont").html('Please delete the previous post to add a new one. To do this open "My Posts" tab, and delete the stored one,or upgrade your subscription plan to "Elite"');
+					ShowObject('Layer99', 1);
+				}else{
+					ShowObjectWithEffect('Layer6', 1, 'slideup', 550, 'easeOutBounce');
+				}
+ 	<?php } elseif($tscategory_id == 3 && $myds_stage != 4) { ?>
+			$("#msg_cont").html('Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.');
+			ShowObject('Layer99', 1);
+	<?php } else { 
+		if($mystorage[0]['intvalue'] <= round($storage[0]['community']/1024,2)) { ?>
 			$("#msg_cont").html('Your posts storage box is full please delete some of your old posts');
 			ShowObject('Layer99', 1);
 		<?php } else { ?>

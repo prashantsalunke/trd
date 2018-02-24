@@ -74,7 +74,7 @@ div.pp_overlay {
 }
 div.pp_pic_holder {
 	z-index:12801 !important;
-	overflow:scroll;
+	/*overflow:scroll;*/
 }
   </style>
 
@@ -214,10 +214,10 @@ div.pp_pic_holder {
 										<div class="col-sm-4 label-text" style="color: #F05539; font-size: 13px;">More Certificates</div>
 										<div class="col-sm-8 label-text-value"><?php echo $row['certificatetype'];?></div>
 									</div>
-									<div class="row info-row">
+									<!--<div class="row info-row">
 										<div class="col-sm-4">Certificate No.</div>
 										<div class="col-sm-8 label-text-value"><?php echo $row['certificate_no'];?></div>
-									</div>
+									</div>-->
 									<div class="row info-row">
 										<div class="col-sm-4">Name</div>
 										<div class="col-sm-8 label-text-value"><?php echo $row['certificate_name'];?></div>

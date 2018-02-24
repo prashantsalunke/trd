@@ -881,38 +881,40 @@ class Account extends MX_Controller {
 // 			show_error($this->email->print_debugger());
 // 		}
 	}
-	public function forgetsendMail() {
+	public function forgetsendMail() 
+	{
 		
-		$email = $_POST['email'];
-		$this->load->library('mylib/UserLib');
-		$userdetail = $this->userlib->emailExist($email);
-		$name = $userdetail['name'];
-		$password = $userdetail['text_password'];
-		$prifix = $userdetail['name_prefix'];
-		$config = Array(
-				'protocol' => 'smtp',
-				'smtp_host' => 'ssl://smtp.googlemail.com',
-				'smtp_port' => 465,
-				'smtp_user' => 'mytrdstation@gmail.com', // change it to yours
-				'smtp_pass' => 'tradestation123', // change it to yours
-				'mailtype' => 'text',
-				'charset' => 'iso-8859-1',
-				'wordwrap' => TRUE
-				);
-		
-		$message = "Hi $prifix $name,<br><br>"
-		           ."Your password is : <b>$password</b><br><br><br>"
-				   ."Thanks<br>"
-				   ."TrdStation Team";
+		$this->load->model('Account_Model');
+		$email 		    = $_POST['email'];
+		$userdetail     = $this->Account_Model->emailExist($email);
+		$name 		    = $userdetail['name'];
+		$password 	    = $userdetail['text_password'];
+		$prifix 	    = $userdetail['name_prefix'];
+		$securityCode   = getHash(5);
+		$activationCode = $this->Account_Model->setValue($userdetail['id'],'activation_code',$securityCode);
+		$config 	    = Array(
+							'protocol'  => 'smtp',
+							'smtp_host' => 'ssl://smtp.googlemail.com',
+							'smtp_port' => 465,
+							'smtp_user' => 'mytrdstation@gmail.com', // change it to yours
+							'smtp_pass' => 'tradestation123', // change it to yours
+							'mailtype'  => 'html',
+							'charset'   => 'iso-8859-1',
+							'wordwrap'  => TRUE
+					    );
+		$message 	= "Hi $prifix $name,<br><br>"
+			           ."Your password Recovery Code is : <b>".$securityCode."</b><br><br><br>"
+					   ."Thanks<br>"
+					   ."TrdStation Team";
+
 		$this->load->library('email', $config);
 		$this->email->set_newline("\r\n");
-		$this->email->from('mytrdstation@gmail.com'); // change it to yours
+		$this->email->from('mytrdstation@gmail.com','Trade Station'); // change it to yours
 		$this->email->to($email); // change it to yours
 		$this->email->subject('TrdStation Password Recovery');
 		$this->email->message($message);
-		$this->email->send();
 		if ($this->email->send()) {
-			echo 'sent.';
+			echo 'sent';
 		} else {
 			//show_error($this->email->print_debugger());
 			echo "fail";
@@ -1852,8 +1854,26 @@ class Account extends MX_Controller {
 		//echo $html;
 	}
 	
+
+function updatePassword() {
+	$this->load->model('Account_Model');
+	$email				= $_POST['email'];
+	$securityCode		= $_POST['securityCode'];
+	$securityPassword	= $_POST['securityPassword'];
+	$userdetail     	= $this->Account_Model->emailExist($email);
+	$emailExist 		= $this->Account_Model->checkSecurityCode($email,$securityCode);
+	if($emailExist === false) {
+		echo '{"action":"error"}';
+		die;
+	}
+	//update password
+	$updatePassword = $this->Account_Model->setValue($userdetail['id'],'password',md5($securityPassword));
+	if($updatePassword >= 0) {
+		echo '{"action":"success"}';
+		die;
+	}
+	
 }
-
-
+}
   
 ?>

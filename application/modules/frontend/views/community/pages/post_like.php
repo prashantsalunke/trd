@@ -11,7 +11,7 @@
         <?php foreach($postlike as $like) {?>
         <div class="likesection" style="padding:10px;margin:5px 0px;">
             <img src="<?php echo asset_url(); ?><?php echo $like['profile_image'];?>" id="Image28" alt="" class="likeimg">
-            <span class="namestyle">&nbsp;&nbsp; <?php echo $like['name'];?></span>
+            <span class="namestyle">&nbsp;&nbsp; <?php echo $like['formatted_name']; ?></span>
             <span class="pull-right" style="padding-top:7px;color:#A9A9A9;font-family:Arial;font-size:11px;"><?php if(date('Y-m-d',strtotime($like['created_datetime'])) == date('Y-m-d')){ ?>Today<?php } else { echo date('d M Y',strtotime($like['created_datetime'])); }?>&nbsp; | <?php echo date('H:i',strtotime($like['created_datetime']));?></span>
         </div>
         <?php } ?>

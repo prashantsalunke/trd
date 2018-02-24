@@ -287,7 +287,8 @@
 						    	<img src="<?php echo asset_url(); ?>images/ts/community.png" id="Image1" style="opacity :0.15" > <?php }?>
 					        </div>
 						    <div id="wb_Image2" class="img-style">
-						    	<?php if(!empty($buyer['have_request'])){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" > 
+						    	<?php $buyer_request = $buyer['stock_buyer_count']+$buyer['bstation_post_count']; ?>
+						    	<?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" > 
 						    	<?php } else {?>
 						    	<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" style="opacity :0.15" ><?php }?>
 					        </div>
@@ -333,7 +334,7 @@
 					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo $params['page'];?> of <?php echo $total_pages;?>&nbsp;&nbsp; </span>
 				</div>
 				<div style="text-align:center;padding-top:7px;" class="col-sm-8">
-					<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><a href="<?php if($total_pages >= ($params['page']+1)){ echo $wpsellerurl."page=".($params['page']+1);}?>" class="style5">VIEW MORE</a></strong></span>
+					<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><a href="<?php if($total_pages >= ($params['page']+1)){ echo $wpbuyerurl."page=".($params['page']+1);}?>" class="style5">VIEW MORE</a></strong></span>
 				</div>
 				<div class="col-sm-2" style="padding:0px;padding-top:7px;">
 					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"> Page No</span>&nbsp;

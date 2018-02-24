@@ -97,6 +97,7 @@ $(document).ready(function()
 <hr id="Line2" style="position:absolute;left:59px;top:88px;width:310px;height:1px;z-index:7;">
 </div>
 </div>
+<!-- forgot password start-->
 <div id="Recover_password" style="position:absolute;text-align:left;visibility:hidden;left:0px;top:0px;width:626px;height:775px;z-index:26;">
 <div id="wb_PasswordRecovery1" style="position:absolute;left:121px;top:190px;width:401px;height:129px;z-index:8;">
 <form name="forgotpasswordform" method="post" action="" id="forgotpasswordform">
@@ -106,8 +107,20 @@ $(document).ready(function()
    <td class="PasswordRecovery1_header" colspan="2" style="height:17px;">Forgot your password?</td>
 </tr>
 <tr>
-   <td style="height:37px;width:60px">Email</td>
-   <td style="text-align:left"><input class="form-control PasswordRecovery1_input" id="forgotemail" name="forgotemail" type="text" id="email"></td>
+   <td style="height:37px;width:95px;">Email</td>
+   <td style="text-align:left"><input placeholder="Please enter your account unique email ID" class="form-control PasswordRecovery1_input" id="forgotemail" name="forgotemail" type="text" id="email"></td>
+</tr>
+<tr class="retrievePassword">
+	<td style="height:37px;width:95px;">Retrieve Code</td>
+	<td style="text-align:left"><input placeholder="code" class="form-control PasswordRecovery1_input" id="securityCode" name="securityCode" type="text"></td>
+</tr>
+<tr class="retrievePassword">
+	<td style="height:37px;width:95px;">New Password</td>
+	<td style="text-align:left"><input placeholder="New Password" class="form-control PasswordRecovery1_input" id="securityPassword" name="securityPassword" type="password" ></td>
+</tr>
+<tr class="retrievePassword">
+	<td style="height:37px;width:95px;">Confirm New Password</td>
+	<td style="text-align:left"><input placeholder="Confirm New Password" class="form-control PasswordRecovery1_input" id="securityConfirmPassword" name="securityConfirmPassword" type="password"></td>
 </tr>
 <tr>
  	<td style="height:25px"></td>
@@ -133,6 +146,7 @@ $(document).ready(function()
 <div id="wb_Text7" style="position:absolute;left:216px;top:574px;width:300px;height:16px;z-index:12;text-align:left;">
 <span style="color:#A9A9A9;font-family:Arial;font-size:9.3px;">Copyrights | TRDSTATION 2013-2016@All Rights Reserved</span></div>
 </div>
+<!-- End -->
 <div id="Login_layer" style="position:absolute;text-align:left;left:0%;top:0px;width:626px;height:775px;z-index:27;">
 	<div style="color:green;font-weight:bold;display:none;padding-top: 120px;text-align: center;font-size: 14px;" id="recovery-message">An email with the password has been sent to you</div>
 <div id="wb_Login1" style="position:absolute;left:118px;top:182px;width:387px;height:207px;z-index:13;">

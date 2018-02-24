@@ -22,14 +22,29 @@
 					<span class="cstyle4"><?php echo substr($allpost['postdesc'],0,400);?> <?php if(strlen($allpost['postdesc']) > 400){?>...<?php }?>
 					</span> <br>
 				</div>
+				<?php 
+					setlocale(LC_ALL, ''); // Locale will be different on each system.
+					$locale = localeconv();
+					if($allpost['postprice'] != "")
+						$allpost['postprice'] = number_format($allpost['postprice'], 2, $locale['decimal_point'], $locale['thousands_sep']);
+				?>
 				<div class="center1 padding1">
+					<?php if($allpost['user_category_id'] == 3){ ?>Target Price <?php } ?>
 					<span class="cstyle2">&nbsp; USD <?php echo $allpost['postprice'];?>&nbsp;&nbsp;&nbsp; </span> <span
-						class="cstyle3">&nbsp; Min. Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
+						class="cstyle3">&nbsp; <?php if($allpost['user_category_id'] == 3) { ?>Max.<?php }else{?>Min.<?php } ?> Order: <?php echo $allpost['postqty'];?>&nbsp;&nbsp;&nbsp; </span>
 				</div>
-				<img src="<?php echo asset_url(); ?><?php echo $allpost['image1'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-				<img src="<?php echo asset_url(); ?><?php echo $allpost['image2'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-				<img src="<?php echo asset_url(); ?><?php echo $allpost['image3'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
-				<img src="<?php echo asset_url(); ?><?php echo $allpost['image4'];?>" class="img500" alt="" style="width:100% !important;"><br>
+				<?php if(!empty($allpost['image1'])) { ?>
+					<img src="<?php echo asset_url(); ?><?php echo $allpost['image1'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
+				<?php } ?>
+				<?php if(!empty($allpost['image2'])) { ?>
+					<img src="<?php echo asset_url(); ?><?php echo $allpost['image2'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
+				<?php } ?>
+				<?php if(!empty($allpost['image3'])) { ?>
+					<img src="<?php echo asset_url(); ?><?php echo $allpost['image3'];?>" class="img500" alt="" style="width:100% !important;"><br><br>
+				<?php } ?>
+				<?php if(!empty($allpost['image4'])) { ?>
+					<img src="<?php echo asset_url(); ?><?php echo $allpost['image4'];?>" class="img500" alt="" style="width:100% !important;"><br>
+				<?php } ?>
 			</div>
 			<div class="col-sm-1" style="width:30px;padding:3px;margin-top: -45px;">
 				<a href="#" onclick="ShowObject('Layer18_<?php echo $key;?>', 0);return false;"> 

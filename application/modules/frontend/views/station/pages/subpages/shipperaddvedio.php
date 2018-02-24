@@ -36,7 +36,7 @@
 						<div class="col-md-3" >
 						</div>
 						<div class="col-md-4" style="text-align: center">
-							<span style="color:red">*</span>	<span style="color:#666666;font-family:Arial;font-size:9.3px;">Mp4 format, Max. size: 30 MB</span>
+							<span style="color:red">*</span>	<span style="color:#666666;font-family:Arial;font-size:9.3px;">Mp4 format, Max. size: 20 MB</span>
 						</div>	
 					</div>
 				</div><br>
@@ -45,7 +45,7 @@
 						<div class="col-md-3" >
 						</div>
 						<div class="col-md-4">
-							<?php $maxvediosizeinbyte =  30* 1048576; ?>
+							<?php $maxvediosizeinbyte =  20* 1048576; ?>
 							<div class="col-sm-12" id="upload_div" style="height:30px;z-index:1037;text-align:center;padding-top: 0px;">
 								<span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u><a href="javascript:openFileInput();" class="style23" id="oneproductupload">Upload</a></u></span>
 							</div>
@@ -65,7 +65,8 @@
 							<span style="color:red">*</span>&nbsp;<span style="color:#3C3C3C;font-family:Georgia;font-size:12px;">Video title</span>
 						</div>	
 						<div class="col-md-4" >
-							<input type="text" class="form-control"  name="vediotitle" Placeholder="e.g. Across The Oceans" id="vediotitle" />
+							<input type="text" class="form-control"  name="vediotitle" Placeholder="e.g. Door to door air freight" id="vediotitle" />
+							<span style="color:#2D2D2D;font-family:Arial;font-size:11px;">The title must contain the words that the visitor is likely to type to find your video above others in search result</span>
 						</div>
 						<div class="messageContainer" ></div>
 					</div>
@@ -76,7 +77,7 @@
 							<span style="color:red">*</span>&nbsp;<span style="color:#3C3C3C;font-family:Georgia;font-size:12px;">About this video</span>
 						</div>	
 						<div class="col-md-4" >
-							<textarea rows="5" cols="42" name="description" id="description"  Placeholder="Type an attractive introduction about the products in this video."></textarea>
+							<textarea rows="5" cols="42" name="description" id="description"  Placeholder="Type a brief introduction to the service provided in this video"></textarea>
 						</div>
 						<div class="messageContainer" ></div>
 					</div>
@@ -182,8 +183,7 @@ function showVedioResponse(resp, statusText, xhr, $form){
 	if(resp.status == '0') {
 		$("#response").addClass('alert-danger');
 		$("#response").html(resp.msg);
-		alert(resp.msg);
-		openAddvedio();
+			openAddvedio();
 		$("#save").prop('disabled',false);
 	} else {
 		$(".text-danger").hide();
@@ -240,6 +240,7 @@ function validatevediofile(id,input,size)
               	$('#'+id).val('');
                	flag = false;
          	}
+			
    	} else {
    		$("#upload_div").show();
 		$("#change_div").hide();

@@ -107,16 +107,16 @@
 							<img src="<?php echo asset_url();?>images/products.png" id="Image133" alt="">
 						</div>
 						<div id="wb_Text1466" style="position:absolute;left:124px;top:219px;width:60px;height:16px;text-align:center;z-index:3368;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_history_pages['products'] ? $product_history_pages['products']:0;?></strong></span>
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_history['productsHomePg'] ? $product_history['productsHomePg']:0;?></strong></span>
 						</div>
 						<div id="wb_Text1467" style="position:absolute;left:68px;top:218px;width:51px;height:16px;z-index:3369;text-align:left;">
 							<span style="color:#2688E4;font-family:Arial;font-size:12px;"><strong>Total</strong></span>
 						</div>
 						<div id="wb_Text1468" style="position:absolute;left:124px;top:239px;width:60px;height:16px;text-align:center;z-index:3370;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_history_pages['likes'] ? $product_history_pages['likes']:0;?></strong></span>
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_history['likesHomePg'] ? $product_history['likesHomePg']:0;?></strong></span>
 						</div>
 						<div id="wb_Text1471" style="position:absolute;left:124px;top:259px;width:60px;height:16px;text-align:center;z-index:3371;">
-							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_history_pages['shares'] ? $product_history_pages['shares']:0;?></strong></span>
+							<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><strong><?php echo $product_history['sharesHomePg'] ? $product_history['sharesHomePg']:0;?></strong></span>
 						</div>
 						<?php $images = explode(",",$product_stats[0]['images']);?>
 						<div style="position:absolute;left:38px;top:50px;width:170px;height:110px;z-index:3372;">
@@ -521,7 +521,7 @@
 						</div>
 					
 					</div>
-					<div id="myproduct_stats" style="display:none;overflow-y:scroll;max-height:500px;" class="mytoolsts-div">
+					<div id="myproduct_stats" style="display:none;overflow-y:hidden;" class="mytoolsts-div">
 						<div class="row" style="margin:0px;">
 							<div class="col-sm-1 text-right">
 								<img src="<?php echo asset_url();?>images/products.png" id="Image139" alt="" style="width:30px;height: 30px;">
@@ -578,25 +578,28 @@
 													<th>Date</th>
 												</tr>
 											</thead>
-											<tbody>
-												<?php foreach ($product_history as $key=>$product_history_stat) { ?>
-												<tr>
-													<td><?php echo $key+1;?></td>
-													<td><?php echo $product_history_stat['model_no'];?></td>
-													<td><?php echo $product_history_stat['visits'];?></td>
-													<td><?php echo $product_history_stat['likes'];?></td>
-													<td><?php echo $product_history_stat['shares'];?></td>
-													<td><?php echo !empty($product_history_stat['country_name']) ? $product_history_stat['country_name']:'Unknown' ;?></td>
-													<td><?php echo !empty($product_history_stat['city_name']) ? $product_history_stat['city_name']:'Unknown';?></td>
-													<td><?php echo date('d M Y',strtotime($product_history_stat['visit_date']));?></td>
-												</tr>
-												<?php } ?>
-												<tr>
+											<tbody> 
+												<?php
+						                            foreach ($product_history as $key=>$product_history_stat) {
+						                                if (is_array($product_history_stat)) {
+                                                        ?>
+													<tr>
+														<td><?php echo $key+1;?></td>
+														<td><?php echo $product_history_stat['model_no'];?></td>
+														<td><?php echo $product_history_stat['visits'];?></td>
+														<td><?php echo $product_history_stat['likes'];?></td>
+														<td><?php echo $product_history_stat['shares'];?></td>
+														<td><?php echo !empty($product_history_stat['country_name']) ? $product_history_stat['country_name']:'Unknown' ;?></td>
+														<td><?php echo !empty($product_history_stat['city_name']) ? $product_history_stat['city_name']:'Unknown';?></td>
+														<td><?php echo date('d M Y',strtotime($product_history_stat['visit_date']));?></td>
+													</tr>
+													<?php } } ?>
+													<tr>
 													<td style="border:0px;"></td>
-													<td style="border:0px;"><strong><?php echo $product_history_pages['products'];?></strong></td>
-													<td style="border:0px;"><strong><?php echo $product_history_pages['visits'];?></strong></td>
-													<td style="border:0px;"><strong><?php echo $product_history_pages['likes'];?></td>
-													<td style="border:0px;"><strong><?php echo $product_history_pages['shares'];?></strong></td>
+													<td style="border:0px;"></td>
+													<td style="border:0px;"></td>
+													<td style="border:0px;"></td>
+													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
 													<td style="border:0px;"></td>
@@ -606,11 +609,11 @@
 									</div>
 								</div>
 								<br>
-								<div class="row">
+								<div class="rowParent">
 									<div class="pull-right" style="padding-right:20px;">
 										<strong>Page&nbsp;&nbsp;&nbsp; </strong>
-										<?php for ($i = 1; $i <= $product_history_pages['pages']; $i++) { ?>
-										<a href="javascript:showNextProductStats(<?php echo $i;?>);" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
+										<?php for ($i = 1; $i <= $totalPages; $i++) { ?>
+										<a href="javascript:showNextProductStats(<?php echo $i;?>);" style="text-decoration: none;" class="<?php if($i == 1) { ?>page-active<?php } ?>"><?php echo $i;?></a>
 										<?php } ?>
 									</div>
 								</div>

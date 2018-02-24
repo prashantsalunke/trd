@@ -191,7 +191,8 @@ class Sellers_Model extends CI_Model {
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_subcategory_id, a.user_role, a.account_activated, b.company_name,(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
 		b.company_country, b.company_province, b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
- 		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id and mp.status=1) as main_product,j.id as catalouge_id,k.id as pmk_id,l.id as community_id, m.id as have_request,a.name as contact_name,a.name_prefix as contact_prefix');
+ 		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id and mp.status=1) as main_product,j.id as catalouge_id,k.id as pmk_id,l.id as community_id, (select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post
+             as l where l.busi_id=b.id) as bstation_post_count,m.id as have_request,a.name as contact_name,a.name_prefix as contact_prefix');
     	$this->db->from(TABLES::$USER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -216,7 +217,7 @@ class Sellers_Model extends CI_Model {
 	    		$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
 	    	}
 	    	if(!empty($params['keyword'])) {
-	    		$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR b.company_name like '%".trim($params['keyword'])."%' OR h.name like'%".trim($params['keyword'])."%' OR n.name like'%".trim($params['keyword'])."%')",'',false);
+	    		$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR b.company_name like '%".trim($params['keyword'])."%' OR h.name like'%".trim($params['keyword'])."%' )",'',false);
 	    	}
 	    	/*if(!empty($params['keyword'])) {
 	    		$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);

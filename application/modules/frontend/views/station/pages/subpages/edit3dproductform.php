@@ -33,10 +33,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-2">
+				<!--<div class="col-md-2">
 					<img src="<?php echo asset_url();?>images/tick-big.png" style=""><br><br><br>
 					<a href="#" data-toggle="modal"  onclick="getproductlist();" data-target="#editdproduct_modal" backdrop='static'><span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u>Change</u></span></a>
-				</div>
+				</div>-->
 	  		</div>
 	  	</div><br><br>
 	  	<div class="row">

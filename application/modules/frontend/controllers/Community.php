@@ -20,11 +20,13 @@ class Community extends MX_Controller {
 		if (! isset ( $_SESSION ['busi_id'] )) {
 			redirect ( base_url () );
 		}
+
 		$busi_id = $this->session->userdata('busi_id');
 		$plan_id = $this->session->userdata('tsuser')['plan_id'];
 		$cat_id = $this->session->userdata('tsuser')['category_id'];
 		$Country= $this->account->getCountry();
 		$this->template->set ('Country', $Country);
+		$this->template->set ('busi_id', $busi_id);
 		$this->load->model('Product_Model', 'product' );
 		$this->load->model('Tool_model', 'toolmodel' );
 		$userinfo = $this->product->getUserInfoByBussId($busi_id);
@@ -37,6 +39,7 @@ class Community extends MX_Controller {
 		$this->template->set ('add_requests', $add_requests);
 		$myposts = $this->product->communityPostListByBusinessId($busi_id);
 		$this->template->set ('myposts', $myposts);
+		$this->template->set ('mypost_count', count($myposts));
 		$productslist = $this->product->getProductlist($busi_id);
 		$this->template->set ( 'products', $productslist);
 		$communitymember = $this->product->getCommunityMember($busi_id);
@@ -70,6 +73,7 @@ class Community extends MX_Controller {
 	public function getCommunityRealtimePosts() {
 		$busi_id = $this->session->userdata('busi_id');
 		$allposts = $this->product->communityPostListByAlluser($busi_id);
+		$this->template->set ('busi_id', $busi_id);
 		$this->template->set ('allposts', $allposts);
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
@@ -79,6 +83,7 @@ class Community extends MX_Controller {
 		$html = $this->template->build ('community/pages/posts','',true);
 		$myposts = $this->product->communityPostListByBusinessId($busi_id);
 		$this->template->set ('myposts', $myposts);
+		$this->template->set ('mypost_count', count($myposts));
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
 		$this->template->set ( 'userId', '' );
@@ -91,6 +96,7 @@ class Community extends MX_Controller {
 	public function getCommunityMyPosts() {
 		$busi_id = $this->session->userdata('busi_id');
 		$myposts = $this->product->communityPostListByBusinessId($busi_id);
+		$this->template->set ('mypost_count', count($myposts));
 		$this->template->set ('myposts', $myposts);
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
@@ -98,6 +104,7 @@ class Community extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html = $this->template->build ('community/pages/myposts','',true);
+		$this->template->set ('mypost_count', count($myposts));
 		$this->template->set ('myposts', $myposts);
 		$this->template->set ( 'page', 'community' );
 		$this->template->set ( 'browser_icon', 'community.ico' );
@@ -212,6 +219,7 @@ class Community extends MX_Controller {
 			redirect ( base_url () );
 		}
 		$data = array ();
+		$size = 0;
 		$data['id'] =$this->input->post('id');
 		$data['busi_id'] = $_SESSION['busi_id'];
 		//$this->load->library ( 'mylib/PostLib', 'postlib' );
@@ -254,11 +262,35 @@ class Community extends MX_Controller {
 		echo json_encode($results);
 	}
 	
+	public function viewUserPost(){
+		if (! isset ( $_SESSION ['busi_id'] )) {
+			redirect ( base_url () );
+		}
+		$this->load->model('Community_Model','communitymodel');
+		$data = array ();
+		$busi_id =$this->input->post('busi_id');
+		$data['busi_id'] = $_SESSION['busi_id'];
+
+		$posts = $this->product->communityPostListByBusinessId($busi_id);
+		//$this->template->set ('myposts', $myposts);
+		$this->template->set ('busi_id', $busi_id);
+		$this->template->set ('allposts', $posts);
+		$this->template->set ( 'page', 'community' );
+		$this->template->set ( 'browser_icon', 'community.ico' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('community/pages/memberpost','',true);
+		echo $html;
+	}
 	public function postLike() {
 		if (! isset ( $_SESSION ['busi_id'] )) {
 			redirect ( base_url () );
 		}
+		
 		$post_id = $this->input->post('post_id');
+		$this->load->model('Account_Model', 'account' );
+		$user_data = $this->account->getUserDataByBusiId($_SESSION ['busi_id']);
 		$data = array(
 				'post_id' => $post_id,
 				'liked_by' => $_SESSION ['busi_id'],
@@ -266,6 +298,10 @@ class Community extends MX_Controller {
 				'created_datetime'=>date('Y-m-d H:i:s')
 	
 		);
+		if(!empty($user_data['nickname']) && $user_data['nickname'] != NULL){
+			$data['hidden'] = 1;
+			$data['hidden_name'] = $user_data['nickname'];
+		}
 		$this->load->model('Product_Model', 'product' );
 		$result['id'] = $this->product->postLike ( $data );
 	
@@ -285,8 +321,11 @@ class Community extends MX_Controller {
 		if (! isset ( $_SESSION ['busi_id'] )) {
 			redirect ( base_url () );
 		}
-			
+		$this->load->model('Account_Model', 'account' );
+		$user_data = $this->account->getUserDataByBusiId($this->input->post('user_id'));
+
 		$data = array ();
+
 		$data = array(
 				'post_id' => $this->input->post('post_id'),
 				'user_id' => $this->input->post('user_id'),
@@ -295,10 +334,15 @@ class Community extends MX_Controller {
 				'status' => '1',
 				'created_datetime' => date ( 'Y-m-d h:i:s' )
 		);
-	
+		
+		if(!empty($user_data['nickname']) && $user_data['nickname'] != NULL){
+			$data['hidden'] = 1;
+			$data['hidden_name'] = $user_data['nickname'];
+		}
 		$this->load->model('Product_Model', 'product' );
+		
 		$result['id'] = $this->product->commentPost($data);
-	
+		
 		if ( $result ['id']  > 0) {
 			$result ['status'] = 1;
 			$result ['msg'] = 'Comment Posted Successfully.';
@@ -650,10 +694,11 @@ class Community extends MX_Controller {
 	public function shareCommunityPost($postid) {
 		$share_id = $this->session->userdata('busi_id');
 		$params = array();
-		$params['id'] = $postid;
+		$params['post_id'] = $postid;
 		$params['share_id'] = $share_id;
-		$this->load->model('Community_Model', 'communitymodel' );
-		$result = $this->communitymodel->updateCommunityPost($params);
+		$params['shared_date'] = date('Y-m-d H:i:s');
+		$this->load->model('Community_Model','communitymodel' );
+		$result = $this->communitymodel->communityPostShareInsert($params);
 		if($result) {
 			echo json_encode(array('msg'=>'Post shared in your community'));
 		} else {

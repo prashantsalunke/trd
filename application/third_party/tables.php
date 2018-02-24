@@ -114,6 +114,7 @@ class TABLES {
 	public static $FEATURED_CAROUSEL_ADS = 'tbl_featured_carousel_ads';
 	
 	public static $COMMMUNITY_POST = 'tbl_community_post';
+	public static $COMMUNITY_POST_SHARE = 'tbl_community_post_share';
 	
 	public static $BUSINESS_VISITORS = 'tbl_business_visitors';
 	public static $PRODUCT_VISITORS = 'tbl_product_visitors';

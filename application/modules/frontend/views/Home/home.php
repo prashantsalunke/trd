@@ -51,7 +51,7 @@
 						<?php //print_r($procategories);
 						foreach($procategories as $product)
 							{  ?>
-							<a href="#" class="list-group-item"><?php echo $product['name']; ?> </a> 
+							<a href="#" class="list-group-item"><?php echo $product['name']."asd"; ?> </a> 
 				   		 <?php 	} ?>
 					</div>
 				</div>
@@ -172,7 +172,7 @@
 								</div>
 							</div>
 							<div style="position: relative;top: -72px;width: 345px;left: 35px;">
-								<a class="left carousel-control control" href="#tab-slider" role="button" data-slide="prev" ">
+								<a class="left carousel-control control" href="#tab-slider" role="button" data-slide="prev">
 									<img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previoustxt0blk.png">
 								</a> 
 								<a class="right carousel-control control" href="#tab-slider" role="button" data-slide="next">

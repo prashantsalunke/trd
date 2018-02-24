@@ -2,19 +2,22 @@
 
 class Tool_model extends CI_Model {
 
+    const pagination_size = 7;
+    
     function __construct() {
         parent::__construct();
     }
 
     public function getMyStationStats($busi_id)
     {
-    	$this->db->select('a.id,a.visit,a.likes,a.shares,b.desksite_bg1');
-    	$this->db->from(TABLES::$BUSINESS_INFO.' AS a');
-    	$this->db->join(TABLES::$BUSINESSINFOIMAGE.' AS b','a.id=b.busi_id','inner');
-    	$this->db->where('a.id',$busi_id);
-    	$query = $this->db->get();
-    	$row = $query->result_array();
-    	return $row;
+        $this->db->select('b.id,COUNT(DISTINCT a.id) AS visit, SUM(a.likes) AS likes, SUM(a.shares) AS shares,c.desksite_bg1');
+        $this->db->from(TABLES::$BUSINESS_VISITORS.' AS a');
+        $this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
+        $this->db->join(TABLES::$BUSINESSINFOIMAGE.' AS c','b.id=c.busi_id','left');
+        $this->db->where('a.busi_id',$busi_id);
+        $query = $this->db->get();
+        $row = $query->result_array();
+        return $row;
     }
     
     public function getMyStationProductStats($busi_id)
@@ -113,39 +116,102 @@ class Tool_model extends CI_Model {
     		$this->db->limit($page_size,$start_page);
     	}
     	$query = $this->db->get();
+        //echo $this->db->last_query();
     	$row = $query->result_array();
     	return $row;
     }
     
+    /**
+     * function to get product visit history details
+     * 
+     * @param array $map
+     * @return array
+     */
     public function getProductVisitHistory($map) {
-    	$page_size = 20;
-    	$this->db->select('a.item_id,count(DISTINCT a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares,a.country as country_name,a.city as city_name,a.visit_date,b.model_no');
-    	$this->db->from(TABLES::$PRODUCT_VISITORS.' AS a');
-    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b','a.item_id=b.id','inner');
-    	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','left');
-    	$this->db->where('b.busi_id',$map['busi_id']);
-    	$this->db->where('status',1);
-    	if(!empty($map['country_name'])) {
-    		$this->db->where('a.country',$map['country_name']);
-    	}
-    	if(!empty($map['from_date']) && !empty($map['to_date'])) {
-    		$this->db->where("a.visit_date BETWEEN '".$map['from_date']."' AND '".$map['to_date']."'",'',false);
-    	}
-    	if(!empty($map['product_name'])) {
-    		$this->db->where("(b.name like '%".$map['product_name']."%' OR b.model_no like '%".$map['product_name']."%')",'',false);
-    	}
-    	$this->db->group_by('a.item_id');
-    	$this->db->group_by('a.city');
-    	$this->db->order_by('a.visit_date','DESC');
-    	$this->db->order_by('a.country','ASC');
-    	$this->db->order_by('a.city','ASC');
+
+    	$getProdStatics = $this->getProductStatistics($map);
     	if(!empty($map['page'])) {
-    		$start_page = $map['page']*20 - $page_size;
-    		$this->db->limit($page_size,$start_page);
+    	    $start_page = $map['page']*self::pagination_size - self::pagination_size;
+    		$getProdStatics->limit(self::pagination_size,$start_page);
     	}
-    	$query = $this->db->get();
-    	$row = $query->result_array();
-    	return $row;
+    	$query              = $getProdStatics->get();
+        $queryCount         = $this->db->query('SELECT FOUND_ROWS() AS `Count`');
+        $totalres           = $queryCount->row()->Count;  
+    	$row                = $query->result_array();
+    	$row['totalPages']  = ceil($totalres/self::pagination_size);
+        $row['products']    = '';
+        $row['visits']      = '';
+        $row['likes']       = '';
+        $row['shares']      = '';
+        
+        if( $row['totalPages'] == $map['page'] ) {
+            $getTotalInfo   = $this->getProductStatistics($map,1);
+            $querys         = $getTotalInfo->get();
+            $rows           = $querys->result_array();
+            foreach ($rows as $ap) {
+                $products   = $ap['products'];
+                $visits     = $ap['visits'];
+                $likes      = $ap['likes'];
+                $shares     = $ap['shares'];
+        }
+            $row['products']    = $products;
+            $row['visits']      = $visits;
+            $row['likes']       = $likes;
+            $row['shares']      = $shares;
+        }
+        if($map['page'] == 1 ) {
+            $getTotalInfo   = $this->getProductStatistics($map,1);
+            $querys         = $getTotalInfo->get();
+            $rows           = $querys->result_array();
+            foreach ($rows as $ap) {
+                $products   = $ap['products'];
+                $visits     = $ap['visits'];
+                $likes      = $ap['likes'];
+                $shares     = $ap['shares'];
+            }
+            $row['productsHomePg']  = $products;
+            $row['likesHomePg']     = $likes;
+            $row['sharesHomePg']    = $shares;
+        }
+        return $row;
+    }
+    
+    /**
+     *  function to get product statistics report
+     *  
+     * @param array $map
+     * @param unknown $getTotal
+     * @return object
+     */
+    function getProductStatistics($map,$getTotal=NULL) {
+        
+        if(is_null($getTotal)) {
+            $this->db->select('sql_calc_found_rows a.item_id,count(DISTINCT a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares,a.country as country_name,a.city as city_name,a.visit_date,b.model_no',false);
+        } else {
+            $this->db->select('COUNT(DISTINCT a.id) as visits,SUM(a.likes) as likes,SUM(a.shares) as shares,COUNT(DISTINCT b.model_no) as products');
+        }
+        $this->db->from(TABLES::$PRODUCT_VISITORS.' AS a');
+        $this->db->join(TABLES::$PRODUCT_ITEM.' AS b','a.item_id=b.id','inner');
+        $this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','left');
+        $this->db->where('b.busi_id',$map['busi_id']);
+        $this->db->where('status',1);
+        if(!empty($map['country_name'])) {
+            $this->db->where('a.country',$map['country_name']);
+        }
+        if(!empty($map['from_date']) && !empty($map['to_date'])) {
+            $this->db->where("a.visit_date BETWEEN '".$map['from_date']."' AND '".$map['to_date']."'",'',false);
+        }
+        if(!empty($map['product_name'])) {
+            $this->db->where("(b.name like '%".$map['product_name']."%' OR b.model_no like '%".$map['product_name']."%')",'',false);
+        }
+        if(is_null($getTotal)) {
+            $this->db->group_by('a.item_id');
+            $this->db->group_by('a.city');
+            $this->db->order_by('a.visit_date','DESC');
+            $this->db->order_by('a.country','ASC');
+            $this->db->order_by('a.city','ASC');
+        }
+        return $this->db;
     }
     
     public function getActiveProductVisitHistory($map) {
@@ -208,48 +274,6 @@ class Tool_model extends CI_Model {
     		$likes = $likes + $ap['likes'];
     		$shares = $shares + $ap['shares'];
     	}
-    	$pages['visits'] = $visits;
-    	$pages['likes'] = $likes;
-    	$pages['shares'] = $shares;
-    	$pages['pages'] = ceil(count($row)/20);
-    	return $pages;
-    }
-    
-    public function getProductVisitHistoryCount($map) {
-    	$page_size = 20;
-    	$this->db->select('count(DISTINCT a.item_id) as products,count(a.id) as visits,sum(a.likes) as likes,sum(a.shares) as shares');
-    	$this->db->from(TABLES::$PRODUCT_VISITORS.' AS a');
-    	$this->db->join(TABLES::$PRODUCT_ITEM.' AS b','a.item_id=b.id','inner');
-    	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','inner');
-    	$this->db->where('b.busi_id',$map['busi_id']);
-    	$this->db->where('status',1);
-    	if(!empty($map['country_name'])) {
-    		$this->db->where('a.country',$map['country_name']);
-    	}
-    	if(!empty($map['from_date']) && !empty($map['to_date'])) {
-    		$this->db->where("a.visit_date BETWEEN '".$map['from_date']."' AND '".$map['to_date']."'",'',false);
-    	}
-    	if(!empty($map['product_name'])) {
-    		$this->db->where("(b.name like '%".$map['product_name']."%' OR b.model_no like '%".$map['product_name']."%')",'',false);
-    	}
-    	$this->db->group_by('a.item_id');
-    	//$this->db->group_by('a.city');
-    	$this->db->order_by('a.visit_date','DESC');
-    	$this->db->order_by('a.country','ASC');
-    	$this->db->order_by('a.city','ASC');
-    	$query = $this->db->get();
-    	$row = $query->result_array();
-    	$products = 0;
-    	$visits = 0;
-    	$likes = 0;
-    	$shares = 0;
-    	foreach ($row as $ap) {
-    		$products++;
-    		$visits = $visits + $ap['visits'];
-    		$likes = $likes + $ap['likes'];
-    		$shares = $shares + $ap['shares'];
-    	}
-    	$pages['products'] = $products;
     	$pages['visits'] = $visits;
     	$pages['likes'] = $likes;
     	$pages['shares'] = $shares;

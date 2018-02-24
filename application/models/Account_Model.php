@@ -920,5 +920,55 @@ class Account_Model extends CI_Model {
 		$result = $query->result_array();
 		return $result;
 	}
+
+	public function getUserDataByBusiId($busi_id) {
+		//$array = array('busi_id' => $busi_id);
+		//$this->db->select('a.*,b.*,c.sub_category as subcatname');
+		$this->db->select('a.*');
+		$this->db->from(TABLES::$USER.' AS a');
+		$this->db->where('a.busi_id', $busi_id);
+		//$this->db->join(TABLES::$USER_CATEGORIES.' AS b', 'a.user_category_id =  b.id', 'left');
+		//$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS c', 'a.user_subcategory_id = c.id', 'left');
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+			$row = $query->row_array();
+			return $row;
+		}
+		//echo'<pre>';print_r($query->result());die;
+  }
+	/**
+	* function to check activation code of the user
+	*/
+	public function checkSecurityCode($email, $securityCode) {
+		$this->db->select('*');
+		$this->db->from(TABLES::$USER);
+		$this->db->where('email', $email);
+		$this->db->where('activation_code', $securityCode);
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public function getValue(){echo "get value";}
+	
+	/**
+	* function to set value to column
+	*/
+	public function setValue($id,$col,$val) {
+		$data = array();
+		$data[$col] = $val;
+
+		if(!is_numeric($id)) {
+			return false;
+		}
+		if(!empty($id)) {
+			$this->db->where('id', $id);
+		}
+		$this->db->update(TABLES::$USER, $data);
+		return $this->db->affected_rows();
+	}
  
 }

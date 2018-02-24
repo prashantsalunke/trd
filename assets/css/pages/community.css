@@ -41,7 +41,7 @@ hr {
     }
 }
 .likesection{
-	width: 92%;
+	width: 100%;
     padding: 5px 10px;
     background-color: white;
     border-bottom: 1px solid #DCDCDC;
@@ -54,7 +54,7 @@ hr {
    transition: background-color 100ms linear 0ms;
 }
 .likesection1{
-	width: 92%;
+	width: 100%;
     background-color: white;
 }
 
@@ -275,7 +275,7 @@ position: absolute; text-align: left; visibility: hidden;
 top:20px;  z-index: 587;
 
 }
-#Layer1, #Layer32, #Layer33{
+#Layer33{
 	
     border-bottom: 38px solid #dcdcdc;
 }
@@ -288,7 +288,7 @@ top:20px;  z-index: 587;
     padding-left: 0px;
 }
 #Layer11{
-	height: 767px;
+	height: 754px;
 	    overflow: auto;
 }
 a .hover {
@@ -392,10 +392,10 @@ a:hover .hover {
     font-size: 13px;padding: 7px 20px;
 }
 #Layer20{
-	position: absolute;visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 776px;overflow:auto; z-index: 2247;
+	position: absolute;visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 803px;overflow:auto; z-index: 2247;
 }
 #Layer101{
-	position: absolute; text-align: right; visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 776px;overflow:auto;  z-index: 2248; display: block;
+	position: absolute; text-align: right; visibility: hidden; top:0;right: 0px; bottom: 0px; width: 315px; height: 800px;overflow:auto;  z-index: 2248; display: block;
 }
 .img42{
 	width:42px !important;
@@ -483,7 +483,7 @@ color:#3C3C3C;font-family:Arial;font-size:12px;
 {
    background-color: #3C3C3C;
 }
-#Layer51
+#Layer51,#Layer5_2
 {
    background-color: transparent;
 }
@@ -9313,3 +9313,17 @@ a.style5:hover
     height:25px;
 }
 
+
+#clear-search
+{
+   border: 0px #A9A9A9 solid;
+   background-color: transparent;
+   background-image: url(../../images/Error.png);
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-size: contain;
+   color: #A9A9A9;
+   font-family: Arial;
+   font-weight: normal;
+   font-size: 13px;
+}
