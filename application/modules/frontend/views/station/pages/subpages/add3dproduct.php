@@ -2,6 +2,8 @@
 	<input type="file" name="changefile3dimage" id="changefile3dimage"  accept=".png,.jpg,.jpeg.gif" onchange="uploadchangedimg('changefile3dimage',this,350,400,500);"  style="display:none" />
 	<input type="hidden" name="image_index" id="image_index" value="0">
 </form>
+<div id="promodal">
+</div>
 <form name="frmadd3dproduct"   method="post" action="" enctype="multipart/form-data" id="frmadd3dproduct" >
 	<div class="panel-heading custom-panel-heading">
   		<span class="pull-right-close"><a href="javascript:ShowObjectWithEffect('Layer108', 0, 'dropup', 500, 'easeInBounce');ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');" class="btn-custom-close">X</a></span>
@@ -233,17 +235,18 @@
 		alert('Please select product.');
 	}
 }
-function addexample()
+function test_before_save()//addexample()
 {
-	var id = $("#dpid").val();
-	if(id != 0 ) {
-		customAlert('Upload 3d images first.');
-	} else {
-		$.get(base_url+"mystation/3dpro/show/"+id, {}, function(data){
+	var product_id = $("#productid").val();
+	if(product_id != "")
+	{
+		$.post(base_url+"mystation/3dpro/showbeforesave", {"uploaded_images":uploaded_images,"productid":product_id}, function(data){
 			$("#promodal").html(data);
 			$("#my3DModal").modal('show');
 			init3D('my3dimg');
 		},'html');
+	}else{
+		customAlert("Please select a product");
 	}
 }
 function uploaddimg(id,input,width,height,size)
