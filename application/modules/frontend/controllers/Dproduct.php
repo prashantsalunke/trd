@@ -647,5 +647,26 @@ class Dproduct extends MX_Controller {
 		$html = $this->template->build ('default/my3dpro','',true);
 		echo $html;
 	}
+
+	public function show3Dprobeforesave() {
+		$this->load->library('mylib/Dproductlib');
+		$uploaded_images = $this->input->post('uploaded_images');
+		$productid = $this->input->post('productid');
+		$productdata = $this->dproductlib->getProductById($productid);
+		$all_images = [];
+		foreach ($uploaded_images as $key => $image) {
+			$img = $image['image'];
+			array_push($all_images,$img);
+		}
+
+		$productdata[0]['pro_images'] = implode(",",$all_images); 
+		
+		$this->template->set ( 'productdata', $productdata );
+		$this->template->set ( 'page', 'home' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('default/my3dpro','',true);
+		echo $html;
+	}
 	
 }

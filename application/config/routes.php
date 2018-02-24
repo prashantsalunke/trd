@@ -251,7 +251,8 @@ $route['mystation/changimage'] = 'frontend/Dproduct/changImage';
 $route['mystation/changelinkproduct'] = 'frontend/Dproduct/changeLinkProduct'; 
 $route['mystation/messagedproduct'] = 'frontend/Dproduct/messageDproduct'; 
 $route['mystation/getdproductbyid'] = 'frontend/Dproduct/getDproductById';
-$route['mystation/3dpro/show/([0-9]+)'] = 'frontend/Dproduct/show3Dpro/$1'; 
+$route['mystation/3dpro/show/([0-9]+)'] = 'frontend/Dproduct/show3Dpro/$1';
+$route['mystation/3dpro/showbeforesave'] = 'frontend/Dproduct/show3Dprobeforesave';
 
 
 /*catalouge */

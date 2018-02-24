@@ -21,8 +21,8 @@
 <br/>
 
 <div id="Layer982" style="width:320px;display:inline;text-align:center;"><!--style="text-align:left;left:332px;top:493px;width:320px;height:85px;z-index:4446;"-->
-	<div id="wb_Shape305" style="width:150px;float: left;text-align:center;margin-left:250px;" ><!--  style="left:5px;top:11px;width:150px;height:32px;z-index:4397;" -->
-			<a href="" onclick="ShowObjectWithEffect('Layer127', 1, 'fade', 300, 'swing');return false;">
+	<div id="wb_Shape305" style="width:150px;float: left;text-align:center;margin-left:250px;" ><!--  style="left:5px;top:11px;width:150px;height:32px;z-index:4397;"-->
+			<a href="#" onclick="test_before_save()">
 				<div id="Shape305" style="display: table;">
 				<div id="Shape305_text" style="vertical-align: middle;display: table-cell;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Test</span></div></div>
 			</a>
