@@ -1423,6 +1423,16 @@
                 }*/
                 shortname = name;
                 longname = name;
+                if(status == "offline")
+                    current_status = language[32];
+                else if(status == "available")
+                    current_status = language[30];
+                else if(status == "busy")
+                    current_status = language[31];
+                else if(status == "invisible")
+                    current_status = language[33];
+                else
+                    current_status = language[34];
                 var userAvatar = '';
                 if(settings.dockedChatBoxAvatar == 1) {
                      userAvatar = '<div class="cometchat_userschatboxavatar"><img class="chatbox_avatar" src="'+jqcc.cometchat.getThemeArray('buddylistAvatar', id)+'" title="'+jqcc.cometchat.getThemeArray('buddylistName', id)+'"></div>';
@@ -1516,8 +1526,10 @@
                 if (audiochathtml == '' && avchathtml == '') {
                     plugin_divider = '';
                 }
-
-                $("<div/>").attr("id", "cometchat_user_"+id+"_popup").addClass('cometchat_tabpopup').addClass('cometchat_'+tabstateclass).html('<div class="cometchat_tabtitle">'+isMobile+'<span id="cometchat_typing_'+id+'" class="cometchat_typing"></span>'+userAvatar+'<div class="cometchat_name" title="'+longname+'">'+longname+'</div><div id="cometchat_closebox_'+id+'" title="'+language[74]+'" class="cometchat_closebox cometchat_floatR cometchat_tooltip"></div>'+plugin_divider+audiochathtml+avchathtml+'<div class="cometchat_plugins_dropdown"><div class="cometchat_plugins_dropdown_icon cometchat_tooltip" id="cometchat_plugins_dropdown_icon_'+id+'" title="'+language[73]+'"></div><div class="cometchat_popup_plugins">'+pluginstophtml+'</div></div></div></div><div class="cometchat_tabcontent"><div class = "cometchat_messagElement cometchat_lastseenmessage" id="cometchat_messagElement_'+id+'"></div><div class="cometchat_tabcontenttext" id="cometchat_tabcontenttext_'+id+'" onscroll="jqcc.'+settings.theme+'.chatScroll(\''+id+'\');"></div><div class="cometchat_tabcontentinput"><div class="cometchat_plugins_openup cometchat_floatL" style="'+plugins_openup_css+'"><div class="cometchat_plugins_openup_icon cometchat_tooltip" id="cometchat_plugins_openup_icon_'+id+'" title="'+language[73]+'"></div><div class="cometchat_popup_convo_plugins">'+pluginsbottomhtml+'</div></div>'+cometchat_textarea_struct+'</div></div>').appendTo($('#cometchat_user_'+id));
+                String.prototype.capitalize = function() {
+                    return this.charAt(0).toUpperCase() + this.slice(1);
+                }
+                $("<div/>").attr("id", "cometchat_user_"+id+"_popup").addClass('cometchat_tabpopup').addClass('cometchat_'+tabstateclass).html('<div class="cometchat_tabtitle">'+isMobile+'<span id="cometchat_typing_'+id+'" class="cometchat_typing"></span>'+userAvatar+'<div class="cometchat_name" title="'+longname+'">'+longname+'</div><div id="cometchat_closebox_'+id+'" title="'+language[74]+'" class="cometchat_closebox cometchat_floatR cometchat_tooltip"></div>'+plugin_divider+audiochathtml+avchathtml+'<div class="cometchat_plugins_dropdown"><div class="cometchat_plugins_dropdown_icon cometchat_tooltip" id="cometchat_plugins_dropdown_icon_'+id+'" title="'+language[73]+'"></div><div class="cometchat_popup_plugins">'+pluginstophtml+'</div></div><br/><div class="cometchat_name">'+current_status.capitalize()+'</div></div></div><div class="cometchat_tabcontent"><div class = "cometchat_messagElement cometchat_lastseenmessage" id="cometchat_messagElement_'+id+'"></div><div class="cometchat_tabcontenttext" id="cometchat_tabcontenttext_'+id+'" onscroll="jqcc.'+settings.theme+'.chatScroll(\''+id+'\');"></div><div class="cometchat_tabcontentinput"><div class="cometchat_plugins_openup cometchat_floatL" style="'+plugins_openup_css+'"><div class="cometchat_plugins_openup_icon cometchat_tooltip" id="cometchat_plugins_openup_icon_'+id+'" title="'+language[73]+'"></div><div class="cometchat_popup_convo_plugins">'+pluginsbottomhtml+'</div></div>'+cometchat_textarea_struct+'</div></div>').appendTo($('#cometchat_user_'+id));
 
                 if(restored!=1){
                     jqcc.cometchat.updateChatBoxState({id:id,s:chatboxstate});

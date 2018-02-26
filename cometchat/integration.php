@@ -110,20 +110,22 @@ $db_usertable_name = 'name';
 * If avatar is in another table use left join for it.
 * Example : LEFT JOIN avatar_table ON user.id = avator_table.userid
 */
-$db_avatartable = ' ';
+$db_avatartable = 'LEFT JOIN tbl_userinfo ON tbl_user.id = tbl_userinfo.user_id';
 
 /**
 * $db_avatarfield : avatar field name.
 * @var string
 */
-$db_avatarfield = ' '.$table_prefix.$db_usertable.'.'.$db_usertable_userid.' ';
+$db_avatarfield = 'profile_image';//.$table_prefix.$db_usertable.'.'.$db_usertable_userid.' ';
 
 /**
 * $db_linkfield : profile link field.
 * @var string
 */
-$db_linkfield = ' '.$table_prefix.$db_usertable.'.'.$db_usertable_userid.' ';
+$db_usertable_busid = 'busi_id';
+$db_linkfield = ' '.$table_prefix.$db_usertable.'.'.$db_usertable_busid.' ';
 
+//$asset_url = BASE_URL.'assets/';
 
 class Integration{
 
@@ -141,6 +143,8 @@ class Integration{
 			$this->defineFromGlobal('db_linkfield');
 			$this->defineFromGlobal('role_base_access');
 			$this->defineFromGlobal('enabled_credit');
+			//$this->defineFromGlobal('asset_url');
+
 		}
 	}
 
@@ -326,7 +330,12 @@ class Integration{
   * @return default avatar
   */
 	function getAvatar($image) {
-		return BASE_URL.'images/noavatar.png';
+		//return BASE_URL.'images/noavatar.png';
+		if (is_file(dirname(dirname(__FILE__)).'/assets/'.$image)) {
+        	return BASE_URL.'../assets/'.$image;
+    	} else {
+        	return BASE_URL.'images/noavatar.png';
+    	}
 	}
 
 	function getTimeStamp() {

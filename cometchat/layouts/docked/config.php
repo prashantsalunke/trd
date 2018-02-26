@@ -12,7 +12,7 @@ $showSettingsTab = setConfigValue('showSettingsTab', '1');
 $showOnlineTab = setConfigValue('showOnlineTab', '1');
 $showModules = setConfigValue('showModules', '1');
 $chatboxHeight = setConfigValue('chatboxHeight', '350');
-$chatboxWidth = setConfigValue('chatboxWidth', '230');
+$chatboxWidth = setConfigValue('chatboxWidth', '270');//MODIFIED BY VCOMMERS
 
 if($chatboxHeight < '350'){
 	$chatboxHeight = '350';

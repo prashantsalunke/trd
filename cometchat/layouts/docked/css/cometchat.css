@@ -198,7 +198,7 @@ input#cometchat_search:focus {
     <?php endif;?>
     z-index: 3000;
     margin: 0 15px 0 0;
-    background-color: <?php echo $layoutSettings['primary_color']; ?>;
+    background-color: <?php echo $layoutSettings['custom_dark_grey']; ?>;//MODIFIED BY VCOMMERS
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-bottom: 0;
@@ -220,7 +220,7 @@ input#cometchat_search:focus {
     right: 15px;
     <?php endif;?>
     overflow: hidden;
-    box-shadow: none;
+    box-shadow: 0px 5px 5px 6px #cccccc;//MODIFIED BY VCOMMERS
 }
 
 #cometchat_userstab_popup:after {
@@ -255,6 +255,7 @@ input#cometchat_search:focus {
     width: <?php echo $chatboxWidth.'px';?>;
     z-index: 100001;
     bottom: 0px;
+    box-shadow: 0px 5px 5px 6px #cccccc;//MODIFIED BY VCOMMERS
 }
 
 .cometchat_userstabtitle:hover, .cometchat_new_message_titlebar, .cometchat_socialuserstabtitle:hover {
@@ -271,7 +272,7 @@ input#cometchat_search:focus {
     font-weight: normal;
     padding: 8px 8px;
     height: 20px;
-    background-color: <?php echo $layoutSettings['primary_color']; ?>;
+    background-color: <?php echo $layoutSettings['custom_dark_grey']; ?>!important;//MODIFIED BY VCOMMERS
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     box-shadow: 0px 4px 6px -6px #3A3B3C;
@@ -1057,7 +1058,7 @@ span#cometchat_blockeduserscount {
     display: table-cell;
     height:28px;
     text-align: center;
-    border-bottom: 2px solid <?php echo $layoutSettings['primary_color']; ?>;
+    border-bottom: 2px solid <?php echo $layoutSettings['custom_dark_grey']; ?>;//MODIFIED BY VCOMMERS
 }
 
 span.cometchat_tabstext{
@@ -1092,15 +1093,15 @@ span.cometchat_tabstext{
 }
 
 #cometchat_tabcontainer .cometchat_tab:hover {
-    background: <?php echo $layoutSettings['primary_color']; ?>;
+    background: <?php echo $layoutSettings['custom_dark_grey']; ?>;//MODIFIED BY VCOMMERS
     color: <?php echo $layoutSettings['color_white']; ?>;
 }
 
 #cometchat_tabcontainer .cometchat_tab_clicked {
     cursor: default;
-    background: <?php echo $layoutSettings['primary_color']; ?>;
+    background: <?php echo $layoutSettings['custom_dark_grey']; ?>; !important;//MODIFIED BY VCOMMERS
     color: <?php echo $layoutSettings['color_white']; ?>;
-    border-color: <?php echo $layoutSettings['primary_color']; ?> !important;
+    border-color: <?php echo $layoutSettings['custom_dark_grey']; ?> !important;//MODIFIED BY VCOMMERS
 }
 
 #cometchat_chatboxes {
@@ -1118,7 +1119,7 @@ span.cometchat_tabstext{
 }
 
 #cometchat_chatboxes_wide .cometchat_tab {
-    background: <?php echo $layoutSettings['primary_color']; ?>;
+    background: <?php echo $layoutSettings['custom_dark_grey']; ?>;//MODIFIED BY VCOMMERS
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border-bottom: 0;
@@ -1130,7 +1131,7 @@ span.cometchat_tabstext{
 }
 
 .cometchat_tabtitle {
-    background-color: <?php echo $layoutSettings['primary_color'];?>;
+    background-color: <?php echo $layoutSettings['custom_dark_grey'];?>;//MODIFIED BY VCOMMERS
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     cursor: pointer;
@@ -1279,7 +1280,7 @@ textarea.cometchat_textarea {
     background-color: #e6e9ed;
     border-radius: 10px;
     font-size: <?php echo $layoutSettings['font_size_mid']; ?>;
-    max-width: <?php echo ($chatboxWidth - 120).'px';?>;
+    max-width: <?php echo ($chatboxWidth - 112).'px';?>;//MODIFIED BY VCOMMERS
 }
 
 .cometchat_chatboxmessage {
