@@ -54,7 +54,7 @@
 						<div class="row">
 							<div class="col-sm-12 product-item-name"><?php echo $product['name'];?></div>
 							<div class="col-sm-12 product-item-desc"><?php echo substr($product['description'],0,250);?> ...</div>
-							<div class="col-sm-12 product-item-qty"><a href="javascript:clickToPreview();" style="color:#1E90FF;font-family:Arial;font-size:12px;">Click To Preview</a></div>
+							<!--<div class="col-sm-12 product-item-qty"><a href="javascript:clickToPreview();" style="color:#1E90FF;font-family:Arial;font-size:12px;">Click To Preview</a></div>-->
 						</div>
 					</div>
 				</div>
