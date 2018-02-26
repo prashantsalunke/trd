@@ -1,6 +1,8 @@
 <!-- css js -->
 <link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
 <link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>cometchat/css.php" />
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>cometchat/js.php"></script>
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
@@ -1095,9 +1097,10 @@ function myloaderoff()
 				        	Add To Community
 						</a>
 				    </div>
+                    
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/cha0t.png" alt="Chat" class="add-share-img">
-				        <a href="javascript:openChatWithBuyer(<?php echo isset($Desksites[0]['busi_id'])?>);" target="_self" class="antag">
+				        <a onclick="javascript:jqcc.cometchat.chatWith(<?php echo $Desksites[0]['id']?>);" class="antag">
 				        	Chat
 						</a>
 				    </div>

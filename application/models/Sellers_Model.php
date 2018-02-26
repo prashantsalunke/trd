@@ -688,7 +688,7 @@ class Sellers_Model extends CI_Model {
     }
     
     public function searchProducts($params){
-    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank, e.name_prefix,e.name as user_name, h.sub_category, g.*, d.name as main_category_name,  d.id as main_category_id, l.id as community_id,IFNULL(n.picture,f.profile_image) as profile_image,n.name as contact_name,n.name_prefix as contact_prefix ');
+    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,e.id as user_id, e.name_prefix,e.name as user_name, h.sub_category, g.*, d.name as main_category_name,  d.id as main_category_id, l.id as community_id,IFNULL(n.picture,f.profile_image) as profile_image,n.name as contact_name,n.name_prefix as contact_prefix ');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$USER.' AS e','a.busi_id=e.busi_id','inner');
