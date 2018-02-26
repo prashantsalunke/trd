@@ -12,6 +12,7 @@ $layoutSettings['dark_grey_color'] = '#383535';
 $layoutSettings['border_color'] = '#E6E7EA';
 $layoutSettings['main_background'] = '#EEEEEE';
 $layoutSettings['color_white'] = '#ffffff';
+$layoutSettings['custom_dark_grey'] = '#282e39';//ADDED BY VCOMMERS
 
 $layoutSettings['text_color'] = '#4A4848';
 $layoutSettings['font_family'] = '"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif';
@@ -19,6 +20,7 @@ $layoutSettings['font_family'] = '"Lucida Grande",Verdana,Arial,"Bitstream Vera 
 $layoutSettings['font_size_large'] = '15px';
 $layoutSettings['font_size_mid'] = '13px';
 $layoutSettings['font_size_small'] = '10px';
+$layoutSettings['custom_font_size_mid'] = '12px';
 
 $layoutSettings['font_size_embed'] = '14px';
 

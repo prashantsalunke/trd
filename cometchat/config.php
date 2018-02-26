@@ -618,7 +618,7 @@ define('ADMIN_PASS',setConfigValue('ADMIN_PASS','cometchat'));
 * Hide offline users in Who's Online list?
 * @var boolean
 */
-$hideOffline = setConfigValue('hideOffline','1');
+$hideOffline = setConfigValue('hideOffline','0');
 
 /**
 * $disableRecentTab
