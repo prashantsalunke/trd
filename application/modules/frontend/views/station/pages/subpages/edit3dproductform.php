@@ -12,7 +12,7 @@
   		<div class="row">
 	  		<div class="col-md-12">
 	  			<span style="color:#3C3C3C;font-family:'Arial Black';font-size:16px;">STEP 1</span>
-	  			<span style="padding-left:22px;color:#2D2D2D;font-family:Arial;font-size:11px;">The following product has beeb linked successfully</span>
+	  			<span style="padding-left:22px;color:#2D2D2D;font-family:Arial;font-size:11px;">The following product has been linked successfully</span>
 	  		</div>
 	  	</div><br><br>
 	  	<input type="hidden" name="did" value="<?php echo $productdata[0]['did'];?>" id="did" />
