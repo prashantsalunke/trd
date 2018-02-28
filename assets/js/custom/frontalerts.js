@@ -25,10 +25,12 @@ function inquiryreplay()
 }
 function openFavoriteInfo(type)
 {
+	alertajaxindicatorstart('Loading...');
 	$.post(base_url+"mystation/favoriteinfo",{type:type},function(data){
 		$("#alertbodypanel").html(data);
 		$(".alerts-btn-selected").removeClass('alerts-btn-selected');
 		$("#alert-fab-"+type).addClass('alerts-btn-selected');
+		alertajaxindicatorstop();
 		if(type == 1)
 		{
 			$("#seller_div").show();

@@ -4,10 +4,11 @@
 <title><?php echo $template['title']; ?></title>
 <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The World's First Social B2B Platform">
-<meta name="keywords" content="sourcing product, e-commerce, business, trade, commerce, community, video tube, business chat, buyers, sellers, shippers, products, china. exporters, suppliers">
-<meta name="author" content="Pradeep Singh">
-<meta name="categories" content="E-Commerce">
+<meta name="description" content="The World's First Interactive Social B2B Platform">
+<meta name="keywords" content="sourcing product, e-commerce, business, trade, stocks, commerce, community, video tube, business
+chat, buyers, sellers, shippers, products, china, exporters, suppliers, shipping, cargo, b2b">
+<meta name="author" content="Hazem Mohamed Zaki">
+<meta name="categories" content="B2B E-commerce">
 <meta name="generator" content="Hotline Internet & Technology Co. Ltd.">
 <?php if(!empty($browser_icon)) { ?>
 <link href="<?php echo asset_url(); ?>images/<?php echo $browser_icon;?>" rel="shortcut icon" type="image/x-icon">
@@ -86,6 +87,7 @@ img.withloader {
   background: url('<?php echo asset_url();?>images/loading.gif') no-repeat center;
 }
 </style>
+<link href="http://localhost/trd/assets/css/pages/mystation.css?1.1" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -96,6 +98,7 @@ img.withloader {
 </script>
 <script src="<?php echo asset_url(); ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/bootstrap.js"></script>
+<script src="http://localhost/trd/assets/js/custom/mystation.js?1.1"></script>
 <script>
 function customAlert(msg) {
 	$("#customAlertText").html(msg);

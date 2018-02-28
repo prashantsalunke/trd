@@ -105,12 +105,20 @@ a.style5:hover
    text-decoration: underline;
 }
 </style>
-<?php  if(count($favoritevedio) > 0 && $favoritevedio[0]['id'] !='') { 
+<?php 
+if(isset($favoritevedio)) {
+if(count($favoritevedio) > 0 && $favoritevedio[0]['id'] !='') { 
 		 foreach($favoritevedio as $key=>$video){ 
-		  ?>	
-			<div class="col-lg-4 colpadbottom" style="padding:0px;padding-right:28px;margin-bottom: 15px;">
+		  ?>
+		  <div class="col-sm-1 chkbox-div text-center" style="padding-left:0px !important;width: 42px;">
+		<input type="checkbox" id="chkseller-<?php echo $key;?>" onclick="toggleDeleteDive('btndelete-<?php echo $key;?>','chkseller-<?php echo $key;?>');" name="chkseller-"  value="on" />
+		<div id="btndelete-<?php echo $key;?>" style="width: 24px; height: 34px; padding-top:10px;display:none;">
+			<a href="#" onclick="delete_favorite();"><img src="<?php echo asset_url();?>images/delete.png" id="Image160" alt=""></a>
+		</div>
+	</div>	
+			<div class="col-lg-4 colpadbottom" style="margin-bottom: 15px;width: 31.5% !important;margin-left: -26px;">
 		
-				<div id="Layer66" onmouseenter="showMenu('Layer8_<?php echo $key;?>');" onmouseleave="hideMenu('Layer8_<?php echo $key;?>');" style="z-index: 434;padding:20px 14px;background-color: #FAFAFA;border: 1px #D3D3D3 solid;">
+				<div id="Layer66" onmouseenter="showMenu('Layer8_<?php echo $key;?>');" onmouseleave="hideMenu('Layer8_<?php echo $key;?>');" style="background-color: #fafafa;border: 1px solid #d3d3d3;height: 350px;padding: 20px 14px;width: 309px;z-index: 434;">
 					<div>
 						<span class="video-title">
 							<strong><a href="<?php echo base_url();?>video/details/<?php echo $video['id'];?>" target="_blank" class="style16"><?php echo $video['name'];?></a></strong>
@@ -131,7 +139,8 @@ a.style5:hover
 					<br>
 					<div>
 						<div class="video-area" style="text-align:center;">
-							<video src="<?php echo asset_url(); ?><?php echo $video['vedio_file'];?>" controls="controls" style="max-height:164px;"></video>
+							<video src="<?php echo asset_url(); ?><?php echo $video['vedio_file'];?>" controls="controls" style="max-height: 100px;
+max-width: 250px;"></video>
 						</div>
 						<br>
 						<div class="text-center">
@@ -176,8 +185,8 @@ a.style5:hover
 							</span-->
 						</div>
 					</div>
-					<div id="Layer8_<?php echo $key;?>" style="position: absolute; text-align: left;left: 0px; top: 320px; width: 327px; height: 89px; z-index: 168;display:none;">
-						<div id="Layer19" style="position:absolute;text-align:left;left:0px;top:0px;width:327px;height:89px;z-index:149;">
+					<div id="Layer8_<?php echo $key;?>" style="display: none;height: 75px;left: 1px;position: absolute;text-align: left;top: 274px;width: 318px;z-index: 168;">
+						<div id="Layer19" style="height: 75px;left: 0;position: absolute;text-align: left;top: 0;width: 318px;z-index: 149;">
 						</div>
 						<div style="background-color:#fff;opacity:1;z-index:24000;">
 							<div id="RollOver22" class="rolloverdetail">
@@ -211,7 +220,7 @@ a.style5:hover
 	      <div class="row" style="margin:0px;">
 	     	<h4 class="center"> No Videos Found!</h4>
 	     </div>
-	    <?php } ?>
+	    <?php } } ?>
 <script>
 function showMenu(id) {
 	$("#"+id).show();
