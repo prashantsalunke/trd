@@ -16,14 +16,14 @@
     height: 44px;
     border: 0px;
 }
-.alerts-btn:hover {
+/*.alerts-btn:hover {
 	width:80px !important;
     font-size: 13px !important;
     font-family: Arial;
     height: 44px;
     border: 0px !important;
     background-color: #F05539 !important;
-}
+}*/
 .alerts-btn-selected {
     height: 44px;
     font-size: 13px !important;

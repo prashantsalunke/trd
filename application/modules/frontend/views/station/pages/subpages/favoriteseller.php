@@ -125,14 +125,15 @@ a.style5:hover
 
 </style>
 <?php 
+if(isset($favoriteseller)) {
 if(count($favoriteseller) > 0 && $favoriteseller[0]['id'] !='') { 
 	$i =1;
 	foreach($favoriteseller as $key=>$seller) { 
 ?>
 <div class="row row-custom margin-bottom-20">
-	<div class="col-sm-1 chkbox-div text-center" style="width:45px;">
+	<div class="col-sm-1 chkbox-div text-center" style="width:35px;">
 		<input type="checkbox" id="chkseller-<?php echo $i;?>" onclick="toggleDeleteDive('btndelete-<?php echo $seller['favorite_id'];?>','chkseller-<?php echo $i;?>');" name="chkseller-<?php echo $i;?>"  value="on" />
-		<div id="btndelete-<?php echo $seller['favorite_id'];?>" style="width: 24px; height: 34px; padding-top:10px;display:none;">
+		<div id="btndelete-<?php echo $seller['favorite_id'];?>" style="width: 24px; height: 34px; padding-top:10px;display:none;margin-left: -4px;">
 			<a href="#" onclick="delete_favorite(<?php echo $seller['favorite_id'];?>,1);"><img src="<?php echo asset_url();?>images/delete.png" id="Image160" alt=""></a>
 		</div>
 	</div>
@@ -282,4 +283,4 @@ if(count($favoriteseller) > 0 && $favoriteseller[0]['id'] !='') {
   <div class="row" style="margin:0px;">
  	<h4 class="center"> No Videos Found!</h4>
  </div>
-<?php } ?>
+<?php } } ?>

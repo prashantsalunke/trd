@@ -1,10 +1,11 @@
 	<?php 
+	if(isset($favoriteproduct)) {
 if(count($favoriteproduct) > 0 && $favoriteproduct[0]['id'] !='') { 
 
 	$i =1; foreach($favoriteproduct as $key=>$seller) { ?>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="col-md-1" style="padding-top: 66px;text-align:center;">
+				<div style="float: left;margin-right: 20px;padding-top: 66px;text-align: center;">
 					<input type="checkbox" id="chkproduct-<?php echo $i;?>" onclick="toggleDeleteDive('btnproductdelete-<?php echo $seller['favorite_id'];?>','chkproduct-<?php echo $i;?>');" name="chkproduct-<?php echo $i;?>"  value="on" >
 					<div id="btnproductdelete-<?php echo $seller['favorite_id']; ?>" style="width: 24px; height: 34px; padding-top:10px;margin:auto;display:none;">
 							<a href="#" onclick="delete_favorite(<?php echo $seller['favorite_id'];?>,4);"><img src="<?php echo asset_url();?>images/delete.png" id="Image160" alt=""></a>
@@ -13,8 +14,8 @@ if(count($favoriteproduct) > 0 && $favoriteproduct[0]['id'] !='') {
 						<div class="col-md-11" style="padding:0px;">			
 							<div id="prLayer178-<?php echo $key;?>" style="width:970px; height: 185px;" onmouseenter="ShowObjectWithEffect('prLayer525-<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;"
 									onmouseleave="ShowObject('prLayer213-<?php echo $key;?>', 0);ShowObject('prLayer525-<?php echo $key;?>', 0);return false;">
-							<div id="Layer179" style="position: absolute; text-align: left; left: 1px; top: 1px; width: 970px; height: 175px; z-index: 1258;background-color: #FAFAFA;border: 1px #D3D3D3 solid;">
-								<div id="Layer210" style="position: absolute; text-align: left; left: 748px; top: 1px; width: 220px; height: 172px; z-index: 1244;background-color: #FFFFFF;">
+							<div id="Layer179" style="position: absolute; text-align: left; left: 1px; top: 1px; width: 1000px; height: 175px; z-index: 1258;background-color: #FAFAFA;border: 1px #D3D3D3 solid;">
+								<div id="Layer210" style="position: absolute; text-align: left; left: 777px; top: 1px; width: 220px; height: 172px; z-index: 1244;background-color: #FFFFFF;">
 									<div id="wb_Text591" style="position: absolute; left: 108px; top: 72px; width: 97px; height: 15px; z-index: 1233; text-align: left;">
 											<span style="color: #808080; font-family: Georgia; font-size: 12px;"><?php echo $seller['sub_category'];?></span>
 									</div>
@@ -128,7 +129,7 @@ if(count($favoriteproduct) > 0 && $favoriteproduct[0]['id'] !='') {
 										<img src="<?php echo asset_url();?>images/img1242.png" id="Image114" alt="" style="width:100%;">
 									</div>
 								</div>
-								<div id="prLayer525-<?php echo $key;?>"  style="position: absolute; text-align: left; visibility: hidden; left: 923px; top: 1px; width: 48px; height: 174px; z-index: 1263;background-color: #FFFFFF;border: 1px #C0C0C0 solid;" onclick="ShowObjectWithEffect('Layer213-<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
+								<div id="prLayer525-<?php echo $key;?>"  style="position: absolute; text-align: left; visibility: hidden; left: 953px; top: 1px; width: 48px; height: 174px; z-index: 1263;background-color: #FFFFFF;border: 1px #C0C0C0 solid;" onclick="ShowObjectWithEffect('Layer213-<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
 									<div id="wb_Shape1"  style="position: absolute; left: 18px; top: 59px; width: 11px; height: 48px; z-index: 1257;">
 										<a href="#" onclick="ShowObjectWithEffect('prLayer213-<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
 											<img src="<?php echo asset_url();?>images/img1243.png" id="Shape1" alt="" style="width: 11px; height: 48px;">
@@ -143,4 +144,4 @@ if(count($favoriteproduct) > 0 && $favoriteproduct[0]['id'] !='') {
   <div class="row" style="margin:0px;">
  	<h4 class="center"> No Videos Found!</h4>
  </div>
-<?php } ?>
+<?php } } ?>
