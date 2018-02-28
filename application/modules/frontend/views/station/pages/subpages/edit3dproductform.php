@@ -33,10 +33,10 @@
 						</div>
 					</div>
 				</div>
-				<!--<div class="col-md-2">
+				<div class="col-md-2">
 					<img src="<?php echo asset_url();?>images/tick-big.png" style=""><br><br><br>
 					<a href="#" data-toggle="modal"  onclick="getproductlist();" data-target="#editdproduct_modal" backdrop='static'><span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u>Change</u></span></a>
-				</div>-->
+				</div>
 	  		</div>
 	  	</div><br><br>
 	  	<div class="row">
@@ -98,10 +98,12 @@
     	</div>
   	</div>
 </div>
+<div id="promodal_edit">
+</div>
  <script>
  function open3DProduct(id) {
 	$.get(base_url+"mystation/3dpro/show/"+id, {}, function(data){
-		$("#promodal").html(data);
+		$("#promodal_edit").html(data);
 		$("#my3DModal").modal('show');
 		init3D('my3dimg');
 	},'html');
