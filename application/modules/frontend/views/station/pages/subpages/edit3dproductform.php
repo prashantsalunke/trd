@@ -69,7 +69,7 @@
 	  				<button type="button" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;" onclick="open3DProduct(<?php echo $productdata[0]['did'];?>);"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Test</span></button>
 	  			</div>
 	  			<div class="col-md-2" >
-	  				<button type="button"  onclick="createlink();" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Link Product</span></button>
+	  				<button type="button"  onclick="createlink();" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Update</span></button>
 	  			</div>
 			</div>
 	  	</div><br><br>
