@@ -333,7 +333,6 @@ function addCatalogue() {
 			} else {
 				$("#edit_cat_btn").click();
 				customAlert(resp.msg);
-				setTimeout(function() {
 				$.get(base_url+"mystation/catalogue/content/"+resp.id,{},function(data){
 					$("#catalogue_page_content").html(data);
 					$("#pcatalogue_id").val(resp.id);
@@ -341,7 +340,6 @@ function addCatalogue() {
 					ajaxindicatorstop();
 					$("#vcatalogue_overlay").modal('show');
 				},'html');
-				}, 3000);
 			}
 		},'json');
 	}
