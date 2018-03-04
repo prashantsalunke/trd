@@ -110,7 +110,7 @@
 								<div style="text-align: center;padding-top:22px;padding-bottom:22px;">
 									<input type="button"  onclick="selectproduct();" id="btnuseproduct"  name="" value="Use" style="width:158px;height:25px;">
 								</div>
-								<div id="productlist" style="max-height:500px;">
+								<div id="productlist" style="max-height:500px;overflow-x: scroll;">
 								
 								</div>
 							</form>

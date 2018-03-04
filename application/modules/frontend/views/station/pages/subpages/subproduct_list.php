@@ -15,7 +15,7 @@
 	</div>
 	<div class="col-sm-12 product-list-row">
 		<div class="col-sm-1 product-select">
-			<input type="checkbox" name="chkproduct_id"  id="chkproduct_id" value="<?php echo $product['id'];?>">
+			<input type="checkbox" name="chkproduct_id"  id="chkproduct_id<?php echo $product['id'];?>"value="<?php echo $product['id'];?>">
 		</div>
 		<div class="col-sm-7">
 			<img src="<?php echo asset_url();?><?php echo $product['sub_image1'];?>" class="subproduct-item-image" alt="" />

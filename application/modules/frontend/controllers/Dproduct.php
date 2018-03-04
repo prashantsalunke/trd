@@ -82,13 +82,20 @@ class Dproduct extends MX_Controller {
 		//$poductitem = $this->dproductlib->getProductByName($params);
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$name = $this->input->post('product');
+
 		$params = array();
 		$params['busi_id'] = $busi_id;
 		$params['name'] = $name;
 		$this->load->model('Product_Model','product');
 		$products = $this->product->searchActiveProductItems($params);
 		if(count($products) > 0) {
+			$selected_products = array();
+			if($this->input->post('preselect') == true)
+			{
+				$selected_products = explode(',', $this->input->post('selected_productids'));
+			}
 			$this->template->set ( 'products', $products );
+			$this->template->set ( 'selected_products', $selected_products );
 			$this->template->set ( 'page', 'home' );
 			$this->template->set_theme('default_theme');
 			$this->template->set_layout (false);
@@ -529,6 +536,25 @@ class Dproduct extends MX_Controller {
 		$this->load->library('mylib/Dproductlib');
 		$productdata = $this->dproductlib->getProductById($product_id);
 		echo json_encode($productdata);
+	}
+	public  function getSelectedProductLists()
+	{
+		$product_ids = $this->input->post('productids');
+		$products = $this->product->getSelectedProductsByIds($product_ids);
+		//print_r($products);
+		if(count($products) > 0) {
+			$this->template->set ( 'products', $products );
+			$this->template->set ( 'page', 'home' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout (false);
+			$html = $this->template->build ('station/pages/subpages/selected_products_list','',true);
+		} else {
+			$html = "Sorry we do not found any item for your search criteria.";
+		}
+		echo $html;
+		/*$this->load->library('mylib/Dproductlib');
+		$productdata = $this->dproductlib->getProductById($product_id);
+		echo json_encode($productdata);*/
 	}
 	function changImage()
 	{
