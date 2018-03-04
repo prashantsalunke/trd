@@ -45,10 +45,10 @@
 				<div id="catalogue_page_content" class="catalogue_outer_body">
 				</div>
 			</div>
-			<div class="modal-footer" style="border:0px;text-align:center;padding-top:0px;">
+			<!--<div class="modal-footer" style="border:0px;text-align:center;padding-top:0px;">
 				<button type="button" id="publish_catalogue" class="btn btn-sm btn-danger-custom" onclick="publishCatalogue();">Publish</button>
 				<button type="button" id="edit_catalogue" class="btn btn-sm btn-danger-custom" onclick="editCatalogue();">Edit</button>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </div>
