@@ -113,7 +113,7 @@
 	  	<br/><br/><br/>
   		<div class="row"  style="padding-top: 35px;text-align:center">
 	  		<div class="col-md-8" style="width:100%">
-	  			<button type="button"  style="text-align: center; width: 148px;height:25px;background-color: #3C3C3C; border:none;" onclick="addCatalogue();"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Create</span></button>
+	  			<button type="button"  style="text-align: center; width: 148px;height:25px;background-color: #3C3C3C; border:none;" onclick="addCatalogue(<?php echo $max_vc;?>,<?php echo count($catalogues); ?>);"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Create</span></button>
 	  			<button type="button"  style="text-align: center; width: 148px;height:25px;background-color: #3C3C3C; border:none;" onclick="openAddCatalouge();"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Cancel</span></button>
 	  		</div>		
 	  	</div>
@@ -162,13 +162,12 @@ $('#catalogue-pic').on('change', function() {
     	 }
          reader.readAsDataURL(this.files[0]);
          savetemparary();
-
          var ias = $('#photo').imgAreaSelect( {
              aspectRatio: '1:1',
-             maxWidth: 200, 
+             /*maxWidth: 200, 
              maxHeight: 200,
              minWidth: 200, 
-             minHeight: 200,
+             minHeight: 200,*/
              x1: 0,
              y1: 0, 
              x2: 200,
@@ -312,11 +311,13 @@ function searchProducts() {
 	}
 }
 
-function addCatalogue() {
-	
+function addCatalogue(max_cat_allowed,total_catalogues) {
 	var selected_products = $("#productid").val();
 	var checkcount = selected_products.split(',');
-	if($("#catalogue_title").val() == "")
+	if(total_catalogues >= max_cat_allowed)
+	{
+		customAlert("Your subscription plan allows you to create only "+max_cat_allowed+" catalogue, Please delete old catalogue or upgrade your subscription.")
+	}else if($("#catalogue_title").val() == "")
 	{
 		customAlert("Please enter catalogue name");
 	}else if($("#vcataloguepath").val() == ""){

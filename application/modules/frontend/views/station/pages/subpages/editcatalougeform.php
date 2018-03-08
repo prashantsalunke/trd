@@ -74,9 +74,6 @@
 			  	</div>-->
 			   </div>
 	   		</div>
-	   		<div class="row">
-	   			<br><br><br><br><br><br>
-	   		</div>
  	</form>
  	<div id="vcatalogue_ps_modal" class="modal fade">
 	<div class="modal-dialog" style="">
@@ -132,10 +129,10 @@ $('#catalogue-pic').on('change', function() {
 
          var ias = $('#photo').imgAreaSelect( {
              aspectRatio: '1:1',
-             maxWidth: 200, 
+             /*maxWidth: 200, 
              maxHeight: 200,
              minWidth: 200, 
-             minHeight: 200,
+             minHeight: 200,*/
              x1: 0,
              y1: 0, 
              x2: 200,

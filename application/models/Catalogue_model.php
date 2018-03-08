@@ -41,6 +41,7 @@ class Catalogue_model extends CI_Model {
     	$this->db->select('*');
     	$this->db->from(TABLES::$PRODUCT_CATALOGUE);
     	$this->db->where('busi_id',$busi_id);
+        $this->db->order_by('id','DESC');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;

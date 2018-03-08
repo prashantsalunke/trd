@@ -34,7 +34,7 @@
 				  			<div class="col-sm-2" style="padding-top: 25px;">
 				  				<input type="checkbox" id="catalogue_chk_id" name="catalogue_chk_id" value="<?php echo $catalogue['id'];?>" />
 				  			</div>
-				  			<div class="col-sm-5" style="width: 161px;height: 231px;padding-top: 124px;padding-left: 54px;background-image:url('<?php echo asset_url();?>images/vCAT2.png')" >
+				  			<div class="col-sm-5" style="width: 200px;height: 231px;padding-top: 124px;padding-left: 54px;background-image:url('<?php echo asset_url();?>images/vCAT2.png')" >
 				  				<img src="<?php echo asset_url();?><?php echo $catalogue['catalogue_cover'];?>"  style="width:73px;height:72px;border-radius:50%;"><br>
 				  				<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $catalogue['catalogue_title'];?> </strong></span>
 				  			</div>
