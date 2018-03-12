@@ -214,11 +214,11 @@ function editproductlist()
 		alert("Please select Product ");
 	}
 }	
-function searchProduct()
+function searchProduct(preselect=false)
 {
 	var product = document.getElementById('product_item').value;
 	if(product != ""){
-		$.post(base_url+"mystation/product_item",{'product': product},function(data){
+		$.post(base_url+"mystation/product_item",{'product': product,"preselect":preselect,"selected_productids":$("#productid").val()},function(data){
 			$("#productlist").html(data);
 		});
 	} else {

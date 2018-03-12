@@ -246,7 +246,8 @@ $route['mystation/publish3dimages'] = 'frontend/Dproduct/publish3dImages';
 $route['mystation/change3dimages'] = 'frontend/Dproduct/change3dimages';
 
 $route['mystation/getproductlist'] = 'frontend/Dproduct/getProductList'; 
-$route['mystation/getproductbyid'] = 'frontend/Dproduct/getProductById'; 
+$route['mystation/getproductbyid'] = 'frontend/Dproduct/getProductById';
+$route['mystation/getselectedproductlists'] = 'frontend/Dproduct/getSelectedProductLists';
 $route['mystation/changimage'] = 'frontend/Dproduct/changImage'; 
 $route['mystation/changelinkproduct'] = 'frontend/Dproduct/changeLinkProduct'; 
 $route['mystation/messagedproduct'] = 'frontend/Dproduct/messageDproduct'; 

@@ -185,7 +185,7 @@ a.style5_99:hover
     font-family: Arial;
     height: 44px;
 }
-.alerts-btn:hover {
+/*.alerts-btn:hover {
     font-size: 13px !important;
     font-family: Arial;
     height: 44px;
@@ -195,7 +195,7 @@ a.style5_99:hover
    -moz-transition: background-color 500ms linear 0ms;
    -ms-transition: background-color 500ms linear 0ms;
    transition: background-color 500ms linear 0ms;
-}
+}*/
 .alerts-btn-selected {
     height: 44px;
     font-size: 13px !important;

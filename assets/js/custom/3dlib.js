@@ -10,9 +10,9 @@ function init3D(id) {
 		var mouse_X=event.pageX;
 		var mouse_Y=event.pageY;
 		if(mouse_X-center_X<=0){
-			moveImg(mouse_X,mouse_Y,'left')
-		}else{
 			moveImg(mouse_X,mouse_Y)
+		}else{
+			moveImg(mouse_X,mouse_Y,'left')
 		}
 	});
 	function moveImg(m_X,m_Y,dir){
