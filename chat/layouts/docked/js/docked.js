@@ -174,7 +174,7 @@
                 var contactstab = '';
 
                 if(settings.disableRecentTab == 0) {
-                    recenttab = '<div id="cometchat_recenttab" class="cometchat_tab" unselectable="on"><span id="cometchat_recenttab_text" class="cometchat_tabstext">'+language['recent_chats']+'</span></div>';
+                    recenttab = '<div id="cometchat_recenttab" class="cometchat_tab" unselectable="on"><span id="cometchat_recenttab_text" class="cometchat_tabstext">'+language['recent_chats']+'</span><span id="cometchat_custom_minimize_userstabpopup" style="text-align:right;float: right;"><img src="'+baseUrl+'images/minus-symbol.png"/></span></div>';
                     recentchats = '<div id="cometchat_recentlist" class="cometchat_tabhidden"><div id="cometchat_recentlist_content"><div class="cometchat_recentlisttext">'+language['no_recent_chats']+'</div></div></div>';
                     tabcount++;
                 }
@@ -197,9 +197,9 @@
                 if(settings.showOnlineTab==1){
                     tabcontent = '<div class=\'cometchat_tablerow\'>'+recenttab+contactstab+groupstab+'</div>';
 
-                    usertab = '<span id="cometchat_userstab" class="cometchat_tab"><span id="cometchat_userstab_text">'+language[9]+'</span></span>';
+                    usertab = '<span id="cometchat_userstab" class="cometchat_tab" style="display:none;"><span id="cometchat_userstab_text">'+language[9]+'</span></span>';
 
-                    usertabpop = '<div id="cometchat_userstab_popup" class="cometchat_tabpopup cometchat_tabhidden"><div class="cometchat_userstabtitle"><div class="cometchat_userstabtitletext cometchat_tabtitle_header">'+language[9]+'</div><div class="cometchat_closebox cometchat_tooltip" id="cometchat_minimize_userstabpopup" title="'+language[62]+'"></div><div class="cometchat_vline"></div>'+newchatoption+announcementmodule+'<div id="cometchat_moreicon" class="cometchat_tabicons"></div></div><div id="cometchat_tabcontainer">'+tabcontent+'</div>'+findUser+'<div class="cometchat_tabcontent cometchat_tabstyle"><div id="cometchat_userscontent">'+recentchats+buddylist+groups+'</div></div></div>';
+                    usertabpop = '<div id="cometchat_userstab_popup" class="cometchat_tabpopup cometchat_tabhidden" style="display:none;"><div class="cometchat_userstabtitle"><div class="cometchat_userstabtitletext cometchat_tabtitle_header">'+language[9]+'</div><div class="cometchat_closebox cometchat_tooltip" id="cometchat_minimize_userstabpopup" title="'+language[62]+'"></div><div class="cometchat_vline"></div>'+newchatoption+announcementmodule+'<div id="cometchat_moreicon" class="cometchat_tabicons"></div></div><div id="cometchat_tabcontainer">'+tabcontent+'</div>'+findUser+'<div class="cometchat_tabcontent cometchat_tabstyle"><div id="cometchat_userscontent">'+recentchats+buddylist+groups+'</div></div></div>';
                 }
                 var loggedout = '<div id="loggedout" class="cometchat_tab cometchat_tooltip" title="'+language[8]+'"></div>';
                     loggedout = '';
@@ -449,8 +449,13 @@
                 jqcc('#cometchat_authlogout').click(function(e){
                     jqcc[settings.theme].authLogout();
                 });
-
+                //ADDED BY VCOMMERS
                 jqcc('#cometchat_minimize_userstabpopup').click(function(e){
+                    jqcc('#cometchat_userstab_popup').css('display','none');
+                    jqcc('#cometchat_userstab').css('display','none');
+                });
+                
+                jqcc('#cometchat_custom_minimize_userstabpopup').click(function(e){
                     if($('#cometchat_optionsimages_ccauth').length == 1){
                         $('#cometchat_auth_popup').css('display','none');
                         $('#cometchat_optionsimages_ccauth').css('display','none');
@@ -1529,7 +1534,7 @@
                 String.prototype.capitalize = function() {
                     return this.charAt(0).toUpperCase() + this.slice(1);
                 }
-                $("<div/>").attr("id", "cometchat_user_"+id+"_popup").addClass('cometchat_tabpopup').addClass('cometchat_'+tabstateclass).html('<div class="cometchat_tabtitle">'+isMobile+'<span id="cometchat_typing_'+id+'" class="cometchat_typing"></span>'+userAvatar+'<div class="cometchat_name" title="'+longname+'">'+longname+'</div><div id="cometchat_closebox_'+id+'" title="'+language[74]+'" class="cometchat_closebox cometchat_floatR cometchat_tooltip"></div>'+plugin_divider+audiochathtml+avchathtml+'<div class="cometchat_plugins_dropdown"><div class="cometchat_plugins_dropdown_icon cometchat_tooltip" id="cometchat_plugins_dropdown_icon_'+id+'" title="'+language[73]+'"></div><div class="cometchat_popup_plugins">'+pluginstophtml+'</div></div><br/><div class="cometchat_name">'+current_status.capitalize()+'</div></div></div><div class="cometchat_tabcontent"><div class = "cometchat_messagElement cometchat_lastseenmessage" id="cometchat_messagElement_'+id+'"></div><div class="cometchat_tabcontenttext" id="cometchat_tabcontenttext_'+id+'" onscroll="jqcc.'+settings.theme+'.chatScroll(\''+id+'\');"></div><div class="cometchat_tabcontentinput"><div class="cometchat_plugins_openup cometchat_floatL" style="'+plugins_openup_css+'"><div class="cometchat_plugins_openup_icon cometchat_tooltip" id="cometchat_plugins_openup_icon_'+id+'" title="'+language[73]+'"></div><div class="cometchat_popup_convo_plugins">'+pluginsbottomhtml+'</div></div>'+cometchat_textarea_struct+'</div></div>').appendTo($('#cometchat_user_'+id));
+                $("<div/>").attr("id", "cometchat_user_"+id+"_popup").addClass('cometchat_tabpopup').addClass('cometchat_'+tabstateclass).html('<div class="cometchat_tabtitle">'+isMobile+'<span id="cometchat_typing_'+id+'" class="cometchat_typing"></span>'+userAvatar+'<div class="cometchat_name" title="'+longname+'">'+longname+'</div><div id="cometchat_closebox_'+id+'" title="'+language[74]+'" class="cometchat_closebox cometchat_floatR cometchat_tooltip"></div>'+plugin_divider+audiochathtml+avchathtml+'<div class="cometchat_plugins_dropdown"><div class="cometchat_plugins_dropdown_icon cometchat_tooltip" id="cometchat_plugins_dropdown_icon_'+id+'" title="'+language[73]+'"></div><div class="cometchat_popup_plugins">'+pluginstophtml+'</div></div><br/><div class="cometchat_name">'+current_status.capitalize()+'</div><span style="text-align:right;float: right;width: 100px;"><img src="'+baseUrl+'images/minus-symbol.png"/></span></div></div><div class="cometchat_tabcontent"><div class = "cometchat_messagElement cometchat_lastseenmessage" id="cometchat_messagElement_'+id+'"></div><div class="cometchat_tabcontenttext" id="cometchat_tabcontenttext_'+id+'" onscroll="jqcc.'+settings.theme+'.chatScroll(\''+id+'\');"></div><div class="cometchat_tabcontentinput"><div class="cometchat_plugins_openup cometchat_floatL" style="'+plugins_openup_css+'"><div class="cometchat_plugins_openup_icon cometchat_tooltip" id="cometchat_plugins_openup_icon_'+id+'" title="'+language[73]+'"></div><div class="cometchat_popup_convo_plugins">'+pluginsbottomhtml+'</div></div>'+cometchat_textarea_struct+'</div></div>').appendTo($('#cometchat_user_'+id));
 
                 if(restored!=1){
                     jqcc.cometchat.updateChatBoxState({id:id,s:chatboxstate});
@@ -1718,7 +1723,7 @@
                     }
                 });
 
-                cometchat_user_id.find('.chatbox_avatar').click(function(e){
+                cometchat_user_id.find('.chatbox_avatar,.cometchat_name').click(function(e){
                     if (jqcc.cometchat.getThemeArray('buddylistLink', id) != '') {
                         location.href = jqcc.cometchat.getThemeArray('buddylistLink', id);
                     }
@@ -1727,6 +1732,13 @@
                 cometchat_user_id.find('.cometchat_closebox').click(function(e){
                     e.stopImmediatePropagation();
                     jqcc.docked.closeChatbox(id);
+                    //MODIFIED BY VCOMMERS
+                    if($('.cometchat_tabpopup').length == 2)
+                    {
+                        jqcc('#cometchat_userstab_popup').css('display','block');
+                        jqcc('#cometchat_userstab').css('display','block');  
+                    }
+                    
                 });
 
                 cometchat_user_popup.find('.cometchat_tabtitle').click(function(e){

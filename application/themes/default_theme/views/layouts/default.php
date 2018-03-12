@@ -98,8 +98,16 @@ img.withloader {
 </script>
 <script src="<?php echo asset_url(); ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/bootstrap.js"></script>
+
 <script src="<?php echo asset_url(); ?>js/custom/mystation.js?1.1"></script>
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
 <script>
+$(window).load(function() {
+	document.getElementById('cometchat_chatboxes').style.right='0px';
+	document.getElementById('cometchat_userstab_popup').style.display='none';
+	document.getElementById('cometchat_userstab').style.display='none';
+});
 function customAlert(msg) {
 	$("#customAlertText").html(msg);
 	$('#customAlertBox').modal({show:true,backdrop: 'static',keyboard: false});
