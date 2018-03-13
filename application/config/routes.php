@@ -240,14 +240,20 @@ $route['mystation/save3dproducttempararyimage'] = 'frontend/Dproduct/save3DProdu
 $route['mystation/add3dproductpicture'] = 'frontend/Dproduct/add3dProductpicture';
 $route['mystation/delete3dproduct'] = 'frontend/Dproduct/delete3DProduct';
 $route['mystation/editproduct'] = 'frontend/Dproduct/editProduct';
-$route['mystation/linkproduct'] = 'frontend/Dproduct/linkProduct'; 
+$route['mystation/linkproduct'] = 'frontend/Dproduct/linkProduct';
+$route['mystation/show3dimages'] = 'frontend/Dproduct/show3dImages';
+$route['mystation/publish3dimages'] = 'frontend/Dproduct/publish3dImages';
+$route['mystation/change3dimages'] = 'frontend/Dproduct/change3dimages';
+
 $route['mystation/getproductlist'] = 'frontend/Dproduct/getProductList'; 
-$route['mystation/getproductbyid'] = 'frontend/Dproduct/getProductById'; 
+$route['mystation/getproductbyid'] = 'frontend/Dproduct/getProductById';
+$route['mystation/getselectedproductlists'] = 'frontend/Dproduct/getSelectedProductLists';
 $route['mystation/changimage'] = 'frontend/Dproduct/changImage'; 
 $route['mystation/changelinkproduct'] = 'frontend/Dproduct/changeLinkProduct'; 
 $route['mystation/messagedproduct'] = 'frontend/Dproduct/messageDproduct'; 
 $route['mystation/getdproductbyid'] = 'frontend/Dproduct/getDproductById';
-$route['mystation/3dpro/show/([0-9]+)'] = 'frontend/Dproduct/show3Dpro/$1'; 
+$route['mystation/3dpro/show/([0-9]+)'] = 'frontend/Dproduct/show3Dpro/$1';
+$route['mystation/3dpro/showbeforesave'] = 'frontend/Dproduct/show3Dprobeforesave';
 
 
 /*catalouge */
@@ -399,6 +405,7 @@ $route['seller/bstationpostinsertbuyer'] = 'frontend/Bstation/bstationPostInsert
 $route['product/images'] = 'frontend/Bstation/ProductImages';
 
 $route['desksite/([0-9]+)'] = 'frontend/Home/DesksiteByBusiId/$1';
+$route['desksite/([0-9]+)/([0-9]+)'] = 'frontend/Home/DesksiteByBusiId/$1/$2';
 $route['desksite/company/([0-9]+)'] = 'frontend/Home/getComapnyProfile/$1';
 $route['desksite/company/shipper/([0-9]+)'] = 'frontend/Home/getShipperComapnyProfile/$1';
 $route['desksite/company/buyer/([0-9]+)'] = 'frontend/Home/getBuyerComapnyProfile/$1';

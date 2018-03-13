@@ -1,3 +1,5 @@
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
 <style>
 #RollOver26 a
 {
@@ -261,8 +263,8 @@
 						    </div>
 						</div>
 						<div class="col-md-3">
-						  	<div id="RollOver6" class="box4">
-						        <a href="#">
+						  	<div id="RollOver6" class="box4" onclick="javascript:jqcc.cometchat.chatWith(<?php echo $shipper['user_id'];?>);">
+						        <a>
 						            <img class="hover" alt="" src="<?php echo asset_url() ?>images/chatskyb.png">
 						            <span><img alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
 						        </a>

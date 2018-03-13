@@ -200,7 +200,7 @@
 <div id="Layer106" style="position: absolute; text-align: right; visibility: visible; top: 49px; width: 1280px; height: 235px; z-index:4000; background-color: #fff; display: none;" onmouseleave="ShowObjectWithEffect('Layer106', 0, 'fold', 500);return false;">
 <nav class="navbar" style="background: none; border: 0px; margin-bottom: 0px; border-radius: 0px;">
 	<div class="">
-		<div class="" style="padding-top:1px;padding-right:1px;">
+		<div class="" style="padding-top:0px;">
 			<div class="col-lg-2 col-sm-4 logo">
 				<div style="color:#E8AD8F;font-family:Georgia;font-size:12px;">WELCOME TO THE</div>
 				<div style="color:#FFFFFF;font-family:Arial;font-size:27px;margin-top:35px;">TRD</div>
@@ -260,7 +260,7 @@
 								<h5>My Alerts</h5></a></li>
 						</ul>
 					</div>
-					<div class="reminder-div">
+					<div class="reminder-div" style="right:-1px">
 						<div id="wb_Image168" style="position:absolute;left:144px;top:61px;width:53px;height:53px;z-index:1121;">
 							<?php if(!empty($busi_id)) { ?>
 								<?php if($tscategory_id == 1) { ?>
@@ -5046,7 +5046,7 @@
 </html>
 <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 <script>
-var base_url = '<?php echo base_url();?>';												
+var base_url = '<?php echo base_url();?>';									
 paypal.Button.render({
 	env: 'sandbox',
 	style: {
@@ -5091,10 +5091,9 @@ function pkgPaymentReceived(paydata,id) {
 	},'json');
 }
 $(document).ready(function(){
-    var boxWidth = $(".open-div1").width();
     $(".menu-arrow").click(function(){
         $(".reminder-div").animate({
-            width: boxWidth
+            width: 640
         });
         $(".menu-arrow").hide();
         $(".menu-arrow2").show();

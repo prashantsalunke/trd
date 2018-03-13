@@ -1895,7 +1895,7 @@ a.style1:hover
 }
 .box2:hover
 {
-   background-color: #FFEFD5;
+   /*background-color: #FFEFD5;*/
    -webkit-transition: background-color 300ms ease-in-out 0ms;
    -moz-transition: background-color 300ms ease-in-out 0ms;
    -ms-transition: background-color 300ms ease-in-out 0ms;

@@ -8,6 +8,8 @@
 		  		<img src="<?php echo asset_url();?>images/img1623.png" style="padding-right: 4px;height: 78%;">Move Front</a>
 		  		<a href="javascript:moveBackCatalogueItem(<?php echo $catalogue['id'];?>);" class="btn btn-default btn-custom" id="personal_info_btn">
 		  		<img src="<?php echo asset_url();?>images/img1627.png" style="padding-right: 4px;height: 78%;">Move Back</a>
+		  		<a href="javascript:updateCatalogue();" class="btn btn-default btn-custom" id="personal_info_btn">Update</a>
+		  		<a href="javascript:openEditCatalouge();" class="btn btn-default btn-custom" id="personal_info_btn">Cancel</a>
 		  		<span class="pull-right-close"><a href="javascript:ShowObjectWithEffect('Layer124', 0, 'dropup', 500, 'easeInBounce');ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');" class="btn-custom-close">X</a></span>
 		  	</div>
 	  		<div class="panel-body panel-body-custom" id="" style="padding-top: 22px;padding-left: 45px;">		
@@ -29,8 +31,8 @@
 						  		<div class="col-md-2">		
 						  			<span style="color:#3C3C3C;font-family:Georgia;font-size:11px;">Change the cover image</span><br>
 						  			<span style="color:#666666;font-family:Arial;font-size:9.3px;">jpg or png, Dimensions: 200*200 pixel, Resolution: 75, with Max. size 100 KB </span><br><br>
-						  			<a href="#" class="style23 vvCatalogAction" >Upload</a>
-						  			<a href="#" class="style23 vvCatalogAction" >Change</a>
+						  			<a href="#" class="style23 vvCatalogAction" id="upload_img">Upload</a>
+						  			<a href="#" class="style23 vvCatalogAction" id="change_img" style="display: none;">Change</a>
 					  		 	</div>
 					  		 	<div class="col-md-3">
 					  		 		<input type="hidden" name="vcataloguepath" id="vcataloguepath"  value="<?php echo $catalogue['catalogue_cover'];?>" />
@@ -64,12 +66,12 @@
 			  		</div>
 			  	<?php } ?>
 			  	</div><br><br>
-			  	<div class="row"  style="padding-top: 35px;text-align:right">
+			  	<!--<div class="row"  style="padding-top: 35px;text-align:right">
 			  		<div class="col-md-8">
 			  			<button type="button"  style="text-align: center; width: 148px;height:25px;background-color: #3C3C3C; border:none;" onclick="updateCatalogue();"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Update</span></button>
-			  			<button type="button"  style="text-align: center; width: 148px;height:25px;background-color: #3C3C3C; border:none;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Cancel</span></button>
+			  			<button type="button"  style="text-align: center; width: 148px;height:25px;background-color: #3C3C3C; border:none;" onclick="openEditCatalouge();"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Cancel</span></button>
 			  		</div>		
-			  	</div>
+			  	</div>-->
 			   </div>
 	   		</div>
 	   		<div class="row">
@@ -87,13 +89,13 @@
 				<input type="hidden" name="vcatlog_id" id="vcatlog_id" value="" />
 				<div class="row col-sm-12" >
 			  		<div class="product-search-bar">
-						<select name="sub_product_id" id="catalog_product_id" class="form-control" style="display:inline-block;width:auto;height:30px;">
+						<!--<select name="sub_product_id" id="catalog_product_id" class="form-control" style="display:inline-block;width:auto;height:30px;">
 					  		<?php foreach ($mproducts as $mpro) { ?>
 				      			<?php foreach ($mpro['subproducts'] as $spro) { ?>
 				        		<option value="<?php echo $spro['id'];?>"><?php echo $spro['name'];?> (<?php echo $mpro['name'];?>)</option>
 				        		<?php } ?>
 					    	<?php } ?>
-					  	</select>
+					  	</select>-->
 					  	<input type="text" id="vcitem_name" style="width: 230px; height: 29px; line-height: 29px;" name="item_name" placeholder="Type products name or no.">
 					  	<button type="button" onclick="searchCatalogueProducts();" name="searchproduct" class="btn btn-search-black"><i class="fa fa-search"></i></button>
 					</div>
@@ -221,6 +223,8 @@ function saveCropImage(params) {
 				$("#Shape263").attr('src', response['fullpath']);
 				$('#vcataloguepath').val(response['path']);
 				$("#catalogue-pic").val('');
+				$("#change_img").css("display", "block");
+				$("#upload_img").css("display", "none");
 			},
 		
 	},'json');
@@ -263,11 +267,16 @@ function showVCoverResponse(resp, statusText, xhr, $form){
 $('#vcatalogue_pic_modal').on('hidden.bs.modal' , function() {
 	$('#photo').imgAreaSelect( {remove: true} );
 });
+var selected_product_ids = new Array();
+$('input[name="vproduct_id"]').each(function() {
+		if(selected_product_ids.indexOf(this.value) == -1)        
+    		selected_product_ids.push(this.value);
+});
 
 function updateCatalogue() {
 	var checkcount = 0;
 	var item_id = "";
-	$('input[name="vproduct_id"]:checked').each(function() {
+	$('input[name="vproduct_id"]').each(function() {
 		if(item_id != "") {
 			item_id = item_id+","+this.value;
 		} else {
@@ -311,16 +320,32 @@ function searchCatalogueProducts() {
 $("#addtocat").click(function(){
 	var checkcount = 0;
 	var item_id = "";
+	var product_already_present = false;
+	if(selected_product_ids.length > 20)
+	{
+		alert("20 Products have already been added");
+	}
 	$('#search_result_catalogue_edit input[name="vproduct_id"]:checked').each(function() {
-		if(item_id != "") {
-			item_id = item_id+","+this.value;
-		} else {
-			item_id = this.value;
+		
+		if(selected_product_ids.indexOf(this.value) == -1){
+			selected_product_ids.push(this.value);
+			if(item_id != "") {
+					item_id = item_id+","+this.value;
+			} else {
+					item_id = this.value;
+				}
+	   			checkcount++;
+		}else{
+			product_already_present = true;
 		}
-	   	checkcount++;
+		
 	});
+
 	if(checkcount <= 0 ){
-		alert("Select product first.");
+		if(product_already_present)
+			alert("Select product already present.");
+		else
+			alert("Select product first.");
 	} else {
 		ajaxindicatorstart("Please wait .. while we add catalogue item...");
 		$.post(base_url+"mystation/catalogue/add/items",{catalogue_id: $("#vcatlog_id").val(), item_id: item_id},function(resp){

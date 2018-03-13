@@ -1,6 +1,8 @@
 <!-- css js -->
 <link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
 <link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
@@ -225,6 +227,11 @@ line-height:4px;
 <script src="<?php echo asset_url(); ?>js/jquery.ui.tooltip.min.js"></script>
 <script>
 $(document).ready(function() {
+    
+    var product_id = '<?php echo $product_id;?>';
+    if(product_id != null && product_id != ""){
+        productDetail(product_id);
+    }
     $("#Layer27").stickylayer({
         orientation: 1,
         position: [0, 0],
@@ -1090,9 +1097,10 @@ function myloaderoff()
 				        	Add To Community
 						</a>
 				    </div>
+                    
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/cha0t.png" alt="Chat" class="add-share-img">
-				        <a href="javascript:openChatWithBuyer(<?php echo isset($Desksites[0]['busi_id'])?>);" target="_self" class="antag">
+				        <a onclick="javascript:jqcc.cometchat.chatWith(<?php echo $Desksites[0]['id']?>);" class="antag">
 				        	Chat
 						</a>
 				    </div>
@@ -2007,6 +2015,7 @@ function viewProductDetails(id) {
 		$("#details").html(data);
 	},'html');
 }
+
 function viewCatProducts(catid,scatid,mcatid,busi_id) {
 	myloaderon('');
 	$.get(base_url+"product/csmproduct/"+catid+"/"+scatid+"/"+mcatid+"/"+busi_id,{ },function(data) {

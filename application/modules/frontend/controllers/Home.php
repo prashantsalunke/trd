@@ -782,7 +782,7 @@ class Home extends MX_Controller {
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('Home/bstation');
 	}
-	public function DesksiteByBusiId($id){
+	public function DesksiteByBusiId($id,$product_id=NULL){
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$this->load->model('Product_Model','product');
 		$community = array();
@@ -828,6 +828,7 @@ class Home extends MX_Controller {
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'seller');
 		$this->template->set ( 'browser_icon', 'desksite.ico');
+		$this->template->set( 'product_id',$product_id);
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
 		->title ( 'DeskSite' )

@@ -2455,6 +2455,7 @@ class Product_Model extends CI_Model {
    		$this->db->from(TABLES::$BUSINESS_VISITORS.' AS a');
    		$this->db->where('a.busi_id',$busi_id);
    		$this->db->where('a.visitor_id',$visitor_id);
+		$this->db->where('a.likes', 1);
    		$query = $this->db->get();
    		$result = $query->result_array();
    		if(count($result) <= 0) {
@@ -2621,6 +2622,19 @@ class Product_Model extends CI_Model {
    		$result = $query->result_array();
    		return $result;
    	}
+
+    public function getSelectedProductsByIds($product_ids)
+    {
+        $this->db->select('a.*,b.name as sub_product,c.name as main_product');
+        $this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
+        $this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
+        $this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+        $this->db->where_in('a.id',$product_ids);
+        $this->db->order_by('a.id','ASC');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
     
 }
     

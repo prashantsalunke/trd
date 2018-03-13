@@ -13964,7 +13964,7 @@ input#imgupload #wb_CssMenu3 a
 }
 #Shape245_text
 {
-   position: absolute;
+   /*position: absolute;*/
    left: 3px;
    top: 7px;
    width: 142px;
@@ -47140,4 +47140,12 @@ input#imgupload #wb_CssMenu3 a
 #wb_Text1424 div
 {
    text-align: left;
+}
+#Layer986
+{
+   background-color: #DCDCDC;
+}
+#Shape5020
+{
+   border-width:0;
 }
