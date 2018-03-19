@@ -1021,9 +1021,9 @@ function stopWiggle(input) {
 				        Add To Community
 						</a>
 				    </div>
-				    <div class="inline box5">
+				    <div class="inline box5" onclick="chat_with(<?php echo $Desksite['user_id'];?>,<?php echo $Desksite['accept_chat'];?>);">
 				        <img src="<?php echo asset_url(); ?>images/cha0t.png" id="Image19" alt="" class="img32">
-				        <a href="javascript:openChatWithBuyer(<?php echo $Desksite['busi_id'];?>);" target="_self" class="antag">
+				        <a target="_self" class="antag">
 				        Chat
 						</a>
 				    </div>

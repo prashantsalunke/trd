@@ -60,8 +60,10 @@ var base_url = "<?php echo base_url();?>";
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> -->
 <script src="<?php echo asset_url();?>js/jquery.wiggle.js"></script>
-<script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
-<link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
+<?php if(isset($tsuserid)) { ?>
+      <script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
+      <link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
+<?php } ?>
 <style>
 .progress {
     width: 80%;

@@ -206,10 +206,10 @@
                     loggedout = '';
                 /*var baseCode = '<div id="cometchat_base">'+loggedout+'<div id="cometchat_sidebar">'+usertabpop+'</div>'+optionsbuttonpop+''+usertab+'<div id="cometchat_chatboxes"><div id="cometchat_chatboxes_wide" class="cometchat_floatR"></div></div><div id="cometchat_chatbox_left" class="cometchat_tab"><div class="cometchat_tabalertlr" style="display:none;"></div><div class="cometchat_tabtext">0</div><div id="cometchat_unseenUserCount"></div><div id="cometchat_chatbox_left_border_fix"></div></div><div id="cometchat_unseenUsers"></div></div>';*/
 
-                var baseCode = '<div id="cometchat_base">'+loggedout+'<div id="cometchat_sidebar">'+usertabpop+'</div>'+optionsbuttonpop+''+usertab+'<div id="cometchat_chatboxes"><div id="cometchat_chatboxes_wide" class="cometchat_floatR"></div></div><div id="cometchat_chatbox_left" class="cometchat_tab"><div class="cometchat_tabalertlr" style="display:none;"></div><div class="cometchat_tabtext">0</div><div id="cometchat_unseenUserCount"></div><div id="cometchat_unseenchatboxes" style="display:none;"></div><div id="cometchat_chatbox_left_border_fix"></div><div id="cometchat_unseenUsers"></div></div>';
+                var baseCode = '<div id="cometchat_base">'+loggedout+'<div id="cometchat_sidebar">'+usertabpop+'</div>'+optionsbuttonpop+''+usertab+'<div id="cometchat_chatboxes" style="right:0px"><div id="cometchat_chatboxes_wide" class="cometchat_floatR"></div></div><div id="cometchat_chatbox_left" class="cometchat_tab"><div class="cometchat_tabalertlr" style="display:none;"></div><div class="cometchat_tabtext">0</div><div id="cometchat_unseenUserCount"></div><div id="cometchat_unseenchatboxes" style="display:none;"></div><div id="cometchat_chatbox_left_border_fix"></div><div id="cometchat_unseenUsers"></div></div>';
 
                 document.getElementById('cometchat').innerHTML = baseCode;
-
+                document.getElementById('cometchat_chatboxes').style.right='0px';
                 if(hasChatroom == 1){
                     jqcc.crdocked.chatroomInit();
                 }
@@ -455,6 +455,7 @@
                 jqcc('#cometchat_minimize_userstabpopup').click(function(e){
                     jqcc('#cometchat_userstab_popup').css('display','none');
                     jqcc('#cometchat_userstab').css('display','none');
+                    $('#cometchat_chatboxes').css('right','0px');
                 });
                 
                 jqcc('#cometchat_custom_minimize_userstabpopup').click(function(e){
@@ -462,8 +463,10 @@
                         $('#cometchat_auth_popup').css('display','none');
                         $('#cometchat_optionsimages_ccauth').css('display','none');
                     }
-                    jqcc('#cometchat').find('#cometchat_userstab_popup').removeClass('cometchat_tabopen').addClass('cometchat_tabhidden');
+                    jqcc('#cometchat_userstab_popup').attr('style','');
+                    jqcc('#cometchat_userstab_popup').removeClass('cometchat_tabopen').addClass('cometchat_tabhidden');
                     jqcc.cometchat.setSessionVariable('chats', 0);
+                    //jqcc('#cometchat_userstab_popup').css('display','none');
                 });
 
                 jqcc('#cometchat_recenttab').click(function(e){
@@ -1727,8 +1730,13 @@
                 });
 
                 cometchat_user_id.find('.chatbox_avatar,.cometchat_name').click(function(e){
+                    e.stopImmediatePropagation();
                     if (jqcc.cometchat.getThemeArray('buddylistLink', id) != '') {
-                        location.href = jqcc.cometchat.getThemeArray('buddylistLink', id);
+                        //location.href = jqcc.cometchat.getThemeArray('buddylistLink', id);
+                        window.open(
+                            jqcc.cometchat.getThemeArray('buddylistLink', id),
+                            '_blank' // <- This is what makes it open in a new window.
+                        );
                     }
                 });
 

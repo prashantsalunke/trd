@@ -38,7 +38,7 @@ class Sellers_Model extends CI_Model {
     
     public function searchSellers($params) {
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,b.likes,
-		b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
+		b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position,c.profile_image as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
  		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id) as main_product,j.id as catalouge_id,l.id as community_id,a.name as contact_name,a.name_prefix as contact_prefix,a.id as user_id');
     	$this->db->from(TABLES::$USER.' AS a');
@@ -189,7 +189,7 @@ class Sellers_Model extends CI_Model {
     
     public function searchBuyers($params) {
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_subcategory_id, a.user_role, a.account_activated, b.company_name,(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,
-		b.company_country, b.company_province, b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
+		b.company_country, b.company_province, b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
  		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id and mp.status=1) as main_product,j.id as catalouge_id,k.id as pmk_id,l.id as community_id, (select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post
              as l where l.busi_id=b.id) as bstation_post_count,m.id as have_request,a.name as contact_name,a.name_prefix as contact_prefix');
@@ -361,7 +361,7 @@ class Sellers_Model extends CI_Model {
     
     public function searchShippers($params) {
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,b.likes,
-		b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
+		b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image as profile_image, d.*, e.*, f.company_owner_name, f.company_introduction,f.hot_presentation, f.contact_person, f.contact_person_flag,
  		 (select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_shipper_service as mp where mp.busi_id=b.id and mp.is_special=0 and status=1) as main_product, j.id as catalouge_id , l.id as community_id,a.name as contact_name,a.name_prefix as contact_prefix');
     	$this->db->from(TABLES::$USER.' AS a');
@@ -492,7 +492,7 @@ class Sellers_Model extends CI_Model {
     public function getShippersByCommunity($id){
     	$busi_ids= "select busi_id from ".TABLES::$COMMUNITY_MEMBER ." where my_busi_id =" .$id;
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
-		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
+		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
  		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product, j.id as catalouge_id');
     	$this->db->from(TABLES::$USER.' AS a');
@@ -522,7 +522,7 @@ class Sellers_Model extends CI_Model {
     public function getShippersHideCommunity($id){
     	$busi_ids= "select busi_id from ".TABLES::$COMMUNITY_MEMBER ." where my_busi_id =" .$id;
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
-		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
+		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
  		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product, j.id as catalouge_id');
     	$this->db->from(TABLES::$USER.' AS a');
@@ -551,7 +551,7 @@ class Sellers_Model extends CI_Model {
     
     public function getShippersShippingLines($id){
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
-		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
+		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
  		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product, j.id as catalouge_id');
     	$this->db->from(TABLES::$USER.' AS a');
@@ -688,7 +688,7 @@ class Sellers_Model extends CI_Model {
     }
     
     public function searchProducts($params){
-    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,e.id as user_id, e.name_prefix,e.name as user_name, h.sub_category, g.*, d.name as main_category_name,  d.id as main_category_id, l.id as community_id,IFNULL(n.picture,f.profile_image) as profile_image,n.name as contact_name,n.name_prefix as contact_prefix ');
+    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,e.id as user_id, e.name_prefix,e.name as user_name, h.sub_category, g.*, d.name as main_category_name,  d.id as main_category_id, l.id as community_id,IFNULL(n.picture,f.profile_image) as profile_image,n.name as contact_name,n.name_prefix as contact_prefix ');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$USER.' AS e','a.busi_id=e.busi_id','inner');
@@ -836,7 +836,7 @@ class Sellers_Model extends CI_Model {
     }
     
     public function getProductsbyVerified(){
-    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*');
+    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -851,7 +851,7 @@ class Sellers_Model extends CI_Model {
     }
     public function productCommunityFirst($id){
     	$busi_ids= "select busi_id from ".TABLES::$COMMUNITY_MEMBER ." where my_busi_id =" .$id;
-    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province,  b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*');
+    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province,  b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -867,7 +867,7 @@ class Sellers_Model extends CI_Model {
     }
     public function productCommunityHide($id){
     	$busi_ids= "select busi_id from ".TABLES::$COMMUNITY_MEMBER ." where my_busi_id =" .$id;
-    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*');
+    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -884,7 +884,7 @@ class Sellers_Model extends CI_Model {
     
     public function getSellersByBlackHorseMember(){
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
-		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
+		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
  		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product,  j.id as catalouge_id');
     	$this->db->from(TABLES::$USER.' AS a');

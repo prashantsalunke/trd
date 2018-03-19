@@ -67,7 +67,7 @@ body {
 					</a>
 					<div id="Layer252" style="visibility:hidden">
 						<div id="Layer252_Container">
-							<a href="javascript:openChatWithBuyer(<?php echo $business[0]['busi_id'];?>);" target="_self">
+							<a onclick="javascript:chat_with(<?php echo $business[0]['user_id'];?>,<?php echo $business[0]['accept_chat'];?>);">
 								<img class="hover" alt=""  src="<?php echo asset_url();?>images/chat_button2.png">
 								<span>
 									<img alt=""  src="<?php echo asset_url();?>images/chat_button1.png">
@@ -533,7 +533,7 @@ body {
 		    		</div>
 		    		<hr />
 		    		<div class="row pull-center">
-		    			<div class="share-icons"><a href="javascript:openChatWithBuyer(<?php echo $product['busi_id'];?>);"><i class="fa fa-comments" aria-hidden="true"></i></a></div>
+		    			<div class="share-icons" onclick="chat_with(<?php echo $product['user_id'];?>,<?php echo $product['accept_chat']; ?>)"><a><i class="fa fa-comments" aria-hidden="true"></i></a></div>
 		    			<div class="share-icons"><a href=""><i class="fa fa-file-text-o" aria-hidden="true"></i></a></div>
 		    			<div class="share-icons"><a href="javascript:addToMyFavourite(<?php echo $product['id'];?>,4);"><i class="fa fa-star" aria-hidden="true"></i></a></div>
 		    			<div class="share-icons"><a href="javascript:addToItemToCart(<?php echo $product['id'];?>);"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></div>

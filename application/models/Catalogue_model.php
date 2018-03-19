@@ -38,10 +38,12 @@ class Catalogue_model extends CI_Model {
     }
     
     public function getProductCatalogues($busi_id) {
-    	$this->db->select('*');
-    	$this->db->from(TABLES::$PRODUCT_CATALOGUE);
-    	$this->db->where('busi_id',$busi_id);
-        $this->db->order_by('id','DESC');
+    	$this->db->select('p.*,u.id as user_id,b.accept_chat');
+    	$this->db->from(TABLES::$PRODUCT_CATALOGUE.' AS p');
+        $this->db->join(TABLES::$USER.' AS u','p.busi_id=u.busi_id','inner');
+        $this->db->join(TABLES::$BUSINESS_INFO.' AS b','p.busi_id=b.id','left');
+    	$this->db->where('p.busi_id',$busi_id);
+        $this->db->order_by('p.id','DESC');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -50,6 +52,8 @@ class Catalogue_model extends CI_Model {
     public function getProductCatalogueById($id) {
     	$this->db->select('*');
     	$this->db->from(TABLES::$PRODUCT_CATALOGUE);
+        $this->db->join(TABLES::$USER.' AS u','p.busi_id=u.busi_id','inner');
+        $this->db->join(TABLES::$BUSINESS_INFO.' AS b','p.busi_id=b.id','left');
     	$this->db->where('id',$id);
     	$query = $this->db->get();
     	$result = $query->result_array();
