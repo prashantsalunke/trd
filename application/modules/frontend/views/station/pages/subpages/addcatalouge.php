@@ -311,6 +311,7 @@ function searchProducts() {
 	}
 }
 
+
 function addCatalogue(max_cat_allowed,total_catalogues) {
 	var selected_products = $("#productid").val();
 	var checkcount = selected_products.split(',');
