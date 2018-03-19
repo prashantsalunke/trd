@@ -1379,6 +1379,8 @@ class Home extends MX_Controller {
 			$params['busi_id'] = $busi_id;
 			$params['views'] = $catalogues[0]['views'];
 			$params['likes'] = $catalogues[0]['likes'];
+			$params['user_id'] = $catalogues[0]['user_id'];
+			$params['accept_chat'] = $catalogues[0]['accept_chat'];
 			echo json_encode($params);
 		} else {
 			$params['html'] = 0;
@@ -1401,6 +1403,7 @@ class Home extends MX_Controller {
 		$params['busi_id'] = $catalogue[0]['busi_id'];
 		$params['views'] = $catalogue[0]['views'];
 		$params['likes'] = $catalogue[0]['likes'];
+		$params['user_id'] = $catalogues[0]['user_id'];
 		echo json_encode($params);
 	}
 	

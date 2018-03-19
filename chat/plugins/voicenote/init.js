@@ -25,7 +25,8 @@ if (file_exists(dirname(__FILE__).DIRECTORY_SEPARATOR."lang.php")) {
 				return jqcc.ccvoicenote.getLanguage('title');
 			},
 			init: function (params) {
-				if(location.protocol == 'https:' || location.host == 'localhost'){
+				//MODIFIED BY VCOMMERS
+				if(location.protocol == 'https:' || location.host == 'localhost' || location.protocol == 'http:'){
 					if (jqcc.cometchat.membershipAccess('voicenote','plugins')){
 						var id = params.to;
 						var extraQueryString = '';

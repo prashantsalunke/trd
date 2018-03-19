@@ -62,7 +62,7 @@ body {
 					</a>
 					<div id="Layer252" style="visibility:hidden">
 						<div id="Layer252_Container">
-							<a href="javascript:openChatWithBuyer(<?php echo $business[0]['busi_id'];?>);" target="_self">
+							<a onclick="chat_with(<?php echo $business['user_id'];?>,<?php echo $business['accept_chat'];?>)">
 								<img class="hover" alt=""  src="<?php echo asset_url();?>images/chat_button2.png">
 								<span>
 									<img alt=""  src="<?php echo asset_url();?>images/chat_button1.png">

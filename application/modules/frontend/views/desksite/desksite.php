@@ -1,8 +1,10 @@
 <!-- css js -->
 <link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
 <link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
-<link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
-<script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
+<?php if(isset($tsuserid)) { ?>
+    <link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
+    <script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
+<?php } ?>
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect-fade.min.js"></script>
@@ -639,6 +641,23 @@ $(document).ready(function() {
     };
     $("#wb_Image40").tooltip(jQueryToolTip9Opts);*/
 });
+function chat_with(user_id,accept_chat=true)
+{
+    <?php if(isset($tsuserid)) { ?>
+        if(accept_chat)
+        {
+            jqcc.cometchat.chatWith(user_id);
+            document.getElementById('cometchat_chatboxes').style.right='0px';
+        }else{
+            $("#msg_cont").html("Sorry.. User status is  Don't Disturb. Please try again later, status may be changed soon.");
+            ShowObject('Layer99', 1);
+        }
+        
+    <?php }else{ ?>
+        $("#msg_cont").html("PLEASE LOGIN TO CHAT");
+        ShowObject('Layer99', 1);
+    <?php } ?>
+}
 var interval = null;
 function startWiggle(input) {
 	$(input).wiggle();
@@ -1100,7 +1119,7 @@ function myloaderoff()
                     
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/cha0t.png" alt="Chat" class="add-share-img">
-				        <a onclick="javascript:jqcc.cometchat.chatWith(<?php echo $Desksites[0]['id']?>);" class="antag">
+				        <a onclick="chat_with(<?php echo $Desksites[0]['user_id']?>,<?php echo $Desksites[0]['accept_chat']?>)" class="antag">
 				        	Chat
 						</a>
 				    </div>
@@ -1688,8 +1707,8 @@ function viewCatalogueBook(id) {
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
 				 +'</ul>'
-				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
-				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;" onclick="chat_with('+data.user_id+','+data.accept_chat+');">'
+				 +'<a>'
 				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
 				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
 				 +'</a>'
@@ -1793,8 +1812,8 @@ function viewNextCatalogueBook(id) {
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
 				 +'</ul>'
-				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
-				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;" onclick="chat_with('+data.user_id+','+data.accept_chat+')">'
+				 +'<a>'
 				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
 				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
 				 +'</a>'
