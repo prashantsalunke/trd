@@ -46,6 +46,33 @@ class Home extends MX_Controller {
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);
 		$homeAds = $this->account->getHomeBannerAds();
+		/* ADDED TO SHOW ALERT COUNT*/
+		$totalcount=0;
+		$busi_id = $this->session->userdata('busi_id');
+		if(!empty($busi_id)) {
+    		$category_id = $this->session->userdata('tsuser')['category_id'];
+    		$this->load->library('mylib/InquiryLib');
+    		$this->load->library('mylib/OfferLib');
+    		$this->load->library('mylib/orderLib');
+    		$this->load->library('mylib/CommunityLib');
+    
+    		if($category_id == 1 || $category_id == 2) {
+    			$inquiry = $this->inquirylib->getInquiryByBusiId($busi_id);
+    			$offer = $this->offerlib->getOfferByBusiId($busi_id);
+    		} else {
+    			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busi_id);
+    			$offer = $this->offerlib->getBuyerOfferByBusiId($busi_id);
+    		}
+    		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
+    		if(isset($sendcommunityrequest[0]['community_id']) == "" ) {
+    			$sendcommunityrequest = array();
+    		}
+    		$order = $this->orderlib->getOrderByBusiId($busi_id);
+    		$totalcount = count($inquiry) + count($offer) + count($order) + count($sendcommunityrequest);
+    		
+	   }
+	   $this->template->set ( 'totalcount', $totalcount);
+		/**/
 		$this->template->set ( 'homeAds', $homeAds);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set ( 'userId', '' );
@@ -782,7 +809,7 @@ class Home extends MX_Controller {
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('Home/bstation');
 	}
-	public function DesksiteByBusiId($id,$product_id=NULL){
+	public function DesksiteByBusiId($id){
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$this->load->model('Product_Model','product');
 		$community = array();
@@ -828,7 +855,6 @@ class Home extends MX_Controller {
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'seller');
 		$this->template->set ( 'browser_icon', 'desksite.ico');
-		$this->template->set( 'product_id',$product_id);
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
 		->title ( 'DeskSite' )
@@ -1704,6 +1730,26 @@ class Home extends MX_Controller {
 		}
 		echo json_encode($resp);
 	}
-	
-	
+	public function getMyNewAlerts() {
+	    //include related model to get respective alerts
+	    $this->load->model('Community_Model', 'mycommunity' );
+	    $this->load->model('Inquiry_model', 'inquirymodel' );
+	    $businessId = $this->session->userdata('tsuser')['busi_id'];
+	    if(!empty($businessId)) {
+	        redirect(base_url());
+	    }
+
+	    $isadded = $this->mycommunity->addToMyCommunity($businessId);
+	    if($isadded ==1)
+	    $getInquiry = $this->inquirymodel->getInquiryByBusiId($businessId);
+	}
+
+	public function getNewAlerts() {
+		$this->load->model('Community_Model', 'mycommunity');
+		$this->load->model('Inquiry_model', 'inquirymodel' );
+		$my_busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$isadded = $this->mycommunity->getMyCommunity($my_busi_id);
+
+		$checkinquiry = $this->inquirymodel->getBuyerInquiryByBusiId($my_busi_id);
+	}
 }

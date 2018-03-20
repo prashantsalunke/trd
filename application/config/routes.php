@@ -323,7 +323,7 @@ $route['mystation/deleteinvoice'] = 'frontend/Alerts/deleteInvoice';
 $route['mystation/addinvoiceproduct'] = 'frontend/Alerts/addInvoiceProduct';
 $route['mystation/firstpartyconfirm'] = 'frontend/Alerts/firstPartyConfirm';
 $route['mystation/secondpartyconfirm'] = 'frontend/Alerts/secondPartyConfirm';
-
+$route['home/alert'] = 'frontend/Alerts/getNewAlerts';
 /* Language */
 $route['mystation/language'] = 'frontend/Language/language';
 $route['mystation/translation/([0-9]+)'] = 'frontend/Language/chineseTranslation/$1';

@@ -95,12 +95,27 @@ class Inquiry_model extends CI_Model {
     	$row = $query->result_array();
     	return $row;
     }
+
     public function saveInquiry($param)
     {
     	if ($this->db->insert(TABLES::$INQUIRY, $param)) {
     		return $this->db->insert_id();
     	}
     }
-    
+
+    public function getNewInquiryAlert($busiId)
+    {
+        $this->db->select('inq.id');
+        $this->db->from(TABLES::$INQUIRY. ' AS inq');
+        $this->db->where('inq.requester_busi_id', $busiId);
+        $this->db->order_by('inq.id', 'desc');
+        $query = $this->db->get();
+        $row = $query->result_array();
+        if ($row > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

@@ -1,4 +1,17 @@
+<!-- new alert popup Starts -->
+<div id="new-alert-popup"></div>
+<!-- new alert popup Ends -->
 <style>
+.alert-popup {
+  background: #2d2d2d none repeat scroll 0 0 !important;
+  bottom: 0;
+  box-shadow: 0 0 5px #000;
+  margin-bottom: 14px;
+  position: fixed;
+  right: 15px;
+  width: 300px;
+  z-index: 1111;
+}
 a.headerMenu:hover {
 	color:#F05235 !important;
 }
@@ -41,7 +54,7 @@ a.style5:hover
                         </ul>
                     </div>
                     <div class="modal-header" style="padding:0px;">
-                        <button aria-label="Close" data-dismiss="modal" class="close" type="button" style="position:relative; z-index:111; opacity:1; color:#fff; right:10px; top:10px; font-size:30px;"><span aria-hidden="true">×</span></button>
+                        <button aria-label="Close" data-dismiss="modal" class="close" type="button" style="position:relative; z-index:111; opacity:1; color:#fff; right:10px; top:10px; font-size:30px;"><span aria-hidden="true">Ã—</span></button>
                         <nav class="navbar navbar-inverse" style="margin-bottom:0px;">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar2" style="margin:0px;"> <img src="<?php echo asset_url(); ?>images/ts/menu-icon.png"></button>
@@ -89,7 +102,7 @@ a.style5:hover
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid, Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -140,7 +153,7 @@ a.style5:hover
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid, Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -191,7 +204,7 @@ a.style5:hover
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid, Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -455,13 +468,13 @@ a.style5:hover
                         <img src="<?php echo asset_url(); ?>images/img0142.png" id="Shape64" alt="" style="width:14px;height:7px;"></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="firstmain"><a href="#" target="_self">English</a> </li>
-                        <li><a href="#" target="_self">中文</a> </li>
-                        <li><a href="#" target="_self">العربية</a> </li>
-                        <li><a href="#" target="_self">Türk</a> </li>
-                        <li><a href="#" target="_self">日本語</a> </li>
-                        <li><a href="#" target="_self">한국어</a> </li>
-                        <li><a href="#" target="_self">भारतीय</a> </li>
-                        <li><a href="#" target="_self">русский</a> </li>
+                        <li><a href="#" target="_self">ä¸­æ–‡</a> </li>
+                        <li><a href="#" target="_self">Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</a> </li>
+                        <li><a href="#" target="_self">TÃ¼rk</a> </li>
+                        <li><a href="#" target="_self">æ—¥æœ¬èªž</a> </li>
+                        <li><a href="#" target="_self">í•œêµ­ì–´</a> </li>
+                        <li><a href="#" target="_self">à¤­à¤¾à¤°à¤¤à¥€à¤¯</a> </li>
+                        <li><a href="#" target="_self">Ñ€ÑƒÑ�Ñ�ÐºÐ¸Ð¹</a> </li>
                         <li><a href="#" target="_self">Dutch</a> </li>
                     </ul>
                 </li>
@@ -469,7 +482,7 @@ a.style5:hover
 		</div>
 		<?php } else { ?>
 		<div class="container-fluid top-div">
-			<div class="navbar-header"> <a href="#" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
+			<div class="navbar-header"> <a href="<?php echo base_url()?>" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
 			<ul class="nav navbar-nav pull-right top-nav login-user-nav">
 				<li style="padding-top:20px;">
 					<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;">
@@ -502,13 +515,13 @@ a.style5:hover
 	                    <img src="<?php echo asset_url(); ?>images/img1188.png" id="Shape17" alt="" style="width:14px;height:7px;"></a>
 	                <ul class="dropdown-menu" role="menu" style="min-width:100px;left:0px;">
 	                    <li class="firstmain"><a href="#" target="_self">English</a> </li>
-	                    <li><a href="#" target="_self">中文</a> </li>
-	                    <li><a href="#" target="_self">العربية</a> </li>
-	                    <li><a href="#" target="_self">Türk</a> </li>
-	                    <li><a href="#" target="_self">日本語</a> </li>
-	                    <li><a href="#" target="_self">한국어</a> </li>
-	                    <li><a href="#" target="_self">भारतीय</a> </li>
-	                    <li><a href="#" target="_self">русский</a> </li>
+	                    <li><a href="#" target="_self">ä¸­æ–‡</a> </li>
+	                    <li><a href="#" target="_self">Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</a> </li>
+	                    <li><a href="#" target="_self">TÃ¼rk</a> </li>
+	                    <li><a href="#" target="_self">æ—¥æœ¬èªž</a> </li>
+	                    <li><a href="#" target="_self">í•œêµ­ì–´</a> </li>
+	                    <li><a href="#" target="_self">à¤­à¤¾à¤°à¤¤à¥€à¤¯</a> </li>
+	                    <li><a href="#" target="_self">Ñ€ÑƒÑ�Ñ�ÐºÐ¸Ð¹</a> </li>
 	                    <li><a href="#" target="_self">Dutch</a> </li>
 	                </ul>
 	            </li>
@@ -521,6 +534,9 @@ a.style5:hover
 					//
 				});
 			}
-
+            $(".close-alert").click(function(){
+              $(".alert-popup").toggle("drop", { direction: "down" }, 1000);
+            });
+    
 		</script>
 		<?php include 'main-nav.php';?>

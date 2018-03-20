@@ -1010,4 +1010,17 @@ class Alerts extends MX_Controller {
 		}
 		echo json_encode($map);
 	}
+	public function getNewAlerts () {
+	    $this->load->model('Community_Model', 'mycommunity' );
+	    $this->load->model('Inquiry_model', 'inquirymodel');
+	    $busiId = $this->session->userdata('busi_id');
+
+	    $checkNewCommunityAlert = $this->mycommunity->checkNewCommunityAlert($busiId);	    
+	    $getNewInquiryAlert     = $this->inquirymodel->getNewInquiryAlert($busiId);
+	    $this->template->set ( 'newCommunity', $checkNewCommunityAlert);
+	    $this->template->set ( 'newInquiry', $getNewInquiryAlert);
+	    $this->template->set_layout (false);
+	    $html = $this->template->build ('default/alerts_popup','',true);
+	    die($html);
+	}
 }

@@ -211,4 +211,32 @@ class Community_Model extends CI_Model {
         $data ['msg'] = "Added successfully";
         return $data;
     }
+
+    public function getMyCommunity($myBusiId) {
+        $this->db->select('id');
+        $this->db->from(TABLES::$COMMUNITY_MEMBER);
+        $this->db->where('my_busi_id',$map['my_busi_id']);
+        $query = $this->db->get();
+        $row = $query->result_array();
+        if(count($row) > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public function checkNewCommunityAlert($myBusiId)
+    {
+        $this->db->select('cm.id');
+        $this->db->from(TABLES::$COMMUNITY_MEMBER. ' AS cm');
+        $this->db->where('cm.my_busi_id', $myBusiId);
+        $this->db->order_by('cm.id', 'desc');
+        $query = $this->db->get();
+        $row = $query->result_array();
+        if ($row > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

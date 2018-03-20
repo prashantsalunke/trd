@@ -133,3 +133,14 @@ function alertajaxindicatorstop()
     jQuery('#alertresultLoading').fadeOut(300);
     jQuery('body').css('cursor', 'default');
 }
+//setInterval(getNewAlerts, 9000); //300000 MS == 5 minutes
+function getNewAlerts() {
+	$.ajax({
+        url: base_url + "home/alert",
+        type: "post",
+        success: function (response) {
+        		//$("#new-alert-popup").html(response);
+        }
+    })
+}
+getNewAlerts();
