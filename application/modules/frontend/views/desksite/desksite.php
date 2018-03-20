@@ -229,7 +229,11 @@ line-height:4px;
 <script src="<?php echo asset_url(); ?>js/jquery.ui.tooltip.min.js"></script>
 <script>
 $(document).ready(function() {
-    
+
+    document.getElementById('cometchat_chatboxes').style.right='0px';
+    document.getElementById('cometchat_userstab_popup').style.display='none';
+    document.getElementById('cometchat_userstab').style.display='none';
+
     var product_id = '<?php echo $product_id;?>';
     if(product_id != null && product_id != ""){
         productDetail(product_id);
