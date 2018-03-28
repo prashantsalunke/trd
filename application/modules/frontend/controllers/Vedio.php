@@ -261,6 +261,7 @@ class Vedio extends MX_Controller {
 				$file_to_delete = FCPATH."assets/".$video['vedio_file'];
 				$size = $size + filesize($file_to_delete);
 				if (is_file($file_to_delete)){
+					chmod($file_to_delete,0777);
 					unlink($file_to_delete);
 				}
 			}
