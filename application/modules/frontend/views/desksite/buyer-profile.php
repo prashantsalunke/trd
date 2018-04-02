@@ -780,13 +780,39 @@ function stopWiggle(input) {
 		</div>
 		<?php include APPPATH.'modules/frontend/views/default/hover-nav.php';?>
 		<?php foreach($Desksites as $Desksite) {?>
+
+    <?php //print_r($Desksite); ?>
 		<!-- navbar  end -->
 			<!-- head text section -->
 			<div class="c9" style="z-index:200;text-align:left;">
 			    <span class="c10"><strong><?php echo $Desksite['company_name'];?></strong></span><br>
-			    <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['hot_presentation'], 0, 280);?> <?php if(strlen($Desksite['company_introduction']) > 280){?>..<?php }?></span></p>
+			    <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['hot_presentation'], 0, 280);?> <?php if(strlen($Desksite['hot_presentation']) > 280){?>..<?php }?></span></p>
 			</div>
 			<!-- head text section -->
+
+      <div class="c12">
+          <div id="wb_Image53" class="c13">
+              <?php if(!empty($Desksite['flag'])) { ?>
+              <img src="<?php echo asset_url(); ?>images/flags/<?php echo $Desksite['flag'];?>" id="Image53" alt="<?php echo $Desksite['company_country'];?>" style="width:28px;">
+              <?php } ?>
+          </div>
+          <div id="wb_Text50" class="c3">
+              <p class="c1"><?php echo $Desksite['company_country']." | ".$Desksite['company_province']; ?></p>
+          </div>
+          <div id="wb_Text8" class="c2">
+              <p class="c1"><strong>
+              <?php 
+                try {
+                          $mars = new DateTimeZone($Desksite['timezone']);
+                            $date = new DateTime('now', $mars);
+                            echo $date->format('h:i A');
+                      } catch(Exception $e) {
+                          echo date('h:i A');
+                        }
+              ?></strong></p>
+          </div>
+      </div>
+
 			<!-- Main Slider -->
 			<div id="Layer46" style="text-align:left;left:0;top:0;right:0;bottom:0;z-index:33;">
 				<?php if(!empty($Desksite['desksite_bg1'])) { ?>
@@ -828,61 +854,59 @@ function stopWiggle(input) {
 					        </div>
 					        <div class="col-md-8 col-sm-8 bg" style="margin-left: 15px;margin-right:15px;">
 					        		<center>
-						        		<a href="javascript:getBuyerComapnyProfile(<?php echo $Desksite['busi_id']?>)" class="navigation2n ">
+						        		<a href="javascript:getBuyerComapnyProfile(<?php echo $Desksite['busi_id']?>)" class="navigation2n " style="text-decoration: none; ">
 									     	<img src="<?php echo asset_url(); ?>images/desksite/D-About.png" id="Image60" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 							            	<p class="font2">Profile</p>
 							            </a>
-							            <a href="javascript:getComapnyAbout(<?php echo $Desksite['busi_id']?>)" class="navigation2n" >
+							            <a href="javascript:getComapnyAbout(<?php echo $Desksite['busi_id']?>)" class="navigation2n" style="text-decoration: none; " >
 										    <img src="<?php echo asset_url(); ?>images/desksite/D-company.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 										    <p class="font2">About Buyer</p>
 									    </a>
-									    <a href="javascript:getContactPerson(<?php echo $Desksite['busi_id']?>)" class="navigation2n" >
+									    <a href="javascript:getContactPerson(<?php echo $Desksite['busi_id']?>)" class="navigation2n"  style="text-decoration: none; ">
 										    <img src="<?php echo asset_url(); ?>images/desksite/contact-person.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 										    <p class="font2">Contact <br>Person</p>
 									    </a>
-									    <a href="javascript:getCurrentRequest(<?php echo $Desksite['busi_id']?>)" class="navigation2n" >
+									    <a href="javascript:getCurrentRequest(<?php echo $Desksite['busi_id']?>)" class="navigation2n"  style="text-decoration: none; ">
 									   		<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image71" alt="" class="imgnav" style="margin-left:-10px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 									   		<p class="font2">Current <br>Request</p>
 									   	</a>
-							            <a href="javascript:getMyFiles(<?php echo $Desksite['busi_id'];?>)" class="navigation2n" >
+							            <a href="javascript:getMyFiles(<?php echo $Desksite['busi_id'];?>)" class="navigation2n"  style="text-decoration: none; ">
 										    <img src="<?php echo asset_url(); ?>images/desksite/D-files.png" id="Image8" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 										    <p class="font2">My Files</p>
 									    </a>
-									    <a href="#" class="navigation2n" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;">
+									    <a href="#" class="navigation2n" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;" style="text-decoration: none; ">
 										   <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 										   <p class="font5">Contact, Add<br> and Share...</p>
 									   	</a>
-									   	<a href="<?php echo base_url();?>buyer" class="navigation2n" style="display:none;">
-										   <img src="<?php echo asset_url(); ?>images/exit.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+									   	<a href="<?php echo base_url();?>buyer" class="navigation2n" style="display:none; text-decoration: none; ">
+										   <img src="<?php echo asset_url(); ?>images/exit.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width: 50px; height: 54px; transform: rotate(0deg);">
 										   <p class="font2">Exit</p>
 									   	</a>
 								   </center>
 					   		 </div>
-					    	<div class="col-md-2 col-sm-2  bg121 ">
-					    		<div class="pull-left">
-							        <div id="wb_Image53" class="c13">
-								        <img src="<?php echo asset_url(); ?>images/flags/<?php echo $Desksite['flag'];?>" id="" width="30px" alt="" >
-							        </div>
-								    <div id="wb_Text50" class="c3" style="width:100%;">
-								        <p class="c1"><?php echo $Desksite['company_country']." | ".$Desksite['company_province']; ?></p>
-								    </div>
-								    <div id="wb_Text8" class="c2">
-							        	<p class="c1">
-							        		<strong>
-							        		<?php 
-												try {
-                                                    $mars = new DateTimeZone($Desksite['timezone']);
-                                                    $date = new DateTime('now', $mars);
-                                                    echo $date->format('h:i A');
-                                                } catch(Exception $e) {
-                                                    echo date('h:i A');
-                                                }
-									        ?>
-									        </strong>
-									 	</p>
-							   		</div>
-					   			</div>
-					    </div>
+					    	<!-- <div class="col-md-2 col-sm-2  bg121 ">
+					    		<div class="pull-left"> -->
+							        
+
+
+
+
+
+                <div class="col-md-2 col-sm-2  bg121" style="width:11%;">
+                    <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer53S', 1, 'slideright', 500, 'swing');return false;">
+                    <img src="<?php echo asset_url(); ?>images/desksite/D-search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+                    <p class="font2">Search</p>
+                </a>
+                    <a href="#" class="navigation2" style="display:none;">
+                    <img src="<?php echo asset_url(); ?>images/exit.png" id="Image47" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+                    <p class="font2" style="font-size:10px;width:81px;">Switch to <br> Classic Mode</p>
+                </a>
+                </div>
+
+
+
+					   			<!-- </div>
+					    </div> -->
 					</div>
 				</div>
 			</div>
@@ -978,6 +1002,31 @@ function stopWiggle(input) {
 			    </div>
 			</div>
 			<!-- advantages ends-->
+
+
+      <!-- search section -->
+      <div id="Layer53S" style="position:absolute;text-align:left;visibility:hidden;left:401px;top:250px;width:498px;height:128px;z-index:3860;background-color: transparent;">
+        <div id="Layer55">
+        </div>
+          <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer53S', 0, 'slidedown', 300, 'swing');return false;">
+            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left: 445px;z-index: 4000;">
+          </a>
+          <div style="padding:35px;position: absolute;width: 100%;z-index: 4000;opacity:1;z-index: 3718;">
+            <form method="post" action="">
+                <div class="col-sm-10 col-xs-11" style="padding: 0px;">
+                    <input type="text" id="SiteSearch1" name="keyword" value="" placeholder="Type the item or product name">
+                    <input type="hidden" id="busi_id" name="busi_id" value="<?php echo $Desksites[0]['busi_id']?>" >
+                </div>
+                <div class="col-sm-1 col-xs-1" style="padding: 0px;">
+                    <button class="btn btn-block search-btn" type="button" onclick="searchProducts();">
+                        <p aria-hidden="true" class="glyphicon glyphicon-search"></p>
+                    </button>
+                </div>
+              </form>
+            </div>
+      </div>
+      <!-- search section ends -->
+
 			<!-- my files -->
 			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:198px;width:53%;height:462px;z-index:3850;">
 				<div id="Layer148_Container" style="width:432px;text-align:left;">
@@ -1000,20 +1049,20 @@ function stopWiggle(input) {
 			</div>
 			<!-- add to catalogue end -->																																											
 			<!-- contact and add -->
-			<div id="Layer49" style="position:absolute;text-align:left;visibility:hidden;left:0px;top:112px;width:25%;height:547px;z-index:3869;">
-				<div id="Layer52">
+			<div id="Layer49" style="position:absolute;text-align:left;visibility:hidden;left:0px;top:112px;width:25%;height:547px;z-index:3869; ">
+				<div id="Layer52" style="height:auto">
 				    <a href="#" onclick="ShowObjectWithEffect('Layer49', 0, 'slideleft', 300, 'swing');ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer88', 1, 'slideleft', 1000, 'swing');return false;">
 				   		<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image59" alt=""  class="img59">
-					</a>
+					  </a>
 				    <div class="inline">
 				        <br>
 				        <p class="box1font1 w1"><img src="<?php echo asset_url(); ?>images/community.png" id="Image21" alt="" class="img32">ADD & SHARE</p>
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/MENUFAVORITE.png" id="Image19" alt="" class="img32">
-						 <a href="javascript:addToMyFavourite(<?php echo $Desksite['busi_id'];?>,3);" target="_self" class="antag">
-							Add To Favourite
-						</a>
+    						<a href="javascript:addToMyFavourite(<?php echo $Desksite['busi_id'];?>,3);" target="_self" class="antag">
+    							Add To Favourite
+    						</a>
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/menuaddcomm.png" id="Image19" alt="" class="img32">
@@ -1031,12 +1080,6 @@ function stopWiggle(input) {
 				        <img src="<?php echo asset_url(); ?>images/like.png" id="Image19" alt="" class="img32">
 				        <a href="javascript:likeMyDesksite(<?php echo $Desksite['busi_id'];?>);" target="_self" class="antag">
 				        Like
-						</a>
-				    </div>
-				    <div class="inline box5">
-				        <img src="<?php echo asset_url(); ?>images/img0908.png" id="Image19" alt="" class="img32">
-				        <a href="javascript:shareToWorld('<?php echo base_url();?>buyer/profile/<?php echo $Desksite['busi_id']?>',`<?php echo $Desksite['company_name'];?> @ TRDSTATION`,1,<?php echo $Desksite['busi_id']?>);" target="_self" class="antag">
-				        	Share
 						</a>
 				    </div>
 				    <div class="inline box5">
@@ -1322,10 +1365,10 @@ function submitContactForm() {
 function openGeneralEnquiry(id) {
 	<?php if(!empty($tsuserid)) { ?>
 		<?php if($tscategory_id != 3) { ?>
-			popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+			popupwnd('<?php echo base_url();?>desksite/general_enquiry_buyer/'+id,'no','no','no','no','no','no','200','50','1055','680');
 		<?php } else { ?>
 			<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-				popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+				popupwnd('<?php echo base_url();?>desksite/general_enquiry_buyer/'+id,'no','no','no','no','no','no','200','50','1055','680');
 			<?php } else if($contact_details[0]['step'] < 2) { ?>
 				$("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
 				ShowObject('Layer99', 1);
