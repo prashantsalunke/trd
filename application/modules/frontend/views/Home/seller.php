@@ -1,5 +1,3 @@
-<script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
-<link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
 <link href="<?php echo asset_url();?>css/jquery.booklet.1.1.0.css" rel="stylesheet">
 <script src="<?php echo asset_url();?>js/jquery.booklet.1.1.0.min.js"></script>
 <style>
@@ -408,7 +406,7 @@ ul.share{
 					</div>
 					<div class="col-md-3">
 					 
-					  <div id="RollOver6" class="box4" onclick="javascript:jqcc.cometchat.chatWith(<?php echo $seller['user_id'];?>);">
+					  <div id="RollOver6" class="box4" onclick="chat_with(<?php echo $seller['user_id'];?>,<?php echo $seller['accept_chat']; ?>)">
 					        <a>
 					            <img class="hover" alt="" src="<?php echo asset_url() ?>images/chatblue.png">
 					            <span><img alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
@@ -993,8 +991,8 @@ function viewCatalogueBook(id) {
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
 				 +'</ul>'
-				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
-				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;" onclick="chat_with('+data.user_id+');">'
+				 +'<a>'
 				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
 				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
 				 +'</a>'
@@ -1098,8 +1096,8 @@ function viewNextCatalogueBook(id) {
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
 				 +'</ul>'
-				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
-				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;" onclick="chat_with('+data.user_id+')">'
+				 +'<a>'
 				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
 				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
 				 +'</a>'

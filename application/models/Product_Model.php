@@ -681,13 +681,15 @@ class Product_Model extends CI_Model {
     }
     
     public function getProductdetailsById($id) {
-    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id');
+    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id,u.id as user_id,bi.accept_chat');
     	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
     	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
     	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+        $this->db->join(TABLES::$USER.' AS u','a.busi_id=u.busi_id','left');
+        $this->db->join(TABLES::$BUSINESS_INFO.' AS bi','a.busi_id=bi.id','left');
     	$this->db->where('a.id',$id);
     	$this->db->where('a.status',1);
     	$this->db->order_by('a.id','ASC');
@@ -907,7 +909,7 @@ class Product_Model extends CI_Model {
     }
     
     public function getDesksiteByBusiId($map) {
-    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, 
+    	$this->db->select('a.id as user_id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, 
     			d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, 
     			b.company_name, b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,
     			b.telephone_city_code,b.telephone_number,b.telephone_number1,b.company_street,b.company_email, b.business_logo, 
@@ -943,7 +945,7 @@ class Product_Model extends CI_Model {
     }
     
     public function getShipperDesksiteByBusiId($map) {
-    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, b.company_name,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
+    	$this->db->select('a.id as user_id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, b.company_name,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
 		b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,b.telephone_city_code,b.telephone_number,b.telephone_number1,b.company_street,b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified,b.verification_id, b.likes, b.rank,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image,c.timezone,e.sub_category as user_subcategory,(select GROUP_CONCAT(f.name) from tbl_shipper_service as f where f.busi_id=a.busi_id and f.status = 1 and f.is_special = 0) as mainservices,h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,h.fact_province,h.fact_city,h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag');
     	$this->db->from(TABLES::$USER.' AS a');
@@ -2058,7 +2060,7 @@ class Product_Model extends CI_Model {
     			g.profile_image as profile_image,f.user_category_id as catid,
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
-    			f.name as contact_name,f.name_prefix as contact_prefix,
+    			f.name as contact_name,f.name_prefix as contact_prefix,f.id as user_id,
     			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag');
     	$this->db->from(TABLES::$BSTATION_POST.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');

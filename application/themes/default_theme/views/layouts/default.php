@@ -87,7 +87,6 @@ img.withloader {
   background: url('<?php echo asset_url();?>images/loading.gif') no-repeat center;
 }
 </style>
-<link href="http://localhost/trd/assets/css/pages/mystation.css?1.1" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -98,8 +97,29 @@ img.withloader {
 </script>
 <script src="<?php echo asset_url(); ?>js/jquery-1.11.1.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/bootstrap.js"></script>
-<script src="http://localhost/trd/assets/js/custom/mystation.js?1.1"></script>
+<?php if(isset($tsuserid)) { ?>
+<script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
+<link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
+<?php } ?>
 <script>
+$(window).load(function() {
+	document.getElementById('cometchat_chatboxes').style.right='0px';
+	document.getElementById('cometchat_userstab_popup').style.display='none';
+	document.getElementById('cometchat_userstab').style.display='none';
+});
+function chat_with(user_id,accept_chat=true)
+{
+	<?php if(isset($tsuserid)) { ?>
+		if(accept_chat == true){
+			jqcc.cometchat.chatWith(user_id);
+    		document.getElementById('cometchat_chatboxes').style.right='0px';
+		}else{
+			customAlert('Sorry.. User status is " Don\'t Disturb".. Please try again later, status may be changed soon.');
+		}
+    <?php }else{ ?>
+    	alert("PLEASE LOGIN TO CHAT");
+    <?php } ?>
+}
 function customAlert(msg) {
 	$("#customAlertText").html(msg);
 	$('#customAlertBox').modal({show:true,backdrop: 'static',keyboard: false});

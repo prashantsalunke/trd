@@ -260,8 +260,8 @@
 					    	</div>
 						</div>
 						<div class="col-md-3">
-					  		<div id="RollOver6" class="box4">
-					        	<a href="javascript:popupwnd('chat_window.html','no','no','no','no','no','no','750','50','440','750')">
+					  		<div id="RollOver6" class="box4" onclick="chat_with(<?php echo $buyer['user_id'];?>,<?php echo $buyer['accept_chat'];?>);">
+					        	<a>
 					        		<img class="hover" alt="" src="<?php echo asset_url() ?>images/chat_button2.png">
 					            	<span><img alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
 					        	</a>

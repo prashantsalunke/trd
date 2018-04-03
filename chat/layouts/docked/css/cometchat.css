@@ -220,7 +220,7 @@ input#cometchat_search:focus {
     right: 15px;
     <?php endif;?>
     overflow: hidden;
-    box-shadow: 0px 5px 5px 6px #cccccc;//MODIFIED BY VCOMMERS
+    box-shadow: -2px 2px 10px #000000;//MODIFIED BY VCOMMERS 
 }
 
 #cometchat_userstab_popup:after {
@@ -255,7 +255,7 @@ input#cometchat_search:focus {
     width: <?php echo $chatboxWidth.'px';?>;
     z-index: 100001;
     bottom: 0px;
-    box-shadow: 0px 5px 5px 6px #cccccc;//MODIFIED BY VCOMMERS
+    box-shadow: -2px 2px 10px #000000;//MODIFIED BY VCOMMERS
 }
 
 .cometchat_userstabtitle:hover, .cometchat_new_message_titlebar, .cometchat_socialuserstabtitle:hover {
@@ -1148,7 +1148,8 @@ span.cometchat_tabstext{
 
 .cometchat_tabtitle .cometchat_name  {
     text-overflow: ellipsis;
-    max-width: 95px;
+    max-width: 150px;
+    min-width: 115px;
     white-space: nowrap;
     overflow: hidden !important;
     text-transform: capitalize;

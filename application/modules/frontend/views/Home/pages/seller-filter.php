@@ -95,10 +95,8 @@ if (count ( $Sellers ) > 0 && $Sellers [0] ['id'] != '') {
 			</div>
 			<div class="col-md-3">
 
-				<div id="RollOver6" class="box4">
-					<a
-						href="javascript:popupwnd('chat_window.html','no','no','no','no','no','no','750','50','440','750')"
-						target="_self"> <img class="hover" alt=""
+				<div id="RollOver6" class="box4" onclick="chat_with(<?php echo $seller['user_id'];?>,<?php echo $seller['accept_chat'];?>)">
+					<a> <img class="hover" alt=""
 						src="<?php echo asset_url() ?>images/chatblue.png"> <span><img
 							alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
 					</a>

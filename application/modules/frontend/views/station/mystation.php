@@ -60,6 +60,10 @@ var base_url = "<?php echo base_url();?>";
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script> -->
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> -->
 <script src="<?php echo asset_url();?>js/jquery.wiggle.js"></script>
+<?php if(isset($tsuserid)) { ?>
+      <script type="text/javascript" charset="utf-8" src="<?php echo base_url();?>chat/js.php"></script>
+      <link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url();?>chat/css.php" />
+<?php } ?>
 <style>
 .progress {
     width: 80%;
@@ -100,6 +104,28 @@ var base_url = "<?php echo base_url();?>";
 }
 </style>
 <script>
+   $(window).load(function() {
+
+document.getElementById('cometchat_userstab_popup').style.display='none';
+document.getElementById('cometchat_chatboxes').style.right='0px';
+document.getElementById('cometchat_userstab').style.display='none';
+//document.getElementById('cometchat_chatboxes').style.right='0px';
+});
+function chat_with(user_id,accept_chat=true)
+{
+   <?php if(isset($tsuserid)) { ?>
+      if(accept_chat == true){
+         jqcc.cometchat.chatWith(user_id);
+         document.getElementById('cometchat_chatboxes').style.right='0px';
+      }else{
+         $("#msg_cont").html('Sorry.. User status is " Don\'t Disturb".. Please try again later, status may be changed soon.');
+         ShowObject('Layer99', 1);
+      }
+    <?php }else{ ?>
+      alert("PLEASE LOGIN TO CHAT");
+    <?php } ?>
+}
+
 setInterval(function(){
 	$.get("<?php echo base_url();?>mystation/getloginstatus",{},function(data) {
 		if(data.status == 0) {

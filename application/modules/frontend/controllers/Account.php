@@ -863,23 +863,20 @@ class Account extends MX_Controller {
 				'charset' => 'iso-8859-1',
 				'wordwrap' => TRUE
 				);
-		
-		$message = "Hi $name, \n
-		Your account activation code is $activation_code.\r\n
-		Thanks\n
-		TrdStation Team";
+        //email-template-fix-rajesh-31-03-2018
+		$this->template->set('templateType','account_activation');
+		$this->template->set ('name', $name);	
+		$this->template->set ('activationCode', $activation_code);
+		$this->template->set_layout (false);
+		$message = $this->template->build ('default/email_template','',true);
 		$this->load->library('email', $config);
+		$this->email->set_mailtype("html");
 		$this->email->set_newline("\r\n");
 		$this->email->from('mytrdstation@gmail.com'); // change it to yours
 		$this->email->to($email); // change it to yours
 		$this->email->subject('TradeStation Account Activation');
 		$this->email->message($message);
 		$this->email->send();
-// 		if ($this->email->send()) {
-// 			return 'Email sent.';
-// 		} else {
-// 			show_error($this->email->print_debugger());
-// 		}
 	}
 	public function forgetsendMail() 
 	{
@@ -906,10 +903,15 @@ class Account extends MX_Controller {
 			           ."Your password Recovery Code is : <b>".$securityCode."</b><br><br><br>"
 					   ."Thanks<br>"
 					   ."TrdStation Team";
-
+	   $this->template->set ( 'templateType', 'passwordRecovery');
+	   $this->template->set ( 'prefix', $prifix);
+	   $this->template->set ( 'name', $name);
+	   $this->template->set ( 'activationCode', $securityCode);
+	   $this->template->set_layout (false);
+	   $message = $this->template->build ('default/email_template','',true);
 		$this->load->library('email', $config);
 		$this->email->set_newline("\r\n");
-		$this->email->from('mytrdstation@gmail.com','Trade Station'); // change it to yours
+		$this->email->from('no-reply@vcommers.com','Trade Station'); // change it to yours
 		$this->email->to($email); // change it to yours
 		$this->email->subject('TrdStation Password Recovery');
 		$this->email->message($message);
