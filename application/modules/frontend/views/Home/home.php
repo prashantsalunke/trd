@@ -5,6 +5,7 @@
 <script src="<?php echo asset_url(); ?>js/wb.slideshow.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/wb.carousel.effects.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wb.carousel.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.core.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.widget.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.position.min.js"></script>
