@@ -664,6 +664,7 @@ class Account_Model extends CI_Model {
 		$this->db->from(TABLES::$BUSINESS_INFO.' as a');
 		$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' as b', 'a.id = b.busi_id', 'left');
 		$this->db->join(TABLES::$COMPANY_INFO.' as c', 'a.id = c.busi_id', 'left');
+		$this->db->order_by('a.plan_id',"desc");
 		$this->db->limit(12);
 		$query = $this->db->get();
 		$row = $query->result_array();

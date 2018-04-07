@@ -141,14 +141,14 @@
 						</div>
 						<div class="panel-body discoverbtn" style="position: relative;">
 							<div id="tab-slider" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner section1" role="listbox" style="padding-top:30px;">
+								<div class="carousel-inner section1" role="listbox">
 								<?php
 								$i ="0";
 								foreach($desksites as $desksite){ 
 									$i++;
 									
 									?>
-									<div class="item <?php if($i == 1){ echo "active"; } ?>">
+									<div  style="padding-top:30px;" class="item <?php if($i == 1){ echo "active"; } ?>">
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" target="_blank" class="hstyle19"><?php echo $desksite['company_name']?></a></span>
 										</div>
@@ -865,9 +865,9 @@ $(document).ready(function() {
         delay: 4000,
         duration: 500,
         easing: 'easeInOutBounce',
-        mode: 'fade',
+        mode: 'rotate',
         direction: '',
-        pagination: false,
+        pagination: true,
         start: 0
     };
     $("#Carousel1").carouseleffects(Carousel1Opts);
