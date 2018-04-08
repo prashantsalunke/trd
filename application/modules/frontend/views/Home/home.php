@@ -195,14 +195,14 @@
 						</div>
 						<div class="panel-body mytab">
 							<div id="tab-slider2" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner section2" role="listbox" style="height:552px;padding-top:30px;">
+								<div class="carousel-inner section2" role="listbox" style="height:552px;">
 								 
 									<?php 
 									$i ="0";
 									foreach ($products3D as $product3D) {
 										$i++;
 										?>
-									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:543px;">
+									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:543px;padding-top:30px;">
 										<div class="text-center">
 											<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $product3D['name']?></strong></span>
 										</div>
@@ -261,13 +261,13 @@
 						</div>
 						<div class="panel-body mytab">
 							<div id="tab-slider3" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner section3" role="listbox" style="height:552px;padding-top:30px;">
+								<div class="carousel-inner section3" role="listbox" style="height:552px;">
 								<?php 
 									$i ="0";
 									foreach ($vCatalogues as $vCatalogue) {
 										$i++;
 										?>
-									<div class="row item <?php if($i == 1){ echo "active"; } ?>" style="height:552px;">
+									<div class="row item <?php if($i == 1){ echo "active"; } ?>" style="height:552px;padding-top:30px;">
 										<div class="text-center"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span></div>
 										<div class="text-center"><span style="color:#696969;font-family:Arial;font-size:12px;"><strong>BY</strong></span></div>
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
@@ -307,10 +307,10 @@
 										</div>
 									</div>
 									<?php } ?>
-									<a class="left carousel-control" href="#tab-slider2" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
+									<a class="left carousel-control" href="#tab-slider3" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previous0.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider2" role="button" data-slide="next" style="background: none;padding-top:70%;text-align:center;"> 
+									<a class="right carousel-control" href="#tab-slider3" role="button" data-slide="next" style="background: none;padding-top:70%;text-align:center;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/next0.png"></span> 
 									</a>
 								</div>
