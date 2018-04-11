@@ -436,7 +436,7 @@
 											<p class="text-center product-text"><?php echo $FeaturedVideo['description']; ?>.</p>
 											<div class="tumb-slide">
 												<div id="wb_MediaPlayer1" style="width:218px;height:142px;z-index:677;" class="imgresponsive">
-													<video src="<?php echo asset_url().$FeaturedVideo['vedio_file']; ?>" id="MediaPlayer1"></video>
+													<video src="<?php echo asset_url().$FeaturedVideo['vedio_file']; ?>" id="MediaPlayer1" style="width:218px;height:140px;z-index:677;"></video>
 												</div>
 												<!--<div class="hover-thumb text-center"  style="width:35px;height:35px;left:75px;background: transparent;">
 													<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/playblk.png" id="Image34" alt=""></a> 
