@@ -474,36 +474,6 @@
 						</div>
 					</div>
 					</div>
-
-
-					<!--<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
-						<section class="center slider" style="margin: 10px 0px;">
-						<?php //print_r($FeaturedVideos);
-						foreach($FeaturedVideos as  $FeaturedVideo){?>
-							<div class="col-md-3">
-							<div class="imgsection">
-								<h4 class="text-center product-strong-text" style="margin-top: 0px;">
-									<strong><?php echo $FeaturedVideo['name']; ?></strong>
-								</h4>
-								<p class="text-center product-text"><?php echo $FeaturedVideo['description']; ?>.</p>
-								<div class="tumb-slide">
-									<div id="wb_MediaPlayer1" style="width:218px;height:142px;z-index:677;" class="imgresponsive">
-										<video src="<?php echo asset_url().$FeaturedVideo['vedio_file']; ?>" id="MediaPlayer1"></video>
-									</div>
-									<div class="hover-thumb text-center">
-										<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/playblk.png" id="Image34" alt=""></a> 
-										<a href="#">
-											<img src="<?php echo asset_url(); ?>/images/ts/view.png" >
-										</a>
-									</div>
-								</div>
-								<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedVideo['unit_price']?></span></h4>
-								<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedVideo['quantity'].' '.$FeaturedVideo['unit']?></p>
-							</div>
-							</div>
-							<?php }?>
-						</section>
-					</div>-->
 				</div>
 			</div>
 		</div>
