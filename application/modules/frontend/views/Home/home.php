@@ -391,9 +391,6 @@
 						</div>
 					</div></div>
 
-					<!--<div class="col-sm-9 col-lg-10 carousel slide" style="background: #fff; height: 272px;" data-ride="carousel">
-						<div class="center slider" style="margin: 10px 0px;" class="carousel-inner section4" role="listbox">-->
-					
 					<div id="Layer_details" class="class1">
 					  	<div id="Layer_details_Container" class="class2">
 					    </div>
@@ -898,26 +895,6 @@ $(document).ready(function() {
     $("#Carousel1_next a").click(function() {
         $('#Carousel1').carouseleffects('next');
     });
-
-    /*var Carousel5Opts =
-   {
-      delay: 4500,
-      duration: 500,
-      easing: 'easeInOutBounce',
-      mode: 'forward',
-      direction: '',
-      pagination: false,
-      start: 0
-   };
-   $("#Carousel5").carousel(Carousel5Opts);
-   $("#Carousel5_back a").click(function()
-   {
-      $('#Carousel5').carousel('prev');
-   });
-   $("#Carousel5_next a").click(function()
-   {
-      $('#Carousel5').carousel('next');
-   });*/
 
     $("#Layer_details").stickylayer({
         orientation: 9,
