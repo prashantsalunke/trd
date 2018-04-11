@@ -414,6 +414,69 @@
 						</div>
 					</div>
 					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
+					<div class="panel disk-tab">
+						<div class="panel-body mytab">
+							<div id="tab-slider5" class="carousel slide" data-ride="carousel" style="height: 350px;width: 100%;border:none;">
+								<div class="carousel-inner section3" role="listbox" style="height: 318px;overflow: hidden;border:none;">
+								 
+									<?php 
+									$i =0;
+									foreach($FeaturedVideos as $FeaturedVideo){
+										
+										if($i%4 == 0){
+									$frame = $i; 
+										?>
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:30px;border:none;">
+									<?php } $i++; ?>
+									<div class="col-md-3">
+										<div class="imgsection">
+											<h4 class="text-center product-strong-text" style="margin-top: 0px;">
+												<strong><?php echo $FeaturedVideo['name']; ?></strong>
+											</h4>
+											<p class="text-center product-text"><?php echo $FeaturedVideo['description']; ?>.</p>
+											<div class="tumb-slide">
+												<div id="wb_MediaPlayer1" style="width:218px;height:142px;z-index:677;" class="imgresponsive">
+													<video src="<?php echo asset_url().$FeaturedVideo['vedio_file']; ?>" id="MediaPlayer1"></video>
+												</div>
+												<!--<div class="hover-thumb text-center"  style="width:35px;height:35px;left:75px;background: transparent;">
+													<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/playblk.png" id="Image34" alt=""></a> 
+													<a href="#">
+														<img src="<?php echo asset_url(); ?>/images/ts/view.png" >
+													</a>
+												</div>-->
+												<div class="hover-thumb text-center">
+														<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;"><!-- z-index:851;-->
+															<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/playblk.png" id="Image34" alt=""></a> 
+														</div>
+														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
+															<a href="#">
+																<img src="<?php echo asset_url(); ?>/images/ts/view.png" >
+															</a>
+														</div>
+													</div>
+											</div>
+											<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedVideo['unit_price']?></span></h4>
+											<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedVideo['quantity'].' '.$FeaturedVideo['unit']?></p>
+										</div>
+									</div>
+									<?php if($frame+4 == $i){?>
+									</div>
+									<?php } ?>
+									<?php }?>
+									<a class="left carousel-control" href="#tab-slider5" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
+									</a> 
+									<a class="right carousel-control" href="#tab-slider5" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+
+
+					<!--<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
 						<section class="center slider" style="margin: 10px 0px;">
 						<?php //print_r($FeaturedVideos);
 						foreach($FeaturedVideos as  $FeaturedVideo){?>
@@ -440,7 +503,7 @@
 							</div>
 							<?php }?>
 						</section>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>

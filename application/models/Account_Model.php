@@ -715,13 +715,15 @@ class Account_Model extends CI_Model {
 	}
 	public function getFeaturedProductVideo()
 	{
-		$this->db->select('a.*, b.*,c.*, d.company_name , d.company_country , d.company_province, d.gaurantee_period, d.plan_id, d.is_logo_verified, d.rank');
-		$this->db->from(TABLES::$FEATURED_PRODUCT_VIDEO.' as a');
-		$this->db->join(TABLES::$PRODUCT_VIDEO.' as c', ' c.id = a.video_id ', 'left');
+		$this->db->select('b.*,c.*, d.company_name , d.company_country , d.company_province, d.gaurantee_period, d.plan_id, d.is_logo_verified, d.rank');
+		//$this->db->from(TABLES::$FEATURED_PRODUCT_VIDEO.' as a');
+		$this->db->from(TABLES::$PRODUCT_VIDEO.' as c'/*, ' c.id = a.video_id ', 'left'*/);
 		$this->db->join(TABLES::$PRODUCT_ITEM.' as b', ' b.id = c.product_item_id ', 'left');
-		$this->db->join(TABLES::$BUSINESS_INFO.' as d' , 'd.id = a.busi_id', 'left');
-		$this->db->where ( 'NOW() BETWEEN a.from_date AND a.to_date');
-		$this->db->where('a.status', 1);
+		$this->db->join(TABLES::$BUSINESS_INFO.' as d' , 'd.id = c.busi_id', 'left');
+		//$this->db->where ( 'NOW() BETWEEN a.from_date AND a.to_date');
+		//$this->db->where('a.status', 1);
+		$this->db->where('d.plan_id !=', 1);
+		$this->db->order_by('d.plan_id',"desc");
 		$this->db->limit(12);
 		$query = $this->db->get();
 		$row = $query->result_array();
