@@ -700,12 +700,14 @@ class Account_Model extends CI_Model {
 	}
 	public function getFeaturedProduct()
 	{
-		$this->db->select('a.*, b.*, c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank');
-		$this->db->from(TABLES::$FEATURED_PRODUCT.' as a');
-		$this->db->join(TABLES::$PRODUCT_ITEM.' as b', ' b.id = a.item_id ', 'left');
-		$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = a.busi_id', 'left');
-		$this->db->where ( 'NOW() BETWEEN a.from_date AND a.to_date');
-		$this->db->where('a.status', 1);
+		$this->db->select('b.*, c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank');
+		//$this->db->from(TABLES::$FEATURED_PRODUCT.' as a');
+		$this->db->from(TABLES::$PRODUCT_ITEM.' as b'/*, ' b.id = a.item_id ', 'left'*/);
+		$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = b.busi_id', 'left');
+		//$this->db->where ( 'NOW() BETWEEN a.from_date AND a.to_date');
+		//$this->db->where('a.status', 1);
+		$this->db->where('c.plan_id !=', 1);
+		$this->db->order_by('c.plan_id',"desc");
 		$this->db->limit(12);
 		$query = $this->db->get();
 		$row = $query->result_array();

@@ -336,43 +336,64 @@
 						</div>
 					</div>
 					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
-						<section class="center slider" style="margin: 10px 0px;">
-							<?php
-							$i ="0";
-							
-							foreach($FeaturedProducts as $FeaturedProduct){
-								$i++;
-								
-							?>
-							<div class="col-md-3" style="padding:0px 15px;">
-							<div style="position: relative;">
-								<h4 class="text-center product-strong-text" style="margin-top: 0px;">
-									<strong><?php echo $FeaturedProduct['name']; ?></strong>
-								</h4>
-								<p class="text-center product-text ptext" ><?php echo $FeaturedProduct['description']; ?></p>
-								<div class="tumb-slide">
-									<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive" style="width:218px;height:177px;">
-									<div class="hover-thumb text-center">
-										<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;z-index:851;">
-											<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>);">
-												<img src="<?php echo asset_url(); ?>images/window0.png" id="Image13" alt="View">
-											</a>
+					<div class="panel disk-tab">
+					<div class="panel-body mytab">
+							<div id="tab-slider4" class="carousel slide" data-ride="carousel" style="height: 350px;width: 100%;border:none;">
+								<div class="carousel-inner section3" role="listbox" style="height: 318px;overflow: hidden;border:none;">
+								 
+									<?php 
+									$i ="0";
+									foreach($FeaturedProducts as $FeaturedProduct){
+										
+										if($i%4 == 0){
+									$frame = $i; 
+										?>
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:30px;border:none;">
+									<?php } $i++; ?>
+										<div class="col-md-3" style="padding:0px 15px;border:none;">
+											<div style="position: relative;border:none;">
+												<h4 class="text-center product-strong-text" style="margin-top: 0px;border:none;">
+													<strong><?php echo $FeaturedProduct['name']; ?></strong>
+												</h4>
+												<p class="text-center product-text ptext" ><?php echo $FeaturedProduct['description']; ?></p>
+												<div class="tumb-slide" style="border:none;">
+													<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive" style="width:218px;height:177px;">
+													<div class="hover-thumb text-center">
+														<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;"><!-- z-index:851;-->
+															<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>);">
+																<img src="<?php echo asset_url(); ?>images/window0.png" id="Image13" alt="View">
+															</a>
+														</div>
+														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
+															<a href="<?php echo base_url();?>desksite/<?php echo $FeaturedProduct['busi_id'];?>" target="_blank">
+																<img class="hover" alt="View Desksite" src="<?php echo asset_url(); ?>images/vieworang.png">
+																<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view-detailsb.png"></span>
+															</a>
+														</div>
+													</div>
+												</div>
+												<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedProduct['unit_price']?></span></h4>
+												<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedProduct['quantity'].' '.$FeaturedProduct['unit']?>		</p>
+											</div>
 										</div>
-										<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;z-index:770;">
-											<a href="<?php echo base_url();?>desksite/<?php echo $FeaturedProduct['busi_id'];?>" target="_blank">
-												<img class="hover" alt="View Desksite" src="<?php echo asset_url(); ?>images/vieworang.png">
-												<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view-detailsb.png"></span>
-											</a>
-										</div>
+									<?php if($frame+4 == $i){?>
 									</div>
+									<?php } ?>
+									<?php }?>
+									<a class="left carousel-control" href="#tab-slider4" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
+									</a> 
+									<a class="right carousel-control" href="#tab-slider4" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
+									</a>
 								</div>
-								<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedProduct['unit_price']?></span></h4>
-								<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedProduct['quantity'].' '.$FeaturedProduct['unit']?></p>
 							</div>
-							</div>
-							<?php } ?>
-						</section>
-					</div>
+						</div>
+					</div></div>
+
+					<!--<div class="col-sm-9 col-lg-10 carousel slide" style="background: #fff; height: 272px;" data-ride="carousel">
+						<div class="center slider" style="margin: 10px 0px;" class="carousel-inner section4" role="listbox">-->
+					
 					<div id="Layer_details" class="class1">
 					  	<div id="Layer_details_Container" class="class2">
 					    </div>
@@ -877,6 +898,27 @@ $(document).ready(function() {
     $("#Carousel1_next a").click(function() {
         $('#Carousel1').carouseleffects('next');
     });
+
+    /*var Carousel5Opts =
+   {
+      delay: 4500,
+      duration: 500,
+      easing: 'easeInOutBounce',
+      mode: 'forward',
+      direction: '',
+      pagination: false,
+      start: 0
+   };
+   $("#Carousel5").carousel(Carousel5Opts);
+   $("#Carousel5_back a").click(function()
+   {
+      $('#Carousel5').carousel('prev');
+   });
+   $("#Carousel5_next a").click(function()
+   {
+      $('#Carousel5').carousel('next');
+   });*/
+
     $("#Layer_details").stickylayer({
         orientation: 9,
         position: [0, 0],
