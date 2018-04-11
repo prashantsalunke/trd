@@ -91,7 +91,7 @@ switch ($templateType){
 <img src="<?php echo asset_url();?>images/email-template/backdrop.jpg" id="Image2" alt=""></div>
 <div style="position:absolute;left:205px;top:341px;width:212px;height:24px;z-index:6;text-align:left;" id="wb_Text2">
 <span style="color:#FF6347;font-family:Helvetica;font-size:21px;"><strong>Hi <?php echo $name; ?></strong></span></div><div style="position:absolute;left:143px;top:374px;width:363px;height:15px;z-index:5;text-align:left;" id="wb_Text1">
-<span style="color:#666666;font-family:Helvetica;font-size:12px;">Welcome to VCOMMERS! We1re very excited to have you on board</span></div><div id="wb_Image1" style="position:absolute;left:222px;top:421px;width:176px;height:176px;z-index:4;">
+<span style="color:#666666;font-family:Helvetica;font-size:12px;">Welcome to VCOMMERS! We're very excited to have you on board</span></div><div id="wb_Image1" style="position:absolute;left:222px;top:421px;width:176px;height:176px;z-index:4;">
 <img src="<?php echo asset_url();?>images/email-template/vlogo-in-back.png" id="Image1" alt="" style="height: 176px;width: 176px;"></div>
 <div style="position:absolute;left:45px;top:626px;width:525px;height:35px;z-index:1;text-align:left;" id="wb_Text3">
 <span style="color:#000000;font-family:Arial;font-size:13px;">Here's your activation code </span><span style="color:#000000;font-family:Arial;font-size:17px;"><?php echo $activationCode; ?></span><span style="color:#000000;font-family:Arial;font-size:13px;">, please copy and paste into the account activation form to complete creating your account.</span></div>
