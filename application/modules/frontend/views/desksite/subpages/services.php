@@ -285,7 +285,7 @@ a.service-pills-hover:hover {
 		</div>
 	</div>
 </div>
-			<script>
+					<script>
 					$(document).ready(function(){
 					    //$("#myCarouselAbout").carousel();
 

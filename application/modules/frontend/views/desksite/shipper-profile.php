@@ -1,4 +1,4 @@
-<!-- css  js -->
+<!-- css js -->
 <link rel="stylesheet" href="<?php echo asset_url();?>css/jquery.ui.all.css">
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.effect.min.js"></script>
