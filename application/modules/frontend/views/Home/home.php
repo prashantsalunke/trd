@@ -499,7 +499,7 @@
 								if($i%4 == 0){
 									$frame = $i; 
 										?>
-									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:30px;border:none;">
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;">
 									<?php } $i++; ?>
 										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;" onmouseenter="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 0, 'fade', 10, 'swing');return false;">
 											<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
@@ -680,7 +680,7 @@
 								if($i%4 == 0){
 									$frame = $i; 
 										?>
-									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:30px;border:none;">
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;">
 									<?php } $i++; ?>
 										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;">
 											<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
