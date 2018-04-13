@@ -503,7 +503,12 @@
 									<?php } $i++; ?>
 										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;" onmouseenter="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 0, 'fade', 10, 'swing');return false;">
 											<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
+												<?php if (file_exists("assets/".$FWSeller['picture'])){ ?>
 												<img src="<?php echo asset_url().$FWSeller['picture']; ?>" id="Shape24" alt="" style="width:218px;height:218px;">
+												<?php }else{ ?>
+												<img src="<?php echo asset_url().'images/img1004.png'?>" id="Shape24" alt="" style="width:218px;height:218px;">
+												<?php } ?>
+
 											</div>
 											<div id="Layer141" style="position:absolute;text-align:left;left:0px;top:202px;width:218px;height:65px;z-index:510;">
 												<div id="wb_Text204" style="position:absolute;left:55px;top:25px;width:116px;height:16px;z-index:503;text-align:left;">
@@ -684,7 +689,12 @@
 									<?php } $i++; ?>
 										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;">
 											<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
+												<?php if (file_exists("assets/".$FWBuyer['picture'])){ ?>
 												<img src="<?php echo asset_url().$FWBuyer['picture']; ?>" id="Shape24" alt="" style="width:218px;height:218px;">
+												<?php }else{ ?>
+												<img src="<?php echo asset_url().'images/img1004.png'?>" id="Shape24" alt="" style="width:218px;height:218px;">
+												<?php } ?>
+
 											</div>
 											<div id="Layer141" style="position:absolute;text-align:left;left:0px;top:202px;width:218px;height:65px;z-index:510;">
 												<div id="wb_Text204" style="position:absolute;left:55px;top:25px;width:116px;height:16px;z-index:503;text-align:left;">
