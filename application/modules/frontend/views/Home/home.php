@@ -39,6 +39,14 @@
     left: 0;
     display: none;
 }
+#Carousel5 .frame,#Carousel4 .frame
+{
+   width: 517px;
+   display: inline-block;
+   float: left;
+   /*height: 267px;*/
+}
+
 </style>
 <div class="container-fluid" style="background: #f1f1f1; padding: 30px 0px">
 	<div class="row">
@@ -515,7 +523,7 @@
 													<span style="color:#000000;font-family:Arial;font-size:11px;"><strong><?php echo $FWSeller['contact_person']?></strong></span>
 												</div>
 												<div id="wb_Text205" style="position:absolute;left:55px;top:40px;width:130px;height:16px;z-index:504;text-align:left;">
-													<span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWSeller['position']?>CTO</span>
+													<span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWSeller['position']?></span>
 												</div>
 												<div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:19px;z-index:505;background-color: #A9A9A9;">
 													<div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:16px;text-align:center;z-index:502;">
@@ -567,7 +575,7 @@
 
 		<div class="col-sm-12 margintop" >
 			<div class="row">
-				<div class="col-sm-12 tab-slider">
+				<div class="col-sm-12 tab-slider" style="min-height:460px;">
 					<div class="col-sm-3 col-lg-2 maxheight1 product4">
 						<div class="row" style="margin: 0px">
 							<h3 style="color: #fff; text-align: center;">
@@ -588,7 +596,18 @@
 									<span style="color:#FFFFFF;font-family:Arial;font-size:12px;"><strong>REAL-TIME</strong></span></div>
 										<h3 class="head1">WORLD NEW ARRIVALS</h3>
 									</div>
-									<?php foreach ($NewArrivals as $NewArrival){?>
+									<div id="wb_Carousel4" style="position: absolute;top:60px;">
+									<?php if(count($NewArrivals) > 3) { ?>
+										<div id="Carousel4">
+									<?php } else { ?>
+										<div id="Carousel14">
+									<?php } $i=0;
+									foreach ($NewArrivals as $NewArrival){
+										if($i%3 == 0){
+									$frame = $i; 
+										?>
+									<div class="frame" style="display: block;">
+									<?php } $i++; ?>
 									<div class="col-sm-12 margins">
 										<div class="sectionrow">
 											<div class="row" style="margin: 0px;">
@@ -606,13 +625,16 @@
 														<small><?php echo substr($NewArrival['description'], 0, 125)?></small>
 													</p>
 												</div>
-												<div class="col-xs-1 orange" >
+												<div class="col-xs-1 orange">
 												<a href="">Go</a>
 												</div>
 											</div>
 										</div>
 									</div>
-									<?php }?>
+									<?php if($frame+3 == $i){ ?>
+									</div>
+									<?php } } ?>
+								</div></div>
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -622,7 +644,17 @@
 									<span style="color:#FFFFFF;font-family:Arial;font-size:12px;"><strong>REAL-TIME</strong></span></div>
 										<h3 class="head1">WORLD PURCHASE REQUESTS</h3>
 									</div>
-									<?php  foreach ($NewOrders as $NewOrder){?>
+									<br/>
+									<div id="wb_Carousel5" style="position: absolute;top:60px;">
+										<div id="Carousel5">
+									<?php  $i=0;
+									foreach ($NewOrders as $NewOrder){
+									if($i%3 == 0){
+									$frame = $i; 
+										?>
+									<div class="frame">
+									<?php } $i++; ?>
+									
 									<div class="col-sm-12 margins">
 										<div class="sectionrow"><div class="row" style="margin: 0px;">
 												<div class="col-xs-2" style="padding: 1% 0px">
@@ -645,7 +677,9 @@
 										</div>
 										
 									</div>
-									<?php }?>
+									<?php if($frame+3 == $i){ ?>
+									</div>
+									<?php } } ?>
 								</div>
 							</div>
 						</div>
@@ -701,7 +735,7 @@
 													<span style="color:#000000;font-family:Arial;font-size:11px;"><strong><?php echo $FWBuyer['contact_person']?></strong></span>
 												</div>
 												<div id="wb_Text205" style="position:absolute;left:55px;top:40px;width:130px;height:16px;z-index:504;text-align:left;">
-													<span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWBuyer['position']?>CTO</span>
+													<span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWBuyer['position']?></span>
 												</div>
 												<div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:19px;z-index:505;background-color: #A9A9A9;">
 													<div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:16px;text-align:center;z-index:502;">
@@ -732,7 +766,6 @@
 		</div>
 	</div>
 </div>
-
    <!-- Add to catalogue -->
 <div id="Layer_catalogue" class="catalogue1">
     <div id="Layer_catalogue_Container" class="catalogue2">
@@ -845,6 +878,30 @@
  </script>
  <script>
 $(document).ready(function() {
+	$("#Carousel5").carousel();
+	var Carousel5Opts =
+   {
+      delay: 5000,
+      duration: 20,
+      easing: 'easeInSine',
+      mode: 'blind',
+      direction: 'vertical',
+      pagination: false,
+      start: 0
+   };
+   $("#Carousel5").carouseleffects(Carousel5Opts);
+   $("#Carousel4").carousel();
+   var Carousel4Opts =
+   {
+      delay: 4000,
+      duration: 20,
+      easing: 'easeInSine',
+      mode: 'blind',
+      direction: 'vertical',
+      pagination: false,
+      start: 0
+   };
+   $("#Carousel4").carouseleffects(Carousel4Opts);
     $("#SlideShow1").slideshow({
         interval: 3000,
         type: 'sequence',
@@ -983,22 +1040,6 @@ $(document).ready(function() {
         orientation: 9,
         position: [0, 0],
         delay: 300
-    });
-    var Carousel4Opts = {
-        delay: 4000,
-        duration: 500,
-        easing: 'easeInOutBounce',
-        mode: 'fade',
-        direction: '',
-        pagination: false,
-        start: 0
-    };
-    $("#Carousel4").carouseleffects(Carousel4Opts);
-    $("#Carousel4_back a").click(function() {
-        $('#Carousel4').carouseleffects('prev');
-    });
-    $("#Carousel4_next a").click(function() {
-        $('#Carousel4').carouseleffects('next');
     });
 });
 function openVideo(id) {
