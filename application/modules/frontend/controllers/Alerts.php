@@ -1013,14 +1013,31 @@ class Alerts extends MX_Controller {
 	public function getNewAlerts () {
 	    $this->load->model('Community_Model', 'mycommunity' );
 	    $this->load->model('Inquiry_model', 'inquirymodel');
+	    $this->load->model('Account_model', 'accountmodel');
 	    $busiId = $this->session->userdata('busi_id');
-
-	    $checkNewCommunityAlert = $this->mycommunity->checkNewCommunityAlert($busiId);	    
-	    $getNewInquiryAlert     = $this->inquirymodel->getNewInquiryAlert($busiId);
+	    $userId = $this->session->userdata('tsuserid'); 
+	    $getUserInfo = $this->accountmodel->getUserDataByBusiId($busiId);
+	    //print_r($getUserInfo);
+	    $checkNewCommunityAlert = $this->mycommunity->checkNewCommunityAlert($busiId,$userId);	    
+	    $getNewInquiryAlert     = $this->inquirymodel->getNewInquiryAlert($busiId,$userId);
+	    //print_r($checkNewCommunityAlert);
 	    $this->template->set ( 'newCommunity', $checkNewCommunityAlert);
 	    $this->template->set ( 'newInquiry', $getNewInquiryAlert);
 	    $this->template->set_layout (false);
 	    $html = $this->template->build ('default/alerts_popup','',true);
 	    die($html);
+	}
+	public function alertAddToCommunity() {
+		$this->load->model('Community_Model', 'mycommunity' );
+
+		$id = $this->input->post('id');
+		$data = array();
+		$data['id'] = $id;
+		$data['alert_viewed'] = 1;
+
+		$addToMyCommunity = $this->mycommunity->updateCommunity($data);
+		if($addToMyCommunity == 1) {
+			echo 1;
+		}
 	}
 }

@@ -143,4 +143,4 @@ function getNewAlerts() {
         }
     })
 }
-getNewAlerts();
+//getNewAlerts();
