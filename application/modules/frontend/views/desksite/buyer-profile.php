@@ -538,7 +538,7 @@ $(document).ready(function() {
     });*/
     $("#Layer216").stickylayer({
         orientation: 1,
-        position: [70, 60],
+        position: [224, 18],
         delay: 0
     });
     $("a[data-rel='PhotoGallery4']").attr('rel', 'PhotoGallery4');
@@ -689,7 +689,7 @@ $(document).ready(function() {
     $("#Image67").tooltip(jQueryToolTip5Opts);
     $("#Layer49").stickylayer({
         orientation: 4,
-        position: [0, 60],
+        position: [0, 0],
         delay: 0
     });
     $("#Layer28").stickylayer({
@@ -828,8 +828,8 @@ function stopWiggle(input) {
 		   
 			<!-- bottom navigation -->
 			<div class="container" style="margin:auto auto;">
-				<div id="Layer5" class="bottomnav" style="height:105px;width:100%;margin:auto auto;">
-					<div id=" Layer5_Container " style="width:1280px;margin:auto;padding-top:40px;">
+				<div id="Layer5" class="bottomnav" style="height:105px;width:97%;margin:auto auto;">
+					<div id=" Layer5_Container " style="width:926px;margin:auto;padding-top:40px;">
 					    <div class="row" style="margin-left:0px;">
 					        <div class="col-md-2 col-sm-2 bg" style="width: 180px;padding:15px 30px;">
 				               	<a href="#" class="navigation2" id="wb_Image61" style="padding:0px 15px;">
@@ -896,11 +896,12 @@ function stopWiggle(input) {
                     <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer53S', 1, 'slideright', 500, 'swing');return false;">
                     <img src="<?php echo asset_url(); ?>images/desksite/D-search.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                     <p class="font2">Search</p>
-                </a>
+                    </a>
+
                     <a href="#" class="navigation2" style="display:none;">
                     <img src="<?php echo asset_url(); ?>images/exit.png" id="Image47" alt="" class="imgnav" style="width:50px;height:54px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                     <p class="font2" style="font-size:10px;width:81px;">Switch to <br> Classic Mode</p>
-                </a>
+                    </a>
                 </div>
 
 
@@ -1056,7 +1057,7 @@ function stopWiggle(input) {
 					  </a>
 				    <div class="inline">
 				        <br>
-				        <p class="box1font1 w1"><img src="<?php echo asset_url(); ?>images/community.png" id="Image21" alt="" class="img32">ADD & SHARE</p>
+				        <p class="box1font1 w1"><img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image21" alt="" class="img32">ADD & SHARE</p>
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/MENUFAVORITE.png" id="Image19" alt="" class="img32">
@@ -1105,7 +1106,7 @@ function stopWiggle(input) {
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 						</a>
 				        <p class="box1font3" style="padding:0px;">
-				        	<img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">
+				        	<img src="<?php echo asset_url(); ?>images/Mail.ico" alt="" class="img32">
 				        	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>CONTACT US</strong></span>
 				        </p>
 				        <div class="box2" style="height:472px;">
@@ -1365,10 +1366,10 @@ function submitContactForm() {
 function openGeneralEnquiry(id) {
 	<?php if(!empty($tsuserid)) { ?>
 		<?php if($tscategory_id != 3) { ?>
-			popupwnd('<?php echo base_url();?>desksite/general_enquiry_buyer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+			popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
 		<?php } else { ?>
 			<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-				popupwnd('<?php echo base_url();?>desksite/general_enquiry_buyer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+				popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
 			<?php } else if($contact_details[0]['step'] < 2) { ?>
 				$("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
 				ShowObject('Layer99', 1);
