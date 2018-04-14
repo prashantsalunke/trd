@@ -1,5 +1,10 @@
 <link href="<?php echo asset_url();?>css/jquery.booklet.1.1.0.css" rel="stylesheet">
 <script src="<?php echo asset_url();?>js/jquery.booklet.1.1.0.min.js"></script>
+<link rel="stylesheet" href="<?php echo asset_url();?>css/style-jq-3d-flip-book.css">
+<script src="<?php echo asset_url();?>js/html2canvas.min.js"></script>
+<script src="<?php echo asset_url();?>js/three.min.js"></script>
+<script src="<?php echo asset_url();?>js/pdf.min.js"></script>
+<script src="<?php echo asset_url();?>js/3dflipbook.min.js"></script>
 <style>
 #RollOver26 a
 {
@@ -315,6 +320,44 @@ ul.share{
 }
 
 </style>
+<script type="text/javascript">
+	var template = {
+    html: 'application/modules/frontend/views/default/default-book-view.html',
+    styles: [
+      '<?php echo asset_url();?>css/font-awesome.min.css',
+      '<?php echo asset_url();?>css/short-white-book-view.css'
+    ],
+    script: '<?php echo asset_url();?>js/default-book-view.js'
+  	};
+
+  	var booksOptions = {
+      pageCallback: orwell1984PageCallback,
+      pages: 10,
+      propertiesCallback: function(props) {
+        props.page.depth /= 2;
+        props.cover.padding = 0.002;
+        return props;
+      },
+      template: template
+    };
+
+    
+    function orwell1984PageCallback(n) {
+    return {
+      type: 'html',
+      //src: 'books/html/1984/'+(n+1)+'.html',
+      src: base_url+"catalogue/pages/"+catalogue_id+"/"+(n+1),
+      interactive: true
+    };
+  }
+  /*var instance = {
+    scene: undefined,
+    options: undefined,
+    node: $('#flip-book-window').find('.mount-node')
+  };*/
+  //instance.options = booksOptions;
+  //instance.scene = instance.node.FlipBook(instance.options);
+</script>
 <div>   
    	<div class="col-sm-12" style="padding:0px;padding-top: 40px;">
    		 <h1 class="sfont1">sellers</h1>
@@ -406,7 +449,7 @@ ul.share{
 					</div>
 					<div class="col-md-3">
 					 
-					  <div id="RollOver6" class="box4" onclick="javascript:jqcc.cometchat.chatWith(<?php echo $seller['user_id'];?>);">
+					  <div id="RollOver6" class="box4" onclick="chat_with(<?php echo $seller['user_id'];?>,<?php echo $seller['accept_chat']; ?>)">
 					        <a>
 					            <img class="hover" alt="" src="<?php echo asset_url() ?>images/chatblue.png">
 					            <span><img alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
@@ -743,7 +786,7 @@ ul.share{
 	<div class="modal-dialog" style="background-color:#404040;width:1050px;">
 		<div class="modal-content" style="background: transparent;box-shadow:none;-webkit-box-shadow:none;border: 0px;">
 			<div style="position:absolute;right:0;width:50px;height:50px;z-index:5000;"><button type="button" class="pull-right" data-dismiss="modal" aria-hidden="true" style="background:transparent;border:0px;"><img src="<?php echo asset_url();?>images/newicons/closeround.png" id="Image47" alt="" style="width:35px;"></button></div>
-			<div class="modal-body catalogue_modal_body_bg" style="width:1050px;height:640px;">
+			<div class="modal-body" style="width:1050px;height:640px;">
 				<input type="hidden" id="pcatalogue_id" value="" />
 				<div class="row">
 					<div class="col-md-1" style="float:left;padding:0px;width:155px;" id="catalogue_links">
@@ -976,23 +1019,35 @@ function changeCountry(a){
 	},'html');
 	
 }
+var catalogue_id = 0;
 function viewCatalogueBook(id) {
+
 	ajaxindicatorstart("Please wait while we load catalogue.");
 	$.get(base_url+"catalogue/business/"+id,{},function(data){
 		ajaxindicatorstop();
 		if(data.html == '0') {
 			alert("Sorry no catalogues created.");
 		} else {
+
 			$("#catalogue_page_content").html(data.html);
 			$("#catalogue_links").html(data.html2);
 			$("#pcatalogue_id").val(data.id);
+			catalogue_id = data.id;
 			$("#vcatalogue_overlay").modal('show');
+			var instance = {
+    scene: undefined,
+    options: undefined,
+    node: $('#flip-book-window').find('.mount-node')
+  };
+
+			instance.options = booksOptions;
+  			instance.scene = instance.node.FlipBook(instance.options);
 			var shareIt = '<ul class="share pull-right text-center">'
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
 				 +'</ul>'
-				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
-				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;" onclick="chat_with('+data.user_id+');">'
+				 +'<a>'
 				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
 				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
 				 +'</a>'
@@ -1081,7 +1136,59 @@ function viewCatalogueBook(id) {
 		}
 	},'json');
 }
+function myloaderon(text)
+{
+	if(jQuery('body').find('#resultLoading').attr('id') != 'resultLoading'){
+	jQuery('body').append('<div id="resultLoading" style="display:none"><div><img src="<?php echo asset_url();?>images/loading.gif" alt="Loading..."><div>'+text+'</div></div><div class="bg"></div></div>');
+	}
 
+	jQuery('#resultLoading').css({
+		'width':'100%',
+		'height':'100%',
+		'position':'fixed',
+		'z-index':'10000000',
+		'top':'0',
+		'left':'0',
+		'right':'0',
+		'bottom':'0',
+		'margin':'auto'
+	});
+
+	jQuery('#resultLoading .bg').css({
+		'background':'#ffffff',
+		'opacity':'0.4',
+		'width':'100%',
+		'height':'100%',
+		'position':'absolute',
+		'top':'0'
+	});
+
+	jQuery('#resultLoading>div:first').css({
+		'width': '250px',
+		'height':'75px',
+		'text-align': 'center',
+		'position': 'fixed',
+		'top':'0',
+		'left':'0',
+		'right':'0',
+		'bottom':'0',
+		'margin':'auto',
+		'font-size':'16px',
+		'z-index':'10',
+		'color':'#ffffff'
+
+	});
+
+    jQuery('#resultLoading .bg').height('100%');
+       jQuery('#resultLoading').fadeIn(300);
+    jQuery('body').css('cursor', 'wait');
+}
+function myloaderoff()
+{
+    jQuery('#resultLoading .bg').height('100%');
+       jQuery('#resultLoading').fadeOut(300);
+    jQuery('body').css('cursor', 'default');
+}
 function viewNextCatalogueBook(id) {
 	myloaderon('');
 	$.get(base_url+"catalogue/business/next/"+id,{},function(data){
@@ -1096,8 +1203,8 @@ function viewNextCatalogueBook(id) {
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv'+data.id+'">'+data.views+'</span></label></li>'
 				 +'<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv'+data.id+'">'+data.likes+'<span></label></li>'
 				 +'</ul>'
-				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;">'
-				 +'<a href="javascript:javascript:openChatWithBuyer('+data.busi_id+');">'
+				 +'<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;" onclick="chat_with('+data.user_id+')">'
+				 +'<a>'
 				 +'<img class="hover" src="<?php echo asset_url()?>images/chatwhite.png" alt="view">'
 				 +'<span><img alt="View" src="<?php echo asset_url()?>images/chat_button2.png"></span>'
 				 +'</a>'

@@ -1405,6 +1405,8 @@ class Home extends MX_Controller {
 			$params['busi_id'] = $busi_id;
 			$params['views'] = $catalogues[0]['views'];
 			$params['likes'] = $catalogues[0]['likes'];
+			$params['user_id'] = $catalogues[0]['user_id'];
+			$params['accept_chat'] = $catalogues[0]['accept_chat'];
 			echo json_encode($params);
 		} else {
 			$params['html'] = 0;
@@ -1427,9 +1429,30 @@ class Home extends MX_Controller {
 		$params['busi_id'] = $catalogue[0]['busi_id'];
 		$params['views'] = $catalogue[0]['views'];
 		$params['likes'] = $catalogue[0]['likes'];
+		$params['user_id'] = $catalogue[0]['user_id'];
 		echo json_encode($params);
 	}
-	
+	public function getCataloguePages($id,$pageno){
+		$this->load->model('Catalogue_model','catalogue');
+
+		if($pageno % 2 == 1){
+			$record = ($pageno+1)/2;
+		}else
+		{
+			$record = $pageno/2;
+		}
+		
+		$catalogue_items = $this->catalogue->getProductCatalogueItemsPage($id,$record);
+		$this->template->set ( 'product', $catalogue_items );
+		$this->template->set ('pageno', $pageno);
+		$this->template->set ( 'page', 'home' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		//print_r($catalogue_items);
+		$html = $this->template->build ('Home/pages/bcatalogue-items', '', true);
+		echo $html;
+	}
+
 	public function getShipperServices($busi_id) {
 		$this->load->model('Product_Model', 'product' );
 		$services = $this->product->getShipperServices($busi_id);

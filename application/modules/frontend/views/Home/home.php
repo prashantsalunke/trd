@@ -5,6 +5,7 @@
 <script src="<?php echo asset_url(); ?>js/wb.slideshow.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/wb.stickylayer.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/wb.carousel.effects.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wb.carousel.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.core.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.widget.min.js"></script>
 <script src="<?php echo asset_url(); ?>js/jquery.ui.position.min.js"></script>
@@ -140,14 +141,14 @@
 						</div>
 						<div class="panel-body discoverbtn" style="position: relative;">
 							<div id="tab-slider" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner section1" role="listbox" style="padding-top:30px;">
+								<div class="carousel-inner section1" role="listbox">
 								<?php
 								$i ="0";
 								foreach($desksites as $desksite){ 
 									$i++;
 									
 									?>
-									<div class="item <?php if($i == 1){ echo "active"; } ?>">
+									<div  style="padding-top:30px;" class="item <?php if($i == 1){ echo "active"; } ?>">
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" target="_blank" class="hstyle19"><?php echo $desksite['company_name']?></a></span>
 										</div>
@@ -194,14 +195,14 @@
 						</div>
 						<div class="panel-body mytab">
 							<div id="tab-slider2" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner section2" role="listbox" style="height:552px;padding-top:30px;">
+								<div class="carousel-inner section2" role="listbox" style="height:552px;">
 								 
 									<?php 
 									$i ="0";
 									foreach ($products3D as $product3D) {
 										$i++;
 										?>
-									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:543px;">
+									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:543px;padding-top:30px;">
 										<div class="text-center">
 											<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $product3D['name']?></strong></span>
 										</div>
@@ -260,13 +261,13 @@
 						</div>
 						<div class="panel-body mytab">
 							<div id="tab-slider3" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner section3" role="listbox" style="height:552px;padding-top:30px;">
+								<div class="carousel-inner section3" role="listbox" style="height:552px;">
 								<?php 
 									$i ="0";
 									foreach ($vCatalogues as $vCatalogue) {
 										$i++;
 										?>
-									<div class="row item <?php if($i == 1){ echo "active"; } ?>" style="height:552px;">
+									<div class="row item <?php if($i == 1){ echo "active"; } ?>" style="height:552px;padding-top:30px;">
 										<div class="text-center"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span></div>
 										<div class="text-center"><span style="color:#696969;font-family:Arial;font-size:12px;"><strong>BY</strong></span></div>
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
@@ -306,10 +307,10 @@
 										</div>
 									</div>
 									<?php } ?>
-									<a class="left carousel-control" href="#tab-slider2" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
+									<a class="left carousel-control" href="#tab-slider3" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previous0.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider2" role="button" data-slide="next" style="background: none;padding-top:70%;text-align:center;"> 
+									<a class="right carousel-control" href="#tab-slider3" role="button" data-slide="next" style="background: none;padding-top:70%;text-align:center;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/next0.png"></span> 
 									</a>
 								</div>
@@ -335,43 +336,61 @@
 						</div>
 					</div>
 					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
-						<section class="center slider" style="margin: 10px 0px;">
-							<?php
-							$i ="0";
-							
-							foreach($FeaturedProducts as $FeaturedProduct){
-								$i++;
-								
-							?>
-							<div class="col-md-3" style="padding:0px 15px;">
-							<div style="position: relative;">
-								<h4 class="text-center product-strong-text" style="margin-top: 0px;">
-									<strong><?php echo $FeaturedProduct['name']; ?></strong>
-								</h4>
-								<p class="text-center product-text ptext" ><?php echo $FeaturedProduct['description']; ?></p>
-								<div class="tumb-slide">
-									<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive" style="width:218px;height:177px;">
-									<div class="hover-thumb text-center">
-										<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;z-index:851;">
-											<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>);">
-												<img src="<?php echo asset_url(); ?>images/window0.png" id="Image13" alt="View">
-											</a>
+					<div class="panel disk-tab">
+					<div class="panel-body mytab">
+							<div id="tab-slider4" class="carousel slide" data-ride="carousel" style="height: 350px;width: 100%;border:none;">
+								<div class="carousel-inner section3" role="listbox" style="height: 318px;overflow: hidden;border:none;">
+								 
+									<?php 
+									$i ="0";
+									foreach($FeaturedProducts as $FeaturedProduct){
+										
+										if($i%4 == 0){
+									$frame = $i; 
+										?>
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:30px;border:none;">
+									<?php } $i++; ?>
+										<div class="col-md-3" style="padding:0px 15px;border:none;">
+											<div style="position: relative;border:none;">
+												<h4 class="text-center product-strong-text" style="margin-top: 0px;border:none;">
+													<strong><?php echo $FeaturedProduct['name']; ?></strong>
+												</h4>
+												<p class="text-center product-text ptext" ><?php echo $FeaturedProduct['description']; ?></p>
+												<div class="tumb-slide" style="border:none;">
+													<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive" style="width:218px;height:177px;">
+													<div class="hover-thumb text-center">
+														<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;"><!-- z-index:851;-->
+															<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>);">
+																<img src="<?php echo asset_url(); ?>images/window0.png" id="Image13" alt="View">
+															</a>
+														</div>
+														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
+															<a href="<?php echo base_url();?>desksite/<?php echo $FeaturedProduct['busi_id'];?>" target="_blank">
+																<img class="hover" alt="View Desksite" src="<?php echo asset_url(); ?>images/vieworang.png">
+																<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view-detailsb.png"></span>
+															</a>
+														</div>
+													</div>
+												</div>
+												<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedProduct['unit_price']?></span></h4>
+												<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedProduct['quantity'].' '.$FeaturedProduct['unit']?>		</p>
+											</div>
 										</div>
-										<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;z-index:770;">
-											<a href="<?php echo base_url();?>desksite/<?php echo $FeaturedProduct['busi_id'];?>" target="_blank">
-												<img class="hover" alt="View Desksite" src="<?php echo asset_url(); ?>images/vieworang.png">
-												<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view-detailsb.png"></span>
-											</a>
-										</div>
+									<?php if($frame+4 == $i){?>
 									</div>
+									<?php } ?>
+									<?php }?>
+									<a class="left carousel-control" href="#tab-slider4" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
+									</a> 
+									<a class="right carousel-control" href="#tab-slider4" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
+									</a>
 								</div>
-								<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedProduct['unit_price']?></span></h4>
-								<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedProduct['quantity'].' '.$FeaturedProduct['unit']?></p>
 							</div>
-							</div>
-							<?php } ?>
-						</section>
-					</div>
+						</div>
+					</div></div>
+
 					<div id="Layer_details" class="class1">
 					  	<div id="Layer_details_Container" class="class2">
 					    </div>
@@ -395,32 +414,60 @@
 						</div>
 					</div>
 					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
-						<section class="center slider" style="margin: 10px 0px;">
-						<?php //print_r($FeaturedVideos);
-						foreach($FeaturedVideos as  $FeaturedVideo){?>
-							<div class="col-md-3">
-							<div class="imgsection">
-								<h4 class="text-center product-strong-text" style="margin-top: 0px;">
-									<strong><?php echo $FeaturedVideo['name']; ?></strong>
-								</h4>
-								<p class="text-center product-text"><?php echo $FeaturedVideo['description']; ?>.</p>
-								<div class="tumb-slide">
-									<div id="wb_MediaPlayer1" style="width:218px;height:142px;z-index:677;" class="imgresponsive">
-										<video src="<?php echo asset_url().$FeaturedVideo['vedio_file']; ?>" id="MediaPlayer1"></video>
+					<div class="panel disk-tab">
+						<div class="panel-body mytab">
+							<div id="tab-slider5" class="carousel slide" data-ride="carousel" style="height: 315px;width: 100%;border:none;">
+								<div class="carousel-inner section3" role="listbox" style="height: 315px;overflow: hidden;border:none;">
+								 
+									<?php 
+									$i =0;
+									foreach($FeaturedVideos as $FeaturedVideo){
+										
+										if($i%4 == 0){
+									$frame = $i; 
+										?>
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:30px;border:none;">
+									<?php } $i++; ?>
+									<div class="col-md-3">
+										<div class="imgsection">
+											<h4 class="text-center product-strong-text" style="margin-top: 0px;">
+												<strong><?php echo $FeaturedVideo['name']; ?></strong>
+											</h4>
+											<p class="text-center product-text"><?php echo $FeaturedVideo['description']; ?>.</p>
+											<div class="tumb-slide">
+												<div id="wb_MediaPlayer1" style="width:218px;height:142px;z-index:677;" class="imgresponsive">
+													<video src="<?php echo asset_url().$FeaturedVideo['vedio_file']; ?>" id="MediaPlayer1" style="width:218px !important;height:140px;z-index:677;"></video>
+												</div>
+												<div class="hover-thumb text-center">
+														<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;"><!-- z-index:851;-->
+															<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/playblk.png" id="Image34" alt=""></a> 
+														</div>
+														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
+															<a href="#">
+																<img src="<?php echo asset_url(); ?>/images/ts/view.png" >
+															</a>
+														</div>
+													</div>
+											</div>
+											<br/><br/>
+											<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedVideo['unit_price']?></span></h4>
+											<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedVideo['quantity'].' '.$FeaturedVideo['unit']?></p>
+										</div>
 									</div>
-									<div class="hover-thumb text-center">
-										<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/playblk.png" id="Image34" alt=""></a> 
-										<a href="#">
-											<img src="<?php echo asset_url(); ?>/images/ts/view.png" >
-										</a>
+									<?php if($frame+4 == $i){?>
 									</div>
+									<?php } ?>
+									<?php }?>
+									<a class="left carousel-control" href="#tab-slider5" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
+									</a> 
+									<a class="right carousel-control" href="#tab-slider5" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
+									</a>
 								</div>
-								<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedVideo['unit_price']?></span></h4>
-								<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedVideo['quantity'].' '.$FeaturedVideo['unit']?></p>
 							</div>
-							</div>
-							<?php }?>
-						</section>
+						</div>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -440,57 +487,76 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-9 col-lg-10"
-						style="background: #fff; min-height: 272px;">
-						<div >
-						<section class="center slider" style="margin:8px auto;">
+					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
+					<div class="panel disk-tab">
+						<div class="panel-body mytab">
+							<div id="tab-slider6" class="carousel slide" data-ride="carousel" style="height: 315px;width: 100%;border:none;">
+								<div class="carousel-inner section3" role="listbox" style="height: 315px;overflow: hidden;border:none;">
 						<?php
-							$i ="0";
+							$i=0;
 							
 							foreach($FWSellers as $key=>$FWSeller){
-								$i++;
-								
-							?>
-							<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;" onmouseenter="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 0, 'fade', 10, 'swing');return false;">
-								<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
-									<img src="<?php echo asset_url().$FWSeller['picture']; ?>" id="Shape24" alt="" style="width:218px;height:218px;">
-								</div>
-								<div id="Layer141" style="position:absolute;text-align:left;left:0px;top:202px;width:218px;height:65px;z-index:510;">
-									<div id="wb_Text204" style="position:absolute;left:55px;top:25px;width:116px;height:16px;z-index:503;text-align:left;">
-										<span style="color:#000000;font-family:Arial;font-size:11px;"><strong><?php echo $FWSeller['contact_person']?></strong></span>
-									</div>
-									<div id="wb_Text205" style="position:absolute;left:55px;top:40px;width:130px;height:16px;z-index:504;text-align:left;">
-										<span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWSeller['position']?>CTO</span>
-									</div>
-									<div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:19px;z-index:505;background-color: #A9A9A9;">
-										<div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:16px;text-align:center;z-index:502;">
-											<span style="color:#000000;font-family:Arial;font-size:11px;">Applicance, Lighting lamp</span>
+								if($i%4 == 0){
+									$frame = $i; 
+										?>
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;">
+									<?php } $i++; ?>
+										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;" onmouseenter="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 0, 'fade', 10, 'swing');return false;">
+											<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
+												<?php if (file_exists("assets/".$FWSeller['picture'])){ ?>
+												<img src="<?php echo asset_url().$FWSeller['picture']; ?>" id="Shape24" alt="" style="width:218px;height:218px;">
+												<?php }else{ ?>
+												<img src="<?php echo asset_url().'images/img1004.png'?>" id="Shape24" alt="" style="width:218px;height:218px;">
+												<?php } ?>
+
+											</div>
+											<div id="Layer141" style="position:absolute;text-align:left;left:0px;top:202px;width:218px;height:65px;z-index:510;">
+												<div id="wb_Text204" style="position:absolute;left:55px;top:25px;width:116px;height:16px;z-index:503;text-align:left;">
+													<span style="color:#000000;font-family:Arial;font-size:11px;"><strong><?php echo $FWSeller['contact_person']?></strong></span>
+												</div>
+												<div id="wb_Text205" style="position:absolute;left:55px;top:40px;width:130px;height:16px;z-index:504;text-align:left;">
+													<span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWSeller['position']?>CTO</span>
+												</div>
+												<div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:19px;z-index:505;background-color: #A9A9A9;">
+													<div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:16px;text-align:center;z-index:502;">
+														<span style="color:#000000;font-family:Arial;font-size:11px;"><?php echo $FWSeller['product_name'];?></span>
+													</div>
+												</div>
+												<div id="wb_Shape25" style="position:absolute;left:11px;top:24px;width:35px;height:26px;z-index:506;">
+													<img src="<?php echo asset_url(); ?>images/flags/<?php echo $FWSeller['flag'];?>" id="Shape25" alt="" style="width:35px;height:35px;">
+												</div>
+											</div>
+											<div id="Layer143-<?php echo $key;?>" class="Layer143" style="position: absolute; text-align: left; visibility: visible; left: 0px; top: 0px; width: 218px; height: 218px; z-index: 511; display: none;">
+											</div>
+											<div id="Layer144-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
+												<div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
+												<a href="javascript:openSeller(<?php echo $FWSeller['id']; ?>);" >
+													<img src="<?php echo asset_url(); ?>images/window0.png" id="Image96" alt="">
+												</a>
+												</div>
+												<div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:35px;height:35px;z-index:508">
+													<a href="<?php echo base_url(); ?>desksite/<?php echo $FWSeller['busi_id'];?>" target="_blank">
+													<img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
+													<span><img alt="" src="<?php echo asset_url(); ?>images/desktopicon.gif"></span>
+													</a>
+												</div>
+											</div>
 										</div>
+						  <?php if($frame+4 == $i){ ?>
 									</div>
-									<div id="wb_Shape25" style="position:absolute;left:11px;top:24px;width:35px;height:26px;z-index:506;">
-										<img src="<?php echo asset_url(); ?>images/flags/<?php echo $FWSeller['flag'];?>" id="Shape25" alt="" style="width:35px;height:35px;">
-									</div>
-								</div>
-								<div id="Layer143-<?php echo $key;?>" class="Layer143" style="position: absolute; text-align: left; visibility: visible; left: 0px; top: 0px; width: 218px; height: 218px; z-index: 511; display: none;">
-								</div>
-								<div id="Layer144-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
-									<div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
-										<a href="javascript:openSeller(<?php echo $FWSeller['id']; ?>);" >
-											<img src="<?php echo asset_url(); ?>images/window0.png" id="Image96" alt="">
-										</a>
-									</div>
-									<div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:35px;height:35px;z-index:508">
-										<a href="<?php echo base_url(); ?>desksite/<?php echo $FWSeller['busi_id'];?>" target="_blank">
-											<img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
-											<span><img alt="" src="<?php echo asset_url(); ?>images/desktopicon.gif"></span>
-										</a>
-									</div>
-								</div>
+									<?php } ?>
+									<?php }?>
+									<a class="left carousel-control" href="#tab-slider6" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
+									</a> 
+									<a class="right carousel-control" href="#tab-slider6" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
+									</a>
 							</div>
-							<?php }?>
-						</section>
 						</div>
 					</div>
+				</div></div>
+
 					<div id="Layer_sellers" class="class1">
 				        <div id="Layer_details_Container4" class="class2">
 				        </div>
@@ -603,38 +669,64 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-9 col-lg-10"
+					<!--<div class="col-sm-9 col-lg-10"
 						style="background: #fff; min-height: 272px;">
 						
-						<section class="center slider">
+						<section class="center slider">-->
+					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
+					<div class="panel disk-tab">
+						<div class="panel-body mytab">
+							<div id="tab-slider7" class="carousel slide" data-ride="carousel" style="height: 315px;width: 100%;border:none;">
+								<div class="carousel-inner section3" role="listbox" style="height: 315px;overflow: hidden;border:none;">
 						<?php
-							$i ="0";
+							$i =0;
 							
 							foreach($FWBuyers as $FWBuyer){
-								$i++;
-							?>
-							<div class="col-md-3">
-								<div style="position: relative;">
-									<div class="tumb-slide">
-										<img src="<?php echo asset_url().$FWBuyer['picture']; ?>" class="imgresponsive">
-										<div class="hover-thumb text-center">
-											<a href="javascript:openBuyer(<?php echo $FWBuyer['id']; ?>)">
-												<img src="<?php echo asset_url(); ?>images/ts/window0.png" style="width: 40px;">
-											</a> 
-											<a href="#">
-												<img src="<?php echo asset_url(); ?>images/ts/view.png" style="width: 40px;">
-											</a>
+								if($i%4 == 0){
+									$frame = $i; 
+										?>
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;">
+									<?php } $i++; ?>
+										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;">
+											<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
+												<?php if (file_exists("assets/".$FWBuyer['picture'])){ ?>
+												<img src="<?php echo asset_url().$FWBuyer['picture']; ?>" id="Shape24" alt="" style="width:218px;height:218px;">
+												<?php }else{ ?>
+												<img src="<?php echo asset_url().'images/img1004.png'?>" id="Shape24" alt="" style="width:218px;height:218px;">
+												<?php } ?>
+
+											</div>
+											<div id="Layer141" style="position:absolute;text-align:left;left:0px;top:202px;width:218px;height:65px;z-index:510;">
+												<div id="wb_Text204" style="position:absolute;left:55px;top:25px;width:116px;height:16px;z-index:503;text-align:left;">
+													<span style="color:#000000;font-family:Arial;font-size:11px;"><strong><?php echo $FWBuyer['contact_person']?></strong></span>
+												</div>
+												<div id="wb_Text205" style="position:absolute;left:55px;top:40px;width:130px;height:16px;z-index:504;text-align:left;">
+													<span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWBuyer['position']?>CTO</span>
+												</div>
+												<div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:19px;z-index:505;background-color: #A9A9A9;">
+													<div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:16px;text-align:center;z-index:502;">
+														<span style="color:#000000;font-family:Arial;font-size:11px;"><?php echo $FWBuyer['product_name'];?></span>
+													</div>
+												</div>
+												<div id="wb_Shape25" style="position:absolute;left:11px;top:24px;width:35px;height:26px;z-index:506;">
+													<img src="<?php echo asset_url(); ?>images/flags/<?php echo $FWBuyer['flag'];?>" id="Shape25" alt="" style="width:35px;height:35px;">
+												</div>
+											</div>
+											
 										</div>
+									<?php if($frame+4 == $i){ ?>
 									</div>
-									<img src="<?php echo asset_url(); ?>images/img0099.png" id="Shape38" alt="" class="imgcountry">
-									<h4 class="text-center product-money-symbol core1"><?php echo $FWBuyer['contact_person_name']?></h4>
-									<p class="text-center product-money-text core2"><?php echo $FWBuyer['position']?></p>
-									<p class="text-center author">text</p>
-								</div>
+									<?php } ?>
+									<?php }?>
+									<a class="left carousel-control" href="#tab-slider7" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
+									</a> 
+									<a class="right carousel-control" href="#tab-slider7" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
+									</a>
+								</div></div>
 							</div>
-							<?php }?>
-						</section>
-					</div>
+						</div></div>
 				</div>
 			</div>
 		</div>
@@ -864,9 +956,9 @@ $(document).ready(function() {
         delay: 4000,
         duration: 500,
         easing: 'easeInOutBounce',
-        mode: 'fade',
+        mode: 'rotate',
         direction: '',
-        pagination: false,
+        pagination: true,
         start: 0
     };
     $("#Carousel1").carouseleffects(Carousel1Opts);
@@ -876,6 +968,7 @@ $(document).ready(function() {
     $("#Carousel1_next a").click(function() {
         $('#Carousel1').carouseleffects('next');
     });
+
     $("#Layer_details").stickylayer({
         orientation: 9,
         position: [0, 0],

@@ -491,8 +491,8 @@ a.style16:hover
 			    		<div class="col-md-8" ><p><?php $curr_text = "N/A"; foreach ($currency as $curr) { if($curr_text == "N/A") { $curr_text = $curr['payment_currency'];} else { $curr_text = $curr_text.", ".$curr['payment_currency'];}} echo $curr_text;?></p></div>
 		    		</div>
 		    		<div style="position:relative;">
-		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;">
-							<a href="javascript:openChatWithBuyer(<?php echo $product['busi_id'];?>);" target="_self">
+		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;" onclick="chat_with(<?php echo $product['user_id'];?>,<?php echo $product['accept_chat'];?>)">
+							<a>
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_chat.png">
 								<span><img alt="" src="<?php echo asset_url();?>images/items_chat0.png"></span>
 							</a>

@@ -515,6 +515,8 @@ $route['product/item/search'] = "frontend/Product/getMyProductList";
 $route['3dproducts'] = 'frontend/Product/get3DPrducts';
 $route['vcatalogues'] = 'frontend/Product/getAllVCatalogues';
 
+$route['catalogue/pages/([0-9]+)/([0-9]+)'] = 'frontend/Home/getCataloguePages/$1/$2';
+
 // Admin ROutes
 $route['admin'] = 'backend/index';
 $route['api/auth'] = 'backend/auth/login';

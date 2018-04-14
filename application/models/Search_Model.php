@@ -9,7 +9,7 @@ class Search_Model extends CI_Model {
     	$country = trim($country[1]);
     	//$where = '( a.name like "%'+$keyword+'%" OR b.company_name like "%'+$keyword+'%")';
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
-		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*, 
+		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*, 
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
  		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product');
     	$this->db->from(TABLES::$USER.' AS a');
@@ -36,7 +36,7 @@ class Search_Model extends CI_Model {
     public function searchBusiness($type,$keyword){
     	
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
-		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*, 
+		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*, 
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.contact_person_flag,
  		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product');
     	$this->db->from(TABLES::$USER.' AS a');
@@ -63,7 +63,7 @@ class Search_Model extends CI_Model {
     public function searchProductCountry($country, $keyword){
     	$where = '(a.name like "%'.$keyword.'%" or a.description like "%'.$keyword.'%" or b.spec_name like "%'.$keyword.'%"  or b.spec_value  like "%'.$keyword.'%" )';
     	
-    	$this->db->select('a.*, c.company_name, c.company_country, c.company_province, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank,  g.*');
+    	$this->db->select('a.*, c.company_name, c.company_country, c.company_province, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank,c.accept_chat,  g.*');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM_SPEC.' AS b','a.id=b.item_id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','left');
@@ -80,7 +80,7 @@ class Search_Model extends CI_Model {
     }
     public function searchProduct($keyword){
     	$where = '(a.name like "%'.$keyword.'%" or a.description like "%'.$keyword.'%" or b.spec_name like "%'.$keyword.'%"  or b.spec_value  like "%'.$keyword.'%" )';
-    	$this->db->select('a.*, c.company_name, c.company_country, c.company_province, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank,  g.*');
+    	$this->db->select('a.*, c.company_name, c.company_country, c.company_province, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank,c.accept_chat,  g.*');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM_SPEC.' AS b','a.id=b.item_id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','left');
@@ -97,7 +97,7 @@ class Search_Model extends CI_Model {
     
     public function searchProductByBusiId($keyword, $busi_id){
     	$where = '(a.name like "%'.$keyword.'%" or a.description like "%'.$keyword.'%" or b.spec_name like "%'.$keyword.'%"  or b.spec_value  like "%'.$keyword.'%" )';
-    	$this->db->select('a.*, c.company_name, c.company_country, c.company_province, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank,  g.*');
+    	$this->db->select('a.*, c.company_name, c.company_country, c.company_province, c.company_email, c.business_logo, c.annual_trad_volume, c.plan_id, c.gaurantee_period, c.is_logo_verified, c.rank,c.accept_chat,  g.*');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM_SPEC.' AS b','a.id=b.item_id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS c','a.busi_id=c.id','left');
