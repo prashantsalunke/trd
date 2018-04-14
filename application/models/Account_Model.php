@@ -787,7 +787,8 @@ class Account_Model extends CI_Model {
 		$this->db->where('b.is_disable', 0);
 		$this->db->where('b.is_deleted', 0);
 		$this->db->order_by ( "a.created_date", "desc" );
-		$this->db->limit(3);
+		$this->db->group_by('a.id');
+		//$this->db->limit(3);
 		$query = $this->db->get();
 		$row = $query->result_array();
 		return $row;
@@ -800,7 +801,8 @@ class Account_Model extends CI_Model {
 		$this->db->join(TABLES::$ORDER.' as b', 'a.order_id = b.orderid', 'left');
 		$this->db->join(TABLES::$PRODUCT_ITEM.' as c', 'a.item_id = c.id', 'left');
 		$this->db->order_by ( "b.orderid", "desc" );
-		$this->db->limit(3);
+		$this->db->group_by('a.id');
+		//$this->db->limit(3);
 		$query = $this->db->get();
 		$row = $query->result_array();
 		return $row;
