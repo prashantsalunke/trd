@@ -672,7 +672,7 @@ class Account_Model extends CI_Model {
 	}
 	public function get3DProducts()
 	{
-		$this->db->select('a.*, b.*, c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank');
+		$this->db->select('a.*, b.name,b.unit_price,b.model_no,b.quantity,b.unit,b.main_image,b.about,b.description,c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank');
 		$this->db->from(TABLES::$MY_3DPRODUCT.' as a');
 		//$this->db->from(TABLES::$FEATURED_3DPRODUCT.' as a');
 		$this->db->join(TABLES::$PRODUCT_ITEM.' as b', 'b.id = a.product_id', 'left');

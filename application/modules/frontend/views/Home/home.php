@@ -46,7 +46,18 @@
    float: left;
    /*height: 267px;*/
 }
-
+a.style16:hover {
+    color: #FF7F50;
+    text-decoration: underline;
+}
+a.style16 {
+    color: #4169E1;
+    text-decoration: underline;
+    width: 250px;
+}
+#divtestproduct{
+	padding-top:12px;
+}
 </style>
 <div class="container-fluid" style="background: #f1f1f1; padding: 30px 0px">
 	<div class="row">
@@ -225,7 +236,7 @@
 											<?php if($product3D['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 										</div>
 										<div class="col-xs-12"
-											style="margin-top: 5px; text-align: center; margin-bottom: 5px; height: 300px;padding: 25px;">
+											style="margin-top: 5px; text-align: center; margin-bottom: 5px; height: 300px;padding: 25px;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
 											<img src="<?php echo asset_url().$product3D['main_image']; ?>" class="img-responsive" style="display: inline-block">
 										</div>
 										<div class="text-center">
@@ -477,6 +488,10 @@
 							</div>
 						</div>
 					</div>
+					</div>
+					<div id="Layer_details3" class="class1">
+					  	<div id="Layer_details_Container3" class="class2">
+					    </div>
 					</div>
 				</div>
 			</div>
@@ -779,6 +794,10 @@
 				</div>
 			</div>
 		</div>
+		<div id="Layer_buyers" class="class1">
+        	<div id="Layer_details_Container5" class="class2"></div>
+        </div>
+    </div>
 	</div>
 </div>
    <!-- Add to catalogue -->
@@ -796,6 +815,9 @@
         </div>
     </div>
 <?php echo $template['partials']['vcatalogue']; ?>
+
+<div id="promodal">
+</div>
 <script src="<?php echo asset_url(); ?>js/slick.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
@@ -858,12 +880,12 @@
     });
 
     // Added by suraj for open popup box
-    function openVideo(id) {
+    /*function openVideo(id) {
 	$.get(base_url+"seller/video/view/"+id,{},function(data) {
 			$("#Layer_details_Container").html(data);
 			ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
 		},'html');
-	}
+	}*/
 	/*function openProduct(id) {
 		$.get(base_url+"seller/product/view/"+id,{},function(data) {
 			$("#Layer_details_Container").html(data);
@@ -889,7 +911,13 @@
 			ShowObjectWithEffect('Layer_buyers', 1, 'scale', 500, 'swing');
 		},'html');
 	}
-	
+	function open3DProduct(id) {
+		$.get(base_url+"mystation/3dpro/show/"+id, {}, function(data){
+			$("#promodal").html(data);
+			$("#my3DModal").modal('show');
+			init3D('my3dimg');
+		},'html');
+ 	}
  </script>
  <script>
 $(document).ready(function() {
@@ -1059,7 +1087,7 @@ $(document).ready(function() {
 });
 function openVideo(id) {
 	$.get(base_url+"seller/video/view/"+id,{},function(data) {
-		$("#Layer_details_Container").html(data);
+		$("#Layer_details_Container3").html(data);
 		ShowObjectWithEffect('Layer_details3', 1, 'scale', 500, 'swing');
 	},'html');
 }
@@ -1089,4 +1117,5 @@ function addToItemToCart(id) {
 		ShowObject('Layer99', 1);
 	},'json');
 }
+
 </script>
