@@ -823,7 +823,7 @@ class Sellers_Model extends CI_Model {
     }
     
     public function getOneproductById($id) {
-    	$this->db->select('a.name as product_name,  a.description, a.likes, a.visit, a.main_image, b.*, c.*, d.name as plan,i.flag');
+    	$this->db->select('a.id as product_id,a.name as product_name,  a.description, a.likes, a.visit, a.main_image, b.*, c.*, d.name as plan,i.flag');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. '  AS b','a.busi_id=b.id','left');
     	$this->db->join(TABLES::$USER. '  AS c','c.busi_id=b.id','left');

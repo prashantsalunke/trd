@@ -170,17 +170,17 @@
 											<?php if($desksite['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php }?>
 											<?php if($desksite['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 										</div>
-										<div class="col-xs-12" style="margin-top: 80px;">
-											<a href="#" class=""><img src="<?php echo asset_url().$desksite['desksite_bg1']; ?>" class="img-responsive" style="padding: 0px !important;"></a>
+										<div class="col-xs-12" style="margin-top: 30px;">
+											<a href="#" class=""><img src="<?php echo asset_url().$desksite['desksite_bg1']; ?>" class="img-responsive" style="padding: 0px !important;height:313px;width:376px;"></a>
 										</div>
 										<div class="discover" style="padding-top: 67%;">
-											<a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" class="btn btn-danger btn-lg">Discover</a>
+											<a target="_blank" href="<?php echo base_url().'desksite/'.$desksite['id'];?>" class="btn btn-danger btn-lg">Discover</a>
 										</div>
 									</div>
 									<?php }?>
 								</div>
 							</div>
-							<div style="position: relative;top: -72px;width: 345px;left: 35px;">
+							<div style="position: relative;top: -30px;width: 345px;left: 35px;">
 								<a class="left carousel-control control" href="#tab-slider" role="button" data-slide="prev">
 									<img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previoustxt0blk.png">
 								</a> 
@@ -225,27 +225,28 @@
 											<?php if($product3D['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 										</div>
 										<div class="col-xs-12"
-											style="margin-top: 15px; text-align: center; margin-bottom: 5px; height: 300px;padding: 25px;">
+											style="margin-top: 5px; text-align: center; margin-bottom: 5px; height: 300px;padding: 25px;">
 											<img src="<?php echo asset_url().$product3D['main_image']; ?>" class="img-responsive" style="display: inline-block">
 										</div>
 										<div class="text-center">
 											<div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo $product3D['unit_price'];?> / <?php echo $product3D['unit']?></span></div>
 											<p><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity']?></span> </p>
 										</div>
-										<div class="hover-menu text-center" style="bottom:28px;">
-											<a href="<?php echo base_url().'products/details/'.$product3D['id'];?>" class="btn">
+										
+									</div>
+									<div class="hover-menu text-center">
+											<a target="_blank" href="<?php echo base_url().'products/details/'.$product3D['product_id'];?>" class="btn">
 												<img src="<?php echo asset_url(); ?>images/ts/view2.png" style="width: 40px;"></a>
-											 <a href="#" class="btn">
+											 <a target="_blank" href="<?php echo base_url(); ?>3dproducts" class="btn" >
 												<img src="<?php echo asset_url(); ?>images/ts/from-sameblack.png" style="width: 40px;">
 											</a> 
-											<a href="javascript:addToMyFavourite(<?php echo $product3D['id'];?>, 6);" class="btn">
+											<a href="javascript:addToMyFavourite(<?php echo $product3D['product_id'];?>, 6);" class="btn">
 												<img src="<?php echo asset_url(); ?>images/ts/favoriteclick.png" style="width: 40px;">
 											</a> 
-											<a href="#" class="btn">
+											<a class="btn" href="javascript:addToItemToCart(<?php echo $product3D['product_id'];?>)">
 												<img src="<?php echo asset_url(); ?>images/ts/aert.png" style="width: 40px;">
 											</a>
 										</div>
-									</div>
 									<?php }?>
 									<a class="left carousel-control" href="#tab-slider2" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previous0.png"></span> 
@@ -281,7 +282,7 @@
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $vCatalogue['company_name']?></a></span>
 										</div>
-										<div class="col-xs-12" style="margin-top: 15px; text-align: center; margin-bottom: 5px; height: 320px;">
+										<div class="col-xs-12" style="text-align: center; margin-bottom: 5px; height: 320px;">
 											<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block">
 											<div style="position:absolute;width: 140px;top: 120px;left: 140px;">
 												<img src="<?php echo asset_url().$vCatalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
@@ -299,11 +300,12 @@
 												<?php if($vCatalogue['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 											</div>
 										</div>
-										<div class="col-xs-12 hover-menu text-center blue" style="bottom:36px;">
+									</div>
+									<div class="col-xs-12 hover-menu text-center blue">
 											<a href="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);"  class="btn">
 												<img src="<?php echo asset_url(); ?>images/vacticonwhite.png" style="width: 40px;">
 											</a> 
-											<a href="#" class="btn">
+											<a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="btn" >
 												<img src="<?php echo asset_url(); ?>images/deskiste_white.png" style="width: 40px;">
 											</a> 
 											<a href="#" class="btn">
@@ -312,7 +314,6 @@
 											<a href="javascript:addToMyFavourite(<?php echo $vCatalogue['id'];?>, 7);" class="btn">
 												<img src="<?php echo asset_url(); ?>images/addtofav.png" style="width: 40px;">
 											</a>
-										</div>
 									</div>
 									<?php } ?>
 									<a class="left carousel-control" href="#tab-slider3" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
@@ -626,7 +627,7 @@
 													</p>
 												</div>
 												<div class="col-xs-1 orange">
-												<a href="">Go</a>
+												<a href="" style="text-decoration:none">Go</a>
 												</div>
 											</div>
 										</div>
@@ -671,7 +672,7 @@
 													</p>
 												</div>
 												<div class="col-xs-1 blue1" >
-												<a href="">Go</a>
+												<a href="" style="text-decoration:none">Go</a>
 												</div>
 											</div>
 										</div>
@@ -715,13 +716,14 @@
 						<?php
 							$i =0;
 							
-							foreach($FWBuyers as $FWBuyer){
+							foreach($FWBuyers as $key=>$FWBuyer){
 								if($i%4 == 0){
 									$frame = $i; 
 										?>
 									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;">
 									<?php } $i++; ?>
-										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;">
+										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" onmouseenter="ShowObjectWithEffect('Layer145-<?php echo $key;?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer146-<?php echo $key;?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer146-<?php echo $key;?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer145-<?php echo $key;?>', 0, 'fade', 10, 'swing');return false;">
+											
 											<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
 												<?php if (file_exists("assets/".$FWBuyer['picture'])){ ?>
 												<img src="<?php echo asset_url().$FWBuyer['picture']; ?>" id="Shape24" alt="" style="width:218px;height:218px;">
@@ -746,7 +748,20 @@
 													<img src="<?php echo asset_url(); ?>images/flags/<?php echo $FWBuyer['flag'];?>" id="Shape25" alt="" style="width:35px;height:35px;">
 												</div>
 											</div>
-											
+											<div id="Layer145-<?php echo $key;?>" class="Layer143" style="position: absolute; text-align: left; visibility: visible; left: 0px; top: 0px; width: 218px; height: 218px; z-index: 511; display: none;">
+											</div>
+											<div id="Layer146-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
+												<div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
+													<a href="javascript:openBuyer(<?php echo $FWBuyer['id']; ?>)">
+														<img src="<?php echo asset_url(); ?>images/ts/window0.png" style="width: 40px;">
+													</a>
+												</div>
+												<div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:42px;height:35px;z-index:508">
+													<a href="<?php echo base_url(); ?>buyer/profile/<?php echo $FWBuyer['busi_id'];?>" target="_blank">
+														<img src="<?php echo asset_url(); ?>images/randbuyergray.png" style="width: 42px;">
+													</a>
+												</div>
+											</div>
 										</div>
 									<?php if($frame+4 == $i){ ?>
 									</div>
@@ -1058,7 +1073,8 @@ function openProduct(id) {
 
 function addToMyFavourite(fav_id,type) {
 	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(data) {
-		alert(data.msg);
+		$("#msg_cont").html(data.msg);
+		ShowObject('Layer99', 1);
 	},'json');
 }
 function validate(){
@@ -1068,7 +1084,9 @@ if($('select').val()=='default'){
 }}
 function addToItemToCart(id) {
 	$.post(base_url+"additemtocart",{product_id: id},function(data) {
-		alert(data.msg);
+		//alert(data.msg);
+		$("#msg_cont").html(data.msg);
+		ShowObject('Layer99', 1);
 	},'json');
 }
 </script>
