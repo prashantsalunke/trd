@@ -744,7 +744,7 @@ class Home extends MX_Controller {
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
-		$html= $this->template->build ('Home/pages/catalogue', '', true);
+		$html = $this->template->build ('Home/pages/bcatalogue', '', true);
 		echo $html;
 	}
 	public function getSellerById($id) {
