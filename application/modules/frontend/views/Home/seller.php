@@ -584,34 +584,40 @@ ul.share{
        			  <div id="Layer2_Container" class="style3">
            			 <div id="Layer138">
                			 <div id="wb_Carousel3" class="style4">
-                    		<div id="Carousel3" style="position:absolute">
+                    		<div  id="Carousel3" style="position:absolute"><!--  -->
                      			 <?php 
                      				 $i= 0;
 			                        foreach($featuredSellers as $featuredSeller){
-			                        $i++;
-			                        	?>
+			                        if($i%2 == 0){
+									$frame = $i; 
+										?>
                         			<div class="frame" <?php if(($i ==1) || ($i ==2)){ echo ""; } else{ echo 'style="display:none"'; } ?>>
-                           				<div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1', 0, 'fade', 500, 'swing');return false;">
+                        			<?php } $i++; ?>
+                           				<div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder2<?php echo $i;?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder2<?php echo $i; ?>', 0, 'fade', 500, 'swing');return false;">
 			                                <div id="wb_Image226" >
+			                                	<?php if (file_exists("assets/".$featuredSeller['picture'])){ ?>
 			                                    <img src="<?php echo asset_url().''.$featuredSeller['picture']; ?>" id="Image226" alt=""  class="style86">
+			                                    <?php }else{ ?>
+			                                    <img src="<?php echo asset_url().'images/img1004.png'?>" id="Shape24" alt="" style="width:210px;height:246px;">
+			                                    <?php } ?>
 			                                </div>
-			                                <div id="Layer144" class="style15">
-			                                    <div id="wb_Text434" class="style16">
+			                                <div id="Layer144" class="style15" style="position: relative;top:0px;">
+			                                    <div id="wb_Text434" class="style16" style="position: relative;top:2px;">
 			                                        <span class="fontstyle-4"><strong><?php echo $featuredSeller['contact_person_name'];?></strong></span>
 			                                    </div>
-			                                    <div id="wb_Text435" class="style17">
+			                                    <div id="wb_Text435" class="style17" style="position: relative;top:3px;">
 			                                        <span class="fontstyle-5"><?php echo $featuredSeller['position'];?></span></div>
-			                                    <div id="Layer148" class="style18">
+			                                    <div id="Layer148" class="style18" style="position: relative;top:-25px;">
 			                                        <div id="wb_Image48" class="style19">
 			                                            <img src="<?php echo asset_url().''.$featuredSeller['contact_person_flag']; ?>" id="Image48" alt="">
 			                                        </div>
 			                                    </div>
-			                                    <div id="Layer150" class="style20">
+			                                    <div id="Layer150" class="style20" style="position: relative;top:-10px;">
 			                                        <div id="wb_Text440" class="style21">
-			                                            <span class="fontstyle-6"><strong>Main Garment</strong></span></div>
+			                                            <span class="fontstyle-6"><strong><?php echo $featuredSeller['product_name']; ?></strong></span></div>
 			                                    </div>
 			                                </div>
-			                                <div id="Buyer_holder2" class="style22">
+			                                <div id="Buyer_holder2<?php echo $i;?>" class="style22" style="position: relative;display:none;">
 			                                    <div id="wb_Image521" class="style23">
 			                                        <a href="#" onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
 			                                    </div>
@@ -623,7 +629,10 @@ ul.share{
 			                                    </div>
 			                               </div>
                            				</div>
+                           				
+                           			<?php if($frame+2 == $i){ ?>
                            			</div>
+                           			<?php } ?>
                            	 <?php }?>
                    			 </div>
 		                    <div id="Carousel3_back" class="style51">
@@ -949,6 +958,27 @@ $(document).ready(function() {
     $("#Carousel11_next a").click(function() {
         $('#Carousel11').carouseleffects('next');
     });
+
+    var Carousel3Opts =
+   {
+      delay: 4000,
+      duration: 500,
+      easing: 'easeInOutBounce',
+      mode: 'fade',
+      direction: '',
+      pagination: false,
+      start: 0
+   };
+   $("#Carousel3").carouseleffects(Carousel4Opts);
+   $("#CCarousel3_back a").click(function()
+   {
+      $('#Carousel3').carouseleffects('prev');
+   });
+   $("#Carousel3_next a").click(function()
+   {
+      $('#Carousel3').carouseleffects('next');
+   })
+
     $("#Layer_details").stickylayer({
         orientation: 9,
         position: [0, 0],
