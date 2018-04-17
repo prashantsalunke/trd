@@ -147,6 +147,7 @@ class Home extends MX_Controller {
 		$this->load->library('mylib/General');
 		$this->load->model('Sellers_Model', 'sellers' );
 		$this->load->model('Product_Model','product');
+		$this->load->model('Account_Model','account');
 		$sellers = $this->sellers->searchSellers($params);
 		$total_pages = $this->sellers->countSellers($params);
 		$this->template->set ( 'Sellers', $sellers);
@@ -154,7 +155,7 @@ class Home extends MX_Controller {
 		$this->template->set ( 'Country', $Country);
 		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
 		$this->template->set ( 'featuredSellers', $featuredSellers);
-		$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+		$featuredProductVideo= $this->account->getFeaturedProductVideo();
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
 		$featuredProducts = $this->sellers->getFeaturedProduct();
 		$this->template->set ( 'featuredProducts', $featuredProducts);
