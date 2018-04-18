@@ -394,7 +394,7 @@
                         foreach($featuredBuyers as $featuredBuyer){
                         $i++;
                         	?>
-                        <div class="frame" <?php if(($i ==1) || ($i ==2)){ echo ""; } else{ echo 'style="display:none"'; } ?>>
+                        <div class="frame">
                             <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1', 0, 'fade', 500, 'swing');return false;">
                                 <div id="wb_Image226" >
                                     <img src="<?php echo asset_url().''.$featuredBuyer['picture']; ?>" id="Image226" alt=""  class="style86">
