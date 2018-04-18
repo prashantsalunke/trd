@@ -45,7 +45,7 @@ class Account extends MX_Controller {
 		$catergory = $_POST['category'];
 		$subCatergory = $_POST['subCategory'];
 		$namePrefix = $_POST['namePrefix'];
-		$activationCode = getHash(5);
+		$activationCode = rand(1000, 9999);
 		$business = array(
 				'company_name' => $name,
 				'created_date' => date('Y-m-d H:i:s'),
