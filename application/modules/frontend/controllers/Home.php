@@ -1268,15 +1268,18 @@ class Home extends MX_Controller {
 			$this->mytoolmodel->addBusinessVisit($map);
 		}
 		$map =array();
+		$contact_details = array();
 		$map['id'] = $id;
 		$map['user_id'] = $busi_id;
 		$Desksites= $this->product->getDesksiteByBusiId($map);
 		$countries = $this->product->getAllCountries();
 		$requests = $this->product->getCurrentRequest($id);
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'countries', $countries );
 		$this->template->set ( 'Desksites', $Desksites);
 		$this->template->set ( 'community', $community);
 		$this->template->set ( 'requests', $requests);
+		$this->template->set ( 'contact_details',$contact_details);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'buyer');
 		$this->template->set_theme('default_theme');
@@ -1532,6 +1535,7 @@ class Home extends MX_Controller {
 	
 	public function saveGeneralInquiry() {
 		$this->load->model('Product_Model','product');
+		$this->load->model('Account_model', 'accountmodel');
 		$userId = $this->session->userdata('tsuser')['userid'];
 		if(!empty($this->input->post('product_id'))) {
 			$product_id = $this->input->post('product_id');
@@ -1551,7 +1555,11 @@ class Home extends MX_Controller {
 		$size = 0;
 		$params = array();
 		$params['busi_id'] = $this->input->post('busi_id');
+		$getUserInfo = $this->accountmodel->getUserDataByBusiId($params['busi_id']);
+		$params['user_id'] = $getUserInfo['id'];
 		$params['requester_busi_id'] = $this->input->post('my_busi_id');
+		$getUserInfoRequsterId = $this->accountmodel->getUserDataByBusiId($params['requester_busi_id']);
+		$params['requester_user_id'] = $getUserInfoRequsterId['id'];
 		$params['inquiry_subject'] = $this->input->post('title');
 		$params['inquiry_body'] = $this->input->post('message');
 		$params['product_id'] = $product_id;
@@ -1672,6 +1680,7 @@ class Home extends MX_Controller {
 		$params['attachment3_size'] = 0;
 		$params['attachment4'] = "";
 		$params['attachment4_size'] = 0;
+		$params['alert_viewed'] = 1;
 		$size = 0;
 		$config = array(
 				'upload_path'   => "assets/images/user_images/$userId/selleroffer",

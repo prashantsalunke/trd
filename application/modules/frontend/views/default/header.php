@@ -1,6 +1,15 @@
 <!-- new alert popup Starts -->
 <div id="new-alert-popup"></div>
-<!-- new alert popup Ends -->
+<div id="popupAddToCommunity" style="position: fixed; left: 0px; top: 0px; text-align: center; visibility: visible; margin: 20% 36%; width: 380px; height: 110px; float: left; display: none; z-index: 1000000; background-color: rgb(75, 75, 75); border: 1px solid rgb(169, 169, 169); border-radius: 2px; box-shadow: rgb(0, 0, 0) 2px 2px 12px;">
+    <div id="Layer99_Container" style="width:332px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+        <div id="wb_Text145" style="padding-top: 15px;width:332px;position:relative;margin-left:auto;margin-right:auto;text-align:left;z-index:3529;text-align: center;">
+        <span style="color:#C0C0C0;font-family:Georgia;font-size:12px;" id="msg_cont">Added to community successfully.</span></div>
+        <div id="Layer282" style="position:absolute;text-align:left;left:100px;top:75px;width:133px;height:24px;z-index:3530;background-color: #787878;" onclick="ShowObject('popupAddToCommunity', 0);return false;">
+        <div id="wb_Text146" style="position:absolute;left:45px;top:4px;width:49px;height:16px;text-align:center;z-index:3528;">
+        <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><a href="#" class="style5_99" onclick="ShowObject('popupAddToCommunity', 0);return false;">OK</a></span></div>
+        </div>
+    </div>
+</div>
 <style>
 .alert-popup {
   background: #2d2d2d none repeat scroll 0 0 !important;

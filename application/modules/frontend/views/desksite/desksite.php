@@ -1110,7 +1110,7 @@ function myloaderoff()
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/MENUFAVORITE.png" alt="Add To Favourite" class="add-share-img">
-				        <a href="javascript:addToMyFavourite(<?php echo isset($Desksites[0]['busi_id'])?>,1);" target="_self" class="antag">
+				        <a href="javascript:addToMyFavourite(<?php echo $Desksites[0]['busi_id'];?>,1);" target="_self" class="antag">
 							Add To Favorite
 						</a>
 				    </div>
@@ -1135,13 +1135,13 @@ function myloaderoff()
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/img0908.png" alt="Share" class="add-share-img">
-				        <a href="javascript:shareToWorld('<?php echo base_url();?>desksite/<?php echo isset($Desksites[0]['busi_id'])?>','<?php echo isset($Desksites[0]['company_name'])?> @ TRDSTATION',1,<?php echo isset($Desksites[0]['busi_id'])?>);" target="_self" class="antag">
+				        <a href="javascript:shareToWorld('<?php echo base_url();?>desksite/<?php echo $Desksites[0]['busi_id']?>','<?php echo $Desksites[0]['company_name']?> @ TRDSTATION',1,<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
 				        	Share
 						</a>
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/buyer-request.png" alt="General Inquiry" class="add-share-img">
-				        <a href="javascript:openGeneralEnquiry(<?php echo isset($Desksites[0]['busi_id'])?>);" target="_self" class="antag">
+				        <a href="javascript:openGeneralEnquiry(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
 				        	General Inquiry
 						</a>
 				    </div>
@@ -1167,7 +1167,7 @@ function myloaderoff()
 				        </p>
 				        <div class="box2" style="height:472px;">
 				            <form action="" name="contactusfrm" id="contactusfrm" method="post">
-				        		<input type="hidden" name="busi_id" value="<?php echo isset($Desksites[0]['busi_id'])?>"/>
+				        		<input type="hidden" name="busi_id" value="<?php echo $Desksites[0]['busi_id']?>"/>
 				        		<div class="form-group">
 				        			<div>
 				        				<input type="text" class="input" name="name" value="" placeholder="Name">

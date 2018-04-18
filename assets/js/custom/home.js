@@ -139,8 +139,22 @@ function getNewAlerts() {
         url: base_url + "home/alert",
         type: "post",
         success: function (response) {
-        		//$("#new-alert-popup").html(response);
+        		$("#new-alert-popup").html(response);
         }
     })
 }
-//getNewAlerts();
+getNewAlerts();
+function accept_community_request(id) {
+	$.ajax({
+        url: base_url + "home/addToCommunity",
+        type: "post",
+        data : { id : id },
+        success: function (response) {
+        	if(response ==1) {
+        		$("#popupAddToCommunity").show();
+        		$("#new-alert-popup").hide();
+        	}
+        	
+        }
+    })
+}

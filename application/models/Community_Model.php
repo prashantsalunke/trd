@@ -86,19 +86,21 @@ class Community_Model extends CI_Model {
     }
     
     public function addToMyCommunity($map) {
-    	$this->db->select('id');
-    	$this->db->from(TABLES::$COMMUNITY_MEMBER);
-    	$this->db->where('busi_id',$map['busi_id']);
-    	$this->db->where('my_busi_id',$map['my_busi_id']);
-    	$query = $this->db->get();
-    	$row = $query->result_array();
-    	if(count($row) <= 0) {
-    		$map['created_date'] = date('Y-m-d H:i:s');
-    		$this->db->insert(TABLES::$COMMUNITY_MEMBER,$map);
-    		return 1;
-    	} else {
-    		return 0;
-    	}
+        $this->db->select('id');
+        $this->db->from(TABLES::$COMMUNITY_MEMBER);
+        $this->db->where('busi_id',$map['busi_id']);
+        $this->db->where('user_id',$map['user_id']);
+        $this->db->where('my_busi_id',$map['my_busi_id']);
+        $this->db->where('my_user_id',$map['my_user_id']);
+        $query = $this->db->get();
+        $row = $query->result_array();
+        if(count($row) <= 0) {
+            $map['created_date'] = date('Y-m-d H:i:s');
+            $this->db->insert(TABLES::$COMMUNITY_MEMBER,$map);
+            return 1;
+        } else {
+            return 0;
+        }
     }
     
     public function searchCommunityMember($id,$name) {
@@ -225,16 +227,22 @@ class Community_Model extends CI_Model {
         }
     }
 
-    public function checkNewCommunityAlert($myBusiId)
+    public function checkNewCommunityAlert($myBusiId,$userId)
     {
-        $this->db->select('cm.id');
+        $this->db->select('cm.id,u.profile_image,usr.name,c.user_category,u.country');
         $this->db->from(TABLES::$COMMUNITY_MEMBER. ' AS cm');
-        $this->db->where('cm.my_busi_id', $myBusiId);
+        $this->db->join(TABLES::$USER. ' AS usr','cm.my_user_id=usr.id','inner');
+        $this->db->join(TABLES::$USER_INFO. ' AS u','cm.my_user_id=u.user_id','inner');
+        $this->db->join(TABLES::$USER_CATEGORIES. ' AS c','usr.user_category_id=c.id','inner');
+        $this->db->where('cm.busi_id', $myBusiId);
+        $this->db->where('cm.user_id', $userId);
+        $this->db->where('cm.alert_viewed', 0);
         $this->db->order_by('cm.id', 'desc');
         $query = $this->db->get();
+        //echo $this->db->last_query();
         $row = $query->result_array();
         if ($row > 0) {
-            return true;
+            return $row;
         } else {
             return false;
         }

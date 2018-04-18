@@ -52,7 +52,6 @@ a.style5_99:hover
 }
 </style>
 <link rel="stylesheet" href="<?php echo asset_url(); ?>css/pages/basictools.css" />
-<script src="<?php echo asset_url();?>js/custom/home.js"></script>
 <div class="col-sm-12" style="margin-top:40px; padding:0;">
     <div class="panel footer" style="margin:0px;padding: 30px 65px;">
         <div class="panel-body">
