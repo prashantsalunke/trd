@@ -157,7 +157,7 @@ class Home extends MX_Controller {
 		$this->template->set ( 'featuredSellers', $featuredSellers);
 		$featuredProductVideo= $this->account->getFeaturedProductVideo();
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-		$featuredProducts = $this->sellers->getFeaturedProduct();
+		$featuredProducts = $this->account->getFeaturedProduct();
 		$this->template->set ( 'featuredProducts', $featuredProducts);
 		$procategories = $this->general->getProductCategories();
 		$this->template->set ( 'categories', $procategories);
@@ -317,6 +317,7 @@ class Home extends MX_Controller {
 	public function search()
 	{
 		$this->load-> model('Search_Model', 'search');
+		$this->load-> model('Account_Model', 'account');
 		$keyword = $this->input->post('keyword');
 		$type = $this->input->post('type');
 		$newcountry = $this->input->post('country');
@@ -332,9 +333,9 @@ class Home extends MX_Controller {
 				$this->template->set ( 'Country', $Country);
 				$featuredSellers = $this->sellers->getFeaturedWorldSeller();
 				$this->template->set ( 'featuredSellers', $featuredSellers);
-				$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+				$featuredProductVideo= $this->account->getFeaturedProductVideo();
 				$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-				$featuredProduct= $this->sellers->getFeaturedProduct();
+				$featuredProduct= $this->account->getFeaturedProduct();
 				$this->template->set ( 'featuredProduct', $featuredProduct);
 				$this->template->set ( 'page', 'sellers' );
 				$this->template->set ( 'userId', '' );
@@ -353,9 +354,9 @@ class Home extends MX_Controller {
 				$this->template->set ( 'Country', $Country);
 				$featuredSellers = $this->sellers->getFeaturedWorldSeller();
 				$this->template->set ( 'featuredSellers', $featuredSellers);
-				$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+				$featuredProductVideo= $this->account->getFeaturedProductVideo();
 				$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-				$featuredProduct= $this->sellers->getFeaturedProduct();
+				$featuredProduct= $this->account->getFeaturedProduct();
 				$this->template->set ( 'featuredProduct', $featuredProduct);
 				$this->template->set ( 'page', 'sellers' );
 				$this->template->set ( 'userId', '' );
@@ -671,9 +672,9 @@ class Home extends MX_Controller {
 		$this->template->set ( 'Country', $Country);
 		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
 		$this->template->set ( 'featuredSellers', $featuredSellers);
-		$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+		$featuredProductVideo= $this->account->getFeaturedProductVideo();
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-		$featuredProducts = $this->sellers->getFeaturedProduct();
+		$featuredProducts = $this->account->getFeaturedProduct();
 		$this->template->set ( 'featuredProducts', $featuredProducts);
 		$this->template->set ( 'page', 'sellers' );
 		$this->template->set ( 'userId', '' );
@@ -696,9 +697,9 @@ class Home extends MX_Controller {
 		$this->template->set ( 'Country', $Country);
 		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
 		$this->template->set ( 'featuredSellers', $featuredSellers);
-		$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+		$featuredProductVideo= $this->account->getFeaturedProductVideo();
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-		$featuredProduct= $this->sellers->getFeaturedProduct();
+		$featuredProduct= $this->account->getFeaturedProduct();
 		$this->template->set ( 'featuredProduct', $featuredProduct);
 		$this->template->set ( 'page', 'sellers' );
 		$this->template->set ( 'userId', '' );
@@ -721,9 +722,9 @@ class Home extends MX_Controller {
 		$this->template->set ( 'Country', $Country);
 		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
 		$this->template->set ( 'featuredSellers', $featuredSellers);
-		$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+		$featuredProductVideo= $this->account->getFeaturedProductVideo();
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-		$featuredProduct= $this->sellers->getFeaturedProduct();
+		$featuredProduct= $this->account->getFeaturedProduct();
 		$this->template->set ( 'featuredProduct', $featuredProduct);
 		$this->template->set ( 'page', 'sellers' );
 		$this->template->set ( 'userId', '' );
