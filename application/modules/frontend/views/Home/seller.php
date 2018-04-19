@@ -584,7 +584,7 @@ ul.share{
        			  <div id="Layer2_Container" class="style3">
            			 <div id="Layer138">
                			 <div id="wb_Carousel3" class="style4">
-                    		<div  id="Carousel3123" style="position:absolute"><!--  -->
+                    		<div  id="Carousel3" style="position:absolute"><!--  -->
                      			 <?php 
                      				 $i= 0;
 			                        foreach($featuredSellers as $featuredSeller){
@@ -725,7 +725,7 @@ ul.share{
 		                    <div id="Carousel1" style="position:absolute">
 		                    <?php $i =0;
 		                    foreach ( $featuredProducts as $key=>$featuredProduct) {
-		                    	if($key%2 == 0) {
+		                    	if($i%2 == 0) {
 		                    		$frame = $i; 
 			                    	?>
 		                        <div class="frame">

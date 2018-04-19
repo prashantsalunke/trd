@@ -392,12 +392,19 @@
                       <?php 
                       $i= 0;
                         foreach($featuredBuyers as $featuredBuyer){
-                        $i++;
-                        	?>
-                        <div class="frame">
-                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1', 0, 'fade', 500, 'swing');return false;">
-                                <div id="wb_Image226" >
-                                    <img src="<?php echo asset_url().''.$featuredBuyer['picture']; ?>" id="Image226" alt=""  class="style86">
+                        if($i%2 == 0){
+									$frame = $i; 
+										?>
+                        			<div class="frame">
+                        			<?php } $i++; ?>
+                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
+                                <div id="wb_Image226" style="position: relative;">
+                                	<?php if ($featuredBuyer['picture'] != "" && file_exists("assets/".$featuredBuyer['picture'])){ ?>
+                                    	<img src="<?php echo asset_url().''.$featuredBuyer['picture']; ?>" id="Image226" alt=""  class="style86">
+                                    <?php }else{ ?>
+			                            <img src="<?php echo asset_url().'images/img1004.png'?>" id="Shape24" alt="" style="width:210px;height:246px;">
+			                        <?php } ?>
+
                                 </div>
                               
                                 <div id="Layer144" class="style15">
@@ -413,7 +420,7 @@
                                     </div>
                                     <div id="Layer150" class="style20">
                                         <div id="wb_Text440" class="style21">
-                                            <span class="fontstyle-6"><strong>Men Garments</strong></span></div>
+                                            <span class="fontstyle-6"><strong><?php echo $featuredBuyer['product_name']; ?></strong></span></div>
                                     </div>
                                 </div>
                                 
@@ -429,8 +436,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php if($frame+2 == $i){ ?>
                             </div>
-                            <?php }?>
+                            <?php } }?>
                     </div>
                     <div id="Carousel3_back" class="style51">
                         <a href=""><img alt="Back" src="<?php echo asset_url(); ?>images/previoustxt0blk.png"></a>

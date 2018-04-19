@@ -38,3 +38,13 @@
  Feb 26 19:28:32 : {"disableGroupTab":"1","allowUsers":"1","allowGuests":"1","allowDelete":"1","allowAvatar":"1","crguestsMode":"1","showChatroomUsers":"1","messageBeep":"1","newMessageIndicator":"1","showUsername":"1","showGroupsOnlineUsers":"0","chatroomTimeout":"604800","lastMessages":"10"}
  Feb 26 19:29:31 : {"disableGroupTab":"1","allowUsers":"0","allowGuests":"0","allowDelete":"1","allowAvatar":"1","crguestsMode":"0","showChatroomUsers":"1","messageBeep":"1","newMessageIndicator":"1","showUsername":"1","showGroupsOnlineUsers":"0","chatroomTimeout":"604800","lastMessages":"10"}
  Feb 26 19:30:30 : {"disableContactsTab":"1","hideOffline":"0","DISPLAY_ALL_USERS":"1","displayOfflineNotification":"1","displayBusyNotification":"1","displayOnlineNotification":"1","thumbnailDisplayNumber":"40","searchDisplayNumber":"10"}
+ Feb 27 17:33:43 : {"LATEST_VERSION":"7.0.5","api_response":""}
+ Mar 5 18:49:38 : {"LATEST_VERSION":"7.0.6","api_response":""}
+ Mar 11 09:27:15 : {"LATEST_VERSION":"7.0.6","api_response":""}
+ Mar 17 19:08:32 : {"LATEST_VERSION":"7.0.8","api_response":""}
+ Mar 19 18:11:21 : {"LATEST_VERSION":"7.0.8","api_response":""}
+ Apr 6 18:47:41 : {"LATEST_VERSION":"7.0.10","api_response":""}
+ Apr 6 19:06:48 : {"plugins":["audiochat","avchat","filetransfer","handwrite","report","smilies","stickers","transliterate","writeboard","voicenote","block","chathistory","clearconversation","save"]}
+ Apr 6 19:06:51 : {"crplugins":["audiochat","avchat","filetransfer","handwrite","smilies","stickers","style","transliterate","writeboard","voicenote","chathistory","clearconversation","save"]}
+ Apr 6 19:06:53 : {"plugins":["audiochat","avchat","filetransfer","handwrite","report","smilies","stickers","transliterate","writeboard","voicenote","block","chathistory","clearconversation","save","whiteboard"]}
+ Apr 6 19:06:55 : {"crplugins":["audiochat","avchat","filetransfer","handwrite","smilies","stickers","style","transliterate","writeboard","voicenote","chathistory","clearconversation","save","whiteboard"]}
