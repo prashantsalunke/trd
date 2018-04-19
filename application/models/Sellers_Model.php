@@ -612,7 +612,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('f.user_category_id', 1);
         $this->db->order_by('b.plan_id',"desc");
         $this->db->group_by('f.busi_id');
-    	$this->db->limit(2);
+    	$this->db->limit(4);
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;
@@ -620,19 +620,22 @@ class Sellers_Model extends CI_Model {
     
     public function getFeaturedWorldShippers()
     {
-    	$this->db->select('a.*, b.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, d.contact_person_flag, e.picture, e.position  ');
-    	$this->db->from(TABLES::$FEATURED_WORLD_SELLER.' as a');
-    	$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'a.busi_id = b.id', 'left');
+    	$this->db->select('b.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, d.contact_person_flag, e.picture, e.position  ');
+    	//$this->db->from(TABLES::$FEATURED_WORLD_SELLER.' as a');
+        $this->db->from(TABLES::$USER.' AS f');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'f.busi_id = b.id', 'left');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' as c', 'b.id = c.busi_id', 'left');
     	$this->db->join(TABLES::$COMPANY_INFO.' as d', 'b.id = d.busi_id', 'left');
     	$this->db->join(TABLES::$CONTACTPERSON.' as e', 'b.id = d.busi_id', 'left');
-    	$this->db->join(TABLES::$USER.' AS f', 'b.id= f.busi_id', 'left');
-    	$this->db->where ( 'NOW() BETWEEN a.start_date AND a.end_date');
+    	//$this->db->join(TABLES::$USER.' AS f', 'b.id= f.busi_id', 'left');
+    	//$this->db->where ( 'NOW() BETWEEN a.start_date AND a.end_date');
     	$this->db->where('b.is_logo_verified', 1);
     	$this->db->where('b.is_disable', 0);
     	$this->db->where('b.is_deleted', 0);
-    	$this->db->where('a.status', 1);
+    	//$this->db->where('a.status', 1);
     	$this->db->where('f.user_category_id', 2);
+        $this->db->order_by('b.plan_id',"desc");
+        $this->db->group_by('f.busi_id');
     	$this->db->limit(4);
     	$query = $this->db->get();
     	$row = $query->result_array();
