@@ -825,6 +825,34 @@ function stopWiggle(input) {
 				<?php } ?>
 			</div>
 		    <!-- slider ends -->
+
+
+        <!-- left navigation -->
+        <div id="Layer88" class="leftnav">
+            <div id="Layer116" class="left-fixed" style="padding-top:25px; width: auto">
+                
+                        <a href="#" class="navigation2" id="wb_Image61" style="padding:0px 15px;">
+                          <?php if(($Desksite['accept_chat']+$Desksite['accept_offer']+$Desksite['accept_community']+$Desksite['accept_email']) > 2) { ?>
+                          <img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." class="verified-icon" />
+                          <?php } else { ?>
+                          <img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." class="verified-icon img-disabled1">
+                          <?php } ?>
+                        </a>
+                        <a href="#" class="navigation2" id="wb_Image67" style="padding:0px 15px;">
+                          <?php if(count($requests) > 0){?>
+                  <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" alt="Buyer has a current request, click on Current Requests to view deal."  class="img28" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);"/>
+                  <?php }?>
+                </a>
+                        <a href="#" class="navigation2 " id="wb_Image76" style="padding:0px 15px;">
+                          <?php if(count($community) > 0){ ?>
+                          <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" class="community-member-icon">
+                          <?php } else { ?>
+                          <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" class="community-member-icon img-disabled1">
+                          <?php } ?>
+                       </a>
+            </div>
+        </div>
+        <!-- left navigation ends -->
 		   
 			<!-- bottom navigation -->
 			<div class="container" style="margin:auto auto;">
@@ -832,25 +860,27 @@ function stopWiggle(input) {
 					<div id=" Layer5_Container " style="width:926px;margin:auto;padding-top:40px;">
 					    <div class="row" style="margin-left:0px;">
 					        <div class="col-md-2 col-sm-2 bg" style="width: 180px;padding:15px 30px;">
-				               	<a href="#" class="navigation2" id="wb_Image61" style="padding:0px 15px;">
+				               	<!-- <a href="#" class="navigation2" id="wb_Image61" style="padding:0px 15px;">
 				              		<?php if(($Desksite['accept_chat']+$Desksite['accept_offer']+$Desksite['accept_community']+$Desksite['accept_email']) > 2) { ?>
 				                	<img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." class="verified-icon" />
 				                	<?php } else { ?>
 					              	<img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." class="verified-icon img-disabled1">
 					              	<?php } ?>
 				                </a>
+
 				                <a href="#" class="navigation2" id="wb_Image67" style="padding:0px 15px;">
 					                <?php if(count($requests) > 0){?>
-									<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" alt="Buyer has a current request, click on Current Requests to view deal."  class="img28" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);"/>
-									<?php }?>
-								</a>
+        									<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" alt="Buyer has a current request, click on Current Requests to view deal."  class="img28" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);"/>
+        									<?php }?>
+        								</a>
+
 				               	<a href="#" class="navigation2 " id="wb_Image76" style="padding:0px 15px;">
 				                	<?php if(count($community) > 0){ ?>
 					                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" class="community-member-icon">
 					                <?php } else { ?>
 					                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" class="community-member-icon img-disabled1">
 					                <?php } ?>
-				               </a>
+				               </a> -->
 					        </div>
 					        <div class="col-md-8 col-sm-8 bg" style="margin-left: 15px;margin-right:15px;">
 					        		<center>
@@ -1490,6 +1520,7 @@ function resetForm() {
 	document.contactusfrm.reset();
 }
 $(document).ready(function() {
+    $('.loader').removeClass('loader');
     $("body").on("contextmenu",function(){
        return false;
     }); 
