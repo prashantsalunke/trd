@@ -282,7 +282,7 @@ class Home extends MX_Controller {
 		$this->template->set ( 'Country', $Country);
 		$featuredShippers = $this->shipper->getFeaturedWorldShippers();
 		$this->template->set ( 'featuredShippers', $featuredShippers);
-		$featuredProductVideo= $this->shipper->getFeaturedProductVideo();
+		$featuredProductVideo= $this->account->getFeaturedProductVideo();
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
 		$featuredProducts= $this->shipper->getFeaturedProduct();
 		unset($params['usubcat_id']);
@@ -464,6 +464,7 @@ class Home extends MX_Controller {
 		elseif($type ==4){
 			if($country[0] !=''){
 				$this->load->model('Sellers_Model', 'buyers' );
+				$this->load->model('Account_Model', 'account' );
 				$search = $this->search->searchProductCountry($country, $keyword);
 				$this->template->set ( 'products', $search);
 				$Country= $this->account->getCountry();
@@ -472,7 +473,7 @@ class Home extends MX_Controller {
 				$this->template->set ( 'featuredBuyers', $featuredBuyers);
 				$featuredProductVideo= $this->buyers->getFeaturedProductVideo();
 				$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-				$featuredProduct= $this->buyers->getFeaturedProduct();
+				$featuredProduct= $this->account->getFeaturedProduct();
 				$this->template->set ( 'featuredProduct', $featuredProduct);
 				$this->template->set ( 'page', 'buyers' );
 				$this->template->set ( 'userId', '' );
@@ -485,6 +486,7 @@ class Home extends MX_Controller {
 				return true;
 			}else{
 				$this->load->model('Sellers_Model', 'buyers' );
+				$this->load->model('Account_Model', 'account' );
 				$search = $this->search->searchProduct($keyword);
 				$this->template->set ( 'products', $search);
 				$Country= $this->account->getCountry();
@@ -493,7 +495,7 @@ class Home extends MX_Controller {
 				$this->template->set ( 'featuredBuyers', $featuredBuyers);
 				$featuredProductVideo= $this->buyers->getFeaturedProductVideo();
 				$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-				$featuredProduct= $this->buyers->getFeaturedProduct();
+				$featuredProduct= $this->account->getFeaturedProduct();
 				$this->template->set ( 'featuredProduct', $featuredProduct);
 				$this->template->set ( 'page', 'buyers' );
 				$this->template->set ( 'userId', '' );
@@ -1122,6 +1124,7 @@ class Home extends MX_Controller {
 	public function desksiteSearch(){
 		$keyword = $this->input->post('keyword');
 		$busi_id = $this->input->post('busi_id');
+		$this->load->model('Account_Model', 'account' );
 		$this->load->model('Search_Model', 'search' );
 		$this->load->model('Sellers_Model', 'buyers' );
 		$this->load->model('Product_Model', 'product' );
@@ -1131,9 +1134,9 @@ class Home extends MX_Controller {
 		$this->template->set ( 'Country', $Country);
 		$featuredBuyers = $this->buyers->getFeaturedWorldSeller();
 		$this->template->set ( 'featuredSellers', $featuredBuyers);
-		$featuredProductVideo= $this->buyers->getFeaturedProductVideo();
+		$featuredProductVideo= $this->account->getFeaturedProductVideo();
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-		$featuredProduct= $this->buyers->getFeaturedProduct();
+		$featuredProduct= $this->account->getFeaturedProduct();
 		$maincats = $this->product->getActiveProductMainAndSubCategories();
 		$this->template->set ( 'mcats', $maincats );
 		$this->template->set ( 'featuredProducts', $featuredProduct);
