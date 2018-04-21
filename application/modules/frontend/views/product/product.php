@@ -491,7 +491,7 @@
 										?>
 	                        <div class="frame" class="style5">
 	                        <?php } $i++; ?>
-	                            <div id="Layer39" class="fs11" onmouseenter="ShowObjectWithEffect('holder', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
+	                            <div id="Layer39" class="fs11" onmouseenter="ShowObjectWithEffect('holder<?php echo $i;?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder<?php echo $i;?>', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
 	                                <div id="wb_Text78" class="fs1">
 	                                    <span><strong><?php echo $featuredVideo['name'];?></strong></span></div>
 	                                <div id="wb_Text77" class="fs2">
@@ -506,7 +506,7 @@
 	                                </div>
 	                                <div id="Layer29" class="fs13">
 	                                </div>
-	                                <div id="holder" class="fs14">
+	                                <div id="holder<?php echo $i;?>" class="fs14">
 	                                    <div id="wb_Image33" class="fs15">
 	                                        <a href="javascript:openVideo(<?php echo $featuredVideo['id'];?>)"><img src="<?php echo asset_url(); ?>images/play.png" id="Image33" alt="" width="35px" height="35px"></a>
 	                                    </div>

@@ -1,5 +1,5 @@
 <div id="wb_Image51" style="position:absolute;left:262px;top:8px;width:35px;height:35px;z-index:1297;">
-	<a href="#" onclick="ShowObjectWithEffect('Layer_details', 0, 'scale', 500, 'swing');return false;">
+	<a href="#" onclick="ShowObjectWithEffect('Layer_details', 0, 'scale', 500, 'swing');ShowObjectWithEffect('Layer_details2', 0, 'scale', 500, 'swing');return false;">
 		<img src="<?php echo asset_url();?>images/close.png" id="Image51" alt="Close">
 	</a>
 </div>

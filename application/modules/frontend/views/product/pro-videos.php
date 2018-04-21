@@ -372,9 +372,7 @@
 										?>
                         			<div class="frame">
                         			<?php } $i++; ?>
-								<div id="Layer147"
-									onmouseenter="ShowObjectWithEffect('Buyer_Holder1<?php echo $i;?>', 1, 'dropup', 300, 'swing');return false;"
-									onmouseleave="ShowObjectWithEffect('Buyer_Holder1<?php echo $i;?>', 0, 'fade', 500, 'swing');return false;" style="border: 1px #D3D3D3 solid;position: relative;">
+								<div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1<?php echo $i; ?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1<?php echo $i; ?>', 0, 'fade', 500, 'swing');return false;" style="border: 1px #D3D3D3 solid;position: relative;">
 									<div id="wb_Image226" style="position: relative;">
 										<?php if ($featuredSeller['picture'] != "" && file_exists("assets/".$featuredSeller['picture'])){ ?>
 										<img
@@ -405,7 +403,7 @@
 											</div>
 										</div>
 									</div>
-									<div id="Buyer_holder1<?php echo $i;?>" class="style22">
+									<div id="Buyer_holder1<?php echo $i;?>" class="style22" style="z-index: 511; display: none;">
 										<div id="wb_Image521" class="style23">
 											<a href="#"
 												onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"><img
