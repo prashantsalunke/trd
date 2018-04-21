@@ -64,67 +64,74 @@ a.style16 {
 	padding-top:12px;
 }
 </style>
+<?php
+	setlocale(LC_ALL, ''); // Locale will be different on each system.
+	$locale = localeconv();
+?>
 <div class="container-fluid" style="background: #f1f1f1; padding: 30px 0px">
 	<div class="row">
 		<div class="" style="margin-bottom: 20px;">
-			<div class="col-lg-2">
-				<div class="panel">
-					<div class="panel-heading" style="background: #ffffff; border: none;color: #3C3C3C; font-family: Georgia; font-size: 16px;">
-						<b>Categories</b>
+			<div class="col-lg-13">
+				<div class="panel" style="overflow: hidden;width:1280px;padding-bottom: 20px;">
+					<div class="panel-heading" style="border: none;color: #3C3C3C; font-family: Georgia; font-size: 16px;float:left;width:150px;padding: 0px;">
+						<div id="wb_Text120" style="position:relative;/*left:81px;top:7px;*/width:150px;height:30px;z-index:1405;text-align:left;overflow: hidden;">
+								<img src="<?php echo asset_url();?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
+								<span style="color:#303030;font-family:Georgia;font-size:17px;"><a href="#" class="style261">Categories</a></span>
+						</div>
 					</div>
-					<div class="list-group categary">
+					<!--<div class="list-group categary">
 						<?php //print_r($procategories);
 						foreach($procategories as $product)
 							{  ?>
 							<a href="#" class="list-group-item"><?php echo $product['name']."asd"; ?> </a> 
 				   		 <?php 	} ?>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-10">
-			<div class="search-div"> 
-				<form method="post" action="search">
-					<div class="col-sm-7 col-xs-11" style="padding: 0px;">
-						<input type="text" class="search-box" required="required" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
-					</div>
-					<div class="col-sm-2 col-xs-3 " style="padding: 0px;">
-						<div class="dropdown">
-							<select class="search-box" onchange ="validate();" class="required" required name='type'>
-								<option value="" >Search for</option>
-								<option value="1">Sellers</option>
-								<option value="2">Shippers</option>
-								<option value="3">Buyers</option>
-								<option value="4">Products</option>
-							</select>
+					</div>-->
+				
+				<div class="search-div" style="float:left;width:1130px;"> 
+					<form method="post" action="search">
+						<div class="col-sm-7 col-xs-11" style="padding: 0px;">
+							<input type="text" class="search-box" required="required" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
 						</div>
-					</div>
-					<div class="col-sm-2 col-xs-3 " style="padding: 0px;">
-						<div class="dropdown">
-							<select class="search-box" name='country'>
-								<option value="0_0">Country</option>
-								<?php foreach ($Country as $country){?>
-									<option value="<?php echo $country['id'].'_'.$country['name'];?> "><?php echo $country['name'];?></option>
-								<?php }?>
-							</select>
-							
+						<div class="col-sm-2 col-xs-3 " style="padding: 0px;">
+							<div class="dropdown">
+								<select class="search-box" onchange ="validate();" class="required" required name='type'>
+									<option value="" >Search for</option>
+									<option value="1">Sellers</option>
+									<option value="2">Shippers</option>
+									<option value="3">Buyers</option>
+									<option value="4">Products</option>
+								</select>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-1 col-xs-1" style="padding: 0px;">
-						<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
-					</div>
+						<div class="col-sm-2 col-xs-3 " style="padding: 0px;">
+							<div class="dropdown">
+								<select class="search-box" name='country'>
+									<option value="0_0">Country</option>
+									<?php foreach ($Country as $country){?>
+										<option value="<?php echo $country['id'].'_'.$country['name'];?> "><?php echo $country['name'];?></option>
+									<?php }?>
+								</select>
+								
+							</div>
+						</div>
+						<div class="col-sm-1 col-xs-1" style="padding: 0px;">
+							<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+						</div>
 					</form>
 				</div>
-			
-				<div id="carousel-example-generic" class="carousel  carousel1 slide" data-ride="carousel" style="background: #fff; padding-bottom: 50px;height:550px;">
+				</div>
+			</div>
+			<div class="col-lg-13">
+				<div id="carousel-example-generic" class="carousel  carousel1 slide"  style="background: #fff; padding-bottom: 50px;height:640px;" data-ride="carousel">
 					<!-- Indicators -->
 					<ol class="carousel-indicators">
 					<?php
 					 $i='0';
 					 foreach ($homeAds as $banner) { 
-					 $i++;
+					 
 					 ?>
 						<li data-target="#carousel-example-generic" data-slide-to="<?php echo $i;?>" class="<?php if($i==1){echo 'active'; }?>" style="border-color: #F05235;"></li>
-					<?php }?>	
+					<?php $i++; }?>	
 					</ol>
 	
 					<!-- Wrapper for slides -->
@@ -136,18 +143,44 @@ a.style16 {
 							?>
 						<div class="item <?php if($i==1){echo 'active'; }?>">
 							<a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id']?>"><img src="<?php echo asset_url().$banner['main_banner']; ?>" alt="..."> </a>
+							<!--<div id="Layer367" style="position:relative;left:1200px;top:-300px;text-align:left;width:40px;height:40px;z-index:1390;">
+								<div id="wb_Text499" style="width:30px;height:14px;z-index:1378;text-align:left;">
+									<span style="color:#FFFFFF;font-family:Arial;font-size:11px;">500K</span>
+								</div>
+								<div id="wb_Image268" style="width:23px;height:23px;z-index:1379;">
+									<img src="<?php echo asset_url(); ?>images/view.png" id="Image268" alt="">
+								</div>
+							</div>-->
+							<div id="Layer354" style="position:relative;text-align:left;top: -300px;left: 1200px;width:62px;height:115px;z-index:1361;">
+								<div id="Layer356" style="position:relative;text-align:left;/*left:16px;top:8px;*/width:40px;height:40px;z-index:1358;">
+									<div id="wb_Image262" style="position:relative;/*left:9px;top:0px;*/width:23px;height:23px;z-index:1355;">
+										<img src="<?php echo asset_url(); ?>images/view.png" id="Image262" alt="">
+									</div>
+									<div id="wb_Text494" style="position:relative;/*left:8px;top:22px;*/width:30px;height:14px;z-index:1354;text-align:left;">
+										<span style="color:#FFFFFF;font-family:Arial;font-size:11px;">500K</span>
+									</div>
+								</div>
+								<div id="Layer357" style="position:relative;text-align:left;/*left:17px;top:62px;*/width:40px;height:40px;z-index:1359;">
+									<div id="wb_Image263" style="position:relative;/*left:10px;top:2px;*/width:20px;height:20px;z-index:1356;">
+										<img src="<?php echo asset_url(); ?>images/like_icon.png" id="Image263" alt="">
+									</div>
+									<div id="wb_Text495" style="position:relative;/*left:8px;top:23px;*/width:29px;height:14px;z-index:1357;text-align:left;">
+										<span style="color:#FFFFFF;font-family:Arial;font-size:11px;">500K</span>
+									</div>
+								</div>
+							</div>
 						</div>
 						<?php }?>
 					</div>
 					<!-- Controls -->
-					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="background: none;"> 
+					<!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="background: none;"> 
 						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 						<span class="sr-only">Previous</span>
 					</a> 
 					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="background: none;"> 
 						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 						<span class="sr-only">Next</span>
-					</a>
+					</a>-->
 				</div>
 			</div>
 		</div>
@@ -156,14 +189,14 @@ a.style16 {
 				
 					<div class="col-sm-12 col-lg-4">
 					<div class="panel disk-tab">
-						<div class="panel-heading">
+						<div class="panel-heading" style="padding-left: 0px;">
 							<h2 class="font2">DESKSITES</h2>
 							<p>
 								<small class="font3">Experience A New Vision Of Websites Techniques With Quick
 									Access, Rich Information And Much More..</small>
 							</p>
 						</div>
-						<div class="panel-body discoverbtn" style="position: relative;">
+						<div class="panel-body discoverbtn" style="position: relative;margin-left:0px;">
 							<div id="tab-slider" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner section1" role="listbox">
 								<?php
@@ -177,7 +210,7 @@ a.style16 {
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" target="_blank" class="hstyle19"><?php echo $desksite['company_name']?></a></span>
 										</div>
 										<div class="col-sm-offset-1 col-sm-10 text-center">
-											<small style="color:#2D2D2D;font-family:Arial;font-size:11px;"><?php echo substr($desksite['company_introduction'],0,100);?></small>
+											<small style="color:#2D2D2D;font-family:Arial;font-size:11px;"><?php echo substr($desksite['product_name'],0,100);?></small>
 										</div>
 										<div class="col-sm-12 text-center uppercase" style="padding:8px 0px;"><?php echo $desksite['company_country']?> | <?php echo $desksite['company_province']?></div>
 										<div class="col-xs-12 text-center">
@@ -189,7 +222,7 @@ a.style16 {
 										<div class="col-xs-12" style="margin-top: 30px;">
 											<a href="#" class=""><img src="<?php echo asset_url().$desksite['desksite_bg1']; ?>" class="img-responsive" style="padding: 0px !important;height:313px;width:376px;"></a>
 										</div>
-										<div class="discover" style="padding-top: 67%;">
+										<div class="discover">
 											<a target="_blank" href="<?php echo base_url().'desksite/'.$desksite['id'];?>" class="btn btn-danger btn-lg">Discover</a>
 										</div>
 									</div>
@@ -245,14 +278,14 @@ a.style16 {
 											<img src="<?php echo asset_url().$product3D['main_image']; ?>" class="img-responsive" style="display: inline-block">
 										</div>
 										<div class="text-center">
-											<div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo $product3D['unit_price'];?> / <?php echo $product3D['unit']?></span></div>
+											<div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?> / <?php echo $product3D['unit']?></span></div>
 											<p><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity']?></span> </p>
 										</div>
 										
 									</div>
 									<div class="hover-menu text-center">
 											<a target="_blank" href="<?php echo base_url().'products/details/'.$product3D['product_id'];?>" class="btn">
-												<img src="<?php echo asset_url(); ?>images/ts/view2.png" style="width: 40px;"></a>
+												<img src="<?php echo asset_url(); ?>images/view2.png" style="width: 40px;"></a>
 											 <a target="_blank" href="<?php echo base_url(); ?>3dproducts" class="btn" >
 												<img src="<?php echo asset_url(); ?>images/ts/from-sameblack.png" style="width: 40px;">
 											</a> 
@@ -277,14 +310,14 @@ a.style16 {
 				</div>
 				<div class="col-sm-12 col-lg-4">
 					<div class="panel disk-tab">
-						<div class="panel-heading">
+						<div class="panel-heading" style="padding-right: 0px;">
 							<h2 class="font2">V-CATALOGUES</h2>
 							<p>
 								<small class="font3">Follow The Latest Collection Of Global Sellers And Famouse
 									<br>Brands..</small>
 							</p>
 						</div>
-						<div class="panel-body mytab">
+						<div class="panel-body mytab" style="margin-right: 0px;">
 							<div id="tab-slider3" class="carousel slide" data-ride="carousel">
 								<div class="carousel-inner section3" role="listbox" style="height:552px;">
 								<?php 
@@ -294,18 +327,9 @@ a.style16 {
 										?>
 									<div class="row item <?php if($i == 1){ echo "active"; } ?>" style="height:552px;padding-top:30px;">
 										<div class="text-center"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span></div>
-										<div class="text-center"><span style="color:#696969;font-family:Arial;font-size:12px;"><strong>BY</strong></span></div>
+										<!--<div class="text-center"><span style="color:#696969;font-family:Arial;font-size:12px;"><strong>BY</strong></span></div>-->
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $vCatalogue['company_name']?></a></span>
-										</div>
-										<div class="col-xs-12" style="text-align: center; margin-bottom: 5px; height: 320px;">
-											<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block">
-											<div style="position:absolute;width: 140px;top: 120px;left: 140px;">
-												<img src="<?php echo asset_url().$vCatalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
-											</div>
-											<div style="position:absolute;width: 140px;top:245px;left: 140px;">
-												<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span>
-											</div>
 										</div>
 										<div class="col-xs-12 text-center">
 											<p class="text-center"><?php echo $vCatalogue['company_country'];?> | <?php echo $vCatalogue['company_province'];?></p>
@@ -316,6 +340,16 @@ a.style16 {
 												<?php if($vCatalogue['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 											</div>
 										</div>
+										<div class="col-xs-12" style="text-align: center; margin-bottom: 5px; height: 320px;margin-top: 30px;">
+											<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block">
+											<div style="position:absolute;width: 140px;top: 120px;left: 140px;">
+												<img src="<?php echo asset_url().$vCatalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
+											</div>
+											<div style="position:absolute;width: 140px;top:245px;left: 140px;">
+												<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span>
+											</div>
+										</div>
+										
 									</div>
 									<div class="col-xs-12 hover-menu text-center blue">
 											<a href="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);"  class="btn">
@@ -324,7 +358,7 @@ a.style16 {
 											<a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="btn" >
 												<img src="<?php echo asset_url(); ?>images/deskiste_white.png" style="width: 40px;">
 											</a> 
-											<a href="#" class="btn">
+											<a href="<?php echo base_url().'vcatalogues';?>" target="_blank" class="btn">
 												<img src="<?php echo asset_url(); ?>images/from-same-user.png" style="width: 40px;">
 											</a> 
 											<a href="javascript:addToMyFavourite(<?php echo $vCatalogue['id'];?>, 7);" class="btn">
@@ -397,8 +431,8 @@ a.style16 {
 														</div>
 													</div>
 												</div>
-												<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedProduct['unit_price']?></span></h4>
-												<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedProduct['quantity'].' '.$FeaturedProduct['unit']?>		</p>
+												<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo number_format($FeaturedProduct['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']);?>/<?php echo $FeaturedProduct['unit']?></span></h4>
+												<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedProduct['quantity'];?>		</p>
 											</div>
 										</div>
 									<?php if($frame+4 == $i){?>
@@ -475,8 +509,8 @@ a.style16 {
 													</div>
 											</div>
 											<br/><br/>
-											<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo $FeaturedVideo['unit_price']?></span></h4>
-											<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedVideo['quantity'].' '.$FeaturedVideo['unit']?></p>
+											<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo number_format($FeaturedVideo['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']);?>/<?php echo $FeaturedVideo['unit'];?></span></h4>
+											<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedVideo['quantity'];?></p>
 										</div>
 									</div>
 									<?php if($frame+4 == $i){?>
