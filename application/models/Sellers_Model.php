@@ -595,7 +595,7 @@ class Sellers_Model extends CI_Model {
     }
     public function getFeaturedWorldSeller()
     {
-    	$this->db->select('b.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, d.contact_person_flag, e.picture, e.position,i.flag,f.busi_id,a.name as product_name');
+    	$this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, d.contact_person_flag, e.picture, e.position,i.flag,f.busi_id,a.name as product_name');
     	//$this->db->from(TABLES::$FEATURED_WORLD_SELLER.' as a');
         $this->db->from(TABLES::$USER.' AS f');
     	$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'f.busi_id = b.id', 'left');

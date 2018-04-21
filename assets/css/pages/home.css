@@ -8690,6 +8690,12 @@ a:visited {
 	font-family: Georgia;
 	font-size: 13px;
 	margin: 0px;
+	white-space: nowrap;
+	width: 19em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	/*padding: 10px;*/
+	text-transform: capitalize;
 }
 
 .product-money-symbol {

@@ -143,14 +143,6 @@ a.style16 {
 							?>
 						<div class="item <?php if($i==1){echo 'active'; }?>">
 							<a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id']?>"><img src="<?php echo asset_url().$banner['main_banner']; ?>" alt="..."> </a>
-							<!--<div id="Layer367" style="position:relative;left:1200px;top:-300px;text-align:left;width:40px;height:40px;z-index:1390;">
-								<div id="wb_Text499" style="width:30px;height:14px;z-index:1378;text-align:left;">
-									<span style="color:#FFFFFF;font-family:Arial;font-size:11px;">500K</span>
-								</div>
-								<div id="wb_Image268" style="width:23px;height:23px;z-index:1379;">
-									<img src="<?php echo asset_url(); ?>images/view.png" id="Image268" alt="">
-								</div>
-							</div>-->
 							<div id="Layer354" style="position:relative;text-align:left;top: -300px;left: 1200px;width:62px;height:115px;z-index:1361;">
 								<div id="Layer356" style="position:relative;text-align:left;/*left:16px;top:8px;*/width:40px;height:40px;z-index:1358;">
 									<div id="wb_Image262" style="position:relative;/*left:9px;top:0px;*/width:23px;height:23px;z-index:1355;">
@@ -172,15 +164,7 @@ a.style16 {
 						</div>
 						<?php }?>
 					</div>
-					<!-- Controls -->
-					<!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="background: none;"> 
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a> 
-					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="background: none;"> 
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>-->
+					
 				</div>
 			</div>
 		</div>
@@ -397,7 +381,7 @@ a.style16 {
 					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
 					<div class="panel disk-tab">
 					<div class="panel-body mytab">
-							<div id="tab-slider4" class="carousel slide" data-ride="carousel" style="height: 350px;width: 100%;border:none;">
+							<div id="tab-slider4" class="carousel slide" data-ride="carousel" style="height: 280px;width: 100%;border:none;">
 								<div class="carousel-inner section3" role="listbox" style="height: 318px;overflow: hidden;border:none;">
 								 
 									<?php 
@@ -407,7 +391,7 @@ a.style16 {
 										if($i%4 == 0){
 									$frame = $i; 
 										?>
-									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:30px;border:none;">
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:5px;border:none;padding-left: 30px;padding-right:30px;">
 									<?php } $i++; ?>
 										<div class="col-md-3" style="padding:0px 15px;border:none;">
 											<div style="position: relative;border:none;">
@@ -439,10 +423,10 @@ a.style16 {
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider4" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+									<a class="left carousel-control" href="#tab-slider4" role="button" data-slide="prev" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider4" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+									<a class="right carousel-control" href="#tab-slider4" role="button" data-slide="next" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 								</div>
@@ -475,7 +459,7 @@ a.style16 {
 					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
 					<div class="panel disk-tab">
 						<div class="panel-body mytab">
-							<div id="tab-slider5" class="carousel slide" data-ride="carousel" style="height: 315px;width: 100%;border:none;">
+							<div id="tab-slider5" class="carousel slide" data-ride="carousel" style="height: 280px;width: 100%;border:none;">
 								<div class="carousel-inner section3" role="listbox" style="height: 315px;overflow: hidden;border:none;">
 								 
 									<?php 
@@ -485,7 +469,7 @@ a.style16 {
 										if($i%4 == 0){
 									$frame = $i; 
 										?>
-									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:30px;border:none;">
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:280px;padding-top:5px;border:none;padding-left: 30px;padding-right:30px;">
 									<?php } $i++; ?>
 									<div class="col-md-3">
 										<div class="imgsection">
@@ -503,7 +487,7 @@ a.style16 {
 														</div>
 														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
 															<a href="#">
-																<img src="<?php echo asset_url(); ?>/images/ts/view.png" >
+																<img src="<?php echo asset_url(); ?>/images/view-detailsb.png" >
 															</a>
 														</div>
 													</div>
@@ -517,10 +501,10 @@ a.style16 {
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider5" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+									<a class="left carousel-control" href="#tab-slider5" role="button" data-slide="prev" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider5" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+									<a class="right carousel-control" href="#tab-slider5" role="button" data-slide="next" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 								</div>
@@ -553,7 +537,7 @@ a.style16 {
 					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
 					<div class="panel disk-tab">
 						<div class="panel-body mytab">
-							<div id="tab-slider6" class="carousel slide" data-ride="carousel" style="height: 315px;width: 100%;border:none;">
+							<div id="tab-slider6" class="carousel slide" data-ride="carousel" style="height: 280px;width: 100%;border:none;">
 								<div class="carousel-inner section3" role="listbox" style="height: 315px;overflow: hidden;border:none;">
 						<?php
 							$i=0;
@@ -562,7 +546,7 @@ a.style16 {
 								if($i%4 == 0){
 									$frame = $i; 
 										?>
-									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;">
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;padding-left: 30px;padding-right: 30px;">
 									<?php } $i++; ?>
 										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;" onmouseenter="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 0, 'fade', 10, 'swing');return false;">
 											<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
@@ -609,10 +593,10 @@ a.style16 {
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider6" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+									<a class="left carousel-control" href="#tab-slider6" role="button" data-slide="prev" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider6" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+									<a class="right carousel-control" href="#tab-slider6" role="button" data-slide="next" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 							</div>
@@ -765,7 +749,7 @@ a.style16 {
 					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
 					<div class="panel disk-tab">
 						<div class="panel-body mytab">
-							<div id="tab-slider7" class="carousel slide" data-ride="carousel" style="height: 315px;width: 100%;border:none;">
+							<div id="tab-slider7" class="carousel slide" data-ride="carousel" style="height: 280px;width: 100%;border:none;">
 								<div class="carousel-inner section3" role="listbox" style="height: 315px;overflow: hidden;border:none;">
 						<?php
 							$i =0;
@@ -774,7 +758,7 @@ a.style16 {
 								if($i%4 == 0){
 									$frame = $i; 
 										?>
-									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;">
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:280px;border:none;padding-right: 30px;padding-left: 40px;">
 									<?php } $i++; ?>
 										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" onmouseenter="ShowObjectWithEffect('Layer145-<?php echo $key;?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer146-<?php echo $key;?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer146-<?php echo $key;?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer145-<?php echo $key;?>', 0, 'fade', 10, 'swing');return false;">
 											
@@ -821,10 +805,10 @@ a.style16 {
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider7" role="button" data-slide="prev" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+									<a class="left carousel-control" href="#tab-slider7" role="button" data-slide="prev" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider7" role="button" data-slide="next" style="background: none;padding-top:16%;text-align:center;width:5%;"> 
+									<a class="right carousel-control" href="#tab-slider7" role="button" data-slide="next" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 								</div></div>

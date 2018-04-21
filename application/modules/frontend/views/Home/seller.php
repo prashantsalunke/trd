@@ -584,8 +584,12 @@ ul.share{
        			  <div id="Layer2_Container" class="style3">
            			 <div id="Layer138">
                			 <div id="wb_Carousel3" class="style4">
-                    		<div  id="Carousel3" style="position:absolute"><!--  -->
-                     			 <?php 
+               			 	<?php if(count($featuredSellers) > 2) { ?>
+                    				<div  id="Carousel3" style="position:absolute">
+                    			<?php } else { ?>
+                    				<div  id="Carousel3x" style="position:absolute">
+                    			<?php }
+                     			 
                      				 $i= 0;
 			                        foreach($featuredSellers as $featuredSeller){
 			                        if($i%2 == 0){
@@ -593,7 +597,7 @@ ul.share{
 										?>
                         			<div class="frame">
                         			<?php } $i++; ?>
-                           				<div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder2<?php echo $i;?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder2<?php echo $i; ?>', 0, 'fade', 500, 'swing');return false;">
+                           				<div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_holder2<?php echo $i; ?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_holder2<?php echo $i; ?>', 0, 'fade', 500, 'swing');return false;">
 			                                <div id="wb_Image226" >
 			                                	<?php if ($featuredSeller['picture'] != "" && file_exists("assets/".$featuredSeller['picture'])){ ?>
 			                                    <img src="<?php echo asset_url().''.$featuredSeller['picture']; ?>" id="Image226" alt=""  class="style86" style="width:210px;height:246px;">
@@ -621,10 +625,10 @@ ul.share{
 			                                            <span class="fontstyle-6"><strong><?php echo $featuredSeller['product_name']; ?></strong></span></div>
 			                                    </div>
 			                                </div>
-			                                <div id="Buyer_holder2<?php echo $i;?>" class="style22" style="position: relative;display:none;top: -65px;background: white;">
+			                                <div id="Buyer_holder2<?php echo $i;?>" class="style22" style="position: relative;display:none;top: -65px;background: white;z-index: 512;">
 			                                    <div id="wb_Image521" class="style23">
-			                                        <a href="#" onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
-			                                    </div>
+			                                        <a href="javascript:openSeller(<?php echo $featuredSeller['id']; ?>);"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
+			                                    </div><!-- onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"-->
 			                                    <div id="RollOver12" class="style24">
 			                                        <a href="./buyer_profile.php" target="_blank">
 			                                            <img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
@@ -647,6 +651,10 @@ ul.share{
 		                    </div>
                 		</div>
            			 </div>
+           			 <div id="Layer_sellers" class="class1">
+				        <div id="Layer_details_Container4" class="class2">
+				        </div>
+				    </div>
            			  <div class="maxheight1 bg2">
 		                	<div class="row" style="margin: 0px">
 			                    <h3 style="color: #fff; text-align: center;">
@@ -985,8 +993,8 @@ $(document).ready(function() {
       pagination: false,
       start: 0
    };
-   $("#Carousel3").carouseleffects(Carousel4Opts);
-   $("#CCarousel3_back a").click(function()
+   $("#Carousel3").carouseleffects(Carousel3Opts);
+   $("#Carousel3_back a").click(function()
    {
       $('#Carousel3').carouseleffects('prev');
    });
@@ -1027,6 +1035,12 @@ $(document).ready(function() {
         $('#Carousel4').carouseleffects('next');
     });
 });
+function openSeller(id) {
+		$.get(base_url+"seller/popup/"+id,{},function(data) {
+			$("#Layer_details_Container4").html(data);
+			ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
+		},'html');
+	}
 function openVideo(id) {
 	$.get(base_url+"seller/video/view/"+id,{},function(data) {
 		$("#Layer_details_Container").html(data);
