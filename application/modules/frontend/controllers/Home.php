@@ -773,6 +773,17 @@ class Home extends MX_Controller {
 		$html= $this->template->build ('Home/pages/buyers', '', true);
 		echo $html;
 	}
+	public function getShipperById($id) {
+		$this->load->model('Sellers_Model', 'seller' );
+		$ShipperBox= $this->seller->getShipperById($id);
+		$this->template->set ( 'SellerBox', $ShipperBox);
+		$this->template->set ( 'page', 'shippers' );
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('Home/pages/sellers', '', true);
+		echo $html;
+	}
 	
 	public function bstation() {
 		$this->load->model('Sellers_Model', 'seller' );

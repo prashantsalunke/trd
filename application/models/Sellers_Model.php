@@ -620,7 +620,7 @@ class Sellers_Model extends CI_Model {
     
     public function getFeaturedWorldShippers()
     {
-    	$this->db->select('b.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, d.contact_person_flag, e.picture, e.position,a.name as product_name');
+    	$this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, d.contact_person_flag, e.picture, e.position,a.name as product_name');
     	//$this->db->from(TABLES::$FEATURED_WORLD_SELLER.' as a');
         $this->db->from(TABLES::$USER.' AS f');
     	$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'f.busi_id = b.id', 'left');
@@ -645,7 +645,7 @@ class Sellers_Model extends CI_Model {
     public function getFeaturedWorldBuyer()
     {
     	
-        $this->db->select('b.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person,d.contact_person_flag, e.name as contact_person_name, e.picture, e.position,f.busi_id,i.flag,a.name as product_name');
+        $this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person,d.contact_person_flag, e.name as contact_person_name, e.picture, e.position,f.busi_id,i.flag,a.name as product_name');
         //$this->db->from(TABLES::$FEATURED_WORLD_BUYER.' as a');
         $this->db->from(TABLES::$USER.' AS f'/*, 'b.id= f.busi_id', 'left'*/);
         $this->db->join(TABLES::$BUSINESS_INFO.' as b', 'f.busi_id = b.id', 'left');
@@ -1050,6 +1050,33 @@ class Sellers_Model extends CI_Model {
     		return $result;
     		
     }
+    public function getShipperById($id) {
+            $this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
+        b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
+        c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.company_image1, f.contact_person, f.contact_person_flag,
+         GROUP_CONCAT(h.name SEPARATOR ",") as main_product');
+            $this->db->from(TABLES::$USER.' AS a');
+            $this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
+            $this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
+            $this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
+            $this->db->join(TABLES::$USER_CATEGORIES.' AS d','a.user_category_id=d.id','left');
+            $this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','a.user_subcategory_id=e.id','left');
+            $this->db->join(TABLES::$COMPANY_INFO.' AS f','b.id=f.busi_id','left');
+            $this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
+            $this->db->where('a.user_category_id', 2);
+            $this->db->where('a.account_activated', 1);
+            $this->db->where('a.is_suspend', 0);
+            $this->db->where('a.is_deleted', 0);
+            $this->db->where('b.is_disable', 0);
+            $this->db->where('b.is_deleted', 0);
+            $this->db->where('a.id', $id);
+            $query = $this->db->get();
+            //echo $this->db->last_query();
+            $result = $query->result_array();
+            return $result;
+            
+    }
+
     public function getProductCategory() {
     	$this->db->select('*');
     	$this->db->from(TABLES::$PRODUCT_MAIN_CATEGORY);
