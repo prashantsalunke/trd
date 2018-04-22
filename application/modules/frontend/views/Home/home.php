@@ -631,8 +631,9 @@ a.style16 {
 							<div class="col-sm-6">
 								<div class="row">
 									<div class="col-sm-12" style="background: #FF8C00; height: 60px; padding-top: 15px; text-align: center; color: #fff;">
-									<div id="wb_Text244" style="position:absolute;left:13px;top:24px;width:84px;height:15px;z-index:896;text-align:left;">
-									<span style="color:#FFFFFF;font-family:Arial;font-size:12px;"><strong>REAL-TIME</strong></span></div>
+										<div id="wb_Text244" style="position:absolute;left:13px;top:24px;width:84px;height:15px;z-index:896;text-align:left;">
+											<span style="color:#FFFFFF;font-family:Arial;font-size:12px;"><strong>REAL-TIME</strong></span>
+										</div>
 										<h3 class="head1">WORLD NEW ARRIVALS</h3>
 									</div>
 									<div id="wb_Carousel4" style="position: absolute;top:60px;">
@@ -670,7 +671,7 @@ a.style16 {
 											</div>
 										</div>
 									</div>
-									<?php if($frame+3 == $i){ ?>
+									<?php if($frame+3 == $i || count($NewArrivals) == $i){ ?>
 									</div>
 									<?php } } ?>
 								</div></div>
@@ -716,7 +717,7 @@ a.style16 {
 										</div>
 										
 									</div>
-									<?php if($frame+3 == $i){ ?>
+									<?php if($frame+3 == $i || count($NewOrders) == $i){ ?>
 									</div>
 									<?php } } ?>
 								</div>
