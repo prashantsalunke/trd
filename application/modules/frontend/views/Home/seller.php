@@ -950,6 +950,7 @@ $(document).ready(function() {
         mode: 'fade',
         direction: '',
         pagination: false,
+        pause:"hover",
         start: 0
     };
     $("#Carousel2").carouseleffects(Carousel2Opts);
