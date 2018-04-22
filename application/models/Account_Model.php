@@ -771,7 +771,7 @@ class Account_Model extends CI_Model {
 		//$this->db->where('b.is_logo_verified', 1);
 		$this->db->where('b.is_disable', 0);
 		$this->db->where('b.is_deleted', 0);
-		//$this->db->where('a.status', 1);
+		$this->db->where('b.company_rendom_carousel', 1);
 		$this->db->order_by('b.plan_id',"desc");
 		$this->db->group_by('f.busi_id');
 		$this->db->limit(12);

@@ -145,18 +145,18 @@ a.style16 {
 							<a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id']?>"><img src="<?php echo asset_url().$banner['main_banner']; ?>" alt="..."> </a>
 							<div id="Layer354" style="position:relative;text-align:left;top: -300px;left: 1200px;width:62px;height:115px;z-index:1361;">
 								<div id="Layer356" style="position:relative;text-align:left;/*left:16px;top:8px;*/width:40px;height:40px;z-index:1358;">
-									<div id="wb_Image262" style="position:relative;/*left:9px;top:0px;*/width:23px;height:23px;z-index:1355;">
+									<div id="wb_Image262" style="position:relative;/*left:9px;top:0px;*/width:25px;height:23px;z-index:1355;padding-left: 5px;">
 										<img src="<?php echo asset_url(); ?>images/view.png" id="Image262" alt="">
 									</div>
-									<div id="wb_Text494" style="position:relative;/*left:8px;top:22px;*/width:30px;height:14px;z-index:1354;text-align:left;">
+									<div id="wb_Text494" style="position:relative;/*left:8px;top:22px;*/width:30px;height:14px;z-index:1354;text-align:center;padding-left: 4px;">
 										<span style="color:#FFFFFF;font-family:Arial;font-size:11px;">500K</span>
 									</div>
 								</div>
 								<div id="Layer357" style="position:relative;text-align:left;/*left:17px;top:62px;*/width:40px;height:40px;z-index:1359;">
-									<div id="wb_Image263" style="position:relative;/*left:10px;top:2px;*/width:20px;height:20px;z-index:1356;">
+									<div id="wb_Image263" style="position:relative;/*left:10px;top:2px;*/width:24px;height:20px;z-index:1356;padding-left: 5px;">
 										<img src="<?php echo asset_url(); ?>images/like_icon.png" id="Image263" alt="">
 									</div>
-									<div id="wb_Text495" style="position:relative;/*left:8px;top:23px;*/width:29px;height:14px;z-index:1357;text-align:left;">
+									<div id="wb_Text495" style="position:relative;/*left:8px;top:23px;*/width:29px;height:14px;z-index:1357;text-align:center;padding-left: 4px;">
 										<span style="color:#FFFFFF;font-family:Arial;font-size:11px;">500K</span>
 									</div>
 								</div>
