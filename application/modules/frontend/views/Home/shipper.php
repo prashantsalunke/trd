@@ -400,7 +400,8 @@
 										?>
                         			<div class="frame">
                         			<?php } $i++; ?>
-                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1', 0, 'fade', 500, 'swing');return false;">
+                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_holder2<?php echo $i;?>', 1, 'dropup', 300, 'swing');return false;"
+									onmouseleave="ShowObjectWithEffect('Buyer_holder2<?php echo $i;?>', 0, 'fade', 500, 'swing');return false;">
                                 <div id="wb_Image226" >
                                 	<?php if ($featuredShipper['picture'] != "" && file_exists("assets/".$featuredShipper['picture'])){ ?>
                                     <img src="<?php echo asset_url().''.$featuredShipper['picture']; ?>" id="Image226" alt=""  class="style86">
@@ -426,12 +427,12 @@
                                     </div>
                                 </div>
                                 
-                                <div id="Buyer_holder2" class="style22">
+                                <div id="Buyer_holder2<?php echo $i;?>" class="style22">
                                     <div id="wb_Image521" class="style23">
-                                        <a href="#" onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
+                                        <a href="javascript:openShipper(<?php echo $featuredShipper['id']; ?>);"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
                                     </div>
                                     <div id="RollOver12" class="style24">
-                                        <a href="./buyer_profile.php" target="_blank">
+                                        <a href="<?php echo base_url().'desksite/'.$featuredShipper['id'];?>" target="_blank">
                                             <img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
                                             <span><img alt="" src="<?php echo asset_url(); ?>images/desktopblack.png"></span>
                                         </a>
@@ -451,6 +452,10 @@
                 </div>
             </div>
         </div>
+        <div id="Layer_sellers" class="class121">
+				        <div id="Layer_details_Container4" class="class2">
+				        </div>
+			</div>
         <?php } else {?>
         <p>No featured Shippers found.</p>
         <?php }?>
@@ -738,4 +743,10 @@ function changeCountry(a){
 	},'html');
 	
 }
+function openShipper(id) {
+		$.get(base_url+"shipper/popup/"+id,{},function(data) {
+			$("#Layer_details_Container4").html(data);
+			ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
+		},'html');
+	}
 </script>

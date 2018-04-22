@@ -397,7 +397,8 @@
 										?>
                         			<div class="frame">
                         			<?php } $i++; ?>
-                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
+                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_holder2<?php echo $i;?>', 1, 'dropup', 300, 'swing');return false;"
+									onmouseleave="ShowObjectWithEffect('Buyer_holder2<?php echo $i;?>', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
                                 <div id="wb_Image226" style="position: relative;">
                                 	<?php if ($featuredBuyer['picture'] != "" && file_exists("assets/".$featuredBuyer['picture'])){ ?>
                                     	<img src="<?php echo asset_url().''.$featuredBuyer['picture']; ?>" id="Image226" alt=""  class="style86">
@@ -424,12 +425,12 @@
                                     </div>
                                 </div>
                                 
-                                <div id="Buyer_holder2" class="style22">
+                                <div id="Buyer_holder2<?php echo $i;?>" class="style22">
                                     <div id="wb_Image521" class="style23">
-                                        <a href="#" onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
+                                        <a href="javascript:openBuyer(<?php echo $featuredBuyer['id']; ?>)"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
                                     </div>
                                     <div id="RollOver12" class="style24">
-                                        <a href="./buyer_profile.php" target="_blank">
+                                        <a href="<?php echo base_url();?>buyer/profile/<?php echo $featuredBuyer['busi_id'];?>" target="_blank">
                                             <img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
                                             <span><img alt="" src="<?php echo asset_url(); ?>images/desktopblack.png"></span>
                                         </a>
@@ -448,6 +449,9 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="Layer_buyers" class="class1">
+        	<div id="Layer_details_Container5" class="class2"></div>
         </div>
         <?php } else {?>
         <p>No featured buyers found.</p>
@@ -701,4 +705,10 @@ $(document).ready(function() {
         keepOriginalPos: true
     });
 });
+    function openBuyer(id) {
+		$.get(base_url+"buyer/popup/"+id,{},function(data) {
+			$("#Layer_details_Container5").html(data);
+			ShowObjectWithEffect('Layer_buyers', 1, 'scale', 500, 'swing');
+		},'html');
+	}
 </script>

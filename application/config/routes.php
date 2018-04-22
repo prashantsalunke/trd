@@ -379,6 +379,7 @@ $route['catalogue/business/([0-9]+)'] = 'frontend/Home/getCatalogueByBusiId/$1';
 $route['catalogue/business/next/([0-9]+)'] = 'frontend/Home/getNextCatalogueById/$1';
 $route['seller/popup/([0-9]+)'] = 'frontend/Home/getSellerById/$1';
 $route['buyer/popup/([0-9]+)'] = 'frontend/Home/getBuyerById/$1';
+$route['shipper/popup/([0-9]+)'] = 'frontend/Home/getShipperById/$1';
 $route['item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/itemDetailById/$1/$2';
 $route['video/item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/videoItemDetailById/$1/$2';
 

@@ -756,7 +756,7 @@ class Account_Model extends CI_Model {
 	}
 	public function getFeaturedWorldBuyer()
 	{
-		$this->db->select('b.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position,f.busi_id,i.flag,a.name as product_name');
+		$this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position,f.busi_id,i.flag,a.name as product_name');
 		//$this->db->from(TABLES::$FEATURED_WORLD_BUYER.' as a');
 		$this->db->from(TABLES::$USER.' AS f'/*, 'b.id= f.busi_id', 'left'*/);
 		$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'f.busi_id = b.id', 'left');
