@@ -326,12 +326,6 @@ var plan_id = <?php echo $contact_details[0]['plan_id'];?>;
 var desk_step = <?php echo $contact_details[0]['step'];?>;
 var usr_cat_id = <?php echo $tscategory_id;?>;
 
-<!--Snehal change--!>
-
-
-<!--end--!>
-
-
 $("#SiteSearch3").change(function() {
   	$('[name=keyword]').val($(this).val());
 });

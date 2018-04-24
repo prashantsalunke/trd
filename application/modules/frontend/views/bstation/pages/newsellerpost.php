@@ -213,12 +213,6 @@ ul.typeahead li a:hover {
 	});	
 });*/
 
-/*function sendPost(){
-	alert('Try again....Tomarrow');
-	
-	
-	
-}*/
 function resetMyForm() {
 	document.getElementById("addPostContent").reset();
 }
