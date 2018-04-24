@@ -741,8 +741,26 @@ function viewBuyerPosts() {
 		$("#Layer322").html(data);
 	},'html');
 }
-
+function loadRealtimebstationPosts(){
+	var keyword = $("#keyword").val();
+	var country = $("#country_name").val();
+	if(keyword != "" && country != "") {
+		//ajaxindicatorstart("");
+		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
+			ajaxindicatorstop();
+			$("#Layer28").html(data.posts);
+			$("#Layer288").html(data.requests);
+			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
+			ShowObjectWithEffect('Layer2', 1, 'slidedown', 500, 'swing');
+			ShowObjectWithEffect('Layer28', 1, 'fade', 500);ShowObjectWithEffect('Layer32', 0, 'fade', 500);
+		    $.cookie('bstation-landing', '1', { expires: 365 });
+		    $.cookie('bstation-keyword', keyword, { expires: 365 });
+		    $.cookie('bstation-country', country, { expires: 365 });
+		},'json');
+	}
+}
 $(document).ready(function() {
+	setInterval(loadRealtimebstationPosts,5000);
 	$('#SiteSearch3').keydown(function(event) {
 	   	if (event.keyCode == 13) {
 	   		searchBusinessStation();
@@ -774,5 +792,4 @@ $.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},fun
     $('[name=country]').val(country);
 },'json');
 <?php } ?>
-
 </script>
