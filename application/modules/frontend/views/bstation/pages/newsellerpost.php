@@ -137,11 +137,15 @@ ul.typeahead li a:hover {
 						<div class="col-sm-9">
 							<div class="inline">
 								<input type="checkbox" name="profilecheck" value="1" style="margin-left:0px;">
+								 
+							
 								<p class="leftbox2">Keep My Profile Info. Locked For Other <?php if($tscategory_id == 1) { ?>Sellers<?php } else {?>Shippers<?php } ?>..</p>
+							
+							
 							</div>
 							<div class="inline">
 								<button id="Button4" type="button" onclick="resetMyForm();">RESET</button>
-								<button id="Button4" type="submit">SEND</button>
+								<button id="Button4" type="submit" name="submit">SEND</button>
 							</div>
 						</div>
 					</div>
@@ -208,6 +212,13 @@ ul.typeahead li a:hover {
 	    
 	});	
 });*/
+
+/*function sendPost(){
+	alert('Try again....Tomarrow');
+	
+	
+	
+}*/
 function resetMyForm() {
 	document.getElementById("addPostContent").reset();
 }
