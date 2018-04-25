@@ -29,17 +29,19 @@ div.pp_pic_holder {
 <div>
 	<div id="Layer2" style="visibility: hidden;">
 		<div id="Layer2_Container">
-			<div class="container" style="width: 1280px;padding-left:0px;">
+			<div class="container" style="width: 1280px;">
 				<div class="row space121" style="margin:0px;">
-					<div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px;">
+				
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-sm-2" style="padding-right: 0px; padding-left: 0px;">
 						<form class="displaymobile">
 							<div class="row">
-								<div class=" col-md-offset-1 col-md-4 col-sm-4 col-xs-6"
-									style="padding-right: 1px; padding-left: 1px;">
+								<div class=" col-md-offset-1 col-md-4 col-sm-4 col-xs-6" style="padding-right: 1px; padding-left: 1px;">
 									<input type="text" class="search-box" required="required" name="keyword" id="key-search-box" placeholder="Type the product name to seach...">
 								</div>
-								<div class="col-md-1 col-sm-2 col-xs-4"
-									style="padding-right: 1px; padding-left: 1px;">
+								<div class="col-md-1 col-sm-2 col-xs-4" style="padding-right: 1px; padding-left: 1px;">
 									<div class="dropdown">
 										<select class="search-box" name='country'>
 											<option value="0">Country</option>
@@ -50,10 +52,9 @@ div.pp_pic_holder {
 										</select>
 									</div>
 								</div>
-								<div class="col-md-1 col-sm-1 col-xs-2 bluebg"
-									style="padding-right: 1px; padding-left: 1px;">
-									<button type="button ">GO</button>
-								</div>
+								<div class="col-md-1 col-sm-1 col-xs-2 bluebg" style="padding-right: 1px;padding-left: 1px;">
+                               		<button type="button" onclick="filterBusinessStation1();">GO</button>
+                               	</div>
 							</div>
 							<br>
 						</form>
@@ -70,16 +71,17 @@ div.pp_pic_holder {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-10 col-md-10 col-sm-10" style="padding-right:0px;">
+					<div class="col-lg-10 col-sm-3" style="padding-right:0px;padding-left:0px">
 						<ul class="nav nav-tabs">
 							<li class="active nav121" style="width: 190px;">
 								<a data-toggle="tab" href="#home" style="background: #FF6347; border: 0px;">Sellers/Shippers Offers</a>
 							</li>
 							<li class="nav122" style="width: 160px;">
-								<a data-toggle="tab" href="#menu1" style="background: #1E90FF; border: 0px;">Buyers Requests</a>
+								 <a data-toggle="tab" href="#menu1"style="background: #1E90FF; border: 0px;">Buyers Requests</a>
+							    	
 							</li>
 							<!-- form class="displaydesktop" -->
-								<div class="row" style="padding-top:5px;">
+								<div class="row" style="padding-top:4px;">
 									<div class=" col-md-offset-1 col-md-4 col-sm-4 col-xs-6" style="padding-right: 1px; padding-left: 1px;">
 										<input type="text" class="search-box" required="required" name="keyword" id="keyword" placeholder="Please type product Keyword…">
 									</div>
@@ -141,6 +143,7 @@ div.pp_pic_holder {
 				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
 				                    	<a href="#">Add New Post</a>
 				                    	</span>
+										
 				                    <?php } ?>
 				                	</div>
 									<div class="whitebox">
@@ -177,9 +180,11 @@ div.pp_pic_holder {
 
 							<!-- content-tab-1 end -->
 							<div id="menu1" class="tab-pane fade content122">
-								<div id="Layer288" style="width: 1029px;height:616px;overflow-x: hidden;">
+							
+
+								<div id="Layer288" style="width: 1029px;height:616px;overflow-x: hidden;">	
+								</div>
 								
-				            	</div>
 							<div id="Layer322" style="height:616px;width: 1029px;overflow-x: hidden;">
 				            </div>
 								<!-- view my post end -->
@@ -200,6 +205,7 @@ div.pp_pic_holder {
 				                		<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
 				                		<a href="#">Add New Post</a>
 				                		</span>
+
 				                		<?php } ?>
 				                	</div>
 									<div class="whitebox">
@@ -319,6 +325,7 @@ var is_contact_accepts = <?php echo $contact_details[0]['accept_email'];?>;
 var plan_id = <?php echo $contact_details[0]['plan_id'];?>;
 var desk_step = <?php echo $contact_details[0]['step'];?>;
 var usr_cat_id = <?php echo $tscategory_id;?>;
+
 $("#SiteSearch3").change(function() {
   	$('[name=keyword]').val($(this).val());
 });
@@ -642,6 +649,7 @@ function filterBusinessStation() {
 		}
 	}
 }
+
 function selectProductImage() {
 	if($('input[name="cimgchk[]"]:checked').length > 0) {
 	    $('#postdatacontent').show();
@@ -682,6 +690,7 @@ function viewMyPosts() {
 		ShowObjectWithEffect('Layer32', 1, 'fade', 500);
 		$("#Layer32").html(data);
 	},'html');
+	
 }
 
 function deleteMyPost(id) {
