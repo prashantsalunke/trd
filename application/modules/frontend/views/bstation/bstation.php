@@ -77,8 +77,7 @@ div.pp_pic_holder {
 								<a data-toggle="tab" href="#home" style="background: #FF6347; border: 0px;">Sellers/Shippers Offers</a>
 							</li>
 							<li class="nav122" style="width: 160px;">
-								 <a data-toggle="tab" href="#menu1"style="background: #1E90FF; border: 0px;">Buyers Requests</a>
-							    	
+								<a data-toggle="tab" href="#menu1" style="background: #1E90FF; border: 0px;" onclick="current_view = 'filterBusinessStation'">Buyers Requests</a>
 							</li>
 							<!-- form class="displaydesktop" -->
 								<div class="row" style="padding-top:4px;">
@@ -580,13 +579,17 @@ function setBackgroundSize(id,input,size) {
 <script src="<?php echo asset_url();?>js/bootstrap-typeahead.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
 <script>
-function searchBusinessStation() {
+var current_view = "filterBusinessStation";
+function searchBusinessStation(loader = true) {
+	current_view = "searchBusinessStation";
 	var keyword = $("#SiteSearch3").val();
 	var country = $("#top_country_id").val();
 	if(keyword != "" && country != "") {
-		ajaxindicatorstart("");
+		if(loader)
+			ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
-			ajaxindicatorstop();
+			if(loader)
+				ajaxindicatorstop();
 			$("#Layer28").html(data.posts);
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
@@ -614,13 +617,16 @@ function searchBusinessStation() {
 		}
 	}
 }
-function filterBusinessStation() {
+function filterBusinessStation(loader = true) {
+	current_view = "filterBusinessStation";
 	var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
 	if(keyword != "" && country != "") {
-		ajaxindicatorstart("");
+		if(loader)
+			ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
-			ajaxindicatorstop();
+			if(loader)
+				ajaxindicatorstop();
 			$("#Layer28").html(data.posts);
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
@@ -683,6 +689,7 @@ function closeNewPostResult() {
 }
 
 function viewMyPosts() {
+	current_view = "viewMyPosts";
 	ajaxindicatorstart("");
 	$.get(base_url+"bstation/seller/myposts",{},function(data){
 		ajaxindicatorstop();
@@ -704,6 +711,7 @@ function deleteMyPost(id) {
 }
 
 function closeMyPost(key) {
+	current_view = "closeMyPost";
 	ShowObject('Layer5_'+key, 0);
 	/*$.get(base_url+"bstation/seller/post/close/"+id,{},function(){
 		viewMyPosts();
@@ -751,12 +759,12 @@ function viewBuyerPosts() {
 	},'html');
 }
 function loadRealtimebstationPosts(){
-	var keyword = $("#keyword").val();
+	/*var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
 	if(keyword != "" && country != "") {
 		//ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
-			ajaxindicatorstop();
+			//ajaxindicatorstop();
 			$("#Layer28").html(data.posts);
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
@@ -766,10 +774,16 @@ function loadRealtimebstationPosts(){
 		    $.cookie('bstation-keyword', keyword, { expires: 365 });
 		    $.cookie('bstation-country', country, { expires: 365 });
 		},'json');
+	}*/
+
+	if(current_view == "searchBusinessStation"){
+		searchBusinessStation(false);
+	}else if(current_view == "filterBusinessStation"){
+		filterBusinessStation(false);
 	}
 }
 $(document).ready(function() {
-	setInterval(loadRealtimebstationPosts,5000);
+	setInterval(loadRealtimebstationPosts,10000);
 	$('#SiteSearch3').keydown(function(event) {
 	   	if (event.keyCode == 13) {
 	   		searchBusinessStation();
