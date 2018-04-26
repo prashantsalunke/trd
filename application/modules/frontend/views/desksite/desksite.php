@@ -38,6 +38,21 @@
 <script src="<?php echo asset_url();?>js/jquery.booklet.1.1.0.min.js?1.1"></script>
 <link rel="stylesheet" href="<?php echo asset_url();?>js/prettyPhoto/css/prettyPhoto.css">
 <script src="<?php echo asset_url();?>js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+
+<!-- 
+        <script src="<?php echo asset_url(); ?>magnific/jquery.js"></script>
+        <script type="text/javascript" src="<?php echo asset_url(); ?>magnific/xzoom.min.js"></script>
+        <script src="<?php echo asset_url(); ?>magnific/setup.js"></script> -->
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $("#Layer89").on("contextmenu",function(){
+       return false;
+    }); 
+}); 
+</script>
+
 <style>
 #Layer54 {
     background-color: #FA5C43;
@@ -217,7 +232,7 @@ div.pp_overlay {
 }
 div.pp_pic_holder {
 	z-index:12801 !important;
-	overflow:scroll;
+	/*overflow:scroll;*/
 }
 </style>
 
@@ -654,6 +669,7 @@ function chat_with(user_id,accept_chat=true)
             document.getElementById('cometchat_chatboxes').style.right='0px';
         }else{
             $("#msg_cont").html("Sorry.. User status is  Don't Disturb. Please try again later, status may be changed soon.");
+            // $("#msg_cont").html("This buyer in not allow chat feature..");
             ShowObject('Layer99', 1);
         }
         
@@ -689,8 +705,8 @@ function myloaderon(text)
 	});
 
 	jQuery('#resultLoading .bg').css({
-		'background':'#ffffff',
-		'opacity':'0.4',
+		'background':'#000000',
+		'opacity':'0.7',
 		'width':'100%',
 		'height':'100%',
 		'position':'absolute',
@@ -709,7 +725,7 @@ function myloaderon(text)
 		'margin':'auto',
 		'font-size':'16px',
 		'z-index':'10',
-		'color':'#ffffff'
+		'color':'#000000'
 
 	});
 
@@ -724,8 +740,26 @@ function myloaderoff()
     jQuery('body').css('cursor', 'default');
 }
 </script>
+
+
+              <!-- xzoom plugin here -->
+              <script type="text/javascript" src="<?php echo base_url(); ?>assets/fancy_box/xzoom.min.js"></script>
+              <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/fancy_box/xzoom.css" media="all" /> 
+              <!-- hammer plugin here -->
+              <script type="text/javascript" src="<?php echo base_url(); ?>assets/fancy_box/hammer.js/1.0.5/jquery.hammer.min.js"></script>  
+              <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+              <link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url(); ?>assets/fancy_box/fancybox/source/jquery.fancybox.css" />
+              <link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url(); ?>assets/fancy_box/magnific-popup/css/magnific-popup.css" />
+              <script type="text/javascript" src="<?php echo base_url(); ?>assets/fancy_box/fancybox/source/jquery.fancybox.js"></script>
+              <script type="text/javascript" src="<?php echo base_url(); ?>assets/fancy_box/magnific-popup/js/magnific-popup.js"></script>    
+
+
+                <script src="<?php echo base_url(); ?>assets/fancy_box/foundation.min.js"></script>
+                <script src="<?php echo base_url(); ?>assets/fancy_box/setup.js"></script>
+
+
 <?php //print_r($Desksites);die;?>
-<div id="Layer89" style="position:fixed;overflow-x:hidden;text-align:center;visibility:visible;left:0;top:0;right:0;bottom:0;z-index:4930;">
+<div id="Layer89" style="overflow-x:hidden;text-align:center;visibility:visible;left:0;top:0;right:0;bottom:0;z-index:4930;">
 <!-- css js -->
 <!--  -->
 <!--  -->
@@ -759,11 +793,17 @@ function myloaderoff()
 			        <p class="c1"><strong>
 			        <?php 
 			        	try {
-                       		$mars = new DateTimeZone($Desksite['timezone']);
-                            $date = new DateTime('now', $mars);
-                            echo $date->format('h:i A');
+                       		// $mars = new DateTimeZone($Desksite['timezone']);
+                         //    $date = new DateTime('now', $mars);
+                         //    echo $date->format('h:i A');
+
+                           $now = new DateTime();
+                           $now->setTimezone(new DateTimezone($Desksite['timezone']));
+                           echo $now->format('h:i A');
+
                      	} catch(Exception $e) {
                          	echo date('h:i A');
+                            // echo $Desksite['timezone'];
                        	}
 			        ?></strong></p>
 			    </div>
@@ -1005,7 +1045,7 @@ function myloaderoff()
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 						</a>
-				        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT SELLER</p>
+				        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-company.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT SELLER</p>
 				        <div class="box2" id="about-us" style="height: 540px;overflow-y:scroll;padding-top:0px;">
 				            
 				        </div>
@@ -1021,7 +1061,7 @@ function myloaderoff()
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer144', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 						</a>
-				        <p class="box1font3" style="padding: 5px 0px;"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY LICENSE AND CERTIFICATES</p>
+				        <p class="box1font3" style="padding: 5px 0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-certificates.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY LICENSE AND CERTIFICATES</p>
 			       		<div id="Layer147">  </div>
 				    </div>
 			    </div>
@@ -1033,7 +1073,7 @@ function myloaderoff()
 			    <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
 				 	<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
 				 </a>
-			    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/barcompany-profile.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE</p>
+			    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-About.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE</p>
 			    <div>
 			        <div class="box2" id="company-profile" style="height: 642px;padding:15px;">
 					</div>
@@ -1049,20 +1089,20 @@ function myloaderoff()
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer79', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre">
 						</a>
-				        <p class="box1font3" style="padding:5px 0px;"><img src="<?php echo asset_url(); ?>images/certificates.png" alt="" class="img32"> &nbsp;&nbsp;ADVANTAGES</p>
+				        <p class="box1font3" style="padding:5px 0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-advantages.png" alt="" class="img32"> &nbsp;&nbsp;ADVANTAGES</p>
 				        <div class="box802 blackbox" id="advantage"></div>
 				    </div>
 			    </div>
 			</div>
 			<!-- advantages ends-->
 			<!-- my files -->
-			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:198px;width:53%;height:462px;z-index:3850;">
+			<div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:100px;width:53%;height:462px;z-index:3850;">
 				<div id="Layer148_Container" style="width:432px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
 					<div id="Layer150" style="width:517px;height:402px;">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer148', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 						</a>
-				        <p class="box1font3" style="padding:5px 0px;"><img src="<?php echo asset_url(); ?>images/my_file.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;MY FILES</p>
+				        <p class="box1font3" style="padding:5px 0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-files.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;MY FILES</p>
 				        <div class="box22 blackbox" id="my-files" style="height:325px;">
 				           
 				        </div>
@@ -1077,13 +1117,13 @@ function myloaderoff()
 			</div>
 			<!-- add to catalogue end -->																																											
 			<!-- search section -->
-			<div id="Layer53S" style="position:absolute;text-align:left;visibility:hidden;left:401px;top:250px;width:498px;height:128px;z-index:3860;background-color: transparent;">
+			<div id="Layer53S" style="position:absolute;text-align:left;visibility:hidden;left:450px;top:260px;width:498px;height:128px;z-index:3860;background-color: transparent;">
 				<div id="Layer55">
 				</div>
 					<a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer53S', 0, 'slidedown', 300, 'swing');return false;">
 						<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left: 445px;z-index: 4000;">
 					</a>
-					<div style="padding:35px;position: absolute;width: 100%;z-index: 4000;opacity:1;z-index: 3718;">
+					<div style="padding:35px;position: absolute;width: 100%;z-index: 4000;opacity:1;">
 						<form method="post" action="">
 						    <div class="col-sm-10 col-xs-11" style="padding: 0px;">
 						        <input type="text" id="SiteSearch1" name="keyword" value="" placeholder="Type the item or product name">
@@ -1106,7 +1146,7 @@ function myloaderoff()
 					</a>
 				    <div class="inline">
 				        <br>
-				        <p class="box1font1 w1" style="margin-bottom:2px;"><img src="<?php echo asset_url(); ?>images/community.png" alt="Add & Share" class="add-share-img"> ADD & SHARE</p>
+				        <p class="box1font1 w1" style="margin-bottom:2px;"><img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" alt="Add & Share" class="add-share-img"> ADD & SHARE</p>
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/MENUFAVORITE.png" alt="Add To Favourite" class="add-share-img">
@@ -1162,7 +1202,7 @@ function myloaderoff()
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 						</a>
 				        <p class="box1font3" style="padding:0px;">
-				        	<img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">
+				        	<img src="<?php echo asset_url(); ?>images/Mail.ico" alt="" class="img32">
 				        	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>CONTACT US</strong></span>
 				        </p>
 				        <div class="box2" style="height:472px;">
@@ -1170,19 +1210,19 @@ function myloaderoff()
 				        		<input type="hidden" name="busi_id" value="<?php echo isset($Desksites[0]['busi_id'])?>"/>
 				        		<div class="form-group">
 				        			<div>
-				        				<input type="text" class="input" name="name" value="" placeholder="Name">
+				        				<input type="text" class="input" name="name" value="" placeholder="Name" required="">
 				        			</div>
 				        			<div class="messageContainer"></div>
 				        		</div>
 					            <div class="form-group">
 				        			<div>
-					            		<input type="text" class="input" name="mobile" value="" placeholder="Phone">
+					            		<input type="text" class="input" name="mobile" value="" placeholder="Phone" required="">
 					            	</div>
 					            	<div class="messageContainer"></div>
 					            </div>
 					            <div class="form-group">
 				        			<div>
-					            		<input type="email" class="input" name="email" value="" placeholder="Email">
+					            		<input type="email" class="input" name="email" value="" placeholder="Email" required="">
 					            	</div>
 					            	<div class="messageContainer"></div>
 					            </div>
@@ -1198,13 +1238,13 @@ function myloaderoff()
 							   	</div>
 							   	<div class="form-group">
 				        			<div>
-					            		<input type="text" class="input" name="city" value="" placeholder="City">
+					            		<input type="text" class="input" name="city" value="" placeholder="City" required=">
 					            	</div>
 					            	<div class="messageContainer"></div>
 					            </div>
 					            <div class="form-group">
 				        			<div>
-					            		<textarea name="message" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;" placeholder="Message"></textarea>
+					            		<textarea name="message" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;" placeholder="Message" required=""></textarea>
 					            	</div>
 					            	<div class="messageContainer"></div>
 					            </div>
@@ -1233,7 +1273,7 @@ function myloaderoff()
 				</div>
 				<!-- contact person end -->
 			<!-- world wide offices -->
-			<div id="Layer16" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:225px;width:51%;height:411px;z-index:3863;">
+			<div id="Layer16" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:150px;width:51%;height:411px;z-index:3863;">
 				<div id="Layer16_Container" style="width:656px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
 					<div id="Layer15" class="s9" style="height:285px;">
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer16', 0, 'slidedown', 300, 'swing');return false;">
@@ -1251,7 +1291,7 @@ function myloaderoff()
 							            </div>
 							            <div class="col-md-10 left" style="padding-left:35px;">
 							            	<br><br>
-							                <p   class="s13"><strong>Main Company Address</strong></p>
+							                <p   class="s13"><strong><?php echo $Desksites[0]['company_name'];?></strong></p>
 							                <p   class="s15"><?php echo $Desksites[0]['company_street'];?>, <?php echo $Desksites[0]['company_city'];?>, <?php echo $Desksites[0]['company_province'];?>, <?php echo $Desksites[0]['company_country'];?>.</p>
 							                <p   class="s13">+<?php echo $Desksites[0]['telephone_code'];?> <?php echo $Desksites[0]['telephone_city_code'];?> <?php echo $Desksites[0]['telephone_number'];?></p>
 							                <br>
@@ -1267,7 +1307,7 @@ function myloaderoff()
 							            </div>
 							            <div class="col-md-10 left" style="padding-left:35px;">
 							            	<br><br>
-							                <p   class="s13"><strong>Main Factory Address</strong></p>
+							                <p   class="s13"><strong><?php echo $Desksites[0]['company_name'];?></strong></p>
 							                <p   class="s15"><?php echo $Desksites[0]['fact_street'];?>, <?php echo $Desksites[0]['fact_city'];?>, <?php echo $Desksites[0]['fact_province'];?>, <?php echo $Desksites[0]['company_country'];?>.</p>
 							                <p   class="s13">+<?php echo $Desksites[0]['ftelephone_code'];?> <?php echo $Desksites[0]['ftelephone_city_code'];?> <?php echo $Desksites[0]['ftelephone'];?></p>
 							                <br>
@@ -1312,7 +1352,7 @@ function myloaderoff()
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 					    </a>
 					    <p class="box1font3" style="padding:0px;">
-				        	<img src="<?php echo asset_url(); ?>images/buyer-request.png" alt="" class="img32">
+				        	<img src="<?php echo asset_url(); ?>images/desksite/D-posts.png" alt="" class="img32">
 				        	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong> &nbsp;&nbsp;&nbsp;POSTS & CURRENT REQUESTS</strong></span>
 				        </p>
 					    <div class="greybox center" id="post" style="height:570px;">
@@ -1342,7 +1382,7 @@ function myloaderoff()
 						   	<a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer72', 0, 'slidedown', 300, 'swing');return false; ">
 								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left: 96%;">
 						   	</a>
-						    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/udLOGO.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;AMAZING BUSINESS COMMUNICATION APP</p>
+						    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/UD.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;AMAZING BUSINESS COMMUNICATION APP</p>
 						    <div class="box732" id="ud-talk" style="height:495px;background-color: #DCDCDC;border: 1px #FFFFFF solid;padding:10px;overflow-x:hidden;overflow-y: scroll;">
 						    	<br>
 							   	<div id="wb_Text93" style="text-align:center;">
@@ -1382,7 +1422,7 @@ function myloaderoff()
 								<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 							 </a>
 							<p class="box1font3" style="padding-left: 0px;">
-								<img src="<?php echo asset_url(); ?>images/videos2.ico" alt="" class="img32"> &nbsp;&nbsp;&nbsp;PRODUCTS IN VIDEOS
+								<img src="<?php echo asset_url(); ?>images/desksite/D-video.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;PRODUCTS IN VIDEOS
 							</p>
 							<div class="box662" id="productcarousel">
 							</div>
@@ -1414,7 +1454,7 @@ function myloaderoff()
 					   <a href="# " onclick="ShowObjectWithEffect( 'Layer5', 1, 'slidedown', 500);ShowObjectWithEffect( 'Layer14', 0, 'slidedown', 300, 'swing');return false; ">
 						 <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 					    </a>
-					    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/3d.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;PRODUCTS IN 3D VIEW</p>
+					    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/3D.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;PRODUCTS IN 3D VIEW</p>
 					    <div class="box2" id="my3dcarouselbox" style=" height:475px;">
 						    <!-- div class="carousel slide" id="3dcarousel">
 								<div class="carousel-inner"  id="3dproduct" role="listbox"></div>
@@ -1518,7 +1558,7 @@ function myloaderoff()
 	            </div>
 	        </div>
 			<a href="#" onclick="ShowObjectWithEffect('Layer35', 0, 'slideup', 150, 'swing');return false;">
-				<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:93%;top:96%;">
+				
 			</a>
 		</div>
 	</div>
@@ -1650,6 +1690,7 @@ function getCurrentPost(id) {
 			
 	},'html');
 }
+
 function addToFavourite(id) {
 	var type =1;
 	$.get(base_url+"desksite/favourite/"+id+"/"+type,{},function(data) {
@@ -1659,6 +1700,7 @@ function addToFavourite(id) {
 			
 	},'json');
 }
+
 function addCatalogueToFavourite(id) {
 	var type = 7;
 	$.get(base_url+"desksite/favourite/"+id+"/"+type,{},function(data) {
@@ -1907,8 +1949,8 @@ function viewNextCatalogueBook(id) {
 	},'json');
 }
 
-$("a[data-rel='prettyPhoto_SlideShow31[SlideShow31]']").attr('rel', 'prettyPhoto_SlideShow31[SlideShow31]');
-$("a[rel^='prettyPhoto_SlideShow31']").prettyPhoto({theme:'facebook',social_tools:false});
+$("a[data-rel='prettyPhoto_SlideShow31[SlideShow31]']").attr('rel', 'prettyPhoto_SlideShow31[SlideShow31]').scroll();
+$("a[rel^='prettyPhoto_SlideShow31']").prettyPhoto({theme:'facebook',social_tools:false}).scroll();
 var zindex = 250;
 $("#PhotoGallery1 a").draggable(
 {
@@ -1981,12 +2023,12 @@ function likeMyDesksite(busi_id) {
 function submitContactForm() {
 	<?php if(!empty($tsuserid)) { ?>
 		<?php if($tscategory_id != 3) { ?>
-			$("#msg_cont").html("We have recorded your enquiry.");
+			$("#msg_cont").html("Your message has been successfully sent to the seller.");
 			ShowObject('Layer99', 1);
 			ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
 		<?php } else { ?>
 			<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-				$("#msg_cont").html("We have recorded your enquiry.");
+				$("#msg_cont").html("Your message has been successfully sent to the seller.");
 				ShowObject('Layer99', 1);
 				ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
 			<?php } else if($contact_details[0]['step'] < 2) { ?>
@@ -2072,12 +2114,17 @@ function productDetail(id) {
 		$("#details").html(data);
 	},'html');
 }
-$(document).ready(function() {
+// $(document).ready(function() {
+//     $("body").on("contextmenu",function(){
+//        return false;
+//     }); 
+// }); 
+$(document).ready(function(){
+
     $("body").on("contextmenu",function(){
        return false;
     }); 
-}); 
-$(document).ready(function(){
+
 	$('#contactusfrm').bootstrapValidator({
 	 container: function($field, validator) {
      	return $field.parent().next('.messageContainer');
