@@ -1,3 +1,4 @@
+
 <style>
 
 .wb_Image45
@@ -7,8 +8,10 @@ position: absolute; left: 865px; top: 0px; width: 28px; height: 28px; z-index: 8
 .wb_Image52{
 	position: absolute; left: 905px; top: 0px; width: 28px; height: 28px; z-index: 83;
 }
-img.sm-img{
-margin : 10px;
+img.sm-img2{
+margin-right : 10px;
+margin-bottom : 10px;
+margin-top:  10px;
 verical-align:middle;
 }
 .v-middle{
@@ -22,7 +25,7 @@ color: blue;
 }
 img.sm-image-border{
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-radius: 10px;
     text-align:center;
     padding:8px;
@@ -368,10 +371,12 @@ a.style16:hover
    text-decoration: underline;
 }
 </style>
+
 <div style="background-color:#EBECEE;">
 	<div id="body" style="padding-top: 15px;">
 		<div class="container text-left" id="product_details" class="b-gray">
-		<?php foreach ($Productdetails as $product) {?>
+		<?php foreach (array_slice($Productdetails,0,1) as $product) {?>
+
 			<div class="row" style="margin:0px;">
 				<ol class="breadcrumb" style="background-color: #D3D3D3;width: 100%;padding-top: 15px;">
 				  <li style="width:1000px;"><a href="javascript:viewCatProducts(0,0,<?php echo $product['mainproduct_id'];?>,<?php echo $product['busi_id'];?>);" class="pull-left"> <img src="<?php echo asset_url()?>images/img0892.png" id="Shape17" alt="" width="10px"> Same by this seller</a></li>
@@ -400,11 +405,18 @@ a.style16:hover
 							</p>
 				    	</div>
 				    	<div class="row">&nbsp;</div>
+
 				   		<div class="col-md-2 sm-image-border text-center">
 					    	<div class="row">
 					    		<a href="#" onmouseenter="SetImage('Shapeview','<?php echo asset_url()."".$product["main_image"];?>');return false;">
 					    			<img src="<?php echo asset_url().''.$product['main_image'];?>" class="sm-image-border" width="66px" alt="" />
+					    			<!-- <video class="main" controls="controls" controlsList="nodownload">
+										<source src="<?php //echo asset_url().$product['video_file'];?>" type="video/mp4">
+									</video> -->
 					    		</a>
+
+			    			
+
 				    		</div>
 				    		<div class="row">
 				    			<a href="#" onmouseenter="SetImage('Shapeview','<?php echo asset_url()."".$product["sub_image1"];?>');return false;">
@@ -427,9 +439,41 @@ a.style16:hover
 					    		</a>
 				    		</div>
 			    		</div>
+
+
+
+
+
+					    <!-- <section id="fancy">
+					    <div class="row">
+					      <div class="large-12 column"><h3>With Fancy Box</h3>Left click while zooming</div>
+					      <div class="large-5 column">
+					        <div class="xzoom-container">
+					          <img class="xzoom4" id="xzoom-fancy" src="<?php echo asset_url().''.$product['main_image'];?>" xoriginal="<?php echo asset_url().''.$product['main_image'];?>" />
+					          <div class="xzoom-thumbs">
+					            <a href="images/gallery/original/01_b_car.jpg"><img class="xzoom-gallery4" width="80" src="images/gallery/thumbs/01_b_car.jpg"  xpreview="images/gallery/preview/01_b_car.jpg" title="The description goes here"></a>
+					            <a href="images/gallery/original/02_o_car.jpg"><img class="xzoom-gallery4" width="80" src="images/gallery/preview/02_o_car.jpg" title="The description goes here"></a>
+					            <a href="images/gallery/original/03_r_car.jpg"><img class="xzoom-gallery4" width="80" src="images/gallery/preview/03_r_car.jpg" title="The description goes here"></a>
+					            <a href="images/gallery/original/04_g_car.jpg"><img class="xzoom-gallery4" width="80" src="images/gallery/preview/04_g_car.jpg" title="The description goes here"></a>
+					          </div>
+					        </div>          
+					      </div>
+					      <div class="large-7 column"></div>
+					    </div>
+					    </section>  -->
+
+
 					    <div class="col-md-10">
 					    	<div class="row main-image">
-				    			<img src="<?php echo asset_url().''.$product['main_image'];?>" id="Shapeview" class="img-responsive"  width="350" alt="" />	
+
+    							<section id="fancy">
+        							<div class="xzoom-container">
+				    					<img src="<?php echo asset_url().''.$product['main_image'];?>" id="Shapeview" class="img-responsive"  width="350" alt="" />	
+				    				</div>
+				    			</section>
+
+					      		<!-- <div class="large-7 column"></div> -->
+
 					    	</div>
 					    	<br><br><br>
 					    	<div class="row">
@@ -440,9 +484,10 @@ a.style16:hover
 						
 					</div>
 			    </div>
-			    <div class="col-md-5 text-left">
-			    	<h3 class="blue"><img src="<?php echo asset_url();?>images/page_location.png" class="sm-img" alt=""><span><?php echo $product['name']; ?></span></h3>
-			    	<p ><?php echo substr($product['description'], 0, 150); ?> <?php if(strlen($product['description']) > 150) { ?>... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#bookmark1" class="style16">Read More</a><?php }?></p>
+			    <div class="col-md-5 text-left large-7 column">
+			    	<p><h3 class="blue"><img src="<?php echo asset_url();?>images/page_location.png" class="sm-img2" alt=""><span style="color: #4169E1;"><?php echo $product['name']; ?></span></h3></p>
+			    	<p><?php echo substr($product['about'], 0, 150); ?> <?php if(strlen($product['about']) > 150) { ?>... <br>
+			    		<a href="#bookmark1" class="style16">Read More</a><?php }?></p>
 			    	<div class="row">&nbsp;</div>
 			    	<p> <h6>Quick Specifications</h6><hr id="Line10" style="height: 1px; width: 357px; margin: 10px 0px;"/> </p>
 			    	<div class="row">
@@ -488,11 +533,11 @@ a.style16:hover
 	    			</div>
 		    		<div class="row">
 			    		<div class="col-md-4" ><p>Accepted Payment</p></div>
-			    		<div class="col-md-8" ><p><?php $curr_text = "N/A"; foreach ($currency as $curr) { if($curr_text == "N/A") { $curr_text = $curr['payment_currency'];} else { $curr_text = $curr_text.", ".$curr['payment_currency'];}} echo $curr_text;?></p></div>
+			    		<div class="col-md-8" ><p><?php $curr_text = "N/A"; foreach ($tradepayment_terms as $curr) { if($curr_text == "N/A") { $curr_text = $curr['payment_terms'];} else { $curr_text = $curr_text.", ".$curr['payment_terms'];}} echo $curr_text;?></p></div>
 		    		</div>
 		    		<div style="position:relative;">
-		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;" onclick="chat_with(<?php echo $product['user_id'];?>,<?php echo $product['accept_chat'];?>)">
-							<a>
+		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;">
+							<a  href="javascript:chat_with(<?php echo $product['user_id'];?>,<?php echo $product['accept_chat'];?>)">
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_chat.png">
 								<span><img alt="" src="<?php echo asset_url();?>images/items_chat0.png"></span>
 							</a>
@@ -536,20 +581,20 @@ a.style16:hover
 			<a name="bookmark1" style="visibility:hidden">&nbsp;</a>
 			<div class="row" style="padding-left:43px;"><span style="color:#3C3C3C;font-family:Arial;font-size:15px;"><strong>About This Product</strong></span></div>
 			<div class="row clearfix">&nbsp;</div>
-			<div class="panel panel-default">
+			<div class="panel">
 			  <div class="panel-body">
 				  <div class="row">
-				  	<div class="col-md-10"><pre style="overflow: hidden;font-size: 14px;"><?php echo $product['about']; ?></pre></div>
+				  	<div class="col-md-10"><pre style="font-size: 14px;"><?php echo $product['about']; ?></pre></div>
 				  </div>
 				  <br><br>
 			  </div>
-		  </div>
+		  	</div>
 		  <div class="row" style="padding-left:43px;"><span style="color:#3C3C3C;font-family:Arial;font-size:15px;"><strong>Product Description</strong></span></div>
 			<div class="row clearfix">&nbsp;</div>
 			<div class="panel panel-default">
 			  <div class="panel-body">
 				  <div class="row">
-				  	<div class="col-md-10"><pre style="overflow: hidden;"><?php echo $product['description']; ?></pre></div>
+				  	<div class="col-md-10"><pre><?php echo $product['description']; ?></pre></div>
 				  </div>
 				  <div class="row">
 				  	<div class="col-md-12">
@@ -619,9 +664,9 @@ function likeProduct(id) {
 			$("#msg_cont").html(data.msg);
 		}
 		ShowObject('Layer99', 1);
-		var likes = parseInt($("#sdiv"+id).html());
+		var likes = parseInt($("#sdiv").html());
 		likes++;
-		$("#sdiv"+id).html(likes);
+		$("#sdiv").html(likes);
 	},'json');
 }
 </script>
