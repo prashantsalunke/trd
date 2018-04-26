@@ -161,6 +161,12 @@ function Validatecontact()
        theForm.Editbox11.focus();
        return false;
     }
+    if (theForm.TextArea2.value == "")
+    {
+       alert("Please Enter Message");
+       theForm.TextArea2.focus();
+       return false;
+    }
    	return true;
 }
 function saveRequest() {
