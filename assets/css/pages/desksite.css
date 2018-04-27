@@ -828,7 +828,7 @@ width:74px;height:15px;z-index:3560;text-align:left;
 .c12{
 	position: absolute;
     text-align: left;
-    left: 1190px;
+    left: 1090px;
     top: 30px;
     width: 200px;
     height: 53px;
@@ -887,7 +887,7 @@ background-color:#FFFFFF;color:#3C3C3C;font-family:Georgia;font-size:20px;paddin
 	display: table-cell;
     text-align: center;
     color: #FFFFFF;
-    padding: 0px 10px;
+    padding: 0px 1px;
 }
 .img-disabled {
 	opacity :0.15;
