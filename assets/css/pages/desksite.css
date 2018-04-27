@@ -3,7 +3,7 @@
 	width:28px !important;height:28px !important;;
 }
 body{
-	overflow:hidden;
+	overflow:auto;
 }
 .left-fixed{
 	position: absolute; 

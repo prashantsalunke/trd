@@ -910,10 +910,11 @@ function stopWiggle(input) {
 										   <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 										   <p class="font5">Contact, Add<br> and Share...</p>
 									   	</a>
-									   	<a href="<?php echo base_url();?>buyer" class="navigation2n" style="display:none; text-decoration: none; ">
+									   	<a href="<?php echo base_url();?>buyer" class="navigation2n" style=" text-decoration: none; ">
 										   <img src="<?php echo asset_url(); ?>images/exit.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width: 50px; height: 54px; transform: rotate(0deg);">
 										   <p class="font2">Exit</p>
 									   	</a>
+
 								   </center>
 					   		 </div>
 					    	<!-- <div class="col-md-2 col-sm-2  bg121 ">
