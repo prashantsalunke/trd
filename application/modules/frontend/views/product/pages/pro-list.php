@@ -123,13 +123,13 @@ pre {
 			<?php
 			foreach ($productList as $item) {?>
 			<div class="col-md-4">
-				<div class="panel panel-default product-box" style="height:485px;">
+				<div class="panel panel-default product-box" style="height:430px;">
 				    <div class="panel-body center">
 				    	<div class="row">
 				    		<h6><span style="color:#1E90FF;font-family:Arial;font-size:16px;"><?php echo $item['name']?></span></h6>
 			    		</div>
 				    	<div class="row" style="padding:0px 30px;">
-					    	<div style="padding-bottom:15px;"><?php echo substr($item['description'],0,90);?> <?php if(strlen($item['description']) > 90) { ?>...<?php } ?></div>
+					    	<div style="padding-bottom:15px;"><?php echo substr($item['about'],0,90);?> <?php if(strlen($item['about']) > 90) { ?>...<?php } ?></div>
 					    	<a href="javascript:productDetail(<?php echo $item['id'];?>);"><img src="<?php echo asset_url().$item['main_image'];?>" width="300px" width="250px" class="img-responsive" /></a>
 					    	<br>
 				    		<div><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">USD</span>&nbsp;&nbsp; <span style="color:#3C3C3C;font-family:Arial;font-size:24px;"><?php echo $item['unit_price'];?></span></div>
@@ -142,16 +142,23 @@ pre {
 			<?php }?>
 		</div>
 		<?php } else { ?>
-			<h4>Opps there are no products for this category.</h4>
+			
+
+			<div class="col-md-12">
+				<div style="height:440px;">
+				   <h4>Opps there are no products for this category.</h4>
+		    	</div>
+		    </div>
+
 		<?php } ?>
 	</div>
-	<div id="Layer89" class="container" style="margin-top:80px;">
-		<div id="Layer89_Container" style="width:1280px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+	<div id="Layer28" style="margin-top:80px;margin-left:85px;width:1580px">
+		<div id="Layer89" style="width:1580px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
 			<div id="Layer90" style="position:absolute;text-align:center;height:53px;z-index:190;background-color: #4B4B4B;">
-				<div id="Layer90_Container" style="width:1067px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
-				<div id="wb_Text76" style="position:absolute;left:344px;top:12px;width:415px;height:12px;z-index:188;text-align:left;">
+				<div id="Layer90_Container" style="width:1200px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+				<div id="wb_Text76" style="position:absolute;left:444px;top:12px;width:415px;height:12px;z-index:188;text-align:left;">
 				<span style="color:#FFFFFF;font-family:Georgia;font-size:9.3px;">All contents in this Desksite ( Images, Information, Videos ...etc) are a private property for </span></div>
-				<div id="wb_Text131" style="position:absolute;left:482px;top:29px;width:102px;height:15px;z-index:189;text-align:left;">
+				<div id="wb_Text131" style="position:absolute;left:582px;top:29px;width:102px;height:15px;z-index:189;text-align:left;">
 				<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">Company Name</span></div>
 				</div>
 			</div>

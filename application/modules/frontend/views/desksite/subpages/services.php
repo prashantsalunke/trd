@@ -111,7 +111,7 @@ a.service-pills-hover:hover {
 }
 #wb_Image6
 {
-   position: absolute;
+   /*position: absolute;*/
    left: 0px;
    top: 17px;
    width: 455px;
@@ -120,7 +120,7 @@ a.service-pills-hover:hover {
 }
 #wb_Carousel1
 {
-   position: absolute;
+   /*position: absolute;*/
    width: 455px;
    height: 370px;
    z-index: 60;
@@ -129,7 +129,7 @@ a.service-pills-hover:hover {
 }
 #wb_Image7
 {
-   position: absolute;
+   /*position: absolute;*/
    left: 455px;
    top: 5px;
    width: 455px;
@@ -138,7 +138,7 @@ a.service-pills-hover:hover {
 }
 #wb_Image8
 {
-   position: absolute;
+   /*position: absolute;*/
    left: 910px;
    top: 5px;
    width: 455px;
@@ -147,7 +147,7 @@ a.service-pills-hover:hover {
 }
 #wb_Image9
 {
-   position: absolute;
+   /*position: absolute;*/
    left: 1365px;
    top: 5px;
    width: 455px;
@@ -156,7 +156,7 @@ a.service-pills-hover:hover {
 }
 #wb_Shape7
 {
-   position: absolute;
+   /*position: absolute;*/
    left: 5px;
    width: 72px;
    height: 60px;
