@@ -39,7 +39,7 @@
     position: absolute;
     height: 50px;
     width: 100%;
-    bottom: 7px;
+    bottom: 1px;
 /*     background: rgba(0,0,0,0.70); */
     left: 0;
     display: none;
@@ -269,15 +269,15 @@ a.style16 {
 									</div>
 									<div class="hover-menu text-center">
 											<a target="_blank" href="<?php echo base_url().'products/details/'.$product3D['product_id'];?>" class="btn">
-												<img src="<?php echo asset_url(); ?>images/view2.png" style="width: 40px;"></a>
+												<img src="<?php echo asset_url(); ?>images/view.png" onmouseover="hover(this,'view');" onmouseout="unhover(this,'view');" style="width: 40px;"></a>
 											 <a target="_blank" href="<?php echo base_url(); ?>3dproducts" class="btn" >
-												<img src="<?php echo asset_url(); ?>images/ts/from-sameblack.png" style="width: 40px;">
+												<img src="<?php echo asset_url(); ?>images/same.png" style="width: 40px;" onmouseover="hover(this,'same');" onmouseout="unhover(this,'same');">
 											</a> 
 											<a href="javascript:addToMyFavourite(<?php echo $product3D['product_id'];?>, 6);" class="btn">
-												<img src="<?php echo asset_url(); ?>images/ts/favoriteclick.png" style="width: 40px;">
+												<img src="<?php echo asset_url(); ?>images/favorite.png" style="width: 40px;" onmouseover="hover(this,'favorite');" onmouseout="unhover(this,'favorite');">
 											</a> 
 											<a class="btn" href="javascript:addToItemToCart(<?php echo $product3D['product_id'];?>)">
-												<img src="<?php echo asset_url(); ?>images/ts/aert.png" style="width: 40px;">
+												<img src="<?php echo asset_url(); ?>images/cart.png" style="width: 40px;" onmouseover="hover(this,'cart');" onmouseout="unhover(this,'cart');">
 											</a>
 										</div>
 									<?php }?>
@@ -337,16 +337,16 @@ a.style16 {
 									</div>
 									<div class="col-xs-12 hover-menu text-center blue">
 											<a href="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);"  class="btn">
-												<img src="<?php echo asset_url(); ?>images/vacticonwhite.png" style="width: 40px;">
+												<img src="<?php echo asset_url(); ?>images/vcat.png" style="width: 40px;" onmouseover="hover(this,'vcat');" onmouseout="unhover(this,'vcat');">
 											</a> 
 											<a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="btn" >
-												<img src="<?php echo asset_url(); ?>images/deskiste_white.png" style="width: 40px;">
+												<img src="<?php echo asset_url(); ?>images/desksite-icon.png" style="width: 40px;" onmouseover="hover(this,'desksite');" onmouseout="unhover(this,'desksite');">
 											</a> 
 											<a href="<?php echo base_url().'vcatalogues';?>" target="_blank" class="btn">
-												<img src="<?php echo asset_url(); ?>images/from-same-user.png" style="width: 40px;">
+												<img src="<?php echo asset_url(); ?>images/same.png" style="width: 40px;" onmouseover="hover(this,'same');" onmouseout="unhover(this,'same');">
 											</a> 
 											<a href="javascript:addToMyFavourite(<?php echo $vCatalogue['id'];?>, 7);" class="btn">
-												<img src="<?php echo asset_url(); ?>images/addtofav.png" style="width: 40px;">
+												<img src="<?php echo asset_url(); ?>images/favorite.png" style="width: 40px;" onmouseover="hover(this,'favorite');" onmouseout="unhover(this,'favorite');"style="width: 40px;">
 											</a>
 									</div>
 									<?php } ?>
@@ -404,13 +404,13 @@ a.style16 {
 													<div class="hover-thumb text-center">
 														<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;"><!-- z-index:851;-->
 															<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>);">
-																<img src="<?php echo asset_url(); ?>images/window0.png" id="Image13" alt="View">
+																<img src="<?php echo asset_url(); ?>images/window-layer.png" id="Image13" alt="View" onmouseover="hover(this,'window');" onmouseout="unhover(this,'window');">
 															</a>
 														</div>
 														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
 															<a href="<?php echo base_url();?>desksite/<?php echo $FeaturedProduct['busi_id'];?>" target="_blank">
-																<img class="hover" alt="View Desksite" src="<?php echo asset_url(); ?>images/vieworang.png">
-																<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view-detailsb.png"></span>
+																<!--<img class="hover" alt="View Desksite" src="<?php echo asset_url(); ?>images/view1.png">-->
+																<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view1.png" onmouseover="hover(this,'view2');" onmouseout="unhover(this,'view1');"></span>
 															</a>
 														</div>
 													</div>
@@ -483,11 +483,11 @@ a.style16 {
 												</div>
 												<div class="hover-thumb text-center">
 														<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;"><!-- z-index:851;-->
-															<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/playblk.png" id="Image34" alt=""></a> 
+															<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/play1.png" id="Image34" alt="" onmouseover="hover(this,'play');" onmouseout="unhover(this,'play');"></a> 
 														</div>
 														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
 															<a href="#">
-																<img src="<?php echo asset_url(); ?>/images/view-detailsb.png" >
+																<img src="<?php echo asset_url(); ?>/images/view1.png" onmouseover="hover(this,'view1');" onmouseout="unhover(this,'view1');">
 															</a>
 														</div>
 													</div>
@@ -578,13 +578,12 @@ a.style16 {
 											<div id="Layer144-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
 												<div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
 												<a href="javascript:openSeller(<?php echo $FWSeller['id']; ?>);" >
-													<img src="<?php echo asset_url(); ?>images/window0.png" id="Image96" alt="">
+													<img src="<?php echo asset_url(); ?>images/window-layer.png" id="Image96" alt="" onmouseover="hover(this,'window');" onmouseout="unhover(this,'window');">
 												</a>
 												</div>
 												<div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:35px;height:35px;z-index:508">
 													<a href="<?php echo base_url(); ?>desksite/<?php echo $FWSeller['busi_id'];?>" target="_blank">
-													<img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
-													<span><img alt="" src="<?php echo asset_url(); ?>images/desktopicon.gif"></span>
+													<span><img alt="" src="<?php echo asset_url(); ?>images/desksite1.png" onmouseover="hover(this,'desksite1');" onmouseout="unhover(this,'desksite1');"></span>
 													</a>
 												</div>
 											</div>
@@ -792,12 +791,12 @@ a.style16 {
 											<div id="Layer146-<?php echo $key;?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
 												<div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
 													<a href="javascript:openBuyer(<?php echo $FWBuyer['id']; ?>)">
-														<img src="<?php echo asset_url(); ?>images/ts/window0.png" style="width: 40px;">
+														<img src="<?php echo asset_url(); ?>images/window-layer.png" style="width: 40px;" onmouseover="hover(this,'window');" onmouseout="unhover(this,'window');">
 													</a>
 												</div>
 												<div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:42px;height:35px;z-index:508">
 													<a href="<?php echo base_url(); ?>buyer/profile/<?php echo $FWBuyer['busi_id'];?>" target="_blank">
-														<img src="<?php echo asset_url(); ?>images/randbuyergray.png" style="width: 42px;">
+														<img src="<?php echo asset_url(); ?>images/buyer-desksite1.png" style="width: 42px;" onmouseover="hover(this,'buyer_desksite');" onmouseout="unhover(this,'buyer_desksite');">
 													</a>
 												</div>
 											</div>
@@ -866,6 +865,61 @@ a.style16 {
 <script src="<?php echo asset_url(); ?>js/slick.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
+	function hover(element,type) {
+		if(type == 'cart'){
+  			element.setAttribute('src', '<?php echo asset_url(); ?>images/cart-hover.png');
+		}else if(type == 'favorite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/favorite-hover.png');
+		}else if(type == 'same'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/same-hover.png');
+		}else if(type == 'view'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover.png');
+		}else if(type == 'desksite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-hover.png');
+		}else if(type == 'vcat'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/vcat-hover.png');
+		}else if(type == 'window'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/window-layer-hover.png');
+		}else if(type == 'desksite1'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-hover1.png');
+		}else if(type == 'play'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/play-hover.png');
+		}else if(type == 'view1'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover1.png');
+		}else if(type == 'buyer_desksite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/buyer-desksite-hover.png');
+		}else if(type == 'view2'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover2.png');
+		}
+		
+	}
+
+	function unhover(element,type) {
+		if(type == 'cart'){
+  			element.setAttribute('src', '<?php echo asset_url(); ?>images/cart.png');
+		}
+  		else if(type == 'favorite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/favorite.png');
+		}else if(type == 'same'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/same.png');
+		}else if(type == 'view'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view.png');
+		}else if(type == 'desksite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-icon.png');
+		}else if(type == 'vcat'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/vcat.png');
+		}else if(type == 'window'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/window-layer.png');
+		}else if(type == 'view1'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view1.png');
+		}else if(type == 'desksite1'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite1.png');
+		}else if(type == 'play'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/play1.png');
+		}else if(type == 'buyer_desksite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/buyer-desksite1.png');
+		}
+	}
 	var template = {
     html: 'application/modules/frontend/views/default/default-book-view.html',
     styles: [

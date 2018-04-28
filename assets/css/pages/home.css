@@ -9694,7 +9694,7 @@ a.hstyle19:hover
    position: absolute;
    z-index: 2;
 }
-#RollOver87 a .hover
+/*#RollOver87 a .hover
 {
    visibility: hidden;
 }
@@ -9705,7 +9705,7 @@ a.hstyle19:hover
 #RollOver87 a:hover span
 {
    visibility: hidden;
-}
+}*/
 #RollOver87 img
 {
    border-width: 0;
