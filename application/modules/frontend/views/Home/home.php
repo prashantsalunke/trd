@@ -122,7 +122,7 @@ a.style16 {
 				</div>
 			</div>
 			<div class="col-lg-13">
-				<div id="carousel-example-generic" class="carousel  carousel1 slide"  style="background: #fff; padding-bottom: 50px;height:640px;" data-ride="carousel">
+				<div id="carousel-example-generic" class="carousel  carousel1 slide"  style="background: #fff; padding-bottom: 50px;height:640px;" data-ride="carousel"><!-- -->
 					<!-- Indicators -->
 					<ol class="carousel-indicators">
 					<?php
@@ -145,18 +145,18 @@ a.style16 {
 							<a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id']?>"><img src="<?php echo asset_url().$banner['main_banner']; ?>" alt="..."> </a>
 							<div id="Layer354" style="position:relative;text-align:left;top: -300px;left: 1200px;width:62px;height:115px;z-index:1361;">
 								<div id="Layer356" style="position:relative;text-align:left;/*left:16px;top:8px;*/width:40px;height:40px;z-index:1358;">
-									<div id="wb_Image262" style="position:relative;/*left:9px;top:0px;*/width:25px;height:23px;z-index:1355;padding-left: 5px;">
+									<div id="wb_Image262" style="position:relative;/*left:9px;top:0px;*/width:25px;height:18px;z-index:1355;padding-left: 10px;padding-top: 2px;">
 										<img src="<?php echo asset_url(); ?>images/view.png" id="Image262" alt="">
 									</div>
-									<div id="wb_Text494" style="position:relative;/*left:8px;top:22px;*/width:30px;height:14px;z-index:1354;text-align:center;padding-left: 4px;">
+									<div id="wb_Text494" style="position:relative;/*left:8px;top:22px;*/width:30px;height:14px;z-index:1354;text-align:center;padding-left: 6px;padding-top: 0px;">
 										<span style="color:#FFFFFF;font-family:Arial;font-size:11px;">500K</span>
 									</div>
 								</div>
 								<div id="Layer357" style="position:relative;text-align:left;/*left:17px;top:62px;*/width:40px;height:40px;z-index:1359;">
-									<div id="wb_Image263" style="position:relative;/*left:10px;top:2px;*/width:24px;height:20px;z-index:1356;padding-left: 5px;">
+									<div id="wb_Image263" style="position:relative;/*left:10px;top:2px;*/width:25px;height:17px;z-index:1356;padding-left: 10px;padding-top: 2px;">
 										<img src="<?php echo asset_url(); ?>images/like_icon.png" id="Image263" alt="">
 									</div>
-									<div id="wb_Text495" style="position:relative;/*left:8px;top:23px;*/width:29px;height:14px;z-index:1357;text-align:center;padding-left: 4px;">
+									<div id="wb_Text495" style="position:relative;/*left:8px;top:23px;*/width:29px;height:14px;z-index:1357;text-align:center;padding-left: 6px;">
 										<span style="color:#FFFFFF;font-family:Arial;font-size:11px;">500K</span>
 									</div>
 								</div>
@@ -185,7 +185,7 @@ a.style16 {
 								<div class="carousel-inner section1" role="listbox">
 								<?php
 								$i ="0";
-								foreach($desksites as $desksite){ 
+								foreach($desksites as $desksite){
 									$i++;
 									
 									?>
@@ -194,17 +194,40 @@ a.style16 {
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" target="_blank" class="hstyle19"><?php echo $desksite['company_name']?></a></span>
 										</div>
 										<div class="col-sm-offset-1 col-sm-10 text-center">
-											<small style="color:#2D2D2D;font-family:Arial;font-size:11px;"><?php echo substr($desksite['product_name'],0,100);?></small>
+											<small style="color:#2D2D2D;font-family:Arial;font-size:11px;"><?php if($desksite['user_category_id'] == 2) { 
+														echo substr($desksite['shipper_service_name'],0,100);
+													}else{
+															echo substr($desksite['product_name'],0,100);
+													}
+												?></small>
 										</div>
 										<div class="col-sm-12 text-center uppercase" style="padding:8px 0px;"><?php echo $desksite['company_country']?> | <?php echo $desksite['company_province']?></div>
 										<div class="col-xs-12 text-center">
-											<?php if(!empty($desksite['in_community'])){?><img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;"> <?php }?>
-											<?php if($desksite['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }?>
-											<?php if($desksite['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php }?>
-											<?php if($desksite['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
+											<?php if($desksite['community_id'] !='' && $desksite['plan_id'] > 1){?>
+												<img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="width:26px;height:26px; display: inline-block;"> 
+							        		<?php }else {?>
+							        			<img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15;width:26px;height:26px; display: inline-block;">
+							        		<?php }
+							        		if($desksite['user_category_id'] == 1){
+								        		if($desksite['plan_id'] > 1 && $desksite['gaurantee_period'] !=''){ ?>
+								        			<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="width:34px;height:26px;display: inline-block;"> 
+								        		<?php } else {?>
+								    				<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="opacity :0.15;width:34px;height:26px;display: inline-block;" >
+								    			<?php } 
+								    		}
+							    			if($desksite['plan_id'] > 1 && $desksite['is_logo_verified'] > 1){?>
+							    				<img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="width:26px; display: inline-block;"> 
+							    			<?php } else { ?>
+							        			<img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="opacity :0.15;width:26px; display: inline-block;" >
+							        		<?php }?>
+											
+											<?php if($desksite['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;">
+											<?php } else {?>
+												<img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1" style="opacity :0.15;width:25px; display: inline-block;">
+											<?php }?>
 										</div>
 										<div class="col-xs-12" style="margin-top: 30px;">
-											<a href="#" class=""><img src="<?php echo asset_url().$desksite['desksite_bg1']; ?>" class="img-responsive" style="padding: 0px !important;height:313px;width:376px;"></a>
+											<a href="#" class=""><img src="<?php echo asset_url().$desksite['desksite_bg1']; ?>" class="img-responsive" style="padding: 0px !important;height:283px;width:383px;"></a>
 										</div>
 										<div class="discover">
 											<a target="_blank" href="<?php echo base_url().'desksite/'.$desksite['id'];?>" class="btn btn-danger btn-lg">Discover</a>
@@ -235,7 +258,7 @@ a.style16 {
 							</p>
 						</div>
 						<div class="panel-body mytab">
-							<div id="tab-slider2" class="carousel slide" data-ride="carousel">
+							<div id="tab-slider2" class="carousel slide"><!--  data-ride="carousel"-->
 								<div class="carousel-inner section2" role="listbox" style="height:552px;">
 								 
 									<?php 
@@ -244,13 +267,16 @@ a.style16 {
 										$i++;
 										?>
 									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:543px;padding-top:30px;">
-										<div class="text-center">
+										<div class="text-center col-sm-12">
 											<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $product3D['name']?></strong></span>
 										</div>
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$product3D['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $product3D['company_name']?></a></span>
 										</div>
-										<p class="text-center"><?php echo $product3D['company_country']?> | <?php echo $product3D['company_province']?></p>
+										<div class="text-center col-sm-12">
+											<span style="color:#303030;font-size:12pt;"><?php echo $product3D['company_country']?> | <?php echo $product3D['company_province']?></span>
+										</div>
+										<!--<p class="text-center col-sm-12"></p>-->
 										<div class="col-xs-12 text-center">
 											<?php if(!empty($product3D['in_community'])){?><img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;"> <?php }?>
 											<?php if($product3D['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }?>
@@ -258,7 +284,7 @@ a.style16 {
 											<?php if($product3D['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 										</div>
 										<div class="col-xs-12"
-											style="margin-top: 5px; text-align: center; margin-bottom: 5px; height: 300px;padding: 25px;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
+											style="margin-top: 5px; text-align: center; margin-bottom: 5px; height: 300px;padding: 25px;cursor: pointer;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
 											<img src="<?php echo asset_url().$product3D['main_image']; ?>" class="img-responsive" style="display: inline-block">
 										</div>
 										<div class="text-center">
