@@ -410,7 +410,7 @@ a.style16 {
 														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
 															<a href="<?php echo base_url();?>desksite/<?php echo $FeaturedProduct['busi_id'];?>" target="_blank">
 																<!--<img class="hover" alt="View Desksite" src="<?php echo asset_url(); ?>images/view1.png">-->
-																<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view1.png" onmouseover="hover(this,'view');" onmouseout="unhover(this,'view1');"></span>
+																<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view1.png" onmouseover="hover(this,'view2');" onmouseout="unhover(this,'view1');"></span>
 															</a>
 														</div>
 													</div>
@@ -888,6 +888,8 @@ a.style16 {
 			element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover1.png');
 		}else if(type == 'buyer_desksite'){
 			element.setAttribute('src', '<?php echo asset_url(); ?>images/buyer-desksite-hover.png');
+		}else if(type == 'view2'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover2.png');
 		}
 		
 	}
