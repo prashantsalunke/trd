@@ -175,7 +175,7 @@ a.style16 {
 					<div class="panel disk-tab">
 						<div class="panel-heading" style="padding-left: 0px;">
 							<h2 class="font2">DESKSITES</h2>
-							<p>
+							<p style="text-indent: 0px;">
 								<small class="font3">Experience A New Vision Of Websites Techniques With Quick
 									Access, Rich Information And Much More..</small>
 							</p>
@@ -252,7 +252,7 @@ a.style16 {
 					<div class="panel disk-tab">
 						<div class="panel-heading">
 							<h2 class="font2">PRODUCTS IN 3D</h2>
-							<p>
+							<p style="text-indent: 0px;">
 								<small class="font3">Hold On The Product And Swipe Righ Or Left</small><br>
 								&nbsp;
 							</p>
@@ -290,7 +290,7 @@ a.style16 {
 										</div>
 										<div class="text-center">
 											<div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?></span></div>
-											<p><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity']?>/ <?php echo $product3D['unit']?></span> </p>
+											<p style="text-indent: 0px;"><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity']?> / <?php echo $product3D['unit']?></span> </p>
 										</div>
 										
 									</div>
@@ -323,7 +323,7 @@ a.style16 {
 					<div class="panel disk-tab">
 						<div class="panel-heading" style="padding-right: 0px;">
 							<h2 class="font2">V-CATALOGUES</h2>
-							<p>
+							<p style="text-indent: 0px;">
 								<small class="font3">Follow The Latest Collection Of Global Sellers And Famouse
 									<br>Brands..</small>
 							</p>
@@ -343,7 +343,7 @@ a.style16 {
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $vCatalogue['company_name']?></a></span>
 										</div>
 										<div class="col-xs-12 text-center">
-											<p class="text-center"><?php echo $vCatalogue['company_country'];?> | <?php echo $vCatalogue['company_province'];?></p>
+											<p class="text-center" style="text-indent: 0px;"><?php echo $vCatalogue['company_country'];?> | <?php echo $vCatalogue['company_province'];?></p>
 											<div class="col-xs-12 text-center">
 												<?php if(!empty($vCatalogue['in_community'])){?><img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;"> <?php }?>
 												<?php if($vCatalogue['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }?>
@@ -425,7 +425,7 @@ a.style16 {
 												<h4 class="text-center product-strong-text" style="margin-top: 0px;border:none;">
 													<strong><?php echo $FeaturedProduct['name']; ?></strong>
 												</h4>
-												<p class="text-center product-text ptext" ><?php echo $FeaturedProduct['description']; ?></p>
+												<p class="text-center product-text ptext" style="text-indent: 0px;"><?php echo $FeaturedProduct['about']; ?></p>
 												<div class="tumb-slide" style="border:none;">
 													<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive" style="width:218px;height:177px;">
 													<div class="hover-thumb text-center">
@@ -442,18 +442,18 @@ a.style16 {
 														</div>
 													</div>
 												</div>
-												<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo number_format($FeaturedProduct['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']);?>/<?php echo $FeaturedProduct['unit']?></span></h4>
-												<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedProduct['quantity'];?>		</p>
+												<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo number_format($FeaturedProduct['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']);?></span></h4>
+												<p class="text-center product-money-text" style="text-indent: 0px;padding-top: 3px;">Min. Qty. <?php echo $FeaturedProduct['quantity'];?> / <?php echo $FeaturedProduct['unit']?></p>
 											</div>
 										</div>
 									<?php if($frame+4 == $i){?>
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider4" role="button" data-slide="prev" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
+									<a class="left carousel-control" href="#tab-slider4" role="button" data-slide="prev" style="background: none;padding-top:13%;text-align:center;width:2%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider4" role="button" data-slide="next" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
+									<a class="right carousel-control" href="#tab-slider4" role="button" data-slide="next" style="background: none;padding-top:13%;text-align:center;width:2%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 								</div>
@@ -503,7 +503,7 @@ a.style16 {
 											<h4 class="text-center product-strong-text" style="margin-top: 0px;">
 												<strong><?php echo $FeaturedVideo['name']; ?></strong>
 											</h4>
-											<p class="text-center product-text"><?php echo $FeaturedVideo['description']; ?>.</p>
+											<p class="text-center product-text" style="text-indent: 0px;"><?php echo $FeaturedVideo['about']; ?>.</p>
 											<div class="tumb-slide">
 												<div id="wb_MediaPlayer1" style="width:218px;height:142px;z-index:677;" class="imgresponsive">
 													<video src="<?php echo asset_url().$FeaturedVideo['vedio_file']; ?>" id="MediaPlayer1" style="width:218px !important;height:140px;z-index:677;"></video>
@@ -519,19 +519,19 @@ a.style16 {
 														</div>
 													</div>
 											</div>
-											<br/><br/>
-											<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo number_format($FeaturedVideo['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']);?>/<?php echo $FeaturedVideo['unit'];?></span></h4>
-											<p class="text-center product-money-text">Min. Qty. <?php echo $FeaturedVideo['quantity'];?></p>
+											<br/>
+											<h4 class="text-center product-money-symbol" style="padding-top: 1px;">USD <span class="product-price"><?php echo number_format($FeaturedVideo['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']);?></span></h4>
+											<p class="text-center product-money-text" style="text-indent: 0px;">Min. Qty. <?php echo $FeaturedVideo['quantity'];?>/<?php echo $FeaturedVideo['unit'];?></p>
 										</div>
 									</div>
 									<?php if($frame+4 == $i){?>
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider5" role="button" data-slide="prev" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
+									<a class="left carousel-control" href="#tab-slider5" role="button" data-slide="prev" style="background: none;padding-top:13%;text-align:center;width:2%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider5" role="button" data-slide="next" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
+									<a class="right carousel-control" href="#tab-slider5" role="button" data-slide="next" style="background: none;padding-top:13%;text-align:center;width:2%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 								</div>
@@ -557,7 +557,7 @@ a.style16 {
 							</h3>
 							<div class="text-center displaydesktop">
 								<img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
-									class="img-responsive">
+									class="img-responsive" style="height: 225px;">
 							</div>
 						</div>
 					</div>
@@ -619,10 +619,10 @@ a.style16 {
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider6" role="button" data-slide="prev" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
+									<a class="left carousel-control" href="#tab-slider6" role="button" data-slide="prev" style="background: none;padding-top:8%;text-align:center;width:2%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider6" role="button" data-slide="next" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
+									<a class="right carousel-control" href="#tab-slider6" role="button" data-slide="next" style="background: none;padding-top:8%;text-align:center;width:2%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 							</div>
@@ -687,8 +687,11 @@ a.style16 {
 													<h5>
 														<b><?php echo $NewArrival['name']?></b>
 													</h5>
-													<p>
-														<small><?php echo substr($NewArrival['description'], 0, 125)?></small>
+													<p style="text-indent: 0px;">
+														<small><?php echo substr($NewArrival['description'], 0,115);
+														if(strlen($NewArrival['description']) > 115) { echo "..."; } ?>
+															
+														</small>
 													</p>
 												</div>
 												<div class="col-xs-1 orange">
@@ -732,8 +735,10 @@ a.style16 {
 													<h5>
 														<b><?php echo $NewOrder['name']?></b>
 													</h5>
-													<p>
-														<small><?php echo substr($NewOrder['description'], 0, 125);?></small>
+													<p style="text-indent: 0px;">
+														<small><?php echo substr($NewOrder['description'], 0, 115);
+														if(strlen($NewOrder['description']) > 115) { echo "..."; }
+														?></small>
 													</p>
 												</div>
 												<div class="col-xs-1 blue1" >
@@ -765,7 +770,7 @@ a.style16 {
 							</h3>
 							<div class="text-center displaydesktop">
 								<img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
-									class="img-responsive">
+									class="img-responsive" style="height: 225px;">
 							</div>
 						</div>
 					</div>
@@ -832,10 +837,10 @@ a.style16 {
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider7" role="button" data-slide="prev" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
+									<a class="left carousel-control" href="#tab-slider7" role="button" data-slide="prev" style="background: none;padding-top:8%;text-align:center;width:2%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider7" role="button" data-slide="next" style="background: none;padding-top:12%;text-align:center;width:5%;"> 
+									<a class="right carousel-control" href="#tab-slider7" role="button" data-slide="next" style="background: none;padding-top:8%;text-align:center;width:2%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 								</div></div>
@@ -1286,14 +1291,17 @@ $(document).ready(function() {
     });
 });
 function openVideo(id) {
+	ajaxindicatorstart("Please wait while we load the video.");
 	$.get(base_url+"seller/video/view/"+id,{},function(data) {
+		ajaxindicatorstop();
 		$("#Layer_details_Container3").html(data);
 		ShowObjectWithEffect('Layer_details3', 1, 'scale', 500, 'swing');
 	},'html');
 }
 function openProduct(id) {
-	//alert('hello');
+	ajaxindicatorstart("Please wait while we load the Product.");
 	$.get(base_url+"seller/product/view/"+id,{},function(data) {
+		ajaxindicatorstop();
 		$("#Layer_details_Container").html(data);
 		ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
 	},'html');
