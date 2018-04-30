@@ -262,8 +262,9 @@ a.style16 {
 								<div class="carousel-inner section2" role="listbox" style="height:552px;">
 								 
 									<?php 
-									$i ="0";
-									foreach ($products3D as $product3D) {
+									$i ="0"; 
+									foreach ($products3D as $product3D) { 
+										$product_id = $product3D['product_id'];
 										$i++;
 										?>
 									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:543px;padding-top:30px;">
@@ -288,13 +289,13 @@ a.style16 {
 											<img src="<?php echo asset_url().$product3D['main_image']; ?>" class="img-responsive" style="display: inline-block">
 										</div>
 										<div class="text-center">
-											<div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?> / <?php echo $product3D['unit']?></span></div>
-											<p><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity']?></span> </p>
+											<div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?></span></div>
+											<p><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity']?>/ <?php echo $product3D['unit']?></span> </p>
 										</div>
 										
 									</div>
 									<div class="hover-menu text-center">
-											<a target="_blank" href="<?php echo base_url().'products/details/'.$product3D['product_id'];?>" class="btn">
+											<a target="_blank" href="<?php echo base_url().'products/details/'.$product_id;?>" class="btn">
 												<img src="<?php echo asset_url(); ?>images/view.png" onmouseover="hover(this,'view');" onmouseout="unhover(this,'view');" style="width: 40px;"></a>
 											 <a target="_blank" href="<?php echo base_url(); ?>3dproducts" class="btn" >
 												<img src="<?php echo asset_url(); ?>images/same.png" style="width: 40px;" onmouseover="hover(this,'same');" onmouseout="unhover(this,'same');">
@@ -350,7 +351,7 @@ a.style16 {
 												<?php if($vCatalogue['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
 											</div>
 										</div>
-										<div class="col-xs-12" style="text-align: center; margin-bottom: 5px; height: 320px;margin-top: 30px;">
+										<div class="col-xs-12" style="text-align: center; margin-bottom: 5px; height: 320px;margin-top: 30px;cursor: pointer;" onclick="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);">
 											<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block">
 											<div style="position:absolute;width: 140px;top: 120px;left: 140px;">
 												<img src="<?php echo asset_url().$vCatalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
@@ -867,7 +868,7 @@ a.style16 {
 
 <div id="promodal">
 </div>
-<div id="vcatalogue_overlay_home" class="modal fade" style="background-color:#404040;z-index: 4000;">
+<div id="vcatalogue_overlay_home" class="modal fade" style="background-color:#404040;z-index: 10000;">
 	<div class="modal-dialog" style="background-color:#404040;width:1050px;">
 		<div class="modal-content" style="background: transparent;box-shadow:none;-webkit-box-shadow:none;border: 0px;">
 			<div style="position:absolute;right:0;width:50px;height:50px;z-index:5000;"><button type="button" class="pull-right" data-dismiss="modal" aria-hidden="true" style="background:transparent;border:0px;"><img src="<?php echo asset_url();?>images/newicons/closeround.png" id="Image47" alt="" style="width:35px;"></button></div>
@@ -1109,7 +1110,9 @@ a.style16 {
 		},'html');
 	}
 	function open3DProduct(id) {
+		ajaxindicatorstart("Please wait while we load 3D Product.");
 		$.get(base_url+"mystation/3dpro/show/"+id, {}, function(data){
+			ajaxindicatorstop();
 			$("#promodal").html(data);
 			$("#my3DModal").modal('show');
 			init3D('my3dimg');
