@@ -46,7 +46,7 @@ class Bstation extends MX_Controller {
 	public function bstationPostInsert(){
 		$params['busi_id'] = $this->session->userdata('busi_id');
 		$params['title'] = $this->input->post('title');
-		$params['product_item_id'] = $this->input->post('product_id');
+		$params['product_item_id'] = ($this->input->post('product_id') != "") ? $this->input->post('product_id') : 0;
 		$params['description'] = $this->input->post('description');
 		$params['usd_price'] = $this->input->post('usd_price');
 		$params['quantity'] = $this->input->post('quantity');
@@ -128,7 +128,10 @@ class Bstation extends MX_Controller {
 		$params = array();
 		$params['busi_id'] = $this->session->userdata('busi_id');
 		$params['title'] = $this->input->post('btitle');
+		$params['product_item_id'] = ($this->input->post('product_id') != "") ? $this->input->post('bproduct_id') : 0;
 		$params['description'] = $this->input->post('bdescription');
+		$params['usd_price'] = $this->input->post('busd_price'!= "") ? $this->input->post('busd_price') : 0;
+		$params['quantity'] = $this->input->post('bquantity'!="") ? $this->input->post('bquantity') : 0;
 		$params['is_locked'] = $this->input->post('bprofilecheck');
 		$params['status'] = 1;
 		$params['created_date'] = date('Y-m-d H:i:s');

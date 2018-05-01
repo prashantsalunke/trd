@@ -1261,11 +1261,15 @@ class Home extends MX_Controller {
 		$map['id'] = $id;
 		$map['user_id'] = $busi_id;
 		$Desksites= $this->product->getDesksiteByBusiId($map);
+		// print_r($Desksites);
+		// exit();
 		$countries = $this->product->getAllCountries();
 		$requests = $this->product->getCurrentRequest($id);
+		$contact_details = $this->account->getBusinessContactDetails($busi_id);
 		$this->template->set ( 'countries', $countries );
 		$this->template->set ( 'Desksites', $Desksites);
 		$this->template->set ( 'community', $community);
+		$this->template->set ( 'contact_details',$contact_details);
 		$this->template->set ( 'requests', $requests);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'buyer');
@@ -1493,6 +1497,19 @@ class Home extends MX_Controller {
 	}
 	
 	public function getGeneralInquiry($busi_id) {
+		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
+		$this->load->model('Product_Model','product');
+		$mydesksite = $this->product->getBusinessContactInfo(array('id'=>$mybusi_id));
+		$desksites = $this->product->getBusinessContactInfo(array('id'=>$busi_id));
+		$this->template->set ( 'mydesksite', $mydesksite);
+		$this->template->set ( 'desksite', $desksites);
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html= $this->template->build ('desksite/subpages/general_inquiry', '', true);
+		echo $html;
+	}
+	
+	public function getGeneralInquiryBuyer($busi_id) {
 		$mybusi_id = $this->session->userdata('tsuser')['busi_id'];
 		$this->load->model('Product_Model','product');
 		$mydesksite = $this->product->getBusinessContactInfo(array('id'=>$mybusi_id));

@@ -71,7 +71,7 @@ div.pp_pic_holder {
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10">
+                    <div class="col-lg-10 col-sm-3" style="padding-right:0px;padding-left:0px;">
 	                        <ul class="nav nav-tabs">
 	                            <li class="active nav121"><a data-toggle="tab" href="#home" class="stock-navtab">I Have This</a></li>
 	                            <li class="nav122"><a data-toggle="tab" href="#menu1" class="stock-navtab2">I Need This</a></li>
@@ -527,6 +527,7 @@ function searchBusinessStation() {
 	}
 }
 function filterBusinessStation() {
+	
 	var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
 	if(keyword != "" && country != "") {
