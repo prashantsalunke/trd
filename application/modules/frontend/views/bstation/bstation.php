@@ -814,5 +814,10 @@ $.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},fun
     $('[name=keyword]').val(keyword);
     $('[name=country]').val(country);
 },'json');
-<?php } ?>
+
+<?php if(!empty($_COOKIE['bstation-buyer-request']) && $_COOKIE['bstation-buyer-request'] == 1){ ?>
+
+	$('.nav-tabs > .active').next('li').find('a').trigger('click');
+	$.cookie('bstation-buyer-request', '0', { expires: 365 });
+<?php } } ?>
 </script>
