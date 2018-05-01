@@ -907,8 +907,43 @@ class Product_Model extends CI_Model {
     	$result = $query->result_array();
     	return $result;
     }
-    
     public function getDesksiteByBusiId($map) {
+<<<<<<< HEAD
+    $this->db->select('a.id as user_id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs,(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax,
+    b.company_name, b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,
+    b.telephone_city_code,b.telephone_number,b.telephone_number1,b.company_street,b.company_email, b.business_logo,
+    b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank,
+    b.verification_id,g.*, c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image,
+    c.timezone,e.sub_category as user_subcategory,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
+    (select GROUP_CONCAT(f.name) from tbl_main_product as f where f.busi_id=a.busi_id AND f.status != 0 group by a.busi_id) as mainproducts,
+    h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,h.fact_province,h.fact_city,
+    h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag,l.id as community_id');
+    $this->db->from(TABLES::$USER.' AS a');
+    $this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
+    $this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
+    $this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
+    $this->db->join(TABLES::$COMPANY_INFO.' AS d','a.busi_id=d.busi_id','left');
+    $this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','e.id=a.user_subcategory_id','inner');
+    $this->db->join(TABLES::$PRODUCT_STAGE.' AS j','j.busi_id=a.busi_id','left');
+    $this->db->join(TABLES::$FACTORY_INFO.' AS h','h.busi_id=a.busi_id','left');
+    $this->db->join(TABLES::$COUNTRY.' AS i','i.name=b.company_country','left');
+$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
+    $this->db->where('a.account_activated', 1);
+    $this->db->where('a.is_suspend', 0);
+    $this->db->where('a.is_deleted', 0);
+    $this->db->where('b.is_disable', 0);
+    $this->db->where('a.is_contactperson',1);
+    $this->db->where('b.is_deleted', 0);
+    $this->db->where('b.id', $map['id']);
+    //$this->db->where("(f.status != 0)",'',false);
+    $this->db->order_by('a.created_date','DESC');
+    $this->db->group_by('b.id');
+    //echo $this->db->last_query();
+    $query = $this->db->get();
+    $result = $query->result_array();
+    return $result;
+   }
+=======
     	$this->db->select('a.id as user_id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, 
     			d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, 
     			b.company_name, b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,
@@ -943,6 +978,7 @@ class Product_Model extends CI_Model {
     	$result = $query->result_array();
     	return $result;
     }
+>>>>>>> shipper_doc_dhruv
     
     public function getShipperDesksiteByBusiId($map) {
     	$this->db->select('a.id as user_id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, b.company_name,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
@@ -1072,8 +1108,8 @@ class Product_Model extends CI_Model {
     	$this->db->select('*');
     	$this->db->from(TABLES::$MYFILE);
     	$this->db->where('busi_id', $id);
-    	$this->db->where('file_access_type', 1);
-    	$this->db->where('	is_deleted', 0);
+    	// $this->db->where('file_access_type', 1);
+    	$this->db->where('is_deleted', 0);
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -2573,30 +2609,30 @@ class Product_Model extends CI_Model {
    		return $result;
    	}
    	
-   	public function getBusinessContactInfo($map) {
-   		$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,
-    			b.id as busi_id,b.company_name, b.company_country, b.company_province, b.company_city,c.mobile_code as telephone_code,
-    			b.telephone_city_code,c.mobile_number as telephone_number,b.company_street,b.company_email, b.business_logo,
-    			b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank');
-   		$this->db->from(TABLES::$USER.' AS a');
-   		$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
-   		$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','inner');
-   		$this->db->where('a.account_activated', 1);
-   		$this->db->where('a.is_suspend', 0);
-   		$this->db->where('a.is_deleted', 0);
-   		$this->db->where('b.is_disable', 0);
-   		$this->db->where('a.is_contactperson',1);
-   		$this->db->where('b.is_deleted', 0);
-   		$this->db->where('b.id', $map['id']);
-   		//$this->db->where("(f.status != 0)",'',false);
-   		$this->db->order_by('a.created_date','DESC');
-   		$this->db->group_by('a.id');
-   		//echo $this->db->last_query();
-   		$query = $this->db->get();
-   		$result = $query->result_array();
-   		return $result;
-   	}
-   	
+       	public function getBusinessContactInfo($map) {
+       		$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,
+        			b.id as busi_id,b.company_name, b.company_country, b.company_province, b.company_city,c.mobile_code as telephone_code,
+        			b.telephone_city_code,c.mobile_number as telephone_number,b.company_street,b.company_email, b.business_logo,
+        			b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank');
+       		$this->db->from(TABLES::$USER.' AS a');
+       		$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
+       		$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','inner');
+       		$this->db->where('a.account_activated', 1);
+       		$this->db->where('a.is_suspend', 0);
+       		$this->db->where('a.is_deleted', 0);
+       		$this->db->where('b.is_disable', 0);
+       		$this->db->where('a.is_contactperson',1);
+       		$this->db->where('b.is_deleted', 0);
+       		$this->db->where('b.id', $map['id']);
+       		//$this->db->where("(f.status != 0)",'',false);
+       		$this->db->order_by('a.created_date','DESC');
+       		$this->db->group_by('a.id');
+       		//echo $this->db->last_query();
+       		$query = $this->db->get();
+       		$result = $query->result_array();
+       		return $result;
+       	}
+       	
    	public function addGeneralEnquiry($params) {
    		$this->db->insert(TABLES::$INQUIRY, $params);
    		return $this->db->insert_id();

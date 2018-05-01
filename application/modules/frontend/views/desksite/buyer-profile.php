@@ -821,13 +821,52 @@ function stopWiggle(input) {
 			    	<div class="image d1" style="width:100%;height:100%;background-image:url(<?php echo asset_url().$Desksite['desksite_bg2']; ?>);background-size:cover;">&nbsp;</div>
 				</div>
 				<?php } else { ?>
-				<div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
+			    <div id="SlideShow1">
+					<div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
+					<div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
+				</div>
 				<?php } ?>
 			</div>
 		    <!-- slider ends -->
 
 
         <div id="Layer88" class="leftnav">
+<<<<<<< HEAD
+
+           <div id="Layer116" class="left-fixed" style="padding-top:25px;">
+           <div id="wb_Image61" class="text-center">
+            <?php if($Desksite['is_active'] >= 1){?>
+            <img src="<?php echo asset_url(); ?>images/Active.png" id="Image61" alt="Black Horse Member" class="black-horse-icon">
+              <?php } else { ?>
+              <img src="<?php echo asset_url(); ?>images/Active.png" id="Image61" alt="Black Horse Member" class="black-horse-icon img-disabled">
+              <?php } ?>
+              </div>
+           <div id="wb_Image67"  class="text-center">
+               <a href="#" onclick="<?php if($Desksite['is_logo_verified'] > 1){?>ShowObjectWithEffect('Layer61', 1, 'slideleft', 500, 'swing');<?php } ?>return false;">
+               <?php if($Desksite['is_logo_verified'] > 1){?>
+<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon">
+<?php } else { ?>
+<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon img-disabled">
+<?php } ?>
+</a>
+</div>
+           <div id="wb_Image76"  class="text-center">
+            <?php if(!empty($buyer['community_id'])){ ?>
+               <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This Buyer is a member in your community" class="community-member-icon">
+               <?php } else { ?>
+               <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This Buyer is a member in your community" class="community-member-icon img-disabled">
+               <?php } ?>
+          </div>
+               <div id="wb_Image76"  class="text-center">
+                 <?php if(($Desksite['is_active'] >= 3)){ ?>
+                   <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image76" alt="This Buyer is a member in your community" class="community-member-icon">
+                   <?php } else { ?>
+                   <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image76" style="opacity :0.15" alt="This shipper is a member in your community" class="community-member-icon img-disabled">
+                   <?php } ?>
+               </div>
+       </div>
+   </div>
+=======
 		        <div id="Layer116" class="left-fixed" style="padding-top:25px;">
 		            <div id="wb_Image61" class="text-center">
 		            	<?php if($Desksite['plan_id'] > 1){?>
@@ -854,6 +893,7 @@ function stopWiggle(input) {
 		          	</div>
 		        </div>
 		    </div>
+>>>>>>> shipper_doc_dhruv
 		    <!-- left navigation ends -->
 		      
 			<!-- bottom navigation -->
@@ -903,11 +943,11 @@ function stopWiggle(input) {
 									   		<p class="font2">Current <br>Request</p>
 									   	</a>
 							            <a href="javascript:getMyFiles(<?php echo $Desksite['busi_id'];?>)" class="navigation2n"  style="text-decoration: none; ">
-										    <img src="<?php echo asset_url(); ?>images/desksite/D-files.png" id="Image8" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+										    <img src="<?php echo asset_url(); ?>images/desksite/D-files.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 										    <p class="font2">My Files</p>
 									    </a>
 									    <a href="#" class="navigation2n" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;" style="text-decoration: none; ">
-										   <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+										   <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 										   <p class="font5">Contact, Add<br> and Share...</p>
 									   	</a>
 									   	<a href="<?php echo base_url();?>buyer" class="navigation2n" style=" text-decoration: none; ">
@@ -989,7 +1029,7 @@ function stopWiggle(input) {
 				        <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 						</a>
-				        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/about.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT US</p>
+				        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-company.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT BUYER</p>
 				        <div class="box2" id="about-us" style="height: 540px;overflow-y:scroll;padding-top:0px;">
 				            
 				        </div>
@@ -1015,7 +1055,7 @@ function stopWiggle(input) {
 			    <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
 				 	<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;"/>
 				</a>
-			    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/barcompany-profile.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE</p>
+			    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-About.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE</p>
 			    <div>
 			        <div class="box2" id="company-profile" style=" height:340px;">
 					</div>
