@@ -641,7 +641,7 @@ a.style16 {
 
 		<div class="col-sm-12 margintop" >
 			<div class="row">
-				<div class="col-sm-12 tab-slider" style="min-height:460px;">
+				<div class="col-sm-12 tab-slider" style="min-height:365px;">
 					<div class="col-sm-3 col-lg-2 maxheight1 product4">
 						<div class="row" style="margin: 0px">
 							<h3 style="color: #fff; text-align: center;">
@@ -679,25 +679,25 @@ a.style16 {
 									<div class="col-sm-12 margins">
 										<div class="sectionrow">
 											<div class="row" style="margin: 0px;">
-												<div class="col-xs-2" style="padding: 1% 0px">
+												<div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
 													<img src="<?php echo asset_url().$NewArrival['main_image']; ?>"
-														class="img-responsive">
+														class="img-responsive" style="padding: 0px !important;height: 85px;">
 													<img src="<?php echo asset_url(); ?>images/img0099.png" class="roundflag">
 														
 												</div>
 												<div class="col-xs-9 text-left">
 													<h5>
-														<b><?php echo $NewArrival['name']?></b>
+														<div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewArrival['name']?></strong></div>
 													</h5>
 													<p style="text-indent: 0px;">
-														<small><?php echo substr($NewArrival['description'], 0,115);
+														<div style="color:#696969;font-family:Arial;font-size:12px;"><?php echo substr($NewArrival['description'], 0,115);
 														if(strlen($NewArrival['description']) > 115) { echo "..."; } ?>
 															
-														</small>
+														</div>
 													</p>
 												</div>
 												<div class="col-xs-1 orange">
-												<a href="javascript:gotonewarrival_request('<?php echo $NewArrival['title']; ?>','<?php echo $NewArrival['company_country']; ?>','arrival')" style="text-decoration:none">Go</a>
+												<a href="javascript:gotonewarrival_request('<?php echo $NewArrival['title']; ?>','<?php echo $NewArrival['company_country']; ?>','arrival',<?php echo $this->session->userdata('busi_id');?>)" style="text-decoration:none">Go</a>
 												</div>
 											</div>
 										</div>
@@ -728,23 +728,23 @@ a.style16 {
 									
 									<div class="col-sm-12 margins">
 										<div class="sectionrow"><div class="row" style="margin: 0px;">
-												<div class="col-xs-2" style="padding: 1% 0px">
+												<div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
 													<img src="<?php echo asset_url().$NewOrder['main_image']; ?>"
-														class="img-responsive">
+														class="img-responsive" style="padding: 0px !important;height: 85px;">
 													<img src="<?php echo asset_url(); ?>images/img0099.png" class="roundflag">
 												</div>
 												<div class="col-xs-9 text-left">
 													<h5>
-														<b><?php echo $NewOrder['name']?></b>
+														<div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewOrder['name']?></strong></div>
 													</h5>
 													<p style="text-indent: 0px;">
-														<small><?php echo substr($NewOrder['description'], 0, 115);
-														if(strlen($NewOrder['description']) > 115) { echo "..."; }
-														?></small>
+														<div style="color:#696969;font-family:Arial;font-size:12px;"><?php echo substr($NewOrder['description'], 0, 103);
+														if(strlen($NewOrder['description']) > 103) { echo "..."; }
+														?></div>
 													</p>
 												</div>
 												<div class="col-xs-1 blue1" >
-												<a href="javascript:gotonewarrival_request('<?php echo $NewOrder['title']; ?>','<?php echo $NewOrder['company_country']; ?>','request')" style="text-decoration:none">Go</a>
+												<a href="javascript:gotonewarrival_request('<?php echo $NewOrder['title']; ?>','<?php echo $NewOrder['company_country']; ?>','request',<?php echo $this->session->userdata('busi_id');?>)" style="text-decoration:none">Go</a>
 												</div>
 											</div>
 										</div>
@@ -1327,15 +1327,21 @@ function addToItemToCart(id) {
 		ShowObject('Layer99', 1);
 	},'json');
 }
-function gotonewarrival_request(keyword,country,type) {
-	 $.cookie('bstation-landing', '1', { expires: 365 });
-	 $.cookie('bstation-keyword', keyword, { expires: 365 });
-     $.cookie('bstation-country', country, { expires: 365 });
-     if(type == 'request'){
-     	$.cookie('bstation-buyer-request', '1', { expires: 365 });
-     }else{
-     	$.cookie('bstation-buyer-request', '0', { expires: 365 });
-     }
-     window.open(base_url+'b-station','_blank');
+function gotonewarrival_request(keyword,country,type,busi_id) {
+	if(busi_id == "" || busi_id == undefined){
+		$("#msg_cont").html("PLEASE LOGIN TO ACCESS MEMBER AREA.");
+		ShowObject('Layer99', 1);
+	}else{
+		$.cookie('bstation-landing', '1', { expires: 365 });
+	 	$.cookie('bstation-keyword', keyword, { expires: 365 });
+     	$.cookie('bstation-country', country, { expires: 365 });
+     	if(type == 'request'){
+     		$.cookie('bstation-buyer-request', '1', { expires: 365 });
+     	}else{
+     		$.cookie('bstation-buyer-request', '0', { expires: 365 });
+     	}
+     	window.open(base_url+'b-station','_blank');
+	}
+	 
 }
 </script>

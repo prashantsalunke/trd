@@ -8844,7 +8844,7 @@ a:visited {
 
 .sectionrow {
 	width: 97%;
-	min-height: 122px;
+	min-height: 90px;
 	background: #fff;
 	text-align: center;
 	border: 1px solid #ccc;
@@ -9161,7 +9161,7 @@ a:focus, .btn:active {
 		background: #FF8C00;
 		color: white;
 		padding: 45px 8px;
-		height: 120px;
+		height: 90px;
 		font-size: 17px;
 	}
 	.author {
@@ -9176,7 +9176,7 @@ a:focus, .btn:active {
 		background: #1E90FF;
 		color: white;
 		padding: 45px 8px;
-		height: 120px;
+		height: 90px;
 		font-size: 17px;
 	}
 	.blue1 a {
