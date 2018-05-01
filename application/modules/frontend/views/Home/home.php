@@ -31,6 +31,7 @@
 <script src="<?php echo asset_url();?>js/three.min.js"></script>
 <script src="<?php echo asset_url();?>js/pdf.min.js"></script>
 <script src="<?php echo asset_url();?>js/3dflipbook.min.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
 <style>
 .carousel_img {
 	padding: 0% 23% !important; 
@@ -673,7 +674,8 @@ a.style16 {
 									$frame = $i; 
 										?>
 									<div class="frame" style="display: block;">
-									<?php } $i++; ?>
+									<?php } $i++; //title,
+									?>
 									<div class="col-sm-12 margins">
 										<div class="sectionrow">
 											<div class="row" style="margin: 0px;">
@@ -695,7 +697,7 @@ a.style16 {
 													</p>
 												</div>
 												<div class="col-xs-1 orange">
-												<a href="" style="text-decoration:none">Go</a>
+												<a href="javascript:gotonewarrival_request('<?php echo $NewArrival['title']; ?>','<?php echo $NewArrival['company_country']; ?>','arrival')" style="text-decoration:none">Go</a>
 												</div>
 											</div>
 										</div>
@@ -742,7 +744,7 @@ a.style16 {
 													</p>
 												</div>
 												<div class="col-xs-1 blue1" >
-												<a href="" style="text-decoration:none">Go</a>
+												<a href="javascript:gotonewarrival_request('<?php echo $NewOrder['title']; ?>','<?php echo $NewOrder['company_country']; ?>','request')" style="text-decoration:none">Go</a>
 												</div>
 											</div>
 										</div>
@@ -1325,5 +1327,15 @@ function addToItemToCart(id) {
 		ShowObject('Layer99', 1);
 	},'json');
 }
-
+function gotonewarrival_request(keyword,country,type) {
+	 $.cookie('bstation-landing', '1', { expires: 365 });
+	 $.cookie('bstation-keyword', keyword, { expires: 365 });
+     $.cookie('bstation-country', country, { expires: 365 });
+     if(type == 'request'){
+     	$.cookie('bstation-buyer-request', '1', { expires: 365 });
+     }else{
+     	$.cookie('bstation-buyer-request', '0', { expires: 365 });
+     }
+     window.open(base_url+'b-station','_blank');
+}
 </script>
