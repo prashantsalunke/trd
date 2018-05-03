@@ -355,6 +355,8 @@ $route['search'] = 'frontend/Home/search';
 $route['products'] = 'frontend/Product';
 $route['products/list'] = 'frontend/Product/productList';
 $route['products/details/([0-9]+)'] = 'frontend/Product/productDetails/$1';
+$route['deskdetails/([0-9]+)'] = 'frontend/Product/productDetails/$1';
+// $route['deskdetails/([0-9]+)'] = 'frontend/Home/DesksiteByBusiId/$1';
 $route['product/detail/([0-9]+)'] = 'frontend/Product/productDetailById/$1';
 $route['seller/product/([0-9]+)'] = 'frontend/Product/productListBySellerId/$1';
 $route['product/subcategory/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListBySubCategory/$1/$2';
@@ -379,6 +381,7 @@ $route['catalogue/business/([0-9]+)'] = 'frontend/Home/getCatalogueByBusiId/$1';
 $route['catalogue/business/next/([0-9]+)'] = 'frontend/Home/getNextCatalogueById/$1';
 $route['seller/popup/([0-9]+)'] = 'frontend/Home/getSellerById/$1';
 $route['buyer/popup/([0-9]+)'] = 'frontend/Home/getBuyerById/$1';
+$route['shipper/popup/([0-9]+)'] = 'frontend/Home/getShipperById/$1';
 $route['item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/itemDetailById/$1/$2';
 $route['video/item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/videoItemDetailById/$1/$2';
 
@@ -514,6 +517,8 @@ $route['product/item/search'] = "frontend/Product/getMyProductList";
 /* *********************************  22-12-2017 ***************************/
 $route['3dproducts'] = 'frontend/Product/get3DPrducts';
 $route['vcatalogues'] = 'frontend/Product/getAllVCatalogues';
+
+$route['catalogue/pages/([0-9]+)/([0-9]+)'] = 'frontend/Home/getCataloguePages/$1/$2';
 
 // Admin ROutes
 $route['admin'] = 'backend/index';

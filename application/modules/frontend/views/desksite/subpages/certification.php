@@ -86,7 +86,7 @@ div.pp_pic_holder {
           	<div class="card" id="<?php echo $key;?>">
            		<a href="<?php echo asset_url().$image['cert_image1'];?>" data-rel="prettyPhoto_SlideShow311[SlideShow311]" rel="prettyPhoto_SlideShow311[SlideShow311]">
                		<img class="img-responsive imageborderclass" src="<?php echo asset_url().$image['cert_image1'];?>" style="width: 180px;" />
-               	</a>
+              </a>
           	</div>
           	<div class="text-center" style="padding:5px;color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo $image['license']; ?></div>
      	</li>
