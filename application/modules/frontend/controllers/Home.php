@@ -138,7 +138,8 @@ class Home extends MX_Controller {
 				$params['keyword'] = $_COOKIE['seller_keywd'];
 			}
 		} else {
-			setcookie('seller_keywd', $params['keyword'], time() + (86400 * 30), "/");
+			if(isset($params['keyword']) && $params['keyword'] != "")
+				setcookie('seller_keywd', $params['keyword'], time() + (86400 * 30), "/");
 		}
 		$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		if(empty($params['page'])) {
