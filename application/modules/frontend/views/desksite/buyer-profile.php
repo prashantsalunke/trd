@@ -831,7 +831,6 @@ function stopWiggle(input) {
 
 
         <div id="Layer88" class="leftnav">
-<<<<<<< HEAD
 
            <div id="Layer116" class="left-fixed" style="padding-top:25px;">
            <div id="wb_Image61" class="text-center">
@@ -866,34 +865,6 @@ function stopWiggle(input) {
                </div>
        </div>
    </div>
-=======
-		        <div id="Layer116" class="left-fixed" style="padding-top:25px;">
-		            <div id="wb_Image61" class="text-center">
-		            	<?php if($Desksite['plan_id'] > 1){?>
-		            	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" class="black-horse-icon">
-		              	<?php } else { ?>
-		              	<img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" class="black-horse-icon img-disabled">
-		              	<?php } ?>
-	               	 </div>
-		            <div id="wb_Image67"  class="text-center">
-		                <a href="#" onclick="<?php if($Desksite['is_logo_verified'] > 1){?>ShowObjectWithEffect('Layer61', 1, 'slideleft', 500, 'swing');<?php } ?>return false;">
-			                <?php if($Desksite['is_logo_verified'] > 1){?>
-							<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon">
-							<?php } else { ?>
-							<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon img-disabled">
-							<?php } ?>
-						</a>
-					</div>
-		            <div id="wb_Image76"  class="text-center">
-		            	<?php if(count($community) > 0){ ?>
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" class="community-member-icon">
-		                <?php } else { ?>
-		                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" class="community-member-icon img-disabled">
-		                <?php } ?>
-		          	</div>
-		        </div>
-		    </div>
->>>>>>> shipper_doc_dhruv
 		    <!-- left navigation ends -->
 		      
 			<!-- bottom navigation -->
@@ -1261,10 +1232,10 @@ function stopWiggle(input) {
 			            
 			        </div>
 			        <div id="Carousel1_back" class="s10">
-			            <a href="#"><img alt="Back"src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
+			            <a href="#"><img alt="Back" src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
 			         </div>
 			        <div id="Carousel1_next" class="s11">
-			            <a href="#"><img alt="Next"src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
+			            <a href="#"><img alt="Next" src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
 			        </div>
 			    </div>
 			</div>
