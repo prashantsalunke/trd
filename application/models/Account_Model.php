@@ -660,7 +660,7 @@ class Account_Model extends CI_Model {
 	}
 	public function getDesksites()
 	{
-		$this->db->select('a.*, b.desksite_bg1, b.desksite_bg2, c.company_introduction,CONCAT(p.name) as product_name,CONCAT(s.name) as shipper_service_name,f.user_category_id,l.id as community_id,');
+		$this->db->select('a.*, b.desksite_bg1, b.desksite_bg2, c.company_introduction,CONCAT(p.name) as product_name,CONCAT(s.name) as shipper_service_name,f.user_category_id,l.id as community_id,(select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=a.id) as main_product');
 		$this->db->from(TABLES::$BUSINESS_INFO.' as a');
 		$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' as b', 'a.id = b.busi_id', 'left');
 		$this->db->join(TABLES::$COMPANY_INFO.' as c', 'a.id = c.busi_id', 'left');
@@ -668,6 +668,7 @@ class Account_Model extends CI_Model {
 		$this->db->join(TABLES::$SHIPPER_SERVICES.' as s', 'a.id = s.busi_id', 'left');
 		$this->db->join(TABLES::$USER.' AS f', 'a.id= f.busi_id', 'left');
 		$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','a.id = l.busi_id ','left');
+		$this->db->group_by('a.id');
 		$this->db->order_by('a.plan_id',"desc");
 		$this->db->limit(12);
 		$query = $this->db->get();

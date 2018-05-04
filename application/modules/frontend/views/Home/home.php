@@ -194,11 +194,11 @@ a.style16 {
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" target="_blank" class="hstyle19"><?php echo $desksite['company_name']?></a></span>
 										</div>
-										<div class="col-sm-offset-1 col-sm-10 text-center">
+										<div class="col-sm-offset-1 col-sm-12 text-center" style="margin-left: 0px;">
 											<small style="color:#2D2D2D;font-family:Arial;font-size:11px;"><?php if($desksite['user_category_id'] == 2) { 
 														echo substr($desksite['shipper_service_name'],0,100);
 													}else{
-															echo substr($desksite['product_name'],0,100);
+															echo substr($desksite['main_product'],0,80);
 													}
 												?></small>
 										</div>
