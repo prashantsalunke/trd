@@ -304,7 +304,7 @@ ul.hover-red-menu li.open a.firstmain{
 							<?php } ?>
 							<img src="<?php echo asset_url();?>images/configure-2.png" id="Image217" alt="" style="width:50px;height:50px;">
 							</a>
-						</div>
+						</div> 
 						<div id="wb_Text256" style="position:absolute;left:122px;top:132px;width:95px;height:16px;text-align:center;z-index:1124;">
 							<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;">My Desksite</span>
 						</div>
@@ -789,15 +789,6 @@ ul.hover-red-menu li.open a.firstmain{
 										</select>
 									</div>
 								</div>
-								<!-- div class="col-sm-8 padding-0">
-									<div class="dropdown">
-										<select class="search-box search-dp" name='type'>
-											<option value="">More</option>
-											<option value="0" <?php if(!empty($params['type']) && $params['type'] == 0) { ?>selected<?php } ?>>Show Audited First</option>
-											<option value="1" <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show All</option>
-										</select>
-									</div>
-								</div-->
 								<div class="col-sm-2 padding-0">
 									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
 								</div>
@@ -818,7 +809,7 @@ ul.hover-red-menu li.open a.firstmain{
                                 <div class="col-md-2" style="padding-top:25px 10px 0px 10px;">
                                     <a href="#" id="tab<?php echo $i; ?>" style="text-decoration:none !important">
                                         <div class="tumb-slide cat_slide" alt="cat_slider_<?php echo $i; ?>" style="height:106px;width:106px;margin: 0 auto;">
-                                            <img src="<?php echo asset_url(); ?>images/ts/Agriculture.png" height="106" width="106">
+                                            <img src="<?php echo asset_url(); ?>images/Agriculture.png" height="106" width="106">
                                         </div>
                                         <h4 class="text-center " style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo ucfirst($product['name']); ?></h4>
                                     </a>

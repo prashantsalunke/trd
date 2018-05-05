@@ -351,7 +351,7 @@ $route['shipper/desksites'] = 'frontend/Product/getAllShipperDesksites';
 $route['buyer'] = 'frontend/Home/buyersList';
 $route['shipper'] = 'frontend/Home/shippersList';
 $route['search'] = 'frontend/Home/search';
-
+$route['filter_by_category'] = 'frontend/Home/filter_by_cat';
 $route['products'] = 'frontend/Product';
 $route['products/list'] = 'frontend/Product/productList';
 $route['products/details/([0-9]+)'] = 'frontend/Product/productDetails/$1';

@@ -30,6 +30,10 @@ class Product extends MX_Controller {
 		$this->load->model ( 'Account_Model', 'account' );
 		$products = $this->sellers->searchProducts($params);
 		$total_pages = $this->sellers->countProducts($params);
+                 $procategories = $this->general->getProductCategories();
+                        $this->template->set ( 'procategories', $procategories);
+                        $prosubcategories = $this->general->getProductSubCategories();
+                        $this->template->set ( 'prosubcategories', $prosubcategories);
 		$this->template->set ( 'products', $products);
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);

@@ -112,7 +112,7 @@ $locale = localeconv();
 				</div>
 					 
 	
-        <div id="Cat_main_layer" style="position:absolute;text-align:left;left:0px;visibility: hidden;top:375px;width:95%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
+        <div id="Cat_main_layer" style="position:absolute;text-align:left;left:0px;visibility: hidden;top:369px;width:95%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
             <div class="row">
                 <div id="myCarousel" class="carousel slide" style="height:197px;width:95%;left:5%;border:none !important;background-color: #fafafa;">
                     <div class="carousel-inner" >
@@ -155,7 +155,7 @@ $locale = localeconv();
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
-                <div class="panel categary-detials" style="position:absolute;width: 95%;margin: auto;left: 5%;z-index: 1;">
+                <div class="panel categary-detials" style="position:absolute;width: 96.6%;margin: auto;left: 4.25%;top:-10px;z-index: 1;">
 						
 						<?php
                     $i = 1;
@@ -1419,7 +1419,24 @@ $locale = localeconv();
             ShowObject('Layer99', 1);
         }, 'json');
     }
-    var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
+    function gotonewarrival_request(keyword,country,type,busi_id) {
+	if(busi_id == "" || busi_id == undefined){
+		$("#msg_cont").html("PLEASE LOGIN TO ACCESS MEMBER AREA.");
+		ShowObject('Layer99', 1);
+	}else{
+		$.cookie('bstation-landing', '1', { expires: 365 });
+	 	$.cookie('bstation-keyword', keyword, { expires: 365 });
+     	$.cookie('bstation-country', country, { expires: 365 });
+     	if(type == 'request'){
+     		$.cookie('bstation-buyer-request', '1', { expires: 365 });
+     	}else{
+     		$.cookie('bstation-buyer-request', '0', { expires: 365 });
+     	}
+     	window.open(base_url+'b-station','_blank');
+	}
+	 
+}
+var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
     $(document).on('mouseenter', '.cat_slide', function () {
         clearTimeout(hoverTimeout);
         var curr_slide = $(this).attr("alt");
@@ -1437,7 +1454,6 @@ $locale = localeconv();
             }
         }, 1000);
     });
-
     $(document).on('mouseenter', '#Details', function () {
         keepOpen = true;
         setTimeout(function () {
