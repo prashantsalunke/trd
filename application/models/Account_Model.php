@@ -694,12 +694,14 @@ class Account_Model extends CI_Model {
 	}
 	public function getVCatalogue()
 	{
-		$this->db->select('b.*,  c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank ');
+		$this->db->select('b.*,  c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank, l.id as community_id');
 		//$this->db->from(TABLES::$FEATURED_CATALOGUE.' as a');
 		$this->db->from(TABLES::$PRODUCT_CATALOGUE.' as b'/* , 'b.id = a.catalogue_id', 'left'*/);
 		$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = b.busi_id', 'left');
+		$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','c.id = l.busi_id ','left');
 		$this->db->where('b.status', 1);
 		$this->db->where('c.plan_id !=', 1);
+		$this->db->group_by('b.busi_id');
 		$this->db->order_by('c.plan_id',"desc");
 		$this->db->limit(12);
 		$query = $this->db->get();

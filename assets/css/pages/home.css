@@ -9839,3 +9839,15 @@ a.style261 {
     width: 100%;
     height: 100%;
 }
+#wb_Text2 
+{
+   background-color: transparent;
+   border: 0px #000000 solid;
+   padding: 0;
+   margin: 0;
+   text-align: center;
+}
+#wb_Text2 div
+{
+   text-align: center;
+}

@@ -277,7 +277,7 @@ a.style16 {
 										<div class="text-center col-sm-12">
 											<span style="color:#808080;font-family:Arial;font-size:12px;"><?php echo $product3D['company_country']?> | <?php echo $product3D['company_province']?></span>
 										</div>
-										
+
 										<!--<p class="text-center col-sm-12"></p>-->
 										<div class="col-xs-12 text-center">
 											<?php if(!empty($product3D['community_id']) && $product3D['community_id'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width:26px;height:26px; display: inline-block;"> <?php } else {?>
@@ -298,7 +298,7 @@ a.style16 {
 										</div>
 										<div class="col-xs-12"
 											style="text-align: center; margin-bottom: 5px; height: 320px;cursor: pointer;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
-											<img src="<?php echo asset_url().$product3D['image']; ?>" class="img-responsive" style="display: inline-block;max-height: 340px">
+											<img src="<?php echo asset_url().$product3D['image']; ?>" class="img-responsive" style="display: inline-block;max-height: 340px;max-width: 340px">
 										</div>
 										<div class="text-center">
 											<div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?></span></div>
@@ -356,15 +356,25 @@ a.style16 {
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $vCatalogue['company_name']?></a></span>
 										</div>
 										<div class="col-xs-12 text-center">
-											<p class="text-center" style="text-indent: 0px;"><?php echo $vCatalogue['company_country'];?> | <?php echo $vCatalogue['company_province'];?></p>
+											<p class="text-center" style="text-indent: 0px;color:#808080;font-family:Arial;font-size:12px;"><?php echo $vCatalogue['company_country'];?> | <?php echo $vCatalogue['company_province'];?></p>
 											<div class="col-xs-12 text-center">
-												<?php if(!empty($vCatalogue['in_community'])){?><img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;"> <?php }?>
-												<?php if($vCatalogue['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }?>
-												<?php if($vCatalogue['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php }?>
-												<?php if($vCatalogue['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
+												<?php if(!empty($vCatalogue['community_id']) && $vCatalogue['community_id'] != ""){?>
+													<img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;"> <?php }else{ ?>
+													<img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;opacity: 0.15">
+													<?php } ?>
+												<?php if($vCatalogue['gaurantee_period'] !=''){?>
+													<img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }else { ?>
+													<img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;opacity: 0.15;">
+												<?php } ?>
+												<?php if($vCatalogue['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php }else{?>
+													<img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;opacity: 0.15">
+												<?php } ?>
+												<?php if($vCatalogue['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }else{?>
+													<img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;opacity: 0.15;">
+													<?php } ?>
 											</div>
 										</div>
-										<div class="col-xs-12" style="text-align: center; margin-bottom: 5px; height: 320px;margin-top: 30px;cursor: pointer;" onclick="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);">
+										<!--<div class="col-xs-12" style="text-align: center; margin-bottom: 5px; height: 320px;margin-top: 30px;cursor: pointer;" onclick="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);">
 											<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block">
 											<div style="position:absolute;width: 140px;top: 120px;left: 140px;">
 												<img src="<?php echo asset_url().$vCatalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
@@ -372,10 +382,25 @@ a.style16 {
 											<div style="position:absolute;width: 140px;top:245px;left: 140px;">
 												<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span>
 											</div>
+										</div>-->
+										<div style="width:35px;height:34px;z-index:1;position: relative;top: 262px;left: 105px;">
+											<img src="<?php echo asset_url();?>images/img0001.gif" alt="" style="width:10px;height:34px;">
 										</div>
-										
-									</div>
-									<div class="col-xs-12 hover-menu text-center blue">
+										<div class="col-sm-5" style="width: 220px;height: 328px;padding-top: 105px;background-image:url('<?php echo asset_url();?>images/vCAT2.png'); left:100px;" >
+				  							<br/>
+				  							<div style="padding-left: 23px;z-index: 4;">
+				  								<img src="<?php echo asset_url();?><?php echo $vCatalogue['catalogue_cover'];?>"  style="width:160px;height:155px;border-radius:50%;border:1.5px solid #F05539">
+				  							</div>
+				  							<div id="Layer232" style="text-align:left;width:190px;height:30px;z-index:4;background-color: #1E90FF;position: relative;left:-10px;top:-5px;">
+												<div id="wb_Text2" style="width:192px;height:30px;text-align:center;z-index:0;padding-top:5px;">
+													<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span>
+											</div>
+										</div>
+								
+
+
+				  			</div>
+										<div class="col-xs-12 hover-menu text-center blue">
 											<a href="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);"  class="btn">
 												<img src="<?php echo asset_url(); ?>images/vcat.png" style="width: 40px;" onmouseover="hover(this,'vcat');" onmouseout="unhover(this,'vcat');">
 											</a> 
@@ -388,7 +413,9 @@ a.style16 {
 											<a href="javascript:addToMyFavourite(<?php echo $vCatalogue['id'];?>, 7);" class="btn">
 												<img src="<?php echo asset_url(); ?>images/favorite.png" style="width: 40px;" onmouseover="hover(this,'favorite');" onmouseout="unhover(this,'favorite');"style="width: 40px;">
 											</a>
+										</div>	
 									</div>
+									
 									<?php } ?>
 									<a class="left carousel-control" href="#tab-slider3" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previous0.png"></span> 
