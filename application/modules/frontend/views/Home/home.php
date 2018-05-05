@@ -112,7 +112,7 @@ $locale = localeconv();
 				</div>
 					 
 	
-        <div id="Cat_main_layer" style="position:absolute;text-align:left;left:0px;visibility: hidden;top:369px;width:95%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
+<div id="Cat_main_layer" style="position:absolute;text-align:left;left:0px;visibility: hidden;top:369px;width:95%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
             <div class="row">
                 <div id="myCarousel" class="carousel slide" style="height:197px;width:95%;left:5%;border:none !important;background-color: #fafafa;">
                     <div class="carousel-inner" >
@@ -139,6 +139,7 @@ $locale = localeconv();
                                 <?php if ($i % 6 == 0) { ?>
                                 </div>
                             <?php } ?>    
+
 
                             <?php
                             $i++;
@@ -224,7 +225,7 @@ $locale = localeconv();
 
 <div class="col-lg-13">
     <div id="carousel-example-generic" class="carousel  carousel1 slide"  style="background: #fff; padding-bottom: 50px;height:640px;" data-ride="carousel">
-        Indicators 
+        <!--Indicators -->
         <ol class="carousel-indicators">
             <?php
             $i = '0';
@@ -241,7 +242,7 @@ $locale = localeconv();
                 ?>	
         </ol>
 
-        Wrapper for slides 
+        <!--Wrapper for slides--> 
         <div class="carousel-inner" role="listbox">
             <?php
             $i = '0';
@@ -1019,7 +1020,64 @@ $locale = localeconv();
             '<?php echo asset_url(); ?>css/short-white-book-view.css'
         ],
         script: '<?php echo asset_url(); ?>js/default-book-view.js'
-  	};
+      };
+	function hover(element,type) {
+		if(type == 'cart'){
+  			element.setAttribute('src', '<?php echo asset_url(); ?>images/cart-hover.png');
+		}else if(type == 'favorite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/favorite-hover.png');
+		}else if(type == 'same'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/same-hover.png');
+		}else if(type == 'view'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover.png');
+		}else if(type == 'desksite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-hover.png');
+		}else if(type == 'vcat'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/vcat-hover.png');
+		}else if(type == 'window'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/window-layer-hover.png');
+		}else if(type == 'desksite1'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-hover1.png');
+		}else if(type == 'play'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/play-hover.png');
+		}else if(type == 'view1'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover1.png');
+		}else if(type == 'buyer_desksite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/buyer-desksite-hover.png');
+		}else if(type == 'view2'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover2.png');
+		}
+		
+	}
+
+	function unhover(element,type) {
+		if(type == 'cart'){
+  			element.setAttribute('src', '<?php echo asset_url(); ?>images/cart.png');
+		}
+  		else if(type == 'favorite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/favorite.png');
+		}else if(type == 'same'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/same.png');
+		}else if(type == 'view'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view2.png');
+		}else if(type == 'desksite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-icon.png');
+		}else if(type == 'vcat'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/vcat.png');
+		}else if(type == 'window'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/window-layer.png');
+		}else if(type == 'view1'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view1.png');
+		}else if(type == 'desksite1'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite1.png');
+		}else if(type == 'play'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/play1.png');
+		}else if(type == 'buyer_desksite'){
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/buyer-desksite1.png');
+		}
+	}
+	
+  	
 
   	var booksOptions = {
       pageCallback: orwell1984PageCallback,
