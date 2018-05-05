@@ -584,37 +584,51 @@ ul.share{
        			  <div id="Layer2_Container" class="style3">
            			 <div id="Layer138">
                			 <div id="wb_Carousel3" class="style4">
-                    		<div id="Carousel3" style="position:absolute">
-                     			 <?php 
+               			 	<?php if(count($featuredSellers) > 2) { ?>
+                    				<div  id="Carousel3" style="position:absolute">
+                    			<?php } else { ?>
+                    				<div  id="Carousel3x" style="position:absolute">
+                    			<?php }
+                     			 
                      				 $i= 0;
 			                        foreach($featuredSellers as $featuredSeller){
-			                        $i++;
-			                        	?>
-                        			<div class="frame" <?php if(($i ==1) || ($i ==2)){ echo ""; } else{ echo 'style="display:none"'; } ?>>
-                           				<div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1', 0, 'fade', 500, 'swing');return false;">
+			                        if($i%2 == 0){
+									$frame = $i; 
+										?>
+                        			<div class="frame">
+                        			<?php } $i++; ?>
+                           				<div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_holder2<?php echo $i; ?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_holder2<?php echo $i; ?>', 0, 'fade', 500, 'swing');return false;">
 			                                <div id="wb_Image226" >
-			                                    <img src="<?php echo asset_url().''.$featuredSeller['picture']; ?>" id="Image226" alt=""  class="style86">
+			                                	<?php if ($featuredSeller['picture'] != "" && file_exists("assets/".$featuredSeller['picture'])){ ?>
+			                                    <img src="<?php echo asset_url().''.$featuredSeller['picture']; ?>" id="Image226" alt=""  class="style86" style="width:210px;height:246px;">
+			                                    <?php }else{ ?>
+			                                    <img src="<?php echo asset_url().'images/img1004.png'?>" id="Shape24" alt="" style="width:210px;height:246px;">
+			                                    <?php } ?>
 			                                </div>
-			                                <div id="Layer144" class="style15">
-			                                    <div id="wb_Text434" class="style16">
+			                                <div id="Layer144" class="style15" style="position: relative;top:0px;">
+			                                    <div id="wb_Text434" class="style16" style="position: relative;top:2px;">
+			                                    	<?php if($featuredSeller['contact_person_name'] != ""){ ?>
 			                                        <span class="fontstyle-4"><strong><?php echo $featuredSeller['contact_person_name'];?></strong></span>
+			                                        <?php }else{ ?>
+			                                        <span class="fontstyle-4"><strong><?php echo $featuredSeller['contact_person'];?></strong></span>
+													<?php } ?>
 			                                    </div>
-			                                    <div id="wb_Text435" class="style17">
+			                                    <div id="wb_Text435" class="style17" style="position: relative;top:3px;">
 			                                        <span class="fontstyle-5"><?php echo $featuredSeller['position'];?></span></div>
-			                                    <div id="Layer148" class="style18">
+			                                    <div id="Layer148" class="style18" style="position: relative;top:-25px;">
 			                                        <div id="wb_Image48" class="style19">
-			                                            <img src="<?php echo asset_url().''.$featuredSeller['contact_person_flag']; ?>" id="Image48" alt="">
+			                                            <img src="<?php echo asset_url();?>images/flags/<?php echo $featuredSeller['flag'];?>" id="Image48" alt="">
 			                                        </div>
 			                                    </div>
-			                                    <div id="Layer150" class="style20">
+			                                    <div id="Layer150" class="style20" style="position: relative;top:-10px;">
 			                                        <div id="wb_Text440" class="style21">
-			                                            <span class="fontstyle-6"><strong>Main Garment</strong></span></div>
+			                                            <span class="fontstyle-6"><strong><?php echo $featuredSeller['product_name']; ?></strong></span></div>
 			                                    </div>
 			                                </div>
-			                                <div id="Buyer_holder2" class="style22">
+			                                <div id="Buyer_holder2<?php echo $i;?>" class="style22" style="position: relative;display:none;top: -65px;background: white;z-index: 512;">
 			                                    <div id="wb_Image521" class="style23">
-			                                        <a href="#" onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
-			                                    </div>
+			                                        <a href="javascript:openSeller(<?php echo $featuredSeller['id']; ?>);"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
+			                                    </div><!-- onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"-->
 			                                    <div id="RollOver12" class="style24">
 			                                        <a href="./buyer_profile.php" target="_blank">
 			                                            <img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
@@ -623,7 +637,10 @@ ul.share{
 			                                    </div>
 			                               </div>
                            				</div>
+                           				
+                           			<?php if($frame+2 == $i){ ?>
                            			</div>
+                           			<?php } ?>
                            	 <?php }?>
                    			 </div>
 		                    <div id="Carousel3_back" class="style51">
@@ -634,6 +651,10 @@ ul.share{
 		                    </div>
                 		</div>
            			 </div>
+           			 <div id="Layer_sellers" class="class1">
+				        <div id="Layer_details_Container4" class="class2">
+				        </div>
+				    </div>
            			  <div class="maxheight1 bg2">
 		                	<div class="row" style="margin: 0px">
 			                    <h3 style="color: #fff; text-align: center;">
@@ -650,35 +671,39 @@ ul.share{
 			                    <div id="Carousel2" style="position:absolute">
 			                    <?php $i =0;
 			                    foreach ($featuredProductVideo as $featuredVideo) {
-			                    $i++;
-			                    	?>
-			                        <div class="frame" class="style5" <?php if(($i ==1) || ($i ==2)){ echo ""; } else{ echo 'style="z-index: 0; position: absolute; top: 0px; left: 0px; display: none;"'; } ?>>
-			                            <div id="Layer39" class="fs11" onmouseenter="ShowObjectWithEffect('holder', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder', 0, 'fade', 500, 'swing');return false;">
+			                    if($i%2 == 0){
+									$frame = $i; 
+										?>
+			                        <div class="frame" class="style5">
+			                        	<?php } $i++; ?>
+			                            <div id="Layer39" class="fs11" onmouseenter="ShowObjectWithEffect('holder<?php echo $i; ?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder<?php echo $i; ?>', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
 			                                <div id="wb_Text78" class="fs1">
 			                                    <span><strong><?php echo $featuredVideo['name'];?></strong></span></div>
 			                                <div id="wb_Text77" class="fs2">
 			                                    <span class="fs3"><?php echo substr($featuredVideo['description'], '0', '30');?> ...</span></div>
-			                                <div id="wb_Text79" class="fs6">
-			                                    <span class="fs4"><strong><?php echo $featuredVideo['unit_price'];?> / Set</strong></span></div>
-			                                <div id="wb_Text80" class="fs7">
-			                                    <span class="fs5"><strong>Min. Qty. <?php echo $featuredVideo['quantity'].' '.$featuredVideo['unit'];?></strong></span></div>
 			                                <div id="wb_MediaPlayer1" class="fs9">
 			                                    <video src="<?php echo asset_url().''.$featuredVideo['vedio_file']; ?>" controls="controls">
 			                                    </video>
 			                                </div>
+			                                <div id="wb_Text79" class="fs6">
+			                                    <span class="fs4"><strong><?php echo $featuredVideo['unit_price'];?> / Set</strong></span></div>
+			                                <div id="wb_Text80" class="fs7">
+			                                    <span class="fs5"><strong>Min. Qty. <?php echo $featuredVideo['quantity'].' '.$featuredVideo['unit'];?></strong></span></div>
+			                                
 			                                <div id="Layer29" class="fs13">
 			                                </div>
-			                                <div id="holder" class="fs14">
+			                                <div id="holder<?php echo $i;?>" class="fs14">
 			                                    <div id="wb_Image33" class="fs15">
 			                                        <a href="javascript:openVideo(<?php echo $featuredVideo['id'];?>)"><img src="<?php echo asset_url(); ?>images/play.png" id="Image33" alt="" width="35px" height="35px"></a>
 			                                    </div>
 			                                    <div id="wb_Image34" class="fs16">
-			                                        <a href="./video_details.php" target="_blank"><img src="<?php echo asset_url(); ?>images/view2.png" id="Image34" alt="" width="35px" height="35px"></a>
+			                                        <a href="./video/details/<?php echo $featuredVideo['id'];?>" target="_blank"><img src="<?php echo asset_url(); ?>images/view2.png" id="Image34" alt="" width="35px" height="35px"></a>
 			                                    </div>
 			                                </div>
 			                            </div>
+			                        <?php if($frame+2 == $i){ ?>
 			                        </div>
-			                        <?php }?>
+			                        <?php } } ?>
 			                    </div>
 			                    <div id="Carousel2_back" class="fs18">
 			                        <a style="cursor:pointer"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
@@ -708,10 +733,12 @@ ul.share{
 		                    <div id="Carousel1" style="position:absolute">
 		                    <?php $i =0;
 		                    foreach ( $featuredProducts as $key=>$featuredProduct) {
-		                    	if($key%2 == 0) {
+		                    	if($i%2 == 0) {
+		                    		$frame = $i; 
 			                    	?>
-		                        <div class="frame" <?php if($i > 0) { ?>style="display:none;"<?php } ?>>
-		                            <div id="Layer134" class="product111" onmouseenter="ShowObjectWithEffect('holder7-<?php echo $key;?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder7-<?php echo $key;?>', 0, 'fade', 500, 'swing');return false;">
+		                        <div class="frame">
+		                        <?php } $i++; ?>
+		                            <div id="Layer134" class="product111" style="position:relative;" onmouseenter="ShowObjectWithEffect('holder7-<?php echo $key;?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder7-<?php echo $key;?>', 0, 'fade', 500, 'swing');return false;">
 		                                <div id="wb_Text417" class="product212">
 		                                    <span class="product313"><strong><?php echo $featuredProduct['name'];?></strong></span></div>
 		                                <div id="wb_Text418" class="product414">
@@ -731,11 +758,17 @@ ul.share{
 		                                    </div>
 		                                </div>
 		                            </div>
+		                        <?php if($frame+2 == $i){ ?>
 		                        </div>
-		                        <?php $i++; } ?>
-		                        <?php }?>
+		                        <?php } } ?>
 		                    </div>
-		                    <div id="Carousel11" style="position:absolute;top:275px;">
+		                    <div id="Carousel1_back" class="fs18">
+			                        <a style="cursor:pointer"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
+			                    </div>
+			                    <div id="Carousel1_next" class="fs17">
+			                        <a style="cursor:pointer"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
+			                </div>
+		                    <!--<div id="Carousel11" style="position:absolute;top:275px;">
 		                    <?php $i =0;
 		                    foreach ( $featuredProducts as $key=>$featuredProduct) {
 		                    	if($key%2 == 1) {
@@ -764,7 +797,7 @@ ul.share{
 		                        </div>
 		                        <?php $i++; }?>
 		                        <?php } ?>
-		                    </div>
+		                    </div>-->
 		                </div>
 		            </div>
 		        </div>
@@ -917,6 +950,7 @@ $(document).ready(function() {
         mode: 'fade',
         direction: '',
         pagination: false,
+        pause:"hover",
         start: 0
     };
     $("#Carousel2").carouseleffects(Carousel2Opts);
@@ -949,6 +983,27 @@ $(document).ready(function() {
     $("#Carousel11_next a").click(function() {
         $('#Carousel11').carouseleffects('next');
     });
+
+    var Carousel3Opts =
+   {
+      delay: 4000,
+      duration: 2000,
+      easing: 'easeInOutBounce',
+      mode: 'fade',
+      direction: '',
+      pagination: false,
+      start: 0
+   };
+   $("#Carousel3").carouseleffects(Carousel3Opts);
+   $("#Carousel3_back a").click(function()
+   {
+      $('#Carousel3').carouseleffects('prev');
+   });
+   $("#Carousel3_next a").click(function()
+   {
+      $('#Carousel3').carouseleffects('next');
+   })
+
     $("#Layer_details").stickylayer({
         orientation: 9,
         position: [0, 0],
@@ -981,6 +1036,12 @@ $(document).ready(function() {
         $('#Carousel4').carouseleffects('next');
     });
 });
+function openSeller(id) {
+		$.get(base_url+"seller/popup/"+id,{},function(data) {
+			$("#Layer_details_Container4").html(data);
+			ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
+		},'html');
+	}
 function openVideo(id) {
 	$.get(base_url+"seller/video/view/"+id,{},function(data) {
 		$("#Layer_details_Container").html(data);

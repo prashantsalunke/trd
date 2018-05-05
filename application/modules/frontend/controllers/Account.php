@@ -50,13 +50,12 @@ class Account extends MX_Controller {
 				'company_name' => $name,
 				'created_date' => date('Y-m-d H:i:s'),
 				'is_disable' => 0,
-				'is_deleted' => 0,
-				
+				'is_deleted' => 0
 		);
-		if($catergory== 3) {
+		if($catergory == 3) {
 			$business['message_flag'] = 1;
 		}
-		
+	
 		$busi_id = $this->Account_Model->insertBuisnessInfo($business);
 		$data = array(
 				'busi_id' => $busi_id,
@@ -77,14 +76,13 @@ class Account extends MX_Controller {
 		$this->sendMail($email, $emailData);
 		$this->load->library('mylib/General');
 		$captcha = $this->general->createCaptcha('signup');
-		
+	
 		$this->template->set ( 'captcha', $captcha);
 		$this->template->set ( 'userid', $lastInsertId);
 		$this->template->set ( 'busi_id', $busi_id);
 		$this->template->set ( 'page', 'registration' );
 		$this->template->set_theme('default_theme');
-		$this->template->set_layout (false)
-		->title ( 'TreadStation' );
+		$this->template->set_layout (false)->title ( 'TreadStation' );
 		$this->template->build ('register/register_step_two');
 	}
 	
@@ -900,6 +898,7 @@ class Account extends MX_Controller {
 			echo "fail";
 		}
 	}
+
 	public function forgetsendMail()
 	{
 		$this->load->model('Account_Model');

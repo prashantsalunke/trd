@@ -35,9 +35,9 @@ class Product extends MX_Controller {
 		$this->template->set ( 'Country', $Country);
 		$featuredSellers = $this->sellers->getFeaturedWorldSeller();
 		$this->template->set ( 'featuredSellers', $featuredSellers);
-		$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+		$featuredProductVideo= $this->account->getFeaturedProductVideo();
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-		$featuredProducts = $this->sellers->getFeaturedProduct();
+		$featuredProducts = $this->account->getFeaturedProduct();
 		$this->template->set ( 'featuredProducts', $featuredProducts);
 		$procategories = $this->general->getProductCategories();
 		$this->template->set ( 'categories', $procategories);
@@ -205,8 +205,10 @@ class Product extends MX_Controller {
 			$this->load->model('Tool_model','mytoolmodel');
 			$this->mytoolmodel->addProductVisit($map);
 		}
+		$this->load->library('mylib/TradLib');
 		$this->load->model('Product_Model', 'product' );
 		$this->load->model('Account_Model', 'account' );
+		// $this->load->model('Tradlib_Model', 'tradlib' );
 		$getProductdetailsById = $this->product->getProductdetailsById($id);
 		$this->template->set ( 'Productdetails', $getProductdetailsById);
 		$colors = $this->product->getProductColorById($id);
@@ -214,6 +216,10 @@ class Product extends MX_Controller {
 		$trade_info = $this->product->getCompanyTradeInfo($busi_id);
 		$Specifications = $this->product->getProductSpecificationById($id);
 		$currency = $this->account->getTradePaymentCurrencyByTradId($trade_info[0]['id']);
+
+		$tradepayment_terms = $this->tradlib->getTradePaymentTermsByTradId($trade_info[0]['id']);
+		$this->template->set('tradepayment_terms',$tradepayment_terms);
+
 		$this->template->set ( 'specifications', $Specifications);
 		$this->template->set ( 'currency', $currency);
 		$this->template->set ( 'trade_info', $trade_info);
@@ -328,7 +334,6 @@ class Product extends MX_Controller {
 		->set_partial ( 'header', 'default/floating-header' )
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('product/video-details');
-		
 	}
 	
 	public function productListByCat($catid, $scatid, $mcatid, $busi_id){
@@ -346,7 +351,6 @@ class Product extends MX_Controller {
 		$this->template->set_layout (false);
 		$html= $this->template->build ('product/pages/pro-list', '', true);
 		echo $html;
-	
 	}
 	
 	public function specialProductList($busi_id,$type){
@@ -365,7 +369,6 @@ class Product extends MX_Controller {
 		$this->template->set_layout (false);
 		$html= $this->template->build ('product/pages/pro-list', '', true);
 		echo $html;
-	
 	}
 	
 	public function itemDetailById($id, $busi_id){
