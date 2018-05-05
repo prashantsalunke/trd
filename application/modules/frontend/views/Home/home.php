@@ -194,11 +194,11 @@ a.style16 {
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$desksite['id'];?>" target="_blank" class="hstyle19"><?php echo $desksite['company_name']?></a></span>
 										</div>
-										<div class="col-sm-offset-1 col-sm-10 text-center">
+										<div class="col-sm-offset-1 col-sm-12 text-center" style="margin-left: 0px;">
 											<small style="color:#2D2D2D;font-family:Arial;font-size:11px;"><?php if($desksite['user_category_id'] == 2) { 
 														echo substr($desksite['shipper_service_name'],0,100);
 													}else{
-															echo substr($desksite['product_name'],0,100);
+															echo substr($desksite['main_product'],0,80);
 													}
 												?></small>
 										</div>
@@ -254,8 +254,7 @@ a.style16 {
 						<div class="panel-heading">
 							<h2 class="font2">PRODUCTS IN 3D</h2>
 							<p style="text-indent: 0px;">
-								<small class="font3">Hold On The Product And Swipe Righ Or Left</small><br>
-								&nbsp;
+								<small class="font3">Click on the product to enlarge, then move mouse right and left over it for 360 degree view</small>
 							</p>
 						</div>
 						<div class="panel-body mytab">
@@ -268,7 +267,7 @@ a.style16 {
 										$product_id = $product3D['product_id'];
 										$i++;
 										?>
-									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:543px;padding-top:30px;">
+									<div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:546px;padding-top:30px;">
 										<div class="text-center col-sm-12">
 											<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $product3D['name']?></strong></span>
 										</div>
@@ -276,28 +275,40 @@ a.style16 {
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$product3D['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $product3D['company_name']?></a></span>
 										</div>
 										<div class="text-center col-sm-12">
-											<span style="color:#303030;font-size:12pt;"><?php echo $product3D['company_country']?> | <?php echo $product3D['company_province']?></span>
+											<span style="color:#808080;font-family:Arial;font-size:12px;"><?php echo $product3D['company_country']?> | <?php echo $product3D['company_province']?></span>
 										</div>
+										
 										<!--<p class="text-center col-sm-12"></p>-->
 										<div class="col-xs-12 text-center">
-											<?php if(!empty($product3D['in_community'])){?><img src="<?php echo asset_url(); ?>images/CommMember.png"  style="width:26px;height:26px; display: inline-block;"> <?php }?>
-											<?php if($product3D['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }?>
-											<?php if($product3D['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php }?>
-											<?php if($product3D['plan_id'] > 1){?><img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php }?>
+											<?php if(!empty($product3D['community_id']) && $product3D['community_id'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width:26px;height:26px; display: inline-block;"> <?php } else {?>
+												<img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15;width:26px;height:26px; display: inline-block;">
+											<?php } ?>
+											<?php if($product3D['gaurantee_period'] !=''){?>
+												<img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }else{?>
+												<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" style="opacity :0.15;width:34px;height:26px;" >
+											<?php } ?>
+											<?php if($product3D['is_logo_verified'] > 1){?>
+												<img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php } else { ?>
+												<img src="<?php echo asset_url(); ?>images/ts/trusted.png" style="opacity :0.15; width: 26px;" >
+											<?php } ?>
+											<?php if($product3D['plan_id'] > 1){?>
+												<img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php } else { ?>
+												<img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px;opacity :0.15">
+											<?php } ?>
 										</div>
 										<div class="col-xs-12"
-											style="margin-top: 5px; text-align: center; margin-bottom: 5px; height: 300px;padding: 25px;cursor: pointer;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
-											<img src="<?php echo asset_url().$product3D['main_image']; ?>" class="img-responsive" style="display: inline-block">
+											style="text-align: center; margin-bottom: 5px; height: 320px;cursor: pointer;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
+											<img src="<?php echo asset_url().$product3D['image']; ?>" class="img-responsive" style="display: inline-block;max-height: 340px">
 										</div>
 										<div class="text-center">
 											<div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?></span></div>
 											<p style="text-indent: 0px;"><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity']?> / <?php echo $product3D['unit']?></span> </p>
 										</div>
 										
-									</div>
-									<div class="hover-menu text-center">
+									
+									<div class="hover-menu text-center" style="bottom: 0px;">
 											<a target="_blank" href="<?php echo base_url().'products/details/'.$product_id;?>" class="btn">
-												<img src="<?php echo asset_url(); ?>images/view.png" onmouseover="hover(this,'view');" onmouseout="unhover(this,'view');" style="width: 40px;"></a>
+												<img src="<?php echo asset_url(); ?>images/view2.png" onmouseover="hover(this,'view');" onmouseout="unhover(this,'view');" style="width: 40px;"></a>
 											 <a target="_blank" href="<?php echo base_url(); ?>3dproducts" class="btn" >
 												<img src="<?php echo asset_url(); ?>images/same.png" style="width: 40px;" onmouseover="hover(this,'same');" onmouseout="unhover(this,'same');">
 											</a> 
@@ -308,6 +319,7 @@ a.style16 {
 												<img src="<?php echo asset_url(); ?>images/cart.png" style="width: 40px;" onmouseover="hover(this,'cart');" onmouseout="unhover(this,'cart');">
 											</a>
 										</div>
+									</div>
 									<?php }?>
 									<a class="left carousel-control" href="#tab-slider2" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previous0.png"></span> 
@@ -937,7 +949,7 @@ a.style16 {
 		}else if(type == 'same'){
 			element.setAttribute('src', '<?php echo asset_url(); ?>images/same.png');
 		}else if(type == 'view'){
-			element.setAttribute('src', '<?php echo asset_url(); ?>images/view.png');
+			element.setAttribute('src', '<?php echo asset_url(); ?>images/view2.png');
 		}else if(type == 'desksite'){
 			element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-icon.png');
 		}else if(type == 'vcat'){
