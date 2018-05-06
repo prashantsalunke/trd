@@ -439,8 +439,8 @@ a.style16 {
 					</div>
 					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;padding-left: 0px;">
 					<div class="panel disk-tab" style="border: 1px solid transparent">
-					<div class="panel-body mytab"><!--  data-ride="carousel" -->
-							<div id="tab-slider4" class="carousel slide" style="height: 280px;width: 100%;border:none;">
+					<div class="panel-body mytab">
+							<div id="tab-slider4" class="carousel slide" data-ride="carousel" style="height: 280px;width: 100%;border:none;">
 								<div class="carousel-inner section3" role="listbox" style="height: 318px;overflow: hidden;border:none;">
 								 
 									<?php 
