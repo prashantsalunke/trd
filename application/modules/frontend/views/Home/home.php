@@ -355,7 +355,7 @@ a.style16 {
 										<div class="col-sm-12 text-center" style="padding:5px 0px;">
 											<span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $vCatalogue['company_name']?></a></span>
 										</div>
-										<div class="col-xs-12 text-center">
+										<div class="col-xs-12 text-center" style="padding-bottom: 10px;">
 											<p class="text-center" style="text-indent: 0px;color:#808080;font-family:Arial;font-size:12px;"><?php echo $vCatalogue['company_country'];?> | <?php echo $vCatalogue['company_province'];?></p>
 											<div class="col-xs-12 text-center">
 												<?php if(!empty($vCatalogue['community_id']) && $vCatalogue['community_id'] != ""){?>
@@ -374,15 +374,7 @@ a.style16 {
 													<?php } ?>
 											</div>
 										</div>
-										<!--<div class="col-xs-12" style="text-align: center; margin-bottom: 5px; height: 320px;margin-top: 30px;cursor: pointer;" onclick="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);">
-											<img src="<?php echo asset_url(); ?>images/vCAT2.png" class="img-responsive carousel_img" style="display: inline-block">
-											<div style="position:absolute;width: 140px;top: 120px;left: 140px;">
-												<img src="<?php echo asset_url().$vCatalogue['catalogue_cover']; ?>" class="img-responsive" style="display: inline-block;border-radius:50%;border:2px solid #e55a43;padding: 0px !important;">
-											</div>
-											<div style="position:absolute;width: 140px;top:245px;left: 140px;">
-												<span style="background-color:#F05539;color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong><?php echo $vCatalogue['catalogue_title'];?></strong></span>
-											</div>
-										</div>-->
+										
 										<div style="width:35px;height:34px;z-index:1;position: relative;top: 262px;left: 105px;">
 											<img src="<?php echo asset_url();?>images/img0001.gif" alt="" style="width:10px;height:34px;">
 										</div>
@@ -400,7 +392,7 @@ a.style16 {
 
 
 				  			</div>
-										<div class="col-xs-12 hover-menu text-center blue">
+										<div class="col-xs-12 hover-menu text-center blue" style="bottom: 4px;">
 											<a href="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);"  class="btn">
 												<img src="<?php echo asset_url(); ?>images/vcat.png" style="width: 40px;" onmouseover="hover(this,'vcat');" onmouseout="unhover(this,'vcat');">
 											</a> 
@@ -445,10 +437,10 @@ a.style16 {
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
-					<div class="panel disk-tab">
-					<div class="panel-body mytab">
-							<div id="tab-slider4" class="carousel slide" data-ride="carousel" style="height: 280px;width: 100%;border:none;">
+					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;padding-left: 0px;">
+					<div class="panel disk-tab" style="border: 1px solid transparent">
+					<div class="panel-body mytab"><!--  data-ride="carousel" -->
+							<div id="tab-slider4" class="carousel slide" style="height: 280px;width: 100%;border:none;">
 								<div class="carousel-inner section3" role="listbox" style="height: 318px;overflow: hidden;border:none;">
 								 
 									<?php 
@@ -458,31 +450,31 @@ a.style16 {
 										if($i%4 == 0){
 									$frame = $i; 
 										?>
-									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:5px;border:none;padding-left: 30px;padding-right:30px;">
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;padding-top:5px;border:none;padding-left: 25px;padding-right:30px;">
 									<?php } $i++; ?>
 										<div class="col-md-3" style="padding:0px 15px;border:none;">
 											<div style="position: relative;border:none;">
 												<h4 class="text-center product-strong-text" style="margin-top: 0px;border:none;">
 													<strong><?php echo $FeaturedProduct['name']; ?></strong>
 												</h4>
-												<p class="text-center product-text ptext" style="text-indent: 0px;"><?php echo $FeaturedProduct['about']; ?></p>
+												<p class="text-center product-text ptext" style="text-indent: 0px;padding-top:10px;padding-bottom: 0px;"><?php echo $FeaturedProduct['about']; ?></p>
 												<div class="tumb-slide" style="border:none;">
 													<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive" style="width:218px;height:177px;">
-													<div class="hover-thumb text-center">
+													<div class="hover-thumb text-center" style="height:66% !important;width:103% !important;padding-bottom:0px;top:0px !important">
 														<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;"><!-- z-index:851;-->
 															<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>);">
 																<img src="<?php echo asset_url(); ?>images/window-layer.png" id="Image13" alt="View" onmouseover="hover(this,'window');" onmouseout="unhover(this,'window');">
 															</a>
 														</div>
 														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
-															<a href="<?php echo base_url();?>desksite/<?php echo $FeaturedProduct['busi_id'];?>" target="_blank">
+															<a href="<?php echo base_url();?>products/details/<?php echo $FeaturedProduct['id'];?>" target="_blank">
 																<!--<img class="hover" alt="View Desksite" src="<?php echo asset_url(); ?>images/view1.png">-->
 																<span><img alt="View Desksite" src="<?php echo asset_url(); ?>images/view1.png" onmouseover="hover(this,'view2');" onmouseout="unhover(this,'view1');"></span>
 															</a>
 														</div>
 													</div>
 												</div>
-												<h4 class="text-center product-money-symbol">USD <span class="product-price"><?php echo number_format($FeaturedProduct['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']);?></span></h4>
+												<h4 class="text-center product-money-symbol" style="padding-top: 10px;">USD <span class="product-price"><?php echo number_format($FeaturedProduct['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']);?></span></h4>
 												<p class="text-center product-money-text" style="text-indent: 0px;padding-top: 3px;">Min. Qty. <?php echo $FeaturedProduct['quantity'];?> / <?php echo $FeaturedProduct['unit']?></p>
 											</div>
 										</div>
@@ -493,7 +485,7 @@ a.style16 {
 									<a class="left carousel-control" href="#tab-slider4" role="button" data-slide="prev" style="background: none;padding-top:13%;text-align:center;width:2%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider4" role="button" data-slide="next" style="background: none;padding-top:13%;text-align:center;width:2%;"> 
+									<a class="right carousel-control" href="#tab-slider4" role="button" data-slide="next" style="background: none;padding-top:13%;text-align:center;width:3%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 								</div>
