@@ -114,7 +114,7 @@ $locale = localeconv();
                 </div>
             </div>
         </div>
-        <div id="Cat_main_layer" style="position:absolute;text-align:left;left:0px;visibility: hidden;top:369px;width:95%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
+        <div id="Cat_main_layer" style="position:absolute;text-align:left;left:0px;visibility: hidden;top:365px;width:95%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
             <div class="row">
                 <div id="myCarousel" class="carousel slide" style="height:197px;width:95%;left:5%;border:none !important;background-color: #fafafa;">
                     <div class="carousel-inner" >
