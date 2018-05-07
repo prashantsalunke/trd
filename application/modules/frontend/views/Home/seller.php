@@ -987,7 +987,7 @@ $(document).ready(function() {
 
     var Carousel3Opts =
    {
-      delay: 4000,
+      delay: 5000,
       duration: 2000,
       easing: 'easeInOutBounce',
       mode: 'fade',
