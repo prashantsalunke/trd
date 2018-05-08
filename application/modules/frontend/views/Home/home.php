@@ -224,7 +224,6 @@ $locale = localeconv();
         </div><!-- End Carousel --> 
     </div>
 </div>
-
 <div class="col-lg-13">
     <div id="carousel-example-generic" class="carousel  carousel1 slide"  style="background: #fff; padding-bottom: 50px;height:640px;" data-ride="carousel"><!-- -->
         <!-- Indicators -->
@@ -239,7 +238,6 @@ $locale = localeconv();
     <?php $i++;
 } ?>	
         </ol>
-
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <?php
@@ -272,13 +270,11 @@ $locale = localeconv();
                 </div>
 <?php } ?>
         </div>
-
     </div>
 </div>
 </div>
 <div class="col-sm-12">
     <div class="row">
-
         <div class="col-sm-12 col-lg-4">
             <div class="panel disk-tab">
                 <div class="panel-heading" style="padding-left: 0px;">
