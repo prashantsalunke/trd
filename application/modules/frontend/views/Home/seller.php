@@ -5,6 +5,7 @@
 <script src="<?php echo asset_url();?>js/three.min.js"></script>
 <script src="<?php echo asset_url();?>js/pdf.min.js"></script>
 <script src="<?php echo asset_url();?>js/3dflipbook.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
 <style>
 #RollOver26 a
 {
@@ -499,7 +500,7 @@ ul.share{
 									<strong class="font-style-1">Seller | </strong><p class="font-style-2"> <?php echo $seller['sub_category'];?></p>
 								</div><br>
 								<div class="space33">
-									<strong class="font-style-1"> <?php echo $seller['company_country'];?> |  </strong><p class="font-style-2"> <?php echo $seller['company_city'];?></p>
+									<strong class="font-style-1"> <?php echo $seller['company_country'];?> |  </strong><p class="font-style-2"> <?php echo isset($seller['company_city'])?$seller['company_city']:'';?></p>
 								</div>
 								<p class="left style-font-1" style="padding-top:10px;">Rank</p>
 								<div class="progress">
@@ -516,7 +517,7 @@ ul.share{
 			     	<h4 class="center"> No Seller Found!</h4>
 			     </div>
 		     <?php } ?>
-		     <?php if($total_pages > 1) { ?>
+		     <?php if(isset($total_pages) && $total_pages > 1) { ?>
 		     	<div class="row" style="margin:0px;">
 					<div id="wb_Text396" style="text-align:center;height:31px;padding:7px;padding-right:0px;background-color: #1E90FF;" class="col-sm-1">
 						<span style="color:#FFFFFF;font-family:Georgia;font-size:12px;">Page&nbsp;&nbsp; </span>
@@ -1354,5 +1355,42 @@ function viewNextCatalogueBook(id) {
 		}
 	},'json');
 }
+var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
+    $(document).on('mouseenter', '.cat_slide', function () {
+        clearTimeout(hoverTimeout);
+        var curr_slide = $(this).attr("alt");
+        $(".sub_cat").css('color', '#337ab7');
+        $(".slide-details").hide();
+        $("#" + curr_slide).show();
+        $("." + curr_slide).show();
+        stayOpen.addClass('show');
+    }).on('mouseleave', '.slide', function () {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(function () {
+            if (!keepOpen) {
+                $(".slide-details").hide();
+                stayOpen.removeClass('show');
+            }
+        }, 1000);
+    });
 
+    $(document).on('mouseenter', '#Details', function () {
+        keepOpen = true;
+        setTimeout(function () {
+            keepOpen = false;
+        }, 1500);
+    }).on('mouseleave', '#Details', function () {
+        keepOpen = false;
+        $(".slide-details").hide();
+        stayOpen.removeClass('show');
+    });
+    function highlight_keywords(str) {
+        $(".sub_cat").css('color', '#337ab7');
+        $("." + str).css('color', 'orange');
+    }
+    function filter_by_subcat(cat_id,cat_sub_id){
+        $("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $( "#filter_by_category" ).submit();
+    }
 </script>
