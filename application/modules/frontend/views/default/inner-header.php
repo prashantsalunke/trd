@@ -112,13 +112,16 @@ ul.hover-red-menu li.open a.firstmain{
 .search-box {
 	padding-left:5px;
 }
-
+.bottom_cat > a:hover{
+	background-color:#ff6347 !important;
+	color:#fff !important;
+}
 
 </style>
  <script src="<?php echo asset_url();?>js/bootstrap-dropdownhover.min.js"></script>
  <div class="container" style="width:1280px;padding:1px 0px;">
  <?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
-		 <div class="container-fluid top-div">
+		 <div class="container top-div">
             <ul class="nav navbar-nav navbar-left top-nav">
                 <li><a href="#" class="headerMenu" data-toggle="modal" data-target="#myModal" style="padding-right: 0px;">Register</a></li>
                 <li><a data-toggle="modal" style="color:#C0C0C0;font-family:Georgia;font-size:13px;">|</a></li>
@@ -147,7 +150,7 @@ ul.hover-red-menu li.open a.firstmain{
             </ul>
 		</div>
 	<?php } else { ?>
-	<div class="container-fluid top-div">
+	<div class="container top-div">
         <div class="navbar-header"> <a href="#" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
         <ul class="nav navbar-nav pull-right top-nav login-user-nav">
             <li style="padding-top:17px;">
@@ -198,8 +201,8 @@ ul.hover-red-menu li.open a.firstmain{
     </div>
 	<?php } ?>
 <nav class="navbar" style="background: none; border: 0px; margin-bottom: 0px; border-radius: 0px;">
-	<div class="">
-		<div class="" style="padding-top:1px;padding-right:1px;">
+	<div class="container">
+		<div class="row" style="padding-top:1px;padding-right:1px;">
 			<div class="col-lg-2 col-sm-4 logo">
 				<div style="color:#E8AD8F;font-family:Georgia;font-size:12px;">WELCOME TO THE</div>
 				<div style="color:#FFFFFF;font-family:Arial;font-size:27px;margin-top:35px;">TRD</div>
@@ -304,7 +307,7 @@ ul.hover-red-menu li.open a.firstmain{
 							<?php } ?>
 							<img src="<?php echo asset_url();?>images/configure-2.png" id="Image217" alt="" style="width:50px;height:50px;">
 							</a>
-						</div>
+						</div> 
 						<div id="wb_Text256" style="position:absolute;left:122px;top:132px;width:95px;height:16px;text-align:center;z-index:1124;">
 							<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;">My Desksite</span>
 						</div>
@@ -723,7 +726,7 @@ ul.hover-red-menu li.open a.firstmain{
 			<?php if($page =='home'){ ?>
 				<form method="post" action="search" >
 					<div class="col-sm-7 col-xs-11" style="padding: 0px;">
-						<input type="text" class="search-box" required="required" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
+						<input type="text" class="search-box" required="required" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
 					</div>
 					<div class="col-sm-2 col-xs-3 " style="padding: 0px;">
 						<div class="dropdown">
@@ -752,39 +755,19 @@ ul.hover-red-menu li.open a.firstmain{
 					</div>
 				</form> 
 				<?php } elseif($page =='sellers'){?>
+                                    <div style="background: #f1f1f1; padding: 30px 0px" class="container">
+                                        <div style="margin-bottom: 20px;" class="row">
 					<form method="get" action="<?php echo base_url();?>seller" style="padding-top:25px;" name="sellerfrm" onsubmit="return validateForm('sellerfrm');">
-						<div class="col-sm-2 col-xs-11" style="padding: 0px;">
-							<a class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" id="seller_cat_label">
-						   		<?php 
-						   		$subcat = "";
-						   		foreach ($mcats as $mcat) {
-					   				foreach ($mcat['subcats'] as $scat) {
-					   					if(!empty($params['cat_id']) && $params['cat_id'] == $scat['id']) {
-					   						$subcat = $scat['name'];
-					   					}
-					   				}
-						   		}
-						   		if(!empty($subcat)) {
-						   			echo $subcat;
-						   		} else { ?>
-						   		Categories<?php } ?> <span class="caret pull-right caret-vmiddle"></span>
-						  	</a>
-							<input type="hidden" name="cat_id" id="seller_cat_id" value="<?php if(!empty($params['cat_id'])) { echo $params['cat_id'];}?>"/>
-							<ul class="dropdown-menu hover-red-menu">
-						  		<?php foreach ($mcats as $mcat) { ?>
-						    	<li class="dropdown">
-						      		<a href="#" class="firstmain"><?php echo $mcat['name'];?></a>
-						      		<ul class="dropdown-menu">
-						      			<?php foreach ($mcat['subcats'] as $scat) { ?>
-						        		<li><a href="javascript:selectSellerScat(<?php echo $scat['id'];?>,`<?php echo $scat['name'];?>`);"><?php echo $scat['name'];?></a></li>
-						        		<?php } ?>
-						       		</ul>
-						    	</li>
-						    	<?php } ?>
-						  	</ul>
-						</div>
+						
+                                                <div class="col-md-2">
+                                                    <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
+                                                        <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
+                                                        <span style="color:#303030;font-family:Georgia;font-size:17px;">
+                                                            <a href="#" class="style261" style="color:#303030;text-decoration: none !important;" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
+                                                    </div>
+                                                </div>
 						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
 							<div>
@@ -809,21 +792,122 @@ ul.hover-red-menu li.open a.firstmain{
 										</select>
 									</div>
 								</div>
-								<!-- div class="col-sm-8 padding-0">
-									<div class="dropdown">
-										<select class="search-box search-dp" name='type'>
-											<option value="">More</option>
-											<option value="0" <?php if(!empty($params['type']) && $params['type'] == 0) { ?>selected<?php } ?>>Show Audited First</option>
-											<option value="1" <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show All</option>
-										</select>
-									</div>
-								</div-->
 								<div class="col-sm-2 padding-0">
 									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
 								</div>
 							</div>
 						</div>
 					</form>
+                             <div id="Cat_main_layer" style="position:absolute;text-align:left;left:-23px;visibility: hidden;top:71%;width:100%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
+            <div class="row">
+                <div id="myCarousel" class="carousel slide" style="height:197px;width:95%;left:5%;border:none !important;background-color: #fafafa;">
+                    <div class="carousel-inner" >
+                        <?php
+                        $i = 1;
+                        foreach ($procategories as $product) {
+                            if ($i % 6 == 1) {
+                                ?>
+                                <div class="item <?php echo($i == 1) ? 'active' : ''; ?>">
+                                <?php } ?>
+                                <div class="col-md-2" style="padding-top:25px 10px 0px 10px;">
+                                    <a href="#" id="tab<?php echo $i; ?>" style="text-decoration:none !important">
+                                        <div class="tumb-slide cat_slide" alt="cat_slider_<?php echo $i; ?>" style="height:106px;width:106px;margin: 0 auto;">
+                                            <img src="<?php echo asset_url(); ?>images/category-images/<?php echo $product['cat_image'];?>" height="106" width="106">
+                                        </div>
+                                        <h4 class="text-center " style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo ucfirst($product['name']); ?></h4>
+                                    </a>
+                                    <div class="panel-heading text-center slide-details cat_slider_<?php echo $i; ?>" style="background-color: #fafafa !important;display:none;">
+                                        <div class="col-xs-11">
+                                            <img src="<?php echo asset_url(); ?>images/img3681.png" style="width:25px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php if ($i % 6 == 0) { ?>
+                                </div>
+                            <?php } ?>    
+
+                            <?php
+                            $i++;
+                        }
+                        ?>
+                    </div>
+                </div>
+
+                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+                <form method="post" action="filter_by_category" id="filter_by_category">
+                    <input type="hidden" name="main_cat_id" id="filter_cat" value="">
+                    <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
+                </form>
+            </div>
+            <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
+                <div class="panel categary-detials" style="position:absolute;padding-top:60px;width: 95%;margin: auto;left: 5%;z-index: 1;">
+
+                    <?php
+                    $i = 1;
+                    foreach ($procategories as $product) {
+                        ?>
+                        <div class="panel-body panel slide-details" id="cat_slider_<?php echo $i; ?>" style="background-color: #fff;box-shadow: none !important;">
+                            <div class="row" style="padding-bottom:50px;z-index: 200;">
+								<div class="col-md-offset-1">
+									<?php
+									$j = 1;
+									foreach ($prosubcategories as $res) {
+										if ($res['mcat_id'] == $product['id']) {
+											?>
+											<div class="col-md-3">
+												<ul style="list-style:none;margin-bottom: -5px;">
+													<li>
+														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+													</li>
+												</ul>    
+											</div>
+											<?php
+										}
+									}
+									?>
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 text-center bottom_cat">
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('a');" class="btn btn-default">A</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('b');" class="btn btn-default">B</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('c');" class="btn btn-default">C</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('d');" class="btn btn-default">D</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('e');" class="btn btn-default">E</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('f');" class="btn btn-default">F</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('g');" class="btn btn-default">G</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('h');" class="btn btn-default">H</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('i');" class="btn btn-default">I</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('j');" class="btn btn-default">J</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('k');"class="btn btn-default">K</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('l');"class="btn btn-default">L</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('m');"class="btn btn-default">M</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('n');"class="btn btn-default">N</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('o');"class="btn btn-default">O</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('p');"class="btn btn-default">P</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('q');"class="btn btn-default">Q</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('r');"class="btn btn-default">R</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('s');"class="btn btn-default">S</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('t');"class="btn btn-default">T</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('u');"class="btn btn-default">U</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('v');"class="btn btn-default">V</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('w');"class="btn btn-default">W</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('x');"class="btn btn-default">X</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('y');"class="btn btn-default">Y</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('z');" class="btn btn-default">Z</a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                        $i++;
+                    }
+                    ?>
+                </div>
+            </div>
+        </div><!-- End Carousel --> 
+        </div>
+                                        </div>
 				<?php } elseif ($page=='shippers'){?>
 					<form method="get" action="<?php echo base_url();?>shipper" style="padding-top:25px;" name="shipperfrm" onsubmit="return validateForm('shipperfrm');">
 						<div class="col-sm-2 col-xs-11" style="padding: 0px;">
@@ -888,7 +972,7 @@ ul.hover-red-menu li.open a.firstmain{
 					</form>
 					<?php } elseif ($page == 'buyers'){?>
 					<form method="get" action="<?php echo base_url();?>buyer" style="padding-top:25px;" name="buyerfrm" onsubmit="return validateFormB('buyerfrm');">
-						<div class="col-sm-2 col-xs-11" style="padding: 0px;">
+<!--						<div class="col-sm-2 col-xs-11" style="padding: 0px;">
 							<a class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" id="seller_cat_label">
 						   		<?php 
 						   		$subcat = "";
@@ -917,9 +1001,9 @@ ul.hover-red-menu li.open a.firstmain{
 						    	</li>
 						    	<?php } ?>
 						  	</ul>
-						</div>
+						</div>-->
 						<div class="col-sm-7 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box"  name="keyword"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" placeholder="Type a keyword to seach ( product, company or name )...">
+							<input type="text" class="search-box"  name="keyword"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" placeholder="Type a keyword to search ( product, company or name )...">
 						</div>
 						<div class="col-md-3" style="padding: 0px;">
 							<div class="col-sm-5 col-xs-3 " style="padding: 0px;">
@@ -949,38 +1033,15 @@ ul.hover-red-menu li.open a.firstmain{
 					<br><br><br><br>
 				<?php } elseif ($page =='product'){?>
 					<form method="get" action="<?php echo base_url();?>products" style="padding-top:25px;" name="productfrm" onsubmit="return validateForm('productfrm');">
-						<div class="col-sm-2 col-xs-2" style="padding: 0px;">
-							<a class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" id="seller_cat_label">
-						   		<?php 
-						   		$subcat = "";
-						   		foreach ($mcats as $mcat) {
-					   				foreach ($mcat['subcats'] as $scat) {
-					   					if(!empty($params['cat_id']) && $params['cat_id'] == $scat['id']) {
-					   						$subcat = $scat['name'];
-					   					}
-					   				}
-						   		}
-						   		if(!empty($subcat)) {
-						   			echo $subcat;
-						   		} else { ?>
-						   		Categories<?php } ?> <span class="caret pull-right caret-vmiddle"></span>
-						  	</a>
-							<input type="hidden" name="cat_id" id="seller_cat_id" value="<?php if(!empty($params['cat_id'])) { echo $params['cat_id'];}?>"/>
-							<ul class="dropdown-menu hover-red-menu">
-						  		<?php foreach ($mcats as $mcat) { ?>
-						    	<li class="dropdown">
-						      		<a href="#" class="firstmain"><?php echo $mcat['name'];?></a>
-						      		<ul class="dropdown-menu">
-						      			<?php foreach ($mcat['subcats'] as $scat) { ?>
-						        		<li><a href="javascript:selectProductScat(<?php echo $scat['id'];?>,`<?php echo $scat['name'];?>`);"><?php echo $scat['name'];?></a></li>
-						        		<?php } ?>
-						       		</ul>
-						    	</li>
-						    	<?php } ?>
-						  	</ul>
-						</div>
+						<div class="col-md-2">
+                                                    <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
+                                                        <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
+                                                        <span style="color:#303030;font-family:Georgia;font-size:17px;">
+                                                            <a href="#" class="style261" style="color:#303030;text-decoration: none !important;" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
+                                                    </div>
+                                                </div>
 						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
-							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
+							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
 						</div>
 						<div class="col-sm-5 col-xs-5" style="padding: 0px;background-color: #fff;">
 							<div class="col-sm-7" style="padding:0px">
@@ -1021,6 +1082,114 @@ ul.hover-red-menu li.open a.firstmain{
 							</div>
 						</div>
 					</form>
+                                        <div id="Cat_main_layer" style="position:absolute;text-align:left;left:-23px;visibility: hidden;top:100%;width:100%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
+            <div class="row">
+                <div id="myCarousel" class="carousel slide" style="height:197px;width:95%;left:5%;border:none !important;background-color: #fafafa;">
+                    <div class="carousel-inner" >
+                        <?php
+                        $i = 1;
+                        foreach ($procategories as $product) {
+                            if ($i % 6 == 1) {
+                                ?>
+                                <div class="item <?php echo($i == 1) ? 'active' : ''; ?>">
+                                <?php } ?>
+                                <div class="col-md-2" style="padding-top:25px 10px 0px 10px;">
+                                    <a href="#" id="tab<?php echo $i; ?>" style="text-decoration:none !important">
+                                        <div class="tumb-slide cat_slide" alt="cat_slider_<?php echo $i; ?>" style="height:106px;width:106px;margin: 0 auto;">
+                                            <img src="<?php echo asset_url(); ?>images/category-images/<?php echo $product['cat_image'];?>" height="106" width="106">
+                                        </div>
+                                        <h4 class="text-center " style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo ucfirst($product['name']); ?></h4>
+                                    </a>
+                                    <div class="panel-heading text-center slide-details cat_slider_<?php echo $i; ?>" style="background-color: #fafafa !important;display:none;">
+                                        <div class="col-xs-11">
+                                            <img src="<?php echo asset_url(); ?>images/img3681.png" style="width:25px;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php if ($i % 6 == 0) { ?>
+                                </div>
+                            <?php } ?>    
+
+                            <?php
+                            $i++;
+                        }
+                        ?>
+                    </div>
+                </div>
+
+                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="images/previ.png"></a>
+                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="images/nex.png"></a>
+                <form method="post" action="filter_by_category" id="filter_by_category">
+                    <input type="hidden" name="main_cat_id" id="filter_cat" value="">
+                    <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
+                </form>
+            </div>
+            <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
+                <div class="panel categary-detials" style="position:absolute;padding-top:60px;width: 95%;margin: auto;left: 5%;z-index: 1;">
+
+                    <?php
+                    $i = 1;
+                    foreach ($procategories as $product) {
+                        ?>
+                        <div class="panel-body panel slide-details" id="cat_slider_<?php echo $i; ?>" style="background-color: #fff;box-shadow: none !important;">
+                            <div class="row" style="padding-bottom:50px;z-index: 200;">
+								<div class="col-md-offset-1">
+									<?php
+									$j = 1;
+									foreach ($prosubcategories as $res) {
+										if ($res['mcat_id'] == $product['id']) {
+											?>
+											<div class="col-md-3">
+												<ul style="list-style:none;margin-bottom: -5px;">
+													<li>
+														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+													</li>
+												</ul>    
+											</div>
+											<?php
+										}
+									}
+									?>
+								</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 text-center bottom_cat">
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('a');" class="btn btn-default">A</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('b');" class="btn btn-default">B</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('c');" class="btn btn-default">C</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('d');" class="btn btn-default">D</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('e');" class="btn btn-default">E</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('f');" class="btn btn-default">F</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('g');" class="btn btn-default">G</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('h');" class="btn btn-default">H</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('i');" class="btn btn-default">I</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('j');" class="btn btn-default">J</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('k');"class="btn btn-default">K</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('l');"class="btn btn-default">L</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('m');"class="btn btn-default">M</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('n');"class="btn btn-default">N</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('o');"class="btn btn-default">O</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('p');"class="btn btn-default">P</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('q');"class="btn btn-default">Q</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('r');"class="btn btn-default">R</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('s');"class="btn btn-default">S</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('t');"class="btn btn-default">T</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('u');"class="btn btn-default">U</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('v');"class="btn btn-default">V</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('w');"class="btn btn-default">W</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('x');"class="btn btn-default">X</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('y');"class="btn btn-default">Y</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('z');" class="btn btn-default">Z</a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                        $i++;
+                    }
+                    ?>
+                </div>
+            </div>
+        </div><!-- End Carousel --> 
 					<?php } else if($page == 'pro-videos') { ?>
 					<br><br>
 					<form method="get" action="<?php echo base_url();?>pro-video" name="videofrm" onsubmit="return validateForm('videofrm');">
@@ -1055,7 +1224,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-7 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product or company name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product or company name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-3 col-xs-3 " style="padding: 0px;">
 							<div class="col-sm-5 col-xs-5 " style="padding: 0px;">
@@ -1119,7 +1288,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
 							<div>
@@ -1183,7 +1352,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
-							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
+							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
 						</div>
 						<div class="col-sm-5 col-xs-5" style="padding: 0px;background-color: #fff;">
 							<div class="col-sm-7" style="padding:0px">
@@ -1257,7 +1426,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
 							<div>
@@ -1330,7 +1499,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
 							<div>
