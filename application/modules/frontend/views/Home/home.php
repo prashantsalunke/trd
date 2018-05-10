@@ -372,54 +372,50 @@ $locale = localeconv();
                 <div class="panel-body mytab">
                     <div id="tab-slider2" class="carousel slide"><!--  data-ride="carousel"-->
                         <div class="carousel-inner section2" role="listbox" style="height:552px;">
-
-<?php
-$i = "0";
-foreach ($products3D as $product3D) {
-    $product_id = $product3D['product_id'];
-    $i++;
-    ?>
-                                <div class="item <?php if ($i == 1) {
-        echo "active";
-    } ?>" style="height:546px;padding-top:30px;">
+                                  <?php 
+                                  $i ="0"; 
+                                  foreach ($products3D as $product3D) { 
+                                    $product_id = $product3D['product_id'];
+                                    $i++;
+                                    ?>
+                                  <div class="item <?php if($i == 1){ echo "active"; } ?>" style="height:546px;padding-top:30px;">
                                     <div class="text-center col-sm-12">
-                                        <span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $product3D['name'] ?></strong></span>
+                                      <span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $product3D['name']?></strong></span>
                                     </div>
                                     <div class="col-sm-12 text-center" style="padding:5px 0px;">
-                                        <span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url() . 'desksite/' . $product3D['busi_id']; ?>" target="_blank" class="hstyle19"><?php echo $product3D['company_name'] ?></a></span>
+                                      <span style="color:#1E90FF;font-family:Arial;font-size:12px;"><a href="<?php echo base_url().'desksite/'.$product3D['busi_id'];?>" target="_blank" class="hstyle19"><?php echo $product3D['company_name']?></a></span>
                                     </div>
                                     <div class="text-center col-sm-12">
-                                        <span style="color:#808080;font-family:Arial;font-size:12px;"><?php echo $product3D['company_country'] ?> | <?php echo $product3D['company_province'] ?></span>
+                                      <span style="color:#808080;font-family:Arial;font-size:12px;"><?php echo $product3D['company_country']?> | <?php echo $product3D['company_province']?></span>
                                     </div>
 
-                                                                                    <!--<p class="text-center col-sm-12"></p>-->
+                                    <!--<p class="text-center col-sm-12"></p>-->
                                     <div class="col-xs-12 text-center">
-    <?php if (!empty($product3D['community_id']) && $product3D['community_id'] != '') { ?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width:26px;height:26px; display: inline-block;"> <?php } else { ?>
-                                            <img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15;width:26px;height:26px; display: inline-block;">
-                                        <?php } ?>
-    <?php if ($product3D['gaurantee_period'] != '') { ?>
-                                            <img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php } else { ?>
-                                            <img src="<?php echo asset_url(); ?>images/ts/guarantee.png" style="opacity :0.15;width:34px;height:26px;" >
-    <?php } ?>
-    <?php if ($product3D['is_logo_verified'] > 1) { ?>
-                                            <img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php } else { ?>
-                                            <img src="<?php echo asset_url(); ?>images/ts/trusted.png" style="opacity :0.15; width: 26px;" >
-    <?php } ?>
-    <?php if ($product3D['plan_id'] > 1) { ?>
-                                            <img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php } else { ?>
-                                            <img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px;opacity :0.15">
-    <?php } ?>
+                                      <?php if(!empty($product3D['community_id']) && $product3D['community_id'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width:26px;height:26px; display: inline-block;"> <?php } else {?>
+                                        <img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15;width:26px;height:26px; display: inline-block;">
+                                      <?php } ?>
+                                      <?php if($product3D['gaurantee_period'] !=''){?>
+                                        <img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  style="width:34px;height:26px; display: inline-block;"> <?php }else{?>
+                                        <img src="<?php echo asset_url(); ?>images/ts/guarantee.png" style="opacity :0.15;width:34px;height:26px;" >
+                                      <?php } ?>
+                                      <?php if($product3D['is_logo_verified'] > 1){?>
+                                        <img src="<?php echo asset_url(); ?>images/trusted.png" style="width:26px; display: inline-block;"> <?php } else { ?>
+                                        <img src="<?php echo asset_url(); ?>images/ts/trusted.png" style="opacity :0.15; width: 26px;" >
+                                      <?php } ?>
+                                      <?php if($product3D['plan_id'] > 1){?>
+                                        <img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px; display: inline-block;"><?php } else { ?>
+                                        <img src="<?php echo asset_url(); ?>images/member-logo.png" style="width:25px;opacity :0.15">
+                                      <?php } ?>
                                     </div>
                                     <div class="col-xs-12"
-                                         style="text-align: center; margin-bottom: 5px; height: 320px;cursor: pointer;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
-                                        <img src="<?php echo asset_url() . $product3D['image']; ?>" class="img-responsive" style="display: inline-block;max-height: 340px;max-width: 340px">
+                                      style="text-align: center; margin-bottom: 5px; height: 320px;cursor: pointer;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
+                                      <img src="<?php echo asset_url().$product3D['image']; ?>" class="img-responsive" style="display: inline-block;max-height: 340px;max-width: 340px">
                                     </div>
                                     <div class="text-center">
-                                        <div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?></span></div>
-                                        <p style="text-indent: 0px;"><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity'] ?> / <?php echo $product3D['unit'] ?></span> </p>
+                                      <div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?></span></div>
+                                      <p style="text-indent: 0px;"><span style="color:#787878;font-family:Arial;font-size:12px;">Min. Qty. <?php echo $product3D['quantity']?> / <?php echo $product3D['unit']?></span> </p>
                                     </div>
-
-
+                                    
                                     <div class="hover-menu text-center" style="bottom: 0px;">
                                         <a target="_blank" href="<?php echo base_url() . 'products/details/' . $product_id; ?>" class="btn">
                                             <img src="<?php echo asset_url(); ?>images/view2.png" onmouseover="hover(this, 'view');" onmouseout="unhover(this, 'view');" style="width: 40px;"></a>
@@ -434,7 +430,7 @@ foreach ($products3D as $product3D) {
                                         </a>
                                     </div>
                                 </div>
-<?php } ?>
+                        <?php } ?>
                             <a class="left carousel-control" href="#tab-slider2" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
                                 <span><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previous0.png"></span> 
                             </a> 
@@ -506,25 +502,24 @@ foreach ($vCatalogues as $vCatalogue) {
                                         </div>
 
 
-
                                     </div>
                                     <div class="col-xs-12 hover-menu text-center blue" style="bottom: 4px;">
-                                        <a href="javascript:viewCatalogueBook(<?php echo $vCatalogue['id']; ?>);"  class="btn">
-                                            <img src="<?php echo asset_url(); ?>images/vcat.png" style="width: 40px;" onmouseover="hover(this, 'vcat');" onmouseout="unhover(this, 'vcat');">
-                                        </a> 
-                                        <a href="<?php echo base_url() . 'desksite/' . $vCatalogue['busi_id']; ?>" target="_blank" class="btn" >
-                                            <img src="<?php echo asset_url(); ?>images/desksite-icon.png" style="width: 40px;" onmouseover="hover(this, 'desksite');" onmouseout="unhover(this, 'desksite');">
-                                        </a> 
-                                        <a href="<?php echo base_url() . 'vcatalogues'; ?>" target="_blank" class="btn">
-                                            <img src="<?php echo asset_url(); ?>images/same.png" style="width: 40px;" onmouseover="hover(this, 'same');" onmouseout="unhover(this, 'same');">
-                                        </a> 
-                                        <a href="javascript:addToMyFavourite(<?php echo $vCatalogue['id']; ?>, 7);" class="btn">
-                                            <img src="<?php echo asset_url(); ?>images/favorite.png" style="width: 40px;" onmouseover="hover(this, 'favorite');" onmouseout="unhover(this, 'favorite');"style="width: 40px;">
-                                        </a>
+                                      <a href="javascript:viewCatalogueBook(<?php echo $vCatalogue['id'];?>);"  class="btn">
+                                        <img src="<?php echo asset_url(); ?>images/vcat.png" style="width: 40px;" onmouseover="hover(this,'vcat');" onmouseout="unhover(this,'vcat');">
+                                      </a> 
+                                      <a href="<?php echo base_url().'desksite/'.$vCatalogue['busi_id'];?>" target="_blank" class="btn" >
+                                        <img src="<?php echo asset_url(); ?>images/desksite-icon.png" style="width: 40px;" onmouseover="hover(this,'desksite');" onmouseout="unhover(this,'desksite');">
+                                      </a> 
+                                      <a href="<?php echo base_url().'vcatalogues';?>" target="_blank" class="btn">
+                                        <img src="<?php echo asset_url(); ?>images/same.png" style="width: 40px;" onmouseover="hover(this,'same');" onmouseout="unhover(this,'same');">
+                                      </a> 
+                                      <a href="javascript:addToMyFavourite(<?php echo $vCatalogue['id'];?>, 7);" class="btn">
+                                        <img src="<?php echo asset_url(); ?>images/favorite.png" style="width: 40px;" onmouseover="hover(this,'favorite');" onmouseout="unhover(this,'favorite');"style="width: 40px;">
+                                      </a>
                                     </div>	
-                                </div>
+                                  </div>
 
-<?php } ?>
+                                  <?php } ?>
                             <a class="left carousel-control" href="#tab-slider3" role="button" data-slide="prev" style="background: none;padding-top:70%;text-align:center;"> 
                                 <span><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previous0.png"></span> 
                             </a> 
@@ -1458,23 +1453,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
             delay: 300
         });
     });
-    function openVideo(id) {
-        ajaxindicatorstart("Please wait while we load the video.");
-        $.get(base_url + "seller/video/view/" + id, {}, function (data) {
-            ajaxindicatorstop();
-            $("#Layer_details_Container3").html(data);
-            ShowObjectWithEffect('Layer_details3', 1, 'scale', 500, 'swing');
-        }, 'html');
-    }
-    function openProduct(id) {
-        ajaxindicatorstart("Please wait while we load the Product.");
-        $.get(base_url + "seller/product/view/" + id, {}, function (data) {
-            ajaxindicatorstop();
-            $("#Layer_details_Container").html(data);
-            ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
-        }, 'html');
-    }
-
+    
     function addToMyFavourite(fav_id, type) {
         $.get(base_url + "addtofavourite/" + fav_id + "/" + type, {}, function (data) {
             $("#msg_cont").html(data.msg);
@@ -1539,7 +1518,30 @@ foreach ($FWBuyers as $key => $FWBuyer) {
         $(".slide-details").hide();
         stayOpen.removeClass('show');
     });
-    function highlight_keywords(str) {
+});
+function openVideo(id,name) {
+	//ajaxindicatorstart("Please wait while we load the video.");
+	$("#Layer_details_Container3").html($("#start_load_video").html());
+	ShowObjectWithEffect('Layer_details3', 1, 'scale', 500, 'swing');
+	$("#video_name").html(name);
+	$.get(base_url+"seller/video/view/"+id,{},function(data) {
+		/*ajaxindicatorstop();
+		$("#Layer_details_Container3").html(data);
+		ShowObjectWithEffect('Layer_details3', 1, 'scale', 500, 'swing');*/
+			$("#Layer_details_Container3").html(data);
+	},'html');
+}
+function openProduct(id,name) {
+	//ajaxindicatorstart("Please wait while we load the Product.");
+	$("#Layer_details_Container").html($("#start_load").html());
+	ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
+	$("#product_name_disp").html(name);
+	$.get(base_url+"seller/product/view/"+id,{},function(data) {
+			$("#Layer_details_Container").html(data);
+	},'html');
+}
+
+  function highlight_keywords(str) {
         $(".sub_cat").css('color', '#337ab7');
         $("." + str).css('color', 'orange');
     }
