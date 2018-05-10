@@ -1518,7 +1518,6 @@ foreach ($FWBuyers as $key => $FWBuyer) {
         $(".slide-details").hide();
         stayOpen.removeClass('show');
     });
-});
 function openVideo(id,name) {
 	//ajaxindicatorstart("Please wait while we load the video.");
 	$("#Layer_details_Container3").html($("#start_load_video").html());
