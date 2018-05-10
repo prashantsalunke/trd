@@ -1,3 +1,9 @@
+<style>
+p {
+	 word-wrap: break-word;
+	 text-align:left;
+  }
+</style>
 <?php 
 if(count($posts) > 0) {
 	foreach ($posts as $key=>$product) {
@@ -42,7 +48,7 @@ if(count($posts) > 0) {
 							<span class="style5"><?php echo $product['title'];?></span>
 						</strong>
 					</span>
-					<p class="font5">  <?php echo substr($product['stockdesc'],0,270);?> <?php if(strlen($product['stockdesc']) > 270) { ?>...<?php } ?></p>
+					<p class="font5" align="center">  <?php echo substr($product['stockdesc'],0,270);?> <?php if(strlen($product['stockdesc']) > 270) { ?>...<?php } ?></p>
 					<div class="inline">
 					<?php if($product['catid'] == 1) { ?>
 						<span class="usd">&nbsp; USD <?php echo $product['unit_price'];?>&nbsp;&nbsp;&nbsp; </span>

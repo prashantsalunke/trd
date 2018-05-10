@@ -71,13 +71,14 @@ div.pp_pic_holder {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-10 col-sm-3" style="padding-right:0px;padding-left:0px">
+					<div class="col-lg-10 col-sm-3 " style="padding-right:0px;padding-left:0px">
 						<ul class="nav nav-tabs">
 							<li class="active nav121" style="width: 190px;">
 								<a data-toggle="tab" href="#home" style="background: #FF6347; border: 0px;">Sellers/Shippers Offers</a>
 							</li>
 							<li class="nav122" style="width: 160px;">
-								<a data-toggle="tab" href="#menu1" style="background: #1E90FF; border: 0px;" onclick="current_view = 'filterBusinessStation'">Buyers Requests</a>
+								 <a data-toggle="tab" href="#menu1"style="background: #1E90FF; border: 0px;">Buyers Requests</a>
+							    	
 							</li>
 							<!-- form class="displaydesktop" -->
 								<div class="row" style="padding-top:4px;">
@@ -122,24 +123,24 @@ div.pp_pic_holder {
 								</div>
 							</div>
 						</div>
-						<div class="tab-content">
+						<div class="tab-content" >
 							<!-- content-tab-1 -->
-							<div id="home" class="tab-pane fade in active content121">
+							<div id="home" class="tab-pane fade in active content121" >
 								<!-- view past close post add new post buttons -->
-								<div class="tab1">
+								<div class="tab1" style="padding-left:16px;">
 									<?php if($tscategory_id == 1 || $tscategory_id == 2) { ?>
-									<h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Sellers & Shippers</strong></span></h3>
+									<h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Sellers & Shippers</strong></span></h3>
 									<p class="leftbox2">Send Your Sell Post And Manage The Previous Ones. </p>
 									<div id="Layer9">
 										<img src="<?php echo asset_url(); ?>images/img0143.png" id="Image54" alt="" class="img46" style="width:30px !important;">
 				                    <?php if($usertype[0]['user_category_id'] =='1' || $usertype[0]['user_category_id'] =='2' ) { ?>
-					                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+					                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 						                    <a href="javascript:openNewPostForm();" class="bststyle6">
 						                    	Add New Post
 						                    </a>
 					                    </span>
 				                    <?php } else { ?>
-				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 				                    	<a href="#">Add New Post</a>
 				                    	</span>
 										
@@ -147,7 +148,7 @@ div.pp_pic_holder {
 				                	</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/viewmybuyposts.png" id="Image54" alt="" class="img46 mp1" style="margin-top:3px;"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="javascript:viewMyPosts();" class="bststyle9">
 												View My Posts
 											</a>
@@ -155,7 +156,7 @@ div.pp_pic_holder {
 									</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/closebuyposts.png" id="Image54" alt="" class="img46 mp1" style="margin-top:3px;"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="#" onclick="ShowObjectWithEffect('Layer32', 0, 'fade', 500);ShowObjectWithEffect('Layer28', 1, 'fade', 500);return false;" class="bststyle9">
 												Close My Posts
 											</a>
@@ -166,42 +167,33 @@ div.pp_pic_holder {
 								<!-- view past close post add new post buttons end-->
 								<!-- close my post 1 -->
 
-								<div id="Layer28" style="width: 1029px;height:616px;overflow-x: hidden;">
-				                
-				           		</div>
-
-
-								<div id="Layer32" style="width: 1029px;height:616px;overflow-x: hidden;">
+								<div id="Layer28" style="width: 1029px;height:616px;overflow-x: hidden;"></div>
+				           		<div id="Layer32" style="width: 1029px;height:616px;overflow-x: hidden;">
 				             	</div>
-				             	<br><br><br><br>
-							</div>
+								<br><br><br><br>
+							</div>	
 							<!-- view my post end -->
 
 							<!-- content-tab-1 end -->
 							<div id="menu1" class="tab-pane fade content122">
-							
-
-								<div id="Layer288" style="width: 1029px;height:616px;overflow-x: hidden;">	
-								</div>
-								
-							<div id="Layer322" style="height:616px;width: 1029px;overflow-x: hidden;">
-				            </div>
+							<div id="Layer288" style="width: 1029px;height:616px;overflow-x: hidden;"></div>
+							<div id="Layer322" style="height:616px;width: 1029px;overflow-x: hidden;"></div>
 								<!-- view my post end -->
 								<!-- view past close post add new post buttons -->
-								<div class="tab1">
-									<?php if($tscategory_id == 3) { ?>
-									<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Buyers</strong></span><br>
-									<p class="leftbox2">Send Your Buy Post And Manage The Previous Ones..</p>
+								<div class="tab1" style="padding-left:16px;">
+								<?php if($tscategory_id == 3) { ?>
+								<h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Buyers</strong></span></h3>
+								<p class="leftbox2">Send Your Buy Post And Manage The Previous Ones..</p>
 									<div class="bluebox">
 										<img src="<?php echo asset_url(); ?>images/barsendpost.png" id="Image54" alt="" class="img46" style="width:30px !important;">
 				                    	<?php if($usertype[0]['user_category_id'] =='3' ) { ?>
-				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 					                    	<a href="javascript:openNewBuyerPostForm();" class="bststyle6">
 					                    		Add New Post
 					                    	</a>
 				                    	</span>
 				                		<?php } else { ?>
-				                		<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                		<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 				                		<a href="#">Add New Post</a>
 				                		</span>
 
@@ -209,7 +201,7 @@ div.pp_pic_holder {
 				                	</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/viewmysellposts.png" id="Image54" alt="" class="img46 mp1"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="javascript:viewBuyerPosts();" class="bststyle10">
 												View My Posts
 											</a>
@@ -217,7 +209,7 @@ div.pp_pic_holder {
 									</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/closesellposts.png" id="Image54" alt="" class="img46 mp1"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="#" onclick="ShowObjectWithEffect('Layer322', 0, 'fade', 500);ShowObjectWithEffect('Layer288', 1, 'fade', 500);return false;" class="bststyle10">
 												Close My Posts
 											</a>
@@ -579,17 +571,13 @@ function setBackgroundSize(id,input,size) {
 <script src="<?php echo asset_url();?>js/bootstrap-typeahead.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
 <script>
-var current_view = "filterBusinessStation";
-function searchBusinessStation(loader = true) {
-	current_view = "searchBusinessStation";
+function searchBusinessStation() {
 	var keyword = $("#SiteSearch3").val();
 	var country = $("#top_country_id").val();
 	if(keyword != "" && country != "") {
-		if(loader)
-			ajaxindicatorstart("");
+		ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
-			if(loader)
-				ajaxindicatorstop();
+			ajaxindicatorstop();
 			$("#Layer28").html(data.posts);
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
@@ -617,16 +605,13 @@ function searchBusinessStation(loader = true) {
 		}
 	}
 }
-function filterBusinessStation(loader = true) {
-	current_view = "filterBusinessStation";
+function filterBusinessStation() {
 	var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
 	if(keyword != "" && country != "") {
-		if(loader)
-			ajaxindicatorstart("");
+		ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
-			if(loader)
-				ajaxindicatorstop();
+			ajaxindicatorstop();
 			$("#Layer28").html(data.posts);
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
@@ -689,7 +674,6 @@ function closeNewPostResult() {
 }
 
 function viewMyPosts() {
-	current_view = "viewMyPosts";
 	ajaxindicatorstart("");
 	$.get(base_url+"bstation/seller/myposts",{},function(data){
 		ajaxindicatorstop();
@@ -711,7 +695,6 @@ function deleteMyPost(id) {
 }
 
 function closeMyPost(key) {
-	current_view = "closeMyPost";
 	ShowObject('Layer5_'+key, 0);
 	/*$.get(base_url+"bstation/seller/post/close/"+id,{},function(){
 		viewMyPosts();
@@ -758,32 +741,8 @@ function viewBuyerPosts() {
 		$("#Layer322").html(data);
 	},'html');
 }
-function loadRealtimebstationPosts(){
-	/*var keyword = $("#keyword").val();
-	var country = $("#country_name").val();
-	if(keyword != "" && country != "") {
-		//ajaxindicatorstart("");
-		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
-			//ajaxindicatorstop();
-			$("#Layer28").html(data.posts);
-			$("#Layer288").html(data.requests);
-			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
-			ShowObjectWithEffect('Layer2', 1, 'slidedown', 500, 'swing');
-			ShowObjectWithEffect('Layer28', 1, 'fade', 500);ShowObjectWithEffect('Layer32', 0, 'fade', 500);
-		    $.cookie('bstation-landing', '1', { expires: 365 });
-		    $.cookie('bstation-keyword', keyword, { expires: 365 });
-		    $.cookie('bstation-country', country, { expires: 365 });
-		},'json');
-	}*/
 
-	if(current_view == "searchBusinessStation"){
-		searchBusinessStation(false);
-	}else if(current_view == "filterBusinessStation"){
-		filterBusinessStation(false);
-	}
-}
 $(document).ready(function() {
-	setInterval(loadRealtimebstationPosts,10000);
 	$('#SiteSearch3').keydown(function(event) {
 	   	if (event.keyCode == 13) {
 	   		searchBusinessStation();
@@ -814,10 +773,6 @@ $.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},fun
     $('[name=keyword]').val(keyword);
     $('[name=country]').val(country);
 },'json');
+<?php } ?>
 
-<?php if(!empty($_COOKIE['bstation-buyer-request']) && $_COOKIE['bstation-buyer-request'] == 1){ ?>
-
-	$('.nav-tabs > .active').next('li').find('a').trigger('click');
-	$.cookie('bstation-buyer-request', '0', { expires: 365 });
-<?php } } ?>
 </script>
