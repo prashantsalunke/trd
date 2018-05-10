@@ -112,7 +112,10 @@ ul.hover-red-menu li.open a.firstmain{
 .search-box {
 	padding-left:5px;
 }
-
+.bottom_cat > a:hover{
+	background-color:#ff6347 !important;
+	color:#fff !important;
+}
 
 </style>
  <script src="<?php echo asset_url();?>js/bootstrap-dropdownhover.min.js"></script>
@@ -723,7 +726,7 @@ ul.hover-red-menu li.open a.firstmain{
 			<?php if($page =='home'){ ?>
 				<form method="post" action="search" >
 					<div class="col-sm-7 col-xs-11" style="padding: 0px;">
-						<input type="text" class="search-box" required="required" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
+						<input type="text" class="search-box" required="required" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
 					</div>
 					<div class="col-sm-2 col-xs-3 " style="padding: 0px;">
 						<div class="dropdown">
@@ -764,7 +767,7 @@ ul.hover-red-menu li.open a.firstmain{
                                                     </div>
                                                 </div>
 						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
 							<div>
@@ -809,7 +812,7 @@ ul.hover-red-menu li.open a.firstmain{
                                 <div class="col-md-2" style="padding-top:25px 10px 0px 10px;">
                                     <a href="#" id="tab<?php echo $i; ?>" style="text-decoration:none !important">
                                         <div class="tumb-slide cat_slide" alt="cat_slider_<?php echo $i; ?>" style="height:106px;width:106px;margin: 0 auto;">
-                                            <img src="<?php echo asset_url(); ?>images/Agriculture.png" height="106" width="106">
+                                            <img src="<?php echo asset_url(); ?>images/category-images/<?php echo $product['cat_image'];?>" height="106" width="106">
                                         </div>
                                         <h4 class="text-center " style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo ucfirst($product['name']); ?></h4>
                                     </a>
@@ -830,15 +833,15 @@ ul.hover-red-menu li.open a.firstmain{
                     </div>
                 </div>
 
-                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="images/previ.png"></a>
-                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="images/nex.png"></a>
+                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
-                <div class="panel categary-detials" style="position:absolute;width: 95%;margin: auto;left: 5%;z-index: 1;">
+                <div class="panel categary-detials" style="position:absolute;padding-top:60px;width: 95%;margin: auto;left: 5%;z-index: 1;">
 
                     <?php
                     $i = 1;
@@ -846,25 +849,27 @@ ul.hover-red-menu li.open a.firstmain{
                         ?>
                         <div class="panel-body panel slide-details" id="cat_slider_<?php echo $i; ?>" style="background-color: #fff;box-shadow: none !important;">
                             <div class="row" style="padding-bottom:50px;z-index: 200;">
-                                <?php
-                                $j = 1;
-                                foreach ($prosubcategories as $res) {
-                                    if ($res['mcat_id'] == $product['id']) {
-                                        ?>
-                                        <div class="col-md-3">
-                                            <ul style="list-style:none;margin-bottom: -5px;">
-                                                <li>
-                                                    <a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
-                                                </li>
-                                            </ul>    
-                                        </div>
-                                        <?php
-                                    }
-                                }
-                                ?>
+								<div class="col-md-offset-1">
+									<?php
+									$j = 1;
+									foreach ($prosubcategories as $res) {
+										if ($res['mcat_id'] == $product['id']) {
+											?>
+											<div class="col-md-3">
+												<ul style="list-style:none;margin-bottom: -5px;">
+													<li>
+														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+													</li>
+												</ul>    
+											</div>
+											<?php
+										}
+									}
+									?>
+								</div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 text-center">
+                                <div class="col-sm-12 text-center bottom_cat">
                                     <a href="javascript:void(0)" onclick="highlight_keywords('a');" class="btn btn-default">A</a>
                                     <a href="javascript:void(0)" onclick="highlight_keywords('b');" class="btn btn-default">B</a>
                                     <a href="javascript:void(0)" onclick="highlight_keywords('c');" class="btn btn-default">C</a>
@@ -998,7 +1003,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>-->
 						<div class="col-sm-7 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box"  name="keyword"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" placeholder="Type a keyword to seach ( product, company or name )...">
+							<input type="text" class="search-box"  name="keyword"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" placeholder="Type a keyword to search ( product, company or name )...">
 						</div>
 						<div class="col-md-3" style="padding: 0px;">
 							<div class="col-sm-5 col-xs-3 " style="padding: 0px;">
@@ -1036,7 +1041,7 @@ ul.hover-red-menu li.open a.firstmain{
                                                     </div>
                                                 </div>
 						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
-							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
+							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
 						</div>
 						<div class="col-sm-5 col-xs-5" style="padding: 0px;background-color: #fff;">
 							<div class="col-sm-7" style="padding:0px">
@@ -1091,7 +1096,7 @@ ul.hover-red-menu li.open a.firstmain{
                                 <div class="col-md-2" style="padding-top:25px 10px 0px 10px;">
                                     <a href="#" id="tab<?php echo $i; ?>" style="text-decoration:none !important">
                                         <div class="tumb-slide cat_slide" alt="cat_slider_<?php echo $i; ?>" style="height:106px;width:106px;margin: 0 auto;">
-                                            <img src="<?php echo asset_url(); ?>images/Agriculture.png" height="106" width="106">
+                                            <img src="<?php echo asset_url(); ?>images/category-images/<?php echo $product['cat_image'];?>" height="106" width="106">
                                         </div>
                                         <h4 class="text-center " style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo ucfirst($product['name']); ?></h4>
                                     </a>
@@ -1120,7 +1125,7 @@ ul.hover-red-menu li.open a.firstmain{
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
-                <div class="panel categary-detials" style="position:absolute;width: 95%;margin: auto;left: 5%;z-index: 1;">
+                <div class="panel categary-detials" style="position:absolute;padding-top:60px;width: 95%;margin: auto;left: 5%;z-index: 1;">
 
                     <?php
                     $i = 1;
@@ -1128,25 +1133,27 @@ ul.hover-red-menu li.open a.firstmain{
                         ?>
                         <div class="panel-body panel slide-details" id="cat_slider_<?php echo $i; ?>" style="background-color: #fff;box-shadow: none !important;">
                             <div class="row" style="padding-bottom:50px;z-index: 200;">
-                                <?php
-                                $j = 1;
-                                foreach ($prosubcategories as $res) {
-                                    if ($res['mcat_id'] == $product['id']) {
-                                        ?>
-                                        <div class="col-md-3">
-                                            <ul style="list-style:none;margin-bottom: -5px;">
-                                                <li>
-                                                    <a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
-                                                </li>
-                                            </ul>    
-                                        </div>
-                                        <?php
-                                    }
-                                }
-                                ?>
+								<div class="col-md-offset-1">
+									<?php
+									$j = 1;
+									foreach ($prosubcategories as $res) {
+										if ($res['mcat_id'] == $product['id']) {
+											?>
+											<div class="col-md-3">
+												<ul style="list-style:none;margin-bottom: -5px;">
+													<li>
+														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+													</li>
+												</ul>    
+											</div>
+											<?php
+										}
+									}
+									?>
+								</div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 text-center">
+                                <div class="col-sm-12 text-center bottom_cat">
                                     <a href="javascript:void(0)" onclick="highlight_keywords('a');" class="btn btn-default">A</a>
                                     <a href="javascript:void(0)" onclick="highlight_keywords('b');" class="btn btn-default">B</a>
                                     <a href="javascript:void(0)" onclick="highlight_keywords('c');" class="btn btn-default">C</a>
@@ -1217,7 +1224,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-7 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product or company name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product or company name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-3 col-xs-3 " style="padding: 0px;">
 							<div class="col-sm-5 col-xs-5 " style="padding: 0px;">
@@ -1281,7 +1288,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
 							<div>
@@ -1345,7 +1352,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
-							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to seach ( product, company or name )...">
+							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
 						</div>
 						<div class="col-sm-5 col-xs-5" style="padding: 0px;background-color: #fff;">
 							<div class="col-sm-7" style="padding:0px">
@@ -1419,7 +1426,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
 							<div>
@@ -1492,7 +1499,7 @@ ul.hover-red-menu li.open a.firstmain{
 						  	</ul>
 						</div>
 						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
-							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to seach ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
+							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
 							<div>
