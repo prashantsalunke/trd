@@ -37,7 +37,7 @@ class Product extends MX_Controller {
 		$this->template->set ( 'featuredSellers', $featuredSellers);
 		$featuredProductVideo= $this->account->getFeaturedProductVideo();
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-		$featuredProducts = $this->account->getFeaturedProduct();
+		$featuredProducts = $this->sellers->getFeaturedProduct();
 		$this->template->set ( 'featuredProducts', $featuredProducts);
 		$procategories = $this->general->getProductCategories();
 		$this->template->set ( 'categories', $procategories);
@@ -218,7 +218,60 @@ class Product extends MX_Controller {
 		$currency = $this->account->getTradePaymentCurrencyByTradId($trade_info[0]['id']);
 
 		$tradepayment_terms = $this->tradlib->getTradePaymentTermsByTradId($trade_info[0]['id']);
+		// $id = $this->uri->segment('4');
+		// echo $id;
+		// exit();
+		$more_from_saller = $this->product->productListBySellerId($busi_id);
+
 		$this->template->set('tradepayment_terms',$tradepayment_terms);
+		$this->template->set ( 'moreProductSaller', $more_from_saller);
+
+		$this->template->set ( 'specifications', $Specifications);
+		$this->template->set ( 'currency', $currency);
+		$this->template->set ( 'trade_info', $trade_info);
+		$this->template->set ( 'page', 'pro-details');
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout (false);
+		$html = $this->template->build ('desksite/subpages/product_details','',true);
+		echo $html;
+	}
+	
+	public function productDetailsPage2($id,$user_id) {
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$ip_address = getRealIP();
+		$ipinfo = ip_info($ip_address,'location');
+		if(!empty($ip_address)) {
+			$map = array();
+			$map['busi_id'] = $busi_id;
+			$map['item_id'] = $id;
+			$map['visit_date'] = date('Y-m-d');
+			$map['city'] = $ipinfo['city'];
+			$map['country'] = $ipinfo['country'];
+			$map['ip_address'] = $ip_address;
+			$this->load->model('Tool_model','mytoolmodel');
+			$this->mytoolmodel->addProductVisit($map);
+		}
+		$this->load->library('mylib/TradLib');
+		$this->load->model('Product_Model', 'product' );
+		$this->load->model('Account_Model', 'account' );
+		// $this->load->model('Tradlib_Model', 'tradlib' );
+		$getProductdetailsById = $this->product->getProductdetailsById($id);
+		$this->template->set ( 'Productdetails', $getProductdetailsById);
+		$colors = $this->product->getProductColorById($id);
+		$this->template->set ( 'colors', $colors);
+		$trade_info = $this->product->getCompanyTradeInfo($busi_id);
+		$Specifications = $this->product->getProductSpecificationById($id);
+		$currency = $this->account->getTradePaymentCurrencyByTradId($trade_info[0]['id']);
+
+		$tradepayment_terms = $this->tradlib->getTradePaymentTermsByTradId($trade_info[0]['id']);
+		// $id = $this->uri->segment('4');
+		// echo $user_id;
+		// exit();
+		$more_from_saller = $this->product->productListBySellerId($user_id);
+
+		$this->template->set('tradepayment_terms',$tradepayment_terms);
+		$this->template->set ( 'moreProductSaller', $more_from_saller);
 
 		$this->template->set ( 'specifications', $Specifications);
 		$this->template->set ( 'currency', $currency);
@@ -263,14 +316,15 @@ class Product extends MX_Controller {
 	public function productListBySellerId($id){
 		$this->load->model('Product_Model', 'product' );
 		$products = $this->product->productListBySellerId($id);
+		$map['user'] = $id;
 		$this->template->set ( 'productList', $products);
+		$this->template->set ( 'user_id', $map);
 		$this->template->set ( 'page', 'product' );
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html= $this->template->build ('product/pages/pro-list', '', true);
 		echo $html;
-		
 	}
 	public function productListBySubCategory($id, $busi_id){
 		$map = array();
@@ -335,7 +389,23 @@ class Product extends MX_Controller {
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('product/video-details');
 	}
-	
+	public function videoDetailByIdSaller($id){
+		$this->load->model('Product_Model', 'product' );
+		$getVideodetailsById = $this->product->getVideodetailsById($id);
+		$this->template->set ( 'Productdetails', $getVideodetailsById);
+		$colors = $this->product->getProductColorByVideoId($id);
+		$this->template->set ( 'colors', $colors);
+		$Specifications = $this->product->getProductSpecificationByVideoId($id);
+		$this->template->set ( 'specifications', $Specifications);
+		$this->template->set ( 'page', 'pro-details');
+		$this->template->set ( 'userId', '' );
+		$this->template->set_theme('default_theme');
+		$this->template->set_layout ('default')
+		->title ( 'TradeStation - Buyers' )
+		->set_partial ( 'header', 'default/floating-header' )
+		->set_partial ( 'footer', 'default/footer' );
+		$this->template->build ('product/video-details-saller');
+	}
 	public function productListByCat($catid, $scatid, $mcatid, $busi_id){
 		$map = array();
 		$map['subcat_id'] = $catid;
@@ -344,7 +414,9 @@ class Product extends MX_Controller {
 		$map['busi_id'] = $busi_id;
 		$this->load->model('Product_Model', 'product' );
 		$products = $this->product->productListByCSMCategory($map);
+		$company = $this->product->getComapnyProfile($busi_id);
 		$this->template->set ( 'productList', $products);
+		$this->template->set ( 'productCompany', $company);
 		$this->template->set ( 'page', 'product' );
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
@@ -362,7 +434,9 @@ class Product extends MX_Controller {
 		} else {
 			$products = $this->product->productListByNewArrival($map);
 		}
+		$company = $this->product->getComapnyProfile($busi_id);
 		$this->template->set ( 'productList', $products);
+		$this->template->set ( 'productCompany', $company);
 		$this->template->set ( 'page', 'product' );
 		$this->template->set ( 'userId', '' );
 		$this->template->set_theme('default_theme');
@@ -501,7 +575,7 @@ class Product extends MX_Controller {
 				$resp['status'] = 1;
 				$resp['msg'] = 'Thank you for your response';
 			} else {
-				$resp['status'] = 1;
+				$resp['status'] = 0;
 				$resp['msg'] = 'You have already like this product';
 			}
 		} else {

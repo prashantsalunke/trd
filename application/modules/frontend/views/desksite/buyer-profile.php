@@ -786,7 +786,7 @@ function stopWiggle(input) {
 			<!-- head text section -->
 			<div class="c9" style="z-index:200;text-align:left;">
 			    <span class="c10"><strong><?php echo $Desksite['company_name'];?></strong></span><br>
-			    <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['hot_presentation'], 0, 280);?> <?php if(strlen($Desksite['hot_presentation']) > 280){?>..<?php }?></span></p>
+			    <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['hot_presentation'], 0, 400);?> <?php if(strlen($Desksite['hot_presentation']) > 400){?>..<?php }?></span></p>
 			</div>
 			<!-- head text section -->
 
@@ -821,7 +821,7 @@ function stopWiggle(input) {
 			    	<div class="image d1" style="width:100%;height:100%;background-image:url(<?php echo asset_url().$Desksite['desksite_bg2']; ?>);background-size:cover;">&nbsp;</div>
 				</div>
 				<?php } else { ?>
-			    <div id="SlideShow1">
+			   <div id="SlideShow1">
 					<div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
 					<div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
 				</div>
@@ -832,23 +832,49 @@ function stopWiggle(input) {
 
         <div id="Layer88" class="leftnav">
 
-           <div id="Layer116" class="left-fixed" style="padding-top:25px;">
-           <div id="wb_Image61" class="text-center">
+          <div id="Layer116" class="left-fixed" style="padding-top:25px;">
+
+            <div id="wb_Text7" class="style-2">
+                <div id="wb_Image10" class="img-style">
+                    <?php if(!empty($Desksite['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image67" class="verified-icon" >
+                    <?php } else {?>
+                  <img src="<?php echo asset_url(); ?>images/ts/community.png" id="Image67" class="verified-icon" style="opacity :0.15" > <?php }?>
+                </div>
+
+                <div id="wb_Image2" class="img-style" style="padding-top:8px;">
+                  <?php $buyer_request = $Desksite['stock_buyer_count']+$Desksite['bstation_post_count']; ?>
+                  <?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" class="verified-icon" >
+                  <?php } else {?>
+                  <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" class="verified-icon" style="opacity :0.15" ><?php }?>
+                </div>
+                  <div id="wb_Image1" class="img-style" style="padding-top:8px;">
+                    <?php if($Desksite['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" class="verified-icon"> <?php } else { ?>
+                    <img src="<?php echo asset_url(); ?>images/trusted.png" style="opacity :0.15" id="Image67" class="verified-icon" >
+                    <?php }?>
+                  </div>
+                <div id="wb_Image1" class="img-style" style="padding-top:8px;">
+                    <?php if($Desksite['is_active'] >= 3){?><img src="<?php echo asset_url(); ?>images/Active.png" id="Image67" class="verified-icon"> 
+                    <?php } else {?>
+                  <img src="<?php echo asset_url(); ?>images/Active.png" id="Image67" class="verified-icon" style="opacity :0.15" ><?php }?>
+                  </div>
+            </div>
+
+           <!-- <div id="wb_Image61" class="text-center">
             <?php if($Desksite['is_active'] >= 1){?>
             <img src="<?php echo asset_url(); ?>images/Active.png" id="Image61" alt="Black Horse Member" class="black-horse-icon">
               <?php } else { ?>
               <img src="<?php echo asset_url(); ?>images/Active.png" id="Image61" alt="Black Horse Member" class="black-horse-icon img-disabled">
               <?php } ?>
-              </div>
+            </div>
            <div id="wb_Image67"  class="text-center">
                <a href="#" onclick="<?php if($Desksite['is_logo_verified'] > 1){?>ShowObjectWithEffect('Layer61', 1, 'slideleft', 500, 'swing');<?php } ?>return false;">
                <?php if($Desksite['is_logo_verified'] > 1){?>
-<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon">
-<?php } else { ?>
-<img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon img-disabled">
-<?php } ?>
-</a>
-</div>
+              <img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon">
+              <?php } else { ?>
+              <img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon img-disabled">
+              <?php } ?>
+              </a>
+           </div>
            <div id="wb_Image76"  class="text-center">
             <?php if(!empty($buyer['community_id'])){ ?>
                <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This Buyer is a member in your community" class="community-member-icon">
@@ -862,8 +888,13 @@ function stopWiggle(input) {
                    <?php } else { ?>
                    <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image76" style="opacity :0.15" alt="This shipper is a member in your community" class="community-member-icon img-disabled">
                    <?php } ?>
-               </div>
+               </div> -->
        </div>
+
+
+       
+
+
    </div>
 		    <!-- left navigation ends -->
 		      
