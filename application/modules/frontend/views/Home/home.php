@@ -462,7 +462,7 @@ a.style16 {
 													<img src="<?php echo asset_url().$FeaturedProduct['main_image']; ?>" class="imgresponsive" style="width:218px;height:177px;">
 													<div class="hover-thumb text-center" style="height:66% !important;width:103% !important;padding-bottom:0px;top:0px !important">
 														<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;"><!-- z-index:851;-->
-															<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>);">
+															<a href="javascript:openProduct(<?php echo $FeaturedProduct['id'];?>,'<?php echo $FeaturedProduct['name'];?>');">
 																<img src="<?php echo asset_url(); ?>images/window-layer.png" id="Image13" alt="View" onmouseover="hover(this,'window');" onmouseout="unhover(this,'window');">
 															</a>
 														</div>
@@ -495,7 +495,26 @@ a.style16 {
 
 					<div id="Layer_details" class="class1">
 					  	<div id="Layer_details_Container" class="class2">
+					  		
 					    </div>
+					</div>
+
+					<div id="start_load" style="display: none;">
+								<div id="wb_Image51" style="position:absolute;left:262px;top:8px;width:35px;height:35px;z-index:1297;">
+									<a href="#" onclick="ShowObjectWithEffect('Layer_details', 0, 'scale', 500, 'swing');ShowObjectWithEffect('Layer_details2', 0, 'scale', 500, 'swing');return false;">
+									<img src="<?php echo asset_url();?>images/close.png" id="Image51" alt="Close">
+									</a>
+								</div>
+								<div id="wb_Text161" style="position:absolute;left:27px;top:27px;width:174px;height:16px;z-index:1296;text-align:left;">
+									<span style="color:#303030;font-family:Georgia;font-size:13px;">
+									<strong id="product_name_disp">Product Name<br></strong>
+									</span>
+								</div>
+								<div id="wb_Image18" style="position:absolute;left:2px;top:0px;width:305px;height:372px;z-index:1291;background-color:white;text-align: center;">
+									<img src="<?php echo asset_url();?>images/loader.gif" style="padding-top: 185px;"/>
+								</div>
+								<div id="Layer111" style="position:absolute;text-align:left;left:0px;top:372px;width:308px;height:141px;z-index:1295;background-color: #E1E1E1">
+								</div>
 					</div>
 				</div>
 			</div>
@@ -515,9 +534,9 @@ a.style16 {
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
-					<div class="panel disk-tab">
-						<div class="panel-body mytab">
+					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;padding-left:0px !important;">
+					<div class="panel disk-tab"  style="border: 1px solid transparent">
+						<div class="panel-body mytab" style="margin-bottom:0px;"><!--  -->
 							<div id="tab-slider5" class="carousel slide" data-ride="carousel" style="height: 280px;width: 100%;border:none;">
 								<div class="carousel-inner section3" role="listbox" style="height: 315px;overflow: hidden;border:none;">
 								 
@@ -540,12 +559,12 @@ a.style16 {
 												<div id="wb_MediaPlayer1" style="width:218px;height:142px;z-index:677;" class="imgresponsive">
 													<video src="<?php echo asset_url().$FeaturedVideo['vedio_file']; ?>" id="MediaPlayer1" style="width:218px !important;height:140px;z-index:677;"></video>
 												</div>
-												<div class="hover-thumb text-center">
+												<div class="hover-thumb text-center" style="height:60% !important">
 														<div id="wb_Image13" style="position:absolute;left: 75px;top: 70px;width:35px;height:35px;"><!-- z-index:851;-->
-															<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>)"><img src="<?php echo asset_url(); ?>/images/play1.png" id="Image34" alt="" onmouseover="hover(this,'play');" onmouseout="unhover(this,'play');"></a> 
+															<a href="javascript:openVideo(<?php echo $FeaturedVideo['id'];?>,'<?php echo $FeaturedVideo['name'];?>')"><img src="<?php echo asset_url(); ?>/images/play1.png" id="Image34" alt="" onmouseover="hover(this,'play');" onmouseout="unhover(this,'play');"></a> 
 														</div>
 														<div id="RollOver37" style="position:absolute;left: 120px;top: 70px;overflow:hidden;width: 40px;height: 40px;"><!-- z-index:770;-->
-															<a href="#">
+															<a href="<?php echo base_url().'video/details/'.$FeaturedVideo['id'];?>" target="_blank">
 																<img src="<?php echo asset_url(); ?>/images/view1.png" onmouseover="hover(this,'view1');" onmouseout="unhover(this,'view1');">
 															</a>
 														</div>
@@ -560,10 +579,10 @@ a.style16 {
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider5" role="button" data-slide="prev" style="background: none;padding-top:13%;text-align:center;width:2%;"> 
+									<a class="left carousel-control" href="#tab-slider5" role="button" data-slide="prev" style="background: none;padding-top:11%;text-align:center;width:2%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider5" role="button" data-slide="next" style="background: none;padding-top:13%;text-align:center;width:2%;"> 
+									<a class="right carousel-control" href="#tab-slider5" role="button" data-slide="next" style="background: none;padding-top:11%;text-align:center;width:3%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 								</div>
@@ -574,6 +593,24 @@ a.style16 {
 					<div id="Layer_details3" class="class1">
 					  	<div id="Layer_details_Container3" class="class2">
 					    </div>
+					</div>
+					<div id="start_load_video" style="display: none;">
+								<div id="wb_Image43" class="class23">
+									<a href="#" onclick="ShowObject('Layer_details3', 0);ShowObject('Layer_details', 0);StopAudio('MediaPlayer7');return false;">
+										<img src="<?php echo asset_url(); ?>images/close.png" id="Image43" alt="">
+									</a>
+								</div>
+								<div id="wb_Text161" style="position:absolute;left:27px;top:27px;width:174px;height:16px;z-index:1296;text-align:left;">
+									<span style="color:#303030;font-family:Georgia;font-size:13px;">
+									<strong id="video_name">Product Name<br></strong>
+									</span>
+								</div>
+							
+								<div id="wb_Image18" style="position:absolute;left:2px;top:0px;width:305px;height:372px;z-index:1291;background-color:white;text-align: center;">
+									<img src="<?php echo asset_url();?>images/loader.gif" style="padding-top: 185px;"/>
+								</div>
+								<div id="Layer111" style="position:absolute;text-align:left;left:0px;top:372px;width:308px;height:141px;z-index:1295;background-color: #E1E1E1">
+								</div>
 					</div>
 				</div>
 			</div>
@@ -589,14 +626,14 @@ a.style16 {
 							</h3>
 							<div class="text-center displaydesktop">
 								<img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
-									class="img-responsive" style="height: 225px;">
+									class="img-responsive" style="height: 220px;">
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
-					<div class="panel disk-tab">
-						<div class="panel-body mytab">
-							<div id="tab-slider6" class="carousel slide" data-ride="carousel" style="height: 280px;width: 100%;border:none;">
+					<div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;padding-left:0px !important;">
+					<div class="panel disk-tab" style="border: 1px solid transparent">
+						<div class="panel-body mytab" style="margin-top: 0px;margin-bottom:8px;">
+							<div id="tab-slider6" class="carousel slide"  style="height: 280px;width: 100%;border:none;">
 								<div class="carousel-inner section3" role="listbox" style="height: 315px;overflow: hidden;border:none;">
 						<?php
 							$i=0;
@@ -605,7 +642,7 @@ a.style16 {
 								if($i%4 == 0){
 									$frame = $i; 
 										?>
-									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;padding-left: 30px;padding-right: 30px;">
+									<div class="item <?php if($i == 0){ echo "active"; } ?>" style="height:543px;border:none;padding-left: 40px;padding-right: 30px;">
 									<?php } $i++; ?>
 										<div  class="col-md-3" id="Layer140-<?php echo $key;?>" style="position: relative;" onmouseenter="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer143-<?php echo $key;?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key;?>', 0, 'fade', 10, 'swing');return false;">
 											<div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
@@ -625,7 +662,7 @@ a.style16 {
 												</div>
 												<div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:19px;z-index:505;background-color: #A9A9A9;">
 													<div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:16px;text-align:center;z-index:502;">
-														<span style="color:#000000;font-family:Arial;font-size:11px;"><?php echo $FWSeller['product_name'];?></span>
+														<span style="color:#000000;font-family:Arial;font-size:11px;"><?php echo substr($FWSeller['main_product'], 0,35);?></span>
 													</div>
 												</div>
 												<div id="wb_Shape25" style="position:absolute;left:11px;top:24px;width:35px;height:26px;z-index:506;">
@@ -651,10 +688,10 @@ a.style16 {
 									</div>
 									<?php } ?>
 									<?php }?>
-									<a class="left carousel-control" href="#tab-slider6" role="button" data-slide="prev" style="background: none;padding-top:8%;text-align:center;width:2%;"> 
+									<a class="left carousel-control" href="#tab-slider6" role="button" data-slide="prev" style="background: none;padding-top:12%;text-align:center;width:2%;"> 
 										<span><img alt="Back" style="border-width:0" src="<?php echo asset_url();?>images/previ.png"></span> 
 									</a> 
-									<a class="right carousel-control" href="#tab-slider6" role="button" data-slide="next" style="background: none;padding-top:8%;text-align:center;width:2%;"> 
+									<a class="right carousel-control" href="#tab-slider6" role="button" data-slide="next" style="background: none;padding-top:12%;text-align:center;width:3%;"> 
 										<span><img alt="Next" style="border-width:0" src="<?php echo asset_url();?>images/nex.png"></span> 
 									</a>
 							</div>
@@ -803,7 +840,7 @@ a.style16 {
 							</h3>
 							<div class="text-center displaydesktop">
 								<img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
-									class="img-responsive" style="height: 225px;">
+									class="img-responsive" style="height: 220px;">
 							</div>
 						</div>
 					</div>
@@ -1323,20 +1360,31 @@ $(document).ready(function() {
         delay: 300
     });
 });
-function openVideo(id) {
-	ajaxindicatorstart("Please wait while we load the video.");
+function openVideo(id,name) {
+	//ajaxindicatorstart("Please wait while we load the video.");
+	$("#Layer_details_Container3").html($("#start_load_video").html());
+	ShowObjectWithEffect('Layer_details3', 1, 'scale', 500, 'swing');
+	$("#video_name").html(name);
 	$.get(base_url+"seller/video/view/"+id,{},function(data) {
-		ajaxindicatorstop();
+		/*ajaxindicatorstop();
 		$("#Layer_details_Container3").html(data);
-		ShowObjectWithEffect('Layer_details3', 1, 'scale', 500, 'swing');
+		ShowObjectWithEffect('Layer_details3', 1, 'scale', 500, 'swing');*/
+		setTimeout(function(){
+			$("#Layer_details_Container3").html(data);
+		},3000);
+		
+		
 	},'html');
 }
-function openProduct(id) {
-	ajaxindicatorstart("Please wait while we load the Product.");
+function openProduct(id,name) {
+	//ajaxindicatorstart("Please wait while we load the Product.");
+	$("#Layer_details_Container").html($("#start_load").html());
+	ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
+	$("#product_name_disp").html(name);
 	$.get(base_url+"seller/product/view/"+id,{},function(data) {
-		ajaxindicatorstop();
-		$("#Layer_details_Container").html(data);
-		ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
+	setTimeout(function(){
+			$("#Layer_details_Container").html(data);
+	},3000);
 	},'html');
 }
 

@@ -741,7 +741,7 @@ class Account_Model extends CI_Model {
 	}
 	public function getFeaturedWorldSeller()
 	{
-		$this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position,i.flag,f.busi_id,a.name as product_name');
+		$this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position,i.flag,f.busi_id,a.name as product_name,(select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id) as main_product');
 		//$this->db->from(TABLES::$FEATURED_WORLD_SELLER.' as a');
 		$this->db->from(TABLES::$USER.' AS f'/*, 'b.id= f.busi_id', 'left'*/);
 		$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'f.busi_id = b.id', 'left');
