@@ -160,7 +160,7 @@ $locale = localeconv();
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
-                <div class="panel categary-detials" style="position:absolute;width: 100%;margin: auto;left: 3.1%;z-index: 1;">
+                <div class="panel categary-detials" style="position:absolute;width: 100%;margin: auto;left: 3.1%;z-index: 1;top:-10px;">
 						
 						<?php
                     $i = 1;
