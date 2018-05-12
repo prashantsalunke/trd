@@ -160,13 +160,13 @@ $locale = localeconv();
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
-                <div class="panel categary-detials" style="position:absolute;width: 100%;padding-top:60px;margin: auto;left: 3.1%;z-index: 1;">
+                <div class="panel categary-detials" style="position:absolute;width: 100%;margin: auto;left: 3.1%;z-index: 1;">
 						
 						<?php
                     $i = 1;
                     foreach ($procategories as $product) {
                         ?>
-                        <div class="panel-body panel slide-details" id="cat_slider_<?php echo $i; ?>" style="background-color: #fff;box-shadow: none !important;">
+                        <div class="panel-body panel slide-details" id="cat_slider_<?php echo $i; ?>" style="background-color: rgb(255, 255, 255); box-shadow: none ! important; padding-top: 60px; margin-left: 0px ! important; margin-right: 0px ! important;">
                             <div class="row" style="padding-bottom:50px;z-index: 200;">
 								<div class="col-md-offset-1">
 									<?php

@@ -496,7 +496,7 @@ a.style5_99:hover
                                         <div class="col-xs-12">
                                             <h2 class="text-center"  style="line-height:0.7;"><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">TRADE</span><br>
                                                 <b style="color:#F05235;"><span style="color:#FA5C43;font-family:Impact;font-size:20px;letter-spacing:0.07px;">STATION</span></b></h2>
-                                            <p class="text-center termpolicy">Press next to Agree & Accept our<a href="javascript:termscondition();" > Terms of use & Privacy policy.</a></p>
+                                            <p class="text-center termpolicy" style="font-size:10pt !important;text-indent:14px !important;">Press next to Agree & Accept our<a href="javascript:termscondition();" > Terms of use & Privacy policy.</a></p>
                                         </div>
                                         <div class="col-xs-12 col-sm-4 col-sm-offset-3 text-center"><input type="button" id="Button2" onclick="registerStepOne();" value="Next" style="color:white;width:182px;height:31px;background-image:none;"></div>
                                     </div>
