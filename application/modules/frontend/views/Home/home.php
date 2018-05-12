@@ -1059,232 +1059,216 @@ foreach ($FWBuyers as $key => $FWBuyer) {
 <script src="<?php echo asset_url(); ?>js/slick.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
-                                                                                                                    function hover(element, type) {
-                                                                                                                        if (type == 'cart') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/cart-hover.png');
-                                                                                                                        } else if (type == 'favorite') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/favorite-hover.png');
-                                                                                                                        } else if (type == 'same') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/same-hover.png');
-                                                                                                                        } else if (type == 'view') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover.png');
-                                                                                                                        } else if (type == 'desksite') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-hover.png');
-                                                                                                                        } else if (type == 'vcat') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/vcat-hover.png');
-                                                                                                                        } else if (type == 'window') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/window-layer-hover.png');
-                                                                                                                        } else if (type == 'desksite1') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-hover1.png');
-                                                                                                                        } else if (type == 'play') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/play-hover.png');
-                                                                                                                        } else if (type == 'view1') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover1.png');
-                                                                                                                        } else if (type == 'buyer_desksite') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/buyer-desksite-hover.png');
-                                                                                                                        } else if (type == 'view2') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover2.png');
-                                                                                                                        }
+     function hover(element, type) {
+        if (type == 'cart') {
+        	element.setAttribute('src', '<?php echo asset_url(); ?>images/cart-hover.png');
+        } else if (type == 'favorite') {
+        	element.setAttribute('src', '<?php echo asset_url(); ?>images/favorite-hover.png');
+        } else if (type == 'same') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/same-hover.png');
+        } else if (type == 'view') {
+         	element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover.png');
+        } else if (type == 'desksite') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-hover.png');
+        } else if (type == 'vcat') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/vcat-hover.png');
+        } else if (type == 'window') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/window-layer-hover.png');
+        } else if (type == 'desksite1') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-hover1.png');
+        } else if (type == 'play') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/play-hover.png');
+        } else if (type == 'view1') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover1.png');
+        } else if (type == 'buyer_desksite') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/buyer-desksite-hover.png');
+        } else if (type == 'view2') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/view-hover2.png');
+        }
+	}
 
-                                                                                                                    }
+    function unhover(element, type) {
+        if (type == 'cart') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/cart.png');
+        }else if (type == 'favorite') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/favorite.png');
+        } else if (type == 'same') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/same.png');
+        } else if (type == 'view') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/view2.png');
+        } else if (type == 'desksite') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-icon.png');
+        } else if (type == 'vcat') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/vcat.png');
+        } else if (type == 'window') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/window-layer.png');
+        } else if (type == 'view1') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/view1.png');
+        } else if (type == 'desksite1') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite1.png');
+        } else if (type == 'play') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/play1.png');
+        } else if (type == 'buyer_desksite') {
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/buyer-desksite1.png');
+        }
+    }
 
-                                                                                                                    function unhover(element, type) {
-                                                                                                                        if (type == 'cart') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/cart.png');
-                                                                                                                        }
-                                                                                                                        else if (type == 'favorite') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/favorite.png');
-                                                                                                                        } else if (type == 'same') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/same.png');
-                                                                                                                        } else if (type == 'view') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/view2.png');
-                                                                                                                        } else if (type == 'desksite') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-icon.png');
-                                                                                                                        } else if (type == 'vcat') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/vcat.png');
-                                                                                                                        } else if (type == 'window') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/window-layer.png');
-                                                                                                                        } else if (type == 'view1') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/view1.png');
-                                                                                                                        } else if (type == 'desksite1') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite1.png');
-                                                                                                                        } else if (type == 'play') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/play1.png');
-                                                                                                                        } else if (type == 'buyer_desksite') {
-                                                                                                                            element.setAttribute('src', '<?php echo asset_url(); ?>images/buyer-desksite1.png');
-                                                                                                                        }
-                                                                                                                    }
-                                                                                                                    var template = {
-                                                                                                                        html: 'application/modules/frontend/views/default/default-book-view.html',
-                                                                                                                        styles: [
-                                                                                                                            '<?php echo asset_url(); ?>css/font-awesome.min.css',
-                                                                                                                            '<?php echo asset_url(); ?>css/short-white-book-view.css'
-                                                                                                                        ],
-                                                                                                                        script: '<?php echo asset_url(); ?>js/default-book-view.js'
-                                                                                                                    };
+   	var template = {
+                    html: 'application/modules/frontend/views/default/default-book-view.html',
+                    styles: [
+                               	'<?php echo asset_url(); ?>css/font-awesome.min.css',
+                              	'<?php echo asset_url(); ?>css/short-white-book-view.css'
+                            ],
+                    script: '<?php echo asset_url(); ?>js/default-book-view.js'
+                    };
 
-                                                                                                                    var booksOptions = {
-                                                                                                                        pageCallback: orwell1984PageCallback,
-                                                                                                                        pages: 10,
-                                                                                                                        propertiesCallback: function (props) {
-                                                                                                                            props.page.depth /= 2;
-                                                                                                                            props.cover.padding = 0.002;
-                                                                                                                            return props;
-                                                                                                                        },
-                                                                                                                        template: template
-                                                                                                                    };
+    var booksOptions = {
+                       	pageCallback: orwell1984PageCallback,
+                        pages: 10,
+                        propertiesCallback: function (props) {
+                            props.page.depth /= 2;
+                            props.cover.padding = 0.002;
+                            return props;
+                        },
+                   		template: template
+                        };
 
 
-                                                                                                                    function orwell1984PageCallback(n) {
-                                                                                                                        return {
-                                                                                                                            type: 'html',
-                                                                                                                            //src: 'books/html/1984/'+(n+1)+'.html',
-                                                                                                                            src: base_url + "catalogue/pages/" + catalogue_id + "/" + (n + 1),
-                                                                                                                            interactive: true
-                                                                                                                        };
-                                                                                                                    }
+    function orwell1984PageCallback(n) {
+        return {
+                type: 'html',
+                //src: 'books/html/1984/'+(n+1)+'.html',
+                src: base_url + "catalogue/pages/" + catalogue_id + "/" + (n + 1),
+                interactive: true
+                };
+    }
 
-                                                                                                                    $(document).on('ready', function () {
-                                                                                                                        $(".center").slick({
-                                                                                                                            infinite: false,
-                                                                                                                            speed: 300,
-                                                                                                                            slidesToShow: 4,
-                                                                                                                            slidesToScroll: 4,
-                                                                                                                            responsive: [
-                                                                                                                                {
-                                                                                                                                    breakpoint: 1024,
-                                                                                                                                    settings: {
-                                                                                                                                        slidesToShow: 3,
-                                                                                                                                        slidesToScroll: 3,
-                                                                                                                                        infinite: true,
-                                                                                                                                    }
-                                                                                                                                },
-                                                                                                                                {
-                                                                                                                                    breakpoint: 600,
-                                                                                                                                    settings: {
-                                                                                                                                        slidesToShow: 2,
-                                                                                                                                        slidesToScroll: 2
-                                                                                                                                    }
-                                                                                                                                },
-                                                                                                                                {
-                                                                                                                                    breakpoint: 480,
-                                                                                                                                    settings: {
-                                                                                                                                        slidesToShow: 1,
-                                                                                                                                        slidesToScroll: 1
-                                                                                                                                    }
-                                                                                                                                }
-                                                                                                                            ]
-                                                                                                                        });
-                                                                                                                    });
+    $(document).on('ready', function () {
+	    $(".center").slick({
+	        infinite: false,
+	        speed: 300,
+	        slidesToShow: 4,
+	        slidesToScroll: 4,
+	        responsive: [
+		        {
+		            breakpoint: 1024,
+		            settings: {
+		                        slidesToShow: 3,
+		                        slidesToScroll: 3,
+		                        infinite: true,
+		                      }
+		         },
+		         {
+		            breakpoint: 600,
+		            settings: {
+		                        slidesToShow: 2,
+		                        slidesToScroll: 2
+		                      }
+		        },
+		        {
+		            breakpoint: 480,
+		            settings: {
+		                       slidesToShow: 1,
+		                       slidesToScroll: 1
+		            }
+		        }
+	        ]
+	    });
+	});
 
-                                                                                                                    $(document).ready(function () {
-                                                                                                                        var boxWidth = $(".open-div1").width();
-                                                                                                                        $(".menu-arrow").click(function () {
-                                                                                                                            $(".reminder-div").animate({
-                                                                                                                                width: boxWidth
-                                                                                                                            });
-                                                                                                                            $(".menu-arrow").hide();
-                                                                                                                            $(".menu-arrow2").show();
-                                                                                                                            $(".myalert").show();
-                                                                                                                        });
-                                                                                                                        $(".menu-arrow2").click(function () {
-                                                                                                                            $(".reminder-div").animate({
-                                                                                                                                width: 60
-                                                                                                                            });
-                                                                                                                            $(".menu-arrow").show();
-                                                                                                                            $(".menu-arrow2").hide();
-                                                                                                                            $(".myalert").hide();
-                                                                                                                        });
-                                                                                                                    });
+    $(document).ready(function () {
+        var boxWidth = $(".open-div1").width();
+        $(".menu-arrow").click(function () {
+            $(".reminder-div").animate({
+                width: boxWidth
+            });
+      		$(".menu-arrow").hide();
+        	$(".menu-arrow2").show();
+        	$(".myalert").show();
+    	});
+    	$(".menu-arrow2").click(function () {
+    		$(".reminder-div").animate({
+                width: 60
+            });
+            $(".menu-arrow").show();
+            $(".menu-arrow2").hide();
+            $(".myalert").hide();
+        });
+    });
 
-                                                                                                                    $("div.product-text").text(function (index, currentText) {
-                                                                                                                        return currentText.substr(0, 30);
-                                                                                                                    });
+    $("div.product-text").text(function (index, currentText) {
+      	return currentText.substr(0, 30);
+    });
+	
+	var catalogue_id = 0;
+    function viewCatalogueBook(id){
+        $.get(base_url + "catalogue/popup/" + id, {}, function (data) {
+            catalogue_id = id;
+            //$("#catalogue_page_content_inner").html(data);
+         	//$("#pcatalogue_id").val(id);
+            $("#catalogue_page_content").html(data);
+            $("#vcatalogue_overlay_home").modal('show');
+            var instance = {
+                scene: undefined,
+                options: undefined,
+                node: $('#flip-book-window').find('.mount-node')
+            };
 
-                                                                                                                    // Added by suraj for open popup box
-                                                                                                                    /*function openVideo(id) {
-                                                                                                                     $.get(base_url+"seller/video/view/"+id,{},function(data) {
-                                                                                                                     $("#Layer_details_Container").html(data);
-                                                                                                                     ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
-                                                                                                                     },'html');
-                                                                                                                     }*/
-                                                                                                                    /*function openProduct(id) {
-                                                                                                                     $.get(base_url+"seller/product/view/"+id,{},function(data) {
-                                                                                                                     $("#Layer_details_Container").html(data);
-                                                                                                                     ShowObjectWithEffect('Layer_details', 1, 'scale', 500, 'swing');
-                                                                                                                     },'html');
-                                                                                                                     }*/
-                                                                                                                    var catalogue_id = 0;
-                                                                                                                    function viewCatalogueBook(id)
-                                                                                                                    {
-                                                                                                                        $.get(base_url + "catalogue/popup/" + id, {}, function (data) {
-                                                                                                                            catalogue_id = id;
-                                                                                                                            //$("#catalogue_page_content_inner").html(data);
-                                                                                                                            //$("#pcatalogue_id").val(id);
-                                                                                                                            $("#catalogue_page_content").html(data);
-                                                                                                                            $("#vcatalogue_overlay_home").modal('show');
-                                                                                                                            var instance = {
-                                                                                                                                scene: undefined,
-                                                                                                                                options: undefined,
-                                                                                                                                node: $('#flip-book-window').find('.mount-node')
-                                                                                                                            };
-
-                                                                                                                            instance.options = booksOptions;
-                                                                                                                            instance.scene = instance.node.FlipBook(instance.options);
-                                                                                                                            var shareIt = '<ul class="share pull-right text-center">'
-                                                                                                                                    + '<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv' + data.id + '">' + data.views + '</span></label></li>'
-                                                                                                                                    + '<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv' + data.id + '">' + data.likes + '<span></label></li>'
-                                                                                                                                    + '</ul>'
-                                                                                                                                    + '<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;" onclick="chat_with(' + data.user_id + ');">'
-                                                                                                                                    + '<a>'
-                                                                                                                                    + '<img class="hover" src="<?php echo asset_url() ?>images/chatwhite.png" alt="view">'
-                                                                                                                                    + '<span><img alt="View" src="<?php echo asset_url() ?>images/chat_button2.png"></span>'
-                                                                                                                                    + '</a>'
-                                                                                                                                    + '</div>'
-                                                                                                                                    + '<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 290px;width:35px;height:35px;z-index:380;">'
-                                                                                                                                    + '<a href="javascript:likeCatalogue(' + data.id + ');">'
-                                                                                                                                    + '<img class="hover" src="<?php echo asset_url() ?>images/items_likewhite.png" alt="view">'
-                                                                                                                                    + '<span><img alt="View" src="<?php echo asset_url() ?>images/items_like2.png"></span>'
-                                                                                                                                    + '</a>'
-                                                                                                                                    + '</div>'
-                                                                                                                                    + '<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 335px;width:35px;height:35px;z-index:380;">'
-                                                                                                                                    + '<a href="javascript:addToMyFavourite(' + data.busi_id + ',7);">'
-                                                                                                                                    + '<img class="hover" src="<?php echo asset_url() ?>images/addtofav.png" alt="view">'
-                                                                                                                                    + '<span><img alt="View" src="<?php echo asset_url() ?>images/favorite_chery.gif"></span>'
-                                                                                                                                    + '</a>'
-                                                                                                                                    + '</div>';
-                                                                                                                            $("#share_it").html(shareIt);
-                                                                                                                        });
-
-                                                                                                                    }
-                                                                                                                    function openCatalogue(id) {
-                                                                                                                        //alert('hello');
-                                                                                                                        $.get(base_url + "catalogue/popup/" + id, {}, function (data) {
-                                                                                                                            $("#Layer_catalogue_Container").html(data);
-                                                                                                                            ShowObjectWithEffect('Layer_catalogue', 1, 'scale', 500, 'swing');
-                                                                                                                        }, 'html');
-                                                                                                                    }
-                                                                                                                    function openSeller(id) {
-                                                                                                                        $.get(base_url + "seller/popup/" + id, {}, function (data) {
-                                                                                                                            $("#Layer_details_Container4").html(data);
-                                                                                                                            ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
-                                                                                                                        }, 'html');
-                                                                                                                    }
-                                                                                                                    function openBuyer(id) {
-                                                                                                                        $.get(base_url + "buyer/popup/" + id, {}, function (data) {
-                                                                                                                            $("#Layer_details_Container5").html(data);
-                                                                                                                            ShowObjectWithEffect('Layer_buyers', 1, 'scale', 500, 'swing');
-                                                                                                                        }, 'html');
-                                                                                                                    }
-                                                                                                                    function open3DProduct(id) {
-                                                                                                                        ajaxindicatorstart("Please wait while we load 3D Product.");
-                                                                                                                        $.get(base_url + "mystation/3dpro/show/" + id, {}, function (data) {
-                                                                                                                            ajaxindicatorstop();
-                                                                                                                            $("#promodal").html(data);
-                                                                                                                            $("#my3DModal").modal('show');
-                                                                                                                            init3D('my3dimg');
-                                                                                                                        }, 'html');
-                                                                                                                    }
+      		instance.options = booksOptions;
+            instance.scene = instance.node.FlipBook(instance.options);
+            var shareIt = '<ul class="share pull-right text-center">'
+		      + '<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#24A7DB;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Views<br> <span id="vdiv' + data.id + '">' + data.views + '</span></label></li>'
+		      + '<li class="share-button"><label style="width:70px;height:70px;border-radius:50%;border:1px solid #fff;background-color:#32AA2B;color:#fff;text-align:center;line-height:15px;padding-top:20px;">Likes<br> <span id="sdiv' + data.id + '">' + data.likes + '<span></label></li>'
+		      + '</ul>'
+		      + '<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 245px;width:35px;height:35px;z-index:380;" onclick="chat_with(' + data.user_id + ');">'
+		      + '<a>'
+		      + '<img class="hover" src="<?php echo asset_url() ?>images/chatwhite.png" alt="view">'
+		      + '<span><img alt="View" src="<?php echo asset_url() ?>images/chat_button2.png"></span>'
+		      + '</a>'
+		      + '</div>'
+		      + '<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 290px;width:35px;height:35px;z-index:380;">'
+		      + '<a href="javascript:likeCatalogue(' + data.id + ');">'
+		      + '<img class="hover" src="<?php echo asset_url() ?>images/items_likewhite.png" alt="view">'
+		      + '<span><img alt="View" src="<?php echo asset_url() ?>images/items_like2.png"></span>'
+		      + '</a>'
+		      + '</div>'
+		      + '<div id="RollOver5" class="" style="position:absolute;left: 30px;top: 335px;width:35px;height:35px;z-index:380;">'
+		      + '<a href="javascript:addToMyFavourite(' + data.busi_id + ',7);">'
+		      + '<img class="hover" src="<?php echo asset_url() ?>images/addtofav.png" alt="view">'
+		      + '<span><img alt="View" src="<?php echo asset_url() ?>images/favorite_chery.gif"></span>'
+		      + '</a>'
+		      + '</div>';
+		      $("#share_it").html(shareIt);
+		      });
+	}
+    function openCatalogue(id) {
+                                
+        $.get(base_url + "catalogue/popup/" + id, {}, function (data) {
+            $("#Layer_catalogue_Container").html(data);
+            ShowObjectWithEffect('Layer_catalogue', 1, 'scale', 500, 'swing');
+       	}, 'html');
+    }
+    function openSeller(id) {
+        $.get(base_url + "seller/popup/" + id, {}, function (data) {
+            $("#Layer_details_Container4").html(data);
+            ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
+        }, 'html');
+    }
+    function openBuyer(id) {
+        $.get(base_url + "buyer/popup/" + id, {}, function (data) {
+      		$("#Layer_details_Container5").html(data);
+            ShowObjectWithEffect('Layer_buyers', 1, 'scale', 500, 'swing');
+        }, 'html');
+    }
+    function open3DProduct(id) {
+        ajaxindicatorstart("Please wait while we load 3D Product.");
+        $.get(base_url + "mystation/3dpro/show/" + id, {}, function (data) {
+            ajaxindicatorstop();
+            $("#promodal").html(data);
+            $("#my3DModal").modal('show');
+            init3D('my3dimg');
+        }, 'html');
+    }
 </script>
 <script>
     $(document).ready(function () {
@@ -1518,6 +1502,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
         $(".slide-details").hide();
         stayOpen.removeClass('show');
     });
+
 function openVideo(id,name) {
 	//ajaxindicatorstart("Please wait while we load the video.");
 	$("#Layer_details_Container3").html($("#start_load_video").html());
