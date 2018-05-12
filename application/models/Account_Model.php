@@ -658,9 +658,18 @@ class Account_Model extends CI_Model {
 		$row = $query->result_array();
 		return $row;
 	}
+        public function getProductSubCategories()
+	{
+		$this->db->select('*');
+		$this->db->from(TABLES::$PRODUCT_SUB_CATEGORY);
+		$this->db->order_by ( "name", "asc" );
+		$query = $this->db->get();
+		$row = $query->result_array();
+		return $row;
+	}
 	public function getDesksites()
 	{
-		$this->db->select('a.*, b.desksite_bg1, b.desksite_bg2, c.company_introduction,CONCAT(p.name) as product_name,CONCAT(s.name) as shipper_service_name,f.user_category_id,l.id as community_id,');
+		$this->db->select('a.*, b.desksite_bg1, b.desksite_bg2, c.company_introduction,CONCAT(p.name) as product_name,CONCAT(s.name) as shipper_service_name,f.user_category_id,l.id as community_id,(select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=a.id) as main_product');
 		$this->db->from(TABLES::$BUSINESS_INFO.' as a');
 		$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' as b', 'a.id = b.busi_id', 'left');
 		$this->db->join(TABLES::$COMPANY_INFO.' as c', 'a.id = c.busi_id', 'left');
@@ -668,6 +677,7 @@ class Account_Model extends CI_Model {
 		$this->db->join(TABLES::$SHIPPER_SERVICES.' as s', 'a.id = s.busi_id', 'left');
 		$this->db->join(TABLES::$USER.' AS f', 'a.id= f.busi_id', 'left');
 		$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','a.id = l.busi_id ','left');
+		$this->db->group_by('a.id');
 		$this->db->order_by('a.plan_id',"desc");
 		$this->db->limit(12);
 		$query = $this->db->get();
@@ -676,14 +686,15 @@ class Account_Model extends CI_Model {
 	}
 	public function get3DProducts()
 	{
-		$this->db->select('a.*, b.name,b.unit_price,b.model_no,b.quantity,b.unit,b.main_image,b.about,b.description,c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank,i.image');
+		$this->db->select('a.*, b.name,b.unit_price,b.model_no,b.quantity,b.unit,b.main_image,b.about,b.description,c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank,i.image,l.id as community_id');
 		$this->db->from(TABLES::$MY_3DPRODUCT.' as a');
 		$this->db->join(TABLES::$PRODUCT_3DPRODUCT.' as i','a.id = i.product_item_id', 'left');
 		//$this->db->from(TABLES::$FEATURED_3DPRODUCT.' as a');
 		$this->db->join(TABLES::$PRODUCT_ITEM.' as b', 'b.id = a.product_id', 'left');
 		$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = a.busi_id', 'left');
+		$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','c.id = l.busi_id ','left');
 		$this->db->where('c.plan_id !=', 1);
-		$this->db->group_by('a.id');
+		$this->db->group_by('a.busi_id');
 		$this->db->order_by('c.plan_id',"desc");
 		$this->db->limit(12);
 		$query = $this->db->get();
@@ -692,12 +703,14 @@ class Account_Model extends CI_Model {
 	}
 	public function getVCatalogue()
 	{
-		$this->db->select('b.*,  c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank ');
+		$this->db->select('b.*,  c.company_name , c.company_country , c.company_province, c.gaurantee_period, c.plan_id, c.is_logo_verified, c.rank, l.id as community_id');
 		//$this->db->from(TABLES::$FEATURED_CATALOGUE.' as a');
 		$this->db->from(TABLES::$PRODUCT_CATALOGUE.' as b'/* , 'b.id = a.catalogue_id', 'left'*/);
 		$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = b.busi_id', 'left');
+		$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','c.id = l.busi_id ','left');
 		$this->db->where('b.status', 1);
 		$this->db->where('c.plan_id !=', 1);
+		$this->db->group_by('b.busi_id');
 		$this->db->order_by('c.plan_id',"desc");
 		$this->db->limit(12);
 		$query = $this->db->get();
@@ -737,7 +750,7 @@ class Account_Model extends CI_Model {
 	}
 	public function getFeaturedWorldSeller()
 	{
-		$this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position,i.flag,f.busi_id,a.name as product_name');
+		$this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position,i.flag,f.busi_id,a.name as product_name,(select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id) as main_product');
 		//$this->db->from(TABLES::$FEATURED_WORLD_SELLER.' as a');
 		$this->db->from(TABLES::$USER.' AS f'/*, 'b.id= f.busi_id', 'left'*/);
 		$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'f.busi_id = b.id', 'left');

@@ -301,7 +301,7 @@ position:absolute;left:10px;top:63px;width:190px;height:155px;z-index:174;
 .fs14{
 	
     background: #1E90FF;
-	position: relative; text-align: left; /*visibility: visible;*/ left: 0px; /*top: 173px;*/ width: 212px; height: 39px; z-index: 152; display: none;
+	position: relative; text-align: left; /*visibility: visible;*/ left: 0px; top: -75px; width: 212px; height: 39px; z-index: 152; display: none;
 }
 .fs15{
 	position:absolute;left:59px;top:2px;width:35px;height:35px;z-index:115;

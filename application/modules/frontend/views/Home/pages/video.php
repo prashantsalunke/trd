@@ -23,25 +23,46 @@ foreach($videodetail as $videoBox) {?>
 	<div id="wb_Text67" class="class13">
 		<span class="class14"><?php ?>&nbsp;&nbsp; </span>
 	</div>
-	<div id="wb_Text90" class="class15">
+	<!--<div id="wb_Text90" class="class15">
 		<span class="class16"><?php echo $videoBox['plan']; ?> </span>
-	</div>
+	</div>-->
 	<div id="wb_Text91" class="class17">
 		<span class="class18"><?php echo $videoBox['company_name']; ?> </span>
 	</div>
 	<div id="wb_Text92" class="class19">
 		<span class="class20"><?php echo substr($videoBox['description'], '0', '200');?><br>
 		</span>
-	</div>
-	<div id="wb_Image20" class="class21">
-		<?php if($videoBox['is_logo_verified'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" > <?php }?>
+	<div id="wb_Image20" class="class21" style="left: 40px;top:125px;">
+		<?php if(!empty($videoBox['community_id']) && $videoBox['community_id'] != ""){?>
+					<img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image1" style="width:26px;height:26px;">
+				<?php }else { ?>
+					<img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image1" style="opacity: 0.15;width:26px;height:26px;">
+				<?php } ?>
 		
 	</div>
-	<div id="wb_Image21" class="class22">
-		 <?php if($videoBox['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" > <?php }?>
+	<div id="wb_Image20" class="class21" style="left:130px;top:120px;">
+		<?php if($videoBox['is_logo_verified'] !=''){?>
+					<img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" >
+				<?php }else { ?>
+					<img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="opacity: 0.15;">
+				<?php } ?>
+		
 	</div>
-</div>
-<div id="wb_Image43" class="class23">
+	<div id="wb_Image21" class="class22" style="left:80px;top:120px;">
+		 <?php if($videoBox['gaurantee_period'] !=''){?>
+					<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1">
+		<?php }else { ?>
+					<img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  id="Image1" style="opacity: 0.15;">
+		<?php } ?>
+	</div>
+	<div id="wb_Image84"  class="class22" style="position:absolute;left:181px;top:120px;width:30px;height:30px;z-index:1148;"">
+		<?php if($videoBox['plan_id'] > 1){?>
+			<img src="<?php echo asset_url(); ?>images/member-logo.png" id="Image1" ></div>
+		<?php }else { ?>
+			<img src="<?php echo asset_url(); ?>images/member-logo.png" id="Image1" style="opacity: 0.15;"></div>
+		<?php } ?>
+	</div>
+<div id="wb_Image43" class="class23" style="left:284px;top:-335px">
 	<a href="#" onclick="ShowObject('Layer_details3', 0);ShowObject('Layer_details', 0);StopAudio('MediaPlayer7');return false;">
 		<img src="<?php echo asset_url(); ?>images/close.png" id="Image43" alt="">
 	</a>

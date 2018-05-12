@@ -357,7 +357,7 @@
 	     	<h4 class="center"> No Product Found!</h4>
 	     </div>
      <?php }  ?>
-     <?php if($total_pages > 1) { ?>
+     <?php if(isset($total_pages) && $total_pages > 1) { ?>
 	     	<div class="row" style="margin:0px;">
 				<div id="wb_Text396" style="text-align:center;height:31px;padding:7px;padding-right:0px;background-color:#FF8C00;" class="col-sm-1">
 					<span style="color:#FFFFFF;font-family:Georgia;font-size:12px;">Page&nbsp;&nbsp; </span>
@@ -511,7 +511,7 @@
 	                                        <a href="javascript:openVideo(<?php echo $featuredVideo['id'];?>)"><img src="<?php echo asset_url(); ?>images/play.png" id="Image33" alt="" width="35px" height="35px"></a>
 	                                    </div>
 	                                    <div id="wb_Image34" class="fs16">
-	                                        <a href="./video_details.php" target="_blank"><img src="<?php echo asset_url(); ?>images/view2.png" id="Image34" alt="" width="35px" height="35px"></a>
+	                                        <a href="./video/details/<?php echo $featuredVideo['id'];?>" target="_blank"><img src="<?php echo asset_url(); ?>images/view2.png" id="Image34" alt="" width="35px" height="35px"></a>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -551,7 +551,7 @@
 										?>
                         			<div class="frame">
                         			<?php } $i++; ?>
-			                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
+			                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1<?php echo $i; ?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1<?php echo $i; ?>', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
 			                                <div id="wb_Image226" style="position: relative;" >
 			                                	<?php if ($featuredSeller['picture'] != "" && file_exists("assets/".$featuredSeller['picture'])){ ?>
 			                                    	<img src="<?php echo asset_url().''.$featuredSeller['picture']; ?>" id="Image226" alt=""  class="style86" style="width:210px;height:246px;">
@@ -577,12 +577,12 @@
 			                                    </div>
 			                                </div>
 			                                
-			                                <div id="Buyer_holder2" class="style22">
+			                                <div id="Buyer_Holder1<?php echo $i; ?>" class="style22">
 			                                    <div id="wb_Image521" class="style23">
-			                                        <a href="#" onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
+			                                        <a href="javascript:openSeller(<?php echo $featuredSeller['id']; ?>);" ><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
 			                                    </div>
 			                                    <div id="RollOver12" class="style24">
-			                                        <a href="./buyer_profile.php" target="_blank">
+			                                        <a href="./desksite/<?php echo $featuredSeller['busi_id'];?>" target="_blank">
 			                                            <img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
 			                                            <span><img alt="" src="<?php echo asset_url(); ?>images/desktopblack.png"></span>
 			                                        </a>
@@ -603,6 +603,10 @@
 			            </div>
 			        </div>        
     			</div>
+    			<div id="Layer_sellers" class="class1">
+				        <div id="Layer_details_Container4" class="class2">
+				        </div>
+				    </div>
 		</div>
 	</div>
 	<div id="Layer_details" class="class1">
@@ -834,6 +838,12 @@ function openProduct(id) {
 		ShowObjectWithEffect('Layer_details2', 1, 'scale', 500, 'swing');
 	},'html');
 }
+function openSeller(id) {
+		$.get(base_url+"seller/popup/"+id,{},function(data) {
+			$("#Layer_details_Container4").html(data);
+			ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
+		},'html');
+}
 function showVerifiedFirst() {
 	$.get(base_url+"product/verified/",{},function(data) {
 		$(".products-list").html(data);
@@ -878,5 +888,42 @@ function showRelatedImages(product_id,layer) {
 		});
 	},'html');
 }
+var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
+    $(document).on('mouseenter', '.cat_slide', function () {
+        clearTimeout(hoverTimeout);
+        var curr_slide = $(this).attr("alt");
+        $(".sub_cat").css('color', '#337ab7');
+        $(".slide-details").hide();
+        $("#" + curr_slide).show();
+        $("." + curr_slide).show();
+        stayOpen.addClass('show');
+    }).on('mouseleave', '.slide', function () {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(function () {
+            if (!keepOpen) {
+                $(".slide-details").hide();
+                stayOpen.removeClass('show');
+            }
+        }, 1000);
+    });
 
+    $(document).on('mouseenter', '#Details', function () {
+        keepOpen = true;
+        setTimeout(function () {
+            keepOpen = false;
+        }, 1500);
+    }).on('mouseleave', '#Details', function () {
+        keepOpen = false;
+        $(".slide-details").hide();
+        stayOpen.removeClass('show');
+    });
+    function highlight_keywords(str) {
+        $(".sub_cat").css('color', '#337ab7');
+        $("." + str).css('color', 'orange');
+    }
+    function filter_by_subcat(cat_id,cat_sub_id){
+        $("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $( "#filter_by_category" ).submit();
+    }
 </script>
