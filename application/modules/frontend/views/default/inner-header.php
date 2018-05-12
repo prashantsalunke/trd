@@ -541,7 +541,7 @@ ul.hover-red-menu li.open a.firstmain{
                         <p style="color:#fff;padding: 0 70px;"><span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Get started, Join free, Add a unique value to your business, discover a new vision of e-commerce and much more..!</span></p>
                         <h4 class="modal-title" id="myModalLabel" style="color:#fff;"><span style="color:#FFFFFF;font-family:'Arial';font-size:17px; font-weight:bolder;">SOCIAL B2B COMMUNITY</span></h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" style="padding:15px !important;">
                         <div class="panel">
                             <div class="panel-body">
                                 <form action="#" method="post" >
@@ -624,12 +624,12 @@ ul.hover-red-menu li.open a.firstmain{
                                                 </div>
                                                 <div class="col-xs-4 col-sm-5">
                                                     <select class="form-control input-box" id="seller">
-                                                   	 <option value="0">Business type</option>
-                                                    	                                                        	<option value=1>Manufacturer</option>
-                                                                                                                	<option value=2>Supplier</option>
-                                                                                                                	<option value=3>Trading company</option>
-                                                                                                                	<option value=4>Product/Brand Agent</option>
-                                                                                                            </select>
+														<option value="0">Business type</option>
+														<option value=1>Manufacturer</option>
+														<option value=2>Supplier</option>
+														<option value=3>Trading company</option>
+														<option value=4>Product/Brand Agent</option>
+													</select>
                                                 </div>
                                                 <div class="col-xs-2 col-sm-1 text-center" style="vertical-align:middle;display: none;"><img src="assets/images/ts/tick-octagon-frame.png"></div>
                                             </div>
@@ -676,9 +676,9 @@ ul.hover-red-menu li.open a.firstmain{
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <h2 class="text-center"  style="line-height:0.7;"><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">TRADE</span><br>
-                                                <b style="color:#F05235;"><span style="color:#FA5C43;font-family:Impact;font-size:20px;letter-spacing:0.07px;">STATION</span></b></h2>
-                                            <p class="text-center termpolicy">Press next to Agree & Accept our<a href="javascript:termscondition(1);"> Terms of use & Privacy policy.</a></p>
+                                            <!--<h2 class="text-center"  style="line-height:0.7;"><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">TRADE</span><br>
+                                                <b style="color:#F05235;"><span style="color:#FA5C43;font-family:Impact;font-size:20px;letter-spacing:0.07px;">STATION</span></b></h2>-->
+                                            <p class="text-center termpolicy" style="font-size:10pt !important;text-indent:14px !important;">Press next to Agree & Accept our<a href="javascript:termscondition(1);"> Terms of use & Privacy policy.</a></p>
                                         </div>
                                         <div class="col-xs-12 col-sm-4 col-sm-offset-3 text-center"><input type="button" id="Button2" onclick="registerStepOne();" value="Next" style="color:white;width:182px;height:31px;background-image:none;"></div>
                                     </div>
@@ -880,21 +880,21 @@ ul.hover-red-menu li.open a.firstmain{
                                     <a href="javascript:void(0)" onclick="highlight_keywords('h');" class="btn btn-default">H</a>
                                     <a href="javascript:void(0)" onclick="highlight_keywords('i');" class="btn btn-default">I</a>
                                     <a href="javascript:void(0)" onclick="highlight_keywords('j');" class="btn btn-default">J</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('k');"class="btn btn-default">K</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('l');"class="btn btn-default">L</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('m');"class="btn btn-default">M</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('n');"class="btn btn-default">N</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('o');"class="btn btn-default">O</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('p');"class="btn btn-default">P</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('q');"class="btn btn-default">Q</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('r');"class="btn btn-default">R</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('s');"class="btn btn-default">S</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('t');"class="btn btn-default">T</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('u');"class="btn btn-default">U</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('v');"class="btn btn-default">V</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('w');"class="btn btn-default">W</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('x');"class="btn btn-default">X</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('y');"class="btn btn-default">Y</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('k');" class="btn btn-default">K</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('l');" class="btn btn-default">L</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('m');" class="btn btn-default">M</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('n');" class="btn btn-default">N</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('o');" class="btn btn-default">O</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('p');" class="btn btn-default">P</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('q');" class="btn btn-default">Q</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('r');" class="btn btn-default">R</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('s');" class="btn btn-default">S</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('t');" class="btn btn-default">T</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('u');" class="btn btn-default">U</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('v');" class="btn btn-default">V</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('w');" class="btn btn-default">W</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('x');" class="btn btn-default">X</a>
+                                    <a href="javascript:void(0)" onclick="highlight_keywords('y');" class="btn btn-default">Y</a>
                                     <a href="javascript:void(0)" onclick="highlight_keywords('z');" class="btn btn-default">Z</a>
                                 </div>
                             </div>
@@ -1117,8 +1117,8 @@ ul.hover-red-menu li.open a.firstmain{
                     </div>
                 </div>
 
-                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="images/previ.png"></a>
-                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="images/nex.png"></a>
+                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
