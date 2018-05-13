@@ -1004,7 +1004,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
 		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.company_image1, f.contact_person_flag,
- 		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product,  j.id as catalouge_id');
+ 		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product,  j.id as catalouge_id,b.accept_chat');
     	$this->db->from(TABLES::$USER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
