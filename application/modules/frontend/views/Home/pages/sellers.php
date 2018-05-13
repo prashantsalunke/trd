@@ -67,7 +67,7 @@ foreach($SellerBox as $seller) {?>
                             <img src="<?php echo asset_url();?>images/china0.png" id="Image160" alt=""></div>
                     </div>
                     <div id="RollOver20" class="style84">
-                        <a onclick="chat_with(<?php echo $buyer['user_id'];?>,<?php echo $buyer['accept_chat'];?>);">
+                        <a onclick="chat_with(<?php echo $seller['user_id'];?>,<?php echo $seller['accept_chat'];?>);">
                                     <img class="hover" alt="" title="Chat" src="<?php echo asset_url();?>images/chat_button2.png">
                                     <span><img alt="" title="Chat" src="<?php echo asset_url();?>images/chatwhite.png"></span>
                                 </a>
