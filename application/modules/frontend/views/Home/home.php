@@ -779,7 +779,7 @@ foreach ($FWSellers as $key => $FWSeller) {
                     </div>
                 </div></div>
 
-            <div id="Layer_sellers" class="class1">
+            <div id="Layer_sellers" class="class1 layer_details">
                 <div id="Layer_details_Container4" class="class2">
                 </div>
             </div>
@@ -793,7 +793,7 @@ foreach ($FWSellers as $key => $FWSeller) {
             <div class="col-sm-3 col-lg-2 maxheight1 product4">
                 <div class="row" style="margin: 0px">
                     <h3 style="color: #fff; text-align: center;">
-                        <small>REAL-TIME</small><br> <b>BUSINESS STATION</b>
+                        <small>REAL-TIME</small><br><span class="product-feature-title"> BUSINESS STATION</span>
                     </h3>
                     <div class="text-center displaydesktop">
                         <img src="<?php echo asset_url(); ?>images/ts/trade-satation.png"
@@ -1011,7 +1011,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
                     </div>
                 </div>
             </div>
-            <div id="Layer_buyers" class="class1">
+            <div id="Layer_buyers" class="class1 layer_details">
                 <div id="Layer_details_Container5" class="class2"></div>
             </div>
         </div>
