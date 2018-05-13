@@ -271,7 +271,8 @@
 
 .roundflag {
 	position: absolute;
-	top: 42px;
+	top: 70
+	px;
 	left: 53px;
 	width: 20px;
 	height: 20px;
@@ -8154,7 +8155,13 @@ a:visited {
 	background-size: cover;
 	background-repeat: no-repeat;
 }
-
+.layer_details {
+	background-image: url(../../images/windowphoto.png);
+	background-color: #FAFAFA;
+	background-position: left top;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
 #Layer264 {
 	background-color: #E1E1E1;
 }
@@ -9160,8 +9167,8 @@ a:focus, .btn:active {
 	.orange {
 		background: #FF8C00;
 		color: white;
-		padding: 45px 8px;
-		height: 90px;
+		padding: 36px 8px;
+		height: 95px;
 		font-size: 17px;
 	}
 	.author {
@@ -9175,8 +9182,8 @@ a:focus, .btn:active {
 	.blue1 {
 		background: #1E90FF;
 		color: white;
-		padding: 45px 8px;
-		height: 90px;
+		padding: 36px 8px;
+		height: 95px;
 		font-size: 17px;
 	}
 	.blue1 a {
