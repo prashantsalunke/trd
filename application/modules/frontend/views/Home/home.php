@@ -911,7 +911,7 @@ foreach ($NewArrivals as $NewArrival) {
                                 </div>
                                 <br/>
                                 <div id="wb_Carousel5" style="position: absolute;top:60px;">
-                                    <div id="Carousel5">
+                                    <div id="Carousel5" style="width: 530px;!important">
 <?php
 $i = 0;
 foreach ($NewOrders as $NewOrder) {
