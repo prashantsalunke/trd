@@ -251,7 +251,7 @@ $locale = localeconv();
                 <div class="item <?php if ($i == 1) {
                     echo 'active';
                 } ?>">
-                    <a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id'] ?>"><img src="<?php echo asset_url() . $banner['main_banner']; ?>" alt="..."> </a>
+                    <!--<a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id'] ?>">--><img src="<?php echo asset_url() . $banner['main_banner']; ?>" alt="..."><!--</a>-->
                     <div id="Layer354" style="position:relative;text-align:left;top: -300px;left: 1200px;width:62px;height:115px;z-index:1361;">
                         <div id="Layer356" style="position:relative;text-align:left;/*left:16px;top:8px;*/width:40px;height:40px;z-index:1358;">
                             <div id="wb_Image262" style="position:relative;/*left:9px;top:0px;*/width:25px;height:18px;z-index:1355;padding-left: 10px;padding-top: 2px;">
