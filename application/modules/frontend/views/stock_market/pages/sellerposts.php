@@ -1,3 +1,9 @@
+<style>
+p {
+	 word-wrap: break-word;
+	 text-align:left;
+  }
+</style>
 <?php if (count ( $posts ) > 0 && $posts [0] ['id'] != '') {
 	$exp_date = date('Y-m-d',strtotime('-7 days'));
 	foreach ( $posts as $key=>$product ) {

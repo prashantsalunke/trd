@@ -120,13 +120,13 @@ div.pp_pic_holder {
 				    		<div class="tab-content">
 				        		<div id="home" class="tab-pane fade in active content121">
 				        			<?php if($tscategory_id == 1 || $tscategory_id == 2) { ?>
-				            		<div class="tab1">
-						                <h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Sellers</strong></span></h3>
+				            		<div class="tab1" style="padding-left:16px;">
+						                <h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Sellers</strong></span></h3>
 						                <p class="leftbox2">Send " I Have This" Stock Post And Manage Your Previous Ones.</p>
 						                <div id="Layer9">
 						                    <img src="<?php echo asset_url(); ?>images/img0208.png" id="Image54" alt="" class="img46" style="width:30px !important;height:30px;"/>
 						                    <?php if($usertype[0]['user_category_id'] =='1' || $usertype[0]['user_category_id'] =='2' ) { ?>
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 						                    	<a href="javascript:openNewPostForm();" class="bststyle6">Add New Post</a>
 						                    </span>
 						                    <?php } else { ?>
@@ -137,13 +137,13 @@ div.pp_pic_holder {
 						                </div>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/Stockpostgre.png" id="Image54" alt="" class="img46 mp1">
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="javascript:viewMyPosts();" class="bststyle10">View My Posts</a>
 						                    </span>
 						                </div>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/closebuygre.png" id="Image54" alt="" class="img46 mp1">
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="#" onclick="ShowObjectWithEffect('Layer32', 0, 'fade', 500);ShowObjectWithEffect('Layer28', 1, 'fade', 500);return false;" class="bststyle10">Close My Posts</a>
 						                    </span>
 						              	</div>
@@ -161,30 +161,30 @@ div.pp_pic_holder {
 									<div id="Layer322" style="width:1000px;">
 						            </div>
 						            <?php if($tscategory_id == 3) { ?>
-						            <div class="tab1">
-						                <h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Buyers</strong></span></h3>
+						            <div class="tab1" style="padding-left:16px;">
+						                <h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Buyers</strong></span></h3>
 						                <p class="leftbox2">Send " I Have This" Stock Post And Manage Your Previous Ones.</p>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/img0205.png" id="Image54" alt="" class="img46" style="width:30px !important;height:30px;">
 						                    <?php if($usertype[0]['user_category_id'] =='3' ) { ?>
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 						                    	<a href="javascript:openNewBuyerPostForm();" class="bststyle7">Add New Post</a>
 						                    </span>
 						                	<?php } else { ?>
-						                	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+						                	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 						                		<a href="#" class="bststyle7">Add New Post</a>
 						                	</span>
 						                	<?php } ?>
 						                </div>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/viewmysellposts.png" id="Image54" alt="" class="img46 mp1">
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="javascript:viewBuyerPosts();" class="bststyle10">View My Posts</a>
 						                    </span>
 						                </div>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/closesellposts.png" id="Image54" alt="" class="img46 mp1">
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="#" onclick="ShowObjectWithEffect('Layer322', 0, 'fade', 500);ShowObjectWithEffect('Layer288', 1, 'fade', 500);return false;" class="bststyle10">Close My Posts</a>
 						                    </span>
 						              	</div>
