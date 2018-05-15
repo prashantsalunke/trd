@@ -1,5 +1,10 @@
 <?php
 class Home extends MX_Controller {
+    
+    //send offers steps completed
+    const STEPS_COMPLETED = 2;
+	
+	
 	public function __construct() {
 		parent::__construct ();
 		$current_lang = $this->session->userdata('my_lang');
@@ -1275,12 +1280,12 @@ class Home extends MX_Controller {
 		$ipinfo = ip_info($ip_address,'location');
 		if(!empty($ip_address)) {
 			$map = array();
-			$map['busi_id'] = $id;
-			$map['visitor_id'] = $busi_id;
-			$map['visit_date'] = date('Y-m-d');
-			$map['city'] = $ipinfo['city'];
-			$map['country'] = $ipinfo['country'];
-			$map['ip_address'] = $ip_address;
+			$map['busi_id']     = $id;
+			$map['visitor_id']  = $busi_id;   
+			$map['visit_date']  = date('Y-m-d');
+			$map['city']        = $ipinfo['city'];
+			$map['country']     = $ipinfo['country'];
+			$map['ip_address']  = $ip_address;
 			$this->load->model('Tool_model','mytoolmodel');
 			$this->mytoolmodel->addBusinessVisit($map);
 		}
@@ -1289,17 +1294,18 @@ class Home extends MX_Controller {
 		$map['id'] = $id;
 		$map['user_id'] = $busi_id;
 		$Desksites= $this->product->getDesksiteByBusiId($map);
-		// print_r($Desksites);
-		// exit();
+// 		print_r($Desksites);
 		$countries = $this->product->getAllCountries();
 		$requests = $this->product->getCurrentRequest($id);
-		$contact_details = $this->account->getBusinessContactDetails($busi_id);
+		$contact_details = $this->account->getBusinessContactDetails($Desksites[0]['busi_id']);
 		$this->template->set ( 'countries', $countries );
 		$this->template->set ( 'Desksites', $Desksites);
 		$this->template->set ( 'community', $community);
 		$this->template->set ( 'contact_details',$contact_details);
 		$this->template->set ( 'requests', $requests);
 		$this->template->set ( 'contact_details',$contact_details);
+		$this->template->set ( 'steps_needed', self::STEPS_COMPLETED);
+		$this->template->set ( 'buyer', BUYER_ID);
 		$this->template->set ( 'page', 'desksite');
 		$this->template->set ( 'pagename', 'buyer');
 		$this->template->set_theme('default_theme');
@@ -1672,21 +1678,22 @@ class Home extends MX_Controller {
 	public function saveGeneralOffer() {
 		$this->load->model('Product_Model','product');
 		$userId = $this->session->userdata('tsuser')['userid'];
+		$product_id = 0;
+		$post_type = 0;
+		$post_id = 0;
+		
 		if(!empty($this->input->post('product_id'))) {
 			$product_id = $this->input->post('product_id');
-		} else {
-			$product_id = 0;
 		}
+		
 		if(!empty($this->input->post('post_type'))) {
 			$post_type = $this->input->post('post_type');
-		} else {
-			$post_type = 0;
 		}
+		
 		if(!empty($this->input->post('post_id'))) {
 			$post_id = $this->input->post('post_id');
-		} else {
-			$post_id = 0;
 		}
+		
 		$size = 0;
 		$params = array();
 		$params['busi_id'] = $this->input->post('busi_id');
@@ -1713,8 +1720,8 @@ class Home extends MX_Controller {
 		$params['attachment3_size'] = 0;
 		$params['attachment4'] = "";
 		$params['attachment4_size'] = 0;
-		$params['alert_viewed'] = 1;
-		$size = 0;
+		$params['alert_viewed'] = 0;
+		
 		$config = array(
 				'upload_path'   => "assets/images/user_images/$userId/selleroffer",
 				'allowed_types' => 'gif|jpg|png|PNG|JPEG|pdf|doc|docx|xls|xlsx',
@@ -1724,18 +1731,20 @@ class Home extends MX_Controller {
 		if (! is_dir ($pathname)) {
 			mkdir ($pathname, 0777, TRUE );
 		}
+		chmod($pathname, 0777);
 		$this->load->library('upload', $config);
 		if(!empty($_FILES['FileUpload1'])) {
 			$files = $_FILES['FileUpload1'];
 			$k = 1;
 			foreach ($files['name'] as $key => $image) {
-				$_FILES['FileUpload1']['name']= $files['name'][$key];
-				$_FILES['FileUpload1']['type']= $files['type'][$key];
-				$_FILES['FileUpload1']['tmp_name']= $files['tmp_name'][$key];
-				$_FILES['FileUpload1']['error']= $files['error'][$key];
-				$_FILES['FileUpload1']['size']= $files['size'][$key];
+				$_FILES['FileUpload1']['name']     = $files['name'][$key];
+				$_FILES['FileUpload1']['type']     = $files['type'][$key];
+				$_FILES['FileUpload1']['tmp_name'] = $files['tmp_name'][$key];
+				$_FILES['FileUpload1']['error']    = $files['error'][$key];
+				$_FILES['FileUpload1']['size']     = $files['size'][$key];
 				$file_name = microtime(true)."-".$image;
 				$config['file_name'] = $file_name;
+
 				$this->upload->initialize($config);
 				if ($this->upload->do_upload('FileUpload1')) {
 					$file_name = $this->upload->data('file_name');
@@ -1743,8 +1752,6 @@ class Home extends MX_Controller {
 					$size = $size + $files['size'][$key];
 					$params['attachment'.$k.'_size'] = $files['size'][$key];
 					$k++;
-				} else {
-					//
 				}
 			}
 		}
@@ -1795,26 +1802,17 @@ class Home extends MX_Controller {
 		}
 		echo json_encode($resp);
 	}
-	public function getMyNewAlerts() {
-	    //include related model to get respective alerts
-	    $this->load->model('Community_Model', 'mycommunity' );
-	    $this->load->model('Inquiry_model', 'inquirymodel' );
-	    $businessId = $this->session->userdata('tsuser')['busi_id'];
-	    if(!empty($businessId)) {
-	        redirect(base_url());
-	    }
-
-	    $isadded = $this->mycommunity->addToMyCommunity($businessId);
-	    if($isadded ==1)
-	    $getInquiry = $this->inquirymodel->getInquiryByBusiId($businessId);
-	}
-
-	public function getNewAlerts() {
-		$this->load->model('Community_Model', 'mycommunity');
-		$this->load->model('Inquiry_model', 'inquirymodel' );
-		$my_busi_id = $this->session->userdata('tsuser')['busi_id'];
-		$isadded = $this->mycommunity->getMyCommunity($my_busi_id);
-
-		$checkinquiry = $this->inquirymodel->getBuyerInquiryByBusiId($my_busi_id);
+	
+	public function getGeneralOffer($busi_id) {
+	    $mybusi_id = $this->session->userdata('tsuser')['busi_id'];
+	    $this->load->model('Product_Model','product');
+	    $mydesksite = $this->product->getBusinessContactInfo(array('id'=>$mybusi_id));
+	    $desksites = $this->product->getBusinessContactInfo(array('id'=>$busi_id));
+	    $this->template->set ( 'mydesksite', $mydesksite);
+	    $this->template->set ( 'desksite', $desksites);
+	    $this->template->set_theme('default_theme');
+	    $this->template->set_layout (false);
+	    $html= $this->template->build ('desksite/subpages/general_offer', '', true);
+	    echo $html;
 	}
 }

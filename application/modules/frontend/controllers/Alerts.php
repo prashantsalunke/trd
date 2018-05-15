@@ -1012,27 +1012,31 @@ class Alerts extends MX_Controller {
 	}
 	public function getNewAlerts () {
 	    $this->load->model('Community_Model', 'mycommunity' );
+	    $this->load->library('mylib/OfferLib');
 	    $this->load->library('mylib/InquiryLib');
-	    //$this->load->model('Account_model', 'accountmodel');
 	    $busiId = $this->session->userdata('busi_id');
 	    $userId = $this->session->userdata('tsuserid'); 
 	    $category_id = $this->session->userdata('tsuser')['category_id'];
-	    //$getUserInfo = $this->accountmodel->getUserDataByBusiId($busiId);
-	    //print_r($getUserInfo);
 	    $checkNewCommunityAlert = $this->mycommunity->checkNewCommunityAlert($busiId,$userId);	
 
 	    if($category_id == 1 || $category_id == 2) {
 			$inquiry = $this->inquirylib->getInquiryByBusiId($busiId);
+			$getMyOffers = $this->offerlib->getOfferByBusiId($busiId);
 		} else {
 			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busiId);
+			$getMyOffers = $this->offerlib->getBuyerOfferByBusiId($busiId);
 		}
 	     
 	    $this->template->set ( 'newCommunity', $checkNewCommunityAlert);
 	    $this->template->set ( 'newInquiry', $inquiry);
+	    $this->template->set ( 'newOffers', $getMyOffers);
 	    $this->template->set_layout (false);
 	    $html = $this->template->build ('default/alerts_popup','',true);
 	    die($html);
 	}
+	/**
+	function to accept add to community request
+	*/
 	public function alertAddToCommunity() {
 		$this->load->model('Community_Model', 'mycommunity' );
 
@@ -1040,10 +1044,32 @@ class Alerts extends MX_Controller {
 		$data = array();
 		$data['id'] = $id;
 		$data['alert_viewed'] = 1;
+		$data['status'] = 1;
 
 		$addToMyCommunity = $this->mycommunity->updateCommunity($data);
 		if($addToMyCommunity == 1) {
 			echo 1;
+		}
+	}
+
+	public function clearAlert() {
+		$this->load->library('mylib/OfferLib');
+		$this->load->library('mylib/InquiryLib');
+		$type = $this->input->post('type');
+		$id = $this->input->post('id');
+		switch($type) {
+			case 'inquiry';
+				$data = array();
+				$data['id'] = $id;
+				$data['alert_viewed'] = 1;
+				$response = $this->inquirylib->updateInquiry($data);
+			break;
+			case 'offer';
+			$data = array();
+				$data['id'] = $id;
+				$data['alert_viewed'] = 1;
+				$response = $this->offerlib->updateOffer($data);
+			break;
 		}
 	}
 }

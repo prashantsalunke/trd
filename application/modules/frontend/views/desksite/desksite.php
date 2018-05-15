@@ -1238,7 +1238,7 @@ function myloaderoff()
 							   	</div>
 							   	<div class="form-group">
 				        			<div>
-					            		<input type="text" class="input" name="city" value="" placeholder="City" required=">
+					            		<input type="text" class="input" name="city" value="" placeholder="City" required="">
 					            	</div>
 					            	<div class="messageContainer"></div>
 					            </div>

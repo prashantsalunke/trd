@@ -48,6 +48,22 @@ defined('FOPEN_READ_WRITE_CREATE')              OR define('FOPEN_READ_WRITE_CREA
 defined('FOPEN_WRITE_CREATE_STRICT')            OR define('FOPEN_WRITE_CREATE_STRICT', 'xb');
 defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
 
+
+/*
+|--------------------------------------------------------------------------
+| common constants
+|--------------------------------------------------------------------------
+|
+| These are most* common constants which are use all over the project whenever necessary..
+|
+*/
+
+
+define('SELLER_ID',  1);
+define('SHIPPER_ID', 2);
+define('BUYER_ID',   3);
+
+
 /*
 |--------------------------------------------------------------------------
 | Exit Status Codes
