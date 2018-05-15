@@ -63,7 +63,7 @@ a.style5:hover
                         </ul>
                     </div>
                     <div class="modal-header" style="padding:0px;">
-                        <button aria-label="Close" data-dismiss="modal" class="close" type="button" style="position:relative; z-index:111; opacity:1; color:#fff; right:10px; top:10px; font-size:30px;"><span aria-hidden="true">Ã—</span></button>
+                        <button aria-label="Close" data-dismiss="modal" class="close" type="button" style="position:relative; z-index:111; opacity:1; color:#fff; right:10px; top:10px; font-size:30px;"><span aria-hidden="true">×</span></button>
                         <nav class="navbar navbar-inverse" style="margin-bottom:0px;">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar2" style="margin:0px;"> <img src="<?php echo asset_url(); ?>images/ts/menu-icon.png"></button>
@@ -111,7 +111,7 @@ a.style5:hover
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid, Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -162,7 +162,7 @@ a.style5:hover
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid, Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -213,7 +213,7 @@ a.style5:hover
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid, Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -477,13 +477,13 @@ a.style5:hover
                         <img src="<?php echo asset_url(); ?>images/img0142.png" id="Shape64" alt="" style="width:14px;height:7px;"></a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="firstmain"><a href="#" target="_self">English</a> </li>
-                        <li><a href="#" target="_self">ä¸­æ–‡</a> </li>
-                        <li><a href="#" target="_self">Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</a> </li>
-                        <li><a href="#" target="_self">TÃ¼rk</a> </li>
-                        <li><a href="#" target="_self">æ—¥æœ¬èªž</a> </li>
-                        <li><a href="#" target="_self">í•œêµ­ì–´</a> </li>
-                        <li><a href="#" target="_self">à¤­à¤¾à¤°à¤¤à¥€à¤¯</a> </li>
-                        <li><a href="#" target="_self">Ñ€ÑƒÑ�Ñ�ÐºÐ¸Ð¹</a> </li>
+                        <li><a href="#" target="_self">中文</a> </li>
+                        <li><a href="#" target="_self">العربية</a> </li>
+                        <li><a href="#" target="_self">Türk</a> </li>
+                        <li><a href="#" target="_self">日本語</a> </li>
+                        <li><a href="#" target="_self">한국어</a> </li>
+                        <li><a href="#" target="_self">भारतीय</a> </li>
+                        <li><a href="#" target="_self">русский</a> </li>
                         <li><a href="#" target="_self">Dutch</a> </li>
                     </ul>
                 </li>
@@ -522,17 +522,17 @@ a.style5:hover
 	            </li>
 	            <li class="dropdown " style="margin-top:5px;"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language 
 	                    <img src="<?php echo asset_url(); ?>images/img1188.png" id="Shape17" alt="" style="width:14px;height:7px;"></a>
-	                <ul class="dropdown-menu" role="menu" style="min-width:100px;left:0px;">
-	                    <li class="firstmain"><a href="#" target="_self">English</a> </li>
-	                    <li><a href="#" target="_self">ä¸­æ–‡</a> </li>
-	                    <li><a href="#" target="_self">Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©</a> </li>
-	                    <li><a href="#" target="_self">TÃ¼rk</a> </li>
-	                    <li><a href="#" target="_self">æ—¥æœ¬èªž</a> </li>
-	                    <li><a href="#" target="_self">í•œêµ­ì–´</a> </li>
-	                    <li><a href="#" target="_self">à¤­à¤¾à¤°à¤¤à¥€à¤¯</a> </li>
-	                    <li><a href="#" target="_self">Ñ€ÑƒÑ�Ñ�ÐºÐ¸Ð¹</a> </li>
-	                    <li><a href="#" target="_self">Dutch</a> </li>
-	                </ul>
+	                <ul class="dropdown-menu" role="menu">
+                        <li class="firstmain"><a href="#" target="_self">English</a> </li>
+                        <li><a href="#" target="_self">中文</a> </li>
+                        <li><a href="#" target="_self">العربية</a> </li>
+                        <li><a href="#" target="_self">Türk</a> </li>
+                        <li><a href="#" target="_self">日本語</a> </li>
+                        <li><a href="#" target="_self">한국어</a> </li>
+                        <li><a href="#" target="_self">भारतीय</a> </li>
+                        <li><a href="#" target="_self">русский</a> </li>
+                        <li><a href="#" target="_self">Dutch</a> </li>
+                    </ul>
 	            </li>
 	        </ul>
 	    </div>

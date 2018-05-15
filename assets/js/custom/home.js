@@ -133,7 +133,7 @@ function alertajaxindicatorstop()
     jQuery('#alertresultLoading').fadeOut(300);
     jQuery('body').css('cursor', 'default');
 }
-//setInterval(getNewAlerts, 9000); //300000 MS == 5 minutes
+setInterval(getNewAlerts, 9000); //300000 MS == 5 minutes
 function getNewAlerts() {
 	$.ajax({
         url: base_url + "home/alert",
@@ -143,7 +143,7 @@ function getNewAlerts() {
         }
     })
 }
-getNewAlerts();
+//getNewAlerts();
 function accept_community_request(id) {
 	$.ajax({
         url: base_url + "home/addToCommunity",
