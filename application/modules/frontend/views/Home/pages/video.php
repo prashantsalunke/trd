@@ -62,9 +62,9 @@ foreach($videodetail as $videoBox) {?>
 			<img src="<?php echo asset_url(); ?>images/member-logo.png" id="Image1" style="opacity: 0.15;"></div>
 		<?php } ?>
 	</div>
-<div id="wb_Image43" class="class23" style="left:284px;top:-335px">
+<div id="wb_Image43" class="class23" style="left:284px;top:-335px;height: 35px;width: 35px;">
 	<a href="#" onclick="ShowObject('Layer_details3', 0);ShowObject('Layer_details', 0);StopAudio('MediaPlayer7');return false;">
-		<img src="<?php echo asset_url(); ?>images/close.png" id="Image43" alt="">
+		<img src="<?php echo asset_url(); ?>images/close.png" id="Image43" alt="" style="height: 35px;width: 35px;">
 	</a>
 </div>
 <div id="RollOver23" class="class24">

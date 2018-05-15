@@ -1052,7 +1052,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
                     </div>
                 </div>
             </div>
-            <div id="Layer_buyers" class="class1 layer_details">
+            <div id="Layer_buyers" class="class1 class1_bottom layer_details">
                 <div id="Layer_details_Container5" class="class2"></div>
             </div>
         </div>

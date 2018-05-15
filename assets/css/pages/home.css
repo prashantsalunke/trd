@@ -390,7 +390,9 @@
     -webkit-box-shadow: 3px 3px 10px #000000;
     box-shadow: 3px 3px 10px #000000;
 }
-
+.class1_bottom {
+		top:250px !important;
+}
 .class2 {
 	width: 308px;
 	position: relative;
