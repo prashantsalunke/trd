@@ -229,7 +229,7 @@ class Community_Model extends CI_Model {
 
     public function checkNewCommunityAlert($myBusiId,$userId)
     {
-        $this->db->select('cm.id,u.profile_image,usr.name,c.user_category,u.country');
+        $this->db->select('cm.id,cm.my_busi_id,u.profile_image,usr.name,c.user_category,u.country');
         $this->db->from(TABLES::$COMMUNITY_MEMBER. ' AS cm');
         $this->db->join(TABLES::$USER. ' AS usr','cm.my_user_id=usr.id','inner');
         $this->db->join(TABLES::$USER_INFO. ' AS u','cm.my_user_id=u.user_id','inner');
