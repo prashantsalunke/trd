@@ -27,30 +27,30 @@ foreach($SellerBox as $seller) {?>
                     <div id="wb_Text200" class="style69" style="width: 200px;">
                         <span class="style70"><strong><?php echo $seller['contact_person']; ?></strong></span></div>
                     <div id="wb_Image153" class="style71">
-                        <?php if($seller['plan_id'] > '1' && $seller['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1"><?php }?>
+                        <?php if($seller['plan_id'] > '1' && $seller['plan_id'] > '1' && $seller['picture'] != "" && !empty($seller['picture'])){?><img src="<?php echo asset_url() . $seller['picture']; ?>" id="Image1"><?php }?>
                         </div>
                     <div id="Layer265" class="style72">
                         <div id="wb_Text201" class="style767" style="top:30px;left:5px;">
                             <span class="style77"><?php echo $seller['sub_category'];?>   </span>
                         </div>
-                        <div id="wb_Image10" class="style737" style="left: 165px;">
+                        <div id="wb_Image10" class="style737" style="left: 180px;">
                                 <?php if(!empty($seller['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" >
                                 <?php } else {?>
                                 <img src="<?php echo asset_url(); ?>images/ts/community.png" id="Image1" style="opacity :0.15" > <?php }?>
                         </div>
-                        <div id="wb_Image154" class="style737" style="left:200px">
+                        <div id="wb_Image154" class="style737" style="left:210px">
                             <?php if($seller['plan_id'] > 1 && $seller['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" > <?php } else { ?>
                                     <img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="opacity :0.15" >
                                     <?php }?>
                          </div>
-                        <div id="wb_Image158" class="style757" style="left: 230px">
-                       	 <?php if($seller['plan_id'] > 1 && $seller['gaurantee_period'] !=''){ ?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="width:34px;height:26px;"> <?php } else {?>
-                                    <img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="opacity :0.15;width:34px;height:26px;" >
+                        <div id="wb_Image158" class="style737" style="left: 240px">
+                       	 <?php if($seller['plan_id'] > 1 && $seller['gaurantee_period'] !=''){ ?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1"> <?php } else {?>
+                                    <img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="opacity :0.15;" >
                                     <?php }?>
                         </div>
-                        <div id="wb_Image158" class="style757" style="left: 268px">
+                        <div id="wb_Image158" class="style737" style="left: 270px">
                             <?php if($seller['plan_id'] > '1' && $seller['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1"><?php } else {?>
-                                    <img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1" style="opacity :0.15">
+                                    <img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1" style="opacity :0.15;">
                                     <?php }?>
                         </div>
                         
@@ -74,8 +74,8 @@ foreach($SellerBox as $seller) {?>
                     </div>
                     <div id="RollOver14" class="style85">
                         <a href="<?php echo base_url();?>desksite/<?php echo $seller['busi_id'];?>" target="_blank">
-                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/randbuyercherry.png">
-                                    <span><img alt="" src="<?php echo asset_url();?>images/profilewhite.gif"></span>
+                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/vacticonorange.png">
+                                    <span><img alt="" src="<?php echo asset_url();?>images/vacticonwhite.png"></span>
                                 </a>
                     </div>
                 </div>

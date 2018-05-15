@@ -251,7 +251,7 @@ $locale = localeconv();
                 <div class="item <?php if ($i == 1) {
                     echo 'active';
                 } ?>">
-                    <!--<a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id'] ?>">--><img src="<?php echo asset_url() . $banner['main_banner']; ?>" alt="..." style="padding:0px !important;"><!--</a>-->
+                    <!--<a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id'] ?>">--><img src="<?php echo asset_url() . $banner['main_banner']; ?>" alt="..." style="padding:0px !important;border-radius:0px;"><!--</a>-->
                     <div id="Layer354" style="position:relative;text-align:left;top: -300px;left: 1200px;width:62px;height:115px;z-index:1361;">
                         <div id="Layer356" style="position:relative;text-align:left;/*left:16px;top:8px;*/width:40px;height:40px;z-index:1358;">
                             <div id="wb_Image262" style="position:relative;/*left:9px;top:0px;*/width:25px;height:18px;z-index:1355;padding-left: 10px;padding-top: 2px;">
@@ -413,7 +413,7 @@ $locale = localeconv();
                                     </div>
                                     <div class="col-xs-12"
                                       style="text-align: center; margin-bottom: 5px; height: 320px;cursor: pointer;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
-                                      <img src="<?php echo asset_url().$product3D['image']; ?>" class="img-responsive" style="display: inline-block;max-height: 340px;max-width: 340px">
+                                      <img src="<?php echo asset_url().$product3D['image']; ?>" class="img-responsive" style="display: inline-block;max-height: 340px;max-width: 340px !important;">
                                     </div>
                                     <div class="text-center">
                                       <div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?></span></div>
@@ -1052,7 +1052,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
                     </div>
                 </div>
             </div>
-            <div id="Layer_buyers" class="class1 layer_details">
+            <div id="Layer_buyers" class="class1 class1_bottom layer_details">
                 <div id="Layer_details_Container5" class="class2"></div>
             </div>
         </div>

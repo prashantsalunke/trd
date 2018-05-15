@@ -845,6 +845,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$COUNTRY.' AS i','b.company_country=i.name','left');
         $this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.my_busi_id ','left');
     	$this->db->where('a.id',$id);
+        $this->db->group_by('a.id');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -1004,7 +1005,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
 		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.contact_person, f.company_image1, f.contact_person_flag,
- 		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product,  j.id as catalouge_id,b.accept_chat');
+ 		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product,  j.id as catalouge_id,b.accept_chat,i.picture');
     	$this->db->from(TABLES::$USER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -1014,6 +1015,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$COMPANY_INFO.' AS f','b.id=f.busi_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_CATALOGUE.' AS j ','b.id = j.busi_id ','left');
+        $this->db->join(TABLES::$CONTACTPERSON.' as i', 'b.id = i.busi_id', 'left');
     	$this->db->where('a.user_category_id', 1);
     	$this->db->where('a.account_activated', 1);
     	$this->db->where('a.is_suspend', 0);
@@ -1021,6 +1023,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.is_disable', 0);
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('a.id', $id);
+        $this->db->group_by('a.id');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -1030,7 +1033,7 @@ class Sellers_Model extends CI_Model {
 		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.*, f.company_owner_name, f.company_introduction, f.company_image1, f.contact_person, f.contact_person_flag,
  		 GROUP_CONCAT(h.name SEPARATOR ",") as main_product,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post
-             as l where l.busi_id=b.id) as bstation_post_count,(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,b.accept_chat');
+             as l where l.busi_id=b.id) as bstation_post_count,(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,b.accept_chat,i.picture');
     		$this->db->from(TABLES::$USER.' AS a');
     		$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     		$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -1039,6 +1042,7 @@ class Sellers_Model extends CI_Model {
     		$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','a.user_subcategory_id=e.id','left');
     		$this->db->join(TABLES::$COMPANY_INFO.' AS f','b.id=f.busi_id','left');
     		$this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
+            $this->db->join(TABLES::$CONTACTPERSON.' as i', 'b.id = i.busi_id', 'left');
     		$this->db->where('a.user_category_id', 3);
     		$this->db->where('a.account_activated', 1);
     		$this->db->where('a.is_suspend', 0);
@@ -1046,6 +1050,7 @@ class Sellers_Model extends CI_Model {
     		$this->db->where('b.is_disable', 0);
     		$this->db->where('b.is_deleted', 0);
     		$this->db->where('a.id', $id);
+            $this->db->group_by('a.id');
     		$query = $this->db->get();
     		//echo $this->db->last_query();
     		$result = $query->result_array();

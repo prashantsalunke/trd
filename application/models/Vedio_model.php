@@ -74,6 +74,7 @@ class Vedio_model extends CI_Model {
     	$this->db->join(TABLES::$SUBSCRIPTION_PLAN. '  AS e','e.id=c.plan_id','left');
         $this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','c.id = l.busi_id ','left');
     	$this->db->where('a.id',$id);
+        $this->db->group_by('a.id');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;

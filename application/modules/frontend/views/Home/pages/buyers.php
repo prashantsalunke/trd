@@ -28,29 +28,29 @@ foreach($BuyerBox as $buyer) {?>
                     <div id="wb_Text200" class="style69" style="width: 200px;">
                         <span class="style70"><strong><?php echo $buyer['contact_person']; ?></strong></span></div>
                     <div id="wb_Image153" class="style71">
-                        <?php if($buyer['plan_id'] > '1' && $buyer['plan_id'] > '1'){?><img src="<?php echo asset_url(); ?>images/ts/member-logo.png" id="Image1"><?php }?>
+                        <?php if($buyer['plan_id'] > '1' && $buyer['plan_id'] > '1' && $buyer['picture'] != "" && !empty($buyer['picture'])){?><img src="<?php echo asset_url() . $buyer['picture']; ?>" id="Image1"><?php }?>
                         </div>
                     <div id="Layer265" class="style72">
                         <div id="wb_Text201" class="style767" style="top:30px;left:5px;">
                             <span class="style77"><?php echo $buyer['sub_category'];?>   </span>
                         </div>
-                        <div id="wb_Image10" class="style737" style="left: 165px;">
+                        <div id="wb_Image10" class="style737" style="left: 180px;">
                                 <?php if(!empty($buyer['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" >
                                 <?php } else {?>
                                 <img src="<?php echo asset_url(); ?>images/ts/community.png" id="Image1" style="opacity :0.15" > <?php }?>
                         </div>
-                        <div id="wb_Image154" class="style737" style="left:200px">
+                        <div id="wb_Image154" class="style737" style="left:210px">
                             <?php if($buyer['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" > <?php } else { ?>
                                 <img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="opacity :0.15" >
                                 <?php }?>
                          </div>
-                        <div id="wb_Image158" class="style757" style="left: 230px">
+                        <div id="wb_Image158" class="style737" style="left: 240px">
                        	        <?php $buyer_request = $buyer['stock_buyer_count']+$buyer['bstation_post_count']; ?>
                                 <?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" > 
                                 <?php } else {?>
                                 <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" style="opacity :0.15" ><?php }?>
                         </div>
-                        <div id="wb_Image158" class="style757" style="left: 268px">
+                        <div id="wb_Image158" class="style737" style="left: 270px">
                                 <?php if($buyer['is_active'] >= 3){?><img src="<?php echo asset_url(); ?>images/Active.png" id="Image1" > 
                                 <?php } else {?>
                                 <img src="<?php echo asset_url(); ?>images/Active.png" id="Image1" style="opacity :0.15" ><?php }?>
@@ -75,8 +75,8 @@ foreach($BuyerBox as $buyer) {?>
                     </div>
                     <div id="RollOver14" class="style85">
                         <a href="<?php echo base_url();?>buyer/profile/<?php echo $buyer['busi_id'];?>" target="_blank">
-                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/randbuyercherry.png">
-                                    <span><img alt="" src="<?php echo asset_url();?>images/profilewhite.gif"></span>
+                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/vacticonorange.png">
+                                    <span><img alt="" src="<?php echo asset_url();?>images/vacticonwhite.png"></span>
                                 </a>
                     </div>
                 </div>
