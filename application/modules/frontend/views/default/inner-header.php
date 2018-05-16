@@ -769,7 +769,7 @@ ul.hover-red-menu li.open a.firstmain{
 						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
 							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
-						<div class="col-sm-4 col-xs-4 " style="padding: 0px;background-color:#fff;">
+						<div class="col-sm-4 col-xs-4 " style="padding-left: 0px;">
 							<div>
 								<div class="col-sm-5 padding-0" style="padding-right: 3px;">
 									<div class="dropdown">
@@ -833,8 +833,8 @@ ul.hover-red-menu li.open a.firstmain{
                     </div>
                 </div>
 
-                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
-                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+                <a style="position: absolute; height: 61px; z-index: 999; background-image: none ! important; top: 20%; width: 30px; left: 3px;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img height="53px;" alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position: absolute; z-index: 999; background-image: none ! important; top: 20%; height: 61px; width: 30px;" class="right carousel-control" href="#myCarousel" data-slide="next"><img height="53px;" alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
@@ -1033,51 +1033,53 @@ ul.hover-red-menu li.open a.firstmain{
 					<br><br><br><br>
 				<?php } elseif ($page =='product'){?>
 					<form method="get" action="<?php echo base_url();?>products" style="padding-top:25px;" name="productfrm" onsubmit="return validateForm('productfrm');">
-						<div class="col-md-2">
-                                                    <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
-                                                        <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
-                                                        <span style="color:#303030;font-family:Georgia;font-size:17px;">
-                                                            <a href="#" class="style261" style="color:#303030;text-decoration: none !important;" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
-                                                    </div>
-                                                </div>
-						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
-							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
-						</div>
-						<div class="col-sm-5 col-xs-5" style="padding: 0px;background-color: #fff;">
-							<div class="col-sm-7" style="padding:0px">
-								<div class="col-sm-6" style="padding:0px">
-									<div class="dropdown">
-										<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
-											<option value="">Country</option>
-											<?php foreach ($Country as $country){?>
-												<option value="<?php echo $country['name'];?>" <?php if(!empty($params['country']) && $params['country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
-											<?php }?>
-										</select>
-									</div>
-								</div>
-								<div class="col-sm-6" style="padding:0px 2px;">
-									<div class="dropdown">
-										<select class="search-box search-dp" id="city" name='city'>
-											<option value="">City</option>
-											<?php foreach($cities as $city){?>
-												<option value="<?php echo $city['name']?>" <?php if(!empty($params['city']) && $params['city'] == $city['name']) { ?>selected<?php } ?>><?php echo $city['name']?></option>
-											<?php }?>
-										</select>
-									</div>
-								</div>
+						<div class="col-md-12" style="padding:0 36px">
+							<div class="col-md-2">
+														<div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
+															<img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
+															<span style="color:#303030;font-family:Georgia;font-size:17px;">
+																<a href="#" class="style261" style="color:#303030;text-decoration: none !important;" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
+														</div>
+													</div>
+							<div class="col-sm-5 col-xs-5" style="padding: 0px;">
+								<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
 							</div>
-							<div class="col-sm-5" style="padding:0px;">
-								<div class="col-sm-8" style="padding:0px;">
-									<div class="dropdown">
-										<select class="search-box search-dp"  name='type'>
-											<option value="">More</option>
-											<option value="1"  <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show low price first</option>
-											<option value="2"  <?php if(!empty($params['type']) && $params['type'] == 2) { ?>selected<?php } ?>>Show higher price first</option>
-										</select>
+							<div class="col-sm-5 col-xs-5" style="padding-right: 0px;">
+								<div class="col-sm-7" style="padding:0px">
+									<div class="col-sm-6" style="padding:0px">
+										<div class="dropdown">
+											<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
+												<option value="">Country</option>
+												<?php foreach ($Country as $country){?>
+													<option value="<?php echo $country['name'];?>" <?php if(!empty($params['country']) && $params['country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
+												<?php }?>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-6" style="padding:0px 2px;">
+										<div class="dropdown">
+											<select class="search-box search-dp" id="city" name='city'>
+												<option value="">City</option>
+												<?php foreach($cities as $city){?>
+													<option value="<?php echo $city['name']?>" <?php if(!empty($params['city']) && $params['city'] == $city['name']) { ?>selected<?php } ?>><?php echo $city['name']?></option>
+												<?php }?>
+											</select>
+										</div>
 									</div>
 								</div>
-								<div class="col-sm-4" style="padding:0px;padding-left:2px;">
-									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+								<div class="col-sm-5" style="padding-left:0px;">
+									<div class="col-sm-8" style="padding:0px;">
+										<div class="dropdown">
+											<select class="search-box search-dp"  name='type'>
+												<option value="">More</option>
+												<option value="1"  <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show low price first</option>
+												<option value="2"  <?php if(!empty($params['type']) && $params['type'] == 2) { ?>selected<?php } ?>>Show higher price first</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-4" style="padding:0px;padding-left:2px;">
+										<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -1117,8 +1119,8 @@ ul.hover-red-menu li.open a.firstmain{
                     </div>
                 </div>
 
-                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
-                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+                <a style="position: absolute; height: 61px; z-index: 999; background-image: none ! important; top: 20%; width: 30px; left: 3px;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img height="53px;" alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position: absolute; z-index: 999; background-image: none ! important; top: 20%; height: 61px; width: 30px;" class="right carousel-control" href="#myCarousel" data-slide="next"><img height="53px;" alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
