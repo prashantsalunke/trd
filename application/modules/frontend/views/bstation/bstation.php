@@ -757,7 +757,7 @@ function viewBuyerPosts() {
 	},'html');
 }
 function loadRealtimebstationPosts(){
-	/*var keyword = $("#keyword").val();
+	var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
 	if(keyword != "" && country != "") {
 		//ajaxindicatorstart("");
@@ -772,7 +772,7 @@ function loadRealtimebstationPosts(){
 		    $.cookie('bstation-keyword', keyword, { expires: 365 });
 		    $.cookie('bstation-country', country, { expires: 365 });
 		},'json');
-	}*/
+	}
 
 	if(current_view == "searchBusinessStation"){
 		searchBusinessStation(false);
