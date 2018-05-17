@@ -126,20 +126,20 @@ div.pp_pic_holder {
 							<!-- content-tab-1 -->
 							<div id="home" class="tab-pane fade in active content121">
 								<!-- view past close post add new post buttons -->
-								<div class="tab1">
+								<div class="tab1" style="padding-left:16px;">
 									<?php if($tscategory_id == 1 || $tscategory_id == 2) { ?>
-									<h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Sellers & Shippers</strong></span></h3>
+									<h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Sellers & Shippers</strong></span></h3>
 									<p class="leftbox2">Send Your Sell Post And Manage The Previous Ones. </p>
 									<div id="Layer9">
 										<img src="<?php echo asset_url(); ?>images/img0143.png" id="Image54" alt="" class="img46" style="width:30px !important;">
 				                    <?php if($usertype[0]['user_category_id'] =='1' || $usertype[0]['user_category_id'] =='2' ) { ?>
-					                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+					                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 						                    <a href="javascript:openNewPostForm();" class="bststyle6">
 						                    	Add New Post
 						                    </a>
 					                    </span>
 				                    <?php } else { ?>
-				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 				                    	<a href="#">Add New Post</a>
 				                    	</span>
 										
@@ -147,7 +147,7 @@ div.pp_pic_holder {
 				                	</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/viewmybuyposts.png" id="Image54" alt="" class="img46 mp1" style="margin-top:3px;"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="javascript:viewMyPosts();" class="bststyle9">
 												View My Posts
 											</a>
@@ -155,7 +155,7 @@ div.pp_pic_holder {
 									</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/closebuyposts.png" id="Image54" alt="" class="img46 mp1" style="margin-top:3px;"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="#" onclick="ShowObjectWithEffect('Layer32', 0, 'fade', 500);ShowObjectWithEffect('Layer28', 1, 'fade', 500);return false;" class="bststyle9">
 												Close My Posts
 											</a>
@@ -181,27 +181,25 @@ div.pp_pic_holder {
 							<div id="menu1" class="tab-pane fade content122">
 							
 
-								<div id="Layer288" style="width: 1029px;height:616px;overflow-x: hidden;">	
-								</div>
+							<div id="Layer288" style="width: 1029px;height:616px;overflow-x: hidden;"></div>
 								
-							<div id="Layer322" style="height:616px;width: 1029px;overflow-x: hidden;">
-				            </div>
+							<div id="Layer322" style="height:616px;width: 1029px;overflow-x: hidden;"></div>
 								<!-- view my post end -->
 								<!-- view past close post add new post buttons -->
-								<div class="tab1">
+								<div class="tab1" style="padding-left:16px;">
 									<?php if($tscategory_id == 3) { ?>
-									<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Buyers</strong></span><br>
+									<span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Buyers</strong></span><br>
 									<p class="leftbox2">Send Your Buy Post And Manage The Previous Ones..</p>
 									<div class="bluebox">
 										<img src="<?php echo asset_url(); ?>images/barsendpost.png" id="Image54" alt="" class="img46" style="width:30px !important;">
 				                    	<?php if($usertype[0]['user_category_id'] =='3' ) { ?>
-				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 					                    	<a href="javascript:openNewBuyerPostForm();" class="bststyle6">
 					                    		Add New Post
 					                    	</a>
 				                    	</span>
 				                		<?php } else { ?>
-				                		<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                		<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 				                		<a href="#">Add New Post</a>
 				                		</span>
 
@@ -209,7 +207,7 @@ div.pp_pic_holder {
 				                	</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/viewmysellposts.png" id="Image54" alt="" class="img46 mp1"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="javascript:viewBuyerPosts();" class="bststyle10">
 												View My Posts
 											</a>
@@ -217,7 +215,7 @@ div.pp_pic_holder {
 									</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/closesellposts.png" id="Image54" alt="" class="img46 mp1"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="#" onclick="ShowObjectWithEffect('Layer322', 0, 'fade', 500);ShowObjectWithEffect('Layer288', 1, 'fade', 500);return false;" class="bststyle10">
 												Close My Posts
 											</a>
