@@ -75,13 +75,13 @@ $locale = localeconv();
 ?>
 <div class="container-fluid" style="background: #f1f1f1; padding: 30px 0px">
     <div class="row" style="margin-bottom: 20px;">
-        <div class="col-md-2">
+        <div class="col-md-2" style="padding-left:0;">
             <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
                 <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
                 <span style="color:#303030;font-family:Georgia;font-size:17px;"><a href="#" class="style261" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
             </div>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10" style="padding-right:0;">
             <div class="search-div"> 
                 <form method="post" action="search">
                     <div class="col-sm-7 col-xs-11" style="padding: 0px;">
@@ -152,8 +152,8 @@ $locale = localeconv();
                     </div>
                 </div>
 														
-                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
-                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+                <a style="position: absolute; height: 61px; z-index: 999; background-image: none ! important; top: 20%; width: 30px; left: 3px;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img height="53px;" alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position: absolute; z-index: 999; background-image: none ! important; top: 20%; height: 61px; width: 30px;" class="right carousel-control" href="#myCarousel" data-slide="next"><img height="53px;" alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">

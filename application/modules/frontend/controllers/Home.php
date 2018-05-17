@@ -1845,6 +1845,136 @@ class Home extends MX_Controller {
 		}
 		echo json_encode($resp);
 	}
-	
+	public function import_categories(){ 
+		$file = $_FILES['img']['tmp_name'];
+		$fileInfoArr = pathinfo($_FILES['img']['name']);
+		$extension = strtolower($fileInfoArr['extension']);
+		if($extension=="xls" || $extension=="xlsx"){ 
+			
+			require_once(APPPATH.'libraries/PHPExcel-1.8.1/Classes/PHPExcel/IOFactory.php');
+			$c = 1;
+			$inputFileName = $file;
+				//  Read your Excel workbook
+				try {
+					PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+					$inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+					$objReader = PHPExcel_IOFactory::createReader($inputFileType);
+					$objPHPExcel = $objReader->load($inputFileName);
+				} catch (Exception $e) {
+					die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
+					. '": ' . $e->getMessage());
+				}
+
+				//  Get worksheet dimensions
+				$sheet = $objPHPExcel->getSheet(0);
+				$highestRow = $sheet->getHighestRow();
+				$highestColumn = $sheet->getHighestColumn();
+				$idexist=$emailexist=$contactexist=''; 
+				//  Loop through each row of the worksheet in turn
+				$rowflag=2;
+				for ($row = 2; $row <= $highestRow; $row++) { 
+
+					//  Read a row of data into an array
+					$rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
+					if($rowflag>1){ //print_r($rowData);die;
+						if($rowData[0][0]==''){
+							break;
+						}
+						$category = $rowData[0][0];
+						$category_image = $rowData[0][1];
+						$id='';
+						$where = array('LOWER(name)' => strtolower(trim($category)));
+						$query = $this->db->select('id')
+								->from('tbl_product_main_category')
+								->where($where)
+								->get();
+						$res = $query->row();
+						if(isset($res->id) && $res->id!=''){
+							$data = array(
+								'name'=>$category,
+								'cat_image'=>$category_image,
+								'status'=>1
+							);
+							$where = array('id' => $res->id);
+							$this->db->update('tbl_product_main_category', $data, $where);
+						}else{
+							$data = array(
+								'name'=>$category,
+								'cat_image'=>$category_image,
+								'status'=>1
+							);
+							$insert = $this->db->insert('tbl_product_main_category', $data);
+						}
+					
+					}
+					$rowflag++;
+				}
+		}else{
+			echo "Please select CSV/Exel file.";
+		}
+	}
+	public function import_subcategories(){ 
+		$file = $_FILES['img']['tmp_name'];
+		$fileInfoArr = pathinfo($_FILES['img']['name']);
+		$extension = strtolower($fileInfoArr['extension']);
+		if($extension=="xls" || $extension=="xlsx"){ 
+			
+			require_once(APPPATH.'libraries/PHPExcel-1.8.1/Classes/PHPExcel/IOFactory.php');
+			$c = 1;
+			$inputFileName = $file;
+				//  Read your Excel workbook
+				try {
+					PHPExcel_Settings::setZipClass(PHPExcel_Settings::PCLZIP);
+					$inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+					$objReader = PHPExcel_IOFactory::createReader($inputFileType);
+					$objPHPExcel = $objReader->load($inputFileName);
+				} catch (Exception $e) {
+					die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
+					. '": ' . $e->getMessage());
+				}
+
+				//  Get worksheet dimensions
+				$sheet = $objPHPExcel->getSheet(0);
+				$highestRow = $sheet->getHighestRow();
+				$highestColumn = $sheet->getHighestColumn();
+				$idexist=$emailexist=$contactexist=''; 
+				//  Loop through each row of the worksheet in turn
+				$rowflag=2;
+				$id='';
+				for ($row = 2; $row <= $highestRow; $row++) { 
+
+					//  Read a row of data into an array
+					$rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
+					if($rowflag>1){ //print_r($rowData);die;
+						if($rowData[0][0]==''){
+							break;
+						}
+						$sub_category = $rowData[0][0];
+						$category = $rowData[0][1];
+						if($category!=''){
+							$where = array('LOWER(name)' => strtolower(trim($category)));
+							$query = $this->db->select('id')
+									->from('tbl_product_main_category')
+									->where($where)
+									->get();
+							$res = $query->row();
+							$id=(isset($res->id) && $res->id!='')?$res->id:'';
+						}
+						if($id!=''){
+							$data = array(
+								'name'=>$sub_category,
+								'mcat_id'=>$id,
+								'status'=>1
+							);
+							$insert = $this->db->insert('tbl_product_sub_category', $data);
+						}
+					
+					}
+					$rowflag++;
+				}
+		}else{
+			echo "Please select CSV/Exel file.";
+		}
+	}
 	
 }
