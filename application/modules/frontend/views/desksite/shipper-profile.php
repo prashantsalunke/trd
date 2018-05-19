@@ -991,7 +991,7 @@ function stopWiggle(input) {
                             <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
                         </a>
                         <p class="box1font3" style="padding:0px;">
-                            <img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">
+                            <img src="<?php echo asset_url(); ?>images/Mail.ico" alt="" class="img32">
                             <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>CONTACT US</strong></span>
                         </p>
                         <div class="box2" style="height:472px;">
@@ -1018,6 +1018,7 @@ function stopWiggle(input) {
                                 <div class="form-group">
                                     <div>
                                         <select name="country" size="1" id="Combobox1" class="input">
+                                            <option value="">Country</option>
                                             <?php foreach ($countries as $country) { ?>
                                             <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
                                             <?php } ?>
@@ -1471,12 +1472,12 @@ function likeMyDesksite(busi_id) {
 function submitContactForm() {
     <?php if(!empty($tsuserid)) { ?>
         <?php if($tscategory_id != 3) { ?>
-            $("#msg_cont").html("We have recorded your enquiry.");
+            $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
             ShowObject('Layer99', 1);
             ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
         <?php } else { ?>
             <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-                $("#msg_cont").html("We have recorded your enquiry.");
+                $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
                 ShowObject('Layer99', 1);
                 ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
             <?php } else if($contact_details[0]['step'] < 2) { ?>
@@ -1495,10 +1496,10 @@ function submitContactForm() {
 function openGeneralEnquiry(id) {
     <?php if(!empty($tsuserid)) { ?>
         <?php if($tscategory_id != 3) { ?>
-            popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+            popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
         <?php } else { ?>
             <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-                popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+                popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
             <?php } else if($contact_details[0]['step'] < 2) { ?>
                 $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
                 ShowObject('Layer99', 1);
@@ -1544,6 +1545,9 @@ $(document).ready(function(){
                 validators: {
                     notEmpty: {
                         message: 'Please enter Phone Number'
+                    },
+                  integer: {
+                        message: 'Enter Only Numbers'
                     }
                 }
             },
@@ -1610,7 +1614,7 @@ function showContactUsRequest(formData, jqForm, options){
 function showContactUsResponse(resp, statusText, xhr, $form){
     ajaxindicatorstop();
     if(resp.status == 1) {
-        $("#msg_cont").html("We have recorded your enquiry.");
+        $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
         ShowObject('Layer99', 1);
         ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
     }

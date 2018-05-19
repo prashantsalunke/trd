@@ -810,14 +810,14 @@ function myloaderoff()
             <div id="Layer46" style="text-align:left;left:0;top:0;right:0;bottom:0;z-index:33;">
                 <?php if(!empty($Desksite['desksite_bg1'])) { ?>
                 <div id="SlideShow1" >
-                    <div class="image d1" style="width:100%;height:100%;background-image:url(<?php echo asset_url().$Desksite['desksite_bg1']; ?>);background-size:cover;">&nbsp;</div>
+                    <div class="image d1" style="width:100%;background-image:url(<?php echo asset_url().$Desksite['desksite_bg1']; ?>);background-size:cover;">&nbsp;</div>
                     <?php if(!empty($Desksite['desksite_bg2'])) { ?>
                     <div class="image d2" style="width:100%;height:100%;background-image:url(<?php echo asset_url().$Desksite['desksite_bg2']; ?>);background-size:cover;">&nbsp;</div>
                     <?php } ?>
                 </div>
                 <?php } else { ?>
                 <div id="SlideShow1" >
-                    <div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
+                    <div class="image d1" style="width:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
                     <div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
                 </div>
                 <?php } ?>
