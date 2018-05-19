@@ -687,6 +687,54 @@ $(document).ready(function() {
         }
     };
     $("#Image67").tooltip(jQueryToolTip5Opts);
+    var jQueryToolTip5Opts = {
+        hide: true,
+        show: true,
+        content: 'This buyer is an active Buyer.',
+        items: '#Image94',
+        position: {
+            my: "right bottom",
+            at: "left top",
+            collision: "flipfit"
+        }
+    };
+    $("#Image94").tooltip(jQueryToolTip5Opts);
+    var jQueryToolTip5Opts = {
+        hide: true,
+        show: true,
+        content: 'This buyer is member in your community.',
+        items: '#Image76',
+        position: {
+            my: "right bottom",
+            at: "left top",
+            collision: "flipfit"
+        }
+    };
+    $("#Image76").tooltip(jQueryToolTip5Opts);
+    var jQueryToolTip5Opts = {
+        hide: true,
+        show: true,
+        content: 'This buyer is member in your community.',
+        items: '#Image76',
+        position: {
+            my: "right bottom",
+            at: "left top",
+            collision: "flipfit"
+        }
+    };
+    $("#Image95").tooltip(jQueryToolTip5Opts);
+    var jQueryToolTip5Opts = {
+        hide: true,
+        show: true,
+        content: 'This is verified buyer.',
+        items: '#Image76',
+        position: {
+            my: "right bottom",
+            at: "left top",
+            collision: "flipfit"
+        }
+    };
+    $("#Image95").tooltip(jQueryToolTip5Opts);
     $("#Layer49").stickylayer({
         orientation: 4,
         position: [0, 0],
@@ -833,62 +881,29 @@ function stopWiggle(input) {
         <div id="Layer88" class="leftnav">
 
           <div id="Layer116" class="left-fixed" style="padding-top:25px;">
-
             <div id="wb_Text7" class="style-2">
-                <div id="wb_Image10" class="img-style">
-                    <?php if(!empty($Desksite['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image67" class="verified-icon" >
+                <div id="wb_Image1" class="img-style" style="padding-top:8px;">
+                    <?php if($Desksite['is_active'] >= 3){?><img src="<?php echo asset_url(); ?>images/Active.png" alt="This buyer is an active Buyer" id="Image94" class="verified-icon"> 
                     <?php } else {?>
-                  <img src="<?php echo asset_url(); ?>images/ts/community.png" id="Image67" class="verified-icon" style="opacity :0.15" > <?php }?>
-                </div>
-
-                <div id="wb_Image2" class="img-style" style="padding-top:8px;">
-                  <?php $buyer_request = $Desksite['stock_buyer_count']+$Desksite['bstation_post_count']; ?>
-                  <?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" class="verified-icon" >
-                  <?php } else {?>
-                  <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" class="verified-icon" style="opacity :0.15" ><?php }?>
-                </div>
+                  <img src="<?php echo asset_url(); ?>images/Active.png" class="verified-icon" style="opacity :0.15" ><?php }?>
+                  </div>
                   <div id="wb_Image1" class="img-style" style="padding-top:8px;">
-                    <?php if($Desksite['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" class="verified-icon"> <?php } else { ?>
-                    <img src="<?php echo asset_url(); ?>images/trusted.png" style="opacity :0.15" id="Image67" class="verified-icon" >
+                    <?php if($Desksite['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" id="Image95" class="verified-icon"> <?php } else { ?>
+                    <img src="<?php echo asset_url(); ?>images/trusted.png" style="opacity :0.15" class="verified-icon" >
                     <?php }?>
                   </div>
-                <div id="wb_Image1" class="img-style" style="padding-top:8px;">
-                    <?php if($Desksite['is_active'] >= 3){?><img src="<?php echo asset_url(); ?>images/Active.png" id="Image67" class="verified-icon"> 
+                <div id="wb_Image2" class="img-style" style="padding-top:8px;">
+                  <?php $buyer_request = $Desksite['stock_buyer_count']+$Desksite['bstation_post_count']; ?>
+                  <?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" class="verified-icon"  alt="Buyer has a current request">
+                  <?php } else {?>
+                  <img src="<?php echo asset_url(); ?>images/buyer-request.png" class="verified-icon" style="opacity :0.15" ><?php }?>
+                </div>
+                <div id="wb_Image10" class="img-style">
+                    <?php if(!empty($Desksite['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image76" class="verified-icon"  alt="This buyer is in your community">
                     <?php } else {?>
-                  <img src="<?php echo asset_url(); ?>images/Active.png" id="Image67" class="verified-icon" style="opacity :0.15" ><?php }?>
-                  </div>
+                  <img src="<?php echo asset_url(); ?>images/ts/community.png" class="verified-icon" style="opacity :0.15" > <?php }?>
+                </div>
             </div>
-
-           <!-- <div id="wb_Image61" class="text-center">
-            <?php if($Desksite['is_active'] >= 1){?>
-            <img src="<?php echo asset_url(); ?>images/Active.png" id="Image61" alt="Black Horse Member" class="black-horse-icon">
-              <?php } else { ?>
-              <img src="<?php echo asset_url(); ?>images/Active.png" id="Image61" alt="Black Horse Member" class="black-horse-icon img-disabled">
-              <?php } ?>
-            </div>
-           <div id="wb_Image67"  class="text-center">
-               <a href="#" onclick="<?php if($Desksite['is_logo_verified'] > 1){?>ShowObjectWithEffect('Layer61', 1, 'slideleft', 500, 'swing');<?php } ?>return false;">
-               <?php if($Desksite['is_logo_verified'] > 1){?>
-              <img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon">
-              <?php } else { ?>
-              <img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon img-disabled">
-              <?php } ?>
-              </a>
-           </div>
-           <div id="wb_Image76"  class="text-center">
-            <?php if(!empty($buyer['community_id'])){ ?>
-               <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This Buyer is a member in your community" class="community-member-icon">
-               <?php } else { ?>
-               <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This Buyer is a member in your community" class="community-member-icon img-disabled">
-               <?php } ?>
-          </div>
-               <div id="wb_Image76"  class="text-center">
-                 <?php if(($Desksite['is_active'] >= 3)){ ?>
-                   <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image76" alt="This Buyer is a member in your community" class="community-member-icon">
-                   <?php } else { ?>
-                   <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image76" style="opacity :0.15" alt="This shipper is a member in your community" class="community-member-icon img-disabled">
-                   <?php } ?>
-               </div> -->
        </div>
 
 
@@ -948,14 +963,18 @@ function stopWiggle(input) {
 										    <img src="<?php echo asset_url(); ?>images/desksite/D-files.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 										    <p class="font2">My Files</p>
 									    </a>
-									    <a href="#" class="navigation2n" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;" style="text-decoration: none; ">
-										   <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-										   <p class="font5">Contact, Add<br> and Share...</p>
-									   	</a>
-									   	<a href="<?php echo base_url();?>buyer" class="navigation2n" style=" text-decoration: none; ">
-										   <img src="<?php echo asset_url(); ?>images/exit.png" id="Image44" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width: 50px; height: 54px; transform: rotate(0deg);">
+                      <a href="#" class="navigation2n" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;" style="text-decoration: none; ">
+                       <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+                       <p class="font5">Contact, Add<br> and Share...</p>
+                      </a>
+                      <a href="<?php echo base_url();?>buyer" class="navigation2n" >
+                       <img src="<?php echo asset_url(); ?>images/exit.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+                       <p class="font5">Exit</p>
+                      </a>
+									   	<!-- <a href="<?php echo base_url();?>buyer" class="navigation2n" style=" text-decoration: none; ">
+										   <img src="<?php echo asset_url(); ?>images/exit.png" id="Image5" alt="" class="imgnav" style="width:45px;height:45px;" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width: 50px; height: 54px; transform: rotate(0deg);">
 										   <p class="font2">Exit</p>
-									   	</a>
+									   	</a> -->
 
 								   </center>
 					   		 </div>
@@ -1111,13 +1130,12 @@ function stopWiggle(input) {
 							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
 						</a>
 				        <p class="box1font3" style="padding:5px 0px;"><img src="<?php echo asset_url(); ?>images/my_file.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;MY FILES</p>
-				        <div class="box22 blackbox" id="my-files" style="height:325px;">
-				           
-				        </div>
+				        <div class="box22" id="my-files" style="height:325px;"> </div>
 				    </div>
 			    </div>
 			</div>
 			<!-- my files end -->
+
 			<!-- Add to catalogue -->
 			<div id="Layer_catalogue" class="catalogue1">
 			    <div id="Layer_catalogue_Container" class="catalogue2">
@@ -1166,7 +1184,7 @@ function stopWiggle(input) {
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/Mail.ico" id="Image19" alt="" class="img32">
-				        <a href="#" onclick="ShowObjectWithEffect('Layer216', 1, 'slideleft', 500, 'swing');return false;" target="_self" class="antag">
+				        <a href="#" onclick="check_msg(); ShowObjectWithEffect('Layer216', 1, 'slideleft', 500, 'swing');return false;" target="_self" class="antag">
 				        Contact Buyer
 						</a>
 				    </div>
@@ -1175,66 +1193,162 @@ function stopWiggle(input) {
 			<!-- contact add ends -->
 			<!-- contact us form -->
 			<div id="Layer216" style="position:absolute;text-align:right;visibility:hidden;left:224px;top:18px;width:55%;height:627px;z-index:3851;">
-				<div id="Layer216_Container" style="width:607px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
-					<div id="Layer217" class="a1" style="height:534px;">
-				        <a href="#" onclick="ShowObjectWithEffect('Layer216', 0, 'slideleft', 300, 'swing');return false;">
-							<img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
-						</a>
-				        <p class="box1font3" style="padding:0px;">
-				        	<img src="<?php echo asset_url(); ?>images/Mail.ico" alt="" class="img32">
-				        	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>CONTACT US</strong></span>
-				        </p>
-				        <div class="box2" style="height:472px;">
-				        	<form action="" name="contactusfrm" id="contactusfrm" method="post">
-				        		<input type="hidden" name="busi_id" value="<?php echo $Desksites[0]['busi_id']?>"/>
-				        		<div class="form-group">
-				        			<div>
-				        				<input type="text" class="input" name="name" value="" placeholder="Name">
-				        			</div>
-				        			<div class="messageContainer"></div>
-				        		</div>
-					            <div class="form-group">
-				        			<div>
-					            		<input type="text" class="input" name="mobile" value="" placeholder="Phone">
-					            	</div>
-					            	<div class="messageContainer"></div>
-					            </div>
-					            <div class="form-group">
-				        			<div>
-					            		<input type="email" class="input" name="email" value="" placeholder="Email">
-					            	</div>
-					            	<div class="messageContainer"></div>
-					            </div>
-					            <div class="form-group">
-				        			<div>
-							            <select name="country" size="1" id="Combobox1" class="input">
-							            	<?php foreach ($countries as $country) { ?>
-							                <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
-							                <?php } ?>
-							            </select>
-							       	</div>
-							       	<div class="messageContainer"></div>
-							   	</div>
-							   	<div class="form-group">
-				        			<div>
-					            		<input type="text" class="input" name="city" value="" placeholder="City">
-					            	</div>
-					            	<div class="messageContainer"></div>
-					            </div>
-					            <div class="form-group">
-				        			<div>
-					            		<textarea name="message" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;" placeholder="Message"></textarea>
-					            	</div>
-					            	<div class="messageContainer"></div>
-					            </div>
-					            <div style="width:99%;">
-					                <input type="submit" id="Button5" name="Send" value="Send" style="margin-left:5px;">
-					                <input type="button" id="Button5" name="Reset" value="Reset" onclick="resetForm();">
-					            </div>
-				            </form>
-				        </div>
-				    </div>
-				</div>
+
+
+
+
+
+  <?php if(!empty($tsuserid)) { ?>
+    <?php if($tscategory_id != 3) { ?>
+
+
+  
+        <div id="Layer216_Container" style="width:607px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+          <div id="Layer217" class="a1" style="height:534px;">
+                <a href="#" onclick="ShowObjectWithEffect('Layer216', 0, 'slideleft', 300, 'swing');return false;">
+              <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+            </a>
+                <p class="box1font3" style="padding:0px;">
+                  <img src="<?php echo asset_url(); ?>images/Mail.ico" alt="" class="img32">
+                  <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>CONTACT US</strong></span>
+                </p>
+                <div class="box2" style="height:472px;">
+                  <form action="" name="contactusfrm" id="contactusfrm" method="post">
+                    <input type="hidden" name="busi_id" value="<?php echo $Desksites[0]['busi_id']?>"/>
+                    <div class="form-group">
+                      <div>
+                        <input type="text" class="input" name="name" value="" placeholder="Name">
+                      </div>
+                      <div class="messageContainer"></div>
+                    </div>
+                      <div class="form-group">
+                      <div>
+                          <input type="text" class="input" name="mobile" value="" placeholder="Phone">
+                        </div>
+                        <div class="messageContainer"></div>
+                      </div>
+                      <div class="form-group">
+                      <div>
+                          <input type="email" class="input" name="email" value="" placeholder="Email">
+                        </div>
+                        <div class="messageContainer"></div>
+                      </div>
+                      <div class="form-group">
+                      <div>
+                          <select name="country" size="1" id="Combobox1" class="input">
+                            <option value="">Country</option>
+                            <?php foreach ($countries as $country) { ?>
+                              <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
+                              <?php } ?>
+                          </select>
+                      </div>
+                      <div class="messageContainer"></div>
+                  </div>
+                  <div class="form-group">
+                      <div>
+                          <input type="text" class="input" name="city" value="" placeholder="City">
+                        </div>
+                        <div class="messageContainer"></div>
+                      </div>
+                      <div class="form-group">
+                      <div>
+                          <textarea name="message" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;" placeholder="Message"></textarea>
+                        </div>
+                        <div class="messageContainer"></div>
+                      </div>
+                      <div style="width:99%;">
+                          <input type="submit" id="Button5" name="Send" value="Send" style="margin-left:5px;">
+                          <input type="button" id="Button5" name="Reset" value="Reset" onclick="resetForm();">
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php } else { ?>
+      <?php if($contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
+
+
+  
+        <div id="Layer216_Container" style="width:607px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
+          <div id="Layer217" class="a1" style="height:534px;">
+                <a href="#" onclick="ShowObjectWithEffect('Layer216', 0, 'slideleft', 300, 'swing');return false;">
+              <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+            </a>
+                <p class="box1font3" style="padding:0px;">
+                  <img src="<?php echo asset_url(); ?>images/Mail.ico" alt="" class="img32">
+                  <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>CONTACT US</strong></span>
+                </p>
+                <div class="box2" style="height:472px;">
+                  <form action="" name="contactusfrm" id="contactusfrm" method="post">
+                    <input type="hidden" name="busi_id" value="<?php echo $Desksites[0]['busi_id']?>"/>
+                    <div class="form-group">
+                      <div>
+                        <input type="text" class="input" name="name" value="" placeholder="Name">
+                      </div>
+                      <div class="messageContainer"></div>
+                    </div>
+                      <div class="form-group">
+                      <div>
+                          <input type="text" class="input" name="mobile" value="" placeholder="Phone">
+                        </div>
+                        <div class="messageContainer"></div>
+                      </div>
+                      <div class="form-group">
+                      <div>
+                          <input type="email" class="input" name="email" value="" placeholder="Email">
+                        </div>
+                        <div class="messageContainer"></div>
+                      </div>
+                      <div class="form-group">
+                      <div>
+                          <select name="country" size="1" id="Combobox1" class="input">
+                            <option value="">Country</option>
+                            <?php foreach ($countries as $country) { ?>
+                              <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
+                              <?php } ?>
+                          </select>
+                      </div>
+                      <div class="messageContainer"></div>
+                  </div>
+                  <div class="form-group">
+                      <div>
+                          <input type="text" class="input" name="city" value="" placeholder="City">
+                        </div>
+                        <div class="messageContainer"></div>
+                      </div>
+                      <div class="form-group">
+                      <div>
+                          <textarea name="message" id="TextArea2" rows="7" cols="38" maxlength="2000" style="width:99%;" placeholder="Message"></textarea>
+                        </div>
+                        <div class="messageContainer"></div>
+                      </div>
+                      <div style="width:99%;">
+                          <input type="submit" id="Button5" name="Send" value="Send" style="margin-left:5px;">
+                          <input type="button" id="Button5" name="Reset" value="Reset" onclick="resetForm();">
+                      </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+          <?php } else if($contact_details[0]['step'] < 2) { ?>
+        <script>
+            $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In  My Station click on  My Desksite and follow the steps to build it.");
+            ShowObject('Layer99', 1);
+          </script>
+          <?php } else if($contact_details[0]['accept_email'] == 0) { ?>
+          <script>
+            $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+            ShowObject('Layer99', 1);
+            </script>
+          <?php } ?>
+        <?php } ?>
+      <?php } else { ?>
+      <script>
+        $("#msg_cont").html("Please login to send enquiry.");
+        ShowObject('Layer99', 1);
+      </script>
+      <?php } ?>
+      
 			</div>
 			<!-- contact us form end -->
 				<!-- contact person -->
@@ -1298,7 +1412,7 @@ function stopWiggle(input) {
 			</div>
 		</div>
 	</div>
-	<?php }?>
+	<?php } ?>
 </div>
 <script src="<?php echo asset_url();?>js/bootstrapValidator.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.form.js"></script>
@@ -1417,12 +1531,12 @@ function likeMyDesksite(busi_id) {
 function submitContactForm() {
 	<?php if(!empty($tsuserid)) { ?>
 		<?php if($tscategory_id != 3) { ?>
-			$("#msg_cont").html("We have recorded your enquiry.");
+			$("#msg_cont").html("Your offer has been sent successfully to the buyer.");
 			ShowObject('Layer99', 1);
 			ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
 		<?php } else { ?>
 			<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-				$("#msg_cont").html("We have recorded your enquiry.");
+				$("#msg_cont").html("Your offer has been sent successfully to the buyer.");
 				ShowObject('Layer99', 1);
 				ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
 			<?php } else if($contact_details[0]['step'] < 2) { ?>
@@ -1439,24 +1553,34 @@ function submitContactForm() {
 	<?php } ?>
 }
 function openGeneralEnquiry(id) {
-	<?php if(!empty($tsuserid)) { ?>
-		<?php if($tscategory_id != 3) { ?>
-			popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
-		<?php } else { ?>
-			<?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-				popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
-			<?php } else if($contact_details[0]['step'] < 2) { ?>
-				$("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
-				ShowObject('Layer99', 1);
-			<?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
-				$("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
-				ShowObject('Layer99', 1);
-			<?php } ?>
-		<?php } ?>
-	<?php } else { ?>
-		$("#msg_cont").html("Please login to send enquiry.");
-		ShowObject('Layer99', 1);
-	<?php } ?>
+  <?php if(!empty($tsuserid)) { ?>
+    <?php if($tscategory_id != 3) { ?>
+      popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+    <?php } else { ?>
+      <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['step'] == 2) { ?>
+        popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+      <?php } else if($contact_details[0]['step'] < 2) { ?>
+        $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
+        ShowObject('Layer99', 1);
+      <?php } else if($contact_details[0]['accept_offer'] == 0) { ?>
+        $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+        ShowObject('Layer99', 1);
+      <?php } ?>
+    <?php } ?>
+  <?php } else { ?>
+    $("#msg_cont").html("Please login to send enquiry.");
+    ShowObject('Layer99', 1);
+  <?php } ?>
+}
+function check_msg() {
+  // alert('Helloooo');
+      <?php if($contact_details[0]['step'] < 2) { ?>
+        $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
+        ShowObject('Layer99', 1);
+      <?php } else if($contact_details[0]['accept_email'] == 0) { ?>
+        $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+        ShowObject('Layer99', 1);
+      <?php } ?>
 }
 $(document).ready(function(){
 	$('#contactusfrm').bootstrapValidator({
@@ -1490,7 +1614,11 @@ $(document).ready(function(){
     	   		validators: {
                  	notEmpty: {
                      	message: 'Please enter Phone Number'
-                 	}
+                 	},
+                  integer: {
+                        message: 'Enter Only Numbers'
+                    }
+
              	}
     	   	},
     	   	country: {
@@ -1556,7 +1684,7 @@ function showContactUsRequest(formData, jqForm, options){
 function showContactUsResponse(resp, statusText, xhr, $form){
 	ajaxindicatorstop();
 	if(resp.status == 1) {
-		$("#msg_cont").html("We have recorded your enquiry.");
+		$("#msg_cont").html("Your offer has been sent successfully to the buyer.");
 		ShowObject('Layer99', 1);
 		ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
 	}
