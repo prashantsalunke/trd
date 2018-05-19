@@ -1014,6 +1014,8 @@ class Alerts extends MX_Controller {
 	    $this->load->model('Community_Model', 'mycommunity' );
 	    $this->load->library('mylib/OfferLib');
 	    $this->load->library('mylib/InquiryLib');
+	    $this->load->library('mylib/CommunityLib');
+	    $this->load->library('mylib/orderLib');
 	    $busiId = $this->session->userdata('busi_id');
 	    $userId = $this->session->userdata('tsuserid'); 
 	    $category_id = $this->session->userdata('tsuser')['category_id'];
@@ -1025,14 +1027,21 @@ class Alerts extends MX_Controller {
 		} else {
 			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busiId);
 			$getMyOffers = $this->offerlib->getBuyerOfferByBusiId($busiId);
-		}
-	     
+		} 
 	    $this->template->set ( 'newCommunity', $checkNewCommunityAlert);
 	    $this->template->set ( 'newInquiry', $inquiry);
 	    $this->template->set ( 'newOffers', $getMyOffers);
 	    $this->template->set_layout (false);
 	    $html = $this->template->build ('default/alerts_popup','',true);
-	    die($html);
+	    
+	    $sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busiId);
+	    if(isset($sendcommunityrequest[0]['community_id']) == "" ) {
+	        $sendcommunityrequest = array();
+	    }
+	    $order = $this->orderlib->getOrderByBusiId($busiId);
+	    $totalcount = count($inquiry) + count($getMyOffers) + count($order) + count($sendcommunityrequest);
+	    echo json_encode(array('dataHTML'=> $html,'totalCount'=>$totalcount));
+	    
 	}
 	/**
 	function to accept add to community request

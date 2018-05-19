@@ -138,8 +138,10 @@ function getNewAlerts() {
 	$.ajax({
         url: base_url + "home/alert",
         type: "post",
+        dataType:'json',
         success: function (response) {
-        		$("#new-alert-popup").html(response);
+    		$("#new-alert-popup").html(response.dataHTML);
+    		$(".badge").html(response.totalCount);
         }
     })
 }
