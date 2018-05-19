@@ -362,7 +362,7 @@ ul.share{
 <div>   
    	<div class="col-sm-12" style="padding:0px;padding-top: 40px;">
    		 <h1 class="sfont1">sellers</h1>
-   		 <p class="sfont2">Sourcing with more details is available by selecting additional options from the More Options Menu on the right side..</p>
+   		 <p class="sfont2" style="text-indent:0px;">Sourcing with more details is available by selecting additional options from the More Options Menu on the right side..</p>
    		 <br>
     </div>
     <div class="row" style="margin:0px;">
@@ -393,7 +393,7 @@ ul.share{
 					   		 <span class="block"><strong class="font1"><a href="<?php echo base_url();?>desksite/<?php echo $seller['busi_id'];?>" target="_blank" class="style5"><?php echo $seller['company_name']?></a></strong>
 					   		<br> Presented By: <?php if(!empty($seller['contact_name'])){ echo $seller['contact_prefix'].' '.$seller['contact_name']; } else { echo $seller['name_prefix'].' '.$seller['name'];} ?></span>
 				   		 </div>
-			   		  <p class="font5"><?php echo substr($seller['company_introduction'], '0', '200'); ?><br></span></p>
+			   		  <p class="font5" style="text-indent: 0px;"><?php echo substr($seller['company_introduction'], '0', '200'); ?><br></span></p>
 			   		</div>
 					<div><div class="col-sm-2" style="padding:0px;width:110px;"><strong class="strong1">Main Products |</strong></div><div class="col-sm-9" style="padding:0px;width:445px;"> <?php echo substr($seller['main_product'], '0', '150')?> <?php if(strlen($seller['main_product']) > 150) { ?>...<?php } ?></div></div>
 					<div id="Layer5_<?php echo $key;?>" class="section10 row seller_Layer5">
