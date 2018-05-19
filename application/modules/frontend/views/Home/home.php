@@ -235,7 +235,7 @@ $locale = localeconv();
             $i = '0';
             foreach ($homeAds as $banner) {
                 ?>
-                <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i; ?>" class="<?php if ($i == 1) {
+                <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i; ?>" class="<?php if ($i == 0) {
                 echo 'active';
             } ?>" style="border-color: #F05235;"></li>
     <?php $i++;
@@ -251,7 +251,7 @@ $locale = localeconv();
                 <div class="item <?php if ($i == 1) {
                     echo 'active';
                 } ?>">
-                    <!--<a href="<?php echo base_url(); ?>advertisement/<?php echo $banner['id'] ?>">--><img src="<?php echo asset_url() . $banner['main_banner']; ?>" alt="..." style="padding:0px !important;border-radius:0px;"><!--</a>-->
+                    <a href="#" target="_blank"><img src="<?php echo asset_url() . $banner['main_banner']; ?>" alt="..." style="padding:0px !important;border-radius:0px;"></a><!-- <?php echo base_url(); ?>advertisement/<?php echo $banner['id'] ?> -->
                     <div id="Layer354" style="position:relative;text-align:left;top: -300px;left: 1200px;width:62px;height:115px;z-index:1361;">
                         <div id="Layer356" style="position:relative;text-align:left;/*left:16px;top:8px;*/width:40px;height:40px;z-index:1358;">
                             <div id="wb_Image262" style="position:relative;/*left:9px;top:0px;*/width:25px;height:18px;z-index:1355;padding-left: 10px;padding-top: 2px;">
@@ -911,7 +911,7 @@ foreach ($NewArrivals as $NewArrival) {
                                 </div>
                                 <br/>
                                 <div id="wb_Carousel5" style="position: absolute;top:60px;">
-                                    <div id="Carousel5" style="width: 530px;!important">
+                                    <div id="Carousel5" style="max-width: 530px !important;">
 <?php
 $i = 0;
 foreach ($NewOrders as $NewOrder) {
