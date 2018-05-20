@@ -1,3 +1,9 @@
+<style>
+p {
+	 word-wrap: break-word;
+	 text-align:left;
+  }
+</style>
 <?php 
 if(count($posts) > 0) {
 	foreach ($posts as $key=>$product) {

@@ -1274,6 +1274,7 @@ class Station extends MX_Controller {
 		$this->load->library('mylib/BusinessLib');
 		$userdata = $this->businesslib->getBusinessInfo($busi_id);
 		$terms = $this->businesslib->getGauranteeTerms();
+		$data['rank'] = $this->calculateRank($userdata[0]);
 		$this->template->set('binfo',$userdata);
 		$this->template->set('terms',$terms);
 		$this->template->set ( 'page', 'home' );
@@ -1362,6 +1363,50 @@ class Station extends MX_Controller {
 		echo json_encode($resp);
 	}
 	
+			
+			public function cancelLicense() {
+				$busi_id = $this->session->userdata('busi_id');
+				$data = array();
+				$data['id'] = $busi_id;
+				$data['export_lic_number'] = "";
+				$data['export_license'] = "";
+				$this->load->library('mylib/BusinessLib');
+				$userdata = $this->businesslib->updateBusinessInfo($data);
+				$binfo = $this->businesslib->getBusinessInfo($busi_id);
+				$data = array();
+				$data['id'] = $busi_id;
+				$data['rank'] = $this->calculateRank($binfo[0]);
+				$this->businesslib->updateBusinessInfo($data);
+				$resp = array();
+				if($userdata) {
+					$resp['status'] = 1;
+				} else {
+					$resp['status'] = 0;
+				}
+				echo json_encode($resp);
+			}
+			
+			public function cancelCerti() {
+				$busi_id = $this->session->userdata('busi_id');
+				$data = array();
+				$data['id'] = $busi_id;
+				$data['product_certs'] = "";
+				$this->load->library('mylib/BusinessLib');
+				$userdata = $this->businesslib->updateBusinessInfo($data);
+				$binfo = $this->businesslib->getBusinessInfo($busi_id);
+				$data = array();
+				$data['id'] = $busi_id;
+				$data['rank'] = $this->calculateRank($binfo[0]);
+				$this->businesslib->updateBusinessInfo($data);
+				$resp = array();
+				if($userdata) {
+					$resp['status'] = 1;
+				} else {
+					$resp['status'] = 0;
+				}
+				echo json_encode($resp);
+			}
+	
 	public function confirmGaurantee() {
 		$busi_id = $this->session->userdata('busi_id');
 		$data = array();
@@ -1410,6 +1455,7 @@ class Station extends MX_Controller {
 		$data = array();
 		$data['id'] = $busi_id;
 		$data['export_lic_number'] = trim($this->input->post('lics'));
+		$data['export_license'] = trim($this->input->post('lics_pic'));
 		$this->load->library('mylib/BusinessLib');
 		$userdata = $this->businesslib->updateBusinessInfo($data);
 		$binfo = $this->businesslib->getBusinessInfo($busi_id);
@@ -1627,9 +1673,9 @@ class Station extends MX_Controller {
 			$email = $udetails[0]['user_email'].",".$udetails[0]['company_email'];
 			$this->load->library('email', $config);
 			$this->email->set_newline("\r\n");
-			$this->email->from('mytrdstation@gmail.com'); // change it to yours
+			$this->email->from('no-reply@gmail.com'); // change it to yours
 			$this->email->to($email); // change it to yours
-			$this->email->subject('TradeStation Order Invoice');
+			$this->email->subject('VCOMMERS ORDER INVOICE');
 			$this->email->message($html);
 			$this->email->send();
 		}

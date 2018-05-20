@@ -865,7 +865,7 @@ class Product_Model extends CI_Model {
     	
     }
     public function getVideodetailsById($id) {
-    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id, g.vedio_file as video_file,h.company_name');
+    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id, g.vedio_file as video_file,g.id as vid,h.company_name');
     	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
@@ -916,7 +916,8 @@ class Product_Model extends CI_Model {
     c.timezone,e.sub_category as user_subcategory,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
     (select GROUP_CONCAT(f.name) from tbl_main_product as f where f.busi_id=a.busi_id AND f.status != 0 group by a.busi_id) as mainproducts,
     h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,h.fact_province,h.fact_city,
-    h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag,l.id as community_id');
+    h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag,l.id as community_id,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post
+             as l where l.busi_id=b.id) as bstation_post_count');
     $this->db->from(TABLES::$USER.' AS a');
     $this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     $this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -927,6 +928,7 @@ class Product_Model extends CI_Model {
     $this->db->join(TABLES::$FACTORY_INFO.' AS h','h.busi_id=a.busi_id','left');
     $this->db->join(TABLES::$COUNTRY.' AS i','i.name=b.company_country','left');
     $this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
+    $this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
     $this->db->where('a.account_activated', 1);
     $this->db->where('a.is_suspend', 0);
     $this->db->where('a.is_deleted', 0);
@@ -1103,7 +1105,7 @@ class Product_Model extends CI_Model {
     }
     public function getProductVideosByBusiId($id)
     {
-    	$this->db->select('b.*,c.id as product_id,c.name,c.quantity,c.unit,c.unit_price,c.description,d.email as useremail,d.name as username,d.name_prefix as prefix,e.country as country, e.province as province, f.user_category as category, g.sub_category as subcategory');
+    	$this->db->select('b.*,b.id as vid,c.id as product_id,c.name,c.quantity,c.unit,c.unit_price,c.description,d.email as useremail,d.name as username,d.name_prefix as prefix,e.country as country, e.province as province, f.user_category as category, g.sub_category as subcategory');
     	$this->db->from(TABLES::$PRODUCT_VIDEO.' as b', 'b.product_item_id = a.id ', 'inner');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' as c','b.product_item_id=c.id','inner');
     	$this->db->join(TABLES::$USER.' as d ', 'd.busi_id = b.busi_id', 'left');

@@ -5,6 +5,7 @@
 <script src="<?php echo asset_url();?>js/three.min.js"></script>
 <script src="<?php echo asset_url();?>js/pdf.min.js"></script>
 <script src="<?php echo asset_url();?>js/3dflipbook.min.js"></script>
+<script src="<?php echo asset_url(); ?>js/wwb10.min.js"></script>
 <style>
 #RollOver26 a
 {
@@ -361,7 +362,7 @@ ul.share{
 <div>   
    	<div class="col-sm-12" style="padding:0px;padding-top: 40px;">
    		 <h1 class="sfont1">sellers</h1>
-   		 <p class="sfont2">Sourcing with more details is available by selecting additional options from the More Options Menu on the right side..</p>
+   		 <p class="sfont2" style="text-indent:0px;">Sourcing with more details is available by selecting additional options from the More Options Menu on the right side..</p>
    		 <br>
     </div>
     <div class="row" style="margin:0px;">
@@ -392,7 +393,7 @@ ul.share{
 					   		 <span class="block"><strong class="font1"><a href="<?php echo base_url();?>desksite/<?php echo $seller['busi_id'];?>" target="_blank" class="style5"><?php echo $seller['company_name']?></a></strong>
 					   		<br> Presented By: <?php if(!empty($seller['contact_name'])){ echo $seller['contact_prefix'].' '.$seller['contact_name']; } else { echo $seller['name_prefix'].' '.$seller['name'];} ?></span>
 				   		 </div>
-			   		  <p class="font5"><?php echo substr($seller['company_introduction'], '0', '200'); ?><br></span></p>
+			   		  <p class="font5" style="text-indent: 0px;"><?php echo substr($seller['company_introduction'], '0', '200'); ?><br></span></p>
 			   		</div>
 					<div><div class="col-sm-2" style="padding:0px;width:110px;"><strong class="strong1">Main Products |</strong></div><div class="col-sm-9" style="padding:0px;width:445px;"> <?php echo substr($seller['main_product'], '0', '150')?> <?php if(strlen($seller['main_product']) > 150) { ?>...<?php } ?></div></div>
 					<div id="Layer5_<?php echo $key;?>" class="section10 row seller_Layer5">
@@ -499,7 +500,7 @@ ul.share{
 									<strong class="font-style-1">Seller | </strong><p class="font-style-2"> <?php echo $seller['sub_category'];?></p>
 								</div><br>
 								<div class="space33">
-									<strong class="font-style-1"> <?php echo $seller['company_country'];?> |  </strong><p class="font-style-2"> <?php echo $seller['company_city'];?></p>
+									<strong class="font-style-1"> <?php echo $seller['company_country'];?> |  </strong><p class="font-style-2"> <?php echo isset($seller['company_city'])?$seller['company_city']:'';?></p>
 								</div>
 								<p class="left style-font-1" style="padding-top:10px;">Rank</p>
 								<div class="progress">
@@ -516,7 +517,7 @@ ul.share{
 			     	<h4 class="center"> No Seller Found!</h4>
 			     </div>
 		     <?php } ?>
-		     <?php if($total_pages > 1) { ?>
+		     <?php if(isset($total_pages) && $total_pages > 1) { ?>
 		     	<div class="row" style="margin:0px;">
 					<div id="wb_Text396" style="text-align:center;height:31px;padding:7px;padding-right:0px;background-color: #1E90FF;" class="col-sm-1">
 						<span style="color:#FFFFFF;font-family:Georgia;font-size:12px;">Page&nbsp;&nbsp; </span>
@@ -986,7 +987,7 @@ $(document).ready(function() {
 
     var Carousel3Opts =
    {
-      delay: 4000,
+      delay: 5000,
       duration: 2000,
       easing: 'easeInOutBounce',
       mode: 'fade',
@@ -1354,5 +1355,42 @@ function viewNextCatalogueBook(id) {
 		}
 	},'json');
 }
+var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
+    $(document).on('mouseenter', '.cat_slide', function () {
+        clearTimeout(hoverTimeout);
+        var curr_slide = $(this).attr("alt");
+        $(".sub_cat").css('color', '#337ab7');
+        $(".slide-details").hide();
+        $("#" + curr_slide).show();
+        $("." + curr_slide).show();
+        stayOpen.addClass('show');
+    }).on('mouseleave', '.slide', function () {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(function () {
+            if (!keepOpen) {
+                $(".slide-details").hide();
+                stayOpen.removeClass('show');
+            }
+        }, 1000);
+    });
 
+    $(document).on('mouseenter', '#Details', function () {
+        keepOpen = true;
+        setTimeout(function () {
+            keepOpen = false;
+        }, 1500);
+    }).on('mouseleave', '#Details', function () {
+        keepOpen = false;
+        $(".slide-details").hide();
+        stayOpen.removeClass('show');
+    });
+    function highlight_keywords(str) {
+        $(".sub_cat").css('color', '#337ab7');
+        $("." + str).css('color', 'orange');
+    }
+    function filter_by_subcat(cat_id,cat_sub_id){
+        $("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $( "#filter_by_category" ).submit();
+    }
 </script>

@@ -1885,3 +1885,4 @@ class Home extends MX_Controller {
         echo $html;
     }
 }
+

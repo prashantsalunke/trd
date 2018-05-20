@@ -271,8 +271,8 @@
 
 .roundflag {
 	position: absolute;
-	top: 42px;
-	left: 53px;
+	top: 48px;
+	left: 72px;
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
@@ -390,7 +390,9 @@
     -webkit-box-shadow: 3px 3px 10px #000000;
     box-shadow: 3px 3px 10px #000000;
 }
-
+.class1_bottom {
+		top:250px !important;
+}
 .class2 {
 	width: 308px;
 	position: relative;
@@ -8154,7 +8156,13 @@ a:visited {
 	background-size: cover;
 	background-repeat: no-repeat;
 }
-
+.layer_details {
+	background-image: url(../../images/windowphoto.png);
+	background-color: #FAFAFA;
+	background-position: left top;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
 #Layer264 {
 	background-color: #E1E1E1;
 }
@@ -9160,8 +9168,8 @@ a:focus, .btn:active {
 	.orange {
 		background: #FF8C00;
 		color: white;
-		padding: 45px 8px;
-		height: 90px;
+		padding: 36px 8px;
+		height: 95px;
 		font-size: 17px;
 	}
 	.author {
@@ -9175,8 +9183,8 @@ a:focus, .btn:active {
 	.blue1 {
 		background: #1E90FF;
 		color: white;
-		padding: 45px 8px;
-		height: 90px;
+		padding: 36px 8px;
+		height: 95px;
 		font-size: 17px;
 	}
 	.blue1 a {
@@ -9838,4 +9846,16 @@ a.style261 {
     top: 0;
     width: 100%;
     height: 100%;
+}
+#wb_Text2 
+{
+   background-color: transparent;
+   border: 0px #000000 solid;
+   padding: 0;
+   margin: 0;
+   text-align: center;
+}
+#wb_Text2 div
+{
+   text-align: center;
 }
