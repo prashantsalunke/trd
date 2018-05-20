@@ -610,11 +610,7 @@ function stopWiggle(input) {
             <!-- head text section -->
             <div class="c9" style="z-index:200;text-align:left;">
                 <span class="c10"><strong><?php echo $Desksite['company_name'];?></strong></span><br>
-<<<<<<< HEAD
                 <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['hot_presentation'], 0, 400);?> <?php if(strlen($Desksite['company_introduction']) > 400){?>..<?php }?></span></p>
-=======
-                <p class="c11"><span class="white-bg-text"><?php echo substr($Desksite['hot_presentation'], 0, 280);?> <?php if(strlen($Desksite['company_introduction']) > 280){?>..<?php }?></span></p>
->>>>>>> shipper_doc_dhruv
             </div>
             <!-- head text section -->
             <!-- user profile details -->
@@ -650,14 +646,10 @@ function stopWiggle(input) {
                     <?php } ?>
                 </div>
                 <?php } else { ?>
-<<<<<<< HEAD
                 <div id="SlideShow1" >
                     <div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
                     <div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
                 </div>
-=======
-                <div class="image d1" style="width:100%;height:100%;background-image:url('<?php echo asset_url(); ?>images/member-desksite.jpg');background-size:cover;">&nbsp;</div>
->>>>>>> shipper_doc_dhruv
                 <?php } ?>
             </div>
             <!-- slider ends -->
@@ -907,11 +899,7 @@ function stopWiggle(input) {
                         <p class="box1font3" style="padding:5px 0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-files.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;MY FILES</p>
                         <div class="box22 blackbox" id="my-files" style="height:325px;">
                            
-<<<<<<< HEAD
                         </div>
-=======
-                        </div>Layer148
->>>>>>> shipper_doc_dhruv
                     </div>
                 </div>
             </div>
@@ -1003,7 +991,7 @@ function stopWiggle(input) {
                             <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
                         </a>
                         <p class="box1font3" style="padding:0px;">
-                            <img src="<?php echo asset_url(); ?>images/contact_email.png" alt="" class="img32">
+                            <img src="<?php echo asset_url(); ?>images/Mail.ico" alt="" class="img32">
                             <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>CONTACT US</strong></span>
                         </p>
                         <div class="box2" style="height:472px;">
@@ -1030,6 +1018,7 @@ function stopWiggle(input) {
                                 <div class="form-group">
                                     <div>
                                         <select name="country" size="1" id="Combobox1" class="input">
+                                            <option value="">Country</option>
                                             <?php foreach ($countries as $country) { ?>
                                             <option value="<?php echo $country['name'];?>"><?php echo $country['name'];?></option>
                                             <?php } ?>
@@ -1092,11 +1081,7 @@ function stopWiggle(input) {
                                         </div>
                                         <div class="col-md-10 left" style="padding-left:35px;">
                                             <br><br>
-<<<<<<< HEAD
                                             <p   class="s13"><strong><?php echo $Desksites[0]['company_name'];?></strong></p>
-=======
-                                            <p   class="s13"><strong>Main Company Address</strong></p>
->>>>>>> shipper_doc_dhruv
                                             <p   class="s15"><?php echo $Desksites[0]['company_street'];?>, <?php echo $Desksites[0]['company_city'];?>, <?php echo $Desksites[0]['company_province'];?>, <?php echo $Desksites[0]['company_country'];?>.</p>
                                             <p   class="s13">+<?php echo $Desksites[0]['telephone_code'];?> <?php echo $Desksites[0]['telephone_city_code'];?> <?php echo $Desksites[0]['telephone_number'];?></p>
                                             <br>
@@ -1123,10 +1108,10 @@ function stopWiggle(input) {
                                 </div>
                             </div>
                             <div id="Carousel1_back" class="s10">
-                                <a href="#"><img alt="Back"src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
+                                <a href="#"><img alt="Back" src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
                              </div>
                             <div id="Carousel1_next" class="s11">
-                                <a href="#"><img alt="Next"src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
+                                <a href="#"><img alt="Next" src="<?php echo asset_url(); ?>images/nexttxt0.png"></a>
                             </div>
                         </div>
                     </div>
@@ -1273,7 +1258,6 @@ function stopWiggle(input) {
 <script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 <script>
 
-<<<<<<< HEAD
         function getComapnyProfile(id) {
             $.get(base_url+"desksite/company/shipper/"+id,{},function(data) {
                 $("#company-profile").html(data);
@@ -1347,85 +1331,6 @@ function stopWiggle(input) {
                 ShowObjectWithEffect('Layer58', 1, 'slidedown', 500, 'swing'); 
             },'html');
         }
-=======
-function getComapnyProfile(id) {
-    $.get(base_url+"desksite/company/shipper/"+id,{},function(data) {
-        $("#company-profile").html(data);
-        ShowObjectWithEffect( 'Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect( 'Layer48', 1, 'slidedown', 500, 'swing');
-    },'html');
-}
-
-function getComapnyAbout(id) {
-    $.get(base_url+"desksite/company/about/"+id,{},function(data) {
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect('Layer23', 1, 'slidedown', 500, 'swing');
-        $("#about-us").html(data);
-    },'html');
-}
-
-function getComapnyCertificate(id) {
-    $.get(base_url+"desksite/company/certificate/"+id,{},function(data) {
-        $("#Layer147").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect('Layer144', 1, 'slidedown', 500, 'swing');
-    },'html');
-}
-function getAdvantage(id) {
-    $.get(base_url+"desksite/advantage/"+id,{},function(data) {
-        $("#advantage").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect('Layer79', 1, 'slidedown', 500, 'swing');
-    },'html');
-}
-function getRoutes(id) {
-    $.get(base_url+"desksite/route/"+id,{},function(data) {
-        $("#route").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect('Layer33', 1, 'slidedown', 500, 'swing');
-    },'html');
-}
-function getContactPerson(id) {
-    $.get(base_url+"desksite/contact/"+id,{},function(data) {
-        $("#contact-person").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
-        ShowObjectWithEffect('Layer62', 1, 'slidedown', 500, 'swing');
-    },'html');
-}
-
-function getMyFiles(id) {
-    $.get(base_url+"desksite/myfiles/"+id,{},function(data) {
-        $("#my-files").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect('Layer148', 1, 'slidedown', 500, 'swing');
-            
-    },'html');
-}
-function get3DProduct(id) {
-    $.get(base_url+"desksite/3dproduct/"+id,{},function(data) {
-        $("#3dproduct").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect('Layer14', 1, 'slidedown', 500, 'swing');
-            
-    },'html');
-}
-function getShipperVideos(id) {
-    $.get(base_url+"desksite/video/shipper/"+id,{},function(data) {
-        $("#product-video").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect('Layer65', 1, 'slidedown', 500, 'swing');
-            
-    },'html');
-}
-function getCurrentPost(id) {
-    $.get(base_url+"desksite/post/"+id,{},function(data) {
-        $("#post").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
-        ShowObjectWithEffect('Layer58', 1, 'slidedown', 500, 'swing');
-            
-    },'html');
-}
->>>>>>> shipper_doc_dhruv
 
         function serviceList(busi_id) {
             $.get(base_url+"desksite/shipper/services/"+busi_id,{},function(data) {
@@ -1435,7 +1340,6 @@ function getCurrentPost(id) {
             },'html');
         }
 
-<<<<<<< HEAD
         function openChatWithBuyer(seller_id) {
             <?php if(!empty($tsuserid)) { ?>
                 <?php if($tscategory_id == 3) { ?>
@@ -1453,25 +1357,6 @@ function getCurrentPost(id) {
                 ShowObject('Layer99', 1);
             <?php } ?>
         }
-=======
-function openChatWithBuyer(seller_id) {
-    <?php if(!empty($tsuserid)) { ?>
-        <?php if($tscategory_id == 3) { ?>
-            <?php if($contact_details[0]['accept_chat'] == 1) { ?>
-                popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
-            <?php } else { ?>
-                $("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
-                ShowObject('Layer99', 1);
-            <?php } ?>
-        <?php } else { ?>
-            popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
-        <?php } ?>
-    <?php } else { ?>
-        $("#msg_cont").html('LOGIN TO CAHT');
-        ShowObject('Layer99', 1);
-    <?php } ?>
-}
->>>>>>> shipper_doc_dhruv
 
 function getVerified(id) {
     $.get(base_url+"desksite/verified/"+id ,{},function(data) {
@@ -1587,12 +1472,12 @@ function likeMyDesksite(busi_id) {
 function submitContactForm() {
     <?php if(!empty($tsuserid)) { ?>
         <?php if($tscategory_id != 3) { ?>
-            $("#msg_cont").html("We have recorded your enquiry.");
+            $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
             ShowObject('Layer99', 1);
             ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
         <?php } else { ?>
             <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-                $("#msg_cont").html("We have recorded your enquiry.");
+                $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
                 ShowObject('Layer99', 1);
                 ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
             <?php } else if($contact_details[0]['step'] < 2) { ?>
@@ -1611,10 +1496,10 @@ function submitContactForm() {
 function openGeneralEnquiry(id) {
     <?php if(!empty($tsuserid)) { ?>
         <?php if($tscategory_id != 3) { ?>
-            popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+            popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
         <?php } else { ?>
             <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-                popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+                popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
             <?php } else if($contact_details[0]['step'] < 2) { ?>
                 $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
                 ShowObject('Layer99', 1);
@@ -1660,6 +1545,9 @@ $(document).ready(function(){
                 validators: {
                     notEmpty: {
                         message: 'Please enter Phone Number'
+                    },
+                  integer: {
+                        message: 'Enter Only Numbers'
                     }
                 }
             },
@@ -1726,7 +1614,7 @@ function showContactUsRequest(formData, jqForm, options){
 function showContactUsResponse(resp, statusText, xhr, $form){
     ajaxindicatorstop();
     if(resp.status == 1) {
-        $("#msg_cont").html("We have recorded your enquiry.");
+        $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
         ShowObject('Layer99', 1);
         ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
     }
