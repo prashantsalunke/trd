@@ -928,7 +928,7 @@ class Product_Model extends CI_Model {
     $this->db->join(TABLES::$FACTORY_INFO.' AS h','h.busi_id=a.busi_id','left');
     $this->db->join(TABLES::$COUNTRY.' AS i','i.name=b.company_country','left');
     $this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
-        $this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
+    $this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
     $this->db->where('a.account_activated', 1);
     $this->db->where('a.is_suspend', 0);
     $this->db->where('a.is_deleted', 0);

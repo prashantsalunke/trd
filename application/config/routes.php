@@ -77,7 +77,6 @@ $route['account/save_certificate_info'] = 'frontend/Account/save_certificate_inf
 $route['account/login'] = 'frontend/Account/login';
 $route['login/home'] = 'frontend/home/afterloginHome';
 $route['refresh/create_captcha']= 'frontend/home/create_captcha';
-//$route['account/kk'] = 'frontend/Account/captcha';//'frontent/Account/continueRegistration';
 $route['continueregistration'] = 'frontend/Account/continueRegistration';
 $route['signin'] = 'frontend/Home/signin';
 $route['account/forgotemail'] = 'frontend/Account/forgetsendMail';
@@ -137,6 +136,8 @@ $route['mystation/gaurantee/cancel'] = 'frontend/Station/cancelGaurantee';
 $route['mystation/gaurantee/confirm'] = 'frontend/Station/confirmGaurantee';
 $route['mystation/product/certs/confirm'] = 'frontend/Station/confirmProductCerts';
 $route['mystation/license/confirm'] = 'frontend/Station/confirmProductLicense';
+$route['mystation/license/cancel'] = 'frontend/Station/cancelLicense';
+$route['mystation/certificate/cancel'] = 'frontend/Station/cancelCerti';
 
 /*My deskside */
 $route['mystation/mydeskside'] = 'frontend/Deskside/myDeskside';
@@ -351,7 +352,7 @@ $route['shipper/desksites'] = 'frontend/Product/getAllShipperDesksites';
 $route['buyer'] = 'frontend/Home/buyersList';
 $route['shipper'] = 'frontend/Home/shippersList';
 $route['search'] = 'frontend/Home/search';
-
+$route['filter_by_category'] = 'frontend/Home/filter_by_cat';
 $route['products'] = 'frontend/Product';
 $route['products/list'] = 'frontend/Product/productList';
 $route['products/details/([0-9]+)'] = 'frontend/Product/productDetails/$1';
@@ -365,6 +366,7 @@ $route['product/subproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListBy
 $route['product/csmproduct/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListByCat/$1/$2/$3/$4';
 $route['product/spproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/specialProductList/$1/$2';
 $route['product/details/page/([0-9]+)'] = 'frontend/Product/productDetailsPage/$1';
+$route['product/details/page2/([0-9]+)/([0-9]+)'] = 'frontend/Product/productDetailsPage2/$1/$2';
 $route['seller/video/view/([0-9]+)'] = 'frontend/Home/getSellerVideo/$1';
 $route['seller/product/view/([0-9]+)'] = 'frontend/Home/getSellerProduct/$1';
 $route['product/verified'] = 'frontend/Product/productVerifiedFirst';
@@ -381,12 +383,12 @@ $route['catalogue/business/([0-9]+)'] = 'frontend/Home/getCatalogueByBusiId/$1';
 $route['catalogue/business/next/([0-9]+)'] = 'frontend/Home/getNextCatalogueById/$1';
 $route['seller/popup/([0-9]+)'] = 'frontend/Home/getSellerById/$1';
 $route['buyer/popup/([0-9]+)'] = 'frontend/Home/getBuyerById/$1';
-$route['shipper/popup/([0-9]+)'] = 'frontend/Home/getShipperById/$1';
 $route['item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/itemDetailById/$1/$2';
 $route['video/item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/videoItemDetailById/$1/$2';
 
 $route['pro-video'] = 'frontend/Vedio/productVideoList';
 $route['video/details/([0-9]+)'] = 'frontend/Product/videoDetailById/$1';
+$route['video/details/seller/([0-9]+)'] = 'frontend/Product/videoDetailByIdSeller/$1';
 $route['seller/video/([0-9]+)'] = 'frontend/Vedio/productVideoListBySellerId/$1';
 $route['video/verifieduser/memberlist'] = 'frontend/Vedio/getVedioByVerifiedUser';
 $route['video/community/memberlist/([0-9]+)'] = 'frontend/Vedio/getVedioByCommunityMember/$1';
@@ -438,7 +440,7 @@ $route['([0-9]+)/featured-ads-checkout'] = 'frontend/MyAds/fcCheckout/$1';
 $route['([0-9]+)/subscription-checkout'] = 'frontend/Home/getSubscriptionCheckout/$1';
 $route['desksite/like/([0-9]+)'] = 'frontend/Home/likeBusiness/$1';
 $route['desksite/catalogue/like/([0-9]+)'] = 'frontend/Home/likeCatalogue/$1';
-$route['desksite/general_enquiry/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
+$route['desksite/general_offer/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
 $route['desksite/item_enquiry/([0-9]+)/([0-9]+)'] = 'frontend/Home/getItemInquiry/$1/$2';
 $route['desksite/saveenquiry'] = 'frontend/Home/saveGeneralInquiry';
 $route['desksite/saveoffer'] = 'frontend/Home/saveGeneralOffer';
@@ -517,8 +519,6 @@ $route['product/item/search'] = "frontend/Product/getMyProductList";
 /* *********************************  22-12-2017 ***************************/
 $route['3dproducts'] = 'frontend/Product/get3DPrducts';
 $route['vcatalogues'] = 'frontend/Product/getAllVCatalogues';
-
-$route['catalogue/pages/([0-9]+)/([0-9]+)'] = 'frontend/Home/getCataloguePages/$1/$2';
 
 // Admin ROutes
 $route['admin'] = 'backend/index';

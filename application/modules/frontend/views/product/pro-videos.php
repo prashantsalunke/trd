@@ -109,7 +109,11 @@
 						</div>
 						<div style="background-color:#fff;opacity:1;z-index:24000;">
 							<div id="RollOver22" class="rolloverdetail">
-								<a href="<?php echo base_url();?>video/details/<?php echo $video['vid'];?>" target="_blank"> 
+								<?php if($video['user_category_id'] == 1) { ?>
+									<a href="<?php echo base_url();?>video/details/<?php echo $video['vid'];?>" target="_blank">
+								<?php }else{ ?>
+									<a href="<?php echo base_url();?>desksite/<?php echo $video['id'];?>" target="_blank">
+								<?php } ?>
 								    <img class="hover" alt="" src="<?php echo asset_url(); ?>images/view-detailsc.png" style="width:45px;"> 
 								    <span><img alt=""	src="<?php echo asset_url(); ?>images/view-detailsb.png" style="width:45px;"></span>
 								</a>
@@ -188,11 +192,11 @@
 		</div>
 		<div id="Layer3" class="box8">
 			<div id="wb_Text328" class="innersection">
-				<span class="text2"><strong><a href="<?php echo base_url();?>" target="_blank" class="style5">V-CATALOGUES</a></strong></span>
+				<span class="text2"><strong><a href="<?php echo base_url();?>vcatalogues" target="_blank" class="style5">V-CATALOGUES</a></strong></span>
 				<p class="text3">Follow the latest collection of world sellers brands..</p>
-				<span class="text2"><strong><a href="<?php echo base_url();?>" target="_blank" class="style5">DESKSITES </a></strong></span>
+				<span class="text2"><strong><a href="<?php echo base_url();?>seller/desksites" target="_blank" class="style5">DESKSITES </a></strong></span>
 				<p class="text3">Experience a new vision of websites techniques with quick access, rich information and much more..</p>
-				<span class="text2"><strong><a href="<?php echo base_url();?>" target="_blank" class="style5">PRODUCTS IN 3D </a></strong></span>
+				<span class="text2"><strong><a href="<?php echo base_url();?>3dproducts" target="_blank" class="style5">PRODUCTS IN 3D </a></strong></span>
 				<p class="text3">Step into a new dimension of E-commerce, search products with rich information, live details and much more..</p>
 		    </div>
 		</div>
