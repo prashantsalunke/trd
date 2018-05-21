@@ -118,7 +118,7 @@ border: 0px #A9A9A9 solid;
 
                                         </td>
                                         <td class="col-xs-7"><div class="form-group"> <span style="color:#3C3C3C;font-family:Georgia;font-size:11px;">Add your profile image</span> </div>
-                                            <div class="form-group"> <span style="color:#666666;font-family:Arial;font-size:9.3px;">jpg or png, Dimensions: 200 * 200 pixel, Resolution: 75, with Max. size 40 KB </span> </div>
+                                            <div class="form-group"> <span style="color:#666666;font-family:Arial;font-size:9.3px;">jpg or png, Dimensions: 200 * 200 pixel, Resolution: 75, with Min Size 40KB To Max. size 100KB </span> </div>
                                             <div class="form-group"> <span style="color:#1E90FF;font-family:Georgia;font-size:11px;cursor: pointer" onclick="remove()">Remove</span> </div></td>
                                     </tr>
                                 </table>
@@ -429,7 +429,7 @@ border: 0px #A9A9A9 solid;
 </div>
 
 <script>
-function validateprofileimagefile(id,input,size)
+function validateprofileimagefile(id,input,min_size,max_size='100')
 {
 	var flag = true;
 	if (input.files && input.files[0]) {
@@ -440,8 +440,8 @@ function validateprofileimagefile(id,input,size)
        		//var filesizeinmb = (file_size/1048576).toFixed(2);
        		//var sizeinmb = (size/1048576).toFixed(2);
        		if(ext == 'png'  || ext =='jpg' || ext =='jpeg' || ext =='gif') {
-	                if(filesizeinkb > size) {
-	                	alert("File size should be 40 kb max.");
+	                if(filesizeinkb > min_size && filesizeinkb < max_size) {
+	                	alert("File size should be in 40KB to 100KB.");
 	                    $('#'+id).val('');
 	                    flag = false;
 	                } 
@@ -471,7 +471,7 @@ jQuery('#imgInp').on('click', function(e){
 
 
 jQuery('#profile-pic').on('change', function() {
-	var flag = validateprofileimagefile('profile-pic',this,40);
+	var flag = validateprofileimagefile('profile-pic',this,40,100);
 	if(flag == true) 
 	{
          var reader = new FileReader();

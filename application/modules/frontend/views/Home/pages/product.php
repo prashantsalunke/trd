@@ -18,7 +18,7 @@ foreach($productdetail as $productBox) {?>
 	<div id="wb_Image17" style="position:absolute;left:40px;top:252px;width:50px;height:50px;z-index:1290;">
 		<img src="<?php echo asset_url();?>images/flags/<?php echo $productBox['flag'];?>" id="Image17" alt="">
 	</div>
-	<div id="wb_Image18" style="position:absolute;left:2px;top:0px;width:297px;height:242px;z-index:1291;">
+	<div id="wb_Image18" style="position:absolute;left:2px;top:0px;width:304px;height:242px;z-index:1291;">
 		<img src="<?php echo asset_url().''.$productBox['main_image']; ?>" id="Image18" alt="">
 	</div>
 	<div id="wb_Text167" style="position:absolute;left:131px;top:281px;width:29px;height:16px;z-index:1292;text-align:left;">

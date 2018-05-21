@@ -887,15 +887,15 @@ class Account extends MX_Controller {
 		$this->load->library('email', $config);
 		$this->email->set_mailtype("html");
 		$this->email->set_newline("\r\n");
-		$this->email->from('mytrdstation@gmail.com'); // change it to yours
+		$this->email->from('no-reply@vcommers.com'); // change it to yours
 		$this->email->to($email); // change it to yours
 		$this->email->subject($subject);
 		$this->email->message($message);
 		if ($this->email->send()) {
-			echo 'sent';
+			//echo 'sent';
 		} else {
 			//show_error($this->email->print_debugger());
-			echo "fail";
+			//echo "fail";
 		}
 	}
 

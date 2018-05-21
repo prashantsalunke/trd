@@ -3,7 +3,7 @@
 		<p style="color:#fff;padding: 0 70px;"><span style="color:#FFFFFF;font-family:Arial;font-size:13px;">Get started, Join free, Add a unique value to your business, discover a new vision of e-commerce and much more..!</span></p>
         <h4 class="modal-title" id="myModalLabel" style="color:#fff;"><span style="color:#FFFFFF;font-family:'Arial';font-size:17px; font-weight:bolder;">SOCIAL B2B COMMUNITY</span></h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="padding:0 !important;">
 	  <div class="panel therd-step">
          <div class="panel-body">
           <form>
@@ -46,13 +46,13 @@
            </div>
            </div>
            
-           <div class="row">
+           <!--<div class="row">
             <div class="col-xs-12">
              <h2 class="text-center" style="line-height:0.7"><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">TRADE</span><br>
                  <span style="color:#FA5C43;font-family:Impact;font-size:20px;letter-spacing:0.07px;">STATION</span></h2>
                  <p class="text-center"><span style="color:#696969;font-family:Arial;font-size:11px;">Generating Customers Each Second<br></span></p>
             </div>
-           </div>
+           </div>-->
           </form>
          </div>
         </div>
