@@ -321,7 +321,7 @@ function addToCommunity(id) {
 }
 function likeVideo(id) {
 	$.get(base_url+"likevideo/"+id,{},function(data) {
-		alert(data.msg);
+		$("#msg_cont").html(data.msg);
 	},'json');
 }
 function likeBusiness(id) {
