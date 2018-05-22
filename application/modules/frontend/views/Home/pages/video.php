@@ -20,7 +20,7 @@ foreach($videodetail as $videoBox) {?>
 	</div>
 
 	<div id="wb_MediaPlayer8" class="class7">
-		<video src="<?php echo asset_url().''.$videoBox['vedio_file']; ?>" id="MediaPlayer8" controls="controls">
+		<video src="<?php echo asset_url().''.$videoBox['vedio_file']; ?>" id="MediaPlayer<?php echo $videoBox['vedio_id'];?>" controls="controls">
 		</video>
 	</div>
 </div>
@@ -81,7 +81,7 @@ foreach($videodetail as $videoBox) {?>
 		<?php } ?>
 	</div>
 <div id="wb_Image43" class="class23" style="left:272px;top:0px;height: 35px;width: 35px;">
-	<a href="#" onclick="StopAudio('MediaPlayer7');ShowObject('Layer_details3', 0);ShowObject('Layer_details', 0);return false;">
+	<a href="#" onclick="StopAudio('MediaPlayer<?php echo $videoBox['vedio_id'];?>');ShowObject('Layer_details3', 0);ShowObject('Layer_details', 0);return false;">
 		<img src="<?php echo asset_url(); ?>images/close.png" id="Image43" alt="" style="height: 35px;width: 35px;">
 	</a>
 </div>
