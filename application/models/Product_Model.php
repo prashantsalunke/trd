@@ -928,7 +928,7 @@ class Product_Model extends CI_Model {
     $this->db->join(TABLES::$FACTORY_INFO.' AS h','h.busi_id=a.busi_id','left');
     $this->db->join(TABLES::$COUNTRY.' AS i','i.name=b.company_country','left');
     $this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
-    $this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
+        $this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
     $this->db->where('a.account_activated', 1);
     $this->db->where('a.is_suspend', 0);
     $this->db->where('a.is_deleted', 0);
@@ -1175,15 +1175,15 @@ class Product_Model extends CI_Model {
     public function getCurrentRequest($busi_id){
     	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$end_date = date('Y-m-d H:i:s');
-    	$this->db->select('a.*, c.*');
+    	$this->db->select('a.*,b.*, c.*');
     	$this->db->from(TABLES::$STOCK_REQUEST.' as a');
     	$this->db->join(TABLES::$BSTATION_POST.' as b' , 'b.id = a.post_id', 'inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = a.buyer_id', 'left');
     	$this->db->where('b.status',1);
     	$this->db->where('b.is_deleted',0);
-    	$this->db->where('b.created_date >',$start_date);
+    	$this->db->where('a.created_date >',$start_date);
     	$this->db->where('a.buyer_id',$busi_id);
-    	$this->db->where("DATE(b.created_date) > '".$start_date."'",'',false);
+    	$this->db->where("DATE(a.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('a.created_date','DESC');
     	$query = $this->db->get();
     	$result = $query->result_array();
