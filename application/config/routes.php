@@ -323,6 +323,9 @@ $route['mystation/deleteinvoice'] = 'frontend/Alerts/deleteInvoice';
 $route['mystation/addinvoiceproduct'] = 'frontend/Alerts/addInvoiceProduct';
 $route['mystation/firstpartyconfirm'] = 'frontend/Alerts/firstPartyConfirm';
 $route['mystation/secondpartyconfirm'] = 'frontend/Alerts/secondPartyConfirm';
+$route['home/alert'] = 'frontend/Alerts/getNewAlerts';
+$route['home/addToCommunity'] = 'frontend/Alerts/alertAddToCommunity';
+$route['home/clearAlert'] = 'frontend/Alerts/clearAlert';
 
 /* Language */
 $route['mystation/language'] = 'frontend/Language/language';
@@ -445,7 +448,7 @@ $route['desksite/saveoffer'] = 'frontend/Home/saveGeneralOffer';
 $route['desksite/product/like/([0-9]+)'] = 'frontend/Product/likeProduct/$1';
 $route['desksite/share'] = 'frontend/Product/shareWithWorld';
 $route['desksite/savecontactus'] = 'frontend/Home/saveContactUs';
-
+$route['desksite/general_offer/([0-9]+)'] = 'frontend/Home/getGeneralOffer/$1';
 
 /********************  Community **************/
 

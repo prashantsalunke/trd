@@ -151,7 +151,7 @@ ul.hover-red-menu li.open a.firstmain{
 		</div>
 	<?php } else { ?>
 	<div class="container top-div">
-        <div class="navbar-header"> <a href="#" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
+        <div class="navbar-header"> <a href="<?php echo base_url()?>" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
         <ul class="nav navbar-nav pull-right top-nav login-user-nav">
             <li style="padding-top:17px;">
                 <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;">
@@ -351,7 +351,7 @@ ul.hover-red-menu li.open a.firstmain{
                         </ul>
                     </div>
                     <div class="modal-header" style="padding:0px;">
-                        <button aria-label="Close" data-dismiss="modal" class="close" type="button" style="position:relative; z-index:111; opacity:1; color:#fff; right:10px; top:10px; font-size:30px;"><span aria-hidden="true">×</span></button>
+                        <button aria-label="Close" data-dismiss="modal" class="close" type="button" style="position:relative; z-index:111; opacity:1; color:#fff; right:10px; top:10px; font-size:30px;"><span aria-hidden="true">Ã—</span></button>
                         <nav class="navbar navbar-inverse" style="margin-bottom:0px;">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar2" style="margin:0px;"> <img src="assets/images/ts/menu-icon.png"></button>
@@ -399,7 +399,7 @@ ul.hover-red-menu li.open a.firstmain{
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid, Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -450,7 +450,7 @@ ul.hover-red-menu li.open a.firstmain{
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid, Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -501,7 +501,7 @@ ul.hover-red-menu li.open a.firstmain{
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid, Our men’s shoes department covers virtually every need, whether you’re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -833,8 +833,13 @@ ul.hover-red-menu li.open a.firstmain{
                     </div>
                 </div>
 
+<<<<<<< HEAD
+                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+=======
                 <a style="position: absolute; height: 61px; z-index: 999; background-image: none ! important; top: 20%; width: 30px; left: 3px;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img height="53px;" alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
                 <a style="position: absolute; z-index: 999; background-image: none ! important; top: 20%; height: 61px; width: 30px;" class="right carousel-control" href="#myCarousel" data-slide="next"><img height="53px;" alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+>>>>>>> master
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
@@ -1033,6 +1038,28 @@ ul.hover-red-menu li.open a.firstmain{
 					<br><br><br><br>
 				<?php } elseif ($page =='product'){?>
 					<form method="get" action="<?php echo base_url();?>products" style="padding-top:25px;" name="productfrm" onsubmit="return validateForm('productfrm');">
+<<<<<<< HEAD
+						<div class="col-md-2">
+                                                    <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
+                                                        <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
+                                                        <span style="color:#303030;font-family:Georgia;font-size:17px;">
+                                                            <a href="#" class="style261" style="color:#303030;text-decoration: none !important;" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
+                                                    </div>
+                                                </div>
+						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
+							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
+						</div>
+						<div class="col-sm-5 col-xs-5" style="padding: 0px;background-color: #fff;">
+							<div class="col-sm-7" style="padding:0px">
+								<div class="col-sm-6" style="padding:0px">
+									<div class="dropdown">
+										<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
+											<option value="">Country</option>
+											<?php foreach ($Country as $country){?>
+												<option value="<?php echo $country['name'];?>" <?php if(!empty($params['country']) && $params['country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
+											<?php }?>
+										</select>
+=======
 						<div class="col-md-12" style="padding:0 36px">
 							<div class="col-md-2">
 														<div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
@@ -1055,6 +1082,7 @@ ul.hover-red-menu li.open a.firstmain{
 												<?php }?>
 											</select>
 										</div>
+>>>>>>> master
 									</div>
 									<div class="col-sm-6" style="padding:0px 2px;">
 										<div class="dropdown">
@@ -1119,8 +1147,13 @@ ul.hover-red-menu li.open a.firstmain{
                     </div>
                 </div>
 
+<<<<<<< HEAD
+                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+=======
                 <a style="position: absolute; height: 61px; z-index: 999; background-image: none ! important; top: 20%; width: 30px; left: 3px;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img height="53px;" alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
                 <a style="position: absolute; z-index: 999; background-image: none ! important; top: 20%; height: 61px; width: 30px;" class="right carousel-control" href="#myCarousel" data-slide="next"><img height="53px;" alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+>>>>>>> master
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
