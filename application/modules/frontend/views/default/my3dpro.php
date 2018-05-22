@@ -33,7 +33,7 @@ ul, li {
       			<form name="frmedit_product" method="post" action="" enctype="multipart/form-data" id="frmedit_product">
       				<div class="row" style="margin:0px;">
       					<div class="col-md-12" style="text-align: center;">
-      						<a href="<?php echo base_url();?>products/details/<?php echo $productdata[0]['id'];?>" target="_blank" class="style16" style="font-family: Arial;font-size: 16px;text-align: center;"><?php echo $productdata[0]['name'];?></a>
+      						<a href="<?php echo base_url();?>products/details/<?php echo $productdata[0]['id'];?>" target="_blank" class="style16" style="font-family: Arial;font-size: 16px;text-align: center;left:0px;width: 100%;"><?php echo $productdata[0]['name'];?></a>
       					</div>
       				</div>
               <br/>
