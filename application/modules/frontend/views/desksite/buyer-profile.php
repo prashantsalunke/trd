@@ -899,7 +899,7 @@ function stopWiggle(input) {
                   <?php } else {?>
                   <img src="<?php echo asset_url(); ?>images/buyer-request.png" class="verified-icon" style="opacity :0.15" ><?php }?>
                 </div>
-                <div id="wb_Image10" class="img-style">
+                <div id="wb_Image10" class="img-style" style="padding-top:8px;">
                     <?php if(!empty($Desksite['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image76" class="verified-icon"  alt="This buyer is in your community">
                     <?php } else {?>
                   <img src="<?php echo asset_url(); ?>images/ts/community.png" class="verified-icon" style="opacity :0.15" > <?php }?>
