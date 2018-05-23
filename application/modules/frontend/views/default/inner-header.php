@@ -338,7 +338,7 @@ ul.hover-red-menu li.open a.firstmain{
         <div aria-labelledby="myLargeModalLabel" tabindex="-1" role="dialog" class="modal fade bs-example-modal-lg" style="padding-right: 17px;">
             <div role="document" class="modal-dialog modal-lg mobile-view" style="width:auto; max-width:1100px;">
                 <div class="modal-content">
-                    <div class="side-menu">
+                    <div class="side-menu">
                         <ul>
                             <li><a href="#"><img src="assets/images/ts/Alerts1.png"><br>Alerts</a></li>
                             <li><a href="#"><img src="assets/images/ts/myfavor0.png" style="width:50px;"><br>My Favorite</a></li>
@@ -351,7 +351,7 @@ ul.hover-red-menu li.open a.firstmain{
                         </ul>
                     </div>
                     <div class="modal-header" style="padding:0px;">
-                        <button aria-label="Close" data-dismiss="modal" class="close" type="button" style="position:relative; z-index:111; opacity:1; color:#fff; right:10px; top:10px; font-size:30px;"><span aria-hidden="true">Ã—</span></button>
+                        <button aria-label="Close" data-dismiss="modal" class="close" type="button" style="position:relative; z-index:111; opacity:1; color:#fff; right:10px; top:10px; font-size:30px;"><span aria-hidden="true">×</span></button>
                         <nav class="navbar navbar-inverse" style="margin-bottom:0px;">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar2" style="margin:0px;"> <img src="assets/images/ts/menu-icon.png"></button>
@@ -399,7 +399,7 @@ ul.hover-red-menu li.open a.firstmain{
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our men's shoes department covers virtually every need, whether you're looking for cross-training shoes, retro sneakers, laid, Our men's shoes department covers virtually every need, whether you're looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -450,7 +450,7 @@ ul.hover-red-menu li.open a.firstmain{
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our men’s shoes department covers virtually every need, whether you're looking for cross-training shoes, retro sneakers, laid, Our men's shoes department covers virtually every need, whether you're looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
@@ -501,7 +501,7 @@ ul.hover-red-menu li.open a.firstmain{
                                                         <p><small>Presented By: Ms. Rose</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
-                                                        <p><small>Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid, Our menâ€™s shoes department covers virtually every need, whether youâ€™re looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
+                                                        <p><small>Our men's shoes department covers virtually every need, whether you're looking for cross-training shoes, retro sneakers, laid, Our men's shoes department covers virtually every need, whether you're looking for cross-training shoes, retro sneakers, laid-ba...</small></p>
                                                     </div>
                                                     <div class="col-xs-12">
                                                         <label style="display:inline-block;">Main Products |</label><p style="display:inline-block;"><small>Classic Shoes, Sport Shoes,  Slippers, PVC Shoes, Leather Shoes, Leather Shoes, Leather Shoes...</small></p>
