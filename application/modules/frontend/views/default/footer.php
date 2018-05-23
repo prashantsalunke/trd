@@ -52,7 +52,6 @@ a.style5_99:hover
 }
 </style>
 <link rel="stylesheet" href="<?php echo asset_url(); ?>css/pages/basictools.css" />
-<script src="<?php echo asset_url();?>js/custom/home.js"></script>
 <div class="col-sm-12" style="margin-top:40px; padding:0;">
     <div class="panel footer" style="margin:0px;padding: 30px 65px;">
         <div class="panel-body">
@@ -300,7 +299,7 @@ a.style5_99:hover
 								<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">Chat Alerts</span>
 							</div>
 							<div id="RollOver52" style="position: absolute; left: 63px; top: 438px; overflow: hidden; width: 50%; height: 40px; z-index: 1687;">
-								<a href="javascript:openInquiry();"> <img class="hover" alt="" src="<?php echo asset_url();?>images/inquiryoffwhite.png" style="width:40px;"> <span>
+								<a href="javascript:openInquiry();" id="inquiry-tab"> <img class="hover" alt="" src="<?php echo asset_url();?>images/inquiryoffwhite.png" style="width:40px;"> <span>
 									<img alt="" src="<?php echo asset_url();?>images/inquiry.png" style="width:40px;"></span>
 								</a>
 								<div id="totalinquiry" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo $gblinquiries[0]['inquiries'];?></div>
@@ -689,134 +688,134 @@ function shareToWorld(url,title,type,id) {
 }
 function getAlerts()
 {
-	var type = 1;
-	$.post(base_url+"mystation/favoriteinfo",{type:type},function(data){
-		$("#alertbodypanel").html(data);
-		$(".alerts-btn-selected").removeClass('alerts-btn-selected');
-		$("#alert-fab-"+type).addClass('alerts-btn-selected');
-		if(type == 1)
-		{
-			$("#seller_div").show();
-			$("#shipper_div").hide();
-			$("#buyer_div").hide();
-			$("#product_div").hide();
-			$("#vedio_div").hide();
-			$("#dproduct_div").hide();
-			$("#catalouge_div").hide();
-			$("#ads_div").hide();
-			$("#post_div").hide();
-			$('.product-carousel').carousel({
-		        interval: 3000
-		    });
-		}
-		if(type == 2)
-		{
-			$("#seller_div").hide();
-			$("#shipper_div").show();
-			$("#buyer_div").hide();
-			$("#vedio_div").hide();
-			$("#product_div").hide();
-			$("#dproduct_div").hide();
-			$("#catalouge_div").hide();
-			$("#ads_div").hide();
-			$("#post_div").hide();
-			$('.alertcarousel2').carousel({
-		        interval: 3000
-		    });
-		}
-		if(type == 3)
-		{
-			$("#seller_div").hide();
-			$("#shipper_div").hide();
-			$("#product_div").hide();
-			$("#vedio_div").hide();
-			$("#buyer_div").show();
-			$("#dproduct_div").hide();
-			$("#catalouge_div").hide();
-			$("#ads_div").hide();
-			$("#post_div").hide();
-			$('.alertcarousel3').carousel({
-		        interval: 3000
-		    });
-		}
-		if(type == 4)
-		{
-			$("#seller_div").hide();
-			$("#shipper_div").hide();
-			$("#buyer_div").hide();
-			$("#vedio_div").hide();
-			$("#product_div").show();
-			$("#dproduct_div").hide();
-			$("#catalouge_div").hide();
-			$("#ads_div").hide();
-			$("#post_div").hide();
-			$('.alertcarousel4').carousel({
-		        interval: 3000
-		    });
-		}
-		if(type == 5)
-		{
-			$("#seller_div").hide();
-			$("#shipper_div").hide();
-			$("#buyer_div").hide();
-			$("#product_div").hide();
-			$("#dproduct_div").hide();
-			$("#catalouge_div").hide();
-			$("#vedio_div").show();
-			$("#ads_div").hide();
-			$("#post_div").hide();
-		}
-		if(type == 6)
-		{
-			$("#seller_div").hide();
-			$("#shipper_div").hide();
-			$("#buyer_div").hide();
-			$("#product_div").hide();
-			$("#vedio_div").hide();
-			$("#catalouge_div").hide();
-			$("#dproduct_div").show();
-			$("#ads_div").hide();
-			$("#post_div").hide();
-		}
-		if(type == 7)
-		{
-			$("#seller_div").hide();
-			$("#shipper_div").hide();
-			$("#buyer_div").hide();
-			$("#product_div").hide();
-			$("#vedio_div").hide();
-			$("#dproduct_div").hide();
-			$("#catalouge_div").show();
-			$("#ads_div").hide();
-			$("#post_div").hide();
-		}
-		if(type == 8)
-		{
-			$("#seller_div").hide();
-			$("#shipper_div").hide();
-			$("#buyer_div").hide();
-			$("#product_div").hide();
-			$("#vedio_div").hide();
-			$("#dproduct_div").hide();
-			$("#catalouge_div").hide();
-			$("#ads_div").show();
-			$("#post_div").hide();
-		}
-		if(type == 9)
-		{
-			$("#seller_div").hide();
-			$("#shipper_div").hide();
-			$("#buyer_div").hide();
-			$("#product_div").hide();
-			$("#vedio_div").hide();
-			$("#dproduct_div").hide();
-			$("#catalouge_div").hide();
-			$("#ads_div").hide();
-			$("#post_div").show();
-		}
-	
-	});
-	$('.carousel').carousel({
+    var type = 1;
+    $.post(base_url+"mystation/favoriteinfo",{type:type},function(data){
+        $("#alertbodypanel").html(data);
+        $(".alerts-btn-selected").removeClass('alerts-btn-selected');
+        $("#alert-fab-"+type).addClass('alerts-btn-selected');
+        if(type == 1)
+        {
+            $("#seller_div").show();
+            $("#shipper_div").hide();
+            $("#buyer_div").hide();
+            $("#product_div").hide();
+            $("#vedio_div").hide();
+            $("#dproduct_div").hide();
+            $("#catalouge_div").hide();
+            $("#ads_div").hide();
+            $("#post_div").hide();
+            $('.product-carousel').carousel({
+                interval: 3000
+            });
+        }
+        if(type == 2)
+        {
+            $("#seller_div").hide();
+            $("#shipper_div").show();
+            $("#buyer_div").hide();
+            $("#vedio_div").hide();
+            $("#product_div").hide();
+            $("#dproduct_div").hide();
+            $("#catalouge_div").hide();
+            $("#ads_div").hide();
+            $("#post_div").hide();
+            $('.alertcarousel2').carousel({
+                interval: 3000
+            });
+        }
+        if(type == 3)
+        {
+            $("#seller_div").hide();
+            $("#shipper_div").hide();
+            $("#product_div").hide();
+            $("#vedio_div").hide();
+            $("#buyer_div").show();
+            $("#dproduct_div").hide();
+            $("#catalouge_div").hide();
+            $("#ads_div").hide();
+            $("#post_div").hide();
+            $('.alertcarousel3').carousel({
+                interval: 3000
+            });
+        }
+        if(type == 4)
+        {
+            $("#seller_div").hide();
+            $("#shipper_div").hide();
+            $("#buyer_div").hide();
+            $("#vedio_div").hide();
+            $("#product_div").show();
+            $("#dproduct_div").hide();
+            $("#catalouge_div").hide();
+            $("#ads_div").hide();
+            $("#post_div").hide();
+            $('.alertcarousel4').carousel({
+                interval: 3000
+            });
+        }
+        if(type == 5)
+        {
+            $("#seller_div").hide();
+            $("#shipper_div").hide();
+            $("#buyer_div").hide();
+            $("#product_div").hide();
+            $("#dproduct_div").hide();
+            $("#catalouge_div").hide();
+            $("#vedio_div").show();
+            $("#ads_div").hide();
+            $("#post_div").hide();
+        }
+        if(type == 6)
+        {
+            $("#seller_div").hide();
+            $("#shipper_div").hide();
+            $("#buyer_div").hide();
+            $("#product_div").hide();
+            $("#vedio_div").hide();
+            $("#catalouge_div").hide();
+            $("#dproduct_div").show();
+            $("#ads_div").hide();
+            $("#post_div").hide();
+        }
+        if(type == 7)
+        {
+            $("#seller_div").hide();
+            $("#shipper_div").hide();
+            $("#buyer_div").hide();
+            $("#product_div").hide();
+            $("#vedio_div").hide();
+            $("#dproduct_div").hide();
+            $("#catalouge_div").show();
+            $("#ads_div").hide();
+            $("#post_div").hide();
+        }
+        if(type == 8)
+        {
+            $("#seller_div").hide();
+            $("#shipper_div").hide();
+            $("#buyer_div").hide();
+            $("#product_div").hide();
+            $("#vedio_div").hide();
+            $("#dproduct_div").hide();
+            $("#catalouge_div").hide();
+            $("#ads_div").show();
+            $("#post_div").hide();
+        }
+        if(type == 9)
+        {
+            $("#seller_div").hide();
+            $("#shipper_div").hide();
+            $("#buyer_div").hide();
+            $("#product_div").hide();
+            $("#vedio_div").hide();
+            $("#dproduct_div").hide();
+            $("#catalouge_div").hide();
+            $("#ads_div").hide();
+            $("#post_div").show();
+        }
+    
+    });
+    $('.carousel').carousel({
       interval: 2000
     });
 }
@@ -887,5 +886,28 @@ function likeCatalogue(id) {
 		likes++;
 		$("#sdiv"+id).html(likes);
 	},'json');
+}
+function showAlertByType(type,alertId) {
+
+    //clear alert
+    $.post(base_url+"home/clearAlert",{type:type,id:alertId},function(data) {
+
+    });
+    if(type=='inquiry'){
+       $.get(base_url+"mystation/inquiry",{},function(data) {
+        $("#new-alert-popup-"+alertId).hide();
+        $("#alertbodypanel").html("");
+        $("#alertbodypanel").html(data); 
+        
+    });
+    }
+
+     if(type=='offer'){
+        $.get(base_url+"mystation/offer",{},function(data) {
+        $("#new-alert-popup-"+alertId).hide();    
+        $("#alertbodypanel").html("");
+        $("#alertbodypanel").html(data);
+          });
+      }
 }
 </script>

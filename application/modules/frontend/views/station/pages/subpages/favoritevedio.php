@@ -110,16 +110,16 @@ if(isset($favoritevedio)) {
 if(count($favoritevedio) > 0 && $favoritevedio[0]['id'] !='') { 
 		 foreach($favoritevedio as $key=>$video){ 
 		  ?>
-		  <div class="col-sm-1 chkbox-div text-center" style="padding-left:0px !important;width: 42px;">
+		  <div class="col-sm-1 chkbox-div text-center" style="padding-left:1px !important;width: 42px;">
 		<input type="checkbox" id="chkseller-<?php echo $key;?>" onclick="toggleDeleteDive('btndelete-<?php echo $key;?>','chkseller-<?php echo $key;?>');" name="chkseller-"  value="on" />
 		<div id="btndelete-<?php echo $key;?>" style="width: 24px; height: 34px; padding-top:10px;display:none;">
 			<a href="#" onclick="delete_favorite();"><img src="<?php echo asset_url();?>images/delete.png" id="Image160" alt=""></a>
 		</div>
 	</div>	
-			<div class="col-lg-4 colpadbottom" style="margin-bottom: 15px;width: 31.5% !important;margin-left: -26px;">
+			<div class="col-lg-4 colpadbottom" style="margin-bottom: 15px;width: 31.5% !important;margin-left: -27px;padding:0px;">
 		
-				<div id="Layer66" onmouseenter="showMenu('Layer8_<?php echo $key;?>');" onmouseleave="hideMenu('Layer8_<?php echo $key;?>');" style="background-color: #fafafa;border: 1px solid #d3d3d3;height: 350px;padding: 20px 14px;width: 309px;z-index: 434;">
-					<div>
+				<div id="Layer66" onmouseenter="showMenu('Layer8_<?php echo $key;?>');" onmouseleave="hideMenu('Layer8_<?php echo $key;?>');" style="background-color: #fafafa;border: 1px solid #d3d3d3;height: 350px;margin-left: 17px;padding: 20px 14px;width: 309px;z-index: 434;border-radius:0px;">
+					<div>ss
 						<span class="video-title">
 							<strong><a href="<?php echo base_url();?>video/details/<?php echo $video['id'];?>" target="_blank" class="style16"><?php echo $video['name'];?></a></strong>
 						</span>
@@ -186,7 +186,7 @@ max-width: 250px;"></video>
 						</div>
 					</div>
 					<div id="Layer8_<?php echo $key;?>" style="display: none;height: 75px;left: 1px;position: absolute;text-align: left;top: 274px;width: 318px;z-index: 168;">
-						<div id="Layer19" style="height: 75px;left: 0;position: absolute;text-align: left;top: 0;width: 318px;z-index: 149;">
+						<div id="Layer19" style="height: 75px;left: 18px;position: absolute;text-align: left;top: 0;width: 306px;z-index: 149;border:0px;">
 						</div>
 						<div style="background-color:#fff;opacity:1;z-index:24000;">
 							<div id="RollOver22" class="rolloverdetail">

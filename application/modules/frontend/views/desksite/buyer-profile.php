@@ -1179,7 +1179,7 @@ function stopWiggle(input) {
 				    </div>
 				    <div class="inline box5">
 				        <img src="<?php echo asset_url(); ?>images/posts-icon.png" id="Image19" alt="" class="img32">
-				        <a href="javascript:openGeneralEnquiry(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+				        <a href="javascript:openGeneralOffer(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
 				        Send General Offer
 						</a>
 				    </div>
@@ -1503,7 +1503,7 @@ function openChatWithBuyer(seller_id) {
 			<?php if($contact_details[0]['accept_chat'] == 1) { ?>
 				popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
 			<?php } else { ?>
-				$("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
+				$("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to "My Station", then click on "Tools" icon, and select "Control Panel", then Turn it ON….');
 				ShowObject('Layer99', 1);
 			<?php } ?>
 		<?php } else { ?>
@@ -1553,26 +1553,22 @@ function submitContactForm() {
 		ShowObject('Layer99', 1);
 	<?php } ?>
 }
-function openGeneralEnquiry(id) {
-  <?php if(!empty($tsuserid)) { ?>
-    <?php if($tscategory_id != 3) { ?>
-      popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
-    <?php } else { ?>
-      <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['step'] == 2) { ?>
-        popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
-      <?php } else if($contact_details[0]['step'] < 2) { ?>
-        $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
-        ShowObject('Layer99', 1);
-      <?php } else if($contact_details[0]['accept_offer'] == 0) { ?>
-        $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
-        ShowObject('Layer99', 1);
-      <?php } ?>
-    <?php } ?>
-  <?php } else { ?>
-    $("#msg_cont").html("Please login to send enquiry.");
-    ShowObject('Layer99', 1);
-  <?php } ?>
-}
+function openGeneralOffer(id) {
+	<?php if(!empty($tsuserid)) { ?>
+		<?php if($tscategory_id != $buyer) {
+			//check if buyer has allowed himself to receive offers
+			if($contact_details[0]['accept_offer'] && $contact_details[0]['accept_email'] && $contact_details[0]['step'] == $steps_needed) { ?>
+				popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+			<?php } else if($contact_details[0]['step'] < $steps_needed) { ?>
+				$("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It's so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In \" My Station\" click on \" My Desksite\" and follow the steps to build it.");
+				ShowObject('Layer99', 1);
+			<?php } else if(!$contact_details[0]['accept_offer'] || !$contact_details[0]['accept_email']) { ?>
+				$("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+				ShowObject('Layer99', 1);
+			<?php } } } else { ?>
+		$("#msg_cont").html("Please login to send enquiry.");
+		ShowObject('Layer99', 1);
+	<?php } ?>
 function check_msg() {
   // alert('Helloooo');
       <?php if($contact_details[0]['step'] < 2) { ?>
