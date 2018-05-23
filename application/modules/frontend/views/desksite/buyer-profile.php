@@ -1503,7 +1503,7 @@ function openChatWithBuyer(seller_id) {
 			<?php if($contact_details[0]['accept_chat'] == 1) { ?>
 				popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
 			<?php } else { ?>
-				$("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to â€œ My Stationâ€�, then click on â€œToolsâ€� icon, and select â€œ Control Panelâ€�, then Turn it ONâ€¦.');
+				$("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to "My Station", then click on "Tools" icon, and select "Control Panel", then Turn it ON….');
 				ShowObject('Layer99', 1);
 			<?php } ?>
 		<?php } else { ?>
