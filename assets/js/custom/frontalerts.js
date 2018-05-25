@@ -30,7 +30,7 @@ function openFavoriteInfo(type)
 		$("#alertbodypanel").html(data);
 		$(".alerts-btn-selected").removeClass('alerts-btn-selected');
 		$("#alert-fab-"+type).addClass('alerts-btn-selected');
-		alertajaxindicatorstop();
+		
 		if(type == 1)
 		{
 			$("#seller_div").show();
@@ -153,6 +153,7 @@ function openFavoriteInfo(type)
 		}
 	
 	});
+	alertajaxindicatorstop();
 }
 function openMycart()
 {
