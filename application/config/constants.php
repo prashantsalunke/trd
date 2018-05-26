@@ -59,9 +59,9 @@ defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREA
 */
 
 
-define('SELLER_ID',  1);
-define('SHIPPER_ID', 2);
-define('BUYER_ID',   3);
+defined('SELLER_ID')  OR define('SELLER_ID',  1);
+defined('SHIPPER_ID') OR define('SHIPPER_ID', 2);
+defined('BUYER_ID')   OR define('BUYER_ID',   3);
 
 
 /*
