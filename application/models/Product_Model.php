@@ -1864,7 +1864,7 @@ class Product_Model extends CI_Model {
     	$this->db->from(TABLES::$SHIPPER_SERVICES);
     	$this->db->where('busi_id', $busi_id);
     	$this->db->where('status', 1);
-    	$this->db->where('is_special', 0);
+    	// $this->db->where('is_special', 0);
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -2402,7 +2402,8 @@ class Product_Model extends CI_Model {
    		$this->db->select('*');
    		$this->db->from(TABLES::$SHIPPER_SERVICES);
    		$this->db->where('status',1);
-   		$this->db->where('is_special',0);
+        $this->db->where('is_special',0);
+        $this->db->where('busi_id',$busi_id);
    		$this->db->order_by('name','ASC');
    		$query = $this->db->get();
    		$result = $query->result_array();
@@ -2414,7 +2415,8 @@ class Product_Model extends CI_Model {
    		$this->db->from(TABLES::$SHIPPER_SERVICES);
    		$this->db->where('status',1);
    		$this->db->where('is_special',1);
-   		$this->db->order_by('name','ASC');
+        $this->db->where('busi_id',$busi_id);
+   		$this->db->order_by('name','DESC');
    		$query = $this->db->get();
    		$result = $query->result_array();
    		return $result;

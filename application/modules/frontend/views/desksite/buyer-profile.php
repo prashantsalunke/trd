@@ -881,7 +881,7 @@ function stopWiggle(input) {
 
         <div id="Layer88" class="leftnav">
 
-          <div id="Layer116" class="left-fixed" style="padding-top:25px;">
+          <div id="Layer116" class="left-fixed" style="padding-top:13px; padding-left: 5px">
             <div id="wb_Text7" class="style-2">
                 <div id="wb_Image1" class="img-style" style="padding-top:8px;">
                     <?php if($Desksite['is_active'] >= 3){?><img src="<?php echo asset_url(); ?>images/Active.png" alt="This buyer is an active Buyer" id="Image94" class="verified-icon"> 
