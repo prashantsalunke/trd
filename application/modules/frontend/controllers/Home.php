@@ -26,8 +26,8 @@ class Home extends MX_Controller {
         $this->template->set ( 'subcategories', $subcategories);
         $procategories = $this->general->getProductCategories();
         $this->template->set ( 'procategories', $procategories);
-        $procategories = $this->general->getProductCategories();
-        $this->template->set ( 'procategories', $procategories);
+        $prosubcategories = $this->general->getProductSubCategories();
+		$this->template->set ( 'prosubcategories', $prosubcategories);
         $desksites= $this->account->getDesksites();
         $this->template->set ( 'desksites', $desksites);
         $vCatalogues= $this->account->getVCatalogue();
