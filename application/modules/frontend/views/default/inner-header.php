@@ -1043,10 +1043,10 @@ ul.hover-red-menu li.open a.firstmain{
 						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
 							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
 						</div>
-						<div class="col-sm-5 col-xs-5" style="padding: 0px;background-color: #fff;">
-							<div class="col-sm-7" style="padding:0px">
+						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
+							<div>
 								<div class="col-sm-6" style="padding:0px">
-									<div class="dropdown">
+									<div class="col-sm-6" style="padding:0px">
 										<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
 											<option value="">Country</option>
 											<?php foreach ($Country as $country){?>
