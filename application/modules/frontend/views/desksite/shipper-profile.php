@@ -625,6 +625,7 @@ function stopWiggle(input) {
                 </div>
                 <div id="wb_Text8" class="c2">
                     <p class="c1"><strong><?php 
+                        // echo $Desksite['timezone'];
                         try {
                             $mars = new DateTimeZone($Desksite['timezone']);
                             $date = new DateTime('now', $mars);
@@ -688,7 +689,7 @@ function stopWiggle(input) {
                 <div id="Layer5" class="bottomnav" style="height:105px;width:100%;margin:auto auto;">
                     <div id=" Layer5_Container " style="width:1380px;margin:auto;padding-top:40px;">
                         <div class="row" style="margin-left: 185px;">
-                            <div class="col-md-1 col-sm-1" style="width:120px;">
+                            <div class="col-md-12" style="width:140px;">
                             <br>
                                 <a href="javascript:serviceList(<?php echo $Desksite['busi_id'];?>);" class="product" style="color:#1f90f6; text-decoration: none">
                                     <span style="font-weight: bold; font-size: 15px; color: white;">Services</span>
@@ -708,7 +709,7 @@ function stopWiggle(input) {
                                      <p class="font2">Routes</p>
                                     </a>
                                     <a href="javascript:getComapnyCertificate(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-                                    <img src="<?php echo asset_url(); ?>images/desksite/D-certificates.png" id="Image7" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+                                    <img src="<?php echo asset_url(); ?>images/desksite/D-certificates.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                                      <p class="font2">Certificates</p>
                                     </a>
                                     
@@ -736,14 +737,14 @@ function stopWiggle(input) {
                                         <p class="font5" style="padding: 4px 0px;">World-wide  Offices</p>
                                     </a>
                                     <a href="javascript:getContactPerson(<?php echo $Desksite['busi_id'];?>);" class="navigation2" >
-                                        <img src="<?php echo asset_url(); ?>images/desksite/contact-person.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+                                        <img src="<?php echo asset_url(); ?>images/desksite/contact-person.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                                         <p class="font2">Contact Person</p>
                                     </a>
-                                    <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;">
-                                        <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width:54px;">
-                                        <p class="font5">Contact, Add Share...</p>
+                                    <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');return false;">
+                                        <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width:54px;">
+                                        <p class="font5">Contact,Add Share...</p>
                                     </a>
-                                    <a href="<?php echo base_url();?>" class="navigation2">
+                                    <a href="<?php echo base_url();?>shipper" class="navigation2">
                                         <img src="<?php echo asset_url(); ?>images/exit_br.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width:48px;">
                                         <p class="font5">Exit</p>
                                     </a>
@@ -951,6 +952,7 @@ function stopWiggle(input) {
                         <a href="javascript:addToCommunity(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
                         Add To Community
                         </a>
+
                     </div>
                     <div class="inline box5" onclick="chat_with('<?php echo $Desksites[0]['user_id'];?>','<?php echo $Desksites[0]['accept_chat'];?>')">
                         <img src="<?php echo asset_url(); ?>images/cha0t.png" id="Image19" alt="" class="img32">
