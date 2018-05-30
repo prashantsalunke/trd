@@ -126,11 +126,11 @@ div.pp_pic_holder {
 						                <div id="Layer9">
 						                    <img src="<?php echo asset_url(); ?>images/img0208.png" id="Image54" alt="" class="img46" style="width:30px !important;height:30px;"/>
 						                    <?php if($usertype[0]['user_category_id'] =='1' || $usertype[0]['user_category_id'] =='2' ) { ?>
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
 						                    	<a href="javascript:openNewPostForm();" class="bststyle6">Add New Post</a>
 						                    </span>
 						                    <?php } else { ?>
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="#" class="bststyle6">Add New Post</a>
 						                    </span>
 						                    <?php } ?>
@@ -149,16 +149,17 @@ div.pp_pic_holder {
 						              	</div>
 						            </div>
 						            <?php } ?>
-						            <div id="Layer28">
-					           		</div>
-									<div id="Layer32" style="width:1000px;">
-					             	</div>
+						            <div id="Layer28" style="width: 1029px;height:676px;overflow-x: auto;">
+				                
+				           		</div>
+									<div id="Layer32" style="width: 1029px;height:676px;overflow-x: auto;">
+				             	</div>
 					             	<br><br><br><br>
 				        		</div>
 				        		<div id="menu1" class="tab-pane fade content122">
-						            <div id="Layer288">
+						            <div id="Layer288"style="width: 1029px;height:676px;overflow-x: auto;">
 						            </div>
-									<div id="Layer322" style="width:1000px;">
+									<div id="Layer322" style="width: 1029px;height:676px; overflow-x: auto;">
 						            </div>
 						            <?php if($tscategory_id == 3) { ?>
 						            <div class="tab1" style="padding-left:16px;">
@@ -167,11 +168,11 @@ div.pp_pic_holder {
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/img0205.png" id="Image54" alt="" class="img46" style="width:30px !important;height:30px;">
 						                    <?php if($usertype[0]['user_category_id'] =='3' ) { ?>
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
 						                    	<a href="javascript:openNewBuyerPostForm();" class="bststyle7">Add New Post</a>
 						                    </span>
 						                	<?php } else { ?>
-						                	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
+						                	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                		<a href="#" class="bststyle7">Add New Post</a>
 						                	</span>
 						                	<?php } ?>

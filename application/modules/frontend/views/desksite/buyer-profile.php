@@ -808,23 +808,6 @@ function stopWiggle(input) {
                 </div>
             </div>
             
-            <!-- <div id="Layer48" class="box1 a3" style="left:0;right:0;margin:0 auto; top:3%;width: 316px;visibility:hidden;">
-            <div id="Layer48_Container">
-                    
-                <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
-                    <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-                <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-About.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE
-               </p>
-                <div>
-                    <div class="box2" id="company-profile" style=" height: 642px;">
-                    </div>
-                </div>
-                
-                </div>
-            </div> -->
-            <!-- company profile -->
-            
-            
             <!-- advantages -->
             <div id="Layer79" class="box1 a3">
                 <div id="Layer79_Container">
@@ -853,19 +836,6 @@ function stopWiggle(input) {
                     </div>
                 </div>
             </div>
-            
-            <!-- <div id="Layer33" class="box1 a3" style="left:0;right:0;margin:0 auto;width:314px;padding:15px;top:110px;">
-                <div id="Layer79_Container">
-                    <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer33', 0, 'slidedown', 300, 'swing');return false;">
-                            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:94%;">
-                        </a>
-                    <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/Airplane.png" alt="" class="img32" > &nbsp;&nbsp;&nbsp;MAIN ROUTES</p>
-                    <div class="box2 blackbox" id="route"></div>
-                    
-                </div>
-            </div> -->
-            <!-- routes ends-->
-            
             <!-- my files -->
             <div id="Layer148" style="position:absolute;text-align:center;visibility:hidden;left:0;right:0;margin:0 auto;top:110px;width:53%;height:462px;z-index:3850;">
                 <div id="Layer148_Container" style="width:432px;text-align:left;">
@@ -1448,16 +1418,24 @@ function viewCatalogueBook(id) {
     },'html');
 }
 
-function likeMySVideo(id,type,likeid) {
-    $.get(base_url+"likevideo/"+id,{ type: type},function(data) {
-        if(data.status == 1) {
-            var likes = parseInt($("#"+likeid).html());
-            likes = likes + 1;
-            $("#"+likeid).html(likes);
-        }
-        $("#msg_cont").html(data.msg);
-        ShowObject('Layer99', 1);
-    },'json');
+
+function openChatWithBuyer(seller_id) {
+	<?php if(!empty($tsuserid)) { ?>
+		<?php if($tscategory_id == 3) { ?>
+			<?php if($contact_details[0]['accept_chat'] == 1) { ?>
+				popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+			<?php } else { ?>
+				$("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to "My Station", then click on "Tools" icon, and select "Control Panel", then Turn it ON….');
+				ShowObject('Layer99', 1);
+			<?php } ?>
+		<?php } else { ?>
+			popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+		<?php } ?>
+	<?php } else { ?>
+		$("#msg_cont").html('LOGIN TO CAHT');
+		ShowObject('Layer99', 1);
+	<?php } ?>
+
 }
 function printInvoice() {    
     var printContents = document.getElementById('contact-person').innerHTML;
@@ -1475,6 +1453,7 @@ function likeMyDesksite(busi_id) {
     },'json');
 }
 function submitContactForm() {
+
     <?php if(!empty($tsuserid)) { ?>
         <?php if($tscategory_id != 3) { ?>
             $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
