@@ -127,7 +127,7 @@
 }
 </style>
 <div style="height: 540px;width: 470px;overflow-y:scroll;overflow-x:hidden;position: absolute;left:15px;">
-<?php foreach(array_slice($Company, 0,1) as $company){?>
+<?php foreach($Company as $company){?>
 	<div id="wb_Carousel1">
 		<div id="Carousel1">
 			<div class="frame">

@@ -655,7 +655,9 @@ function stopWiggle(input) {
             </div>
             <!-- slider ends -->
             <!-- left navigation -->
-            <div id="Layer88">
+            
+
+        <div id="Layer88">
 
           <div id="Layer116" class="left-fixed" style="padding-top:13px; padding-left: 5px">
             <div id="wb_Text7" class="style-2">
@@ -682,6 +684,7 @@ function stopWiggle(input) {
                 </div>
             </div>
        </div>
+
             <!-- left navigation ends -->
            
             <!-- bottom navigation -->
