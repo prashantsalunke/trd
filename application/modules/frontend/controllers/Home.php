@@ -1068,7 +1068,7 @@ class Home extends MX_Controller {
 
     public function getComapnyAbout($id) {
         $this->load->model('Product_Model', 'product' );
-        $Company= $this->product->getComapnyProfile($id);
+        $Company= $this->product->getComapnyAbout($id);
         $this->template->set ( 'Company', $Company);
         $this->template->set ( 'page', 'desksite' );
         $this->template->set ( 'userId', '' );

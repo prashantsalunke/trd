@@ -655,33 +655,36 @@ function stopWiggle(input) {
             </div>
             <!-- slider ends -->
             <!-- left navigation -->
-            <div id="Layer88" class="leftnav">
-                <div id="Layer116" class="left-fixed" style="padding-top:25px;">
-                    <div id="wb_Image61" class="text-center">
-                        <?php if($Desksite['plan_id'] > 1){?>
-                        <img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" class="black-horse-icon">
-                        <?php } else { ?>
-                        <img src="<?php echo asset_url(); ?>images/black-horse.png" id="Image61" alt="Black Horse Member" class="black-horse-icon img-disabled">
-                        <?php } ?>
-                     </div>
-                    <div id="wb_Image67"  class="text-center">
-                        <a href="#" onclick="<?php if($Desksite['is_logo_verified'] > 1){?>ShowObjectWithEffect('Layer61', 1, 'slideleft', 500, 'swing');<?php } ?>return false;">
-                            <?php if($Desksite['is_logo_verified'] > 1){?>
-                            <img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon">
-                            <?php } else { ?>
-                            <img src="<?php echo asset_url(); ?>images/trusted.png" id="Image67" alt=""  class="verified-icon img-disabled">
-                            <?php } ?>
-                        </a>
-                    </div>
-                    <div id="wb_Image76"  class="text-center">
-                        <?php if(count($community) > 0){ ?>
-                        <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" class="community-member-icon">
-                        <?php } else { ?>
-                        <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This shipper is a member in your community" class="community-member-icon img-disabled">
-                        <?php } ?>
-                    </div>
+            
+
+        <div id="Layer88">
+
+          <div id="Layer116" class="left-fixed" style="padding-top:13px; padding-left: 5px">
+            <div id="wb_Text7" class="style-2">
+                <div id="wb_Image1" class="img-style" style="padding-top:8px;">
+                    <?php if($Desksite['is_active'] >= 3){?><img src="<?php echo asset_url(); ?>images/Active.png" alt="This buyer is an active Buyer" id="Image94" class="verified-icon"> 
+                    <?php } else {?>
+                  <img src="<?php echo asset_url(); ?>images/Active.png" class="verified-icon" style="opacity :0.15" ><?php }?>
+                </div>
+                <div id="wb_Image1" class="img-style" style="padding-top:8px;">
+                    <?php if($Desksite['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/trusted.png" id="Image95" class="verified-icon"> <?php } else { ?>
+                    <img src="<?php echo asset_url(); ?>images/trusted.png" style="opacity :0.15" class="verified-icon" >
+                    <?php }?>
+                  </div>
+                <div id="wb_Image2" class="img-style" style="padding-top:8px;">
+                  <?php $buyer_request = $Desksite['stock_buyer_count']+$Desksite['bstation_post_count']; ?>
+                  <?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" class="verified-icon"  alt="Buyer has a current request">
+                  <?php } else {?>
+                  <img src="<?php echo asset_url(); ?>images/buyer-request.png" class="verified-icon" style="opacity :0.15" ><?php }?>
+                </div>
+                <div id="wb_Image10" class="img-style" style="padding-top:8px;">
+                    <?php if(!empty($Desksite['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image76" class="verified-icon"  alt="This buyer is in your community">
+                    <?php } else {?>
+                  <img src="<?php echo asset_url(); ?>images/ts/community.png" class="verified-icon" style="opacity :0.15" > <?php }?>
                 </div>
             </div>
+       </div>
+
             <!-- left navigation ends -->
            
             <!-- bottom navigation -->
