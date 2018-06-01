@@ -909,9 +909,13 @@ class Account extends MX_Controller {
 		$prifix 	    = $userdetail['name_prefix'];
 		$securityCode   = getHash(5);
 		$activationCode = $this->Account_Model->setValue($userdetail['id'],'activation_code',$securityCode);
-
-		$emailData = array('action'=>'passwordRecovery','prefix'=> $prifix,'name' =>$name,'activation_code'=> $securityCode);
-		return $this->sendMail($email, $emailData);
+		
+	   $this->template->set ( 'templateType', 'passwordRecovery');
+	   $this->template->set ( 'prefix', $prifix);
+	   $this->template->set ( 'name', $name);
+	   $this->template->set ( 'activationCode', $securityCode);
+	   $emailData = array('action'=>'passwordRecovery','prefix'=> $prifix,'name' =>$name,'activation_code'=> $securityCode);
+	   return $this->sendMail($email, $emailData);
 	}
 	
 	public function save_trade_info() {

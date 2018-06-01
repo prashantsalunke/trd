@@ -419,11 +419,16 @@ class Community extends MX_Controller {
 	
 	public function addToCommunity($id) {
 		$this->load->model('Community_Model', 'mycommunity' );
+		$this->load->model('Account_model', 'accountmodel');
 		$params = array();
 		$params['my_busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		$params['busi_id'] = $id;
 		$this->load->model('Product_Model','product');
 		$tscat_id = $this->session->userdata('tsuser')['category_id'];
+		$getUserInfo = $this->accountmodel->getUserDataByBusiId($id);
+		$params['user_id'] = $getUserInfo['id'];
+		$getMyUserInfo = $this->accountmodel->getUserDataByBusiId($params['my_busi_id']);
+		$params['my_user_id'] = $getMyUserInfo['id'];
 		$resp = array();
 		if(!empty($this->session->userdata('tsuser')['busi_id'])) { 
 			$mydetails = $this->product->getCommunicationInfo($params['my_busi_id']);

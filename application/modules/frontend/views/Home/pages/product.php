@@ -28,7 +28,7 @@ foreach($productdetail as $productBox) {?>
 		<img src="<?php echo asset_url();?>images/items_like0.png" id="Image59" alt="">
 	</div>
 	<div id="wb_Text168" style="position:absolute;left:179px;top:281px;width:63px;height:16px;z-index:1294;text-align:left;">
-		<span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo $productBox['likes']; ?></span>
+		<span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo $productBox['item_likes']; ?></span>
 	</div>
 </div>
 <div id="Layer111" style="position:absolute;text-align:left;left:0px;top:372px;width:308px;height:141px;z-index:1295;">

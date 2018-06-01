@@ -49,7 +49,7 @@ div.panel1 {
 					
 				</div>
 				<div class="col-md-1" style="text-align: right">
-					<span class="pull-right-close" style="text-align: right"><a href="javascript:ShowObjectWithEffect('Layer180', 0, 'dropup', 500, 'easeInBounce');ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');" class="btn-custom-close">X</a></span>
+					<span class="pull-right-close" style="text-align: right"><a href="javascript:closeAlert();" class="btn-custom-close">X</a></span>
 				</div>
 			</div>
 		</div>
