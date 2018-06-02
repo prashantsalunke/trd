@@ -281,23 +281,23 @@
 					</div>
 					<div id="Layer7" class="section8">
 					    <div id="wb_Text7" class="style-2">
-						    <div id="wb_Image10" class="img-style">
+						    <div id="wb_Image10" class="img-style wb_Image10">
 						        <?php if(!empty($buyer['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" >
 						        <?php } else {?>
 						    	<img src="<?php echo asset_url(); ?>images/ts/community.png" id="Image1" style="opacity :0.15" > <?php }?>
 					        </div>
-						    <div id="wb_Image2" class="img-style">
+						    <div id="wb_Image2" class="img-style wb_Image2">
 						    	<?php $buyer_request = $buyer['stock_buyer_count']+$buyer['bstation_post_count']; ?>
 						    	<?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" > 
 						    	<?php } else {?>
 						    	<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" style="opacity :0.15" ><?php }?>
 					        </div>
-					        <div id="wb_Image1" class="img-style">
+					        <div id="wb_Image1" class="img-style wb_Image1">
 						        <?php if($buyer['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" > <?php } else { ?>
 						        <img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="opacity :0.15" >
 						        <?php }?>
 					        </div>
-						    <div id="wb_Image1" class="img-style">
+						    <div id="wb_Image1" class="img-style wb_Image1">
 						        <?php if($buyer['is_active'] >= 3){?><img src="<?php echo asset_url(); ?>images/Active.png" id="Image1" > 
 						        <?php } else {?>
 						    	<img src="<?php echo asset_url(); ?>images/Active.png" id="Image1" style="opacity :0.15" ><?php }?>
@@ -665,39 +665,37 @@ $(document).ready(function() {
     var jQueryToolTip2Opts = {
         hide: true,
         show: true,
-        content: '<span style="color:#696969;font-family:Arial;font-size:12px;">Buyer has a current request,<br>Visit his Desksite to view and deal.</span>',
-        items: '#wb_Image2',
+        content: '<span style="color:#696969;font-family:Arial;font-size:12px;position:absolute;left:1000px;top:-10px;z-index:10000;">Buyer has a current request,<br>Visit his Desksite to view and deal.</span>',
+        items: '.wb_Image2',
         position: {
             my: "right bottom",
             at: "left top",
             collision: "flipfit"
         }
     };
-    $("#wb_Image2").tooltip(jQueryToolTip2Opts);
+    $(".wb_Image2").tooltip(jQueryToolTip2Opts);
     var jQueryToolTip3Opts = {
         hide: true,
         show: true,
-        content: '<span style="color:#696969;font-family:Arial;font-size:12px;">This buyer is an active..</span>',
-        items: '#wb_Image1',
+        content: '<span style="color:#696969;font-family:Arial;font-size:12px;position:absolute;left:1000px;top:-20px;z-index:10000">This buyer is an active..</span>',
+        items: '.wb_Image1',
         position: {
-            my: "right bottom",
-            at: "left top",
+            my: "left top", 
+            at: "right center", 
             collision: "flipfit"
         }
     };
-    $("#wb_Image1").tooltip(jQueryToolTip3Opts);
+    $(".wb_Image1").tooltip(jQueryToolTip3Opts);
     var jQueryToolTip1Opts = {
         hide: true,
         show: true,
-        content: '<span style="color:#696969;font-family:Arial;font-size:12px;">Buyer is a member <br>in your community</span>',
-        items: '#wb_Image10',
-        position: {
-            my: "right bottom",
-            at: "left top",
+        content: '<span style="color:#696969;font-family:Arial;font-size:12px;position:absolute;left:900px;top:-20px;z-index:10000">Buyer is a member <br>in your community</span>',
+        items: '.wb_Image10',
+        position: { my: "left top", at: "right center", 
             collision: "flipfit"
         }
     };
-    $("#wb_Image10").tooltip(jQueryToolTip1Opts);
+    $(".wb_Image10").tooltip(jQueryToolTip1Opts);
     $("#Layer_buyer").stickylayer({
         orientation: 9,
         position: [0, 0],

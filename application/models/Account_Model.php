@@ -1020,5 +1020,11 @@ class Account_Model extends CI_Model {
 		$this->db->update(TABLES::$USER, $data);
 		return $this->db->affected_rows();
 	}
- 
+ 	function deleteBusiness($busi_id)
+	{
+		$this->db->where('id', $busi_id);
+		//$this->db->where('user_role', $data['user_role']);
+		$result = $this->db->delete(TABLES::$BUSINESS_INFO);
+		return $result;
+	}
 }
