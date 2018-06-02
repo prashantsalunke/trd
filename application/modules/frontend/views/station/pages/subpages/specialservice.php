@@ -3,10 +3,13 @@
 </style>
 <div class="panel-heading custom-panel-heading" style="text-align:left;padding-top: 10px !important;">
 	<span class="nav-text"><input type="checkbox" id="mytogglechecks"> &nbsp;&nbsp;&nbsp;<b>All</b></span>
-	<a href="javascript:addNewSProduct();" class="btn-custom-product" id="product_add_btn">
-		<img src="<?php echo asset_url();?>images/img2302.png" id="Image6" alt="" style="width:25px;height:25px;">
-		<b>Add Special Service</b>
-	</a>
+	
+
+		<a href="javascript:addNewSProduct();" class="btn-custom-product" id="product_add_btn">
+			<img src="<?php echo asset_url();?>images/img2302.png" id="Image6" alt="" style="width:25px;height:25px;">
+			<b>Add Special Service</b>
+		</a>
+
 	<a href="javascript:editOldSProduct();" class="btn-custom-product" id="product_edit_btn">
 		<img src="<?php echo asset_url();?>images/img1290.png" id="Image6" alt="" style="width:20px;height:20px;">
 		<b>Edit Special Service</b>
@@ -68,7 +71,7 @@
 
 <script>
 function addNewSProduct() {
-	<?php if(count($services) < 5 ) { ?>
+	<?php if(count($services) < 4 ) { ?>
 	$.get(base_url+"mystation/desksite/newspecialservice",{},function(data){
 		$("#mainservicenav").html("");
 		$("#spservicenav").html(data);
@@ -119,7 +122,7 @@ function addNewSProduct() {
 		});
 	},'html');
 	<?php } else { ?>
-		alert("You can add only 5 special services.");
+		alert("You can add only 4 special services.");
 	<?php } ?>
 }
 

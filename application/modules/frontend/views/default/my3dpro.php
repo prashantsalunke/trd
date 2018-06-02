@@ -27,15 +27,16 @@ ul, li {
 </style>
 <div id="my3DModal" class="modal fade" role="dialog" style="background:rgba(0,0,0,0.5);z-index:10000;">
   	<div class="modal-dialog" style="width:400px;">
-    	<div class="modal-content" style="margin-top:20%;">
+    	<div class="modal-content" style="margin-top:40%;">
     		<div style="position:absolute;right: -15px;top: -15px;width: 25px;height: 25px;z-index:5000;"><button type="button" class="pull-right" data-dismiss="modal" aria-hidden="true" style="background:transparent;border:0px;padding:0px;"><img src="<?php echo asset_url();?>images/newicons/closeround.png" id="Image47" alt="" style="width:35px;height:35px;"></button></div>
       		<div class="modal-body" style="padding-top:15px;padding-bottom:5px;">
       			<form name="frmedit_product" method="post" action="" enctype="multipart/form-data" id="frmedit_product">
       				<div class="row" style="margin:0px;">
       					<div class="col-md-12" style="text-align: center;">
-      						<a href="<?php echo base_url();?>products/details/<?php echo $productdata[0]['id'];?>" target="_blank" class="style16" style="font-family: Arial;font-size: 16px;"><?php echo $productdata[0]['name'];?></a>
+      						<a href="<?php echo base_url();?>products/details/<?php echo $productdata[0]['id'];?>" target="_blank" class="style16" style="font-family: Arial;font-size: 16px;text-align: center;left:0px;width: 100%;"><?php echo $productdata[0]['name'];?></a>
       					</div>
       				</div>
+              <br/>
       				<!-- div class="row" style="margin:0px;">
       					<div class="col-md-12" style="text-align: center;">
       						<span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo substr($productdata[0]['description'],0,110);?> <?php if(strlen($productdata[0]['description']) > 110) {?>...<?php } ?></span>

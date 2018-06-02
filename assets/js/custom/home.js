@@ -1,12 +1,12 @@
 function openHomePage() {
 	$("#main-page-lock").slideUp("slow");
 	$("#main-page").show();
-	$('.slider').slick('unslick'); /* ONLY remove the classes and handlers added on initialize */
-    $('.slider').slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1
-    });
+//	$('.slider').slick('unslick'); /* ONLY remove the classes and handlers added on initialize */
+//    $('.slider').slick({
+//        infinite: true,
+//        slidesToShow: 4,
+//        slidesToScroll: 1
+//    });
 }
 
 function termscondition(type)
@@ -132,4 +132,31 @@ function alertajaxindicatorstop()
     jQuery('#alertresultLoading .bg').height('100%');
     jQuery('#alertresultLoading').fadeOut(300);
     jQuery('body').css('cursor', 'default');
+}
+setInterval(getNewAlerts, 9000); //300000 MS == 5 minutes
+function getNewAlerts() {
+	$.ajax({
+        url: base_url + "home/alert",
+        type: "post",
+        dataType:'json',
+        success: function (response) {
+    		$("#new-alert-popup").html(response.dataHTML);
+    		$(".badge").html(response.totalCount);
+        }
+    })
+}
+//getNewAlerts();
+function accept_community_request(id) {
+	$.ajax({
+        url: base_url + "home/addToCommunity",
+        type: "post",
+        data : { id : id },
+        success: function (response) {
+        	if(response ==1) {
+        		$("#popupAddToCommunity").show();
+        		$("#new-alert-popup").hide();
+        	}
+        	
+        }
+    })
 }

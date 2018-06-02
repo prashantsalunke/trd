@@ -317,7 +317,7 @@
 		     	<h4 class="center"> No Shipper Found!</h4>
 		     </div>
 	     <?php } ?>
-	     <?php if($total_pages > 1) { ?>
+	     <?php if(isset($total_pages) && $total_pages > 1) { ?>
 	     	<div class="row" style="margin:0px;">
 				<div id="wb_Text396" style="text-align:center;height:31px;padding:7px;padding-right:0px;background-color:#00BFFF;" class="col-sm-1">
 					<span style="color:#FFFFFF;font-family:Georgia;font-size:12px;">Page&nbsp;&nbsp; </span>

@@ -371,11 +371,20 @@ a.style16:hover
    text-decoration: underline;
 }
 </style>
-
+				<!-- <script type='text/javascript'>  
+				 // In case you wonder why we pass the "true" parameter,
+				 // here is the explanation:
+				 //   - When you use jQuery.noConflict(), it deletes
+				 //     the "$" global variable.
+				 //   - When you use jQuery.noConflict(true), it also
+				 //     deletes the "jQuery" global variable.
+				 var $jq = jQuery.noConflict(true);  
+				</script> -->
+                <!-- <script src="<?php echo base_url(); ?>assets/magnific/jquery.js"></script> -->
 <div style="background-color:#EBECEE;">
 	<div id="body" style="padding-top: 15px;">
 		<div class="container text-left" id="product_details" class="b-gray">
-		<?php foreach (array_slice($Productdetails,0,1) as $product) {?>
+		<?php foreach (array_slice($Productdetails,0,1) as $product) { ?>
 
 			<div class="row" style="margin:0px;">
 				<ol class="breadcrumb" style="background-color: #D3D3D3;width: 100%;padding-top: 15px;">
@@ -468,7 +477,12 @@ a.style16:hover
 
     							<section id="fancy">
         							<div class="xzoom-container">
-				    					<img src="<?php echo asset_url().''.$product['main_image'];?>" id="Shapeview" class="img-responsive"  width="350" alt="" />	
+				    					<img class="xzoom5" src="<?php echo asset_url().''.$product['main_image'];?>" id="Shapeview" alt="" style="
+  display: block;
+  max-width: 150%;
+  height: 110%;
+  width: 125%;
+  border-radius: 10px;" />	
 				    				</div>
 				    			</section>
 
@@ -537,7 +551,7 @@ a.style16:hover
 		    		</div>
 		    		<div style="position:relative;">
 		    			<div id="RollOver88" style="position:absolute;left:40px;top:10px;overflow:hidden;width:40px;height:40px;">
-							<a  href="javascript:chat_with(<?php echo $product['user_id'];?>,<?php echo $product['accept_chat'];?>)">
+							<a  href="javascript:chat_with(<?php echo $product['busi_id'];?>,<?php echo $product['accept_chat'];?>)">
 								<img class="hover" alt="" src="<?php echo asset_url();?>images/items_chat.png">
 								<span><img alt="" src="<?php echo asset_url();?>images/items_chat0.png"></span>
 							</a>
@@ -626,6 +640,43 @@ a.style16:hover
 		  </div>
 		<?php } ?>
 	</div>
+
+	
+
+					  	
+			<div style="font-size: 14px; margin-top: 20px; margin-bottom: 10px;" class="col-md-12"><span class="pull-left">More from the same seller</span></div>
+		<div class="row center " style="margin:0px;">
+			<?php
+			foreach ( array_slice($moreProductSaller,0,4) as $item) {?>
+			<div class="col-md-3">
+				<div class="panel panel-default product-box" style="height:430px;">
+				    <div class="panel-body center">
+				    	<div class="row">
+				    		<h6><span style="color:#1E90FF;font-family:Arial;font-size:16px;"><?php echo $item['name']?></span></h6>
+			    		</div>
+				    	<div class="row" style="padding:0px 30px;">
+					    	<div style="padding-bottom:15px;"><?php echo substr($item['about'],0,87);?> <?php if(strlen($item['about']) > 40) { ?>...<?php } ?></div>
+					    	<a href="javascript:productDetail2(<?php echo $item['id'];?>,<?php echo $item['busi_id'];?>);"><img src="<?php echo asset_url().$item['main_image'];?>" width="300px" width="250px" class="img-responsive" /></a>
+					    	<br>
+				    		<div><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">USD</span>&nbsp;&nbsp; <span style="color:#3C3C3C;font-family:Arial;font-size:24px;"><?php echo $item['unit_price'];?></span></div>
+		    				<div><span style="background-color:#FFFFFF;color:#3C3C3C;font-family:Arial;font-size:13px;">Min. Order: <?php echo $item['quantity'].' '.$item['unit'];?> </span></div>
+		    				<div><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">Likes</span> <img src="<?php echo asset_url();?>images/items_like0.png" id="Image31" alt="" style="width:26px;height:26px;"> <span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo $item['likes'];?></span></div>
+	    				</div>
+			    	</div>
+		    	</div>
+		    </div>
+			<?php }?>
+		</div>
+
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
 </div> 
 </div>
 <script src="<?php echo asset_url();?>js/html2pdf.bundle.min.js"></script>
@@ -660,13 +711,15 @@ function likeProduct(id) {
 	$.get(base_url+"desksite/product/like/"+id,{},function(data) {
 		if(data.status == 1) {
 			$("#msg_cont").html(data.msg);
+
+				var likes = parseInt($("#sdiv").html());
+				likes++;
+				$("#sdiv").html(likes);
+		
 		} else {
 			$("#msg_cont").html(data.msg);
 		}
 		ShowObject('Layer99', 1);
-		var likes = parseInt($("#sdiv").html());
-		likes++;
-		$("#sdiv").html(likes);
 	},'json');
 }
 </script>
