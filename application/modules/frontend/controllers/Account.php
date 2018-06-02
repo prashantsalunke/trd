@@ -1697,11 +1697,19 @@ class Account extends MX_Controller {
 	
 	public function deleteBusiness() {
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		$buisnessInfo = array(
+		/*$buisnessInfo = array(
 				'id' => $busi_id,
 				'is_deleted' => 1
-		);
-		$this->Account_Model->updateBusinessInfo($buisnessInfo);
+		);*/
+		
+		$this->load->model('Product_Model');
+		//delete images 
+		$user_data = $this->Account_Model->getUserDataByBusiId($busi_id);
+		$this->delete_files("assets/images/user_images/".$user_data['id']);
+		
+		//last business info delete
+		//$this->Account_Model->updateBusinessInfo($buisnessInfo);
+		$this->Account_Model->deleteBusiness($busi_id);
 		$this->session->unset_userdata('tsuser');
 		$this->session->unset_userdata('tsuserid');
 		$this->session->unset_userdata('activstatus');
@@ -1711,6 +1719,20 @@ class Account extends MX_Controller {
 		echo json_encode(array('msg'=>'Account deleted successfully.'));
 	}
 	
+	public function delete_files($target) { //print_r($target);
+	    if(is_dir($target)){ 
+	        $files = glob( $target . '*', GLOB_MARK ); //GLOB_MARK adds a slash to directories returned
+	        //print_r($files);die;
+	        foreach( $files as $file )
+	        {
+	            $this->delete_files( $file );      
+	        }
+	        if(is_dir($target))
+	       		rmdir($target );
+	    } elseif(is_file($target)) { //echo "xxx1"; die;
+	        unlink( $target );  
+	    }
+	}
 	public function disableBusiness() {
 		$is_disable = $this->input->post('is_disable');
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];

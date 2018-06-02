@@ -1068,11 +1068,12 @@ class Product_Model extends CI_Model {
     	return $result;
     }
     
-    public function getMyFiles($id){
+    public function getMyFiles($id,$loggedin_user_busiid){
     	$this->db->select('*');
     	$this->db->from(TABLES::$MYFILE);
     	$this->db->where('busi_id', $id);
-    	$this->db->where('file_access_type', 1);
+        if($id != $loggedin_user_busiid)
+    	       $this->db->where('file_access_type', 1);
     	$this->db->where('	is_deleted', 0);
     	$query = $this->db->get();
     	$result = $query->result_array();

@@ -989,7 +989,8 @@ class Home extends MX_Controller {
 	
 	public function getMyfiles($id) {
 		$this->load->model('Product_Model', 'product' );
-		$MyFiles = $this->product->getMyFiles($id);
+		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$MyFiles = $this->product->getMyFiles($id,$busi_id);
 		$binfo = $this->product->getBusinessCategory($id);
 		$this->template->set ( 'bcatinfo', $binfo);
 		$this->template->set ( 'Files', $MyFiles);
