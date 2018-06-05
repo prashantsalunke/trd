@@ -1900,35 +1900,12 @@ class Home extends MX_Controller {
 	public function getMainProductsBySubcat(){
 		
 		$this->load->model('Product_Model','product');
-        $result = $this->product->getMainProdBySubCat($_POST['id']);
-		$html ='<div class="panel-body panel" style="background-color: rgb(255, 255, 255); box-shadow: none ! important; margin-left: 0px ! important; margin-right: 0px ! important;margin-top: 0px ! important;">'
-                            .'<div class="row" style="padding-bottom:50px;z-index: 200;">'
-								.'<div class="col-md-offset-1">'
-									.'<div class="col-md-3">'
-										.'<ul style="list-style:none;margin-bottom: -5px;">'
-											.'<li>'
-												.'<a class="btn btn-link" href="javascript:void(0);" style="color:#337ab7;text-decoration:underline;">'.ucwords($_POST['name']).'</a>'
-											.'</li>'
-										.'</ul>' 
-									.'</div>'
-									.'<div class="col-md-9">';
-									if(!empty($result)){
-										$i=1;
-										foreach($result as $res){
-											$html.='<div class="col-md-4">'
-												.'<ul style="list-style:none;margin-bottom: -5px;">'
-													.'<li>'
-														.'<a class="btn btn-link main_prod" href="javascript:void(0);" onclick="filter_by_subcat('.$_POST['main_cat'].','.$_POST['id'].',\'' . str_replace("'", "\'", $res['name']) . '\')" style="color:#808080;">'.$res["name"].'</a>'
-													.'</li>'
-												.'</ul>'    
-											.'</div>';	
-											$i++;
-										}
-									}
-							$html.='</div>'
-							.'</div>'
-						.'</div>'
-				.'</div>';
+        $mainProduct = $this->product->getMainProdBySubCat($_POST['id']);
+		$this->template->set ( 'mainProduct', $mainProduct );
+        $this->template->set ( 'params', $_POST);
+        $this->template->set_theme('default_theme');
+        $this->template->set_layout (false);
+        $html= $this->template->build ('home/pages/main-products', '', true);		
 		echo $html;
 	}
 }
