@@ -350,7 +350,7 @@ class Home extends MX_Controller {
                     ->set_partial ( 'footer', 'default/footer' );
                     $this->template->build ('Home/shipper');
     }
-    public function filter_by_cat(){
+    public function filter_by_cat(){ 
         $params = $this->input->get();
         $keyword = "";
         if(!empty($params['keyword']))
@@ -360,15 +360,23 @@ class Home extends MX_Controller {
                 $params['page'] = 1;
             }
             $params['cat_id'] = $this->input->post('cat_id');
+            $params['main_cat_id'] = $this->input->post('main_cat_id');
+            $params['main_prod'] = $this->input->post('main_prod');
             $this->load->model('Sellers_Model', 'sellers' );
+            $this->load->model('Product_Model', 'product' );
             $this->load->library('mylib/General', 'general');
             $this->load->model ( 'Account_Model', 'account' );
-            $products = $this->sellers->searchProducts($params);
+            $products = $this->product->filterProducts($_POST);
+            $productMainCat = $this->product->getProductCatSubcat($_POST['main_cat_id'],$_POST['cat_id']);
+			$this->template->set ( 'productMainCat', $productMainCat);
             $total_pages = $this->sellers->countProducts($params);
             $procategories = $this->general->getProductCategories();
             $this->template->set ( 'procategories', $procategories);
             $prosubcategories = $this->general->getProductSubCategories();
             $this->template->set ( 'prosubcategories', $prosubcategories);
+			$subproducts = $this->product->getSubProdBySubCat($_POST['main_prod']);
+            $this->template->set ( 'subproducts', $subproducts);
+			
             $this->template->set ( 'products', $products);
             $Country= $this->account->getCountry();
             $this->template->set ( 'Country', $Country);
@@ -1885,5 +1893,20 @@ class Home extends MX_Controller {
         $html= $this->template->build ('desksite/subpages/general_offer', '', true);
         echo $html;
     }
+	/*
+		Added by Rohit
+		Get main products from sub category list
+	*/
+	public function getMainProductsBySubcat(){
+		
+		$this->load->model('Product_Model','product');
+        $mainProduct = $this->product->getMainProdBySubCat($_POST['id']);
+		$this->template->set ( 'mainProduct', $mainProduct );
+        $this->template->set ( 'params', $_POST);
+        $this->template->set_theme('default_theme');
+        $this->template->set_layout (false);
+        $html= $this->template->build ('home/pages/main-products', '', true);		
+		echo $html;
+	}
 }
 

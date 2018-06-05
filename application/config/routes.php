@@ -54,6 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE; 
 
 $route['intro'] = 'frontend/home/intro';
+$route['home/get_main_products'] = 'frontend/home/getMainProductsBySubcat';
+
+
 $route['stationhome'] = 'frontend/SellerStation';
 $route['sellerstation/my_account'] = 'frontend/SellerStation/myAccount';
 $route['homepage/setcookie'] = 'frontend/Home/setHomePageCookie';

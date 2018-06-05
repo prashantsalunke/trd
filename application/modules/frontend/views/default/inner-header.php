@@ -119,9 +119,9 @@ ul.hover-red-menu li.open a.firstmain{
 
 </style>
  <script src="<?php echo asset_url();?>js/bootstrap-dropdownhover.min.js"></script>
- <div class="container" style="width:1280px;padding:1px 0px;">
+ <div class="container" style="padding:0px;width:93%;">
  <?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
-		 <div class="container top-div">
+		 <div class="container top-div" style="width:100%;">
             <ul class="nav navbar-nav navbar-left top-nav">
                 <li><a href="#" class="headerMenu" data-toggle="modal" data-target="#myModal" style="padding-right: 0px;">Register</a></li>
                 <li><a data-toggle="modal" style="color:#C0C0C0;font-family:Georgia;font-size:13px;">|</a></li>
@@ -150,7 +150,7 @@ ul.hover-red-menu li.open a.firstmain{
             </ul>
 		</div>
 	<?php } else { ?>
-	<div class="container top-div">
+	<div class="container top-div" style="width:100%;">
         <div class="navbar-header"> <a href="<?php echo base_url()?>" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
         <ul class="nav navbar-nav pull-right top-nav login-user-nav">
             <li style="padding-top:17px;">
@@ -201,8 +201,8 @@ ul.hover-red-menu li.open a.firstmain{
     </div>
 	<?php } ?>
 <nav class="navbar" style="background: none; border: 0px; margin-bottom: 0px; border-radius: 0px;">
-	<div class="container">
-		<div class="row" style="padding-top:1px;padding-right:1px;">
+	<div class="container-fluid">
+		<div class="row">
 			<div class="col-lg-2 col-sm-4 logo">
 				<div style="color:#E8AD8F;font-family:Georgia;font-size:12px;">WELCOME TO THE</div>
 				<div style="color:#FFFFFF;font-family:Arial;font-size:27px;margin-top:35px;">TRD</div>
@@ -689,7 +689,7 @@ ul.hover-red-menu li.open a.firstmain{
                 </div>
             </div>
         </div><!-- register -->
-		 <div id="main-page" style="width:1280px;margin-left:auto;margin-right:auto;display:none;" >
+		 <div id="main-page" style="margin-left:auto;margin-right:auto;display:none;" >
 		 <div class="container-fluid top-div">
             <ul class="nav navbar-nav navbar-left top-nav">
                 <li><a href="#" class="headerMenu" data-toggle="modal" data-target="#myModal" style="padding-right: 0px;">Register</a></li>
@@ -755,18 +755,17 @@ ul.hover-red-menu li.open a.firstmain{
 					</div>
 				</form> 
 				<?php } elseif($page =='sellers'){?>
-                                    <div style="background: #f1f1f1; padding: 30px 0px" class="container">
-                                        <div style="margin-bottom: 20px;" class="row">
-					<form method="get" action="<?php echo base_url();?>seller" style="padding-top:25px;" name="sellerfrm" onsubmit="return validateForm('sellerfrm');">
-						
-                                                <div class="col-md-2">
-                                                    <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
-                                                        <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
-                                                        <span style="color:#303030;font-family:Georgia;font-size:17px;">
-                                                            <a href="#" class="style261" style="color:#303030;text-decoration: none !important;" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
-                                                    </div>
-                                                </div>
-						<div class="col-sm-6 col-xs-11" style="padding: 0px;">
+					<div style="margin-bottom: 20px;" class="row">
+						<form method="get" action="<?php echo base_url();?>seller" style="padding-top:25px;" name="sellerfrm" onsubmit="return validateForm('sellerfrm');">
+			
+						<div class="col-md-2 text-center">
+							<div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
+								<img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
+								<span style="color:#303030;font-family:Georgia;font-size:17px;">
+									<a href="#" class="style261" style="color:#303030;text-decoration: none !important;" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
+							</div>
+						</div>
+						<div class="col-sm-6 col-xs-11" style="padding-left: 7px;padding-right:2px">
 							<input type="text" class="search-box" name="keyword" placeholder="Type a keyword to search ( product, company or name )..." value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" />
 						</div>
 						<div class="col-sm-4 col-xs-4 " style="padding-left: 0px;">
@@ -783,7 +782,7 @@ ul.hover-red-menu li.open a.firstmain{
 									</div>
 								</div>
 								<div class="col-sm-5 padding-0" style="padding-right: 3px;">
-									<div class="dropdown">
+									<div class="dropdown" style="width:106%;">
 										<select class="search-box search-dp" id="city" name='city'>
 											<option value="">City</option>
 											<?php foreach($cities as $city){?>
@@ -793,14 +792,14 @@ ul.hover-red-menu li.open a.firstmain{
 									</div>
 								</div>
 								<div class="col-sm-2 padding-0">
-									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+									<button class="btn btn-block search-btn" style="float:right;width:60px" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
 								</div>
 							</div>
 						</div>
 					</form>
                              <div id="Cat_main_layer" style="position:absolute;text-align:left;left:-23px;visibility: hidden;top:71%;width:100%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
             <div class="row">
-                <div id="myCarousel" class="carousel slide" style="height:197px;width:95%;left:5%;border:none !important;background-color: #fafafa;">
+                <div id="myCarousel" class="carousel slide" style="height: 197px; width: 98%; left: 2.9%; border: medium none ! important; background-color: rgb(250, 250, 250); padding: 0px 30px;">
                     <div class="carousel-inner" >
                         <?php
                         $i = 1;
@@ -833,15 +832,16 @@ ul.hover-red-menu li.open a.firstmain{
                     </div>
                 </div>
 
-                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
-                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+                <a style="position: absolute; width: 24px; height: 61px; z-index: 999; background-image: none ! important; left: 9px; top: 33%;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position:absolute;top:33%;right:5px;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
+                    <input type="hidden" name="main_prod" id="main_prod" value="">
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
-                <div class="panel categary-detials" style="position:absolute;padding-top:60px;width: 95%;margin: auto;left: 5%;z-index: 1;">
+                <div class="panel categary-detials" style="position:absolute;padding-top:60px;width: 98%;margin: auto;left: 2.9%;z-index: 1;">
 
                     <?php
                     $i = 1;
@@ -858,7 +858,7 @@ ul.hover-red-menu li.open a.firstmain{
 											<div class="col-md-3">
 												<ul style="list-style:none;margin-bottom: -5px;">
 													<li>
-														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
 													</li>
 												</ul>    
 											</div>
@@ -903,11 +903,12 @@ ul.hover-red-menu li.open a.firstmain{
                         $i++;
                     }
                     ?>
+					<div id="sub_cat_main_prod">
+					</div>
                 </div>
             </div>
         </div><!-- End Carousel --> 
         </div>
-                                        </div>
 				<?php } elseif ($page=='shippers'){?>
 					<form method="get" action="<?php echo base_url();?>shipper" style="padding-top:25px;" name="shipperfrm" onsubmit="return validateForm('shipperfrm');">
 						<div class="col-sm-2 col-xs-11" style="padding: 0px;">
@@ -1033,58 +1034,56 @@ ul.hover-red-menu li.open a.firstmain{
 					<br><br><br><br>
 				<?php } elseif ($page =='product'){?>
 					<form method="get" action="<?php echo base_url();?>products" style="padding-top:25px;" name="productfrm" onsubmit="return validateForm('productfrm');">
-						<div class="col-md-2">
-                                                    <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
-                                                        <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
-                                                        <span style="color:#303030;font-family:Georgia;font-size:17px;">
-                                                            <a href="#" class="style261" style="color:#303030;text-decoration: none !important;" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
-                                                    </div>
-                                                </div>
-						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
+						<div class="col-md-2 text-center">
+							<div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
+								<img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
+								<span style="color:#303030;font-family:Georgia;font-size:17px;">
+									<a href="#" class="style261" style="color:#303030;text-decoration: none !important;" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
+							</div>
+						</div>
+						<div class="col-sm-6 col-xs-5" style="padding: 0px;">
 							<input type="text" class="search-box"  value="<?php if(!empty($params['keyword'])){ echo $params['keyword'];}?>" name="keyword" placeholder="Type a keyword to search ( product, company or name )...">
 						</div>
-						<div class="col-sm-5 col-xs-5" style="padding: 0px;">
-							<div>
+						<div class="col-sm-4 col-xs-5" style="padding: 0px;">
+							<div class="col-sm-7" style="padding:0px">
 								<div class="col-sm-6" style="padding:0px">
-									<div class="col-sm-6" style="padding:0px">
-										<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
-											<option value="">Country</option>
-											<?php foreach ($Country as $country){?>
-												<option value="<?php echo $country['name'];?>" <?php if(!empty($params['country']) && $params['country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
+									<select class="search-box search-dp" name='country' onchange="changeCountry(this);">
+										<option value="">Country</option>
+										<?php foreach ($Country as $country){?>
+											<option value="<?php echo $country['name'];?>" <?php if(!empty($params['country']) && $params['country'] == $country['name']) { ?>selected<?php } ?>><?php echo $country['name'];?></option>
+										<?php }?>
+									</select>
+								</div>
+								<div class="col-sm-6" style="padding:0px 2px;">
+									<div class="dropdown">
+										<select class="search-box search-dp" id="city" name='city'>
+											<option value="">City</option>
+											<?php foreach($cities as $city){?>
+												<option value="<?php echo $city['name']?>" <?php if(!empty($params['city']) && $params['city'] == $city['name']) { ?>selected<?php } ?>><?php echo $city['name']?></option>
 											<?php }?>
 										</select>
 									</div>
-									<div class="col-sm-6" style="padding:0px 2px;">
-										<div class="dropdown">
-											<select class="search-box search-dp" id="city" name='city'>
-												<option value="">City</option>
-												<?php foreach($cities as $city){?>
-													<option value="<?php echo $city['name']?>" <?php if(!empty($params['city']) && $params['city'] == $city['name']) { ?>selected<?php } ?>><?php echo $city['name']?></option>
-												<?php }?>
-											</select>
-										</div>
+								</div>
+							</div>
+							<div class="col-sm-5" style="padding-left:0px;padding-right:0px">
+								<div class="col-sm-8" style="padding:0px;padding-right:2px;">
+									<div class="dropdown">
+										<select class="search-box search-dp"  name='type'>
+											<option value="">More</option>
+											<option value="1"  <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show low price first</option>
+											<option value="2"  <?php if(!empty($params['type']) && $params['type'] == 2) { ?>selected<?php } ?>>Show higher price first</option>
+										</select>
 									</div>
 								</div>
-								<div class="col-sm-5" style="padding-left:0px;">
-									<div class="col-sm-8" style="padding:0px;">
-										<div class="dropdown">
-											<select class="search-box search-dp"  name='type'>
-												<option value="">More</option>
-												<option value="1"  <?php if(!empty($params['type']) && $params['type'] == 1) { ?>selected<?php } ?>>Show low price first</option>
-												<option value="2"  <?php if(!empty($params['type']) && $params['type'] == 2) { ?>selected<?php } ?>>Show higher price first</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-4" style="padding:0px;padding-left:2px;">
-										<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
-									</div>
+								<div class="col-sm-4" style="padding-left:0px;padding-right:0px;">
+									<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
 								</div>
 							</div>
 						</div>
 					</form>
                                         <div id="Cat_main_layer" style="position:absolute;text-align:left;left:-23px;visibility: hidden;top:100%;width:100%;height:758px;z-index:1762;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
             <div class="row">
-                <div id="myCarousel" class="carousel slide" style="height:197px;width:95%;left:5%;border:none !important;background-color: #fafafa;">
+                <div id="myCarousel" class="carousel slide" style="height: 197px; border: medium none ! important; background-color: rgb(250, 250, 250); width: 98%; left: 2.9%;padding:0 30px">
                     <div class="carousel-inner" >
                         <?php
                         $i = 1;
@@ -1117,15 +1116,16 @@ ul.hover-red-menu li.open a.firstmain{
                     </div>
                 </div>
 
-                <a style="position:absolute;left:14px;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
-                <a style="position:absolute;top:38%;width:24px;height:61px;z-index:999;background-image:none !important;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+                <a style="position: absolute; width: 24px; height: 61px; z-index: 999; background-image: none ! important; left: 9px; top: 33%;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+                <a style="position: absolute; width: 24px; height: 61px; z-index: 999; background-image: none ! important; top: 33%; right: 5px;" class="right carousel-control" href="#myCarousel" data-slide="next"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
+                    <input type="hidden" name="main_prod" id="main_prod" value="">
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
-                <div class="panel categary-detials" style="position:absolute;padding-top:60px;width: 95%;margin: auto;left: 5%;z-index: 1;">
+                <div class="panel categary-detials" style="position:absolute;padding-top:60px;width: 98%;margin: auto;left: 2.9%;z-index: 1;">
 
                     <?php
                     $i = 1;
@@ -1142,7 +1142,7 @@ ul.hover-red-menu li.open a.firstmain{
 											<div class="col-md-3">
 												<ul style="list-style:none;margin-bottom: -5px;">
 													<li>
-														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
 													</li>
 												</ul>    
 											</div>
@@ -1187,6 +1187,8 @@ ul.hover-red-menu li.open a.firstmain{
                         $i++;
                     }
                     ?>
+					<div id="sub_cat_main_prod">
+					</div>
                 </div>
             </div>
         </div><!-- End Carousel --> 
