@@ -55,6 +55,10 @@
     a.style16:hover {
         color: #FF7F50;
         text-decoration: underline;
+    } 
+	a.main_prod:hover {
+        color: orange !important;
+        text-decoration: none !important;
     }
     a.style16 {
         color: #4169E1;
@@ -75,13 +79,13 @@ $locale = localeconv();
 ?>
 <div class="container-fluid" style="background: #f1f1f1; padding: 30px 0px">
     <div class="row" style="margin-bottom: 20px;">
-        <div class="col-md-2" style="padding-left:0;">
+        <div class="col-md-2 text-center" style="padding-left:0;">
             <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
                 <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
                 <span style="color:#303030;font-family:Georgia;font-size:17px;"><a href="#" class="style261" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
             </div>
         </div>
-        <div class="col-md-10" style="padding-right:0;">
+        <div class="col-md-10" style="padding-right:0;padding-left:0;">
             <div class="search-div"> 
                 <form method="post" action="search">
                     <div class="col-sm-7 col-xs-11" style="padding: 0px;">
@@ -98,26 +102,27 @@ $locale = localeconv();
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-2 col-xs-3 " style="padding: 0px;">
-                        <div class="dropdown">
-                            <select class="search-box" name='country'>
-                                <option value="0_0">Country</option>
-                                <?php foreach ($Country as $country) { ?>
-                                    <option value="<?php echo $country['id'] . '_' . $country['name']; ?> "><?php echo $country['name']; ?></option>
-                                <?php } ?>
-                            </select>
-				
+					<div class="col-md-3">
+						<div style="padding: 0px;" class="col-sm-8 col-xs-3 ">
+							<div class="dropdown" style="width:115%">
+								<select class="search-box" name='country'>
+									<option value="0_0">Country</option>
+									<?php foreach ($Country as $country) { ?>
+										<option value="<?php echo $country['id'] . '_' . $country['name']; ?> "><?php echo $country['name']; ?></option>
+									<?php } ?>
+								</select>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-1 col-xs-1" style="padding: 0px;">
-						<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+						<div class="col-sm-4 col-xs-1 " style="padding-right:0px;">
+							<button class="btn btn-block search-btn" style="float:right;width:60px;" type="submit" style=""><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 					 
 	
-        <div id="Cat_main_layer" style="position: absolute; text-align: left; visibility: hidden; height: 758px; z-index: 1762; left: -6px; width: 95%; top: 369px;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
+        <div id="Cat_main_layer" style="position: absolute; text-align: left; visibility: hidden; height: 758px; z-index: 1762; left: 8px; width: 93.1%; top: 369px;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
             <div class="row">
                 <div id="myCarousel" class="carousel slide" style="height: 197px; border: medium none ! important; background-color: #fafafa; left: 3.1%; width: 100%;">
                     <div class="carousel-inner" >
@@ -157,6 +162,7 @@ $locale = localeconv();
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
+                    <input type="hidden" name="main_prod" id="main_prod" value="">
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
@@ -177,7 +183,7 @@ $locale = localeconv();
 											<div class="col-md-3">
 												<ul style="list-style:none;margin-bottom: -5px;">
 													<li>
-														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
 													</li>
 												</ul>    
 											</div>
@@ -222,6 +228,8 @@ $locale = localeconv();
                         $i++;
                     }
                     ?>
+					<div id="sub_cat_main_prod">
+					</div>
                 </div>
             </div>
         </div><!-- End Carousel --> 
@@ -1556,6 +1564,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
         var curr_slide = $(this).attr("alt");
         $(".sub_cat").css('color', '#337ab7');
         $(".slide-details").hide();
+        $("#sub_cat_main_prod").hide();
         $("#" + curr_slide).show();
         $("." + curr_slide).show();
         stayOpen.addClass('show');
@@ -1605,9 +1614,22 @@ function openProduct(id,name) {
         $(".sub_cat").css('color', '#337ab7');
         $("." + str).css('color', 'orange');
     }
-    function filter_by_subcat(cat_id, cat_sub_id) {
+   function filter_by_subcat(cat_id, cat_sub_id,main_prod) {
         $("#filter_cat").val(cat_id);
         $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
         $("#filter_by_category").submit();
+    }
+	function get_main_products(main_cat,id,sub_cat_name){
+		$.ajax({
+			url: base_url + "home/get_main_products",
+			type: "post",
+			data : { id : id,name:sub_cat_name,main_cat:main_cat },
+			success: function (response) {
+				$("#sub_cat_main_prod").html('');
+				$("#sub_cat_main_prod").append(response);
+				$("#sub_cat_main_prod").show();
+			}
+		})
     }
 </script>
