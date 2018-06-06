@@ -350,7 +350,7 @@ class Home extends MX_Controller {
                     ->set_partial ( 'footer', 'default/footer' );
                     $this->template->build ('Home/shipper');
     }
-    public function filter_by_cat(){ 
+    public function filter_by_cat(){
         $params = $this->input->get();
         $keyword = "";
         if(!empty($params['keyword']))
@@ -369,14 +369,12 @@ class Home extends MX_Controller {
             $products = $this->product->filterProducts($_POST);
             $productMainCat = $this->product->getProductCatSubcat($_POST['main_cat_id'],$_POST['cat_id']);
 			$this->template->set ( 'productMainCat', $productMainCat);
+
             $total_pages = $this->sellers->countProducts($params);
             $procategories = $this->general->getProductCategories();
             $this->template->set ( 'procategories', $procategories);
             $prosubcategories = $this->general->getProductSubCategories();
             $this->template->set ( 'prosubcategories', $prosubcategories);
-			$subproducts = $this->product->getSubProdBySubCat($_POST['main_prod']);
-            $this->template->set ( 'subproducts', $subproducts);
-			
             $this->template->set ( 'products', $products);
             $Country= $this->account->getCountry();
             $this->template->set ( 'Country', $Country);
@@ -1424,7 +1422,7 @@ class Home extends MX_Controller {
             $map['country'] = $ipinfo['country'];
             $map['ip_address'] = $ip_address;
             $this->load->model('Tool_model','mytoolmodel');
-            $this->mytoolmodel->addBusinessVisit($map);
+            //$this->mytoolmodel->addBusinessVisit($map);
         }
         $map =array();
         $map['id'] = $id;
@@ -1775,6 +1773,7 @@ class Home extends MX_Controller {
             $post_id = $this->input->post('post_id');
         }
         $size = 0;
+            $this->mytoolmodel->addBusinessVisit($map);
         $params = array();
         $params['busi_id'] = $this->input->post('busi_id');
         $params['offer_sender_id'] = $this->input->post('my_busi_id');
