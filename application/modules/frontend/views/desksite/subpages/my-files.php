@@ -110,4 +110,12 @@ function passwordpoup(id)
 	document.getElementById('fileid').value = id;
 }
 
+$(document).keypress(
+    function(event){
+     if (event.which == '13') {
+        event.preventDefault();
+      }
+
+
+});
 </script>

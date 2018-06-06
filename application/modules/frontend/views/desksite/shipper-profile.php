@@ -975,7 +975,7 @@ function stopWiggle(input) {
                     <div class="inline box5">
                         <img src="<?php echo asset_url(); ?>images/posts-icon.png" id="Image19" alt="" class="img32">
                         <a href="javascript:openGeneralEnquiry(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
-                        Send General Offer
+                        Send General Inquiry
                         </a>
                     </div>
                     <div class="inline box5">
@@ -1184,10 +1184,15 @@ function stopWiggle(input) {
                                                 <td class="image"><?php if(!empty($images[$i+1]['image'])) { ?><a href="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="UDTalk" class="img<?php echo ($i+1);?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo ($i+1);?>" src="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" title="UD Talk" style="width:220px;"></a><?php } ?></td>
                                             </tr>
                                             <?php $i = $i + 2;} ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
+                                <?php if(count($images) <= 0) { ?>
+                                            <span style="margin-top:50px;font-size:15px;">The Shipper has not upload  UDtalks Images yet.</span>
+                                            <?php } ?>
                             </div>
+
                          </div>
                     </div>
                 </div>
