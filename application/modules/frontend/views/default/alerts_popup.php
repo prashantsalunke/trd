@@ -1,17 +1,10 @@
 <?php 
-$position = 0;
-$alignment = '';
-$isNewCommunity = false;
-$isNewInquiry   = false;
-$isNewOffers    = false;
-
 if(!empty($newCommunity)) {
     $isNewCommunity= true;
 	foreach( $newCommunity as $kk => $record ){
 	    if(!$record['alert_viewed']) {
-            $alignment = 'style="right:'.$position.'px"';
-    ?>
-    <div class="panel alert-popup" <?php echo $alignment; ?> id="new-alert-popup-<?php echo $record['id']; ?>">
+?>
+    <div class="panel alert-popup communityAlert" id="new-alert-popup-<?php echo $record['id']; ?>">
 	<div class="panel-heading">
 		<div class="row">
 			<div class="col-xs-3">
@@ -22,7 +15,7 @@ if(!empty($newCommunity)) {
                     <?php } ?>
 			</div>
 			<div class="col-xs-7"><p style="color: #FFFFFF; font-family: Impact; font-size: 20px; margin-bottom: 0;text-indent: 2px;">Added Alert By</p><span style="color: #FFFFFF; font-family: Arial; font-size: 13px;"><?php echo isset($record['name'])?$record['name']:''; ?><br><?php echo isset($record['user_category'])?$record['user_category']:''; ?>&nbsp; |&nbsp; <?php echo isset($record['country'])?$record['country']:''; ?> </span></div>
-			<div class="col-xs-2"><a href="#" onclick="ShowObjectWithEffect('new-alert-popup-<?php echo $record['id']; ?>', 0, 'slidedown', 300, 'swing');return false;" style="position: relative; top: -20px; right: -20px;"><img src="<?php echo asset_url(); ?>images/close.png"  width="30" height="30"></a></div>
+			<div class="col-xs-2"><a href="#" onclick="ShowObjectWithEffect('new-alert-popup-<?php echo $record['id']; ?>', 0, 'slidedown', 300, 'swing');closePopup('new-alert-popup-<?php echo $record['id']; ?>');return false;" style="position: relative; top: -20px; right: -20px;"><img src="<?php echo asset_url(); ?>images/close.png"  width="30" height="30"></a></div>
 		</div>
 	</div>
 	<div class="panel-body">
@@ -37,23 +30,14 @@ if(!empty($newCommunity)) {
 		</div>
 	</div>
 	</div>
-	<?php if( $kk >= 0) {
-        	    $position +=350;
-        	} else {
-        	    $position =350;
-        	}
-	    } } }
-	if (!empty($newInquiry)) {
-	    $isNewInquiry   = true;
-	foreach($newInquiry as $kk=>$record) {
-		if(!$record['alert_viewed']) {
-		    if(!$isNewCommunity && $kk == 0){
-		        $alignment = '';
-		    } else {
-			$alignment = 'style="right:'.$position.'px"';
-		    }
-	 ?>
- <div class="panel alert-popup" <?php echo $alignment; ?> id="new-alert-popup-<?php echo $record['inqury_id']; ?>">
+<?php  } } }
+if (!empty($newInquiry)) {
+
+foreach($newInquiry as $kk=>$record) {
+    if(!$record['alert_viewed']) {
+
+ ?>
+ <div class="panel alert-popup inquiryAlert" id="new-alert-popup-<?php echo $record['inqury_id']; ?>">
 	<div class="panel-heading">
 		<div class="row">
 			<div class="col-xs-3">
@@ -64,7 +48,7 @@ if(!empty($newCommunity)) {
                     <?php } ?>
 			</div>
 			<div class="col-xs-7" style="padding-right: 14px;"><p style="color: #FFFFFF; font-family: Impact; font-size: 20px; margin-bottom: 0;text-indent: 2px;">Inquiry Alert By</p><span style="color: #FFFFFF; font-family: Arial; font-size: 13px;"><?php echo $record['name_prefix']."  ".$record['name'];?><br><?php echo $record['user_category'];?>&nbsp; |&nbsp; <?php echo $record['company_country'];?> </span></div>
-			<div class="col-xs-2"><a href="#" onclick="ShowObjectWithEffect('new-alert-popup-<?php echo $record['inqury_id']; ?>', 0, 'slidedown', 300, 'swing');return false;" style="position: relative; top: -20px; right: -20px;"><img src="<?php echo asset_url(); ?>images/close.png"  width="30" height="30"></a></div>
+			<div class="col-xs-2"><a href="#" onclick="ShowObjectWithEffect('new-alert-popup-<?php echo $record['inqury_id']; ?>', 0, 'slidedown', 300, 'swing');closePopup('new-alert-popup-<?php echo $record['inqury_id']; ?>');return false;" style="position: relative; top: -20px; right: -20px;"><img src="<?php echo asset_url(); ?>images/close.png"  width="30" height="30"></a></div>
 		</div>
 	</div>
 	<div class="panel-body">
@@ -73,29 +57,17 @@ if(!empty($newCommunity)) {
 				<div class="col-xs-12 text-center" style="margin-bottom: 20px; padding-top: 20px;"><span style="color: #2D2D2D; font-family: Arial; font-size: 12px;"> <?php echo $record['inquiry_body'];?></span></div>
 				<div class="col-xs-12 text-center"></div>
 			</div>
-			<div style="padding:15px 0" class="col-xs-12"> <a class="btn btn-block btn-warning" href="" data-toggle="modal" data-target="#myalertModal" onclick="javascript:showAlertByType('inquiry',<?php echo $record['inqury_id']; ?>);">VIEW</a></div>
+			<div style="padding:15px 0" class="col-xs-12"> <a class="btn btn-block btn-warning" href="" data-toggle="modal" data-target="#myalertModal" onclick="javascript:showAlertByType('inquiry',<?php echo $busi_id; ?>);">VIEW</a></div>
 		</div>
 	</div>
 	</div>
-	<?php 
-	if( $kk >= 0) {
-	    $position +=350;
-	} else {
-	    $position =350;
-	}
-} } }
+	<?php } } }
 
 if(!empty($newOffers)) {
-    $isNewOffers    = true;
     foreach($newOffers as $kk=>$record){
     if(!$record['alert_viewed']) {
-        if(!$isNewCommunity && !$newInquiry && $kk == 0){
-            $alignment = '';
-        } else {
-        $alignment = 'style="right:'.$position.'px"';
-        }
 ?>
-<div class="panel alert-popup" <?php echo $alignment; ?> id="new-alert-popup-<?php echo $record['offer_id']; ?>">
+<div class="panel alert-popup offerAlert" id="new-alert-popup-<?php echo $record['offer_id']; ?>">
    <div class="panel-heading">
     <div class="row">
      <div class="col-xs-3">
@@ -106,7 +78,7 @@ if(!empty($newOffers)) {
             <?php } ?>
 	</div>
      <div class="col-xs-7"><p style="color:#FFFFFF;font-family:Impact;font-size:20px; margin-bottom: 0;text-indent: 2px;">Offer Alert By</p><span style="color:#FFFFFF;font-family:Arial;font-size:13px;"><?php echo $record['name_prefix']."  ".$record['name'];?><br><?php echo $record['user_category'];?>&nbsp; |&nbsp; <?php echo $record['company_country'];?></span></div>
-     <div class="col-xs-2"><a onclick="ShowObjectWithEffect('new-alert-popup-<?php echo $record['offer_id']; ?>', 0, 'slidedown', 300, 'swing');return false;" style="position:relative; top:-20px; right:-20px;" href="#"><img src="<?php echo asset_url(); ?>images/close.png"  width="30" height="30"></a></div>
+     <div class="col-xs-2"><a onclick="ShowObjectWithEffect('new-alert-popup-<?php echo $record['offer_id']; ?>', 0, 'slidedown', 300, 'swing');closePopup('new-alert-popup-<?php echo $record['offer_id']; ?>');return false;" style="position:relative; top:-20px; right:-20px;" href="#"><img src="<?php echo asset_url(); ?>images/close.png"  width="30" height="30"></a></div>
     </div>
    </div>
    <div class="panel-body">
@@ -125,13 +97,8 @@ if(!empty($newOffers)) {
      <?php } ?>
      </div>
     </div>
-   <div style="padding:15px 0" class="col-xs-12"> <a class="btn btn-block btn-warning" href="" data-toggle="modal" data-target="#myalertModal" onclick="javascript:showAlertByType('offer',<?php echo $record['offer_id']; ?>);">VIEW</a></div>
+   <div style="padding:15px 0" class="col-xs-12"> <a class="btn btn-block btn-warning" href="" data-toggle="modal" data-target="#myalertModal" onclick="javascript:showAlertByType('offer',<?php echo $busi_id; ?>);">VIEW</a></div>
    </div>
    </div>
    </div>
-<?php if( $kk >= 0) {
-	    $position +=350;
-	} else {
-	    $position =350;
-	}
-    } } } ?>
+<?php  } } } ?>

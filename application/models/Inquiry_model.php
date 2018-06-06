@@ -20,7 +20,7 @@ class Inquiry_model extends CI_Model {
         $this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','e.user_category_id=uc.id','inner');
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('e.is_contactperson', 1);
-    	$this->db->where('a.is_deleted', 0);
+    	$this->db->where('a.alert_viewed', 0);
     	$this->db->group_by('a.id');
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
@@ -43,7 +43,7 @@ class Inquiry_model extends CI_Model {
         $this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','e.user_category_id=uc.id','inner');
     	$this->db->where('a.requester_busi_id', $busi_id);
     	$this->db->where('e.is_contactperson', 1);
-    	$this->db->where('a.is_deleted', 0);
+    	$this->db->where('a.alert_viewed', 0);
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -127,5 +127,11 @@ class Inquiry_model extends CI_Model {
             return false;
         }
     }
-
+    public function updateInquiryAlert($id,$data)
+    {echo $id;
+        $this->db->where('busi_id', $id);
+        $this->db->update(TABLES::$INQUIRY,$data);
+        echo $this->db->last_query();
+        return $this->db->affected_rows();
+    }
 }

@@ -61,6 +61,33 @@ class Alert_model extends CI_Model {
     		return $this->db->insert_id();
     	}
     }
-    
+    public function saveAlertCount($userId, $totalcount) {
+        if(!is_numeric($userId)) {
+            return false;
+        }
+        if(!is_numeric($totalcount)) {
+            return false;
+        }
+        $params = array();
+        $params['user_id'] = $userId;
+        $params['alert_count'] = $totalcount;
+        $params['date'] = date('Y-m-d H:i:s');
+        if ($this->db->insert(TABLES::$MANAGE_ALERT, $params)) {
+            return $this->db->insert_id();
+        }
+    }
+
+    public function getMyAlertCount($userId) {
+        $this->db->select('alert_count');
+        $this->db->from(TABLES::$MANAGE_ALERT . ' AS ma');
+        $this->db->where('ma.user_id',$userId);
+        $query = $this->db->get();
+        $row = $query->result_array();
+        if(!empty($row)) {
+            return $row[0]['alert_count'];
+        } else {
+            return 0;
+        }
+    }
     
 }

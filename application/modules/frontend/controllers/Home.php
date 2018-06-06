@@ -1387,6 +1387,8 @@ class Home extends MX_Controller {
         $this->template->set ( 'requests', $requests);
         $this->template->set ( 'page', 'desksite');
         $this->template->set ( 'pagename', 'buyer');
+        $this->template->set ( 'buyer', BUYER_ID );
+        $this->template->set ( 'steps_needed', self::STEPS_COMPLETED );
         $this->template->set_theme('default_theme');
         $this->template->set_layout ('default')
         ->title ( 'Buyer Profile' )
@@ -1751,7 +1753,6 @@ class Home extends MX_Controller {
 
     public function saveGeneralOffer() {
         $this->load->model('Product_Model','product');
-        $userId = $this->session->userdata('tsuser')['userid'];
         $product_id = 0;
         $post_type = 0;
         $post_id = 0;

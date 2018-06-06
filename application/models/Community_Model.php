@@ -227,7 +227,7 @@ class Community_Model extends CI_Model {
         }
     }
 
-    public function checkNewCommunityAlert($myBusiId,$userId)
+    public function checkNewCommunityAlert($myBusiId)
     {
         $this->db->select('cm.id,cm.my_busi_id,u.profile_image,usr.name,c.user_category,u.country');
         $this->db->from(TABLES::$COMMUNITY_MEMBER. ' AS cm');
@@ -235,11 +235,9 @@ class Community_Model extends CI_Model {
         $this->db->join(TABLES::$USER_INFO. ' AS u','cm.my_user_id=u.user_id','inner');
         $this->db->join(TABLES::$USER_CATEGORIES. ' AS c','usr.user_category_id=c.id','inner');
         $this->db->where('cm.busi_id', $myBusiId);
-        $this->db->where('cm.user_id', $userId);
         $this->db->where('cm.alert_viewed', 0);
         $this->db->order_by('cm.id', 'desc');
         $query = $this->db->get();
-        //echo $this->db->last_query();
         $row = $query->result_array();
         if ($row > 0) {
             return $row;
