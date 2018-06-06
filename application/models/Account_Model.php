@@ -774,7 +774,7 @@ class Account_Model extends CI_Model {
 	}
 	public function getFeaturedWorldBuyer()
 	{
-		$this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position,f.busi_id,i.flag,a.name as product_name');
+		$this->db->select('f.id, b.company_country, b.company_province, d.company_owner_name, d.company_introduction, d.contact_person, e.name as contact_person_name, e.picture, e.position,f.busi_id,i.flag,a.name as product_name,(select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=b.id) as main_product');
 		//$this->db->from(TABLES::$FEATURED_WORLD_BUYER.' as a');
 		$this->db->from(TABLES::$USER.' AS f'/*, 'b.id= f.busi_id', 'left'*/);
 		$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'f.busi_id = b.id', 'left');
@@ -799,11 +799,12 @@ class Account_Model extends CI_Model {
 	}
 	public function getNewArrival()
 	{
-		$this->db->select('a.*, b.id, b.company_country, b.company_province, c.name, c.description, c.main_image, h.title');
+		$this->db->select('a.*, b.id, b.company_country, b.company_province, c.name, c.description, c.main_image, h.title,i.flag');
 		$this->db->from(TABLES::$NEW_ARRIVAL_PRODUCT.' as a');
 		$this->db->join(TABLES::$BUSINESS_INFO.' as b', 'a.busi_id = b.id', 'left');
 		$this->db->join(TABLES::$PRODUCT_ITEM.' as c', 'c.id = a.item_id', 'left');
 		$this->db->join(TABLES::$BSTATION_POST.' AS h', 'b.id = h.busi_id', 'inner');
+		$this->db->join(TABLES::$COUNTRY.' AS i','b.company_country=i.name','left');
 		$this->db->where('b.is_disable', 0);
 		$this->db->where('b.is_deleted', 0);
 		$this->db->where('h.created_date = (SELECT MAX(t2.created_date) FROM tbl_bstation_post as t2 WHERE t2.busi_id = b.id)', NULL, FALSE);
@@ -819,13 +820,14 @@ class Account_Model extends CI_Model {
 	
 	public function getNewOrder()
 	{
-		$this->db->select('a.*, c.name, c.description, c.main_image,h.title,d.company_country');
+		$this->db->select('a.*, c.name, c.description, c.main_image,h.title,d.company_country,i.flag');
 		$this->db->from(TABLES::$ORDER_ITEM.' as a');
 		$this->db->join(TABLES::$ORDER.' as b', 'a.order_id = b.orderid', 'left');
 		$this->db->join(TABLES::$PRODUCT_ITEM.' as c', 'a.item_id = c.id', 'left');
 		$this->db->join(TABLES::$BSTATION_POST.' AS h', 'c.busi_id = h.busi_id', 'inner');
 		$this->db->join(TABLES::$BUSINESS_INFO.' as d', 'h.busi_id = d.id', 'left');
 		$this->db->join(TABLES::$USER.' AS f','f.busi_id=d.id','left');
+		$this->db->join(TABLES::$COUNTRY.' AS i','d.company_country=i.name','left');
 		$this->db->where('h.created_date = (SELECT MAX(t2.created_date) FROM tbl_bstation_post as t2 WHERE t2.busi_id = c.busi_id)', NULL, FALSE);
 		//$this->db->where('f.user_category_id',3);
 		$this->db->order_by ( "b.orderid", "desc" );
@@ -1018,5 +1020,11 @@ class Account_Model extends CI_Model {
 		$this->db->update(TABLES::$USER, $data);
 		return $this->db->affected_rows();
 	}
- 
+ 	function deleteBusiness($busi_id)
+	{
+		$this->db->where('id', $busi_id);
+		//$this->db->where('user_role', $data['user_role']);
+		$result = $this->db->delete(TABLES::$BUSINESS_INFO);
+		return $result;
+	}
 }

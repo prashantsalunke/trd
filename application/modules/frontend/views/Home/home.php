@@ -55,6 +55,10 @@
     a.style16:hover {
         color: #FF7F50;
         text-decoration: underline;
+    } 
+	a.main_prod:hover {
+        color: orange !important;
+        text-decoration: none !important;
     }
     a.style16 {
         color: #4169E1;
@@ -75,13 +79,13 @@ $locale = localeconv();
 ?>
 <div class="container-fluid" style="background: #f1f1f1; padding: 30px 0px">
     <div class="row" style="margin-bottom: 20px;">
-        <div class="col-md-2" style="padding-left:0;">
+        <div class="col-md-2 text-center" style="padding-left:0;">
             <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
                 <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
                 <span style="color:#303030;font-family:Georgia;font-size:17px;"><a href="#" class="style261" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
             </div>
         </div>
-        <div class="col-md-10" style="padding-right:0;">
+        <div class="col-md-10" style="padding-right:0;padding-left:0;">
             <div class="search-div"> 
                 <form method="post" action="search">
                     <div class="col-sm-7 col-xs-11" style="padding: 0px;">
@@ -98,26 +102,27 @@ $locale = localeconv();
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-2 col-xs-3 " style="padding: 0px;">
-                        <div class="dropdown">
-                            <select class="search-box" name='country'>
-                                <option value="0_0">Country</option>
-                                <?php foreach ($Country as $country) { ?>
-                                    <option value="<?php echo $country['id'] . '_' . $country['name']; ?> "><?php echo $country['name']; ?></option>
-                                <?php } ?>
-                            </select>
-				
+					<div class="col-md-3">
+						<div style="padding: 0px;" class="col-sm-8 col-xs-3 ">
+							<div class="dropdown" style="width:115%">
+								<select class="search-box" name='country'>
+									<option value="0_0">Country</option>
+									<?php foreach ($Country as $country) { ?>
+										<option value="<?php echo $country['id'] . '_' . $country['name']; ?> "><?php echo $country['name']; ?></option>
+									<?php } ?>
+								</select>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-1 col-xs-1" style="padding: 0px;">
-						<button class="btn btn-block search-btn" type="submit"><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+						<div class="col-sm-4 col-xs-1 " style="padding-right:0px;">
+							<button class="btn btn-block search-btn" style="float:right;width:60px;" type="submit" style=""><span aria-hidden="true" class="glyphicon glyphicon-search"></span></button>
+						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 					 
 	
-        <div id="Cat_main_layer" style="position: absolute; text-align: left; visibility: hidden; height: 758px; z-index: 1762; left: -6px; width: 95%; top: 369px;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
+        <div id="Cat_main_layer" style="position: absolute; text-align: left; visibility: hidden; height: 758px; z-index: 1762; left: 8px; width: 93.1%; top: 369px;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
             <div class="row">
                 <div id="myCarousel" class="carousel slide" style="height: 197px; border: medium none ! important; background-color: #fafafa; left: 3.1%; width: 100%;">
                     <div class="carousel-inner" >
@@ -157,6 +162,7 @@ $locale = localeconv();
                 <form method="post" action="filter_by_category" id="filter_by_category">
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
+                    <input type="hidden" name="main_prod" id="main_prod" value="">
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
@@ -177,7 +183,7 @@ $locale = localeconv();
 											<div class="col-md-3">
 												<ul style="list-style:none;margin-bottom: -5px;">
 													<li>
-														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
 													</li>
 												</ul>    
 											</div>
@@ -222,6 +228,8 @@ $locale = localeconv();
                         $i++;
                     }
                     ?>
+					<div id="sub_cat_main_prod">
+					</div>
                 </div>
             </div>
         </div><!-- End Carousel --> 
@@ -304,15 +312,15 @@ $locale = localeconv();
                                     <div class="col-sm-offset-1 col-sm-12 text-center" style="margin-left: 0px;">
                                         <small style="color:#2D2D2D;font-family:Arial;font-size:11px;"><?php
                                         if ($desksite['user_category_id'] == 2) {
-                                            echo substr($desksite['shipper_service_name'], 0, 80);
+                                            echo substr($desksite['shipper_service_name'], 0, 70);
                                         } else {
-                                            echo substr($desksite['main_product'], 0, 80);
+                                            echo substr($desksite['main_product'], 0, 70);
                                         }
                                 ?></small>
                                     </div>
                                     <div class="col-sm-12 text-center uppercase" style="padding:8px 0px;"><?php echo $desksite['company_country'] ?> | <?php echo $desksite['company_province'] ?></div>
                                     <div class="col-xs-12 text-center">
-                                        <?php if ($desksite['community_id'] != '' && $desksite['plan_id'] > 1) { ?>
+                                        <?php if (!empty($tsuserid) && $desksite['community_id'] != '' && $desksite['plan_id'] > 1) { ?>
                                             <img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="width:26px;height:26px; display: inline-block;"> 
                                         <?php } else { ?>
                                             <img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15;width:26px;height:26px; display: inline-block;">
@@ -374,7 +382,7 @@ $locale = localeconv();
                     </p>
                 </div>
                 <div class="panel-body mytab">
-                    <div id="tab-slider2" class="carousel slide"><!--  data-ride="carousel"-->
+                    <div id="tab-slider2" class="carousel slide" data-ride="carousel"><!--  -->
                         <div class="carousel-inner section2" role="listbox" style="height:552px;">
                                   <?php 
                                   $i ="0"; 
@@ -395,7 +403,7 @@ $locale = localeconv();
 
                                     <!--<p class="text-center col-sm-12"></p>-->
                                     <div class="col-xs-12 text-center">
-                                      <?php if(!empty($product3D['community_id']) && $product3D['community_id'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width:26px;height:26px; display: inline-block;"> <?php } else {?>
+                                      <?php if(!empty($tsuserid) && !empty($product3D['community_id']) && $product3D['community_id'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  style="width:26px;height:26px; display: inline-block;"> <?php } else {?>
                                         <img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15;width:26px;height:26px; display: inline-block;">
                                       <?php } ?>
                                       <?php if($product3D['gaurantee_period'] !=''){?>
@@ -413,7 +421,7 @@ $locale = localeconv();
                                     </div>
                                     <div class="col-xs-12"
                                       style="text-align: center; margin-bottom: 5px; height: 320px;cursor: pointer;" onclick="open3DProduct(<?php echo $product3D['id']; ?>);">
-                                      <img src="<?php echo asset_url().$product3D['image']; ?>" class="img-responsive" style="display: inline-block;max-height: 340px;max-width: 340px !important;">
+                                      <img src="<?php echo asset_url().$product3D['image']; ?>" class="img-responsive" style="display: inline-block;max-height: 340px !important;max-width: 310px !important;">
                                     </div>
                                     <div class="text-center">
                                       <div><span style="color:#2D2D2D;font-family:Arial;font-size:11px;">USD</span> <span style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo number_format($product3D['unit_price'], 2, $locale['decimal_point'], $locale['thousands_sep']); ?></span></div>
@@ -422,7 +430,7 @@ $locale = localeconv();
                                     
                                     <div class="hover-menu text-center" style="bottom: 0px;">
                                         <a target="_blank" href="<?php echo base_url() . 'products/details/' . $product_id; ?>" class="btn">
-                                            <img src="<?php echo asset_url(); ?>images/view2.png" onmouseover="hover(this, 'view');" onmouseout="unhover(this, 'view');" style="width: 40px;"></a>
+                                            <img src="<?php echo asset_url(); ?>images/view-3D.png" onmouseover="hover(this, 'view');" onmouseout="unhover(this, 'view');" style="width: 40px;"></a>
                                         <a target="_blank" href="<?php echo base_url(); ?>3dproducts" class="btn" >
                                             <img src="<?php echo asset_url(); ?>images/same.png" style="width: 40px;" onmouseover="hover(this, 'same');" onmouseout="unhover(this, 'same');">
                                         </a> 
@@ -610,7 +618,7 @@ foreach ($FeaturedProducts as $FeaturedProduct) {
                     </div>
                 </div></div>
 
-                <div id="Layer_details" class="class1">
+                <div id="Layer_details" class="class1" data-pause="true">
                     <div id="Layer_details_Container" class="class2">
                                 
                     </div>
@@ -666,7 +674,7 @@ foreach ($FeaturedVideos as $FeaturedVideo) {
         ?>
                                         <div class="item <?php if ($i == 0) {
             echo "active";
-        } ?>" style="height:280px;padding-top:5px;border:none;padding-left: 30px;padding-right:30px;">
+        } ?>" style="height:280px;padding-top:5px;border:none;padding-left: 30px;padding-right:30px;margin-left: 5px;">
     <?php } $i++; ?>
                                         <div class="col-md-3">
                                             <div class="imgsection">
@@ -745,7 +753,7 @@ foreach ($FeaturedVideos as $FeaturedVideo) {
                     </h3>
                     <div class="text-center displaydesktop">
                         <img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
-                             class="img-responsive" style="height: 220px;">
+                             class="img-responsive" style="height: 220px;padding-bottom: 0px !important;">
                     </div>
                 </div>
             </div>
@@ -763,7 +771,7 @@ foreach ($FWSellers as $key => $FWSeller) {
         ?>
                                         <div class="item <?php if ($i == 0) {
             echo "active";
-        } ?>" style="height:543px;border:none;padding-left: 40px;padding-right: 30px;">
+        } ?>" style="height:285px;border:none;padding-left: 40px;padding-right: 30px;">
     <?php } $i++; ?>
                                         <div  class="col-md-3" id="Layer140-<?php echo $key; ?>" style="position: relative;" onmouseenter="ShowObjectWithEffect('Layer143-<?php echo $key; ?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key; ?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer143-<?php echo $key; ?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer144-<?php echo $key; ?>', 0, 'fade', 10, 'swing');return false;">
                                             <div id="wb_Shape24" style="position:absolute;left:0px;top:0px;width:218px;height:218px;z-index:509;">
@@ -778,10 +786,10 @@ foreach ($FWSellers as $key => $FWSeller) {
                                                 <div id="wb_Text204" style="position:absolute;left:55px;top:25px;width:116px;height:16px;z-index:503;text-align:left;">
                                                     <span style="color:#000000;font-family:Arial;font-size:11px;"><strong><?php echo $FWSeller['contact_person'] ?></strong></span>
                                                 </div>
-                                                <div id="wb_Text205" style="position:absolute;left:55px;top:40px;width:130px;height:16px;z-index:504;text-align:left;">
+                                                <div id="wb_Text205" style="position:absolute;left:55px;top:40px;width:150px;height:16px;z-index:504;text-align:left;">
                                                     <span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWSeller['position'] ?></span>
                                                 </div>
-                                                <div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:19px;z-index:505;background-color: #A9A9A9;">
+                                                <div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:22px;z-index:505;background-color: #A9A9A9;">
                                                     <div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:16px;text-align:center;z-index:502;">
                                                         <span style="color:#000000;font-family:Arial;font-size:11px;"><?php echo substr($FWSeller['main_product'], 0,35);?></span>
                                                     </div>
@@ -794,7 +802,7 @@ foreach ($FWSellers as $key => $FWSeller) {
                                             </div>
                                             <div id="Layer144-<?php echo $key; ?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
                                                 <div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
-                                                    <a href="javascript:openSeller(<?php echo $FWSeller['id']; ?>);" >
+                                                    <a href="javascript:openSeller(<?php echo $FWSeller['id']; ?>,'<?php echo $FWSeller['contact_person'];?>');" >
                                                         <img src="<?php echo asset_url(); ?>images/window-layer.png" id="Image96" alt="" onmouseover="hover(this, 'window');" onmouseout="unhover(this, 'window');">
                                                     </a>
                                                 </div>
@@ -822,6 +830,19 @@ foreach ($FWSellers as $key => $FWSeller) {
 
             <div id="Layer_sellers" class="class1 layer_details">
                 <div id="Layer_details_Container4" class="class2">
+                </div>
+            </div>
+            <div id="start_load_seller" style="display: none;">
+                <div id="wb_Image152" class="style64">
+                        <a href="#" onclick="ShowObject('Layer_sellers', 0);return false;"><img src="<?php echo asset_url();?>images/close.png" id="Image152" alt=""></a>
+                </div>
+                <div id="wb_Text200" class="style69" style="width: 200px;">
+                    <span class="style70"><strong id="seller_name">Seller Name</strong></span>
+                </div>      
+                <div id="wb_Image18" style="position:absolute;left:0px;top:50px;width:305px;height:372px;z-index:1291;background-color:white;text-align: center;">
+                    <img src="<?php echo asset_url();?>images/loader.gif" style="padding-top: 185px;"/>
+                </div>
+                <div id="Layer111" style="position:absolute;text-align:left;left:0px;top:372px;width:308px;height:141px;z-index:1295;background-color: #E1E1E1">
                 </div>
             </div>
         </div>
@@ -871,8 +892,8 @@ foreach ($NewArrivals as $NewArrival) {
                                                         <div class="row" style="margin: 0px;">
                                                             <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
                                                                 <img src="<?php echo asset_url() . $NewArrival['main_image']; ?>"
-                                                                     class="img-responsive" style="padding: 0px !important;height: 85px;">
-                                                                <img src="<?php echo asset_url(); ?>images/img0099.png" class="roundflag">
+                                                                     class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                                                                <img src="<?php echo asset_url();?>images/flags/<?php echo $NewArrival['flag'];?>" class="roundflag">
 
                                                             </div>
                                                             <div class="col-xs-9 text-left">
@@ -925,8 +946,8 @@ foreach ($NewOrders as $NewOrder) {
                                                     <div class="sectionrow"><div class="row" style="margin: 0px;">
                                                             <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
                                                                 <img src="<?php echo asset_url() . $NewOrder['main_image']; ?>"
-                                                                     class="img-responsive" style="padding: 0px !important;height: 85px;">
-                                                                <img src="<?php echo asset_url(); ?>images/img0099.png" class="roundflag">
+                                                                     class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                                                                <img src="<?php echo asset_url();?>images/flags/<?php echo $NewOrder['flag'];?>" class="roundflag">
                                                             </div>
                                                             <div class="col-xs-9 text-left">
                                                                 <h5>
@@ -970,8 +991,8 @@ foreach ($NewOrders as $NewOrder) {
                                     <span class="product-feature-title"> BUYERS</span>
                                 </h3>
                                 <div class="text-center displaydesktop">
-                                    <img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
-                                         class="img-responsive" style="height: 220px;">
+                                    <img src="<?php echo asset_url(); ?>images/fbuyers.png"
+                                         class="img-responsive" style="height: 210px;">
                                 </div>
                             </div>
                         </div>
@@ -979,11 +1000,11 @@ foreach ($NewOrders as $NewOrder) {
                                 style="background: #fff; min-height: 272px;">
                                 
                                 <section class="center slider">-->
-                        <div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 272px;">
+                        <div class="col-sm-9 col-lg-10" style="background: #fff; min-height: 285px;">
                             <div class="panel disk-tab">
-                                <div class="panel-body mytab">
-                                    <div id="tab-slider7" class="carousel slide" data-ride="carousel" style="height: 280px;width: 100%;border:none;">
-                                        <div class="carousel-inner section3" role="listbox" style="height: 315px;overflow: hidden;border:none;">
+                                <div class="panel-body mytab" style="margin: 0px;">
+                                    <div id="tab-slider7" class="carousel slide" data-ride="carousel" style="height: 285px;width: 100%;border:none;">
+                                        <div class="carousel-inner section3" role="listbox" style="height: 285px;overflow: hidden;border:none;">
 <?php
 $i = 0;
 
@@ -993,7 +1014,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
         ?>
                                                     <div class="item <?php if ($i == 0) {
             echo "active";
-        } ?>" style="height:280px;border:none;padding-right: 30px;padding-left: 40px;">
+        } ?>" style="height:285px;border:none;padding-right: 30px;padding-left: 50px;">
     <?php } $i++; ?>
                                                     <div  class="col-md-3" id="Layer140-<?php echo $key; ?>" onmouseenter="ShowObjectWithEffect('Layer145-<?php echo $key; ?>', 1, 'fade', 300, 'swing');ShowObjectWithEffect('Layer146-<?php echo $key; ?>', 1, 'fade', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Layer146-<?php echo $key; ?>', 0, 'fade', 10, 'swing');ShowObjectWithEffect('Layer145-<?php echo $key; ?>', 0, 'fade', 10, 'swing');return false;">
 
@@ -1013,8 +1034,8 @@ foreach ($FWBuyers as $key => $FWBuyer) {
                                                                 <span style="color:#696969;font-family:Arial;font-size:12px;"><?php echo $FWBuyer['position'] ?></span>
                                                             </div>
                                                             <div id="Layer142" style="position:absolute;text-align:left;left:0px;top:64px;width:218px;height:19px;z-index:505;background-color: #A9A9A9;">
-                                                                <div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:16px;text-align:center;z-index:502;">
-                                                                    <span style="color:#000000;font-family:Arial;font-size:11px;"><?php echo $FWBuyer['product_name']; ?></span>
+                                                                <div id="wb_Text206" style="position:absolute;left:3px;top:2px;width:206px;height:20px;text-align:center;z-index:502;">
+                                                                    <span style="color:#000000;font-family:Arial;font-size:11px;"><?php echo substr($FWBuyer['main_product'], 0, 70);?></span>
                                                                 </div>
                                                             </div>
                                                             <div id="wb_Shape25" style="position:absolute;left:11px;top:24px;width:35px;height:26px;z-index:506;">
@@ -1025,7 +1046,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
                                                         </div>
                                                         <div id="Layer146-<?php echo $key; ?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
                                                             <div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
-                                                                <a href="javascript:openBuyer(<?php echo $FWBuyer['id']; ?>)">
+                                                                <a href="javascript:openBuyer(<?php echo $FWBuyer['id']; ?>,'<?php echo $FWBuyer['contact_person']; ?>')">
                                                                     <img src="<?php echo asset_url(); ?>images/window-layer.png" style="width: 40px;" onmouseover="hover(this, 'window');" onmouseout="unhover(this, 'window');">
                                                                 </a>
                                                             </div>
@@ -1040,10 +1061,10 @@ foreach ($FWBuyers as $key => $FWBuyer) {
                                                     </div>
     <?php } ?>
 <?php } ?>
-                                            <a class="left carousel-control" href="#tab-slider7" role="button" data-slide="prev" style="background: none;padding-top:8%;text-align:center;width:2%;"> 
+                                            <a class="left carousel-control" href="#tab-slider7" role="button" data-slide="prev" style="background: none;padding-top:10%;text-align:center;width:4%;"> 
                                                 <span><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></span> 
                                             </a> 
-                                            <a class="right carousel-control" href="#tab-slider7" role="button" data-slide="next" style="background: none;padding-top:8%;text-align:center;width:2%;"> 
+                                            <a class="right carousel-control" href="#tab-slider7" role="button" data-slide="next" style="background: none;padding-top:10%;text-align:center;width:6%;"> 
                                                 <span><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></span> 
                                             </a>
                                         </div></div>
@@ -1054,6 +1075,19 @@ foreach ($FWBuyers as $key => $FWBuyer) {
             </div>
             <div id="Layer_buyers" class="class1 class1_bottom layer_details">
                 <div id="Layer_details_Container5" class="class2"></div>
+            </div>
+            <div id="start_load_buyer" style="display: none;">
+                <div id="wb_Image152" class="style64">
+                        <a href="#" onclick="ShowObject('Layer_buyers', 0);return false;"><img src="<?php echo asset_url();?>images/close.png" id="Image152" alt=""></a>
+                </div>
+                <div id="wb_Text200" class="style69" style="width: 200px;">
+                        <span class="style70"><strong id="buyer_name">Buyer Name</strong></span>
+                </div>    
+                <div id="wb_Image18" style="position:absolute;left:0px;top:50px;width:305px;height:372px;z-index:1291;background-color:white;text-align: center;">
+                    <img src="<?php echo asset_url();?>images/loader.gif" style="padding-top: 185px;"/>
+                </div>
+                <div id="Layer111" style="position:absolute;text-align:left;left:0px;top:372px;width:308px;height:141px;z-index:1295;background-color: #E1E1E1">
+                </div>
             </div>
         </div>
     </div>
@@ -1136,7 +1170,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
         } else if (type == 'same') {
             element.setAttribute('src', '<?php echo asset_url(); ?>images/same.png');
         } else if (type == 'view') {
-            element.setAttribute('src', '<?php echo asset_url(); ?>images/view2.png');
+            element.setAttribute('src', '<?php echo asset_url(); ?>images/view-3D.png');
         } else if (type == 'desksite') {
             element.setAttribute('src', '<?php echo asset_url(); ?>images/desksite-icon.png');
         } else if (type == 'vcat') {
@@ -1289,17 +1323,26 @@ foreach ($FWBuyers as $key => $FWBuyer) {
             ShowObjectWithEffect('Layer_catalogue', 1, 'scale', 500, 'swing');
        	}, 'html');
     }
-    function openSeller(id) {
-        $.get(base_url + "seller/popup/" + id, {}, function (data) {
+    function openSeller(id,name) {
+        $("#Layer_details_Container4").html($("#start_load_seller").html());
+        ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
+        $("#seller_name").html(name);
+        $.get(base_url+"seller/popup/"+id,{},function(data) {
             $("#Layer_details_Container4").html(data);
-            ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
-        }, 'html');
+        },'html');
+        
     }
-    function openBuyer(id) {
-        $.get(base_url + "buyer/popup/" + id, {}, function (data) {
+    function openBuyer(id,name) {
+        /*$.get(base_url + "buyer/popup/" + id, {}, function (data) {
       		$("#Layer_details_Container5").html(data);
             ShowObjectWithEffect('Layer_buyers', 1, 'scale', 500, 'swing');
-        }, 'html');
+        }, 'html');*/
+        $("#Layer_details_Container5").html($("#start_load_buyer").html());
+        ShowObjectWithEffect('Layer_buyers', 1, 'scale', 500, 'swing');
+        $("#buyer_name").html(name);
+            $.get(base_url + "buyer/popup/" + id, {}, function (data) {
+           $("#Layer_details_Container5").html(data);
+            },'html');
     }
     function open3DProduct(id) {
         ajaxindicatorstart("Please wait while we load 3D Product.");
@@ -1521,6 +1564,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
         var curr_slide = $(this).attr("alt");
         $(".sub_cat").css('color', '#337ab7');
         $(".slide-details").hide();
+        $("#sub_cat_main_prod").hide();
         $("#" + curr_slide).show();
         $("." + curr_slide).show();
         stayOpen.addClass('show');
@@ -1570,9 +1614,22 @@ function openProduct(id,name) {
         $(".sub_cat").css('color', '#337ab7');
         $("." + str).css('color', 'orange');
     }
-    function filter_by_subcat(cat_id, cat_sub_id) {
+   function filter_by_subcat(cat_id, cat_sub_id,main_prod) {
         $("#filter_cat").val(cat_id);
         $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
         $("#filter_by_category").submit();
+    }
+	function get_main_products(main_cat,id,sub_cat_name){
+		$.ajax({
+			url: base_url + "home/get_main_products",
+			type: "post",
+			data : { id : id,name:sub_cat_name,main_cat:main_cat },
+			success: function (response) {
+				$("#sub_cat_main_prod").html('');
+				$("#sub_cat_main_prod").append(response);
+				$("#sub_cat_main_prod").show();
+			}
+		})
     }
 </script>

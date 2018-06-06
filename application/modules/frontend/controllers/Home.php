@@ -360,10 +360,16 @@ class Home extends MX_Controller {
                 $params['page'] = 1;
             }
             $params['cat_id'] = $this->input->post('cat_id');
+            $params['main_cat_id'] = $this->input->post('main_cat_id');
+            $params['main_prod'] = $this->input->post('main_prod');
             $this->load->model('Sellers_Model', 'sellers' );
+            $this->load->model('Product_Model', 'product' );
             $this->load->library('mylib/General', 'general');
             $this->load->model ( 'Account_Model', 'account' );
-            $products = $this->sellers->searchProducts($params);
+            $products = $this->product->filterProducts($_POST);
+            $productMainCat = $this->product->getProductCatSubcat($_POST['main_cat_id'],$_POST['cat_id']);
+			$this->template->set ( 'productMainCat', $productMainCat);
+
             $total_pages = $this->sellers->countProducts($params);
             $procategories = $this->general->getProductCategories();
             $this->template->set ( 'procategories', $procategories);
@@ -1104,7 +1110,8 @@ class Home extends MX_Controller {
 
     public function getMyfiles($id) {
         $this->load->model('Product_Model', 'product' );
-        $MyFiles = $this->product->getMyFiles($id);
+        $busi_id = $this->session->userdata('tsuser')['busi_id'];
+		    $MyFiles = $this->product->getMyFiles($id,$busi_id);
         $binfo = $this->product->getBusinessCategory($id);
         $this->template->set ( 'bcatinfo', $binfo);
         $this->template->set ( 'Files', $MyFiles);
@@ -1766,6 +1773,7 @@ class Home extends MX_Controller {
             $post_id = $this->input->post('post_id');
         }
         $size = 0;
+            $this->mytoolmodel->addBusinessVisit($map);
         $params = array();
         $params['busi_id'] = $this->input->post('busi_id');
         $params['offer_sender_id'] = $this->input->post('my_busi_id');
@@ -1884,5 +1892,20 @@ class Home extends MX_Controller {
         $html= $this->template->build ('desksite/subpages/general_offer', '', true);
         echo $html;
     }
+	/*
+		Added by Rohit
+		Get main products from sub category list
+	*/
+	public function getMainProductsBySubcat(){
+		
+		$this->load->model('Product_Model','product');
+        $mainProduct = $this->product->getMainProdBySubCat($_POST['id']);
+		$this->template->set ( 'mainProduct', $mainProduct );
+        $this->template->set ( 'params', $_POST);
+        $this->template->set_theme('default_theme');
+        $this->template->set_layout (false);
+        $html= $this->template->build ('home/pages/main-products', '', true);		
+		echo $html;
+	}
 }
 

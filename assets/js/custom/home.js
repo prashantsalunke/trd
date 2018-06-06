@@ -133,3 +133,30 @@ function alertajaxindicatorstop()
     jQuery('#alertresultLoading').fadeOut(300);
     jQuery('body').css('cursor', 'default');
 }
+setInterval(getNewAlerts, 9000); //300000 MS == 5 minutes
+function getNewAlerts() {
+	$.ajax({
+        url: base_url + "home/alert",
+        type: "post",
+        dataType:'json',
+        success: function (response) {
+    		$("#new-alert-popup").html(response.dataHTML);
+    		$(".badge").html(response.totalCount);
+        }
+    })
+}
+//getNewAlerts();
+function accept_community_request(id) {
+	$.ajax({
+        url: base_url + "home/addToCommunity",
+        type: "post",
+        data : { id : id },
+        success: function (response) {
+        	if(response ==1) {
+        		$("#popupAddToCommunity").show();
+        		$("#new-alert-popup").hide();
+        	}
+        	
+        }
+    })
+}

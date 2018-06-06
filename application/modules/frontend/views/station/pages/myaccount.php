@@ -388,9 +388,10 @@ input.imgInp {
 							</div>
                         </div>
                         <?php } ?>
+                        <?php if($tsuser_role == 1) { ?>
                         <div class="col-md-3">
                         	<div class="form-group myaccount_formgroup" id="error-locality">
-                        		<a <?php if($tsuser_role == 1) { ?> href="javascript:deleteBusinessAccount();"  <?php } ?>  style="text-decoration:none;">
+                        		<a href="javascript:deleteBusinessAccount();"  style="text-decoration:none;">
 									<div id="Shape293" style="padding-top:7px;">
 										<div style="text-align: center;">
 											<span style="color: #FFFFFF; font-family: Arial; font-size: 12px;">DELETE</span>
@@ -399,6 +400,7 @@ input.imgInp {
 								</a>
 							</div>
                         </div>
+                        <?php } ?>  
                         <div class="col-md-3">
                         	<div class="form-group myaccount_formgroup" id="error-locality">
                         		<?php $is_disable = $this->session->userdata('is_disable');?>

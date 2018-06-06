@@ -54,6 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE; 
 
 $route['intro'] = 'frontend/home/intro';
+$route['home/get_main_products'] = 'frontend/home/getMainProductsBySubcat';
+
+
 $route['stationhome'] = 'frontend/SellerStation';
 $route['sellerstation/my_account'] = 'frontend/SellerStation/myAccount';
 $route['homepage/setcookie'] = 'frontend/Home/setHomePageCookie';
@@ -77,7 +80,6 @@ $route['account/save_certificate_info'] = 'frontend/Account/save_certificate_inf
 $route['account/login'] = 'frontend/Account/login';
 $route['login/home'] = 'frontend/home/afterloginHome';
 $route['refresh/create_captcha']= 'frontend/home/create_captcha';
-//$route['account/kk'] = 'frontend/Account/captcha';//'frontent/Account/continueRegistration';
 $route['continueregistration'] = 'frontend/Account/continueRegistration';
 $route['signin'] = 'frontend/Home/signin';
 $route['account/forgotemail'] = 'frontend/Account/forgetsendMail';
@@ -137,6 +139,8 @@ $route['mystation/gaurantee/cancel'] = 'frontend/Station/cancelGaurantee';
 $route['mystation/gaurantee/confirm'] = 'frontend/Station/confirmGaurantee';
 $route['mystation/product/certs/confirm'] = 'frontend/Station/confirmProductCerts';
 $route['mystation/license/confirm'] = 'frontend/Station/confirmProductLicense';
+$route['mystation/license/cancel'] = 'frontend/Station/cancelLicense';
+$route['mystation/certificate/cancel'] = 'frontend/Station/cancelCerti';
 
 /*My deskside */
 $route['mystation/mydeskside'] = 'frontend/Deskside/myDeskside';
@@ -323,6 +327,9 @@ $route['mystation/deleteinvoice'] = 'frontend/Alerts/deleteInvoice';
 $route['mystation/addinvoiceproduct'] = 'frontend/Alerts/addInvoiceProduct';
 $route['mystation/firstpartyconfirm'] = 'frontend/Alerts/firstPartyConfirm';
 $route['mystation/secondpartyconfirm'] = 'frontend/Alerts/secondPartyConfirm';
+$route['home/alert'] = 'frontend/Alerts/getNewAlerts';
+$route['home/addToCommunity'] = 'frontend/Alerts/alertAddToCommunity';
+$route['home/clearAlert'] = 'frontend/Alerts/clearAlert';
 
 /* Language */
 $route['mystation/language'] = 'frontend/Language/language';
@@ -365,6 +372,7 @@ $route['product/subproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListBy
 $route['product/csmproduct/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListByCat/$1/$2/$3/$4';
 $route['product/spproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/specialProductList/$1/$2';
 $route['product/details/page/([0-9]+)'] = 'frontend/Product/productDetailsPage/$1';
+$route['product/details/page2/([0-9]+)/([0-9]+)'] = 'frontend/Product/productDetailsPage2/$1/$2';
 $route['seller/video/view/([0-9]+)'] = 'frontend/Home/getSellerVideo/$1';
 $route['seller/product/view/([0-9]+)'] = 'frontend/Home/getSellerProduct/$1';
 $route['product/verified'] = 'frontend/Product/productVerifiedFirst';
@@ -387,6 +395,7 @@ $route['video/item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/videoItemDeta
 
 $route['pro-video'] = 'frontend/Vedio/productVideoList';
 $route['video/details/([0-9]+)'] = 'frontend/Product/videoDetailById/$1';
+$route['video/details/seller/([0-9]+)'] = 'frontend/Product/videoDetailByIdSeller/$1';
 $route['seller/video/([0-9]+)'] = 'frontend/Vedio/productVideoListBySellerId/$1';
 $route['video/verifieduser/memberlist'] = 'frontend/Vedio/getVedioByVerifiedUser';
 $route['video/community/memberlist/([0-9]+)'] = 'frontend/Vedio/getVedioByCommunityMember/$1';
@@ -438,14 +447,14 @@ $route['([0-9]+)/featured-ads-checkout'] = 'frontend/MyAds/fcCheckout/$1';
 $route['([0-9]+)/subscription-checkout'] = 'frontend/Home/getSubscriptionCheckout/$1';
 $route['desksite/like/([0-9]+)'] = 'frontend/Home/likeBusiness/$1';
 $route['desksite/catalogue/like/([0-9]+)'] = 'frontend/Home/likeCatalogue/$1';
-$route['desksite/general_enquiry/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
+$route['desksite/general_offer/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
 $route['desksite/item_enquiry/([0-9]+)/([0-9]+)'] = 'frontend/Home/getItemInquiry/$1/$2';
 $route['desksite/saveenquiry'] = 'frontend/Home/saveGeneralInquiry';
 $route['desksite/saveoffer'] = 'frontend/Home/saveGeneralOffer';
 $route['desksite/product/like/([0-9]+)'] = 'frontend/Product/likeProduct/$1';
 $route['desksite/share'] = 'frontend/Product/shareWithWorld';
 $route['desksite/savecontactus'] = 'frontend/Home/saveContactUs';
-
+$route['desksite/general_offer/([0-9]+)'] = 'frontend/Home/getGeneralOffer/$1';
 
 /********************  Community **************/
 

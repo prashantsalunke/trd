@@ -697,7 +697,7 @@ if(isset($tsuserid)) {
             }
         </script>
   	</head>
-<body style="background-color: #F5F5F5;">
+<body style="background-color: #F5F5F5;">      
     <!-- register -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -871,7 +871,7 @@ if(isset($tsuserid)) {
         </div>
     </div><!-- login -->
     <div class="container-fluid top-div">
-        <div class="navbar-header"> <a href="#" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
+        <div class="navbar-header"> <a href="<?php echo base_url()?>" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
         <ul class="nav navbar-nav pull-right top-nav login-user-nav">
             <li style="padding-top:20px;">
                 <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;">
@@ -896,17 +896,17 @@ if(isset($tsuserid)) {
             </li>
             <li class="dropdown " style="margin-top:5px;"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language 
                     <img src="<?php echo asset_url(); ?>images/img1188.png" id="Shape17" alt="" style="width:14px;height:7px;"></a>
-                <ul class="dropdown-menu" role="menu" style="min-width:100px;left:0px;">
-                    <li class="firstmain"><a href="#" target="_self">English</a> </li>
-                    <li><a href="#" target="_self">中文</a> </li>
-                    <li><a href="#" target="_self">العربية</a> </li>
-                    <li><a href="#" target="_self">Türk</a> </li>
-                    <li><a href="#" target="_self">日本語</a> </li>
-                    <li><a href="#" target="_self">한국어</a> </li>
-                    <li><a href="#" target="_self">भारतीय</a> </li>
-                    <li><a href="#" target="_self">русский</a> </li>
-                    <li><a href="#" target="_self">Dutch</a> </li>
-                </ul>
+                <ul class="dropdown-menu" role="menu">
+                        <li class="firstmain"><a href="#" target="_self">English</a> </li>
+                        <li><a href="#" target="_self">中文</a> </li>
+                        <li><a href="#" target="_self">العربية</a> </li>
+                        <li><a href="#" target="_self">Türk</a> </li>
+                        <li><a href="#" target="_self">日本語</a> </li>
+                        <li><a href="#" target="_self">한국어</a> </li>
+                        <li><a href="#" target="_self">भारतीय</a> </li>
+                        <li><a href="#" target="_self">русский</a> </li>
+                        <li><a href="#" target="_self">Dutch</a> </li>
+                    </ul>
             </li>
         </ul>
     </div>
