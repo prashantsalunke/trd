@@ -359,6 +359,7 @@
 											<div id="certs-btns" style="display:<?php if(!empty($binfo[0]['product_certs'])) { ?>block;<?php } else{ ?>none;<?php } ?>">
 												<br>
 												<a href="javascript:editCerts();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;padding:5px 45px;">Edit Certificates</a><br>
+												<a href="javascript:cancelCerti();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;width: 176px;">Cancel Certificates</a>
 											</div>
 										</div>
 									</div>
@@ -387,6 +388,21 @@
 											<div class="col-sm-12" style="padding-top:4px;padding-right:0px;padding-bottom: 20px;">
 												<strong>No.</strong> <input type="text" id="Editbox72" style="width:160px;height:23px;line-height:23px;z-index:2499;" name="Editbox71" value="<?php echo $binfo[0]['export_lic_number'];?>" maxlength="15" placeholder="Enter The License No.">
 											</div>
+
+
+											<div class="col-sm-6" style="padding-top:4px;padding-right:0px;padding-bottom: 20px;">
+												<strong>Image</strong> <input type="file" id="Editbox73" style="width:160px;height:23px;line-height:23px;z-index:2499;" name="Editbox72">
+											</div>
+
+											<div class="col-sm-6" style="padding-top:4px;padding-right:0px;padding-bottom: 20px;">
+												<?php if ($binfo[0]['export_license']) { ?>
+													<img src="<?php echo $binfo[0]['export_license'];?>" style="width:93px;">
+												<?php }else{ ?>
+													<img src="<?php echo asset_url();?>images/ISO-9001-CERTIFICATEok.jpg" id="Image84" alt="" style="width:93px;">
+												<?php } ?>
+											</div>
+
+
 										</div>
 										<div class="row" id="lic-input-msg" style="display:<?php if(!empty($binfo[0]['export_lic_number'])) { ?>block;<?php } else{ ?>none;<?php } ?>">
 											<div class="col-sm-12 term-selected-text" style="padding-left:15px;padding-bottom: 10px;font-size:12px;">
@@ -406,6 +422,7 @@
 											<div id="lic-btns" style="display:<?php if(!empty($binfo[0]['export_lic_number'])) { ?>block;<?php } else{ ?>none;<?php } ?>">
 												<br>
 												<a href="javascript:editLics();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;padding:5px 45px;">Edit License</a><br>
+												<a href="javascript:cancelLice();" class="btn btn-sm btn-danger-custom" style="margin-bottom:10px;width: 157px;">Cancel License</a>
 											</div>
 										</div>
 									</div>
@@ -628,6 +645,8 @@ function cancelTerms() {
 	$("#terms-btns").hide();
 	$.get(base_url+"mystation/gaurantee/cancel",{},function(data){
 		$("#confess_btn").show();
+
+		getBusinessRanking();
 	},'json');
 }
 
@@ -649,7 +668,7 @@ function confirmTerms() {
 
 function confirmCerts() {
 	var certs = $("#TextArea12").val();
-	if(certs != "") {
+	// if(certs == "") {
 		$.post(base_url+"mystation/product/certs/confirm",{ certs: certs },function(data){
 			$("#certs_desc").html("<strong>I can issue the following Product Certificates</strong>");
 			$("#certs-inputs").hide();
@@ -659,9 +678,9 @@ function confirmCerts() {
 			$("#certs_text_msg").html(certs);
 			getBusinessRanking();
 		},'json');
-	} else {
-		alert("Please enter certificates.");
-	}
+	// } else {
+	// 	alert("Please enter certificates.");
+	// }
 }
 function editCerts() {
 	$("#certs_desc").html('<input type="radio" name="procduct_certs_check" value="1" checked/> I can issue the following Product Certificates');
@@ -672,18 +691,32 @@ function editCerts() {
 	$("#certs-btns").hide();
 }
 
-function confirmLics() {
-	var lics = $("#Editbox72").val();
-	$.post(base_url+"mystation/license/confirm",{ lics: lics },function(data){
-		$("#lic_desc").hide();
-		$("#lic-inputs").hide();
-		$("#lic-text").hide();
-		$("#lic-input-msg").show();
-		$("#lic-btns").show();
-		$("#lic_text_msg").html(lics);
-		getBusinessRanking();
-	},'json');
-}
+			function cancelCerti() {
+				$.post(base_url+"mystation/certificate/cancel",{ },function(data){
+					$("#certs_desc").html('<input type="radio" name="procduct_certs_check" value="1" checked/> I can issue the following Product Certificates');
+					$("#certs_radio").prop('checked', false);
+					$("#certs-inputs").show();
+					$("#certs-text").show();
+					$("#certs-input-msg").hide();
+					$("#certs-btns").hide();
+					getBusinessRanking();
+				},'json');
+			}
+
+			function confirmLics() {
+				var lics = $("#Editbox72").val();
+				var lics_pic = $("#Editbox73").val();
+
+				$.post(base_url+"mystation/license/confirm",{ lics: lics, lics_pic: lics_pic },function(data){
+					$("#lic_desc").hide();
+					$("#lic-inputs").hide();
+					$("#lic-text").hide();
+					$("#lic-input-msg").show();
+					$("#lic-btns").show();
+					$("#lic_text_msg").html(lics);
+					getBusinessRanking();
+				},'json');
+			}
 
 function editLics() {
 	$("#lic_desc").show();
@@ -692,6 +725,21 @@ function editLics() {
 	$("#lic-input-msg").hide();
 	$("#lic-btns").hide();
 }
+
+
+
+function cancelLice() {
+	$.post(base_url+"mystation/license/cancel",{ },function(data){
+		$("#lic_desc").show();
+		$("#lic-inputs").show();
+		$("#lic-text").show();
+		$("#lic-input-msg").hide();
+		$("#lic-btns").hide();
+		getBusinessRanking();
+	},'json');
+
+}
+
 function showFileCount(id) {
 	var filecount = $(id)[0].files.length;
 	$("#attachments").html(filecount+" files selected");

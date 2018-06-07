@@ -9,12 +9,13 @@ class Offer_model extends CI_Model {
     public  function getOfferByBusiId($busi_id)
     {
     	$this->db->select('a.id as offer_id,a.busi_id as offer_receiver_id,a.offer_subject,a.offer_body,a.attachment1,a.attachment2,a.attachment3,'.
-    			'a.attachment4,a.created_date,a.unreadmark,a.pin_unpin,b.offer_type,c.*,d.name_prefix,d.name,e.profile_image');
+    			'a.attachment4,a.created_date,a.unreadmark,a.pin_unpin,b.offer_type,c.*,d.name_prefix,d.name,e.profile_image,uc.user_category,a.offer_body,a.alert_viewed');
     	$this->db->from(TABLES::$OFFER. ' AS a');
     	$this->db->join(TABLES::$OFFER_TYPE. ' AS b','a.offer_type_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS c','a.offer_sender_id=c.id','inner');
     	$this->db->join(TABLES::$USER. ' AS d','d.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS e','d.id=e.user_id','inner');
+    	$this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','d.user_category_id=uc.id','inner');
     	$this->db->where('a.offer_sender_id', $busi_id);
     	$this->db->where('d.is_contactperson', 1);
     	$this->db->where('a.is_deleted', 0);
@@ -27,12 +28,13 @@ class Offer_model extends CI_Model {
     public function getBuyerOfferByBusiId($busi_id)
     {
     	$this->db->select('a.id as offer_id,a.busi_id as offer_receiver_id,a.offer_subject,a.offer_body,a.attachment1,a.attachment2,a.attachment3,'.
-    			'a.attachment4,a.created_date,a.unreadmark,a.pin_unpin,b.offer_type,c.*,d.name_prefix,d.name,e.profile_image');
+    			'a.attachment4,a.created_date,a.unreadmark,a.pin_unpin,b.offer_type,c.*,d.name_prefix,d.name,e.profile_image,uc.user_category,a.offer_body,a.alert_viewed');
     	$this->db->from(TABLES::$OFFER. ' AS a');
     	$this->db->join(TABLES::$OFFER_TYPE. ' AS b','a.offer_type_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS c','a.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER. ' AS d','d.busi_id=c.id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS e','d.id=e.user_id','inner');
+    	$this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','d.user_category_id=uc.id','inner');
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('d.is_contactperson', 1);
     	$this->db->where('a.is_deleted', 0);
@@ -97,8 +99,5 @@ class Offer_model extends CI_Model {
     				$response =  $this->db->affected_rows();
     	}
     	return $response;
-    	
     }
-  
-
 }

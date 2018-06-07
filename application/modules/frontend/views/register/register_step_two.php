@@ -20,7 +20,7 @@
 				</h1>
 				<p class="text-center">
 					<span style="color: #696969; font-family: Arial; font-size: 11px;">
-						Your&nbsp; Trade Staion ID has been sent to your email, please check and paste the verification code below to activate your account<br>
+						Your&nbsp; Trade Station ID has been sent to your email, please check and paste the verification code below to activate your account<br>
 					</span>
 				</p>
 				<div class="form-group">
@@ -105,7 +105,7 @@
 										<div class="col-xs-6">
 											<input class="input-box form-control text-center" id="entercaptcha" type="text" value="" name="entercaptcha" placeholder="Captcha" onkeyup="validateCaptchaInput(this.value);">
 										</div>
-										<p class="text-center">
+										<p class="text-center col-xs-12">
 											<span style="color: #A9A9A9; font-family: Arial; font-size: 9.3px;">Enter what you see in picture</span>
 										</p>
 									</div>
@@ -128,10 +128,10 @@
 
 				<div class="row">
 					<div class="col-xs-12">
-						<h2 class="text-center" style="line-height: 0.7">
+						<!--<h2 class="text-center" style="line-height: 0.7">
 							<span style="color: #3C3C3C; font-family: Arial; font-size: 11px;">TRADE</span><br>
 							<span style="color: #FA5C43; font-family: Impact; font-size: 20px; letter-spacing: 0.07px;">STATION</span>
-						</h2>
+						</h2>-->
 						<p class="text-center">
 							<span style="color: #696969; font-family: Arial; font-size: 11px;">
 								Generating Customers Each Second<br>

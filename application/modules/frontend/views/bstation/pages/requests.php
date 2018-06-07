@@ -1,3 +1,10 @@
+<style>
+p {
+	 word-wrap: break-word;
+	 text-align:left;
+  }
+</style>
+
 <?php 
 if(count($bposts) > 0) {
 	foreach ($bposts as $key=>$product) {
@@ -175,8 +182,8 @@ if(count($bposts) > 0) {
 							<img alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Link/sendofferblack.png"></span>
 						</a>
 					</div>
-					<div id="RollOver2" class="img45" onclick="chat_with(<?php echo $product['user_id'];?>,<?php echo $product['accept_chat'];?>);">
-						<a target="_self">
+					<div id="RollOver2" class="img45">
+						<a href="javascript:openChatWithBuyer(<?php echo $product['post_id'];?>,<?php echo $product['busi_id'];?>,<?php echo $product['accept_chat'];?>);" target="_self"> 
 							<img class="hover" alt="Chat" src="<?php echo asset_url(); ?>images/Active/chat_button2.png" /> <span>
 							<img alt="Chat" src="<?php echo asset_url(); ?>images/Link/chat_button2.png" /></span>
 						</a>

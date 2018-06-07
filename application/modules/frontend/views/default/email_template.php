@@ -83,7 +83,7 @@ switch ($templateType){
 }
 
 </style>
-<div style="position:absolute;text-align:center;left:154px;top:0px;width:702px;z-index:15;margin:auto;" id="Layer1">
+<div style="position:absolute;text-align:center;left:154px;top:0px;width:702px;height:900px;z-index:15;margin:auto;" id="Layer1">
 <div style="width:702px;position:relative;margin-left:auto;margin-right:auto;text-align:left;" id="Layer1_Container">
 <div style="position:absolute;text-align:center;left:31px;top:0px;width:634px;z-index:7;background-color: #ffffff;border: 1px solid #c0c0c0;" id="Layer2">
 <div style="width:634px;position:relative;margin-left:auto;margin-right:auto;text-align:left;" id="Layer2_Container">
@@ -169,17 +169,17 @@ case 'passwordRecovery':
     box-shadow: 4px 4px 7px #151414;
 }
 </style>
-<div style="position:absolute;text-align:center;left:151px;top:0px;width:702px;z-index:15;margin:auto;" id="Layer3">
+<div style="position:absolute;text-align:center;left:151px;top:0px;width:702px;height:900px;z-index:15;margin:auto;" id="Layer3">
 <div style="width:702px;position:relative;margin-left:auto;margin-right:auto;text-align:left;" id="Layer3_Container">
 <div style="position:absolute;text-align:center;left:31px;top:0px;width:634px;z-index:7;background-color: #ffffff;border: 1px solid #c0c0c0;" id="Layer4">
 <div style="width:634px;position:relative;margin-left:auto;margin-right:auto;text-align:left;" id="Layer4_Container">
 <div id="wb_Image2" style="position:absolute;left:0px;top:0px;width:634px;height:323px;z-index:0;">
-<img src="<?php echo asset_url();?>images/email-template/backdrop.jpg" id="Image2" alt=""></div><div style="height: 24px;position: absolute;text-align: center;top: 341px;width: 100%;z-index: 5;background-color: transparent;border: 0 solid #000000;margin: auto;" id="wb_Text8">
-<span style="color:#FF6347;font-family:Helvetica;font-size:21px;"><strong>Hi <?php echo $prefix.' '.$name;?></strong></span></div><div style="position:absolute;left:143px;top:374px;width:363px;height:15px;z-index:4;text-align:left;background-color: transparent;border: 0 solid #000000;margin: auto;padding-top: 11px;text-align: left;" id="wb_Text6">
-<span style="color:#666666;font-family:Helvetica;font-size:12px;">Welcome to VCOMMERS! We're very excited to have you on board</span></div><div style="position:absolute;left:222px;top:421px;width:176px;height:176px;z-index:3;margin:auto;padding-top:15px;" id="wb_Image3">
-<img alt="" id="Image3" style="border: 0 solid #000000;height: 100%;left: 0;top: 0;width: 100%;" src="<?php echo asset_url();?>images/email-template/vlogo-in-back.png"></div><div id="wb_Text3" style="position:absolute;left:195px;top:626px;width:233px;height:51px;text-align:center;z-index:6;background-color: transparent;border: 0 solid #000000;margin: auto;padding-top: 25px;text-align: center;">
+<img src="<?php echo asset_url();?>images/email-template/backdrop.jpg" id="Image2" alt=""></div><div style="position:absolute;left:205px;top:341px;width:212px;height:24px;z-index:5;text-align:left;" id="wb_Text8">
+<span style="color:#FF6347;font-family:Helvetica;font-size:21px;"><strong>Hi <?php echo $prefix.' '.$name;?></strong></span></div><div style="position:absolute;left:143px;top:374px;width:363px;height:15px;z-index:4;text-align:left;" id="wb_Text6">
+<span style="color:#666666;font-family:Helvetica;font-size:12px;">Welcome to VCOMMERS! We're very excited to have you on board</span></div><div style="position:absolute;left:222px;top:421px;width:176px;height:176px;z-index:3;" id="wb_Image3">
+<img alt="" id="Image3" src="<?php echo asset_url();?>images/email-template/vlogo-in-back.png"></div><div id="wb_Text3" style="position:absolute;left:195px;top:626px;width:233px;height:51px;text-align:center;z-index:6;">
 <span style="color:#000000;font-family:Arial;font-size:13px;">Your password recovery code is <br><br></span><span style="color:#FF6347;font-family:Arial;font-size:17px;"><?php echo $activationCode;?></span></div>
-<div style="position:absolute;text-align:left;left:46px;top:703px;width:501px;height:2px;z-index:1;background-color: #ff6347;margin:auto;margin-top:15px;" id="Layer5">
+<div style="position:absolute;text-align:left;left:46px;top:703px;width:501px;height:2px;z-index:1;" id="Layer5">
 </div>
 <div style="position:absolute;left:225px;top:732px;width:191px;height:45px;z-index:2;text-align:left;background-color: transparent;border: 0 solid #000000;margin: auto;padding-top: 15px;text-align: left;" id="wb_Text5">
 <span style="color:#000000;font-family:Arial;font-size:13px;">Thanks for using VCOMMERS<br></span></div>

@@ -151,7 +151,7 @@ body{
 }
 .imgre{
 	position: absolute;
-    float: right;     left: 93%;
+    float: right;     left: 96%;
     top: -15px;
     width: 36px;
 }
@@ -811,7 +811,7 @@ a{
 
 
 .c22{
-	 position:absolute;right:18px;top:96%;width:35px;height:13px;z-index:999"
+	 position:absolute;right:18px;top:96%;width:35px;height:13px;z-index:999
 }
 .c19{
 	top: 10%;text-align:left;  left: 34%;
@@ -847,17 +847,21 @@ width:74px;height:15px;z-index:3560;text-align:left;
 	color:#3C3C3C;font-family:Arial;font-size:12px;
 }
 .c11{
-	color:#3C3C3C;font-family:Arial;font-size:12px;
+	color:#3C3C3C;font-family:Arial;font-size:9pt;
 	background-color: transparent;
     border: 0px #000000 solid;
     padding: 0;
     margin: 0;
+    line-height: 1pt;
+    height: 80px;
+    width: 535px;
 }
 .white-bg-text {
 	background-color: #FFFFFF;
     color: #3C3C3C;
     font-family: Arial;
-    font-size: 12px;
+    font-size: 9pt;
+    line-height: 12pt;
 }
 .c10{
 background-color:#FFFFFF;color:#3C3C3C;font-family:Georgia;font-size:20px;padding:0px 5px;
@@ -1882,7 +1886,7 @@ a.style1:hover
 }
 .box22:hover
 {
-   background-color: #FFEFD5;
+   background-color: #FFFFFF;
    -webkit-transition: background-color 300ms ease-in-out 0ms;
    -moz-transition: background-color 300ms ease-in-out 0ms;
    -ms-transition: background-color 300ms ease-in-out 0ms;
