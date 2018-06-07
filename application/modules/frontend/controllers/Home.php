@@ -1904,7 +1904,7 @@ class Home extends MX_Controller {
         $this->template->set ( 'params', $_POST);
         $this->template->set_theme('default_theme');
         $this->template->set_layout (false);
-        $html= $this->template->build ('home/pages/main-products', '', true);		
+        $html= $this->template->build ('Home/pages/main-products', '', true);		
 		echo $html;
 	}
 }
