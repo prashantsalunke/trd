@@ -460,30 +460,6 @@ $(document).ready(function() {
         position: [220, 90],
         delay: 500
     });
-   /* var jQueryToolTip1Opts = {
-        hide: true,
-        show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">Verified logo is only ( strictly ) submitted to the Seller / Shipper who has been passed a strict verified check and audit procedures performed by leading inspection, verification, testing and certification third party companies, includes company licenses, product certificates and onsite check.<br>To check Sellers / Shipper\'s verification certificate, click on Seller\'s (About Tab) &gt; View Verification.<br></p>',
-        items: '#wb_Image104',
-        position: {
-            my: "right bottom",
-            at: "left top",
-            collision: "flipfit"
-        }
-    };
-    $("#wb_Image104").tooltip(jQueryToolTip1Opts);
-    var jQueryToolTip2Opts = {
-        hide: true,
-        show: true,
-        content: '<p style="color:#696969;font-family:Arial;font-size:12px;">Guarantee logo..<br>This seller provides a guarantee on his goods, subjected to certain terms, you can check it on each product in ( Product Details Page)..</p>',
-        items: '#wb_Image89',
-        position: {
-            my: "right bottom",
-            at: "left top",
-            collision: "flipfit"
-        }
-    };
-    $("#wb_Image89").tooltip(jQueryToolTip2Opts); */
     $("#SlideShow1").slideshow({
         interval: 8000,
         type: 'sequence',
@@ -516,27 +492,6 @@ $(document).ready(function() {
         return (this == el) || ((this.rel.length > 8) && (this.rel == el.rel));
     });
     var zindex = 250;
-    // $("#PhotoGallery1 a").draggable({
-    //     start: function() {
-    //         zindex = zindex + 1;
-    //         $(this).css({
-    //             zIndex: zindex
-    //         });
-    //     },
-    //     stop: function() {
-    //         rotation = Math.floor(Math.random() * 15);
-    //         if (Math.floor(Math.random() * 11) > 5) {
-    //             rotation = rotation * -1;
-    //         }
-    //         $(this).data('rotation', rotation);
-    //         $(this).css({
-    //             webkitTransform: "rotate(" + rotation + "deg)",
-    //             MozTransform: "rotate(" + rotation + "deg)",
-    //             msTransform: "rotate(" + rotation + "deg)",
-    //             transform: "rotate(" + rotation + "deg)"
-    //         });
-    //     }
-    // });
     $("#Layer216").stickylayer({
         orientation: 1,
         position: [224, 18],
@@ -549,27 +504,6 @@ $(document).ready(function() {
         return (this == el) || ((this.rel.length > 8) && (this.rel == el.rel));
     });
     var zindex = 250;
-    // $("#PhotoGallery4 a").draggable({
-    //     start: function() {
-    //         zindex = zindex + 1;
-    //         $(this).css({
-    //             zIndex: zindex
-    //         });
-    //     },
-    //     stop: function() {
-    //         rotation = Math.floor(Math.random() * 15);
-    //         if (Math.floor(Math.random() * 11) > 5) {
-    //             rotation = rotation * -1;
-    //         }
-    //         $(this).data('rotation', rotation);
-    //         $(this).css({
-    //             webkitTransform: "rotate(" + rotation + "deg)",
-    //             MozTransform: "rotate(" + rotation + "deg)",
-    //             msTransform: "rotate(" + rotation + "deg)",
-    //             transform: "rotate(" + rotation + "deg)"
-    //         });
-    //     }
-    // });
     var jQueryToolTip3Opts =
     {
        hide: true,
@@ -630,22 +564,6 @@ $(document).ready(function() {
     $("#Carousel2_next a").click(function() {
         $('#Carousel2').carousel('next');
     });
-    // var Carousel1Opts = {
-    //     delay: 300000,
-    //     duration: 500,
-    //     easing: 'linear',
-    //     mode: 'forward',
-    //     direction: '',
-    //     pagination: false,
-    //     start: 0
-    // };
-    // $("#Carousel1").carousel(Carousel1Opts);
-    // $("#Carousel1_back a").click(function() {
-    //     $('#Carousel1').carousel('prev');
-    // });
-    // $("#Carousel1_next a").click(function() {
-    //     $('#Carousel1').carousel('next');
-    // });
     var Carousel8Opts = {
         delay: 3000,
         duration: 500,
@@ -921,27 +839,6 @@ function stopWiggle(input) {
                     <div id=" Layer5_Container " style="width:926px;margin:auto;padding-top:40px;">
                         <div class="row" style="margin-left: 0px;">
                             <div class="col-md-2 col-sm-2">
-                                <!-- <a href="#" class="navigation2" id="wb_Image61" style="padding:0px 15px;">
-                                    <?php if(($Desksite['accept_chat']+$Desksite['accept_offer']+$Desksite['accept_community']+$Desksite['accept_email']) > 2) { ?>
-                                    <img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." class="verified-icon" />
-                                    <?php } else { ?>
-                                    <img src="<?php echo asset_url(); ?>images/Active.png" id="Image94" alt="This buyer is an active Buyer." class="verified-icon img-disabled1">
-                                    <?php } ?>
-                                </a>
-
-                                <a href="#" class="navigation2" id="wb_Image67" style="padding:0px 15px;">
-                                    <?php if(count($requests) > 0){?>
-                                            <img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image67" alt="Buyer has a current request, click on Current Requests to view deal."  class="img28" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);"/>
-                                            <?php }?>
-                                        </a>
-
-                                <a href="#" class="navigation2 " id="wb_Image76" style="padding:0px 15px;">
-                                    <?php if(count($community) > 0){ ?>
-                                    <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" class="community-member-icon">
-                                    <?php } else { ?>
-                                    <img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image76" alt="This buyer is member in your community" class="community-member-icon img-disabled1">
-                                    <?php } ?>
-                               </a> -->
                             </div>
                             <div class="col-md-8 col-sm-8 bg"  style="margin-left: 15px;margin-right:15px;">
                                 <center>
@@ -979,12 +876,6 @@ function stopWiggle(input) {
                                     </a>
                                     </center>
                             </div>
-                            <!-- <div class="col-md-2 col-sm-2  bg121" style="width:100px;">
-                                <a href="#" class="navigation2" style="display:none;">
-                                    <img src="<?php //echo asset_url(); ?>images/system-shutdown-5.png" id="Image47" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width:45px;">
-                                   <p class="font2" style="width:87px;">Switch to <br> Classic Mode</p>
-                               </a>
-                            </div> -->
                         </div>
                         <div class="col-md-2 col-sm-2">
                         </div>
