@@ -855,25 +855,25 @@ function customAlert(msg) {
 function addToMyFavourite(fav_id,type) {
 	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(data) {
 		if(data.status == 1) {
-			$("#msg_cont").html(data.msg);
+			$("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
 		} else {
-			$("#msg_cont").html(data.msg);
+			$("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
 		}
 		ShowObject('Layer99', 1);
 	},'json');
 }
 function likeVideo(id) {
     $.get(base_url+"likevideo/"+id,{},function(data) {
-        $("#msg_cont").html(data.msg);
+        $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
         ShowObject('Layer99', 1);
     },'json');
 }
 function addToCommunity(id) {
 	$.get(base_url+"addtomycommunity/"+id,{},function(data) {
 		if(data.status == 1) {
-			$("#msg_cont").html(data.msg);
+			$("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
 		} else {
-			$("#msg_cont").html(data.msg);
+			$("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
 		}
 		ShowObject('Layer99', 1);
 	},'json');

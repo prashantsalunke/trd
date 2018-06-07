@@ -66,11 +66,12 @@ class Vedio_model extends CI_Model {
     
     public function getOneproductvedioById($id)
     {
-    	$this->db->select('a.id as vedio_id, a.vedio_file,a.vedio_size, b.name as product_name, b.description, b.likes as video_likes, b.visit, c.*, d.*, e.name as plan, l.id as community_id, i.flag');
+    	$this->db->select('a.id as vedio_id, a.vedio_file,a.vedio_size, b.name as product_name, b.description, b.likes as video_likes, b.visit, c.*, d.*, e.name as plan, l.id as community_id, i.flag, u.user_category');
     	$this->db->from(TABLES::$PRODUCTVEDIO.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM . ' AS b','a.product_item_id=b.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO. '  AS c','b.busi_id=c.id','left');
     	$this->db->join(TABLES::$USER. '  AS d','d.busi_id=c.id','left');
+        $this->db->join(TABLES::$USER_CATEGORIES. '  AS u','d.user_category_id=u.id','left');
     	$this->db->join(TABLES::$SUBSCRIPTION_PLAN. '  AS e','e.id=c.plan_id','left');
         $this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','c.id = l.busi_id ','left');
         $this->db->join(TABLES::$COUNTRY.' AS i','c.company_country=i.name','left');

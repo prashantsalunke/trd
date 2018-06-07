@@ -13,7 +13,7 @@ foreach($BuyerBox as $buyer) {?>
                     </div>
                     <div id="RollOver18" class="style65">
                         <a href="javascript:addToMyFavourite(<?php echo $buyer['busi_id'];?>,3);">
-                                    <img class="hover" alt="" title="Add to view later" src="<?php echo asset_url();?>images/favorite_chery.gif">
+                                    <img class="hover" alt="" title="Add to Favourite" src="<?php echo asset_url();?>images/favorite_chery.gif">
                                     <span><img alt="" title="Add to view later" src="<?php echo asset_url();?>images/addtofav.png"></span>
                                 </a>
                     </div>
@@ -74,8 +74,8 @@ foreach($BuyerBox as $buyer) {?>
                         </a>
                     </div>
                     <div id="RollOver14" class="style85">
-                        <a href="<?php echo base_url();?>buyer/profile/<?php echo $buyer['busi_id'];?>" target="_blank">
-                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/desksite-hover.png">
+                        <a href="<?php echo base_url();?>buyer/profile/<?php echo $buyer['busi_id'];?>" target="_blank" title="Buyer profile">
+                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/desksite-hover2.png">
                                     <span><img alt="" src="<?php echo asset_url();?>images/desksite-default.png"></span>
                                 </a>
                     </div>
