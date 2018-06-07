@@ -669,7 +669,7 @@ class Account_Model extends CI_Model {
 	}
 	public function getDesksites()
 	{
-		$this->db->select('a.*, b.desksite_bg1, b.desksite_bg2, c.company_introduction,CONCAT(p.name) as product_name,CONCAT(s.name) as shipper_service_name,f.user_category_id,l.id as community_id,(select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=a.id) as main_product');
+		$this->db->select('a.*, b.desksite_bg1, b.desksite_bg2, c.company_introduction,CONCAT(p.name) as product_name,(select GROUP_CONCAT(DISTINCT ss.name SEPARATOR ",") from tbl_shipper_service as ss where ss.busi_id=a.id) as shipper_service_name,f.user_category_id,l.id as community_id,(select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=a.id) as main_product');
 		$this->db->from(TABLES::$BUSINESS_INFO.' as a');
 		$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' as b', 'a.id = b.busi_id', 'left');
 		$this->db->join(TABLES::$COMPANY_INFO.' as c', 'a.id = c.busi_id', 'left');

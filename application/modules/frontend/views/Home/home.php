@@ -753,7 +753,7 @@ foreach ($FeaturedVideos as $FeaturedVideo) {
                     </h3>
                     <div class="text-center displaydesktop">
                         <img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
-                             class="img-responsive" style="height: 220px;padding-bottom: 0px !important;">
+                             class="img-responsive" style="height: 200px;padding-bottom: 0px !important;">
                     </div>
                 </div>
             </div>
@@ -1047,12 +1047,15 @@ foreach ($FWBuyers as $key => $FWBuyer) {
                                                         <div id="Layer146-<?php echo $key; ?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
                                                             <div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
                                                                 <a href="javascript:openBuyer(<?php echo $FWBuyer['id']; ?>,'<?php echo $FWBuyer['contact_person']; ?>')">
-                                                                    <img src="<?php echo asset_url(); ?>images/window-layer.png" style="width: 40px;" onmouseover="hover(this, 'window');" onmouseout="unhover(this, 'window');">
+                                                                    <!--<img src="<?php echo asset_url(); ?>images/window-layer.png" style="width: 40px;" onmouseover="hover(this, 'window');" onmouseout="unhover(this, 'window');">-->
+                                                                    <img src="<?php echo asset_url(); ?>images/window-layer.png" id="Image96" alt="" onmouseover="hover(this, 'window');" onmouseout="unhover(this, 'window');">
+
                                                                 </a>
                                                             </div>
-                                                            <div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:42px;height:35px;z-index:508">
+                                                            <div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:35px;height:35px;z-index:508">
                                                                 <a href="<?php echo base_url(); ?>buyer/profile/<?php echo $FWBuyer['busi_id']; ?>" target="_blank">
-                                                                    <img src="<?php echo asset_url(); ?>images/buyer-desksite1.png" style="width: 42px;" onmouseover="hover(this, 'buyer_desksite');" onmouseout="unhover(this, 'buyer_desksite');">
+                                                                    <!--<img src="<?php echo asset_url(); ?>images/buyer-desksite1.png" style="width: 42px;" onmouseover="hover(this, 'buyer_desksite');" onmouseout="unhover(this, 'buyer_desksite');">-->
+                                                                    <span><img alt="" src="<?php echo asset_url(); ?>images/desksite1.png" onmouseover="hover(this, 'desksite1');" onmouseout="unhover(this, 'desksite1');"></span>
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -1524,7 +1527,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
     
     function addToMyFavourite(fav_id, type) {
         $.get(base_url + "addtofavourite/" + fav_id + "/" + type, {}, function (data) {
-            $("#msg_cont").html(data.msg);
+            $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
             ShowObject('Layer99', 1);
         }, 'json');
     }
@@ -1536,14 +1539,13 @@ foreach ($FWBuyers as $key => $FWBuyer) {
     }
     function addToItemToCart(id) {
         $.post(base_url + "additemtocart", {product_id: id}, function (data) {
-            //alert(data.msg);
-            $("#msg_cont").html(data.msg);
+            $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
             ShowObject('Layer99', 1);
         }, 'json');
     }
     function gotonewarrival_request(keyword, country, type, busi_id) {
         if (busi_id == "" || busi_id == undefined) {
-            $("#msg_cont").html("PLEASE LOGIN TO ACCESS MEMBER AREA.");
+            $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html("PLEASE LOGIN TO ACCESS MEMBER AREA.");
             ShowObject('Layer99', 1);
         } else {
             $.cookie('bstation-landing', '1', {expires: 365});
