@@ -140,7 +140,9 @@ function getNewAlerts() {
         type: "post",
         dataType:'json',
         success: function (response) {
-    		$("#new-alert-popup").html(response.dataHTML);
+        	if(response.dataHTML != '') {
+                $("#new-alert-popup").html(response.dataHTML);
+            }
     		$(".badge").html(response.totalCount);
         }
     })
@@ -159,4 +161,8 @@ function accept_community_request(id) {
         	
         }
     })
+}
+function closePopup(element) {
+    $('#'+element).hide();
+    $('.modal-backdrop').remove();
 }

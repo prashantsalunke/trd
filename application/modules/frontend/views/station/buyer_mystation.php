@@ -3766,7 +3766,7 @@ function confirmbox(msg, yesCallback, noCallback) {
 						</a>
 					</div>
 					<div id="wb_Image45" class="wb_img_45">
-						<a href="#" onclick="getAlerts();"> 
+						<a href="#" class="triggerClick" onclick="getAlerts();">
 							<img src="<?php echo asset_url();?>images/Alerts1_new.png" id="Image45" alt="" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 						</a>
 					</div>

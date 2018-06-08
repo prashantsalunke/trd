@@ -330,3 +330,12 @@ function pinoffer()
 		alert('Please select offer.');
 	}
 }
+$(window).on("load", function() {
+	var url = window.location.href;
+    var parameter = url.lastIndexOf('/')+1;
+    setTimeout(function() {
+    	if(url.substring(parameter).indexOf("homeAlert") != -1) {
+            $(".triggerClick").trigger("click");
+        }
+    },10);
+});

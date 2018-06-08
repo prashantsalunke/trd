@@ -322,7 +322,7 @@ a.style5_99:hover
 								<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">Offers</span>
 							</div>
 							<div id="RollOver56" style="position: absolute; left: 63px; top: 602px; overflow: hidden; width: 50%; height: 40px; z-index: 1699;">
-								<a href="javascript:sellerOrder();" target="_blank"> 
+								<a onclick="javascript:sellerOrder();" target="_blank"> 
 									<img class="hover" alt="" src="<?php echo asset_url();?>images/My-order-color.png" style="width:40px;"> 
 									<span>
 										<img alt="" src="<?php echo asset_url();?>images/My-order.png" style="width:40px;">
@@ -887,27 +887,23 @@ function likeCatalogue(id) {
 		$("#sdiv"+id).html(likes);
 	},'json');
 }
-function showAlertByType(type,alertId) {
-
+function showAlertByType(type,busiId) {
     //clear alert
-    $.post(base_url+"home/clearAlert",{type:type,id:alertId},function(data) {
+    $.post(base_url+"home/clearAlert",{type:type,id:busiId},function(data) {/*nothing to call*/});
 
-    });
     if(type=='inquiry'){
-       $.get(base_url+"mystation/inquiry",{},function(data) {
-        $("#new-alert-popup-"+alertId).hide();
-        $("#alertbodypanel").html("");
-        $("#alertbodypanel").html(data); 
-        
-    });
+        $.get(base_url+"mystation/inquiry",{},function(data) {
+            $(".inquiryAlert").hide();
+            $("#alertbodypanel").html("");
+            $("#alertbodypanel").html(data);
+        });
     }
-
      if(type=='offer'){
         $.get(base_url+"mystation/offer",{},function(data) {
-        $("#new-alert-popup-"+alertId).hide();    
-        $("#alertbodypanel").html("");
-        $("#alertbodypanel").html(data);
-          });
-      }
+            $(".offerAlert").hide();
+            $("#alertbodypanel").html("");
+            $("#alertbodypanel").html(data);
+        });
+     }
 }
 </script>
