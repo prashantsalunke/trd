@@ -1046,11 +1046,11 @@ class Alerts extends MX_Controller {
     	    $order = $this->orderlib->getOrderByBusiId($busiId);
     	    $totalcount = count($inquiry) + count($getMyOffers) + count($order) + count($sendcommunityrequest);
     	    //check alert count
-            $getTotalUsersAlertCount = $this->myalert->getMyAlertCount($userId);
+            $getTotalUsersAlertCount = $this->myalert->getMyAlertCount($busiId);
 
             if(empty($getTotalUsersAlertCount)) {
                 //save alert count to table
-                $this->myalert->saveAlertCount($userId, $totalcount);
+                $this->myalert->saveAlertCount($busiId, $totalcount);
             }
 
             if($totalcount > $getTotalUsersAlertCount) {
