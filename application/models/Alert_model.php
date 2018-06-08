@@ -61,15 +61,15 @@ class Alert_model extends CI_Model {
     		return $this->db->insert_id();
     	}
     }
-    public function saveAlertCount($userId, $totalcount) {
-        if(!is_numeric($userId)) {
+    public function saveAlertCount($busiId, $totalcount) {
+        if(!is_numeric($busiId)) {
             return false;
         }
         if(!is_numeric($totalcount)) {
             return false;
         }
         $params = array();
-        $params['user_id'] = $userId;
+        $params['busi_id'] = $busiId;
         $params['alert_count'] = $totalcount;
         $params['date'] = date('Y-m-d H:i:s');
         if ($this->db->insert(TABLES::$MANAGE_ALERT, $params)) {
@@ -77,10 +77,10 @@ class Alert_model extends CI_Model {
         }
     }
 
-    public function getMyAlertCount($userId) {
+    public function getMyAlertCount($busiId) {
         $this->db->select('alert_count');
         $this->db->from(TABLES::$MANAGE_ALERT . ' AS ma');
-        $this->db->where('ma.user_id',$userId);
+        $this->db->where('ma.busi_id',$busiId);
         $query = $this->db->get();
         $row = $query->result_array();
         if(!empty($row)) {
