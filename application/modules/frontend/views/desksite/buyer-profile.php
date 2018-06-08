@@ -879,28 +879,6 @@ function stopWiggle(input) {
             </div>
             <div class="container">
             <!-- bottom navigation ends -->
-                <!-- verified member -->
-                <div id="Layer61" class="box1 g1" onmouseleave="ShowObjectWithEffect('Layer43', 0, 'slidedown', 500);return false;">
-                    <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer61', 0, 'slidedown', 300, 'swing');return false;">
-                        <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
-                    <div>
-                        <br>
-                        <p class="box1font1">VERIFIED MEMBER</p>
-                    </div>
-                    <div class="box2">
-                        <p class="box1font2"><strong>Verified Member</strong></p>
-                        <img src="<?php echo asset_url(); ?>images/img0481.png" id="Shape14" alt="" style="width:120px;height:120px;">
-                        <p class="boxfont2">Verified logo is only ( strictly ) submitted to the Seller / Shipper who has been passed a strict verified check and audit procedures ..
-                        <br>
-                        </p>
-                        <p class="boxfont3">To check Sellers / Shipper's verification certificate, click on Certificates Icon or copy the ( Member Verification No. shown below ) and past it into the CHECK&nbsp; link.
-                        </p>
-                        <p class="b1"><strong>SGS Verification No. :</strong></p>
-                        <p class="c14">QNd12355525</p>
-                        <p class="b2"><strong>Check</strong></p>
-                    </div>
-                </div>
-                <!-- verified member end -->
                 <!-- product popup -->
                 <div id="Layer44" class="box1" onmouseleave="ShowObjectWithEffect('Layer18', 0, 'slidedown', 500);return false;" style="    top: 30%; width: 20%;">
                     <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer44', 0, 'slidedown', 300, 'swing');return false;">
