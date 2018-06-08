@@ -20,6 +20,7 @@ class Community_Model extends CI_Model {
     		return 0;
     	}
     }
+
     public function getSendCommunityRequest($busi_id)
     {
         $start_date = date('Y-m-d',strtotime("-15 days"));
@@ -46,6 +47,7 @@ class Community_Model extends CI_Model {
     	$row = $query->result_array();
     	return $row;
     }
+
     public function getInvitationCommunityRequest($busi_id)
     {
     	$start_date = date('Y-m-d',strtotime("-15 days"));
@@ -78,14 +80,15 @@ class Community_Model extends CI_Model {
     	$this->db->where('id',$data['id']);
     	$query=$this->db->update(TABLES::$COMMUNITY_MEMBER,$data);
     	
-    	if($query)
-    		return 1;
-    		else
-    			return 0;
-    			
+    	if($query) {
+	    return 1;
+	} else {
+    	    return 0;
+	}		
     }
     
-    public function addToMyCommunity($map) {
+    public function addToMyCommunity($map) 
+    {
         $this->db->select('id');
         $this->db->from(TABLES::$COMMUNITY_MEMBER);
         $this->db->where('busi_id',$map['busi_id']);
@@ -103,7 +106,8 @@ class Community_Model extends CI_Model {
         }
     }
     
-    public function searchCommunityMember($id,$name) {
+    public function searchCommunityMember($id,$name) 
+    {
         $start_date = date('Y-m-d',strtotime("-15 days"));
     	/*$this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
     			b.company_city as city,b.plan_id,b.is_logo_verified,b.gaurantee_period,
@@ -158,23 +162,27 @@ class Community_Model extends CI_Model {
     	return $result;
     }
     
-    public function deleteCommunityMembers($busi_id,$members) {
+    public function deleteCommunityMembers($busi_id,$members) 
+    {
     	$this->db->where("((my_busi_id = ".$busi_id." AND busi_id IN(".$members.")) OR (busi_id = ".$busi_id." AND my_busi_id IN(".$members.")))",'',false);
     	$this->db->where('status',1);
     	return $this->db->delete(TABLES::$COMMUNITY_MEMBER);
     }
     
-    public function deleteCommunityRequest($id) {
+    public function deleteCommunityRequest($id) 
+    {
     	$this->db->where('id',$id);
     	return $this->db->delete(TABLES::$COMMUNITY_MEMBER);
     }
     
-    public function acceptCommunityRequest($params) {
+    public function acceptCommunityRequest($params) 
+    {
     	$this->db->where('id',$params['id']);
     	return $this->db->update(TABLES::$COMMUNITY_MEMBER,$params);
     }
     
-    public function getCommunityPostById($id) {
+    public function getCommunityPostById($id) 
+    {
     	$this->db->select('a.id,a.title,a.busi_id,b.company_name,c.name_prefix,c.name');
     	$this->db->from(TABLES::$COMMMUNITY_POST.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
@@ -185,7 +193,8 @@ class Community_Model extends CI_Model {
     	return $result;
     }
     
-    public function getCommunityPostDetailById($id) {
+    public function getCommunityPostDetailById($id) 
+    {
     	$this->db->select('a.*');
     	$this->db->from(TABLES::$COMMMUNITY_POST.' AS a');
     	$this->db->where('a.id', $id);
@@ -194,12 +203,14 @@ class Community_Model extends CI_Model {
     	return $result;
     }
     
-    public function updateCommunityPost($params) {
+    public function updateCommunityPost($params) 
+    {
     	$this->db->where('id',$params['id']);
     	return $this->db->update(TABLES::$COMMMUNITY_POST,$params);
     }
     
-    public function updateCommunityVisit($id) {
+    public function updateCommunityVisit($id) 
+    {
     	$sql = "UPDATE ".TABLES::$COMMMUNITY_POST." SET postviews = postviews + 1 WHERE id=".$id;
     	$this->db->query($sql);
     	return $this->db->affected_rows();
@@ -214,7 +225,8 @@ class Community_Model extends CI_Model {
         return $data;
     }
 
-    public function getMyCommunity($myBusiId) {
+    public function getMyCommunity($myBusiId) 
+    {
         $this->db->select('id');
         $this->db->from(TABLES::$COMMUNITY_MEMBER);
         $this->db->where('my_busi_id',$map['my_busi_id']);
