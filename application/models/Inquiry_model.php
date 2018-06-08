@@ -26,7 +26,6 @@ class Inquiry_model extends CI_Model {
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;
-    	
     }
     
     public function getBuyerInquiryByBusiId($busi_id)
@@ -53,7 +52,6 @@ class Inquiry_model extends CI_Model {
     {
     	$this->db->where('id', $data['id']);
     	$this->db->update(TABLES::$INQUIRY, $data);
-        
     	return $this->db->affected_rows();
     }
     public function updateToggelpinInquiry($data)
@@ -119,7 +117,6 @@ class Inquiry_model extends CI_Model {
          $this->db->where('inq.alert_viewed', 0);
         $this->db->order_by('inq.id', 'desc');
         $query = $this->db->get();
-        //echo $this->db->last_query();
         $row = $query->result_array();
         if ($row > 0) {
             return true;
@@ -128,10 +125,9 @@ class Inquiry_model extends CI_Model {
         }
     }
     public function updateInquiryAlert($id,$data)
-    {echo $id;
+    {
         $this->db->where('busi_id', $id);
         $this->db->update(TABLES::$INQUIRY,$data);
-        echo $this->db->last_query();
         return $this->db->affected_rows();
     }
 }
