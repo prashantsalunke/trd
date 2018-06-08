@@ -13,14 +13,15 @@ foreach($SellerBox as $seller) {?>
                     </div>
                     <div id="RollOver18" class="style65">
                         <a href="javascript:addToMyFavourite(<?php echo $seller['busi_id'];?>,1);">
-                                    <img class="hover" alt="" title="Add to view later" src="<?php echo asset_url();?>images/favorite_chery.gif">
+                                    <img class="hover" alt="" title="Add to Favourite" src="<?php echo asset_url();?>images/favorite_chery.gif">
                                     <span><img alt="" title="Add to view later" src="<?php echo asset_url();?>images/addtofav.png"></span>
                                 </a>
                     </div>
                     <div id="RollOver19" class="style66">
-                        <a href="javascript:addToCommunity(<?php echo $seller['busi_id'];?>);"  <img class="hover" alt="" title="Add to my community" src="<?php echo asset_url();?>images/addcommunity_button2.png">
-                                    <span><img alt="" title="Add to my community" src="<?php echo asset_url();?>images/add2comwhite.png"></span>
-                                </a>
+                        <a href="javascript:addToCommunity(<?php echo $seller['busi_id'];?>,1);">
+                            <img class="hover" alt="" title="Add to my community" src="<?php echo asset_url();?>images/addcommunity_button2.png">
+                            <span><img alt="" title="Add to my community" src="<?php echo asset_url();?>images/add2comwhite.png"></span>
+                        </a>
                     </div>
                     <div id="wb_Text194" class="style67">
                         <span class="style68"><strong><?php echo $seller['company_name']; ?></strong></span></div>
@@ -73,8 +74,8 @@ foreach($SellerBox as $seller) {?>
                                 </a>
                     </div>
                     <div id="RollOver14" class="style85">
-                        <a href="<?php echo base_url();?>desksite/<?php echo $seller['busi_id'];?>" target="_blank">
-                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/desksite-hover.png">
+                        <a href="<?php echo base_url();?>desksite/<?php echo $seller['busi_id'];?>" target="_blank" title="Desksite">
+                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/desksite-hover2.png">
                                     <span><img alt="" src="<?php echo asset_url();?>images/desksite-default.png"></span>
                                 </a>
                     </div>

@@ -171,7 +171,7 @@ a.service-pills-hover:hover {
 </style>
 
 <div class="row">
-	<div class="col-sm-4" style="padding-top:80px;">
+	<div class="col-sm-4" style="padding-top:0px;">
 		<ul class="nav nav-pills">
 			<li class="firstmain">
 				<a class="service-pills-hover" href="#"><img src="<?php echo asset_url();?>images/MENUICON.png" id="Image27" alt="" style="width:17px;"> <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;">SERVICES MENU</span></a>
@@ -179,10 +179,22 @@ a.service-pills-hover:hover {
 		<?php 
 			foreach($services as $key=>$service) { 
 		?>
-		   	<li class="firstmain <?php if($key == 0) { ?>active<?php } ?>">
-		   		<a data-toggle="pill" href="#service-<?php echo $service['id'];?>" target="_self" class="service-pills"><?php echo $service['name'];?></a>
-		   	</li>
-		<?php } ?>
+			<?php if ($service['is_special']==0) { ?>
+			   	<li class="firstmain <?php if($key == 0) { ?>active<?php } ?>">
+			   		<a data-toggle="pill" href="#service-<?php echo $service['id'];?>" target="_self" class="service-pills" style="text-align: left;"><?php echo $service['name'];?></a>
+			   	</li>
+			<?php } } ?> 
+			<div>&nbsp;</div>
+			<?php 
+				$no = 11;
+			foreach($services as $key=>$service) { 
+			 ?>
+			<?php if ($service['is_special']==1) { ?>
+			   	<li class="firstmain <?php if($key == 1) { ?>active<?php } ?>">
+			   		<a data-toggle="pill" href="#service-<?php echo $service['id'];?>" target="_self" style="padding: 0px 0px;">	<img src="<?php echo asset_url();?>images/services_img/img00<?php echo $no; ?>.gif" data-src="<?php echo asset_url();?>images/services_img/img00<?php echo $no; ?>.gif" data-hover="<?php echo asset_url();?>images/services_img/img00<?php echo $no; ?>_hover.gif" class="image-container" id="Image6" alt="">
+			   		</a>
+			   	</li>
+			<?php $no++; } } ?>
 		</ul>
 		
 	</div>
@@ -190,8 +202,8 @@ a.service-pills-hover:hover {
 		<div class="tab-content" style="height: 566px;">
 			<?php foreach($services as $key=>$service) { ?>
 			<div id="service-<?php echo $service['id'];?>" class="tab-pane fade in <?php if($key > 0) {?>active<?php }?>">
-				<div id="Layer27" style="position:absolute;overflow: scroll; text-align: left; width: 732px; height: 566px; z-index: 1354;">
-					<div id="wb_Text45" style="width:351px;height:22px;z-index:1343;text-align:left;padding:15px 33px;">
+				<div id="Layer27" style="position:absolute;overflow: scroll; text-align: left; width: 516px; height: 566px; z-index: 1354;">
+					<div id="wb_Text45" style="width:450px;height:44px;z-index:1343;text-align:left;padding:15px 33px;left: 37px;">
 						<span style="background-color:#FFFFFF;color:#1E90FF;font-family:Arial;font-size:19px;"><strong><?php echo $service['name'];?></strong></span>
 					</div>
 
@@ -212,7 +224,7 @@ a.service-pills-hover:hover {
 
 
 			<div style="height: 250px;width: 470px;left:125px;top:45px">
-						<div id="wb_Carousel1">
+						<div id="wb_Carousel1" style="left: 20px;top: 60px;">
 							<div id="Carousel1">
 								<?php if(!empty($service['image1'])) { ?>
 								<div class="frame">
@@ -272,20 +284,23 @@ a.service-pills-hover:hover {
 
 
 
-					<div id="wb_Text44" style="position:absolute;top:400px;text-align:left;padding:0px 33px;font-size: 16px">
+					<div id="wb_Text44" style="position:absolute;top:415px;text-align:left;padding:0px 33px;font-size: 16px">
 						<span style="color:#2D2D2D;"><?php echo $service['description'];?> </span>
 					</div>
 				</div>		
 			</div>
-			<script>
-			$("a[data-rel='prettyPhoto_PhotoGallery10<?php echo $service['id'];?>[PhotoGallery10<?php echo $service['id'];?>]']").attr('rel', 'prettyPhoto_PhotoGallery10<?php echo $service['id'];?>[PhotoGallery10<?php echo $service['id'];?>]');
-			$("a[rel^='prettyPhoto_PhotoGallery10<?php echo $service['id'];?>']").prettyPhoto({theme:'facebook',social_tools:false});
-			</script>
 			<?php } ?>
 		</div>
 	</div>
 </div>
 					<script>
+
+						$(".image-container").mouseover(function () {
+							  $(this).attr('src', $(this).data("hover"));
+							}).mouseout(function () {
+							  $(this).attr('src', $(this).data("src"));
+							});
+							
 					$(document).ready(function(){
 					    //$("#myCarouselAbout").carousel();
 

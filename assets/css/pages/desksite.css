@@ -151,7 +151,7 @@ body{
 }
 .imgre{
 	position: absolute;
-    float: right;     left: 93%;
+    float: right;     left: 96%;
     top: -15px;
     width: 36px;
 }
@@ -854,7 +854,7 @@ width:74px;height:15px;z-index:3560;text-align:left;
     margin: 0;
     line-height: 1pt;
     height: 80px;
-    width: 505px;
+    width: 535px;
 }
 .white-bg-text {
 	background-color: #FFFFFF;

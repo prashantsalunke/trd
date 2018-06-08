@@ -837,10 +837,11 @@ class Sellers_Model extends CI_Model {
     }
     
     public function getOneproductById($id) {
-    	$this->db->select('a.id as product_id,a.name as product_name,  a.description, a.likes as item_likes, a.visit, a.main_image, b.*, c.*, d.name as plan,i.flag,l.id as community_id');
+    	$this->db->select('a.id as product_id,a.name as product_name,  a.description, a.likes as item_likes, a.visit, a.main_image, b.*, c.*, d.name as plan,i.flag,l.id as community_id, u.user_category');
     	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. '  AS b','a.busi_id=b.id','left');
     	$this->db->join(TABLES::$USER. '  AS c','c.busi_id=b.id','left');
+        $this->db->join(TABLES::$USER_CATEGORIES. '  AS u','c.user_category_id=u.id','left');
     	$this->db->join(TABLES::$SUBSCRIPTION_PLAN. '  AS d','d.id=b.plan_id','left');
     	$this->db->join(TABLES::$COUNTRY.' AS i','b.company_country=i.name','left');
         $this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.my_busi_id ','left');

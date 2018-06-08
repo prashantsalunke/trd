@@ -498,7 +498,7 @@ $(document).ready(function() {
     $("#Carousel8").carousel(Carousel8Opts);
     $("#Layer44").stickylayer({
         orientation: 4,
-        position: [70, 30],
+        position: [230, 30],
         delay: 0
     });
     $("#Layer116").stickylayer({
@@ -625,6 +625,7 @@ function stopWiggle(input) {
                 </div>
                 <div id="wb_Text8" class="c2">
                     <p class="c1"><strong><?php 
+                        // echo $Desksite['timezone'];
                         try {
                             $mars = new DateTimeZone($Desksite['timezone']);
                             $date = new DateTime('now', $mars);
@@ -686,16 +687,15 @@ function stopWiggle(input) {
             <!-- bottom navigation -->
             <div class="container" style="margin:auto auto;">
                 <div id="Layer5" class="bottomnav" style="height:105px;width:100%;margin:auto auto;">
-                    <div id=" Layer5_Container " style="width:1280px;margin:auto;padding-top:40px;">
-                        <div class="row ">
-                            <div class="col-md-1 col-sm-1" style="width:120px;">
+                    <div id=" Layer5_Container " style="width:1380px;margin:auto;padding-top:40px;">
+                        <div class="row" style="margin-left: 185px;">
+                            <div class="col-md-12" style="width:140px;">
                             <br>
-                                <a href="javascript:serviceList(<?php echo $Desksite['busi_id'];?>);" class="product" style="color:#1f90f6;">
-                                    <span style="font-weight: bold; font-size: 15px; color: white">Services</span>
+                                <a href="javascript:serviceList(<?php echo $Desksite['busi_id'];?>);" class="product" style="color:#1f90f6; text-decoration: none">
+                                    <span style="font-weight: bold; font-size: 15px; color: white;">Services</span>
                                 </a>
                             </div>
-                            <div class="col-md-9 col-sm-9 bg" style="width:80%;padding-left:0px;">
-                                <div class="col-md-5" style="padding-left:137px !important;">
+                            <div class="col-md-11 col-sm-11 bg" style="width:66%;padding-left:0px;">
                                     <a href="javascript:getComapnyProfile(<?php echo $Desksite['busi_id']?>)" class="navigation2 ">
                                         <img src="<?php echo asset_url(); ?>images/desksite/D-About.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                                         <p class="font2">Profile</p>
@@ -709,7 +709,7 @@ function stopWiggle(input) {
                                      <p class="font2">Routes</p>
                                     </a>
                                     <a href="javascript:getComapnyCertificate(<?php echo $Desksite['busi_id']?>)" class="navigation2" >
-                                    <img src="<?php echo asset_url(); ?>images/desksite/D-certificates.png" id="Image7" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+                                    <img src="<?php echo asset_url(); ?>images/desksite/D-certificates.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                                      <p class="font2">Certificates</p>
                                     </a>
                                     
@@ -717,8 +717,7 @@ function stopWiggle(input) {
                                     <img src="<?php echo asset_url(); ?>images/desksite/D-files.png" id="Image5 " alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                                     <p class="font2">My Files</p>
                                     </a>
-                                </div>
-                                <div class="col-md-3" style="padding-left:50px !important;">
+
                                     <a href="javascript:getShipperVideos(<?php echo $Desksite['busi_id']?>);" class="navigation2" >
                                         <!--  --><img src="<?php echo asset_url(); ?>images/desksite/D-video.png" id="Image77" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                                         <p class="font2">Recent Videos</p>
@@ -731,21 +730,24 @@ function stopWiggle(input) {
                                    <img src="<?php echo asset_url(); ?>images/desksite/D-posts.png" id="Image71" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                                    <p class="font2">Current  Post</p>
                                    </a>
-                                </div>
-                                <div class="col-md-3" style="width:21%; padding-left:0px !important;">
-                                    <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer16', 1, 'slidedown', 500, 'swing');return false;">
+
+
+                                   <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer16', 1, 'slidedown', 500, 'swing');return false;">
                                         <img src="<?php echo asset_url(); ?>images/desksite/offices.png" id="Image75" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
-                                        <p class="font5">World-wide  Offices</p>
+                                        <p class="font5" style="padding: 4px 0px;">World-wide  Offices</p>
                                     </a>
                                     <a href="javascript:getContactPerson(<?php echo $Desksite['busi_id'];?>);" class="navigation2" >
-                                        <img src="<?php echo asset_url(); ?>images/desksite/contact-person.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
+                                        <img src="<?php echo asset_url(); ?>images/desksite/contact-person.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
                                         <p class="font2">Contact Person</p>
                                     </a>
-                                    <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer88', 0, 'slideleft', 500, 'swing');return false;">
-                                        <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width:54px;">
-                                        <p class="font5">Contact, Add Share...</p>
+                                    <a href="#" class="navigation2" onclick="ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');ShowObjectWithEffect('Layer49', 1, 'slideleft', 500, 'swing');return false;">
+                                        <img src="<?php echo asset_url(); ?>images/desksite/D-contact.png" id="Image5" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width:54px;">
+                                        <p class="font5">Contact,Add Share...</p>
                                     </a>
-                                </div>
+                                    <a href="<?php echo base_url();?>shipper" class="navigation2">
+                                        <img src="<?php echo asset_url(); ?>images/exit_br.png" id="Image9" alt="" class="imgnav" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);" style="width:48px;">
+                                        <p class="font5">Exit</p>
+                                    </a>
                             </div>
                             <!-- <div class="col-md-2 col-sm-2  bg121" style="width:100px;">
                                 <a href="#" class="navigation2" style="display:none;">
@@ -774,7 +776,7 @@ function stopWiggle(input) {
                 </div>
                 <!-- verified member end -->
                 <!-- product popup -->
-                <div id="Layer44" class="box1" onmouseleave="ShowObjectWithEffect('Layer18', 0, 'slidedown', 500);return false;" style="position:fixed;top:30px;width:1186px;padding:15px;left:232px !important;">
+                <div id="Layer44" class="box1" onmouseleave="ShowObjectWithEffect('Layer18', 0, 'slidedown', 500);return false;" style="position:fixed;top:30px;width:894px;padding:15px;left:230px !important;">
                     <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer44', 0, 'slidedown', 300, 'swing');return false;">
                         <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:98%;">
                     </a>
@@ -791,9 +793,9 @@ function stopWiggle(input) {
                 <div id="Layer23_Container" style="width:584px;text-align:left;">
                     <div id="Layer42" class="a4" >
                         <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer23', 0, 'slidedown', 300, 'swing');return false;">
-                            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
+                            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt=""  class="imgre" style="left:96%;">
                         </a>
-                        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-company.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT US</p>
+                        <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-company.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;ABOUT SHIPPER</p>
                         <div class="box2" id="about-us" style="height: 540px;overflow-y:scroll;padding-top:0px;">
                             
                         </div>
@@ -821,7 +823,7 @@ function stopWiggle(input) {
                 <div id="Layer48_Container" style="width:316px;text-align:left;">
                     <div id="Layer42" class="a4" >
                         <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
-                    <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre"></a>
+                    <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;"></a>
                 <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/desksite/D-About.png" alt="" class="img32"> &nbsp;&nbsp;&nbsp;COMPANY PROFILE
                </p>
                         <div class="box2" id="company-profile" style="height: 540px;overflow-y:scroll;padding-top:0px;">
@@ -866,7 +868,7 @@ function stopWiggle(input) {
                 <div id="Layer33_Container" style="width:316px;text-align:left;">
                     <div id="Layer42" class="a4" >
                         <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer33', 0, 'slidedown', 300, 'swing');return false;">
-                            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:94%;">
+                            <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;">
                         </a>
                     <p class="box1font3" style="padding-left:0px;"><img src="<?php echo asset_url(); ?>images/Airplane.png" alt="" class="img32" > &nbsp;&nbsp;&nbsp;MAIN ROUTES</p>
                     
@@ -950,11 +952,13 @@ function stopWiggle(input) {
                         <a href="javascript:addToCommunity(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
                         Add To Community
                         </a>
+
                     </div>
-                    <div class="inline box5"  onclick="chat_with('<?php echo $Desksites[0]['user_id'];?>','<?php echo $Desksites[0]['accept_chat'];?>')">
+                    <div class="inline box5" onclick="chat_with('<?php echo $Desksites[0]['user_id'];?>','<?php echo $Desksites[0]['accept_chat'];?>')">
                         <img src="<?php echo asset_url(); ?>images/cha0t.png" id="Image19" alt="" class="img32">
+                        <a href="#" target="_self" class="antag">
                         Chat
-                        
+                        </a>
                     </div>
                     <div class="inline box5">
                         <img src="<?php echo asset_url(); ?>images/like.png" id="Image19" alt="" class="img32">
@@ -971,7 +975,7 @@ function stopWiggle(input) {
                     <div class="inline box5">
                         <img src="<?php echo asset_url(); ?>images/posts-icon.png" id="Image19" alt="" class="img32">
                         <a href="javascript:openGeneralEnquiry(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
-                        Send General Offer
+                        Send General Inquiry
                         </a>
                     </div>
                     <div class="inline box5">
@@ -1180,10 +1184,15 @@ function stopWiggle(input) {
                                                 <td class="image"><?php if(!empty($images[$i+1]['image'])) { ?><a href="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="UDTalk" class="img<?php echo ($i+1);?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo ($i+1);?>" src="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" title="UD Talk" style="width:220px;"></a><?php } ?></td>
                                             </tr>
                                             <?php $i = $i + 2;} ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
+                                <?php if(count($images) <= 0) { ?>
+                                            <span style="margin-top:50px;font-size:15px;">The Shipper has not upload  UDtalks Images yet.</span>
+                                            <?php } ?>
                             </div>
+
                          </div>
                     </div>
                 </div>
@@ -1259,7 +1268,9 @@ function stopWiggle(input) {
 <script>
 
         function getComapnyProfile(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/company/shipper/"+id,{},function(data) {
+            ajaxindicatorstop();
                 $("#company-profile").html(data);
                 ShowObjectWithEffect( 'Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect( 'Layer48', 1, 'slidedown', 500, 'swing');
@@ -1267,7 +1278,9 @@ function stopWiggle(input) {
         }
 
         function getComapnyAbout(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/company/about/"+id,{},function(data) {
+            ajaxindicatorstop();
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect('Layer23', 1, 'slidedown', 500, 'swing');
                 $("#about-us").html(data);
@@ -1275,28 +1288,36 @@ function stopWiggle(input) {
         }
 
         function getComapnyCertificate(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/company/certificate/"+id,{},function(data) {
+            ajaxindicatorstop();
                 $("#Layer147").html(data);
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect('Layer144', 1, 'slidedown', 500, 'swing');
             },'html');
         }
         function getAdvantage(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/advantage/"+id,{},function(data) {
+            ajaxindicatorstop();
                 $("#advantage").html(data);
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect('Layer79', 1, 'slidedown', 500, 'swing');
             },'html');
         }
         function getRoutes(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/route/"+id,{},function(data) {
+            ajaxindicatorstop();
                 $("#route").html(data);
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect('Layer33', 1, 'slidedown', 500, 'swing');
             },'html');
         }
         function getContactPerson(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/contact/"+id,{},function(data) {
+            ajaxindicatorstop();
                 $("#contact-person").html(data);
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
                 ShowObjectWithEffect('Layer62', 1, 'slidedown', 500, 'swing');
@@ -1304,28 +1325,36 @@ function stopWiggle(input) {
         }
 
         function getMyFiles(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/myfiles/"+id,{},function(data) {
+            ajaxindicatorstop();
                 $("#my-files").html(data);
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect('Layer148', 1, 'slidedown', 500, 'swing');
             },'html');
         }
         function get3DProduct(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/3dproduct/"+id,{},function(data) {
+            ajaxindicatorstop();
                 $("#3dproduct").html(data);
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect('Layer14', 1, 'slidedown', 500, 'swing');
             },'html');
         }
         function getShipperVideos(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/video/shipper/"+id,{},function(data) {
+            ajaxindicatorstop();
                 $("#product-video").html(data);
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect('Layer65', 1, 'slidedown', 500, 'swing');
             },'html');
         }
         function getCurrentPost(id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/post/"+id,{},function(data) {
+            ajaxindicatorstop();
                 $("#post").html(data);
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
                 ShowObjectWithEffect('Layer58', 1, 'slidedown', 500, 'swing'); 
@@ -1333,7 +1362,9 @@ function stopWiggle(input) {
         }
 
         function serviceList(busi_id) {
+            ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/shipper/services/"+busi_id,{},function(data) {
+            ajaxindicatorstop();
                 $("#my-services").html(data);
                 ShowObjectWithEffect( 'Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect( 'Layer44', 1, 'slidedown', 500, 'swing');
