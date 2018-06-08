@@ -42,9 +42,9 @@ class Home extends MX_Controller {
         $this->template->set ( 'FWSellers', $FWSellers);
         $FWBuyers= $this->account->getFeaturedWorldBuyer();
         $this->template->set ( 'FWBuyers', $FWBuyers);
-        $NewArrivals= $this->account->getNewArrival();
+        $NewArrivals= $this->account->getBstationPostOffer();
         $this->template->set ( 'NewArrivals', $NewArrivals);
-        $NewOrders= $this->account->getNewOrder();
+        $NewOrders= $this->account->getBstationPostRequest();
         $this->template->set ( 'NewOrders', $NewOrders);
         $WebsiteImages= $this->account->getWebsiteImage();
         $this->template->set ( 'WebsiteImages', $WebsiteImages);
