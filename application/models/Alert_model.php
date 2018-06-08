@@ -5,7 +5,6 @@ class Alert_model extends CI_Model {
     function __construct() {
         parent::__construct();
     }
-
     
     public function getMyOfferAlerts($busi_id) {
     	$this->db->select('count(a.id) as offers');
@@ -53,14 +52,14 @@ class Alert_model extends CI_Model {
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;
-    }
-    
+    }    
     
     public function saveContactUs($params) {
     	if ($this->db->insert(TABLES::$CONTACT_US, $params)) {
     		return $this->db->insert_id();
     	}
     }
+    
     public function saveAlertCount($busiId, $totalcount) {
         if(!is_numeric($busiId)) {
             return false;
@@ -89,5 +88,4 @@ class Alert_model extends CI_Model {
             return 0;
         }
     }
-    
 }
