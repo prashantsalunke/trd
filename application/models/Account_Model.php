@@ -761,10 +761,10 @@ class Account_Model extends CI_Model {
 		$this->db->join(TABLES::$PRODUCT_ITEM.' as a', 'b.id = a.busi_id', 'left');
 		//$this->db->where ( 'NOW() BETWEEN a.start_date AND a.end_date');
 		$this->db->where('f.user_category_id', 1);
-		//$this->db->where('b.is_logo_verified', 1);
+		$this->db->where('f.account_activated', 1);
 		$this->db->where('b.is_disable', 0);
 		$this->db->where('b.is_deleted', 0);
-		//$this->db->where('a.status', 1);
+		$this->db->where('f.is_suspend', 0);
 		$this->db->order_by('b.plan_id',"desc");
 		$this->db->group_by('f.busi_id');
 		$this->db->limit(12);
@@ -786,7 +786,8 @@ class Account_Model extends CI_Model {
 		//$this->db->join(TABLES::$USER.' AS f', 'b.id= f.busi_id', 'left');
 		//$this->db->where ( 'NOW() BETWEEN a.from_date AND a.to_date');
 		$this->db->where('f.user_category_id', 3);
-		//$this->db->where('b.is_logo_verified', 1);
+		$this->db->where('f.account_activated', 1);
+		$this->db->where('f.is_suspend', 0);
 		$this->db->where('b.is_disable', 0);
 		$this->db->where('b.is_deleted', 0);
 		$this->db->where('b.company_rendom_carousel', 1);
