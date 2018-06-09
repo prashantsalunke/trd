@@ -891,14 +891,19 @@ foreach ($NewArrivals as $NewArrival) {
                                                     <div class="sectionrow">
                                                         <div class="row" style="margin: 0px;">
                                                             <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
-                                                                <img src="<?php echo asset_url() . $NewArrival['main_image']; ?>"
+                                                            	<?php if($NewArrival['image1'] != "") { ?>
+                                                                <img src="<?php echo asset_url() . $NewArrival['image1']; ?>"
                                                                      class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                                                                <?php }else if($NewArrival['product_item_id'] == 0){ ?>
+                                                                	<img src="<?php echo asset_url() . $NewArrival['main_image']; ?>"
+                                                                     class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                                                                <?php } ?>
                                                                 <img src="<?php echo asset_url();?>images/flags/<?php echo $NewArrival['flag'];?>" class="roundflag">
 
                                                             </div>
                                                             <div class="col-xs-9 text-left">
                                                                 <h5>
-                                                                    <div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewArrival['name'] ?></strong></div>
+                                                                    <div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewArrival['title'] ?></strong></div>
                                                                 </h5>
                                                                 <p style="text-indent: 0px;">
                                                                 <div style="color:#696969;font-family:Arial;font-size:12px;"><?php echo substr($NewArrival['description'], 0, 115);
@@ -916,10 +921,36 @@ foreach ($NewArrivals as $NewArrival) {
                                                         </div>
                                                     </div>
                                                 </div>
-    <?php if ($frame + 3 == $i || count($NewArrivals) == $i) { ?>
-                                                </div>
-    <?php }
-} ?>
+    <?php if ($frame + 3 == $i || count($NewArrivals) == $i) { 
+    		if(count($NewArrivals) < 3) {
+	$pending = 3 - count($NewArrivals);
+	for($i=0;$i<$pending;$i++){ ?>
+		<div class="col-sm-12 margins">
+	        <div class="sectionrow">
+	            <div class="row" style="margin: 0px;">
+	                <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
+	                                                            	
+	                  	<img src="<?php echo asset_url();?>images/no-posts-logo.png"
+	                                                                     class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+	                </div>
+	                <div class="col-xs-9 text-left">
+	                    <h5>
+	                        <div style="color:#303030;font-family:Georgia;font-size:13px;">
+	                        	<strong>&nbsp;</strong>
+	                        </div>
+	                    </h5>
+	                    <p style="text-indent: 0px;">
+	                        <div style="color:#787878;font-family:Arial;font-size:12px;">
+	                        	No more posts available at the moment.Please try again later.
+	                        </div>
+	                    </p>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	<?php } } ?>
+    </div><?php } } ?>
+
                                     </div></div>
                             </div>
                         </div>
@@ -932,8 +963,11 @@ foreach ($NewArrivals as $NewArrival) {
                                 </div>
                                 <br/>
                                 <div id="wb_Carousel5" style="position: absolute;top:60px;">
+                                	<?php if (count($NewOrders) > 3) { ?>
                                     <div id="Carousel5" style="max-width: 530px !important;">
-<?php
+									<?php } else { ?>
+                                        <div id="Carousel15">
+									<?php }
 $i = 0;
 foreach ($NewOrders as $NewOrder) {
     if ($i % 3 == 0) {
@@ -945,13 +979,13 @@ foreach ($NewOrders as $NewOrder) {
                                                 <div class="col-sm-12 margins">
                                                     <div class="sectionrow"><div class="row" style="margin: 0px;">
                                                             <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
-                                                                <img src="<?php echo asset_url() . $NewOrder['main_image']; ?>"
+                                                                <img src="<?php echo asset_url() . $NewOrder['image1']; ?>"
                                                                      class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
                                                                 <img src="<?php echo asset_url();?>images/flags/<?php echo $NewOrder['flag'];?>" class="roundflag">
                                                             </div>
                                                             <div class="col-xs-9 text-left">
                                                                 <h5>
-                                                                    <div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewOrder['name'] ?></strong></div>
+                                                                    <div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewOrder['title'] ?></strong></div>
                                                                 </h5>
                                                                 <p style="text-indent: 0px;">
                                                                 <div style="color:#696969;font-family:Arial;font-size:12px;"><?php
@@ -969,10 +1003,39 @@ foreach ($NewOrders as $NewOrder) {
                                                     </div>
 
                                                 </div>
-    <?php if ($frame + 3 == $i || count($NewOrders) == $i) { ?>
+    <?php if ($frame + 3 == $i || count($NewOrders) == $i) { 
+    		if(count($NewOrders) < 3) {
+	$pending = 3 - count($NewOrders);
+	for($i=0;$i<$pending;$i++){ ?>
+
+		<div class="col-sm-12 margins">
+	        <div class="sectionrow">
+	            <div class="row" style="margin: 0px;">
+	                <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
+	                                                            	
+	                  	<img src="<?php echo asset_url();?>images/no-posts-logo.png"
+	                                                                     class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+	                </div>
+	                <div class="col-xs-9 text-left">
+	                    <h5>
+	                        <div style="color:#303030;font-family:Georgia;font-size:13px;">
+	                        	<strong>&nbsp;</strong>
+	                        </div>
+	                    </h5>
+	                    <p style="text-indent: 0px;">
+	                        <div style="color:#787878;font-family:Arial;font-size:12px;">
+	                        	No more posts available at the moment.Please try again later.
+	                        </div>
+	                    </p>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	<?php } } ?>
                                                 </div>
     <?php }
 } ?>
+
                                     </div>
                                 </div>
                             </div>

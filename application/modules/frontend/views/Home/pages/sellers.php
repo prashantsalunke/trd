@@ -58,7 +58,7 @@ foreach($SellerBox as $seller) {?>
                     </div>
                     <div id="Layer266" class="style78">
                         <div id="wb_Image159" class="style79">
-                            <img src="<?php echo asset_url().''.$seller['company_image1'];?>" id="Image159" alt="">
+                            <img src="<?php echo asset_url().''.$seller['company_info_img1'];?>" id="Image159" alt="">
                         </div>
                         <div id="wb_Text247" class="style80" style="width:205px;left:100px;text-align:left;">
                             <span class="style81"><strong><?php echo $seller['company_country'];?> | <?php echo $seller['company_province'];?></strong></span></div>
