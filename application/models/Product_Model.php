@@ -686,8 +686,8 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
     	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
-    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
-    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','left');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','left');
         $this->db->join(TABLES::$USER.' AS u','a.busi_id=u.busi_id','left');
         $this->db->join(TABLES::$BUSINESS_INFO.' AS bi','a.busi_id=bi.id','left');
     	$this->db->where('a.id',$id);
