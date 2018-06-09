@@ -995,7 +995,7 @@ class Product_Model extends CI_Model {
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('b.id', $id);
     	$this->db->order_by('a.created_date','DESC');
-    	$this->db->group_by('a.id');
+    	//$this->db->group_by('a.id');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
