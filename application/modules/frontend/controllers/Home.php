@@ -368,6 +368,8 @@ class Home extends MX_Controller {
             $this->load->model ( 'Account_Model', 'account' );
             $products = $this->product->filterProducts($_POST);
             $productMainCat = $this->product->getProductCatSubcat($_POST['main_cat_id'],$_POST['cat_id']);
+            $subproducts = $this->product->getSubProdBySubCat($params['main_prod']);
+			$this->template->set ( 'subproducts', $subproducts);
 			$this->template->set ( 'productMainCat', $productMainCat);
 
             $total_pages = $this->sellers->countProducts($params);
