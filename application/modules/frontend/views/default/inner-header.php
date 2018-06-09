@@ -838,6 +838,7 @@ ul.hover-red-menu li.open a.firstmain{
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
                     <input type="hidden" name="main_prod" id="main_prod" value="">
+                    <input type="hidden" name="sub_prod" id="sub_prod" value="">
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
@@ -1122,6 +1123,7 @@ ul.hover-red-menu li.open a.firstmain{
                     <input type="hidden" name="main_cat_id" id="filter_cat" value="">
                     <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
                     <input type="hidden" name="main_prod" id="main_prod" value="">
+					<input type="hidden" name="sub_prod" id="sub_prod" value="">
                 </form>
             </div>
             <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
