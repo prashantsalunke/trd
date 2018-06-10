@@ -253,6 +253,10 @@ class Home extends MX_Controller {
             $this->load->library('mylib/General');
             $buyers = $this->buyers->searchBuyers($params);
             $total_pages = $this->buyers->countBuyers($params);
+			$procategories = $this->general->getProductCategories();
+            $this->template->set ( 'procategories', $procategories);
+            $prosubcategories = $this->general->getProductSubCategories();
+            $this->template->set ( 'prosubcategories', $prosubcategories);
             $this->template->set ( 'Buyers', $buyers);
             $Country= $this->account->getCountry();
             $this->template->set ( 'Country', $Country);

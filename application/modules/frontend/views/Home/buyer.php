@@ -197,163 +197,163 @@
     </div>
     <div class="row" style="margin:0px;">
     	<div class="col-lg-10 section11"  id="Layer6">
-    	<?php 
-    	if(count($Buyers) > 0 && $Buyers[0]['id'] !='') {  
-    		foreach ($Buyers as $key=>$buyer) {?>
-			<div class="row" id="Layer4" style="margin:0px;margin-bottom:15px;" onmouseenter="ShowObjectWithEffect('Layer8_<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5_<?php echo $key;?>', 0);ShowObject('Layer8_<?php echo $key;?>', 0);return false;">
-				<div class="col-md-3 col-sm-12 displaydesktop" style="width:240px;">
-					<div id="SlideShow1" class="img22 SlideShow1">
-					<?php if(!empty($buyer['info_img1'])) { ?>
-					    <img class="image" src="<?php echo asset_url().$buyer['info_img1'];?>" alt="" title="">
-					    <img class="image" src="<?php echo asset_url().$buyer['info_img2'];?>" style="display:none;" alt="" title="">
-					<?php } else { ?>
-						<img class="image" src="<?php echo asset_url();?>images/Buyer-information-image.jpg" alt="" title="">
-						<img class="image" src="<?php echo asset_url();?>images/Buyer-information-image.jpg" style="display:none;" alt="" title="">
-					<?php } ?>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-12 space1" style="width:578px;">
-					 <div id="wb_Text8" class="section3">
-						 <div class="inline">
-							 <img src="<?php echo asset_url().$buyer['profile_image']; ?>" class="img1"/>
-					   		 <span class="block"><strong class="font1"><a href="<?php echo base_url();?>buyer/profile/<?php echo $buyer['busi_id'];?>" target="_blank" class="style5"><?php echo $buyer['company_name']?></a></strong>
-					   		<br> Presented By: <?php if(!empty($buyer['contact_name'])){ echo $buyer['contact_prefix'].' '.$buyer['contact_name']; } else { echo $buyer['name_prefix'].' '.$buyer['name'];} ?></span>
-				   		 </div>
-			   		  	<div class="font5"><?php echo substr($buyer['company_introduction'], '0', '250'); ?><br><br></div>
-			   		 </div>
-					<div><div class="col-sm-2" style="padding:0px;width:110px;"><strong class="strong1">Main Products |</strong></div><div class="col-sm-9" style="padding:0px;width:430px;"><?php if(!empty($buyer['main_product'])) { echo substr($buyer['main_product'], '0', '135'); } else { ?>Not specified yet..<?php }?> <?php if(strlen($buyer['main_product']) > 135) { ?>...<?php } ?></div></div>
-					<div id="Layer5_<?php echo $key;?>" class="section10 row seller_Layer5">
-						<div class="col-md-3">
-					 		<div id="RollOver5" class="box1">
-					        	<a href="<?php echo base_url();?>buyer/profile/<?php echo $buyer['busi_id'];?>" target="_blank">
-					            	<img class="hover" alt="" src="<?php echo asset_url() ?>images/randbuyercherry.png">
-					            	<span><img alt="" src="<?php echo asset_url() ?>images/randbuyerblack.png"></span>
-					        	</a>
-					        	<div id="wb_Text13"class="beauty1">
-					        		<p class="textfont1">VIEW PROFILE</p>
-					        		<p class="textfont2">To View Buyer Information, Desksite, Contact, Chat and much more.. </p>
-					        	</div>
-					    	</div>
-						</div>
-						<div class="col-md-3">
-					 		<div id="RollOver21"  class="box2" >
-					        	<a href="<?php echo base_url();?>buyer?similar=<?php echo $buyer['user_subcategory_id'];?>">
-					        		<img class="hover" alt="" src="<?php echo asset_url() ?>images/videosame_cherry.png">
-					            	<span><img alt="" src="<?php echo asset_url() ?>images/videosame_black.png"></span>
-					        	</a>
-					         	<div id="wb_Text13"class="beauty1">
-					        		<p class="textfont1">FIND THE SAME</p>
-					        		<p class="textfont2">To View More Buyers With Similar Specifications To The Current Buyer.. </p>
-					        	</div>
-					       </div>
-						</div>
-						<div class="col-md-3">
-					 		<div id="RollOver22" class="box3">
-					        	<a href="javascript:addToCommunity(<?php echo $buyer['busi_id'];?>);" target="_self">
-					            	<img class="hover" alt="" src="<?php echo asset_url() ?>images/addcommunity_button2.png">
-					            	<span><img alt="" src="<?php echo asset_url() ?>images/addcommunity_button1.png"></span>
-					        	</a>
-					         	<div id="wb_Text13"class="beauty1">
-					        		<p class="textfont1">ADD TO COMMUNITY</p>
-					        		<p class="textfont2">To Add Buyer To Your Community Member List, And Follow His Posts..</p>
-					        	</div>
-					    	</div>
-						</div>
-						<div class="col-md-3">
-					  		<div id="RollOver6" class="box4" onclick="chat_with(<?php echo $buyer['user_id'];?>,<?php echo $buyer['accept_chat'];?>);">
-					        	<a>
-					        		<img class="hover" alt="" src="<?php echo asset_url() ?>images/chat_button2.png">
-					            	<span><img alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
-					        	</a>
-					        	<div id="wb_Text13"class="beauty1">
-					        		<p class="textfont1">CHAT </p>
-					        		<p class="textfont2">To Chat With Buyer, In Case He Is An Active Member Or He Allows Buyers To Contact With Him.. </p>
-					        	</div>
-					    	</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-12" style="width:220px;">
-					<div id="Layer8_<?php echo $key;?>" class="section9 seller_Layer8" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
-					    <div id="wb_Shape1" class="stylebox">
-					        <a href="#" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;"><img src="<?php echo asset_url() ?>images/img0092.png" id="Shape1" alt="" style="width:11px;height:48px;"></a>
-					    </div>
-					</div>
-					<div id="Layer7" class="section8">
-					    <div id="wb_Text7" class="style-2">
-						    <div id="wb_Image10" class="img-style wb_Image10">
-						        <?php if(!empty($buyer['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" >
-						        <?php } else {?>
-						    	<img src="<?php echo asset_url(); ?>images/ts/community.png" id="Image1" style="opacity :0.15" > <?php }?>
-					        </div>
-						    <div id="wb_Image2" class="img-style wb_Image2">
-						    	<?php $buyer_request = $buyer['stock_buyer_count']+$buyer['bstation_post_count']; ?>
-						    	<?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" > 
-						    	<?php } else {?>
-						    	<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" style="opacity :0.15" ><?php }?>
-					        </div>
-					        <div id="wb_Image1" class="img-style wb_Image1">
-						        <?php if($buyer['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" > <?php } else { ?>
-						        <img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="opacity :0.15" >
-						        <?php }?>
-					        </div>
-						    <div id="wb_Image1" class="img-style wb_Image1">
-						        <?php if($buyer['is_active'] >= 3){?><img src="<?php echo asset_url(); ?>images/Active.png" id="Image1" > 
-						        <?php } else {?>
-						    	<img src="<?php echo asset_url(); ?>images/Active.png" id="Image1" style="opacity :0.15" ><?php }?>
-					        </div>
-						</div>
-						<div class="text-center">
-							<div class="space33">
-								<strong class="font-style-1">Buyer | </strong><span class="font-style-2"> <?php echo $buyer['sub_category'];?></span><br>
-							</div><br>
-							<div class="space33">
-								<strong class="font-style-1"><?php echo $buyer['company_country'];?> | </strong><span class="font-style-2"> <?php echo $buyer['company_city'];?></span>
-							</div>
-							<br><br>
-							<div>
-								<strong class="font-style-1">Annual Trade Volume</strong><br><span class="font-style-2"><?php echo $buyer['annual_trad_volume'];?> / Year</span>
-							</div>
-						</div>
-					</div>
-				</div>		
-			</div>
-	<?php }
-     } else {?>
-	      	<div class="col-lg-10 section11"  id="Layer6" onmouseenter="ShowObjectWithEffect('Layer8', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5', 0);ShowObject('Layer8', 0);return false;" >
-	     		<h4 class="center"> No Buyer Found!</h4>
-	     	</div>
-     <?php } ?>
-     <?php if(isset($total_pages) && $total_pages > 1) { ?>
-     	<div class="row" style="margin:0px;">
-			<div id="wb_Text396" style="text-align:center;height:31px;padding:7px;padding-right:0px;background-color:#FA5C43;" class="col-sm-1">
-				<span style="color:#FFFFFF;font-family:Georgia;font-size:12px;">Page&nbsp;&nbsp; </span>
-			</div>
-			<div id="wb_Text393" style="height:31px;background-color: #FFFFFF;padding:0px" class="col-sm-11">
-				<div style="text-align:left;padding-top:7px;" class="col-sm-2">
-					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo $params['page'];?> of <?php echo $total_pages;?>&nbsp;&nbsp; </span>
-				</div>
-				<div style="text-align:center;padding-top:7px;" class="col-sm-8">
-					<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><a href="<?php if($total_pages >= ($params['page']+1)){ echo $wpbuyerurl."page=".($params['page']+1);}?>" class="style5">VIEW MORE</a></strong></span>
-				</div>
-				<div class="col-sm-2" style="padding:0px;padding-top:7px;">
-					<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"> Page No</span>&nbsp;
-					<form name="searchPageForm" id="searchPageForm" method="GET" action="<?php echo $wpbuyerurl;?>" style="display:inline-block;">
-						<select type="text" id="pageinputselect" style="border-radius:0px;width:40px;height:17px;line-height:17px;border: 1px #A9A9A9 solid;background-color:#FECEC7;padding-left:10px;" name="page">
-						<?php for($i=1;$i<=$total_pages;$i++) { ?>
-							<option value="<?php echo $i;?>" <?php if($i == $params['page']){ ?>selected<?php } ?>><?php echo $i;?></option>
+			<?php 
+			if(count($Buyers) > 0 && $Buyers[0]['id'] !='') {  
+				foreach ($Buyers as $key=>$buyer) {?>
+				<div class="row" id="Layer4" style="margin:0px;margin-bottom:15px;" onmouseenter="ShowObjectWithEffect('Layer8_<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5_<?php echo $key;?>', 0);ShowObject('Layer8_<?php echo $key;?>', 0);return false;">
+					<div class="col-md-3 col-sm-12 displaydesktop">
+						<div id="SlideShow1" class="img22 SlideShow1">
+						<?php if(!empty($buyer['info_img1'])) { ?>
+							<img class="image" src="<?php echo asset_url().$buyer['info_img1'];?>" alt="" title="">
+							<img class="image" src="<?php echo asset_url().$buyer['info_img2'];?>" style="display:none;" alt="" title="">
+						<?php } else { ?>
+							<img class="image" src="<?php echo asset_url();?>images/Buyer-information-image.jpg" alt="" title="">
+							<img class="image" src="<?php echo asset_url();?>images/Buyer-information-image.jpg" style="display:none;" alt="" title="">
 						<?php } ?>
-						</select>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<span class="pull-right">
-							<button type="submit" id="Button15" style="width:47px;height:31px;margin-top: -7px;">GO</button>
-						</span>
-					</form>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 space1">
+						 <div id="wb_Text8" class="section3">
+							 <div class="inline">
+								 <img src="<?php echo asset_url().$buyer['profile_image']; ?>" class="img1"/>
+								 <span class="block"><strong class="font1"><a href="<?php echo base_url();?>buyer/profile/<?php echo $buyer['busi_id'];?>" target="_blank" class="style5"><?php echo $buyer['company_name']?></a></strong>
+								<br> Presented By: <?php if(!empty($buyer['contact_name'])){ echo $buyer['contact_prefix'].' '.$buyer['contact_name']; } else { echo $buyer['name_prefix'].' '.$buyer['name'];} ?></span>
+							 </div>
+							<div class="font5"><?php echo substr($buyer['company_introduction'], '0', '250'); ?><br><br></div>
+						 </div>
+						<div><div class="col-sm-2" style="padding:0px;width:110px;"><strong class="strong1">Main Products |</strong></div><div class="col-sm-9" style="padding:0px;width:430px;"><?php if(!empty($buyer['main_product'])) { echo substr($buyer['main_product'], '0', '135'); } else { ?>Not specified yet..<?php }?> <?php if(strlen($buyer['main_product']) > 135) { ?>...<?php } ?></div></div>
+						<div id="Layer5_<?php echo $key;?>" class="section10 row seller_Layer5">
+							<div class="col-md-3">
+								<div id="RollOver5" class="box1">
+									<a href="<?php echo base_url();?>buyer/profile/<?php echo $buyer['busi_id'];?>" target="_blank">
+										<img class="hover" alt="" src="<?php echo asset_url() ?>images/randbuyercherry.png">
+										<span><img alt="" src="<?php echo asset_url() ?>images/randbuyerblack.png"></span>
+									</a>
+									<div id="wb_Text13"class="beauty1">
+										<p class="textfont1">VIEW PROFILE</p>
+										<p class="textfont2">To View Buyer Information, Desksite, Contact, Chat and much more.. </p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div id="RollOver21"  class="box2" >
+									<a href="<?php echo base_url();?>buyer?similar=<?php echo $buyer['user_subcategory_id'];?>">
+										<img class="hover" alt="" src="<?php echo asset_url() ?>images/videosame_cherry.png">
+										<span><img alt="" src="<?php echo asset_url() ?>images/videosame_black.png"></span>
+									</a>
+									<div id="wb_Text13"class="beauty1">
+										<p class="textfont1">FIND THE SAME</p>
+										<p class="textfont2">To View More Buyers With Similar Specifications To The Current Buyer.. </p>
+									</div>
+							   </div>
+							</div>
+							<div class="col-md-3">
+								<div id="RollOver22" class="box3">
+									<a href="javascript:addToCommunity(<?php echo $buyer['busi_id'];?>);" target="_self">
+										<img class="hover" alt="" src="<?php echo asset_url() ?>images/addcommunity_button2.png">
+										<span><img alt="" src="<?php echo asset_url() ?>images/addcommunity_button1.png"></span>
+									</a>
+									<div id="wb_Text13"class="beauty1">
+										<p class="textfont1">ADD TO COMMUNITY</p>
+										<p class="textfont2">To Add Buyer To Your Community Member List, And Follow His Posts..</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div id="RollOver6" class="box4" onclick="chat_with(<?php echo $buyer['user_id'];?>,<?php echo $buyer['accept_chat'];?>);">
+									<a>
+										<img class="hover" alt="" src="<?php echo asset_url() ?>images/chat_button2.png">
+										<span><img alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
+									</a>
+									<div id="wb_Text13"class="beauty1">
+										<p class="textfont1">CHAT </p>
+										<p class="textfont2">To Chat With Buyer, In Case He Is An Active Member Or He Allows Buyers To Contact With Him.. </p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-12">
+						<div id="Layer8_<?php echo $key;?>" class="section9 seller_Layer8" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
+							<div id="wb_Shape1" class="stylebox">
+								<a href="#" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;"><img src="<?php echo asset_url() ?>images/img0092.png" id="Shape1" alt="" style="width:11px;height:48px;"></a>
+							</div>
+						</div>
+						<div id="Layer7" class="section8">
+							<div id="wb_Text7" class="style-2">
+								<div id="wb_Image10" class="img-style wb_Image10">
+									<?php if(!empty($buyer['community_id'])){?><img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" >
+									<?php } else {?>
+									<img src="<?php echo asset_url(); ?>images/ts/community.png" id="Image1" style="opacity :0.15" > <?php }?>
+								</div>
+								<div id="wb_Image2" class="img-style wb_Image2">
+									<?php $buyer_request = $buyer['stock_buyer_count']+$buyer['bstation_post_count']; ?>
+									<?php if(!empty($buyer_request)){?><img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" > 
+									<?php } else {?>
+									<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image1" style="opacity :0.15" ><?php }?>
+								</div>
+								<div id="wb_Image1" class="img-style wb_Image1">
+									<?php if($buyer['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" > <?php } else { ?>
+									<img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="opacity :0.15" >
+									<?php }?>
+								</div>
+								<div id="wb_Image1" class="img-style wb_Image1">
+									<?php if($buyer['is_active'] >= 3){?><img src="<?php echo asset_url(); ?>images/Active.png" id="Image1" > 
+									<?php } else {?>
+									<img src="<?php echo asset_url(); ?>images/Active.png" id="Image1" style="opacity :0.15" ><?php }?>
+								</div>
+							</div>
+							<div class="text-center">
+								<div class="space33">
+									<strong class="font-style-1">Buyer | </strong><span class="font-style-2"> <?php echo $buyer['sub_category'];?></span><br>
+								</div><br>
+								<div class="space33">
+									<strong class="font-style-1"><?php echo $buyer['company_country'];?> | </strong><span class="font-style-2"> <?php echo $buyer['company_city'];?></span>
+								</div>
+								<br><br>
+								<div>
+									<strong class="font-style-1">Annual Trade Volume</strong><br><span class="font-style-2"><?php echo $buyer['annual_trad_volume'];?> / Year</span>
+								</div>
+							</div>
+						</div>
+					</div>		
+				</div>
+		<?php }
+		 } else {?>
+				<div class="col-lg-10 section11"  id="Layer6" onmouseenter="ShowObjectWithEffect('Layer8', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5', 0);ShowObject('Layer8', 0);return false;" >
+					<h4 class="center"> No Buyer Found!</h4>
+				</div>
+		 <?php } ?>
+		 <?php if(isset($total_pages) && $total_pages > 1) { ?>
+			<div class="row" style="margin:0px;">
+				<div id="wb_Text396" style="text-align:center;height:31px;padding:7px;padding-right:0px;background-color:#FA5C43;" class="col-sm-1">
+					<span style="color:#FFFFFF;font-family:Georgia;font-size:12px;">Page&nbsp;&nbsp; </span>
+				</div>
+				<div id="wb_Text393" style="height:31px;background-color: #FFFFFF;padding:0px" class="col-sm-11">
+					<div style="text-align:left;padding-top:7px;" class="col-sm-2">
+						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo $params['page'];?> of <?php echo $total_pages;?>&nbsp;&nbsp; </span>
+					</div>
+					<div style="text-align:center;padding-top:7px;" class="col-sm-8">
+						<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><a href="<?php if($total_pages >= ($params['page']+1)){ echo $wpbuyerurl."page=".($params['page']+1);}?>" class="style5">VIEW MORE</a></strong></span>
+					</div>
+					<div class="col-sm-2" style="padding:0px;padding-top:7px;">
+						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"> Page No</span>&nbsp;
+						<form name="searchPageForm" id="searchPageForm" method="GET" action="<?php echo $wpbuyerurl;?>" style="display:inline-block;">
+							<select type="text" id="pageinputselect" style="border-radius:0px;width:40px;height:17px;line-height:17px;border: 1px #A9A9A9 solid;background-color:#FECEC7;padding-left:10px;" name="page">
+							<?php for($i=1;$i<=$total_pages;$i++) { ?>
+								<option value="<?php echo $i;?>" <?php if($i == $params['page']){ ?>selected<?php } ?>><?php echo $i;?></option>
+							<?php } ?>
+							</select>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<span class="pull-right">
+								<button type="submit" id="Button15" style="width:47px;height:31px;margin-top: -7px;">GO</button>
+							</span>
+						</form>
+					</div>
 				</div>
 			</div>
+		<?php } ?>
 		</div>
-	<?php } ?>
-    </div>
 	<div class="col-lg-2" style="padding:0px;">
 				<div id="Layer3" class="box8">
 				<div id="wb_Text328" class="innersection">
@@ -709,4 +709,64 @@ $(document).ready(function() {
 			ShowObjectWithEffect('Layer_buyers', 1, 'scale', 500, 'swing');
 		},'html');
 	}
+	var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
+    $(document).on('mouseenter', '.cat_slide', function () {
+        clearTimeout(hoverTimeout);
+        var curr_slide = $(this).attr("alt");
+        $(".sub_cat").css('color', '#337ab7');
+        $(".slide-details").hide();
+		$("#sub_cat_main_prod").hide();
+        $("#" + curr_slide).show();
+        $("." + curr_slide).show();
+        stayOpen.addClass('show');
+    }).on('mouseleave', '.slide', function () {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(function () {
+            if (!keepOpen) {
+                $(".slide-details").hide();
+                stayOpen.removeClass('show');
+            }
+        }, 1000);
+    });
+
+    $(document).on('mouseenter', '#Details', function () {
+        keepOpen = true;
+        setTimeout(function () {
+            keepOpen = false;
+        }, 1500);
+    }).on('mouseleave', '#Details', function () {
+        keepOpen = false;
+        $(".slide-details").hide();
+        stayOpen.removeClass('show');
+    });
+    function highlight_keywords(str) {
+        $(".sub_cat").css('color', '#337ab7');
+        $("." + str).css('color', 'orange');
+    }
+    function filter_by_subcat(cat_id, cat_sub_id,main_prod) {
+        $("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#filter_by_category").submit();
+    }
+	function filter_by_subprod(cat_id, cat_sub_id,main_prod,sub_prod){
+		$("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#sub_prod").val(sub_prod);
+        $("#filter_by_category").submit();
+	}
+	function get_main_products(main_cat,id,sub_cat_name){
+		$.ajax({
+			url: base_url + "home/get_main_products",
+			type: "post",
+			data : { id : id,name:sub_cat_name,main_cat:main_cat },
+			success: function (response) {
+				$("#sub_cat_main_prod").html('');
+				$("#sub_cat_main_prod").append(response);
+				$("#sub_cat_main_prod").show();
+				
+			}
+		})
+    }
 </script>

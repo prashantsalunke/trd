@@ -316,7 +316,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 col-sm-12" style="width:311px;">
+					<div class="col-md-3 col-sm-12" style="float: right;">
 						<div id="Layer8_<?php echo $key;?>" class="section9 seller_Layer8" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
 						    <div id="wb_Shape1" class="stylebox">
 						        <a href="#" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');$('.carousel').carousel();return false;"><img src="<?php echo asset_url() ?>images/img0013.png" id="Shape1" alt="" style="width:11px;height:48px;"></a>
