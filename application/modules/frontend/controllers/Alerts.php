@@ -1023,7 +1023,7 @@ class Alerts extends MX_Controller {
     	    
     	    $userId = $this->session->userdata('tsuserid'); 
     	    $category_id = $this->session->userdata('tsuser')['category_id'];
-    	    $checkNewCommunityAlert = $this->mycommunity->checkNewCommunityAlert($busiId);
+    	    $checkNewCommunityAlert = $this->communitylib->getInvitationCommunityRequest($busiId);
     
     	    if($category_id == 1 || $category_id == 2) {
     			$inquiry = $this->inquirylib->getInquiryByBusiId($busiId);
@@ -1039,12 +1039,11 @@ class Alerts extends MX_Controller {
     	    $this->template->set_layout (false);
     	    $html = $this->template->build ('default/alerts_popup','',true);
     	    
-    	    $sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busiId);
-    	    if(isset($sendcommunityrequest[0]['community_id']) == "" ) {
-    	        $sendcommunityrequest = array();
+    	    if(isset($checkNewCommunityAlert[0]['community_id']) == "" ) {
+    	        $checkNewCommunityAlert = array();
     	    }
     	    $order = $this->orderlib->getOrderByBusiId($busiId);
-    	    $totalcount = count($inquiry) + count($getMyOffers) + count($order) + count($sendcommunityrequest);
+    	    $totalcount = count($inquiry) + count($getMyOffers) + count($order) + count($checkNewCommunityAlert);
     	    //check alert count
             $getTotalUsersAlertCount = $this->myalert->getMyAlertCount($busiId);
 

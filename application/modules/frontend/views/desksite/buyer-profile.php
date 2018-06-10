@@ -1407,7 +1407,7 @@ function openGeneralOffer(id) {
     <?php if(!empty($tsuserid)) { ?>
     <?php if($tscategory_id != $buyer) {
     //check if buyer has allowed himself to receive offers
-    if($contact_details[0]['accept_offer'] && $contact_details[0]['accept_email'] && $contact_details[0]['step'] == $steps_needed) { ?>
+    if($contact_details[0]['accept_offer'] && $contact_details[0]['accept_email'] && $contact_details[0]['step'] >= $steps_needed) { ?>
     popupwnd('<?php echo base_url();?>desksite/general_offer/' + id, 'no', 'no', 'no', 'no', 'no', 'no', '200', '50', '1055', '680');
     <?php } else if($contact_details[0]['step'] < $steps_needed) { ?>
     $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It's so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In \" My Station\" click on \" My Desksite\" and follow the steps to build it.");
