@@ -83,6 +83,10 @@ function Validatecontact()
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
        (extension.toLowerCase() != ".png") &&
+       (extension.toLowerCase() != ".doc") &&
+       (extension.toLowerCase() != ".docx") &&
+       (extension.toLowerCase() != ".zip") &&
+       (extension.toLowerCase() != ".xls") &&
        (extension != ""))
    	{
       	alert("The \"FileUpload1\" field contains an unapproved filename.");

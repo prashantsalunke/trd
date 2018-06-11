@@ -1766,6 +1766,7 @@ class Home extends MX_Controller {
 
     public function saveGeneralOffer() {
         $this->load->model('Product_Model','product');
+        $userId = $this->session->userdata('tsuser')['userid'];
         $product_id = 0;
         $post_type = 0;
         $post_id = 0;
@@ -1780,7 +1781,6 @@ class Home extends MX_Controller {
             $post_id = $this->input->post('post_id');
         }
         $size = 0;
-            $this->mytoolmodel->addBusinessVisit($map);
         $params = array();
         $params['busi_id'] = $this->input->post('busi_id');
         $params['offer_sender_id'] = $this->input->post('my_busi_id');
@@ -1859,7 +1859,8 @@ class Home extends MX_Controller {
             $resp['status'] = 0;
             $resp['msg'] = "Failed to add Offer.";
         }
-        echo json_encode($resp);
+       echo json_encode($resp);
+
     }
 
     public function saveContactUs() {
