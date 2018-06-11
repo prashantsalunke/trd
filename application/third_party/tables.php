@@ -128,8 +128,9 @@ class TABLES {
 	public static $MYSTORAGE = 'tbl_mystorage';
 	public static $CHAT_MESSAGES = 'tbl_chat_messages';
 	public static $CONTACT_US = 'tbl_contact_us';
-	
-	
-	
-	
+
+	/*alert*/
+    public static $MANAGE_ALERT = 'tbl_manage_alert';
+
+
 }

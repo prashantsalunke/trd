@@ -322,7 +322,7 @@ a.style5_99:hover
 								<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">Offers</span>
 							</div>
 							<div id="RollOver56" style="position: absolute; left: 63px; top: 602px; overflow: hidden; width: 50%; height: 40px; z-index: 1699;">
-								<a href="javascript:sellerOrder();" target="_blank"> 
+								<a onclick="javascript:sellerOrder();" target="_blank"> 
 									<img class="hover" alt="" src="<?php echo asset_url();?>images/My-order-color.png" style="width:40px;"> 
 									<span>
 										<img alt="" src="<?php echo asset_url();?>images/My-order.png" style="width:40px;">
@@ -855,25 +855,25 @@ function customAlert(msg) {
 function addToMyFavourite(fav_id,type) {
 	$.get(base_url+"addtofavourite/"+fav_id+"/"+type,{},function(data) {
 		if(data.status == 1) {
-			$("#msg_cont").html(data.msg);
+			$("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
 		} else {
-			$("#msg_cont").html(data.msg);
+			$("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
 		}
 		ShowObject('Layer99', 1);
 	},'json');
 }
 function likeVideo(id) {
     $.get(base_url+"likevideo/"+id,{},function(data) {
-        $("#msg_cont").html(data.msg);
+        $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
         ShowObject('Layer99', 1);
     },'json');
 }
 function addToCommunity(id) {
 	$.get(base_url+"addtomycommunity/"+id,{},function(data) {
 		if(data.status == 1) {
-			$("#msg_cont").html(data.msg);
+			$("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
 		} else {
-			$("#msg_cont").html(data.msg);
+			$("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
 		}
 		ShowObject('Layer99', 1);
 	},'json');
@@ -887,27 +887,23 @@ function likeCatalogue(id) {
 		$("#sdiv"+id).html(likes);
 	},'json');
 }
-function showAlertByType(type,alertId) {
-
+function showAlertByType(type,busiId) {
     //clear alert
-    $.post(base_url+"home/clearAlert",{type:type,id:alertId},function(data) {
+    $.post(base_url+"home/clearAlert",{type:type,id:busiId},function(data) {/*nothing to call*/});
 
-    });
     if(type=='inquiry'){
-       $.get(base_url+"mystation/inquiry",{},function(data) {
-        $("#new-alert-popup-"+alertId).hide();
-        $("#alertbodypanel").html("");
-        $("#alertbodypanel").html(data); 
-        
-    });
+        $.get(base_url+"mystation/inquiry",{},function(data) {
+            $(".inquiryAlert").hide();
+            $("#alertbodypanel").html("");
+            $("#alertbodypanel").html(data);
+        });
     }
-
      if(type=='offer'){
         $.get(base_url+"mystation/offer",{},function(data) {
-        $("#new-alert-popup-"+alertId).hide();    
-        $("#alertbodypanel").html("");
-        $("#alertbodypanel").html(data);
-          });
-      }
+            $(".offerAlert").hide();
+            $("#alertbodypanel").html("");
+            $("#alertbodypanel").html(data);
+        });
+     }
 }
 </script>
