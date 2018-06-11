@@ -1082,7 +1082,7 @@ class Alerts extends MX_Controller {
 
 	public function clearAlert() {
 		$this->load->library('mylib/OfferLib');
-        $this->load->model('Inquiry_Model', 'inquiry' );
+        $this->load->model('Inquiry_model', 'inquiry' );
 		$type = $this->input->post('type');
 		$id = $this->input->post('id');
 		switch($type) {
