@@ -201,28 +201,11 @@ a.service-pills-hover:hover {
 	<div class="col-sm-8">
 		<div class="tab-content" style="height: 566px;">
 			<?php foreach($services as $key=>$service) { ?>
-			<div id="service-<?php echo $service['id'];?>" class="tab-pane fade in <?php if($key > 0) {?>active<?php }?>">
+			<div id="service-<?php echo $service['id'];?>" class="tab-pane fade in <?php if($key == 0) {?>active<?php }?>">
 				<div id="Layer27" style="position:absolute;overflow: scroll; text-align: left; width: 516px; height: 566px; z-index: 1354;">
 					<div id="wb_Text45" style="width:450px;height:44px;z-index:1343;text-align:left;padding:15px 33px;left: 37px;">
 						<span style="background-color:#FFFFFF;color:#1E90FF;font-family:Arial;font-size:19px;"><strong><?php echo $service['name'];?></strong></span>
 					</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			<div style="height: 250px;width: 470px;left:125px;top:45px">
 						<div id="wb_Carousel1" style="left: 20px;top: 60px;">
 							<div id="Carousel1">

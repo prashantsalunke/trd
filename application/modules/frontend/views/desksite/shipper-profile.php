@@ -1527,10 +1527,10 @@ function submitContactForm() {
 function openGeneralEnquiry(id) {
     <?php if(!empty($tsuserid)) { ?>
         <?php if($tscategory_id != 3) { ?>
-            popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+            popupwnd('<?php echo base_url();?>desksite/general_inquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
         <?php } else { ?>
             <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-                popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+                popupwnd('<?php echo base_url();?>desksite/general_inquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
             <?php } else if($contact_details[0]['step'] < 2) { ?>
                 $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
                 ShowObject('Layer99', 1);
@@ -1577,9 +1577,7 @@ $(document).ready(function(){
                     notEmpty: {
                         message: 'Please enter Phone Number'
                     },
-                  integer: {
-                        message: 'Enter Only Numbers'
-                    }
+                  
                 }
             },
             country: {
@@ -1623,6 +1621,7 @@ function saveContactUsForm() {
         };
     $('#contactusfrm').ajaxSubmit(options);
 }
+
 function showContactUsRequest(formData, jqForm, options){
     var queryString = $.param(formData);
     <?php if($tscategory_id != 3) { ?>
