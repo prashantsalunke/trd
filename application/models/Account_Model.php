@@ -669,7 +669,7 @@ class Account_Model extends CI_Model {
 	}
 	public function getDesksites()
 	{
-		$this->db->select('a.*, b.desksite_bg1, b.desksite_bg2, c.company_introduction,CONCAT(p.name) as product_name,CONCAT(s.name) as shipper_service_name,f.user_category_id,l.id as community_id,(select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=a.id) as main_product');
+		$this->db->select('a.*, b.desksite_bg1, b.desksite_bg2, c.company_introduction,CONCAT(p.name) as product_name,(select GROUP_CONCAT(DISTINCT ss.name SEPARATOR ",") from tbl_shipper_service as ss where ss.busi_id=a.id) as shipper_service_name,f.user_category_id,l.id as community_id,(select GROUP_CONCAT(DISTINCT mp.name SEPARATOR ",") from tbl_main_product as mp where mp.busi_id=a.id) as main_product');
 		$this->db->from(TABLES::$BUSINESS_INFO.' as a');
 		$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' as b', 'a.id = b.busi_id', 'left');
 		$this->db->join(TABLES::$COMPANY_INFO.' as c', 'a.id = c.busi_id', 'left');
@@ -761,10 +761,10 @@ class Account_Model extends CI_Model {
 		$this->db->join(TABLES::$PRODUCT_ITEM.' as a', 'b.id = a.busi_id', 'left');
 		//$this->db->where ( 'NOW() BETWEEN a.start_date AND a.end_date');
 		$this->db->where('f.user_category_id', 1);
-		//$this->db->where('b.is_logo_verified', 1);
+		$this->db->where('f.account_activated', 1);
 		$this->db->where('b.is_disable', 0);
 		$this->db->where('b.is_deleted', 0);
-		//$this->db->where('a.status', 1);
+		$this->db->where('f.is_suspend', 0);
 		$this->db->order_by('b.plan_id',"desc");
 		$this->db->group_by('f.busi_id');
 		$this->db->limit(12);
@@ -786,7 +786,8 @@ class Account_Model extends CI_Model {
 		//$this->db->join(TABLES::$USER.' AS f', 'b.id= f.busi_id', 'left');
 		//$this->db->where ( 'NOW() BETWEEN a.from_date AND a.to_date');
 		$this->db->where('f.user_category_id', 3);
-		//$this->db->where('b.is_logo_verified', 1);
+		$this->db->where('f.account_activated', 1);
+		$this->db->where('f.is_suspend', 0);
 		$this->db->where('b.is_disable', 0);
 		$this->db->where('b.is_deleted', 0);
 		$this->db->where('b.company_rendom_carousel', 1);
@@ -796,6 +797,41 @@ class Account_Model extends CI_Model {
 		$query = $this->db->get();
 		$row = $query->result_array();
 		return $row;
+	}
+
+	public function getBstationPostOffer(){
+			$this->db->select('b.*,d.flag,c.company_country, c.company_province,e.main_image');
+			$this->db->from(TABLES::$BSTATION_POST_OFFER.' as a');
+			$this->db->join(TABLES::$BSTATION_POST.' AS b', 'a.post_id = b.id', 'left');
+			$this->db->join(TABLES::$BUSINESS_INFO.' as c', 'b.busi_id = c.id', 'left');
+			$this->db->join(TABLES::$COUNTRY.' AS d','c.company_country=d.name','left');
+			$this->db->join(TABLES::$PRODUCT_ITEM.' as e', 'b.product_item_id = e.id', 'left');
+			$this->db->where('c.is_disable', 0);
+			$this->db->where('c.is_deleted', 0);
+			$this->db->where('b.created_date = (SELECT MAX(t2.created_date) FROM tbl_bstation_post as t2 WHERE t2.busi_id = c.id)', NULL, FALSE);
+			$this->db->order_by ( "b.created_date", "desc" );
+			$this->db->group_by('b.id');
+			$query = $this->db->get();
+			$row = $query->result_array();
+			return $row;
+
+	}
+	public function getBstationPostRequest(){
+			$this->db->select('b.*,d.flag,c.company_country, c.company_province,e.main_image');
+			$this->db->from(TABLES::$BSTATION_POST_REQUEST.' as a');
+			$this->db->join(TABLES::$BSTATION_POST.' AS b', 'a.post_id = b.id', 'left');
+			$this->db->join(TABLES::$BUSINESS_INFO.' as c', 'b.busi_id = c.id', 'left');
+			$this->db->join(TABLES::$COUNTRY.' AS d','c.company_country=d.name','left');
+			$this->db->join(TABLES::$PRODUCT_ITEM.' as e', 'b.product_item_id = e.id', 'left');
+			$this->db->where('c.is_disable', 0);
+			$this->db->where('c.is_deleted', 0);
+			$this->db->where('b.created_date = (SELECT MAX(t2.created_date) FROM tbl_bstation_post as t2 WHERE t2.busi_id = c.id)', NULL, FALSE);
+			$this->db->order_by ( "b.created_date", "desc" );
+			$this->db->group_by('b.id');
+			$query = $this->db->get();
+			$row = $query->result_array();
+			return $row;
+
 	}
 	public function getNewArrival()
 	{

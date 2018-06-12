@@ -13,7 +13,7 @@ foreach($BuyerBox as $buyer) {?>
                     </div>
                     <div id="RollOver18" class="style65">
                         <a href="javascript:addToMyFavourite(<?php echo $buyer['busi_id'];?>,3);">
-                                    <img class="hover" alt="" title="Add to view later" src="<?php echo asset_url();?>images/favorite_chery.gif">
+                                    <img class="hover" alt="" title="Add to Favourite" src="<?php echo asset_url();?>images/favorite_chery.gif">
                                     <span><img alt="" title="Add to view later" src="<?php echo asset_url();?>images/addtofav.png"></span>
                                 </a>
                     </div>
@@ -28,7 +28,7 @@ foreach($BuyerBox as $buyer) {?>
                     <div id="wb_Text200" class="style69" style="width: 200px;">
                         <span class="style70"><strong><?php echo $buyer['contact_person']; ?></strong></span></div>
                     <div id="wb_Image153" class="style71">
-                        <?php if($buyer['plan_id'] > '1' && $buyer['plan_id'] > '1' && $buyer['picture'] != "" && !empty($buyer['picture'])){?><img src="<?php echo asset_url() . $buyer['picture']; ?>" id="Image1"><?php }?>
+                        <?php if($buyer['picture'] != "" && !empty($buyer['picture'])){?><img src="<?php echo asset_url() . $buyer['picture']; ?>" id="Image1"><?php }?>
                         </div>
                     <div id="Layer265" class="style72">
                         <div id="wb_Text201" class="style767" style="top:30px;left:5px;">
@@ -58,7 +58,7 @@ foreach($BuyerBox as $buyer) {?>
                     </div>
                     <div id="Layer266" class="style78">
                         <div id="wb_Image159" class="style79">
-                            <img src="<?php echo asset_url().''.$buyer['company_image1'];?>" id="Image159" alt="">
+                            <img src="<?php echo asset_url().''.$buyer['company_info_img1'];?>" id="Image159" alt="">
                         </div>
                         <div id="wb_Text247" class="style80">
                             <span class="style81"><strong><?php echo $buyer['company_country'];?> | <?php echo $buyer['company_province'];?></strong></span></div>
@@ -74,8 +74,8 @@ foreach($BuyerBox as $buyer) {?>
                         </a>
                     </div>
                     <div id="RollOver14" class="style85">
-                        <a href="<?php echo base_url();?>buyer/profile/<?php echo $buyer['busi_id'];?>" target="_blank">
-                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/desksite-hover.png">
+                        <a href="<?php echo base_url();?>buyer/profile/<?php echo $buyer['busi_id'];?>" target="_blank" title="Buyer profile">
+                                    <img class="hover" alt="" src="<?php echo asset_url();?>images/desksite-hover2.png">
                                     <span><img alt="" src="<?php echo asset_url();?>images/desksite-default.png"></span>
                                 </a>
                     </div>

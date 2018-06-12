@@ -137,7 +137,7 @@
 												<?php  //for($p=0;$p< count($orderitemspecdata);$p++) {
 // 																		if($orderitemspecdata[$p]['orderid'] == $orderitemdata[$i]['orderid']) { ?>
 <!-- 																			<br> -->
-																			<span><stong><?php //echo $orderitemspecdata[$p]['spec_name'].": ";?></strong></span>
+																			<span><strong><?php //echo $orderitemspecdata[$p]['spec_name'].": ";?></strong></span>
 																			<span><?php //echo $orderitemspecdata[$p]['spec_value'];?></span>
 												
 																<?php //} 

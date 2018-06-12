@@ -16,7 +16,7 @@
 					<div class="col-md-4">
 						<ul style="list-style:none;margin-bottom: -5px;">
 							<li>
-								<a class="btn btn-link main_prod" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $params['main_cat'];?>','<?php echo $params['id'];?>','<?php echo $params['name'];?>')" style="color:#808080;"><?php echo $res["name"];?></a>
+								<a class="btn btn-link main_prod" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $params['main_cat'];?>','<?php echo $params['id'];?>','<?php echo $res['name'];?>')" style="color:#808080;"><?php echo $res["name"];?></a>
 							</li>
 						</ul>    
 					</div>

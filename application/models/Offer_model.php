@@ -18,7 +18,7 @@ class Offer_model extends CI_Model {
     	$this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','d.user_category_id=uc.id','inner');
     	$this->db->where('a.offer_sender_id', $busi_id);
     	$this->db->where('d.is_contactperson', 1);
-    	$this->db->where('a.is_deleted', 0);
+    	$this->db->where('a.alert_viewed', 0);
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -37,7 +37,7 @@ class Offer_model extends CI_Model {
     	$this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','d.user_category_id=uc.id','inner');
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('d.is_contactperson', 1);
-    	$this->db->where('a.is_deleted', 0);
+    	$this->db->where('a.alert_viewed', 0);
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
