@@ -1057,7 +1057,7 @@ class Home extends MX_Controller {
             $map['country'] = $ipinfo['country'];
             $map['ip_address'] = $ip_address;
             $this->load->model('Tool_model','mytoolmodel');
-            $this->mytoolmodel->addBusinessVisit($map);
+            //$this->mytoolmodel->addBusinessVisit($map);
         }
         $user_rnd = $this->factorylib->getUserRNDtype($Company[0]['factory_id']);
         $this->template->set('user_rnd',$user_rnd);
@@ -1422,7 +1422,7 @@ class Home extends MX_Controller {
             $map['country'] = $ipinfo['country'];
             $map['ip_address'] = $ip_address;
             $this->load->model('Tool_model','mytoolmodel');
-            //$this->mytoolmodel->addBusinessVisit($map);
+            $this->mytoolmodel->addBusinessVisit($map);
         }
         $map =array();
         $map['id'] = $id;
@@ -1758,7 +1758,6 @@ class Home extends MX_Controller {
 
     public function saveGeneralOffer() {
         $this->load->model('Product_Model','product');
-        $this->load->model('Tool_model','mytoolmodel');
         $userId = $this->session->userdata('tsuser')['userid'];
         $product_id = 0;
         $post_type = 0;
@@ -1852,7 +1851,7 @@ class Home extends MX_Controller {
             $resp['status'] = 0;
             $resp['msg'] = "Failed to add Offer.";
         }
-       echo json_encode($resp);
+        echo json_encode($resp);
 
     }
 
