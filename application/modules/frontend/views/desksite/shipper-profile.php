@@ -1527,7 +1527,7 @@ function submitContactForm() {
 function openGeneralEnquiry(id) {
     <?php if(!empty($tsuserid)) { ?>
         <?php if($tscategory_id != 3) { ?>
-            popupwnd('<?php echo base_url();?>desksite/general_inquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
+            popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
         <?php } else { ?>
             <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
                 popupwnd('<?php echo base_url();?>desksite/general_inquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
