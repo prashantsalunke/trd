@@ -58,7 +58,7 @@ class Community_Model extends CI_Model {
     	$this->db->from(TABLES::$COMMUNITY_MEMBER . ' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.my_busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESSINFOIMAGE. ' AS c','a.my_busi_id=c.busi_id','inner');
-    	$this->db->join(TABLES::$USER. ' AS d','a.my_busi_id=d.busi_id','inner');
+    	$this->db->join(TABLES::$USER. ' AS d','a.my_busi_id=d.busi_id and d.is_contactperson=1','inner');
     	$this->db->join(TABLES::$COMPANY_INFO. ' AS e','a.my_busi_id=e.busi_id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS f','d.id=f.user_id','inner');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES. ' AS g','d.user_subcategory_id = g.id','inner');
@@ -69,7 +69,6 @@ class Community_Model extends CI_Model {
     	$this->db->where('d.account_activated', 1);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
-    	$this->db->where('d.is_contactperson',1);
     	$this->db->order_by('a.created_date','DESC');
     	$query = $this->db->get();
     	$row = $query->result_array();

@@ -81,11 +81,13 @@ class Alert_model extends CI_Model {
         $this->db->from(TABLES::$MANAGE_ALERT . ' AS ma');
         $this->db->where('ma.busi_id',$busiId);
         $query = $this->db->get();
+
         $row = $query->result_array();
+
         if(!empty($row)) {
-            return $row[0]['alert_count'];
+            return $row;
         } else {
-            return 0;
+            return array();
         }
     }
 }

@@ -1039,7 +1039,7 @@ class Alerts extends MX_Controller {
     			$inquiry = $this->inquirylib->getInquiryByBusiId($busiId);
     			$getMyOffers = $this->offerlib->getOfferByBusiId($busiId);
     		} else {
-    			$inquiry = $this->inquirylib->getBuyerInquiryByUBusiId($busiId);
+    			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busiId);
     			$getMyOffers = $this->offerlib->getBuyerOfferByBusiId($busiId);
     		}
 			// get new order alerts
@@ -1061,7 +1061,7 @@ class Alerts extends MX_Controller {
                 $this->myalert->saveAlertCount($busiId, $totalcount);
             }
 
-            if($totalcount > $getTotalUsersAlertCount) {
+            if($totalcount > $getTotalUsersAlertCount[0]['alert_count']) {
                 die(json_encode(array('dataHTML'=> $html,'totalCount'=>$totalcount)));
             } else {
                 die(json_encode(array('dataHTML'=> '','totalCount'=>$totalcount)));
