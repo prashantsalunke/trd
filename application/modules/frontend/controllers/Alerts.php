@@ -38,7 +38,7 @@ class Alerts extends MX_Controller {
 			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busi_id);
 			$offer = $this->offerlib->getBuyerOfferByBusiId($busi_id);
 		}
-		
+
 		$order = $this->orderlib->getOrderByBusiId($busi_id);
 		$favoritearray= $this->myfavoritelib->getMyfavoriteseller($busi_id,1);
 		$sendcommunityrequest = array();
@@ -756,6 +756,7 @@ class Alerts extends MX_Controller {
 		
 		$invoicedata = $this->orderlib->isInvoiceGenerated($order_id);
 		$orderdata = $this->orderlib->getOrderById($order_id);
+
 		if(count($invoicedata) == 0){
 			
 			$param = array();
@@ -1010,74 +1011,130 @@ class Alerts extends MX_Controller {
 		}
 		echo json_encode($map);
 	}
-	public function getNewAlerts () {
-	    $this->load->model('Community_Model', 'mycommunity' );
-	    $this->load->library('mylib/OfferLib');
-	    $this->load->library('mylib/InquiryLib');
-	    $this->load->library('mylib/CommunityLib');
-	    $this->load->library('mylib/orderLib');
-	    $busiId = $this->session->userdata('busi_id');
-	    $userId = $this->session->userdata('tsuserid'); 
-	    $category_id = $this->session->userdata('tsuser')['category_id'];
-	    $checkNewCommunityAlert = $this->mycommunity->checkNewCommunityAlert($busiId,$userId);	
 
-	    if($category_id == 1 || $category_id == 2) {
-			$inquiry = $this->inquirylib->getInquiryByBusiId($busiId);
-			$getMyOffers = $this->offerlib->getOfferByBusiId($busiId);
-		} else {
-			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busiId);
-			$getMyOffers = $this->offerlib->getBuyerOfferByBusiId($busiId);
-		} 
-	    $this->template->set ( 'newCommunity', $checkNewCommunityAlert);
-	    $this->template->set ( 'newInquiry', $inquiry);
-	    $this->template->set ( 'newOffers', $getMyOffers);
-	    $this->template->set_layout (false);
-	    $html = $this->template->build ('default/alerts_popup','',true);
+	/**
+	* function to get new alerts
+	*/
+	public function getNewAlerts () {
 	    
-	    $sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busiId);
-	    if(isset($sendcommunityrequest[0]['community_id']) == "" ) {
-	        $sendcommunityrequest = array();
-	    }
-	    $order = $this->orderlib->getOrderByBusiId($busiId);
-	    $totalcount = count($inquiry) + count($getMyOffers) + count($order) + count($sendcommunityrequest);
-	    echo json_encode(array('dataHTML'=> $html,'totalCount'=>$totalcount));
-	    
+	    $busiId = $this->session->userdata('busi_id');
+    	$userId = $this->session->userdata('tsuserid'); 
+
+	    if(!empty($busiId) && !empty($userId)) {
+
+	    	$checkNewCommunityAlert = array();
+
+            $this->load->model('Alert_Model', 'myalert' );
+    	    $this->load->library('mylib/OfferLib');
+    	    $this->load->library('mylib/InquiryLib');
+    	    $this->load->library('mylib/CommunityLib');
+    	    $this->load->library('mylib/orderLib');
+    	    
+    	    $categoryId = $this->session->userdata('tsuser')['category_id'];
+    	    //new request for add to community alerts
+    	    $checkNewCommunityAlert = $this->communitylib->getInvitationCommunityRequest($busiId);
+    
+    		// get new alerts for inquiry and offer alerts
+    	    if(in_array($categoryId,array(SELLER_ID,SHIPPER_ID))){
+    			$inquiry = $this->inquirylib->getInquiryByBusiId($busiId);
+    			$getMyOffers = $this->offerlib->getOfferByBusiId($busiId);
+    		} else {
+    			$inquiry = $this->inquirylib->getBuyerInquiryByUBusiId($busiId);
+    			$getMyOffers = $this->offerlib->getBuyerOfferByBusiId($busiId);
+    		}
+			// get new order alerts
+    		$order = $this->orderlib->getOrderByBusiId($busiId);
+
+    	    $this->template->set ( 'newCommunity', $checkNewCommunityAlert);
+    	    $this->template->set ( 'newInquiry', $inquiry);
+    	    $this->template->set ( 'newOffers', $getMyOffers);
+    	    $this->template->set ( 'busi_id',$busiId );
+    	    $this->template->set_layout (false);
+    	    $html = $this->template->build ('default/alerts_popup','',true);
+    	    
+    	    $totalcount = count($inquiry) + count($getMyOffers) + count($order) + count($checkNewCommunityAlert);
+    	    //check alert count
+            $getTotalUsersAlertCount = $this->myalert->getMyAlertCount($busiId);
+
+            if(empty($getTotalUsersAlertCount)) {
+                //save alert count to table
+                $this->myalert->saveAlertCount($busiId, $totalcount);
+            }
+
+            if($totalcount > $getTotalUsersAlertCount) {
+                die(json_encode(array('dataHTML'=> $html,'totalCount'=>$totalcount)));
+            } else {
+                die(json_encode(array('dataHTML'=> '','totalCount'=>$totalcount)));
+            }
+	    } else {
+	        die(json_encode(array('dataHTML'=> '','totalCount'=>0)));
+	    }	    
 	}
 	/**
 	function to accept add to community request
 	*/
 	public function alertAddToCommunity() {
+
 		$this->load->model('Community_Model', 'mycommunity' );
 
 		$id = $this->input->post('id');
+		
+		if(empty($id)) {
+			return 0;
+		}
+
 		$data = array();
 		$data['id'] = $id;
 		$data['alert_viewed'] = 1;
 		$data['status'] = 1;
 
 		$addToMyCommunity = $this->mycommunity->updateCommunity($data);
+		
 		if($addToMyCommunity == 1) {
 			echo 1;
 		}
 	}
 
+	/**
+	* function to clear alert
+	*/
 	public function clearAlert() {
+
 		$this->load->library('mylib/OfferLib');
-		$this->load->library('mylib/InquiryLib');
-		$type = $this->input->post('type');
+        $this->load->model('Inquiry_model', 'inquiry');
+
 		$id = $this->input->post('id');
+		$type = $this->input->post('type');
+
+		if(empty($type) && empty($id)) {
+			echo 'failed to clear alerts';
+		}
 		switch($type) {
 			case 'inquiry';
 				$data = array();
-				$data['id'] = $id;
 				$data['alert_viewed'] = 1;
-				$response = $this->inquirylib->updateInquiry($data);
+				$response = $this->inquiry->updateInquiryAlert($id,$data);
+				if($response > 0) {
+					echo 'cleared inquiry successfully';
+				}
 			break;
 			case 'offer';
 			$data = array();
 				$data['id'] = $id;
 				$data['alert_viewed'] = 1;
 				$response = $this->offerlib->updateOffer($data);
+				if($response > 0) {
+					echo 'cleared offer successfully';
+				}
+			break;
+			case 'order':
+			//not implemented yet
+			break;
+			case 'addToMyCommunity':
+			//not implemented yet
+			break;
+			case 'chat':
+			//not implemented yet
 			break;
 		}
 	}

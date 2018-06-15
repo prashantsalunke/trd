@@ -174,6 +174,15 @@ line-height:4px;
 }
 </style>
 <script>
+function submitContactForm() {
+    <?php if(!empty($tsuserid)) { ?>
+    <?php } else { ?>
+        $("#msg_cont").html("Please login to contact this shipper.");
+        ShowObject('Layer99', 1);
+    <?php } ?>
+}
+
+
 $(document).ready(function() {
     $("#Layer27").stickylayer({
         orientation: 1,
@@ -627,9 +636,10 @@ function stopWiggle(input) {
                     <p class="c1"><strong><?php 
                         // echo $Desksite['timezone'];
                         try {
-                            $mars = new DateTimeZone($Desksite['timezone']);
-                            $date = new DateTime('now', $mars);
-                            echo $date->format('h:i A');
+                            // $mars = new DateTimeZone($Desksite['timezone']);
+                            // $date = new DateTime('now', $mars);
+                            // echo $date->format('h:i A');
+                            echo date('h:i A');
                         } catch(Exception $e) {
                             echo date('h:i A');
                         }
@@ -975,12 +985,12 @@ function stopWiggle(input) {
                     <div class="inline box5">
                         <img src="<?php echo asset_url(); ?>images/posts-icon.png" id="Image19" alt="" class="img32">
                         <a href="javascript:openGeneralEnquiry(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
-                        Send General Offer
+                        Send General Inquiry
                         </a>
                     </div>
                     <div class="inline box5">
                         <img src="<?php echo asset_url(); ?>images/Mail.ico" id="Image19" alt="" class="img32">
-                        <a href="#" onclick="ShowObjectWithEffect('Layer216', 1, 'slideleft', 500, 'swing');return false;" target="_self" class="antag">
+                        <a href="#" onclick="submitContactForm(); ShowObjectWithEffect('Layer216', 1, 'slideleft', 500, 'swing');return false;" target="_self" class="antag">
                         Contact Shipper
                         </a>
                     </div>
@@ -989,6 +999,8 @@ function stopWiggle(input) {
             <!-- contact add ends -->
             <!-- contact us form -->
             <div id="Layer216" style="position:absolute;text-align:right;visibility:hidden;left:224px;top:18px;width:55%;height:627px;z-index:3851;">
+    <?php if(!empty($tsuserid)) { ?>
+
                 <div id="Layer216_Container" style="width:607px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
                     <div id="Layer217" class="a1" style="height:534px;">
                         <a href="#" onclick="ShowObjectWithEffect('Layer216', 0, 'slideleft', 300, 'swing');return false;">
@@ -1051,6 +1063,8 @@ function stopWiggle(input) {
                     </div>
                 </div>
             </div>
+            <?php }  ?>
+ 
             <!-- contact us form end -->
                 <!-- contact person -->
                 <div id="Layer62" style="position:absolute;text-align:right;visibility:hidden;left:0;right:0;margin:0 auto;top:140px;width:51%;height:447px;z-index:3854;">
@@ -1184,10 +1198,15 @@ function stopWiggle(input) {
                                                 <td class="image"><?php if(!empty($images[$i+1]['image'])) { ?><a href="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" data-rel="prettyPhoto_SlideShow31[SlideShow31]" rel="prettyPhoto_SlideShow31[SlideShow31]" title="UDTalk" class="img<?php echo ($i+1);?> ui-draggable" style="position: relative;"><img alt="UD Talk" id="PhotoGallery1_img<?php echo ($i+1);?>" src="<?php echo asset_url();?><?php echo $images[$i+1]['image'];?>" title="UD Talk" style="width:220px;"></a><?php } ?></td>
                                             </tr>
                                             <?php $i = $i + 2;} ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
+                                <?php if(count($images) <= 0) { ?>
+                                            <span style="margin-top:50px;font-size:15px;">The Shipper has not upload  UDtalks Images yet.</span>
+                                            <?php } ?>
                             </div>
+
                          </div>
                     </div>
                 </div>
@@ -1495,37 +1514,13 @@ function likeMyDesksite(busi_id) {
         ShowObject('Layer99', 1);
     },'json');
 }
-function submitContactForm() {
-    <?php if(!empty($tsuserid)) { ?>
-        <?php if($tscategory_id != 3) { ?>
-            $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
-            ShowObject('Layer99', 1);
-            ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
-        <?php } else { ?>
-            <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-                $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
-                ShowObject('Layer99', 1);
-                ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
-            <?php } else if($contact_details[0]['step'] < 2) { ?>
-                $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
-                ShowObject('Layer99', 1);
-            <?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
-                $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
-                ShowObject('Layer99', 1);
-            <?php } ?>
-        <?php } ?>
-    <?php } else { ?>
-        $("#msg_cont").html("Please login to contact this shipper.");
-        ShowObject('Layer99', 1);
-    <?php } ?>
-}
 function openGeneralEnquiry(id) {
     <?php if(!empty($tsuserid)) { ?>
         <?php if($tscategory_id != 3) { ?>
-            popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+            popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
         <?php } else { ?>
             <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-                popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+                popupwnd('<?php echo base_url();?>desksite/general_inquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
             <?php } else if($contact_details[0]['step'] < 2) { ?>
                 $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
                 ShowObject('Layer99', 1);
@@ -1572,9 +1567,7 @@ $(document).ready(function(){
                     notEmpty: {
                         message: 'Please enter Phone Number'
                     },
-                  integer: {
-                        message: 'Enter Only Numbers'
-                    }
+                  
                 }
             },
             country: {
@@ -1618,6 +1611,7 @@ function saveContactUsForm() {
         };
     $('#contactusfrm').ajaxSubmit(options);
 }
+
 function showContactUsRequest(formData, jqForm, options){
     var queryString = $.param(formData);
     <?php if($tscategory_id != 3) { ?>
@@ -1640,9 +1634,10 @@ function showContactUsRequest(formData, jqForm, options){
 function showContactUsResponse(resp, statusText, xhr, $form){
     ajaxindicatorstop();
     if(resp.status == 1) {
-        $("#msg_cont").html("Your offer has been sent successfully to the shipper.");
+        $("#msg_cont").html("Your Contact Request has been sent successfully to the shipper.");
         ShowObject('Layer99', 1);
         ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
+        resetForm();
     }
 }
 function resetForm() {

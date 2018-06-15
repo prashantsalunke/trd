@@ -197,6 +197,37 @@
    		 <p class="sfont2">Sourcing with more details is available by selecting additional options from the More Options Menu on the right side..</p>
    		 <br>
     </div>
+	<?php if(isset($params['main_prod']) && $params['main_prod']!=''){ ?>
+		<div class="col-lg-10 section11 products-list" style="margin-bottom: 15px;">
+			<div class="row" style="border: 1px solid rgb(211, 211, 211);background-color: rgb(255, 255, 255); height: 98px;;margin:0;">
+				<div class="col-md-1 text-center" style="padding-top:20px">
+					<img src="<?php echo asset_url(); ?>images/blank_folder.png" width="40">
+					<span class="text-center"><?php echo ucwords($params['main_prod']);?></span>
+				</div>
+				<div class="col-md-11">
+					<div class="col-md-12" style="margin-top:7px;margin-bottom:10px">
+						<span style="padding-left: 60px; font-size:13px">Categories/ <?php echo $productMainCat->cat_name;?> / <span style="color:#1e90ff;"><?php echo $productMainCat->sub_cat;?></span> / <span style="color:#1e90ff;"><?php echo ucwords($params['main_prod']);?></span></span>
+					
+					</div>
+					<div style="overflow-y: scroll; height: 52px;padding-left:0;padding-right:0;" class="col-md-12">
+						<?php if(!empty($subproducts)){ 
+							foreach($subproducts as $res){ ?>
+								<div class="col-md-3">
+									<ul style="list-style:none;margin-bottom: -5px;">
+										<li>
+											<a class="btn btn-link main_prod" style="color:#808080;text-decoration:none;" href="javascript:void(0);" onclick="filter_by_subprod('<?php echo $params['main_cat_id'];?>','<?php echo $params['cat_id'];?>','<?php echo $params['main_prod'];?>','<?php echo $res['name'];?>')"><?php echo $res['name']; ?></a>
+										</li>
+									</ul>    
+								</div>
+								
+							<?php }
+						
+						} ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
     <div class="row" style="margin:0px;">
 	    <div class="col-lg-10 section11 products-list"  id="Layer6"  >
 		<?php  if(count($products) > 0 && $products[0]['id'] !='') { 
@@ -285,7 +316,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 col-sm-12" style="width:311px;">
+					<div class="col-md-3 col-sm-12" style="float: right;">
 						<div id="Layer8_<?php echo $key;?>" class="section9 seller_Layer8" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
 						    <div id="wb_Shape1" class="stylebox">
 						        <a href="#" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');$('.carousel').carousel();return false;"><img src="<?php echo asset_url() ?>images/img0013.png" id="Shape1" alt="" style="width:11px;height:48px;"></a>
@@ -894,6 +925,7 @@ var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
         var curr_slide = $(this).attr("alt");
         $(".sub_cat").css('color', '#337ab7');
         $(".slide-details").hide();
+		$("#sub_cat_main_prod").hide();
         $("#" + curr_slide).show();
         $("." + curr_slide).show();
         stayOpen.addClass('show');
@@ -921,9 +953,30 @@ var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
         $(".sub_cat").css('color', '#337ab7');
         $("." + str).css('color', 'orange');
     }
-    function filter_by_subcat(cat_id,cat_sub_id){
+    function filter_by_subcat(cat_id, cat_sub_id,main_prod) {
         $("#filter_cat").val(cat_id);
         $("#filter_sub_cat").val(cat_sub_id);
-        $( "#filter_by_category" ).submit();
+        $("#main_prod").val(main_prod);
+        $("#filter_by_category").submit();
+    }
+	function filter_by_subprod(cat_id, cat_sub_id,main_prod,sub_prod){
+		$("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#sub_prod").val(sub_prod);
+        $("#filter_by_category").submit();
+	}
+	function get_main_products(main_cat,id,sub_cat_name){
+		$.ajax({
+			url: base_url + "home/get_main_products",
+			type: "post",
+			data : { id : id,name:sub_cat_name,main_cat:main_cat },
+			success: function (response) {
+				$("#sub_cat_main_prod").html('');
+				$("#sub_cat_main_prod").append(response);
+				$("#sub_cat_main_prod").show();
+				
+			}
+		})
     }
 </script>

@@ -20,6 +20,7 @@ class Community_Model extends CI_Model {
     		return 0;
     	}
     }
+
     public function getSendCommunityRequest($busi_id)
     {
         $start_date = date('Y-m-d',strtotime("-15 days"));
@@ -46,13 +47,14 @@ class Community_Model extends CI_Model {
     	$row = $query->result_array();
     	return $row;
     }
+
     public function getInvitationCommunityRequest($busi_id)
     {
     	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$this->db->select('a.id as community_id,a.created_date as added_date,b.*,c.info_img1,c.info_img2,d.name_prefix,d.user_category_id,d.name,e.company_introduction,e.hot_presentation,f.profile_image,
 		g.sub_category,(select GROUP_CONCAT(j.name SEPARATOR ", ") from tbl_main_product as j where j.busi_id=b.id AND j.status != 0 group by j.busi_id) as mainproducts,
     			(select GROUP_CONCAT(k.name SEPARATOR ", ") from tbl_shipper_service as k where k.busi_id=b.id AND k.status != 0 group by k.busi_id) as mainservices,
-    			(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
+    			(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count,a.my_busi_id,d.name,f.profile_image,h.user_category,f.country,a.alert_viewed,d.id as user_id');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER . ' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.my_busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESSINFOIMAGE. ' AS c','a.my_busi_id=c.busi_id','inner');
@@ -60,6 +62,7 @@ class Community_Model extends CI_Model {
     	$this->db->join(TABLES::$COMPANY_INFO. ' AS e','a.my_busi_id=e.busi_id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS f','d.id=f.user_id','inner');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES. ' AS g','d.user_subcategory_id = g.id','inner');
+        $this->db->join(TABLES::$USER_CATEGORIES. ' AS h','d.user_category_id=h.id','inner');
     	$this->db->where('a.busi_id',$busi_id);
     	$this->db->where('a.is_deleted',0);
     	$this->db->where('a.status',0);
@@ -78,14 +81,15 @@ class Community_Model extends CI_Model {
     	$this->db->where('id',$data['id']);
     	$query=$this->db->update(TABLES::$COMMUNITY_MEMBER,$data);
     	
-    	if($query)
-    		return 1;
-    		else
-    			return 0;
-    			
+    	if($query) {
+	       return 1;
+	   } else {
+    	    return 0;
+	   }		
     }
     
-    public function addToMyCommunity($map) {
+    public function addToMyCommunity($map) 
+    {
         $this->db->select('id');
         $this->db->from(TABLES::$COMMUNITY_MEMBER);
         $this->db->where('busi_id',$map['busi_id']);
@@ -103,7 +107,8 @@ class Community_Model extends CI_Model {
         }
     }
     
-    public function searchCommunityMember($id,$name) {
+    public function searchCommunityMember($id,$name) 
+    {
         $start_date = date('Y-m-d',strtotime("-15 days"));
     	/*$this->db->select('a.*,b.id as mbid,b.company_name as cname,b.company_country as country,b.company_province as state,
     			b.company_city as city,b.plan_id,b.is_logo_verified,b.gaurantee_period,
@@ -158,23 +163,27 @@ class Community_Model extends CI_Model {
     	return $result;
     }
     
-    public function deleteCommunityMembers($busi_id,$members) {
+    public function deleteCommunityMembers($busi_id,$members) 
+    {
     	$this->db->where("((my_busi_id = ".$busi_id." AND busi_id IN(".$members.")) OR (busi_id = ".$busi_id." AND my_busi_id IN(".$members.")))",'',false);
     	$this->db->where('status',1);
     	return $this->db->delete(TABLES::$COMMUNITY_MEMBER);
     }
     
-    public function deleteCommunityRequest($id) {
+    public function deleteCommunityRequest($id) 
+    {
     	$this->db->where('id',$id);
     	return $this->db->delete(TABLES::$COMMUNITY_MEMBER);
     }
     
-    public function acceptCommunityRequest($params) {
+    public function acceptCommunityRequest($params) 
+    {
     	$this->db->where('id',$params['id']);
     	return $this->db->update(TABLES::$COMMUNITY_MEMBER,$params);
     }
     
-    public function getCommunityPostById($id) {
+    public function getCommunityPostById($id) 
+    {
     	$this->db->select('a.id,a.title,a.busi_id,b.company_name,c.name_prefix,c.name');
     	$this->db->from(TABLES::$COMMMUNITY_POST.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
@@ -185,7 +194,8 @@ class Community_Model extends CI_Model {
     	return $result;
     }
     
-    public function getCommunityPostDetailById($id) {
+    public function getCommunityPostDetailById($id) 
+    {
     	$this->db->select('a.*');
     	$this->db->from(TABLES::$COMMMUNITY_POST.' AS a');
     	$this->db->where('a.id', $id);
@@ -194,12 +204,14 @@ class Community_Model extends CI_Model {
     	return $result;
     }
     
-    public function updateCommunityPost($params) {
+    public function updateCommunityPost($params) 
+    {
     	$this->db->where('id',$params['id']);
     	return $this->db->update(TABLES::$COMMMUNITY_POST,$params);
     }
     
-    public function updateCommunityVisit($id) {
+    public function updateCommunityVisit($id) 
+    {
     	$sql = "UPDATE ".TABLES::$COMMMUNITY_POST." SET postviews = postviews + 1 WHERE id=".$id;
     	$this->db->query($sql);
     	return $this->db->affected_rows();
@@ -214,7 +226,8 @@ class Community_Model extends CI_Model {
         return $data;
     }
 
-    public function getMyCommunity($myBusiId) {
+    public function getMyCommunity($myBusiId) 
+    {
         $this->db->select('id');
         $this->db->from(TABLES::$COMMUNITY_MEMBER);
         $this->db->where('my_busi_id',$map['my_busi_id']);
@@ -227,7 +240,7 @@ class Community_Model extends CI_Model {
         }
     }
 
-    public function checkNewCommunityAlert($myBusiId,$userId)
+    public function checkNewCommunityAlert($myBusiId)
     {
         $this->db->select('cm.id,cm.my_busi_id,u.profile_image,usr.name,c.user_category,u.country');
         $this->db->from(TABLES::$COMMUNITY_MEMBER. ' AS cm');
@@ -235,11 +248,9 @@ class Community_Model extends CI_Model {
         $this->db->join(TABLES::$USER_INFO. ' AS u','cm.my_user_id=u.user_id','inner');
         $this->db->join(TABLES::$USER_CATEGORIES. ' AS c','usr.user_category_id=c.id','inner');
         $this->db->where('cm.busi_id', $myBusiId);
-        $this->db->where('cm.user_id', $userId);
         $this->db->where('cm.alert_viewed', 0);
         $this->db->order_by('cm.id', 'desc');
         $query = $this->db->get();
-        //echo $this->db->last_query();
         $row = $query->result_array();
         if ($row > 0) {
             return $row;

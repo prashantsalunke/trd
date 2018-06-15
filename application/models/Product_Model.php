@@ -686,8 +686,8 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
     	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
-    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
-    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','left');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','left');
         $this->db->join(TABLES::$USER.' AS u','a.busi_id=u.busi_id','left');
         $this->db->join(TABLES::$BUSINESS_INFO.' AS bi','a.busi_id=bi.id','left');
     	$this->db->where('a.id',$id);
@@ -865,13 +865,13 @@ class Product_Model extends CI_Model {
     	
     }
     public function getVideodetailsById($id) {
-    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id, g.vedio_file as video_file,g.id as vid,h.company_name');
+    	$this->db->select('a1.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id, g.vedio_file as video_file,g.id as vid,h.company_name');
     	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
     	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
-    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','left');
     	$this->db->join(TABLES::$PRODUCT_VIDEO. ' AS g','g.product_item_id=a.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS h','h.id=a.busi_id','inner');
     	$this->db->where('g.id',$id);
@@ -995,7 +995,7 @@ class Product_Model extends CI_Model {
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('b.id', $id);
     	$this->db->order_by('a.created_date','DESC');
-    	$this->db->group_by('a.id');
+    	//$this->db->group_by('a.id');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -2660,7 +2660,80 @@ class Product_Model extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
-    
+    public function getMainProdBySubCat($id) {
+    	$this->db->select('a.name');
+    	$this->db->from(TABLES::$MAIN_PRODUCT.' AS a');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS b','a.subcat_id=b.id');
+    	$this->db->where('a.status',1);
+    	$this->db->where('a.subcat_id',$id);
+    	$this->db->order_by('a.sortorder','DESC');
+    	$this->db->group_by('a.name');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+	public function getSubProdBySubCat($name){ 
+		$this->db->select('a.name,a.mproduct_id');
+    	$this->db->from(TABLES::$SUB_PRODUCT.' AS a');
+		$this->db->join(TABLES::$MAIN_PRODUCT.' AS b','a.mproduct_id=b.id');
+    	$this->db->where('a.status',1);
+    	$this->db->where('b.name',$name);
+    	$this->db->order_by('a.sortorder','DESC');
+    	$this->db->group_by('a.name');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+	}
+	public function filterProducts($params){ 
+    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,e.id as user_id, e.name_prefix,e.name as user_name, h.sub_category, g.*, d.name as main_category_name,  d.id as main_category_id, l.id as community_id,IFNULL(n.picture,f.profile_image) as profile_image,n.name as contact_name,n.name_prefix as contact_prefix ');
+    	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
+    	$this->db->join(TABLES::$USER.' AS e','a.busi_id=e.busi_id','inner');
+    	$this->db->join(TABLES::$USER_INFO.' AS f','e.id=f.user_id','inner');
+    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS h','e.user_subcategory_id=h.id','left');
+    	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
+    	$this->db->join(TABLES::$SUB_PRODUCT.' AS c','c.id=a.sproduct_id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','a.mproduct_id=d.id','left');
+    	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l','a.busi_id=l.my_busi_id','left');
+    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','b.id = n.busi_id ','left');
+    	$this->db->where('a.status', 1);
+    	$this->db->where('b.is_disable', 0);
+    	$this->db->where('b.is_deleted', 0);
+    	$this->db->where('d.status', 1);
+    	$this->db->where('(c.status = 1 OR c.status IS NULL)', '',false);
+    	if(isset($params['main_prod']) && $params['main_prod']!='') {
+			$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
+		}
+    	if(isset($params['sub_prod']) && $params['sub_prod']!='') {
+			$this->db->where("(c.name like '%".trim($params['sub_prod'])."%')",'',false);
+		}
+    	
+    	$this->db->group_by('a.id');
+    	if(isset($params['page']) && !empty($params['page'])) {
+    		$start = $params['page']*25 - 25;
+    		$this->db->limit($start,25);
+    	}
+    	$this->db->order_by('b.rank','DESC');
+    	$this->db->order_by('b.plan_id','DESC');
+    	$this->db->order_by('b.is_logo_verified','DESC');
+    	$this->db->order_by('b.gaurantee_period','DESC');
+    	$query = $this->db->get();
+    	//echo $this->db->last_query();
+    	$result = $query->result_array();
+    	return $result;
+    	
+    }
+	public function getProductCatSubcat($cat_id,$sub_cat_id) {
+    	$this->db->select('a.name as cat_name,b.name as sub_cat');
+    	$this->db->from(TABLES::$PRODUCT_MAIN_CATEGORY.' AS a ');
+		$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS b ','a.id = b.mcat_id ','inner');
+    	$this->db->where('a.status', 1);
+    	$this->db->where('a.id', $cat_id);
+    	$this->db->where('b.id', $sub_cat_id);
+		$query = $this->db->get();
+    	$result = $query->row();
+    	return $result;
+    }
 }
     
     

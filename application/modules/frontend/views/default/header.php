@@ -19,7 +19,7 @@
   position: fixed;
   right: 15px;
   width: 300px;
-  z-index: 1111;
+  z-index: 1000;
 }
 a.headerMenu:hover {
 	color:#F05235 !important;

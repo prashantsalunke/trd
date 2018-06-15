@@ -54,6 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE; 
 
 $route['intro'] = 'frontend/home/intro';
+$route['home/get_main_products'] = 'frontend/Home/getMainProductsBySubcat';
+
+
 $route['stationhome'] = 'frontend/SellerStation';
 $route['sellerstation/my_account'] = 'frontend/SellerStation/myAccount';
 $route['homepage/setcookie'] = 'frontend/Home/setHomePageCookie';
@@ -96,8 +99,11 @@ $route['account/termscondition'] = 'frontend/Account/termsCondition';
 
 /* My station */
 $route['mystation'] = 'frontend/Station';
+$route['mystation/homeAlert'] = 'frontend/Station';
 $route['shipper_mystation'] = 'frontend/Station/shipperStation';
+$route['shipper_mystation/homeAlert'] = 'frontend/Station/shipperStation';
 $route['buyer_mystation'] = 'frontend/Station/buyerStation';
+$route['buyer_mystation/homeAlert'] = 'frontend/Station/buyerStation';
 $route['mystation/buyermessage'] = 'frontend/Station/buyerMessage';
 $route['mystation/myaccount'] = 'frontend/Station/myaccount';
 $route['mystation/changepassword'] = 'frontend/Station/changepassword';
@@ -444,7 +450,7 @@ $route['([0-9]+)/featured-ads-checkout'] = 'frontend/MyAds/fcCheckout/$1';
 $route['([0-9]+)/subscription-checkout'] = 'frontend/Home/getSubscriptionCheckout/$1';
 $route['desksite/like/([0-9]+)'] = 'frontend/Home/likeBusiness/$1';
 $route['desksite/catalogue/like/([0-9]+)'] = 'frontend/Home/likeCatalogue/$1';
-$route['desksite/general_offer/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
+$route['desksite/general_enquiry/([0-9]+)'] = 'frontend/Home/getGeneralInquiry/$1';
 $route['desksite/item_enquiry/([0-9]+)/([0-9]+)'] = 'frontend/Home/getItemInquiry/$1/$2';
 $route['desksite/saveenquiry'] = 'frontend/Home/saveGeneralInquiry';
 $route['desksite/saveoffer'] = 'frontend/Home/saveGeneralOffer';
