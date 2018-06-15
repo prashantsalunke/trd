@@ -38,6 +38,7 @@ class Offer_model extends CI_Model {
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('d.is_contactperson', 1);
     	$this->db->where('a.alert_viewed', 0);
+        $this->db->group_by('offer_id');
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
