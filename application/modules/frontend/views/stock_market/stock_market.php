@@ -149,7 +149,7 @@ div.pp_pic_holder {
 						              	</div>
 						            </div>
 						            <?php } ?>
-						            <div id="Layer28" style="width: 1029px;height:676px;overflow-x: auto;">
+						            <div id="Layer28" style="width: 1029px;height:625px;overflow-x: auto;">
 				                
 				           		</div>
 									<div id="Layer32" style="width: 1029px;height:676px;overflow-x: auto;">
