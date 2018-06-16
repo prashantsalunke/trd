@@ -166,12 +166,12 @@ div.pp_pic_holder {
 								<!-- view past close post add new post buttons end-->
 								<!-- close my post 1 -->
 
-								<div id="Layer28" style="width: 1029px;height:616px;overflow-x: hidden;">
+								<div id="Layer28" style="width: 1029px;height:625px;overflow-x: hidden;">
 				                
 				           		</div>
 
 
-								<div id="Layer32" style="width: 1029px;height:616px;overflow-x: hidden;">
+								<div id="Layer32" style="width: 1029px;height:625px;overflow-x: hidden;">
 				             	</div>
 				             	<br><br><br><br>
 							</div>
@@ -181,9 +181,9 @@ div.pp_pic_holder {
 							<div id="menu1" class="tab-pane fade content122">
 							
 
-							<div id="Layer288" style="width: 1029px;height:616px;overflow-x: hidden;"></div>
+							<div id="Layer288" style="width: 1029px;height:625px;overflow-x: hidden;"></div>
 								
-							<div id="Layer322" style="height:616px;width: 1029px;overflow-x: hidden;"></div>
+							<div id="Layer322" style="height:625px;width: 1029px;overflow-x: hidden;"></div>
 								<!-- view my post end -->
 								<!-- view past close post add new post buttons -->
 								<div class="tab1" style="padding-left:16px;">
