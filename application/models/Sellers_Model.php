@@ -377,6 +377,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$TRADE_INFO.' AS k','a.busi_id=k.busi_id','left');
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l','a.busi_id=l.my_busi_id','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
+		$this->db->join(TABLES::$MAIN_PRODUCT.' AS p ','b.id = p.busi_id ','left');
     	$this->db->where('a.user_category_id', 2);
     	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.account_activated', 1);
@@ -385,36 +386,36 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.is_disable', 0);
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('o.step', 2);
-    	if(!empty($params['keyword'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
 	    	if(!empty($params['country'])) {
 	    		$this->db->where("b.company_country like '%".$params['country']."%'",'',false);
 	    	}
 	    	if(!empty($params['city'])) {
 	    		$this->db->where("b.company_city like '%".$params['city']."%'",'',false);
 	    	}
-	    	/*if(!empty($params['keyword'])) {
-	    		$this->db->where("(b.company_name like '%".$params['keyword']."%' OR h.name like '%".$params['keyword']."%' OR n.name like '%".trim($params['keyword'])."%' OR a.name like '%".$params['keyword']."%' OR sc.alias like '%".$params['keyword']."%')",'',false);
-	    	}*/
 	    	if(!empty($params['keyword'])) {
 	    		$this->db->where("(".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword'])." OR ".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('sc.alias',$params['keyword']).")",'',false);
 	    	}
     	} else {
-    		if(!empty($params['service'])) {
+    		if(isset($params['service']) && !empty($params['service'])) {
     			$this->db->where('sc.id',$params['service']);
     		}
     	}
-    	if(!empty($params['busi_id'])) {
-    		if(!empty($params['community_hide'])) {
+    	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
+    		if(isset($params['community_hide']) && !empty($params['community_hide'])) {
     			$this->db->where('a.busi_id !=', $params['busi_id']);
     		}
-    		if(!empty($params['community_only'])) {
+    		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->order_by('k.busi_id', 'DESC');
     		}
     		
     	}
-    	if(!empty($params['usubcat_id'])) {
+    	if(isset($params['usubcat_id']) && !empty($params['usubcat_id'])) {
     		$this->db->where("e.id",$params['usubcat_id']);
     	}
+		if(isset($params['main_prod']) && !empty($params['main_prod'])) {
+			$this->db->where("(h.name like '%".trim($params['main_prod'])."%')",'',false);
+		}
     	$this->db->order_by('b.plan_id','DESC');
     	$this->db->order_by('b.is_logo_verified','DESC');
     	$this->db->group_by('b.id');
@@ -441,6 +442,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$TRADE_INFO.' AS k','a.busi_id=k.busi_id','left');
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l','a.busi_id=l.my_busi_id','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
+		$this->db->join(TABLES::$MAIN_PRODUCT.' AS p ','b.id = p.busi_id ','left');
     	$this->db->where('a.user_category_id', 2);
     	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.account_activated', 1);
@@ -449,36 +451,36 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.is_disable', 0);
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('o.step', 2);
-    	if(!empty($params['keyword'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
 	    	if(!empty($params['country'])) {
 	    		$this->db->where("b.company_country like '%".$params['country']."%'",'',false);
 	    	}
 	    	if(!empty($params['city'])) {
 	    		$this->db->where("b.company_city like '%".$params['city']."%'",'',false);
 	    	}
-	    	/*if(!empty($params['keyword'])) {
-	    		$this->db->where("(b.company_name like '%".$params['keyword']."%' OR h.name like '%".$params['keyword']."%' OR n.name like '%".trim($params['keyword'])."%' OR a.name like '%".$params['keyword']."%' OR sc.alias like '%".$params['keyword']."%')",'',false);
-	    	}*/
-    		if(!empty($params['keyword'])) {
+	    	if(!empty($params['keyword'])) {
 	    		$this->db->where("(".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword'])." OR ".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('sc.alias',$params['keyword']).")",'',false);
 	    	}
     	} else {
-    		if(!empty($params['service'])) {
+    		if(isset($params['service']) && !empty($params['service'])) {
     			$this->db->where('sc.id',$params['service']);
     		}
     	}
-    	if(!empty($params['busi_id'])) {
-    		if(!empty($params['community_hide'])) {
+    	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
+    		if(isset($params['community_hide']) && !empty($params['community_hide'])) {
     			$this->db->where('a.busi_id !=', $params['busi_id']);
     		}
-    		if(!empty($params['community_only'])) {
+    		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->order_by('k.busi_id', 'DESC');
     		}
-    
+    		
     	}
-    	if(!empty($params['usubcat_id'])) {
+    	if(isset($params['usubcat_id']) && !empty($params['usubcat_id'])) {
     		$this->db->where("e.id",$params['usubcat_id']);
     	}
+		if(isset($params['main_prod']) && !empty($params['main_prod'])) {
+			$this->db->where("(p.name like '%".trim($params['main_prod'])."%')",'',false);
+		}
     	$this->db->order_by('a.created_date','DESC');
     	$query = $this->db->get();
     	$result = $query->result_array();
@@ -1138,7 +1140,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
-    	if(!empty($params['keyword'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
     		if(!empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
@@ -1152,15 +1154,18 @@ class Sellers_Model extends CI_Model {
     			if($params['type'] ==1) {
     				$this->db->order_by('a.unit_price', 'ASC');
     			} elseif($params['type'] ==2){
-    				
+    
     				$this->db->order_by('a.unit_price', 'DESC');
     			}
     		}
     	} else {
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
     	}
+    	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
+    		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
+    	} 
     	
     	$this->db->group_by('a.id');
     	if(!empty($params['page'])) {
@@ -1186,7 +1191,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
-    	if(!empty($params['keyword'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
     		if(!empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
@@ -1205,11 +1210,13 @@ class Sellers_Model extends CI_Model {
     			}
     		}
     	} else {
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
     	}
-    	 
+    	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
+    		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
+    	} 
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -1231,13 +1238,10 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
-    	if(!empty($params['keyword'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
     		if(!empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		/*if(!empty($params['keyword'])) {
-    			$this->db->where("(b.catalogue_title like '%".trim($params['keyword'])."%')",'',false);
-    		}*/
     		if(!empty($params['keyword'])) {
     			$this->db->where("(".fulltext_search_str('b.catalogue_title',$params['keyword']).")",'',false);
     		}
@@ -1248,11 +1252,13 @@ class Sellers_Model extends CI_Model {
     			$this->db->where("c.plan_id > 1",'',false);
     		}
     	} else {
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
     	}
-    	
+    	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
+    		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
+    	}
     	$this->db->group_by('b.id');
     	if(!empty($params['page'])) {
     		$start = $params['page']*25 - 25;
@@ -1278,13 +1284,10 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.status', 1);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
-    	if(!empty($params['keyword'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
     		if(!empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		/*if(!empty($params['keyword'])) {
-    			$this->db->where("(b.catalogue_title like '%".trim($params['keyword'])."%')",'',false);
-    		}*/
     		if(!empty($params['keyword'])) {
     			$this->db->where("(".fulltext_search_str('b.catalogue_title',$params['keyword']).")",'',false);
     		}
@@ -1295,9 +1298,12 @@ class Sellers_Model extends CI_Model {
     			$this->db->where("c.plan_id > 1",'',false);
     		}
     	} else {
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
+    	}
+    	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
+    		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
     	}
     	 
     	$query = $this->db->get();
@@ -1336,44 +1342,47 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.is_disable', 0);
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('o.step', 4);
-    	if(!empty($params['keyword'])) {
-    		if(!empty($params['country'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
+    		if(isset($params['country']) && !empty($params['country'])) {
     			$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['city'])) {
+    		if(isset($params['city']) && !empty($params['city'])) {
     			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
     		}
-    		if(!empty($params['type'])) {
+    		if(isset($params['type']) && !empty($params['type'])) {
     			if($params['type'] ==1) {
     				$this->db->order_by('b.is_logo_verified', 'DESC');
     			}
     		}
-    		if(!empty($params['keyword'])) {
+    		if(isset($params['keyword']) && !empty($params['keyword'])) {
     			$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);
     		}
     	} else {
-    		if(!empty($params['country'])) {
+    		if(isset($params['country']) && !empty($params['country'])) {
     			$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['city'])) {
+    		if(isset($params['city']) && !empty($params['city'])) {
     			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
     		}
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('k.id', $params['cat_id']);
     		}
     	}
-    	if(!empty($params['busi_id'])) {
-    		if(!empty($params['community_only'])) {
+    	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
+    		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->where("l.my_busi_id",$params['busi_id']);
     		}
-    		if(!empty($params['community_hide'])) {
+    		if(isset($params['community_hide']) && !empty($params['community_hide'])) {
     			$this->db->where("l.my_busi_id !=",$params['busi_id']);
     		}
     	}
-    	if(!empty($params['plan_id'])) {
+    	if(isset($params['plan_id']) && !empty($params['plan_id'])) {
     		if($params['plan_id'] > 1) {
     			$this->db->order_by('b.plan_id', 'DESC');
     		}
+    	}
+		if(isset($params['main_prod']) && !empty($params['main_prod'])) {
+    		$this->db->where("(h.name like '%".trim($params['main_prod'])."%')",'',false);
     	}
     	$this->db->order_by('b.rank','DESC');
     	$this->db->order_by('b.plan_id','DESC');
@@ -1412,44 +1421,47 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.is_disable', 0);
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('o.step', 4);
-    	if(!empty($params['keyword'])) {
-    		if(!empty($params['country'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
+    		if(isset($params['country']) && !empty($params['country'])) {
     			$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['city'])) {
+    		if(isset($params['city']) && !empty($params['city'])) {
     			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
     		}
-    		if(!empty($params['type'])) {
+    		if(isset($params['type']) && !empty($params['type'])) {
     			if($params['type'] ==1) {
     				$this->db->order_by('b.is_logo_verified', 'DESC');
     			}
     		}
-    		if(!empty($params['keyword'])) {
+    		if(isset($params['keyword']) && !empty($params['keyword'])) {
     			$this->db->where("(".fulltext_search_str('a.name',$params['keyword'])." OR ".fulltext_search_str('b.company_name',$params['keyword'])." OR ".fulltext_search_str('h.name',$params['keyword']).")",'',false);
     		}
     	} else {
-    		if(!empty($params['country'])) {
+    		if(isset($params['country']) && !empty($params['country'])) {
     			$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['city'])) {
+    		if(isset($params['city']) && !empty($params['city'])) {
     			$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
     		}
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('k.id', $params['cat_id']);
     		}
     	}
-    	if(!empty($params['busi_id'])) {
-    		if(!empty($params['community_only'])) {
+    	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
+    		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->where("l.my_busi_id",$params['busi_id']);
     		}
-    		if(!empty($params['community_hide'])) {
+    		if(isset($params['community_hide']) && !empty($params['community_hide'])) {
     			$this->db->where("l.my_busi_id !=",$params['busi_id']);
     		}
     	}
-    	if(!empty($params['plan_id'])) {
+    	if(isset($params['plan_id']) && !empty($params['plan_id'])) {
     		if($params['plan_id'] > 1) {
     			$this->db->order_by('b.plan_id', 'DESC');
     		}
+    	}
+		if(isset($params['main_prod']) && !empty($params['main_prod'])) {
+    		$this->db->where("(h.name like '%".trim($params['main_prod'])."%')",'',false);
     	}
     	$this->db->order_by('a.created_date','DESC');
     	$query = $this->db->get();
