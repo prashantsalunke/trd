@@ -34,7 +34,11 @@
 								</a>
 							</li>
 							<li class="col-sm-2 col-xs-6">
-								<a href="b-station">
+								<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+									<a href="javascript:login_message()">
+								<?php }else {?>
+									<a href="b-station">
+								<?php } ?>
 									<img src="<?php echo asset_url(); ?>/images/ts/trade.png" style="width: 50px;">
 									<h5>B-Station</h5>
 								</a>
@@ -58,13 +62,21 @@
 								</a>
 							</li>
 							<li class="col-sm-2 col-xs-6">
-								<a href="stock-goods">
+								<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+									<a href="javascript:login_message()">
+								<?php }else {?>
+									<a href="stock-goods">
+								<?php } ?>
 									<img src="<?php echo asset_url(); ?>/images/ts/stock.png" style="width: 50px;">
 									<h5>Stock Goods</h5>
 								</a>
 							</li>
 							<li class="col-sm-2 col-xs-6">
-								<a href="community">
+								<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+									<a href="javascript:login_message()">
+								<?php }else {?>
+									<a href="community">
+								<?php } ?>
 									<img src="<?php echo asset_url(); ?>/images/ts/CommMember.png" style="width: 50px;">
 									<h5>Community</h5>
 								</a>
@@ -84,7 +96,12 @@
                                         break;
                                     }
                                  ?>
-								<a href="<?php echo $myStationUrl; ?>" style="opacity: 1 !important;position: relative;z-index: 11;"><!--  data-toggle="modal" data-target="#myalertModal" onclick="getAlerts();" -->
+                                 <?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+									<a href="javascript:login_message()">
+								<?php }else{ ?>
+									<a href="<?php echo $myStationUrl; ?>" style="opacity: 1 !important;position: relative;z-index: 11;">
+								<?php } ?>
+								<!--  data-toggle="modal" data-target="#myalertModal" onclick="getAlerts();" -->
 									<img src="<?php echo asset_url(); ?>/images/ts/Alerts1.png" style="width: 50px;">
 									<h5>My Alerts</h5>
 								</a><span style="background: red none repeat scroll 0 0;border: 1px solid #fff;border-radius: 100px;box-shadow: 0 0 6px #aaa;left: -3px;position: absolute;text-align: left;top: 20px;width: 50px;z-index: 1;" class="badge"><?php echo $totalcount; ?></span>
@@ -202,3 +219,9 @@
     	</div>
   	</div>
 </div>
+<script type="text/javascript">
+	function login_message(){
+            $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html("PLEASE LOGIN TO ACCESS MEMBER AREA.");
+            ShowObject('Layer99', 1);
+	}
+</script>

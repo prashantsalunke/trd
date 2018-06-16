@@ -238,7 +238,12 @@
 								<a href="<?php echo base_url();?>products"><img src="<?php echo asset_url();?>images/ts/products.png" style="width: 50px;"><br>
 								<h5 <?php if($page == 'product'){?>class="blue-color"<?php }?>>Products</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-								<a href="<?php echo base_url();?>b-station"><img src="<?php echo asset_url();?>images/ts/trade.png" style="width: 50px;"><br>
+								<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+									<a href="javascript:login_message()">
+								<?php }else{ ?>
+									<a href="<?php echo base_url();?>b-station">
+								<?php } ?>
+								<img src="<?php echo asset_url();?>images/ts/trade.png" style="width: 50px;"><br>
 								<h5>B-Station</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
 							<a href="<?php echo base_url();?>pro-video"><img src="<?php echo asset_url();?>images/ts/vidtube0.png" style="width: 50px;"><br>
@@ -250,13 +255,28 @@
 								<a href="<?php echo base_url();?>shipper"><img src="<?php echo asset_url();?>images/ts/shipper.png" style="width: 50px;"><br>
 								<h5 <?php if($page == 'shippers'){?>class="blue-color"<?php }?>>Shippers</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-							<a href="<?php echo base_url();?>stock-goods"><img src="<?php echo asset_url();?>images/ts/stock.png" style="width: 50px;"><br>
+								<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+									<a href="javascript:login_message()">
+								<?php }else{ ?>
+									<a href="<?php echo base_url();?>stock-goods">
+								<?php } ?>
+								<img src="<?php echo asset_url();?>images/ts/stock.png" style="width: 50px;"><br>
 								<h5>Stock Goods</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-							<a href="<?php echo base_url();?>community"><img src="<?php echo asset_url();?>images/ts/CommMember.png" style="width: 50px;"><br>
+							<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+									<a href="javascript:login_message()">
+							<?php }else{ ?>
+									<a href="<?php echo base_url();?>community">
+							<?php } ?>
+								<img src="<?php echo asset_url();?>images/ts/CommMember.png" style="width: 50px;"><br>
 								<h5>Community</h5></a></li>
 							<li class="col-sm-2 col-xs-6">
-							<a href="<?php echo base_url();?>my-alert" data-toggle="modal" data-target=".bs-example-modal-lg"><img src="<?php echo asset_url();?>images/ts/Alerts1.png" style="width: 50px;"><br>
+								<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+									<a href="javascript:login_message()">
+							<?php }else{ ?>
+									<a href="<?php echo base_url();?>my-alert" data-toggle="modal" data-target=".bs-example-modal-lg">
+							<?php } ?>
+								<img src="<?php echo asset_url();?>images/ts/Alerts1.png" style="width: 50px;"><br>
 								<h5>My Alerts</h5></a></li>
 						</ul>
 					</div>
@@ -5139,5 +5159,9 @@ function openMyStation() {
 	<?php } else if($tscategory_id == 3) { ?>
 		window.location.href="<?php echo base_url();?>buyer/profile/<?php echo $busi_id;?>";
 	<?php } ?>
+}
+function login_message(){
+            $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html("PLEASE LOGIN TO ACCESS MEMBER AREA.");
+            ShowObject('Layer99', 1);
 }
 </script>
