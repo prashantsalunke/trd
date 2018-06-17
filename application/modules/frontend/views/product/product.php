@@ -203,7 +203,7 @@ a.main_prod:hover{
     <div class="row" style="margin:0px;">
 		<div class="col-lg-10 section11 products-list"  id="Layer6"  >
 		<?php if(isset($params['main_prod']) && $params['main_prod']!=''){ ?>
-				<div class="row sub_products" style="border: 1px solid rgb(211, 211, 211);background-color: rgb(255, 255, 255);max-height: 176px;height: 95px;margin:0;">
+				<div class="row sub_products" style="border: 1px solid rgb(211, 211, 211);background-color: rgb(255, 255, 255);max-height: 176px;height: 95px;margin:0 0 20px;">
 					<div class="col-md-12">
 						<div class="col-md-1 text-center" style="position: absolute; top: 25%; vertical-align: middle;">
 							<img src="<?php echo asset_url(); ?>images/blank_folder.png" width="40">

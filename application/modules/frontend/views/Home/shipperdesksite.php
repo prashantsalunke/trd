@@ -640,7 +640,14 @@ a.style5:hover
         </div>
     </div>
 <script>
+
 $(document).ready(function() {
+	var sub_prod=$(".sub_products").height();
+	if(sub_prod > 175){ 
+		$(".sub_products").css('overflow-y','scroll');
+	}else{
+		$(".sub_products").css('overflow-y','hidden');
+	}
     $(".mysellercarousel").slideshow({
         interval: 3000,
         type: 'sequence',

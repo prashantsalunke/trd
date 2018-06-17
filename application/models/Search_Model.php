@@ -25,7 +25,6 @@ class Search_Model extends CI_Model {
     	$this->db->join(TABLES::$COMPANY_INFO.' AS f','b.id=f.busi_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
 		$this->db->join(TABLES::$PRODUCT_ITEM.' AS i ','b.id = i.busi_id ','left');
-		$this->db->join(TABLES::$SUB_PRODUCT.' AS j','j.id=i.sproduct_id','left');
     	$this->db->where('d.id', $type);
 		if($country!=''){
 			$this->db->where("c.country like '%".$country."%'",'',false);
@@ -33,11 +32,8 @@ class Search_Model extends CI_Model {
 		if($keyword!=''){
 			$this->db->where("(a.name like '%".$keyword."%' OR b.company_name like '%".$keyword."%')",'',false);
 		}
-		if(isset($params['main_prod']) && $params['main_prod']!='') {
-			$this->db->where("(h.name like '%".trim($params['main_prod'])."%')",'',false);
-		}
-		if(isset($params['sub_prod']) && $params['sub_prod']!='') {
-			$this->db->where("(j.name like '%".trim($params['sub_prod'])."%')",'',false);
+		if(isset($params['cat_id']) && $params['cat_id']!='') {
+			$this->db->where('h.subcat_id', $params['cat_id']);
 		}
     	$this->db->where('a.account_activated', 1);
     	$this->db->where('a.is_suspend', 0);
