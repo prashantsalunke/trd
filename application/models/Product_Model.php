@@ -1958,7 +1958,7 @@ class Product_Model extends CI_Model {
     	$this->db->from(TABLES::$BSTATION_POST.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$USER.' AS c','b.id=c.busi_id','inner');
-    	$this->db->where('b.id', $id);
+    	$this->db->where('a.id', $id);
         $this->db->where('c.user_role',3);
     	$query = $this->db->get();
     	$result = $query->result_array();
