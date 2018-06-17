@@ -431,6 +431,7 @@ class Home extends MX_Controller {
 		$params['cat_id'] = $this->input->post('cat_id');
 		$params['main_cat_id'] = $this->input->post('main_cat_id');
 		$params['main_prod'] = $this->input->post('main_prod');
+		$params['sub_prod'] = $this->input->post('sub_prod');
         $country = explode('_', $newcountry);
         $procategories = $this->general->getProductCategories();
         $this->template->set ( 'procategories', $procategories);
@@ -440,7 +441,6 @@ class Home extends MX_Controller {
 		$subproducts = $this->product->getSubProdBySubCat($params['main_prod']);
 		$this->template->set ( 'subproducts', $subproducts);
 		$this->template->set ( 'productMainCat', $productMainCat);
-        //print_r($country);
         $result =array();
         if($type ==1){
             $url = base_url()."seller";
@@ -468,7 +468,7 @@ class Home extends MX_Controller {
                 //return true;
             }else{
                 $this->load->model('Sellers_Model', 'sellers' );
-                $search = $this->search->searchBusiness($type, $keyword,$params['main_prod']);
+                $search = $this->search->searchBusiness($type, $keyword,$params);
                 $this->template->set ( 'Sellers', $search);
                 $Country= $this->account->getCountry();
                 $this->template->set ( 'Country', $Country);
@@ -481,6 +481,7 @@ class Home extends MX_Controller {
                 $this->template->set ( 'page', 'sellers' );
                 $this->template->set ( 'userId', '' );
                 $this->template->set ( 'sellerurl', $url );
+				$this->template->set ( 'params', $params );
                 $this->template->set_theme('default_theme');
                 $this->template->set_layout ('default')
                 ->title ( 'Find Seller' )
@@ -568,7 +569,7 @@ class Home extends MX_Controller {
                 return true;
             }else{
                 $this->load->model('Sellers_Model', 'buyers' ); 
-                $search = $this->search->searchBusinessCountry($type,$country=array(), $keyword,$params['main_prod']);
+                $search = $this->search->searchBusinessCountry($type,$country=array(),$keyword,$params);
                 $this->template->set ( 'Buyers', $search);
                 $Country= $this->account->getCountry();
                 $this->template->set ( 'Country', $Country);
@@ -580,6 +581,7 @@ class Home extends MX_Controller {
                 $this->template->set ( 'featuredProduct', $featuredProduct);
                 $this->template->set ( 'page', 'buyers' );
                 $this->template->set ( 'userId', '' );
+				$this->template->set ( 'params', $params );
                 $this->template->set_theme('default_theme');
                 $this->template->set_layout ('default')
                 ->title ( 'Find Buyer' )

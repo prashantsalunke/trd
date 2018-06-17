@@ -378,6 +378,8 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l','a.busi_id=l.my_busi_id','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
 		$this->db->join(TABLES::$MAIN_PRODUCT.' AS p ','b.id = p.busi_id ','left');
+		$this->db->join(TABLES::$PRODUCT_ITEM.' AS q ','b.id = q.busi_id ','left');
+		$this->db->join(TABLES::$SUB_PRODUCT.' AS r','q.id=q.sproduct_id','left');
     	$this->db->where('a.user_category_id', 2);
     	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.account_activated', 1);
@@ -416,6 +418,9 @@ class Sellers_Model extends CI_Model {
 		if(isset($params['main_prod']) && !empty($params['main_prod'])) {
 			$this->db->where("(h.name like '%".trim($params['main_prod'])."%')",'',false);
 		}
+		if(isset($params['sub_prod']) && !empty($params['sub_prod'])) {
+			$this->db->where("(r.name like '%".trim($params['sub_prod'])."%')",'',false);
+		}
     	$this->db->order_by('b.plan_id','DESC');
     	$this->db->order_by('b.is_logo_verified','DESC');
     	$this->db->group_by('b.id');
@@ -443,6 +448,8 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l','a.busi_id=l.my_busi_id','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
 		$this->db->join(TABLES::$MAIN_PRODUCT.' AS p ','b.id = p.busi_id ','left');
+		$this->db->join(TABLES::$PRODUCT_ITEM.' AS q ','b.id = q.busi_id ','left');
+		$this->db->join(TABLES::$SUB_PRODUCT.' AS r','q.id=q.sproduct_id','left');
     	$this->db->where('a.user_category_id', 2);
     	$this->db->where('a.is_contactperson', 1);
     	$this->db->where('a.account_activated', 1);
@@ -480,6 +487,9 @@ class Sellers_Model extends CI_Model {
     	}
 		if(isset($params['main_prod']) && !empty($params['main_prod'])) {
 			$this->db->where("(p.name like '%".trim($params['main_prod'])."%')",'',false);
+		}
+		if(isset($params['sub_prod']) && !empty($params['sub_prod'])) {
+			$this->db->where("(r.name like '%".trim($params['sub_prod'])."%')",'',false);
 		}
     	$this->db->order_by('a.created_date','DESC');
     	$query = $this->db->get();
@@ -1166,7 +1176,9 @@ class Sellers_Model extends CI_Model {
     	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
     		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
     	} 
-    	
+    	if(isset($params['sub_prod']) && $params['sub_prod']!=''){
+			$this->db->where("(e.name like '%".trim($params['sub_prod'])."%')",'',false);
+		}
     	$this->db->group_by('a.id');
     	if(!empty($params['page'])) {
     		$start = $params['page']*25 - 25;
@@ -1217,6 +1229,9 @@ class Sellers_Model extends CI_Model {
     	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
     		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
     	} 
+		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
+			$this->db->where("(e.name like '%".trim($params['sub_prod'])."%')",'',false);
+		}
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -1259,6 +1274,9 @@ class Sellers_Model extends CI_Model {
     	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
     		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
     	}
+		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
+			$this->db->where("(e.name like '%".trim($params['sub_prod'])."%')",'',false);
+		}
     	$this->db->group_by('b.id');
     	if(!empty($params['page'])) {
     		$start = $params['page']*25 - 25;
@@ -1305,7 +1323,9 @@ class Sellers_Model extends CI_Model {
     	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
     		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
     	}
-    	 
+    	if(isset($params['sub_prod']) && $params['sub_prod']!=''){
+			$this->db->where("(e.name like '%".trim($params['sub_prod'])."%')",'',false);
+		} 
     	$query = $this->db->get();
     	$result = $query->result_array();
     	if(count($result) > 0) {
@@ -1334,6 +1354,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS m ','b.id = m.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
+		$this->db->join(TABLES::$SUB_PRODUCT.' AS p','p.id=m.sproduct_id','left');
     	$this->db->where('a.user_category_id', 1);
     	$this->db->where('a.account_activated', 1);
     	$this->db->where('a.is_contactperson', 1);
@@ -1385,6 +1406,9 @@ class Sellers_Model extends CI_Model {
 		if(isset($params['main_prod']) && !empty($params['main_prod'])) {
     		$this->db->where("(h.name like '%".trim($params['main_prod'])."%')",'',false);
     	}
+		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
+			$this->db->where("(p.name like '%".trim($params['sub_prod'])."%')",'',false);
+		} 
     	$this->db->order_by('b.rank','DESC');
     	$this->db->order_by('b.plan_id','DESC');
     	$this->db->order_by('b.is_logo_verified','DESC');
@@ -1414,6 +1438,7 @@ class Sellers_Model extends CI_Model {
     	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' AS m ','b.id = m.busi_id ','left');
     	$this->db->join(TABLES::$PRODUCT_STAGE.' AS o','a.busi_id = o.busi_id ','inner');
+		$this->db->join(TABLES::$SUB_PRODUCT.' AS p','p.id=m.sproduct_id','left');
     	$this->db->where('a.user_category_id', 1);
     	$this->db->where('a.account_activated', 1);
     	$this->db->where('a.is_contactperson', 1);
@@ -1464,6 +1489,9 @@ class Sellers_Model extends CI_Model {
 		if(isset($params['main_prod']) && !empty($params['main_prod'])) {
     		$this->db->where("(h.name like '%".trim($params['main_prod'])."%')",'',false);
     	}
+		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
+			$this->db->where("(p.name like '%".trim($params['sub_prod'])."%')",'',false);
+		} 
     	$this->db->order_by('a.created_date','DESC');
     	$query = $this->db->get();
     	$result = $query->result_array();
