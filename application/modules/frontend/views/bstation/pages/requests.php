@@ -195,9 +195,9 @@ if(count($bposts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver1" class="img45">
-						<?php if($tscategory_id == 1) { ?>
+						<?php if($product['catid'] == 1) { ?>
 						<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" target="_blank"> 
-						<?php } else if($tscategory_id == 2) { ?>
+						<?php } else if($product['catid'] == 2) { ?>
 							<a href="<?php echo base_url();?>shipper/profile/<?php echo $busi_id;?>" target="_blank">
 						<?php } else { ?>
 							<a href="<?php echo base_url();?>buyer/profile/<?php echo $busi_id;?>" target="_blank">
