@@ -624,6 +624,10 @@ class Product extends MX_Controller {
 		$this->load->model('Sellers_Model', 'sellers' );
 		$this->load->library('mylib/General', 'general');
 		$this->load->model ( 'Account_Model', 'account' );
+		$procategories = $this->general->getProductCategories();
+		$this->template->set ( 'procategories', $procategories);
+		$prosubcategories = $this->general->getProductSubCategories();
+		$this->template->set ( 'prosubcategories', $prosubcategories);
 		$products = $this->sellers->search3DProducts($params);
 		$total_pages = $this->sellers->count3DProducts($params);
 		$this->template->set ( 'products', $products);
@@ -680,6 +684,10 @@ class Product extends MX_Controller {
 		$this->load->model('Sellers_Model', 'sellers' );
 		$this->load->library('mylib/General', 'general');
 		$this->load->model ( 'Account_Model', 'account' );
+		$procategories = $this->general->getProductCategories();
+		$this->template->set ( 'procategories', $procategories);
+		$prosubcategories = $this->general->getProductSubCategories();
+		$this->template->set ( 'prosubcategories', $prosubcategories);
 		$vCatalogues = $this->sellers->searchVCatalogues($params);
 		$total_pages = $this->sellers->countProducts($params);
 		$this->template->set ( 'vCatalogues', $vCatalogues);
@@ -741,6 +749,10 @@ class Product extends MX_Controller {
 		$this->load->library('mylib/General');
 		$this->load->model('Sellers_Model', 'sellers' );
 		$this->load->model('Product_Model','product');
+		$procategories = $this->general->getProductCategories();
+        $this->template->set ( 'procategories', $procategories);
+        $prosubcategories = $this->general->getProductSubCategories();
+        $this->template->set ( 'prosubcategories', $prosubcategories);
 		$sellers = $this->sellers->searchSellerDesksites($params);
 		$total_pages = $this->sellers->countSellerDesksites($params);
 		$this->template->set ( 'Sellers', $sellers);
@@ -752,8 +764,6 @@ class Product extends MX_Controller {
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
 		$featuredProducts = $this->sellers->getFeaturedProduct();
 		$this->template->set ( 'featuredProducts', $featuredProducts);
-		$procategories = $this->general->getProductCategories();
-		$this->template->set ( 'categories', $procategories);
 		unset($params['community_only']);
 		unset($params['community_hide']);
 		if(empty($keyword)) {
@@ -806,6 +816,10 @@ class Product extends MX_Controller {
 		$this->load->library('mylib/General');
 		$this->load->model('Sellers_Model', 'sellers' );
 		$this->load->model('Product_Model','product');
+		$procategories = $this->general->getProductCategories();
+        $this->template->set ( 'procategories', $procategories);
+        $prosubcategories = $this->general->getProductSubCategories();
+        $this->template->set ( 'prosubcategories', $prosubcategories);
 		$sellers = $this->sellers->searchShippers($params);
 		$total_pages = $this->sellers->countShippers($params);
 		$this->template->set ( 'Sellers', $sellers);
@@ -817,8 +831,6 @@ class Product extends MX_Controller {
 		$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
 		$featuredProducts = $this->sellers->getFeaturedProduct();
 		$this->template->set ( 'featuredProducts', $featuredProducts);
-		$procategories = $this->general->getProductCategories();
-		$this->template->set ( 'categories', $procategories);
 		unset($params['community_only']);
 		unset($params['community_hide']);
 		if(empty($keyword)) {
@@ -847,7 +859,7 @@ class Product extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
 		->title ( 'Find Desksite' )
-		->set_partial ( 'header', 'default/inner-header' )
+		->set_partial ('header', 'default/inner-header' )
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('Home/shipperdesksite');
 	}

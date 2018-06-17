@@ -12,6 +12,9 @@
    /* z-index: 1; */
    border-width: 0;
 }
+a.main_prod:hover{
+	color: #FF6347 !important;
+}
 #RollOver26 span
 {
    display: block;
@@ -197,39 +200,40 @@
    		 <p class="sfont2">Sourcing with more details is available by selecting additional options from the More Options Menu on the right side..</p>
    		 <br>
     </div>
-	<?php if(isset($params['main_prod']) && $params['main_prod']!=''){ ?>
-		<div class="col-lg-10 section11 products-list" style="margin-bottom: 15px;">
-			<div class="row" style="border: 1px solid rgb(211, 211, 211);background-color: rgb(255, 255, 255); height: 98px;;margin:0;">
-				<div class="col-md-1 text-center" style="padding-top:20px">
-					<img src="<?php echo asset_url(); ?>images/blank_folder.png" width="40">
-					<span class="text-center"><?php echo ucwords($params['main_prod']);?></span>
-				</div>
-				<div class="col-md-11">
-					<div class="col-md-12" style="margin-top:7px;margin-bottom:10px">
-						<span style="padding-left: 60px; font-size:13px">Categories/ <?php echo $productMainCat->cat_name;?> / <span style="color:#1e90ff;"><?php echo $productMainCat->sub_cat;?></span> / <span style="color:#1e90ff;"><?php echo ucwords($params['main_prod']);?></span></span>
-					
-					</div>
-					<div style="overflow-y: scroll; height: 52px;padding-left:0;padding-right:0;" class="col-md-12">
-						<?php if(!empty($subproducts)){ 
-							foreach($subproducts as $res){ ?>
-								<div class="col-md-3">
-									<ul style="list-style:none;margin-bottom: -5px;">
-										<li>
-											<a class="btn btn-link main_prod" style="color:#808080;text-decoration:none;" href="javascript:void(0);" onclick="filter_by_subprod('<?php echo $params['main_cat_id'];?>','<?php echo $params['cat_id'];?>','<?php echo $params['main_prod'];?>','<?php echo $res['name'];?>')"><?php echo $res['name']; ?></a>
-										</li>
-									</ul>    
-								</div>
-								
-							<?php }
-						
-						} ?>
-					</div>
-				</div>
-			</div>
-		</div>
-	<?php } ?>
     <div class="row" style="margin:0px;">
-	    <div class="col-lg-10 section11 products-list"  id="Layer6"  >
+		<div class="col-lg-10 section11 products-list"  id="Layer6"  >
+		<?php if(isset($params['main_prod']) && $params['main_prod']!=''){ ?>
+				<div class="row sub_products" style="border: 1px solid rgb(211, 211, 211);background-color: rgb(255, 255, 255);max-height: 176px;height: 95px;margin:0;">
+					<div class="col-md-12">
+						<div class="col-md-1 text-center" style="position: absolute; top: 25%; vertical-align: middle;">
+							<img src="<?php echo asset_url(); ?>images/blank_folder.png" width="40">
+							<span class="text-center"><?php echo ucwords($params['main_prod']);?></span>
+						</div>
+						<div class="col-md-11" style="padding-bottom:10px;padding-left:80px;">
+							<div class="col-md-12" style="margin-top:7px;margin-bottom:10px">
+								<span style="padding-left: 54px; font-size:13px">Categories/ <?php echo $productMainCat->cat_name;?> / <?php echo $productMainCat->sub_cat;?> / <span style="color:#1e90ff;"><?php echo ucwords($params['main_prod']);?></span></span>
+							
+							</div>
+							<div style="padding-left:0;padding-right:0;" class="col-md-12">
+								<?php if(!empty($subproducts)){ 
+									foreach($subproducts as $res){ ?>
+										<div class="col-md-3">
+											<ul style="list-style:none;margin-bottom: -5px;">
+												<li>
+													<a class="btn btn-link main_prod" style="color:#808080;text-decoration:none;" href="javascript:void(0);" onclick="filter_by_subprod('<?php echo $params['main_cat_id'];?>','<?php echo $params['cat_id'];?>','<?php echo $params['main_prod'];?>','<?php echo $res['name'];?>')"><?php echo $res['name']; ?></a>
+												</li>
+											</ul>    
+										</div>
+										
+									<?php }
+								
+								} ?>
+							</div>
+						</div>
+					</div>
+				</div>
+		<?php } ?>
+	    
 		<?php  if(count($products) > 0 && $products[0]['id'] !='') { 
     	      foreach ($products as $key=>$product) { ?>
 			<div class="row" id="Layer4" style="margin:0px;margin-bottom:15px;" onmouseenter="ShowObjectWithEffect('Layer8_<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5_<?php echo $key;?>', 0);ShowObject('Layer8_<?php echo $key;?>', 0);return false;">
@@ -650,6 +654,12 @@
     </div>
 <script>
 $(document).ready(function() {
+	var sub_prod=$(".sub_products").height();
+	if(sub_prod > 175){ 
+		$(".sub_products").css('overflow-y','scroll');
+	}else{
+		$(".sub_products").css('overflow-y','hidden');
+	}
 	var Carousel1Opts = {
         delay: 4000,
         duration: 500,
