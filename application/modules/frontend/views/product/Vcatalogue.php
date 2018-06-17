@@ -485,6 +485,14 @@
 	</div>
 <?php echo $template['partials']['vcatalogue']; ?>
 <script>
+$(document).ready(function() {
+	var sub_prod=$(".sub_products").height();
+	if(sub_prod > 175){ 
+		$(".sub_products").css('overflow-y','scroll');
+	}else{
+		$(".sub_products").css('overflow-y','hidden');
+	}
+});
 function likeCatalogue(id) {
 	$.get(base_url+"desksite/catalogue/like/"+id,{},function(data) {
 		alert(data.msg);

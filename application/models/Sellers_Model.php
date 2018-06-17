@@ -730,17 +730,17 @@ class Sellers_Model extends CI_Model {
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('d.status', 1);
     	$this->db->where('(c.status = 1 OR c.status IS NULL)', '',false);
-    	if(!empty($params['keyword'])) {
-	    	if(!empty($params['country'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
+	    	if(isset($params['country']) && !empty($params['country'])) {
 	    		$this->db->where("b.company_country like '%".trim($params['country'])."%'",'',false);
 	    	}
-	    	if(!empty($params['keyword'])) {
+	    	if(isset($params['keyword']) && !empty($params['keyword'])) {
 	    		$this->db->where("(a.name like '%".trim($params['keyword'])."%' OR a.model_no like '%".trim($params['keyword'])."%')",'',false);
 	    	}
-	    	if(!empty($params['city'])) {
+	    	if(isset($params['city']) && !empty($params['city'])) {
 	    		$this->db->where("b.company_city like '%".trim($params['city'])."%'",'',false);
 	    	}
-	    	if(!empty($params['type'])) {
+	    	if(isset($params['type']) && !empty($params['type'])) {
 	    		if($params['type'] ==1) {
 	    			$this->db->order_by('a.unit_price', 'ASC');
 	    		} elseif($params['type'] ==2){
@@ -749,24 +749,29 @@ class Sellers_Model extends CI_Model {
 	    		}
 	    	}
     	} else {
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
     	}
-    	if(!empty($params['busi_id'])) {
-    		if(!empty($params['community_only'])) {
+    	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
+    		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->where("l.my_busi_id",$params['busi_id']);
     		}
-    		if(!empty($params['community_hide'])) {
+    		if(isset($params['community_hide']) && !empty($params['community_hide'])) {
     			$this->db->where("l.my_busi_id !=",$params['busi_id']);
     		}
     	}
-    	if(!empty($params['plan_id'])) {
+    	if(isset($params['plan_id']) && !empty($params['plan_id'])) {
     		if($params['plan_id'] > 1) {
     			$this->db->order_by('b.plan_id', 'DESC');
     		}
     	}
-    	
+    	if(isset($params['main_prod']) && $params['main_prod']!=''){
+			$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
+		}
+		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
+			$this->db->where("(c.name like '%".trim($params['sub_prod'])."%')",'',false);
+		}
     	$this->db->group_by('a.id');
     	if(!empty($params['page'])) {
     		$start = $params['page']*25 - 25;

@@ -415,6 +415,12 @@ function open3DProduct(id) {
 	},'html');
  }
 $(document).ready(function() {
+	var sub_prod=$(".sub_products").height();
+	if(sub_prod > 175){ 
+		$(".sub_products").css('overflow-y','scroll');
+	}else{
+		$(".sub_products").css('overflow-y','hidden');
+	}
     $("body").on("contextmenu",function(){
        return false;
     }); 

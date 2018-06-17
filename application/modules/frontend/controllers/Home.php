@@ -425,6 +425,7 @@ class Home extends MX_Controller {
         $this->load->library('mylib/General');
         $this->load-> model('Search_Model', 'search');
         $this->load-> model('Account_Model', 'account');
+		$productMainCat =array();
         $keyword = $this->input->post('keyword');
         $type = $this->input->post('type');
         $newcountry = $this->input->post('country');
@@ -432,12 +433,15 @@ class Home extends MX_Controller {
 		$params['main_cat_id'] = $this->input->post('main_cat_id');
 		$params['main_prod'] = $this->input->post('main_prod');
 		$params['sub_prod'] = $this->input->post('sub_prod');
+		$params['keyword'] = $this->input->post('keyword');
         $country = explode('_', $newcountry);
         $procategories = $this->general->getProductCategories();
         $this->template->set ( 'procategories', $procategories);
         $prosubcategories = $this->general->getProductSubCategories();
         $this->template->set ( 'prosubcategories', $prosubcategories);
-		$productMainCat = $this->product->getProductCatSubcat($_POST['main_cat_id'],$_POST['cat_id']);
+		if(isset($params['main_prod']) && $params['main_prod']!=''){
+			$productMainCat = $this->product->getProductCatSubcat($_POST['main_cat_id'],$_POST['cat_id']);
+		}
 		$subproducts = $this->product->getSubProdBySubCat($params['main_prod']);
 		$this->template->set ( 'subproducts', $subproducts);
 		$this->template->set ( 'productMainCat', $productMainCat);
@@ -619,7 +623,7 @@ class Home extends MX_Controller {
             }else{
                 $this->load->model('Sellers_Model', 'buyers' );
                 $this->load->model('Account_Model', 'account' );
-                $search = $this->search->searchProduct($keyword,$params['main_prod']);
+                $search = $this->buyers->searchProducts($params);
                 $this->template->set ( 'products', $search);
                 $Country= $this->account->getCountry();
                 $this->template->set ( 'Country', $Country);
