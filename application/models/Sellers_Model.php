@@ -1178,12 +1178,6 @@ class Sellers_Model extends CI_Model {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
     	}
-    	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
-    		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
-    	} 
-    	if(isset($params['sub_prod']) && $params['sub_prod']!=''){
-			$this->db->where("(e.name like '%".trim($params['sub_prod'])."%')",'',false);
-		}
     	$this->db->group_by('a.id');
     	if(!empty($params['page'])) {
     		$start = $params['page']*25 - 25;
@@ -1231,12 +1225,6 @@ class Sellers_Model extends CI_Model {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
     	}
-    	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
-    		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
-    	} 
-		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
-			$this->db->where("(e.name like '%".trim($params['sub_prod'])."%')",'',false);
-		}
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -1276,12 +1264,6 @@ class Sellers_Model extends CI_Model {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
     	}
-    	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
-    		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
-    	}
-		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
-			$this->db->where("(e.name like '%".trim($params['sub_prod'])."%')",'',false);
-		}
     	$this->db->group_by('b.id');
     	if(!empty($params['page'])) {
     		$start = $params['page']*25 - 25;
@@ -1325,12 +1307,6 @@ class Sellers_Model extends CI_Model {
     			$this->db->where('d.subcat_id', $params['cat_id']);
     		}
     	}
-    	if(isset($params['main_prod']) && !empty($params['main_prod'])) {
-    		$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
-    	}
-    	if(isset($params['sub_prod']) && $params['sub_prod']!=''){
-			$this->db->where("(e.name like '%".trim($params['sub_prod'])."%')",'',false);
-		} 
     	$query = $this->db->get();
     	$result = $query->result_array();
     	if(count($result) > 0) {

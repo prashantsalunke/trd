@@ -1099,7 +1099,7 @@ ul.hover-red-menu li.open a.firstmain{
 											<div class="col-md-3">
 												<ul style="list-style:none;margin-bottom: -5px;">
 													<li>
-														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
 													</li>
 												</ul>    
 											</div>
@@ -1366,7 +1366,7 @@ ul.hover-red-menu li.open a.firstmain{
 											?>
 											<div class="item <?php echo($i == 1) ? 'active' : ''; ?>">
 											<?php } ?>
-											<div class="col-md-2" style="padding-top:25px 10px 0px 10px;">
+											<div class="col-md-2" style="padding-top:25px 10px 0px 10px;" onclick="filter_by_subcat('<?php echo $product['id'];?>','','')">
 												<a href="#" id="tab<?php echo $i; ?>" style="text-decoration:none !important">
 													<div class="tumb-slide cat_slide" alt="cat_slider_<?php echo $i; ?>" style="height:106px;width:106px;margin: 0 auto;">
 														<img src="<?php echo asset_url(); ?>images/category-images/<?php echo $product['cat_image'];?>" height="106" width="106">
@@ -1400,74 +1400,8 @@ ul.hover-red-menu li.open a.firstmain{
 								<input type="hidden" name="type" id="type" value="5">
 							</form>
 						</div>
-						<div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
-							<div class="panel categary-detials" style="position:absolute;width: 97.7%;margin: auto;z-index: 1;top:0px;">
-									
-									<?php
-								$i = 1;
-								foreach ($procategories as $product) {
-									?>
-									<div class="panel-body panel slide-details" id="cat_slider_<?php echo $i; ?>" style="background-color: rgb(255, 255, 255); box-shadow: none ! important; padding-top: 60px; margin-left: 0px ! important; margin-right: 0px ! important;">
-										<div class="row" style="padding-bottom:50px;z-index: 200;">
-											<div class="col-md-offset-1">
-												<?php
-												$j = 1;
-												foreach ($prosubcategories as $res) {
-													if ($res['mcat_id'] == $product['id']) {
-														?>
-														<div class="col-md-3">
-															<ul style="list-style:none;margin-bottom: -5px;">
-																<li>
-																	<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
-																</li>
-															</ul>    
-														</div>
-														<?php
-													}
-												}
-												?>
-											</div>
-										</div>
-										<div class="row" style="padding-bottom:30px;">
-											<div class="col-sm-12 text-center bottom_cat">
-												<a href="javascript:void(0)" onclick="highlight_keywords('a');" class="btn btn-default ">A</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('b');" class="btn btn-default">B</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('c');" class="btn btn-default">C</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('d');" class="btn btn-default">D</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('e');" class="btn btn-default">E</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('f');" class="btn btn-default">F</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('g');" class="btn btn-default">G</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('h');" class="btn btn-default">H</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('i');" class="btn btn-default">I</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('j');" class="btn btn-default">J</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('k');" class="btn btn-default">K</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('l');" class="btn btn-default">L</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('m');" class="btn btn-default">M</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('n');" class="btn btn-default">N</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('o');" class="btn btn-default">O</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('p');" class="btn btn-default">P</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('q');" class="btn btn-default">Q</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('r');" class="btn btn-default">R</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('s');" class="btn btn-default">S</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('t');" class="btn btn-default">T</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('u');" class="btn btn-default">U</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('v');" class="btn btn-default">V</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('w');" class="btn btn-default">W</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('x');" class="btn btn-default">X</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('y');" class="btn btn-default">Y</a>
-												<a href="javascript:void(0)" onclick="highlight_keywords('z');" class="btn btn-default">Z</a>
-											</div>
-										</div>
-									</div>
-									<?php
-									$i++;
-								}
-								?>
-								<div id="sub_cat_main_prod">
-								</div>
 							</div>
 						</div>
-					</div><!-- End Carousel --> 
 					<?php } elseif($page =='3dproduct'){?>
 					<form method="get" action="<?php echo base_url();?>3dproducts" style="padding-top:25px;" name="dprofrm" onsubmit="return validateForm('dprofrm');">
 						<div class="col-md-2 text-center" style="padding-left:0;">
@@ -1573,7 +1507,7 @@ ul.hover-red-menu li.open a.firstmain{
 														<div class="col-md-3">
 															<ul style="list-style:none;margin-bottom: -5px;">
 																<li>
-																	<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+																	<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
 																</li>
 															</ul>    
 														</div>
@@ -1737,7 +1671,7 @@ ul.hover-red-menu li.open a.firstmain{
 														<div class="col-md-3">
 															<ul style="list-style:none;margin-bottom: -5px;">
 																<li>
-																	<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+																	<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="filter_by_subcat('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
 																</li>
 															</ul>    
 														</div>

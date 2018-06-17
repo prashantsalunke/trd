@@ -662,6 +662,7 @@ a.style5:hover
     </div>
 <script>
 $(document).ready(function() {
+	
 	var sub_prod=$(".sub_products").height();
 	if(sub_prod > 175){ 
 		$(".sub_products").css('overflow-y','scroll');

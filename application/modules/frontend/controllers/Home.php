@@ -442,6 +442,7 @@ class Home extends MX_Controller {
 		if(isset($params['main_prod']) && $params['main_prod']!=''){
 			$productMainCat = $this->product->getProductCatSubcat($_POST['main_cat_id'],$_POST['cat_id']);
 		}
+		//echo '<pre>';print_r($params);
 		$subproducts = $this->product->getSubProdBySubCat($params['main_prod']);
 		$this->template->set ( 'subproducts', $subproducts);
 		$this->template->set ( 'productMainCat', $productMainCat);

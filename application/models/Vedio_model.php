@@ -119,6 +119,7 @@ class Vedio_model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS sp','sp.id=a.sproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS i ','a.mproduct_id = i.id ','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','i.subcat_id = k.id ','left');
+		$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY.' AS l ','l.id = k.mcat_id ','left');
     	$this->db->where('a.status', 1);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
@@ -157,11 +158,8 @@ class Vedio_model extends CI_Model {
     			$this->db->order_by('c.plan_id', 'DESC');
     		}
     	}
-		if(isset($params['main_prod']) && $params['main_prod']!=''){
-			$this->db->where("(i.name like '%".trim($params['main_prod'])."%')",'',false);
-		}
-		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
-			$this->db->where("(sp.name like '%".trim($params['sub_prod'])."%')",'',false);
+		if(isset($params['main_cat_id']) && !empty($params['main_cat_id'])) {
+			$this->db->where('l.id', $params['main_cat_id']);
 		}
     	$this->db->group_by('b.id');
     	$sql1 = $this->db->get_compiled_select ();
@@ -177,6 +175,7 @@ class Vedio_model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS sp','sp.id=b.subproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS i ','b.mainproduct_id = i.id ','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','i.subcat_id = k.id ','left');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY.' AS l ','l.id = k.mcat_id ','left');
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
@@ -215,11 +214,8 @@ class Vedio_model extends CI_Model {
     			$this->db->order_by('c.plan_id', 'DESC');
     		}
     	}
-		if(isset($params['main_prod']) && $params['main_prod']!=''){
-			$this->db->where("(i.name like '%".trim($params['main_prod'])."%')",'',false);
-		}
-		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
-			$this->db->where("(sp.name like '%".trim($params['sub_prod'])."%')",'',false);
+		if(isset($params['main_cat_id']) && !empty($params['main_cat_id'])) {
+			$this->db->where('l.id', $params['main_cat_id']);
 		}
     	$this->db->group_by('b.id');
     	$sql2 = $this->db->get_compiled_select ();
@@ -248,6 +244,7 @@ class Vedio_model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS sp','sp.id=a.sproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS i ','sp.mproduct_id = i.id ','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','i.subcat_id = k.id ','left');
+		$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY.' AS l ','l.id = k.mcat_id ','left');
     	$this->db->where('a.status', 1);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
@@ -287,11 +284,8 @@ class Vedio_model extends CI_Model {
     			$this->db->order_by('c.plan_id', 'DESC');
     		}
     	}
-		if(isset($params['main_prod']) && $params['main_prod']!=''){
-			$this->db->where("(i.name like '%".trim($params['main_prod'])."%')",'',false);
-		}
-		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
-			$this->db->where("(sp.name like '%".trim($params['sub_prod'])."%')",'',false);
+		if(isset($params['main_cat_id']) && !empty($params['main_cat_id'])) {
+			$this->db->where('l.id', $params['main_cat_id']);
 		}
     	$this->db->group_by('b.id');
     	$sql1 = $this->db->get_compiled_select ();
@@ -306,6 +300,7 @@ class Vedio_model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS sp','sp.id=b.subproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS i ','b.mainproduct_id = i.id ','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','i.subcat_id = k.id ','left');
+		$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY.' AS l ','l.id = k.mcat_id ','left');
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
@@ -344,11 +339,8 @@ class Vedio_model extends CI_Model {
     			$this->db->order_by('c.plan_id', 'DESC');
     		}
     	}
-		if(isset($params['main_prod']) && $params['main_prod']!=''){
-			$this->db->where("(i.name like '%".trim($params['main_prod'])."%')",'',false);
-		}
-		if(isset($params['sub_prod']) && $params['sub_prod']!=''){
-			$this->db->where("(sp.name like '%".trim($params['sub_prod'])."%')",'',false);
+		if(isset($params['main_cat_id']) && !empty($params['main_cat_id'])) {
+			$this->db->where('l.id', $params['main_cat_id']);
 		}
     	$this->db->group_by('b.id');
     	$sql2 = $this->db->get_compiled_select ();
