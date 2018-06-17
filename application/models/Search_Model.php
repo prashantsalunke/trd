@@ -5,7 +5,7 @@ class Search_Model extends CI_Model {
     function __construct() {
         parent::__construct();
     }
-    public function searchBusinessCountry($type,$country, $keyword='',$main_prod=''){
+    public function searchBusinessCountry($type,$country, $keyword='',$params=array()){
 		if(!empty($country)){
 			$country = trim($country[1]);
 		}else{
@@ -24,6 +24,8 @@ class Search_Model extends CI_Model {
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','a.user_subcategory_id=e.id','left');
     	$this->db->join(TABLES::$COMPANY_INFO.' AS f','b.id=f.busi_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
+		$this->db->join(TABLES::$PRODUCT_ITEM.' AS i ','b.id = i.busi_id ','left');
+		$this->db->join(TABLES::$SUB_PRODUCT.' AS j','j.id=i.sproduct_id','left');
     	$this->db->where('d.id', $type);
 		if($country!=''){
 			$this->db->where("c.country like '%".$country."%'",'',false);
@@ -31,8 +33,11 @@ class Search_Model extends CI_Model {
 		if($keyword!=''){
 			$this->db->where("(a.name like '%".$keyword."%' OR b.company_name like '%".$keyword."%')",'',false);
 		}
-		if(isset($main_prod) && $main_prod!='') {
-			$this->db->where("(h.name like '%".trim($main_prod)."%')",'',false);
+		if(isset($params['main_prod']) && $params['main_prod']!='') {
+			$this->db->where("(h.name like '%".trim($params['main_prod'])."%')",'',false);
+		}
+		if(isset($params['sub_prod']) && $params['sub_prod']!='') {
+			$this->db->where("(j.name like '%".trim($params['sub_prod'])."%')",'',false);
 		}
     	$this->db->where('a.account_activated', 1);
     	$this->db->where('a.is_suspend', 0);
@@ -44,7 +49,7 @@ class Search_Model extends CI_Model {
     	return $result;
     	
     }
-    public function searchBusiness($type,$keyword,$main_prod=''){
+    public function searchBusiness($type,$keyword,$params=array()){
     	
     	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, b.company_name,
 		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,  g.*, 
@@ -59,13 +64,18 @@ class Search_Model extends CI_Model {
     	$this->db->join(TABLES::$COMPANY_INFO.' AS f','b.id=f.busi_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
 		$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
+		$this->db->join(TABLES::$PRODUCT_ITEM.' AS i ','b.id = i.busi_id ','left');
+		$this->db->join(TABLES::$SUB_PRODUCT.' AS j','j.id=i.sproduct_id','left');
     	$this->db->where('d.id', $type);
     	$this->db->where('a.account_activated', 1);
 		if(isset($keyword) && $keyword!='') {
 			$this->db->where("(a.name like '%".$keyword."%' OR b.company_name like '%".$keyword."%')",'',false);
 		}
-		if(isset($main_prod) && $main_prod!='') {
-			$this->db->where("(h.name like '%".trim($main_prod)."%')",'',false);
+		if(isset($params['main_prod']) && $params['main_prod']!='') {
+			$this->db->where("(h.name like '%".trim($params['main_prod'])."%')",'',false);
+		}
+		if(isset($params['sub_prod']) && $params['sub_prod']!='') {
+			$this->db->where("(j.name like '%".trim($params['sub_prod'])."%')",'',false);
 		}
 		
     	$this->db->where('a.is_suspend', 0);

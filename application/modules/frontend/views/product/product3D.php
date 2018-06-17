@@ -106,6 +106,37 @@
 	</div>
 	<div class="row" style="margin:0px;">
 		<div class="col-lg-10 section11 seller-list">
+			<?php if(isset($params['main_prod']) && $params['main_prod']!=''){ ?>
+				<div class="row sub_products" style="border: 1px solid rgb(211, 211, 211);background-color: rgb(255, 255, 255);max-height: 176px;height: 95px;margin: 0px 0px 20px;">
+					<div class="col-md-12">
+						<div class="col-md-1 text-center" style="position: absolute; top: 25%; vertical-align: middle;">
+							<img src="<?php echo asset_url(); ?>images/blank_folder.png" width="40">
+							<span class="text-center"><?php echo ucwords($params['main_prod']);?></span>
+						</div>
+						<div class="col-md-11" style="padding-bottom:10px;padding-left:80px;">
+							<div class="col-md-12" style="margin-top:7px;margin-bottom:10px">
+								<span style="padding-left: 54px; font-size:13px">Categories/ <?php echo $productMainCat->cat_name;?> / <?php echo $productMainCat->sub_cat;?> / <span style="color:#1e90ff;"><?php echo ucwords($params['main_prod']);?></span></span>
+							
+							</div>
+							<div style="padding-left:0;padding-right:0;" class="col-md-12">
+								<?php if(!empty($subproducts)){ 
+									foreach($subproducts as $res){ ?>
+										<div class="col-md-3">
+											<ul style="list-style:none;margin-bottom: -5px;">
+												<li>
+													<a class="btn btn-link main_prod" style="color:#808080;text-decoration:none;" href="javascript:void(0);" onclick="filter_by_subprod('<?php echo $params['main_cat_id'];?>','<?php echo $params['cat_id'];?>','<?php echo $params['main_prod'];?>','<?php echo $res['name'];?>')"><?php echo $res['name']; ?></a>
+												</li>
+											</ul>    
+										</div>
+										
+									<?php }
+								
+								} ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
 			<?php 
 			$i = 0;
 			foreach ($products as $item) {?>
