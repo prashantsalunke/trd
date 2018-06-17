@@ -67,6 +67,7 @@ class Search_Model extends CI_Model {
 		if(isset($main_prod) && $main_prod!='') {
 			$this->db->where("(h.name like '%".trim($main_prod)."%')",'',false);
 		}
+		
     	$this->db->where('a.is_suspend', 0);
     	$this->db->where('a.is_deleted', 0);
     	$this->db->group_by('a.id'); 

@@ -338,6 +338,7 @@ class Vedio_model extends CI_Model {
 		if(isset($params['main_prod']) && $params['main_prod']!=''){
 			$this->db->where("(i.name like '%".trim($params['main_prod'])."%')",'',false);
 		}
+		
     	$this->db->group_by('b.id');
     	$sql2 = $this->db->get_compiled_select ();
     	$sql = "SELECT sum(fq.videos) as videos from (".$sql1." UNION ".$sql2.") as fq where 1";

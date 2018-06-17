@@ -2707,7 +2707,6 @@ class Product_Model extends CI_Model {
     	if(isset($params['sub_prod']) && $params['sub_prod']!='') {
 			$this->db->where("(c.name like '%".trim($params['sub_prod'])."%')",'',false);
 		}
-    	
     	$this->db->group_by('a.id');
     	if(isset($params['page']) && !empty($params['page'])) {
     		$start = $params['page']*25 - 25;

@@ -925,7 +925,7 @@ class Home extends MX_Controller {
 			$this->template->set ( 'userId', '' );
 			$this->template->set_theme('default_theme');
 			$this->template->set_layout ('default')
-			->title ( 'Find Desksite' )
+			->title ('Find Desksite' )
 			->set_partial ( 'header', 'default/inner-header' )
 			->set_partial ( 'footer', 'default/footer' );
 			$this->template->build ('Home/shipperdesksite');

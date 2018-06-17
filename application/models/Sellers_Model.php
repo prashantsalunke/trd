@@ -1368,6 +1368,7 @@ class Sellers_Model extends CI_Model {
     			$this->db->where('k.id', $params['cat_id']);
     		}
     	}
+		
     	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
     		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->where("l.my_busi_id",$params['busi_id']);

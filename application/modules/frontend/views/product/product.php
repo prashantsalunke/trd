@@ -200,7 +200,6 @@ a.main_prod:hover{
    		 <p class="sfont2">Sourcing with more details is available by selecting additional options from the More Options Menu on the right side..</p>
    		 <br>
     </div>
-	
     <div class="row" style="margin:0px;">
 		<div class="col-lg-10 section11 products-list"  id="Layer6"  >
 		<?php if(isset($params['main_prod']) && $params['main_prod']!=''){ ?>

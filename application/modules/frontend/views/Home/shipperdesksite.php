@@ -870,4 +870,5 @@ var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
 			}
 		})
     }
+	
 </script>

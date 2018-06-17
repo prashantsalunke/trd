@@ -120,7 +120,6 @@ ul.hover-red-menu li.open a.firstmain{
 	background-color:#ff6347 !important;
 	color:#fff !important;
 }
-
 </style>
  <script src="<?php echo asset_url();?>js/bootstrap-dropdownhover.min.js"></script>
  <div class="container" style="padding:0px;width:93%;">

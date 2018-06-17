@@ -399,7 +399,7 @@ class Vedio extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
 		->title ( 'Product In Videos' )
-		->set_partial ( 'header', 'default/inner-header' )
+		->set_partial ('header', 'default/inner-header' )
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('product/pro-videos');
 	}
