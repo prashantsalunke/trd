@@ -149,17 +149,17 @@ div.pp_pic_holder {
 						              	</div>
 						            </div>
 						            <?php } ?>
-						            <div id="Layer28" style="width: 1029px;height:676px;overflow-x: auto;">
+						            <div id="Layer28" style="width: 1029px;height:625px;overflow-x: auto;">
 				                
 				           		</div>
-									<div id="Layer32" style="width: 1029px;height:676px;overflow-x: auto;">
+									<div id="Layer32" style="width: 1029px;height:625px;overflow-x: auto;">
 				             	</div>
 					             	<br><br><br><br>
 				        		</div>
 				        		<div id="menu1" class="tab-pane fade content122">
-						            <div id="Layer288"style="width: 1029px;height:676px;overflow-x: auto;">
+						            <div id="Layer288" style="width: 1029px;height:625px;overflow-x: auto;">
 						            </div>
-									<div id="Layer322" style="width: 1029px;height:676px; overflow-x: auto;">
+									<div id="Layer322" style="width: 1029px;height:625px; overflow-x: auto;">
 						            </div>
 						            <?php if($tscategory_id == 3) { ?>
 						            <div class="tab1" style="padding-left:16px;">

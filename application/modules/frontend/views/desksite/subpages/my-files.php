@@ -1,7 +1,7 @@
 				<div class="row" style="width:100%;margin:0px;">
 					<?php foreach($Files as $file){?>
 					<div class="col-md-3" style="height:100px;">
-						 <a <?php if($file['file_access_type'] == 1) { ?> href="<?php  echo base_url();?>mystation/myfile/download/<?php echo $file['id'];?>" 
+						 <a style="text-decoration: none !important;" <?php if($file['file_access_type'] == 1) { ?> href="<?php  echo base_url();?>mystation/myfile/download/<?php echo $file['id'];?>" 
 													download="<?php  echo base_url();?>mystation/myfile/download/<?php echo $file['id'];?>" onclick="recordFileDownload(<?php echo $file['id'];?>);" <?php } else { ?> href="#" data-toggle="modal" data-target="#filepassword_modal" 
 													 backdrop="static" onclick="passwordpoup(<?php echo $file['id'];?>);" <?php } ?>>
 							 <?php if($file['file_type'] == "pdf") { ?>

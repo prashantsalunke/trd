@@ -4,7 +4,7 @@ if(!empty($newCommunity)) {
 	foreach( $newCommunity as $kk => $record ){
 	    if(!$record['alert_viewed']) {
 ?>
-    <div class="panel alert-popup communityAlert" id="new-alert-popup-<?php echo $record['id']; ?>">
+    <div class="panel alert-popup communityAlert" id="new-alert-popup-<?php echo $record['user_id']; ?>">
 	<div class="panel-heading">
 		<div class="row">
 			<div class="col-xs-3">
@@ -15,7 +15,7 @@ if(!empty($newCommunity)) {
                     <?php } ?>
 			</div>
 			<div class="col-xs-7"><p style="color: #FFFFFF; font-family: Impact; font-size: 20px; margin-bottom: 0;text-indent: 2px;">Added Alert By</p><span style="color: #FFFFFF; font-family: Arial; font-size: 13px;"><?php echo isset($record['name'])?$record['name']:''; ?><br><?php echo isset($record['user_category'])?$record['user_category']:''; ?>&nbsp; |&nbsp; <?php echo isset($record['country'])?$record['country']:''; ?> </span></div>
-			<div class="col-xs-2"><a href="#" onclick="ShowObjectWithEffect('new-alert-popup-<?php echo $record['id']; ?>', 0, 'slidedown', 300, 'swing');closePopup('new-alert-popup-<?php echo $record['id']; ?>');return false;" style="position: relative; top: -20px; right: -20px;"><img src="<?php echo asset_url(); ?>images/close.png"  width="30" height="30"></a></div>
+			<div class="col-xs-2"><a href="#" onclick="ShowObjectWithEffect('new-alert-popup-<?php echo $record['user_id']; ?>', 0, 'slidedown', 300, 'swing');closePopup('new-alert-popup-<?php echo $record['user_id']; ?>');return false;" style="position: relative; top: -20px; right: -20px;"><img src="<?php echo asset_url(); ?>images/close.png"  width="30" height="30"></a></div>
 		</div>
 	</div>
 	<div class="panel-body">

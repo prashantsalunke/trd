@@ -1363,13 +1363,18 @@ function Validatecontact(theForm)
 {
    var regexp;
    var extension = theForm.FileUpload1.value.substr(theForm.FileUpload1.value.lastIndexOf('.'));
-   if ((extension.toLowerCase() != ".gif") &&
+   /*if ((extension.toLowerCase() != ".gif") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
        (extension.toLowerCase() != ".png") &&
        (extension != ""))
    {
-      alert("The \"FileUpload1\" field contains an unapproved filename.");
+      alert("The \"FileUpload1\" fieldxx contains an unapproved filename.");
+      theForm.FileUpload1.focus();
+      return false;
+   }*/
+   if(theForm.FileUpload1.value == "") {
+      alert("Please select file");
       theForm.FileUpload1.focus();
       return false;
    }
@@ -1399,13 +1404,18 @@ function Validatecontact(theForm)
 {
    var regexp;
    var extension = theForm.FileUpload2.value.substr(theForm.FileUpload2.value.lastIndexOf('.'));
-   if ((extension.toLowerCase() != ".gif") &&
+   /*if ((extension.toLowerCase() != ".gif") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
        (extension.toLowerCase() != ".png") &&
        (extension != ""))
    {
-      alert("The \"FileUpload1\" field contains an unapproved filename.");
+      alert("The \"FileUpload1\" fieldyy contains an unapproved filename.");
+      theForm.FileUpload2.focus();
+      return false;
+   }*/
+   if(theForm.FileUpload2.value == "") {
+      alert("Please select file");
       theForm.FileUpload2.focus();
       return false;
    }
