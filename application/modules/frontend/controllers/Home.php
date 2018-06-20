@@ -1691,7 +1691,7 @@ class Home extends MX_Controller {
         $Desksites= $this->product->getDesksiteByBusiId($map);
         $countries = $this->product->getAllCountries();
         $requests = $this->product->getCurrentRequest($id);
-        $contact_details = $this->account->getBusinessContactDetails($busi_id);
+        $contact_details = $this->account->getBusinessContactDetails($id);
         $this->template->set ( 'countries', $countries );
         $this->template->set ( 'Desksites', $Desksites);
         $this->template->set ( 'community', $community);

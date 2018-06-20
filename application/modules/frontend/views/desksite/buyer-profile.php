@@ -382,23 +382,7 @@ function getCurrentRequest(id) {
 
 function submitContactForm() {
     <?php if(!empty($tsuserid)) { ?>
-        <?php if($tscategory_id != 3) { ?>
-            $("#msg_cont").html("Your offer has been sent successfully to the buyer.");
-            ShowObject('Layer99', 1);
-            ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
-        <?php } else { ?>
-            <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-                $("#msg_cont").html("Your offer has been sent successfully to the buyer.");
-                ShowObject('Layer99', 1);
-                ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
-            <?php } else if($contact_details[0]['step'] < 2) { ?>
-                $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
-                ShowObject('Layer99', 1);
-            <?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
-                $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
-                ShowObject('Layer99', 1);
-            <?php } ?>
-        <?php } ?>
+       
     <?php } else { ?>
         $("#msg_cont").html("Please login to contact this Buyer.");
         ShowObject('Layer99', 1);
@@ -1013,7 +997,7 @@ function stopWiggle(input) {
             <!-- certification ends -->
             
             <!-- company profile -->
-            <div id="Layer48" class="box1" style="width:477px;height:80%;padding:15px;">
+            <div id="Layer48" class="box1" style="width:477px;height:auto;padding:15px;">
                 <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
                     <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;"/>
                 </a>
@@ -1469,9 +1453,7 @@ $(document).ready(function(){
                     notEmpty: {
                         message: 'Please enter Phone Number'
                     },
-                  integer: {
-                        message: 'Enter Only Numbers'
-                    }
+                  
                 }
             },
             country: {
