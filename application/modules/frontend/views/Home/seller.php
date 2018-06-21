@@ -319,7 +319,9 @@ ul.share{
 	margin-top:  100%;
 	line-height: 50px;
 }
-
+.section10 {
+    left: 47px !important;
+}
 </style>
 <script type="text/javascript">
 	var template = {
