@@ -582,7 +582,7 @@ function searchBusinessStation(loader = true) {
 	current_view = "searchBusinessStation";
 	var keyword = $("#SiteSearch3").val();
 	var country = $("#top_country_id").val();
-	if(keyword != "" && country != "") {
+	if(keyword != "" || country != "") {
 		if(loader)
 			ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
@@ -603,23 +603,23 @@ function searchBusinessStation(loader = true) {
 		    $.cookie('bstation-country', country, { expires: 365 });
 		},'json');
 	} else {
-		if(keyword == "" && country == "") {
-			alert("Please enter search keyword and select country");
-		} else {
+		//if(keyword == "" && country == "") {
+			alert("Please enter search keyword or select country");
+		/*} else {
 			if(keyword == "") {
 				alert("Please enter search keyword");
 			}
 			if(country == "") {
 				alert("Please select country");
 			}
-		}
+		}*/
 	}
 }
 function filterBusinessStation(loader = true) {
 	current_view = "filterBusinessStation";
 	var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
-	if(keyword != "" && country != "") {
+	if(keyword != "" || country != "") {
 		if(loader)
 			ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
@@ -641,16 +641,16 @@ function filterBusinessStation(loader = true) {
 		    $.cookie('bstation-country', country, { expires: 365 });
 		},'json');
 	} else {
-		if(keyword == "" && country == "") {
-			alert("Please enter search keyword and select country");
-		} else {
+		//if(keyword == "" && country == "") {
+			alert("Please enter search keyword or select country");
+		/*} else {
 			if(keyword == "") {
 				alert("Please enter search keyword");
 			}
 			if(country == "") {
 				alert("Please select country");
 			}
-		}
+		}*/
 	}
 }
 
