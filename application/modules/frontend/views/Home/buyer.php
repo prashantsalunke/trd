@@ -188,9 +188,6 @@
     border-radius: 50%;
     border: 1px solid #aaa;
 }
-.section10 {
-    left: 47px !important;
-}
 </style>
 <div>
     <div class="col-sm-12" style="padding:0px;">
