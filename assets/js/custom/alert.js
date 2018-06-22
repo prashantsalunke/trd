@@ -182,7 +182,7 @@ function openInquiry()
 	$.get(base_url+"mystation/inquiry",{},function(data){
 		$("#alertbodypanel").html("");
 		$("#alertbodypanel").html(data);
-		
+		$("#totalinquiry").html(0);
 	});
 }
 function openOffer()
@@ -190,17 +190,17 @@ function openOffer()
 	$.get(base_url+"mystation/offer",{},function(data){
 		$("#alertbodypanel").html("");
 		$("#alertbodypanel").html(data);
-		
+		$("#totaloffer").html(0);
 	});
 }
 function openRequest()
 {
-	$.get(base_url+"mystation/request",{},function(data){
+	$.getJSON(base_url+"mystation/request",function(data){ 
 		$("#alertbodypanel").html("");
-		$("#alertbodypanel").html(data);
+		$("#alertbodypanel").html(data.dataHTML);
 		$(".alerts-btn-selected").removeClass('alerts-btn-selected');
 		$("#addcominityrequest_btn").addClass('alerts-btn-selected');
-		
+		$("#totalrequest").html(0);
 	});
 }
 function openAddedRequest()

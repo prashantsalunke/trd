@@ -40,5 +40,10 @@ class OfferLib {
 		$this->CI->load->model ( 'Offer_model', 'offer' );
 		return $res = $this->CI->offer->updateToggelpinOffer($param);
 	}
+	public  function updateOfferAlert($id,$param)
+	{
+		$this->CI->load->model ( 'Offer_model', 'offer' );
+		return $res = $this->CI->offer->updateOfferAlert($id,$param);
+	}
 	
 }

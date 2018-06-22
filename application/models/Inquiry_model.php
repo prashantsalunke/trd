@@ -20,10 +20,10 @@ class Inquiry_model extends CI_Model {
         $this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','e.user_category_id=uc.id','inner');
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('e.is_contactperson', 1);
-    	$this->db->where('a.alert_viewed', 0);
     	$this->db->group_by('a.id');
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
+         echo $this->db->last_query();
     	$row = $query->result_array();
     	return $row;
     }
@@ -42,9 +42,9 @@ class Inquiry_model extends CI_Model {
         $this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','e.user_category_id=uc.id','inner');
     	$this->db->where('a.requester_busi_id', $busi_id);
     	$this->db->where('e.is_contactperson', 1);
-    	$this->db->where('a.alert_viewed', 0);
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
+        
     	$row = $query->result_array();
     	return $row;
     }

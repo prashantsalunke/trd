@@ -18,7 +18,6 @@ class Offer_model extends CI_Model {
     	$this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','d.user_category_id=uc.id','inner');
     	$this->db->where('a.offer_sender_id', $busi_id);
     	$this->db->where('d.is_contactperson', 1);
-    	$this->db->where('a.alert_viewed', 0);
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -37,7 +36,6 @@ class Offer_model extends CI_Model {
     	$this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','d.user_category_id=uc.id','inner');
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('d.is_contactperson', 1);
-    	$this->db->where('a.alert_viewed', 0);
         $this->db->group_by('offer_id');
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
@@ -100,5 +98,12 @@ class Offer_model extends CI_Model {
     				$response =  $this->db->affected_rows();
     	}
     	return $response;
+    }
+
+    public function updateOfferAlert($id,$data)
+    {
+        $this->db->where('busi_id', $id);
+        $this->db->update(TABLES::$OFFER,$data);
+        return $this->db->affected_rows();
     }
 }
