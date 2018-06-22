@@ -196,9 +196,6 @@
     font-weight: normal;
     font-size: 13px;
 }
-.section10 {
-    left: 47px !important;
-}
 </style>  
 <div>
 	<div class="col-sm-12" style="padding:0px;padding-top: 40px;">
@@ -212,7 +209,7 @@
 	    	if(count($Shippers) > 0 &&  $Shippers[0]['id'] !='') {  
     			foreach ($Shippers as $key=>$shipper) {?>
 			<div class="row" id="Layer4" style="margin:0px;margin-bottom:15px;" onmouseenter="ShowObjectWithEffect('Layer8_<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5_<?php echo $key;?>', 0);ShowObject('Layer8_<?php echo $key;?>', 0);return false;">
-				<div class="col-md-3 col-sm-12 displaydesktop">
+				<div class="col-md-3 col-sm-12 displaydesktop" style="width: 240px;">
 					<div id="SlideShow1" class="img22 SlideShow1" >
 						<?php if(!empty($shipper['info_img1'])) { ?>
 					    <img class="image" src="<?php echo asset_url().$shipper['info_img1'];?>" alt="" title="" style="width:218px;">
@@ -223,7 +220,7 @@
 					    <?php } ?>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-12 space1">
+				<div class="col-md-6 col-sm-12 space1" style="width:578px;">
 					<div id="wb_Text8" class="section3">
 						 <div class="inline">
 							 <img src="<?php echo asset_url().$shipper['profile_image']; ?>" class="img1"/>
@@ -276,7 +273,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-12">
+				<div class="col-md-3 col-sm-12" style="width:220px;">
 					<div id="Layer8_<?php echo $key;?>" class="section9 seller_Layer8" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
 					    <div id="wb_Shape1" class="stylebox">
 					        <a href="#" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;"><img src="<?php echo asset_url() ?>images/img0098.png" id="Shape1" alt="" style="width:11px;height:48px;"></a>

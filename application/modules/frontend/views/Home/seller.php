@@ -319,9 +319,6 @@ ul.share{
 	margin-top:  100%;
 	line-height: 50px;
 }
-.section10 {
-    left: 47px !important;
-}
 </style>
 <script type="text/javascript">
 	var template = {
@@ -404,7 +401,7 @@ ul.share{
 			if(count($Sellers) > 0 && $Sellers[0]['id'] !='') { 
     		foreach ($Sellers as $key=>$seller) {?>
 			<div class="row" id="Layer4" style="margin:0px;margin-bottom:15px;" onmouseenter="ShowObjectWithEffect('Layer8_<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5_<?php echo $key;?>', 0);ShowObject('Layer8_<?php echo $key;?>', 0);return false;">
-				<div class="col-md-3 col-sm-12 displaydesktop">
+				<div class="col-md-3 col-sm-12 displaydesktop" style="width:240px;">
 					<div id="" class="img22 mysellercarousel SlideShow1">
 					<?php if(!empty($seller['info_img1'])) { ?>
 					    <img class="image" src="<?php echo asset_url().$seller['info_img1'];?>" alt="" title="" style="width:218px;">
@@ -415,7 +412,7 @@ ul.share{
 					<?php } ?>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-12 space1">
+				<div class="col-md-6 col-sm-12 space1" style="width:578px;">
 					 <div id="wb_Text8" class="section3">
 						 <div class="inline">
 						 	<?php if(!empty($seller['profile_image'])) { ?>
@@ -498,7 +495,7 @@ ul.share{
 				
 				</div>
 				
-				<div class="col-md-3 col-sm-12">
+				<div class="col-md-3 col-sm-12" style="width:220px;">
 						<div id="Layer8_<?php echo $key;?>" class="section9 seller_Layer8" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
 						    <div id="wb_Shape1" class="stylebox">
 						        <a href="#" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;"><img src="<?php echo asset_url() ?>images/img1243.png" id="Shape1" alt="" style="width:11px;height:48px;"></a>
