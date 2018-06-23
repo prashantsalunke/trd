@@ -79,11 +79,7 @@ function Validatecontact()
    	var theForm = document.getElementById('Form4');
    	var regexp;
    	var extension = theForm.FileUpload1.value.substr(theForm.FileUpload1.value.lastIndexOf('.'));
-	if(theForm.FileUpload1.value == "") {
-      		alert("Please select file");
-      		theForm.FileUpload1.focus();
-      		return false;
-    	}
+	
    	/*if ((extension.toLowerCase() != ".gif") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
