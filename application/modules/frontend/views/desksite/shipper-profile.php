@@ -978,7 +978,7 @@ function stopWiggle(input) {
                     </div>
                     <div class="inline box5">
                         <img src="<?php echo asset_url(); ?>images/img0908.png" id="Image19" alt="" class="img32">
-                        <a href="javascript:shareToWorld('<?php echo base_url();?>buyer/profile/<?php echo $Desksites[0]['busi_id']?>','<?php echo $Desksites[0]['company_name']?> @ TRDSTATION',1,<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+                        <a href="javascript:shareToWorld('<?php echo base_url();?>shipper/profile/<?php echo $Desksites[0]['busi_id']?>','<?php echo $Desksites[0]['company_name']?> @ TRDSTATION',1,<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
                         Share
                         </a>
                     </div>
