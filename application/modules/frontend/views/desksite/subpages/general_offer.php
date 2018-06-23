@@ -90,11 +90,7 @@ function Validatecontact()
       	theForm.FileUpload1.focus();
       	return false;
    	}*/
-    if(theForm.FileUpload1.value == "") {
-      alert("Please select file");
-      theForm.FileUpload1.focus();
-      return false;
-   }
+    
    	if (theForm.Editbox5.value == "")
     {
        alert("Please Enter The Contact Name");

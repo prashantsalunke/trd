@@ -163,11 +163,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
       theForm.FileUpload1.focus();
       return false;
    }*/
-   if(theForm.FileUpload1.value == "") {
-		alert("Please select file");
-    theForm.FileUpload1.focus();
-		return false;
-   }
+   
    if (theForm.TextArea1.value == "")
    {
       alert("Please Enter Enough Description");

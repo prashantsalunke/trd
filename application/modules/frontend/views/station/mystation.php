@@ -1392,11 +1392,7 @@ function Validatecontact(theForm)
       theForm.FileUpload1.focus();
       return false;
    }*/
-   if(theForm.FileUpload1.value == "") {
-      alert("Please select file");
-      theForm.FileUpload1.focus();
-      return false;
-   }
+   
    if (theForm.Editbox47.value == "")
    {
       alert("Please enter a value for the \"Subject\" field.");
@@ -1433,10 +1429,7 @@ function Validatecontact(theForm)
       theForm.FileUpload2.focus();
       return false;
    }*/
-   if(theForm.FileUpload2.value == "") {
-      alert("Please select file");
-      return false;
-   }
+   
    if (theForm.Editbox46.value == "")
    {
       alert("Please enter a value for the \"Subject\" field.");
