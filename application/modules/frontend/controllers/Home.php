@@ -417,22 +417,30 @@ class Home extends MX_Controller {
         $this->load->library('mylib/General');
         $this->load-> model('Search_Model', 'search');
         $this->load-> model('Account_Model', 'account');
+		$productMainCat =array();
         $keyword = $this->input->post('keyword');
         $type = $this->input->post('type');
         $newcountry = $this->input->post('country');
+		$params['cat_id'] = $this->input->post('cat_id');
+		$params['main_cat_id'] = $this->input->post('main_cat_id');
+		$params['main_prod'] = $this->input->post('main_prod');
+		$params['sub_prod'] = $this->input->post('sub_prod');
+		$params['keyword'] = $this->input->post('keyword');
         $country = explode('_', $newcountry);
         $procategories = $this->general->getProductCategories();
         $this->template->set ( 'procategories', $procategories);
         $prosubcategories = $this->general->getProductSubCategories();
         $this->template->set ( 'prosubcategories', $prosubcategories);
-        //print_r($country);
+		if(isset($params['main_prod']) && $params['main_prod']!=''){
+			$productMainCat = $this->product->getProductCatSubcat($_POST['main_cat_id'],$_POST['cat_id']);
+		}
+		//echo '<pre>';print_r($params);
+		$subproducts = $this->product->getSubProdBySubCat($params['main_prod']);
+		$this->template->set ( 'subproducts', $subproducts);
+		$this->template->set ( 'productMainCat', $productMainCat);
         $result =array();
         if($type ==1){
             $url = base_url()."seller";
-            $procategories = $this->general->getProductCategories();
-            $this->template->set ( 'procategories', $procategories);
-            $prosubcategories = $this->general->getProductSubCategories();
-            $this->template->set ( 'prosubcategories', $prosubcategories);
             if(!empty($country[0])){
                 $this->load->model('Sellers_Model', 'sellers' );
                 $search = $this->search->searchBusinessCountry($type, $country, $keyword);
@@ -457,7 +465,7 @@ class Home extends MX_Controller {
                 //return true;
             }else{
                 $this->load->model('Sellers_Model', 'sellers' );
-                $search = $this->search->searchBusiness($type, $keyword);
+                $search = $this->search->searchBusiness($type, $keyword,$params);
                 $this->template->set ( 'Sellers', $search);
                 $Country= $this->account->getCountry();
                 $this->template->set ( 'Country', $Country);
@@ -470,6 +478,7 @@ class Home extends MX_Controller {
                 $this->template->set ( 'page', 'sellers' );
                 $this->template->set ( 'userId', '' );
                 $this->template->set ( 'sellerurl', $url );
+				$this->template->set ( 'params', $params );
                 $this->template->set_theme('default_theme');
                 $this->template->set_layout ('default')
                 ->title ( 'Find Seller' )
@@ -556,8 +565,8 @@ class Home extends MX_Controller {
                 $this->template->build ('Home/buyer');
                 return true;
             }else{
-                $this->load->model('Sellers_Model', 'buyers' );
-                $search = $this->search->searchBusinessCountry($type, $keyword);
+                $this->load->model('Sellers_Model', 'buyers' ); 
+                $search = $this->search->searchBusinessCountry($type,$country=array(),$keyword,$params);
                 $this->template->set ( 'Buyers', $search);
                 $Country= $this->account->getCountry();
                 $this->template->set ( 'Country', $Country);
@@ -569,6 +578,7 @@ class Home extends MX_Controller {
                 $this->template->set ( 'featuredProduct', $featuredProduct);
                 $this->template->set ( 'page', 'buyers' );
                 $this->template->set ( 'userId', '' );
+				$this->template->set ( 'params', $params );
                 $this->template->set_theme('default_theme');
                 $this->template->set_layout ('default')
                 ->title ( 'Find Buyer' )
@@ -593,7 +603,7 @@ class Home extends MX_Controller {
                 $this->template->set ( 'featuredProductVideo', $featuredProductVideo);
                 $featuredProduct= $this->account->getFeaturedProduct();
                 $this->template->set ( 'featuredProducts', $featuredProduct);
-                $this->template->set ( 'page', 'buyers' );
+                $this->template->set ( 'page', 'products' );
                 $this->template->set ( 'producturl', $url );
                 $this->template->set ( 'userId', '' );
                 $this->template->set_theme('default_theme');
@@ -606,7 +616,7 @@ class Home extends MX_Controller {
             }else{
                 $this->load->model('Sellers_Model', 'buyers' );
                 $this->load->model('Account_Model', 'account' );
-                $search = $this->search->searchProduct($keyword);
+                $search = $this->buyers->searchProducts($params);
                 $this->template->set ( 'products', $search);
                 $Country= $this->account->getCountry();
                 $this->template->set ( 'Country', $Country);
@@ -616,8 +626,9 @@ class Home extends MX_Controller {
                 $this->template->set ( 'featuredProductVideo', $featuredProductVideo);
                 $featuredProduct= $this->account->getFeaturedProduct();
                 $this->template->set ( 'featuredProducts', $featuredProduct);
-                $this->template->set ( 'page', 'buyers' );
+                $this->template->set ( 'page', 'product' );
                 $this->template->set ( 'producturl', $url );
+                $this->template->set ( 'params', $params );
                 $this->template->set ( 'userId', '' );
                 $this->template->set_theme('default_theme');
                 $this->template->set_layout ('default')
@@ -630,6 +641,294 @@ class Home extends MX_Controller {
             }
             	
         }
+		elseif($type ==5){
+			$params['keyword'] = "";
+			if(!empty($params['keyword']))
+			$keyword = $params['keyword'];
+			if(empty($params)) {
+				if(!empty($_COOKIE['seller_keywd'])) {
+					$params['keyword'] = $_COOKIE['seller_keywd'];
+				}
+			} else {
+				if(isset($params['keyword']) && $params['keyword'] != "")
+						setcookie('video_keywd', $params['keyword'], time() + (86400 * 30), "/");
+			}
+			$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			if(empty($params['page'])) {
+				$params['page'] = 1;
+			}
+			$this->load->library('mylib/General');
+			$this->load->model('Sellers_Model', 'sellers' );
+			$this->load->model('Account_Model', 'account' );
+			$this->load->model('Product_Model','product');
+			$this->load->model('Vedio_model', 'videos' );
+			$videos = $this->videos->searchProductsInVideos($params);
+			$total_pages = $this->videos->countProductsInVideos($params);
+			$this->template->set ( 'videos', $videos);
+			$Country= $this->account->getCountry();
+			$this->template->set ( 'Country', $Country);
+			$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+			$this->template->set ( 'featuredSellers', $featuredSellers);
+			$featuredProductVideo= $this->account->getFeaturedProductVideo();
+			$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
+			$featuredProducts = $this->account->getFeaturedProduct();
+			$maincats = $this->product->getActiveProductMainAndSubCategories();
+			unset($params['community_only']);
+			unset($params['community_hide']);
+			if(empty($keyword)) {
+				unset($params['keyword']);
+			}
+			if(!empty($params['country'])) {
+				$city= $this->sellers->getCityByCountry($params['country'],1);
+				$this->template->set ( 'cities', $city);
+			}
+			$url = base_url()."pro-video?".http_build_query($params);
+			$this->template->set('url',$url);
+			$this->template->set ( 'mcats', $maincats );
+			$this->template->set ( 'params', $params);
+			$this->template->set ( 'featuredProducts', $featuredProducts);
+			$this->template->set('page',$params['page']);
+			$this->template->set('total_pages',$total_pages);
+			unset($params['page']);
+			if(http_build_query($params) != "")
+				$wpurl = base_url()."pro-video?".http_build_query($params)."&";
+			else
+				$wpurl = base_url()."pro-video?";
+			$this->template->set('wpvideourl',$wpurl);
+			$this->template->set ( 'page', 'pro-videos' );
+			$this->template->set ( 'userId', '' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout ('default')
+			->title ( 'Product In Videos' )
+			->set_partial ( 'header', 'default/inner-header' )
+			->set_partial ( 'footer', 'default/footer' );
+			$this->template->build ('product/pro-videos');
+		}elseif($type ==6){
+			$params['keyword'] = "";
+			if(!empty($params['keyword']))
+			$keyword = $params['keyword'];
+			$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			if(empty($params['page'])) {
+				$params['page'] = 1;
+			}
+			$this->load->model('Sellers_Model', 'sellers' );
+			$this->load->library('mylib/General', 'general');
+			$this->load->model ( 'Account_Model', 'account' );
+			$products = $this->sellers->search3DProducts($params);
+			$total_pages = $this->sellers->count3DProducts($params);
+			$this->template->set ( 'products', $products);
+			$Country= $this->account->getCountry();
+			$this->template->set ( 'Country', $Country);
+			$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+			$this->template->set ( 'featuredSellers', $featuredSellers);
+			$featuredBuyers = $this->sellers->getFeaturedWorldBuyer();
+			$this->template->set ( 'featuredBuyers', $featuredBuyers);
+			$featuredProducts = $this->sellers->getFeaturedProduct();
+			$this->template->set ( 'featuredProducts', $featuredProducts);
+			$procategories = $this->general->getProductCategories();
+			$this->template->set ( 'categories', $procategories);
+			$maincats = $this->product->getActiveProductMainAndSubCategories();
+			$this->template->set ( 'mcats', $maincats );
+			if(empty($keyword)) {
+				unset($params['keyword']);
+			}
+			$url = base_url()."3dproducts?".http_build_query($params);
+			$this->template->set ( 'params', $params);
+			$this->template->set('producturl',$url);
+			$this->template->set('page',$params['page']);
+			$this->template->set('total_pages',$total_pages);
+			unset($params['page']);
+			if(http_build_query($params) != "")
+				$wpurl = base_url()."3dproducts?".http_build_query($params)."&";
+			else
+				$wpurl = base_url()."3dproducts?";
+			$this->template->set('wpproducturl',$wpurl);
+			$this->template->set ( 'page', '3dproduct' );
+			$this->template->set ( 'browser_icon', 'products.ico' );
+			$this->template->set ( 'userId', '' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout ('default')
+			->title ( '3D Pro' )
+			->set_partial ( 'header', 'default/inner-header' )
+			->set_partial ( 'footer', 'default/footer' );
+			$this->template->build ('product/product3D');
+		}elseif($type ==7){
+			$params['keyword'] = "";
+			if(!empty($params['keyword']))
+				$keyword = $params['keyword'];
+			if(!empty($this->session->userdata('tsuser')['busi_id'])) {
+				$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			} else {
+				$params['busi_id'] = 0;
+			}
+			if(empty($params['page'])) {
+				$params['page'] = 1;
+			}
+			$this->load->model('Sellers_Model', 'sellers' );
+			$this->load->library('mylib/General', 'general');
+			$this->load->model ( 'Account_Model', 'account' );
+			$vCatalogues = $this->sellers->searchVCatalogues($params);
+			$total_pages = $this->sellers->countProducts($params);
+			$this->template->set ( 'vCatalogues', $vCatalogues);
+			$Country= $this->account->getCountry();
+			$this->template->set ( 'Country', $Country);
+			$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+			$this->template->set ( 'featuredSellers', $featuredSellers);
+			$featuredBuyers = $this->sellers->getFeaturedWorldBuyer();
+			$this->template->set ( 'featuredBuyers', $featuredBuyers);
+			$featuredProducts = $this->sellers->getFeaturedProduct();
+			$this->template->set ( 'featuredProducts', $featuredProducts);
+			$procategories = $this->general->getProductCategories();
+			$this->template->set ( 'categories', $procategories);
+			$maincats = $this->product->getActiveProductMainAndSubCategories();
+			$this->template->set ( 'mcats', $maincats );
+			if(empty($keyword)) {
+				unset($params['keyword']);
+			}
+			$url = base_url()."vcatalogues?".http_build_query($params);
+			$this->template->set ( 'params', $params);
+			$this->template->set('producturl',$url);
+			$this->template->set('page',$params['page']);
+			$this->template->set('total_pages',$total_pages);
+			unset($params['page']);
+			if(http_build_query($params) != "")
+				$wpurl = base_url()."vcatalogues?".http_build_query($params)."&";
+			else
+				$wpurl = base_url()."vcatalogues?";
+			$this->template->set('wpproducturl',$wpurl);
+			$this->template->set ( 'page', 'vcatalogue' );
+			$this->template->set ( 'browser_icon', 'products.ico' );
+			$this->template->set ( 'userId', '' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout ('default')
+			->title ( 'V-Catalogues' )
+			->set_partial ( 'header', 'default/inner-header' )
+			->set_partial ( 'footer', 'default/footer' )
+			->set_partial ( 'vcatalogue', 'default/vcatalogue' );
+			$this->template->build ('product/Vcatalogue');
+		}elseif($type ==8){
+			$this->load->model ( 'Account_Model', 'account' );
+			$params['keyword'] = "";
+			if(!empty($params['keyword']))
+			$keyword = $params['keyword'];
+			if(empty($params)) {
+				if(!empty($_COOKIE['dseller_keywd'])) {
+					$params['keyword'] = $_COOKIE['dseller_keywd'];
+				}
+			} else {
+				setcookie('dseller_keywd', $params['keyword'], time() + (86400 * 30), "/");
+			}
+			$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			if(empty($params['page'])) {
+				$params['page'] = 1;
+			}
+			$this->load->library('mylib/General');
+			$this->load->model('Sellers_Model', 'sellers' );
+			$this->load->model('Product_Model','product');
+			$sellers = $this->sellers->searchSellerDesksites($params);
+			$total_pages = $this->sellers->countSellerDesksites($params);
+			$this->template->set ( 'Sellers', $sellers);
+			$Country= $this->account->getCountry();
+			$this->template->set ( 'Country', $Country);
+			$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+			$this->template->set ( 'featuredSellers', $featuredSellers);
+			$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+			$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
+			$featuredProducts = $this->sellers->getFeaturedProduct();
+			$this->template->set ( 'featuredProducts', $featuredProducts);
+			unset($params['community_only']);
+			unset($params['community_hide']);
+			if(empty($keyword)) {
+				unset($params['keyword']);
+			}
+			$url = base_url()."seller/desksites?".http_build_query($params);
+			$maincats = $this->product->getActiveProductMainAndSubCategories();
+			if(!empty($params['country'])) {
+				$city= $this->sellers->getCityByCountry($params['country'],1);
+				$this->template->set ( 'cities', $city);
+			}
+			$this->template->set ( 'mcats', $maincats );
+			$this->template->set('sellerurl',$url);
+			$this->template->set('page',$params['page']);
+			$this->template->set('total_pages',$total_pages);
+			$this->template->set ( 'params', $params);
+			unset($params['page']);
+			if(http_build_query($params) != "")
+				$wpurl = base_url()."seller/desksites?".http_build_query($params)."&";
+			else 
+				$wpurl = base_url()."seller/desksites?";
+			$this->template->set('wpsellerurl',$wpurl);
+			$this->template->set ( 'page', 'sellerdesksite' );
+			$this->template->set ( 'browser_icon', 'seller.ico' );
+			$this->template->set ( 'userId', '' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout ('default')
+			->title ( 'Find Desksite' )
+			->set_partial ( 'header', 'default/inner-header' )
+			->set_partial ( 'footer', 'default/footer' );
+			$this->template->build ('Home/sellerdesksite');
+		}elseif($type ==9){
+			$this->load->model ( 'Account_Model', 'account' );
+			$params['keyword'] = "";
+			if(!empty($params['keyword']))
+				$keyword = $params['keyword'];
+			if(empty($params)) {
+				if(!empty($_COOKIE['dseller_keywd'])) {
+					$params['keyword'] = $_COOKIE['dseller_keywd'];
+				}
+			} else {
+				setcookie('dseller_keywd', $params['keyword'], time() + (86400 * 30), "/");
+			}
+			$params['busi_id'] = $this->session->userdata('tsuser')['busi_id'];
+			if(empty($params['page'])) {
+				$params['page'] = 1;
+			}
+			$this->load->library('mylib/General');
+			$this->load->model('Sellers_Model', 'sellers' );
+			$this->load->model('Product_Model','product');
+			$sellers = $this->sellers->searchShippers($params);
+			$total_pages = $this->sellers->countShippers($params);
+			$this->template->set ( 'Sellers', $sellers);
+			$Country= $this->account->getCountry();
+			$this->template->set ( 'Country', $Country);
+			$featuredSellers = $this->sellers->getFeaturedWorldSeller();
+			$this->template->set ( 'featuredSellers', $featuredSellers);
+			$featuredProductVideo= $this->sellers->getFeaturedProductVideo();
+			$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
+			$featuredProducts = $this->sellers->getFeaturedProduct();
+			$this->template->set ( 'featuredProducts', $featuredProducts);
+			unset($params['community_only']);
+			unset($params['community_hide']);
+			if(empty($keyword)) {
+				unset($params['keyword']);
+			}
+			$url = base_url()."shipper/desksites?".http_build_query($params);
+			$maincats = $this->product->getActiveProductMainAndSubCategories();
+			if(!empty($params['country'])) {
+				$city= $this->sellers->getCityByCountry($params['country'],1);
+				$this->template->set ( 'cities', $city);
+			}
+			$this->template->set ( 'mcats', $maincats );
+			$this->template->set('sellerurl',$url);
+			$this->template->set('page',$params['page']);
+			$this->template->set('total_pages',$total_pages);
+			$this->template->set ( 'params', $params);
+			unset($params['page']);
+			if(http_build_query($params) != "")
+				$wpurl = base_url()."shipper/desksites?".http_build_query($params)."&";
+			else
+				$wpurl = base_url()."shipper/desksites?";
+			$this->template->set('wpsellerurl',$wpurl);
+			$this->template->set ( 'page', 'shipperdesksite' );
+			$this->template->set ( 'browser_icon', 'shipper.ico' );
+			$this->template->set ( 'userId', '' );
+			$this->template->set_theme('default_theme');
+			$this->template->set_layout ('default')
+			->title ('Find Desksite' )
+			->set_partial ( 'header', 'default/inner-header' )
+			->set_partial ( 'footer', 'default/footer' );
+			$this->template->build ('Home/shipperdesksite');
+		}
         elseif($type =='0'){
             if($country[0] !=''){
                 $this->load->model('Sellers_Model', 'search' );
@@ -1055,7 +1354,7 @@ class Home extends MX_Controller {
             $map['country'] = $ipinfo['country'];
             $map['ip_address'] = $ip_address;
             $this->load->model('Tool_model','mytoolmodel');
-            $this->mytoolmodel->addBusinessVisit($map);
+            //$this->mytoolmodel->addBusinessVisit($map);
         }
         $user_rnd = $this->factorylib->getUserRNDtype($Company[0]['factory_id']);
         $this->template->set('user_rnd',$user_rnd);
@@ -1384,7 +1683,7 @@ class Home extends MX_Controller {
         $Desksites= $this->product->getDesksiteByBusiId($map);
         $countries = $this->product->getAllCountries();
         $requests = $this->product->getCurrentRequest($id);
-        $contact_details = $this->account->getBusinessContactDetails($busi_id);
+        $contact_details = $this->account->getBusinessContactDetails($id);
         $this->template->set ( 'countries', $countries );
         $this->template->set ( 'Desksites', $Desksites);
         $this->template->set ( 'community', $community);
@@ -1422,7 +1721,7 @@ class Home extends MX_Controller {
             $map['country'] = $ipinfo['country'];
             $map['ip_address'] = $ip_address;
             $this->load->model('Tool_model','mytoolmodel');
-            //$this->mytoolmodel->addBusinessVisit($map);
+            $this->mytoolmodel->addBusinessVisit($map);
         }
         $map =array();
         $map['id'] = $id;
@@ -1850,6 +2149,7 @@ class Home extends MX_Controller {
             $resp['msg'] = "Failed to add Offer.";
         }
         echo json_encode($resp);
+
     }
 
     public function saveContactUs() {

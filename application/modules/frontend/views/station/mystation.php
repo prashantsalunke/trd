@@ -1382,7 +1382,7 @@ function Validatecontact(theForm)
 {
    var regexp;
    var extension = theForm.FileUpload1.value.substr(theForm.FileUpload1.value.lastIndexOf('.'));
-   if ((extension.toLowerCase() != ".gif") &&
+   /*if ((extension.toLowerCase() != ".gif") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
        (extension.toLowerCase() != ".png") &&
@@ -1391,7 +1391,8 @@ function Validatecontact(theForm)
       alert("The \"FileUpload1\" field contains an unapproved filename.");
       theForm.FileUpload1.focus();
       return false;
-   }
+   }*/
+   
    if (theForm.Editbox47.value == "")
    {
       alert("Please enter a value for the \"Subject\" field.");
@@ -1418,7 +1419,7 @@ function Validatecontact(theForm)
 {
    var regexp;
    var extension = theForm.FileUpload2.value.substr(theForm.FileUpload2.value.lastIndexOf('.'));
-   if ((extension.toLowerCase() != ".gif") &&
+   /*if ((extension.toLowerCase() != ".gif") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
        (extension.toLowerCase() != ".png") &&
@@ -1427,7 +1428,8 @@ function Validatecontact(theForm)
       alert("The \"FileUpload1\" field contains an unapproved filename.");
       theForm.FileUpload2.focus();
       return false;
-   }
+   }*/
+   
    if (theForm.Editbox46.value == "")
    {
       alert("Please enter a value for the \"Subject\" field.");

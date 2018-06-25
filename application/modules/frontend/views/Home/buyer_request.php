@@ -143,7 +143,7 @@ function ValidateOffer_for_you_post_in_RT_Business(theForm)
       return false;
    }
    var extension = theForm.FileUpload1.value.substr(theForm.FileUpload1.value.lastIndexOf('.'));
-   if ((extension.toLowerCase() != ".doc") &&
+   /*if ((extension.toLowerCase() != ".doc") &&
        (extension.toLowerCase() != ".docx") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
@@ -153,7 +153,8 @@ function ValidateOffer_for_you_post_in_RT_Business(theForm)
       alert("The \"FileUpload3\" field contains an unapproved filename.");
       theForm.FileUpload1.focus();
       return false;
-   }
+   }*/
+   
    if (theForm.TextArea1.value == "")
    {
       alert("Please Enter Enough Description");

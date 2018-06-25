@@ -166,12 +166,12 @@ div.pp_pic_holder {
 								<!-- view past close post add new post buttons end-->
 								<!-- close my post 1 -->
 
-								<div id="Layer28" style="width: 1029px;height:616px;overflow-x: hidden;">
+								<div id="Layer28" style="width: 1029px;height:625px;overflow-x: hidden;">
 				                
 				           		</div>
 
 
-								<div id="Layer32" style="width: 1029px;height:616px;overflow-x: hidden;">
+								<div id="Layer32" style="width: 1029px;height:625px;overflow-x: hidden;">
 				             	</div>
 				             	<br><br><br><br>
 							</div>
@@ -181,9 +181,9 @@ div.pp_pic_holder {
 							<div id="menu1" class="tab-pane fade content122">
 							
 
-							<div id="Layer288" style="width: 1029px;height:616px;overflow-x: hidden;"></div>
+							<div id="Layer288" style="width: 1029px;height:625px;overflow-x: hidden;"></div>
 								
-							<div id="Layer322" style="height:616px;width: 1029px;overflow-x: hidden;"></div>
+							<div id="Layer322" style="height:625px;width: 1029px;overflow-x: hidden;"></div>
 								<!-- view my post end -->
 								<!-- view past close post add new post buttons -->
 								<div class="tab1" style="padding-left:16px;">
@@ -582,7 +582,7 @@ function searchBusinessStation(loader = true) {
 	current_view = "searchBusinessStation";
 	var keyword = $("#SiteSearch3").val();
 	var country = $("#top_country_id").val();
-	if(keyword != "" && country != "") {
+	if(keyword != "" || country != "") {
 		if(loader)
 			ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
@@ -603,23 +603,23 @@ function searchBusinessStation(loader = true) {
 		    $.cookie('bstation-country', country, { expires: 365 });
 		},'json');
 	} else {
-		if(keyword == "" && country == "") {
-			alert("Please enter search keyword and select country");
-		} else {
+		//if(keyword == "" && country == "") {
+			alert("Please enter search keyword or select country");
+		/*} else {
 			if(keyword == "") {
 				alert("Please enter search keyword");
 			}
 			if(country == "") {
 				alert("Please select country");
 			}
-		}
+		}*/
 	}
 }
 function filterBusinessStation(loader = true) {
 	current_view = "filterBusinessStation";
 	var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
-	if(keyword != "" && country != "") {
+	if(keyword != "" || country != "") {
 		if(loader)
 			ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
@@ -641,16 +641,16 @@ function filterBusinessStation(loader = true) {
 		    $.cookie('bstation-country', country, { expires: 365 });
 		},'json');
 	} else {
-		if(keyword == "" && country == "") {
-			alert("Please enter search keyword and select country");
-		} else {
+		//if(keyword == "" && country == "") {
+			alert("Please enter search keyword or select country");
+		/*} else {
 			if(keyword == "") {
 				alert("Please enter search keyword");
 			}
 			if(country == "") {
 				alert("Please select country");
 			}
-		}
+		}*/
 	}
 }
 

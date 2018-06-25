@@ -865,7 +865,7 @@ class Product_Model extends CI_Model {
     	
     }
     public function getVideodetailsById($id) {
-    	$this->db->select('a1.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id, g.vedio_file as video_file,g.id as vid,h.company_name');
+    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id, g.vedio_file as video_file,g.id as vid,h.company_name');
     	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
@@ -1088,8 +1088,6 @@ class Product_Model extends CI_Model {
     	$this->db->select('*');
     	$this->db->from(TABLES::$MYFILE);
     	$this->db->where('busi_id', $id);
-        if($id != $loggedin_user_busiid)
-    	       $this->db->where('file_access_type', 1);
     	$this->db->where('	is_deleted', 0);
     	$query = $this->db->get();
     	$result = $query->result_array();
@@ -1959,6 +1957,7 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$USER.' AS c','b.id=c.busi_id','inner');
     	$this->db->where('a.id', $id);
+        $this->db->where('c.user_role',3);
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -2004,7 +2003,8 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+    		/*$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);*/
+            $this->db->where('MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'")', NULL, false);
     	}
     	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
@@ -2092,7 +2092,9 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+    		/*$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+            $this->db->where('MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'") OR MATCH (h.description) AGAINST ("'. trim($params['keyword']) .'")', NULL, false);*/
+            $this->db->where('MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'")', NULL, false);
     	}
     	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
@@ -2200,7 +2202,8 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+    		/*$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);*/
+            $this->db->where('MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'")', NULL, false);
     	}
     	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
@@ -2287,7 +2290,8 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+    		/*$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);*/
+            $this->db->where('MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'")', NULL, false);
     	}
     	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
@@ -2707,7 +2711,6 @@ class Product_Model extends CI_Model {
     	if(isset($params['sub_prod']) && $params['sub_prod']!='') {
 			$this->db->where("(c.name like '%".trim($params['sub_prod'])."%')",'',false);
 		}
-    	
     	$this->db->group_by('a.id');
     	if(isset($params['page']) && !empty($params['page'])) {
     		$start = $params['page']*25 - 25;

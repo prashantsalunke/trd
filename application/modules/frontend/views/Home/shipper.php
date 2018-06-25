@@ -196,7 +196,6 @@
     font-weight: normal;
     font-size: 13px;
 }
-
 </style>  
 <div>
 	<div class="col-sm-12" style="padding:0px;padding-top: 40px;">

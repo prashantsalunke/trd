@@ -334,7 +334,82 @@ line-height:4px;
     margin-bottom:3px;
 }
 </style>
+
 <script>
+
+function getBuyerComapnyProfile(id) {
+    $.get(base_url+"desksite/company/buyer/"+id,{},function(data) {
+        $("#company-profile").html(data);
+        ShowObjectWithEffect( 'Layer5', 0, 'slidedown', 500, 'swing');
+        ShowObjectWithEffect( 'Layer48', 1, 'slidedown', 500, 'swing');
+    },'html');
+}
+
+
+function getComapnyAbout(id) {
+    $.get(base_url+"desksite/company/about/"+id,{},function(data) {
+        $("#about-us").html(data);
+        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
+        ShowObjectWithEffect('Layer23', 1, 'slidedown', 500, 'swing');
+    },'html');
+}
+
+function getContactPerson(id) {
+    $.get(base_url+"desksite/contact/"+id,{},function(data) {
+        $("#contact-person").html(data);
+        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
+        ShowObjectWithEffect('Layer62', 1, 'slidedown', 500, 'swing');
+    },'html');
+}
+
+function getMyFiles(id) {
+    $.get(base_url+"desksite/myfiles/"+id,{},function(data) {
+        $("#my-files").html(data);
+        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
+        ShowObjectWithEffect('Layer148', 1, 'slidedown', 500, 'swing');
+            
+    },'html');
+}
+
+function getCurrentRequest(id) {
+    $.get(base_url+"desksite/request/"+id,{},function(data) {
+        $("#post").html(data);
+        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
+        ShowObjectWithEffect('Layer58', 1, 'slidedown', 500, 'swing');
+            
+    },'html');
+}
+
+function submitContactForm() {
+    <?php if(!empty($tsuserid)) { ?>
+       
+    <?php } else { ?>
+        $("#msg_cont").html("Please login to contact this Buyer.");
+        ShowObject('Layer99', 1);
+    <?php } ?>
+}
+function openGeneralOffer(id) {
+  <?php if(!empty($tsuserid)) { ?>
+    <?php if($tscategory_id != 3) { ?>
+      popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+    <?php } else { ?>
+      <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['step'] == 2) { ?>
+        popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
+      <?php } else if($contact_details[0]['step'] < 2) { ?>
+        $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
+        ShowObject('Layer99', 1);
+      <?php } else if($contact_details[0]['accept_offer'] == 0) { ?>
+        $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+        ShowObject('Layer99', 1);
+      <?php } ?>
+    <?php } ?>
+  <?php } else { ?>
+    $("#msg_cont").html("Please login to send enquiry.");
+    ShowObject('Layer99', 1);
+  <?php } ?>
+}
+
+
 $(document).ready(function() {
     $('.loader').removeClass('loader');
     $("#Layer27").stickylayer({
@@ -922,7 +997,7 @@ function stopWiggle(input) {
             <!-- certification ends -->
             
             <!-- company profile -->
-            <div id="Layer48" class="box1" style="width:477px;height:80%;padding:15px;">
+            <div id="Layer48" class="box1" style="width:477px;height:auto;padding:15px;">
                 <a href="#" onclick="ShowObjectWithEffect('Layer5', 1, 'slidedown', 500);ShowObjectWithEffect('Layer48', 0, 'slidedown', 300, 'swing');return false;">
                     <img src="<?php echo asset_url(); ?>images/closeround.png" id="Image135" alt="" class="imgre" style="left:96%;"/>
                 </a>
@@ -1021,12 +1096,6 @@ function stopWiggle(input) {
                         </a>
                     </div>
                     <div class="inline box5">
-                        <img src="<?php echo asset_url(); ?>images/like.png" id="Image19" alt="" class="img32">
-                        <a href="javascript:likeMyDesksite(<?php echo $Desksite['busi_id'];?>);" target="_self" class="antag">
-                        Like
-                        </a>
-                    </div>
-                    <div class="inline box5">
                         <img src="<?php echo asset_url(); ?>images/posts-icon.png" id="Image19" alt="" class="img32">
                         <a href="javascript:openGeneralOffer(<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
                         Send General Offer
@@ -1034,7 +1103,7 @@ function stopWiggle(input) {
                     </div>
                     <div class="inline box5">
                         <img src="<?php echo asset_url(); ?>images/Mail.ico" id="Image19" alt="" class="img32">
-                        <a href="#" onclick="check_msg(); ShowObjectWithEffect('Layer216', 1, 'slideleft', 500, 'swing');return false;" target="_self" class="antag">
+                        <a href="#" onclick="submitContactForm(); ShowObjectWithEffect('Layer216', 1, 'slideleft', 500, 'swing');return false;" target="_self" class="antag">
                         Contact Buyer
                         </a>
                     </div>
@@ -1268,21 +1337,6 @@ function stopWiggle(input) {
 <script src="<?php echo asset_url();?>js/jquery.form.js"></script>
 <script>
 
-function getBuyerComapnyProfile(id) {
-    $.get(base_url+"desksite/company/buyer/"+id,{},function(data) {
-        $("#company-profile").html(data);
-        ShowObjectWithEffect( 'Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect( 'Layer48', 1, 'slidedown', 500, 'swing');
-    },'html');
-}
-
-function getComapnyAbout(id) {
-    $.get(base_url+"desksite/company/about/"+id,{},function(data) {
-        $("#about-us").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect('Layer23', 1, 'slidedown', 500, 'swing');
-    },'html');
-}
 
 function getComapnyCertificate(id) {
     $.get(base_url+"desksite/company/certificate/"+id,{},function(data) {
@@ -1296,22 +1350,6 @@ function getAdvantage(id) {
         $("#advantage").html(data);
         ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
         ShowObjectWithEffect('Layer79', 1, 'slidedown', 500, 'swing');
-    },'html');
-}
-function getContactPerson(id) {
-    $.get(base_url+"desksite/contact/"+id,{},function(data) {
-        $("#contact-person").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
-        ShowObjectWithEffect('Layer62', 1, 'slidedown', 500, 'swing');
-    },'html');
-}
-
-function getMyFiles(id) {
-    $.get(base_url+"desksite/myfiles/"+id,{},function(data) {
-        $("#my-files").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
-        ShowObjectWithEffect('Layer148', 1, 'slidedown', 500, 'swing');
-            
     },'html');
 }
 function get3DProduct(id) {
@@ -1330,14 +1368,6 @@ function getProductVideo(id) {
             
     },'html');
 }
-function getCurrentRequest(id) {
-    $.get(base_url+"desksite/request/"+id,{},function(data) {
-        $("#post").html(data);
-        ShowObjectWithEffect('Layer5', 0, 'slidedown', 500);
-        ShowObjectWithEffect('Layer58', 1, 'slidedown', 500, 'swing');
-            
-    },'html');
-}
 
 function getProductCategory(id) {
     $.get(base_url+"desksite/product/menu/"+id, {},function(data) {
@@ -1346,17 +1376,19 @@ function getProductCategory(id) {
     },'html');
 }
 
-function openChatWithBuyer(seller_id) {
+function openChatWithBuyer(seller_id,accept_chat=true) {
     <?php if(!empty($tsuserid)) { ?>
         <?php if($tscategory_id == 3) { ?>
             <?php if($contact_details[0]['accept_chat'] == 1) { ?>
-                popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+                jqcc.cometchat.chatWith(seller_id);
+                document.getElementById('cometchat_chatboxes').style.right='0px';
             <?php } else { ?>
                 $("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
                 ShowObject('Layer99', 1);
             <?php } ?>
         <?php } else { ?>
-            popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+            jqcc.cometchat.chatWith(seller_id);
+            document.getElementById('cometchat_chatboxes').style.right='0px';
         <?php } ?>
     <?php } else { ?>
         $("#msg_cont").html('LOGIN TO CAHT');
@@ -1377,49 +1409,6 @@ function likeMyDesksite(busi_id) {
         $("#msg_cont").html(data.msg);
         ShowObject('Layer99', 1);
     },'json');
-}
-function submitContactForm() {
-    <?php if(!empty($tsuserid)) { ?>
-        <?php if($tscategory_id != 3) { ?>
-            $("#msg_cont").html("Your offer has been sent successfully to the buyer.");
-            ShowObject('Layer99', 1);
-            ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
-        <?php } else { ?>
-            <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>
-                $("#msg_cont").html("Your offer has been sent successfully to the buyer.");
-                ShowObject('Layer99', 1);
-                ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
-            <?php } else if($contact_details[0]['step'] < 2) { ?>
-                $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
-                ShowObject('Layer99', 1);
-            <?php } else if($contact_details[0]['accept_offer'] == 0 || $contact_details[0]['accept_email'] == 0) { ?>
-                $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
-                ShowObject('Layer99', 1);
-            <?php } ?>
-        <?php } ?>
-    <?php } else { ?>
-        $("#msg_cont").html("Please login to contact this seller.");
-        ShowObject('Layer99', 1);
-    <?php } ?>
-}
-function openGeneralOffer(id) {
-
-    <?php if(!empty($tsuserid)) { ?>
-    <?php if($tscategory_id != $buyer) {
-    //check if buyer has allowed himself to receive offers
-    if($contact_details[0]['accept_offer'] && $contact_details[0]['accept_email'] && $contact_details[0]['step'] >= $steps_needed) { ?>
-    popupwnd('<?php echo base_url();?>desksite/general_offer/' + id, 'no', 'no', 'no', 'no', 'no', 'no', '200', '50', '1055', '680');
-    <?php } else if($contact_details[0]['step'] < $steps_needed) { ?>
-    $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It's so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In \" My Station\" click on \" My Desksite\" and follow the steps to build it.");
-    ShowObject('Layer99', 1);
-    <?php } else if(!$contact_details[0]['accept_offer'] || !$contact_details[0]['accept_email']) { ?>
-    $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
-    ShowObject('Layer99', 1);
-    <?php } } } else { ?>
-    $("#msg_cont").html("Please login to send enquiry.");
-    ShowObject('Layer99', 1);
-    <?php } ?>
-
 }
 function check_msg() {
   // alert('Helloooo');
@@ -1464,9 +1453,7 @@ $(document).ready(function(){
                     notEmpty: {
                         message: 'Please enter Phone Number'
                     },
-                  integer: {
-                        message: 'Enter Only Numbers'
-                    }
+                  
                 }
             },
             country: {

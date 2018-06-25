@@ -19,9 +19,10 @@ function addToMyFavourite(fav_id,type) {
 		ShowObject('Layer99', 1);
 	},'json');
 }
-function openChatWithBuyer(postid,buyer_id,accept_chat) {
+function openChatWithBuyer(buyer_id,accept_chat=true) {
 	if(accept_chat == 1) {
-		popupwnd('<?php echo base_url();?>global/chat/'+buyer_id,'no','no','no','no','no','no','750','50','430','720');
+		jqcc.cometchat.chatWith(buyer_id);
+        document.getElementById('cometchat_chatboxes').style.right='0px';
 	} else {
 		customAlert('Sorry.. Buyer status is " Don\'t Disturb".. Please try again on other time, status may be changed soon.');
 	}
