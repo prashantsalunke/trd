@@ -42,6 +42,7 @@ class Alerts extends MX_Controller
 		$this->load->library('mylib/InquiryLib');
 		$this->load->library('mylib/OfferLib');
 		$this->load->library('mylib/orderLib');
+		$this->load->library('common');
 		$this->load->model('Product_Model','product');
 		if($category_id == 1 || $category_id == 2) {
 			$inquiry = $this->inquirylib->getInquiryByBusiId($this->busiId);
@@ -55,9 +56,9 @@ class Alerts extends MX_Controller
 		$favoritearray= $this->myfavoritelib->getMyfavoriteseller($this->busiId,1);
 		$sendcommunityrequest = array();
 		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($this->busiId);
-		$totalAddRequestAlertCount      = $this->getTotalAddToCommunityCount();
-		$totalInquiryAlertCount      = $this->getTotalInquiryCount();
-		$totalOfferAlertCount      = $this->getTotalOfferCount();
+		$totalAddRequestAlertCount   = $this->common->getTotalAddToCommunityCount();
+		$totalInquiryAlertCount      = $this->common->getTotalInquiryCount();
+		$totalOfferAlertCount        = $this->common->getTotalOfferCount();
 		$this->template->set ( 'favoritearray', $favoritearray);
 		$this->template->set ( 'inquiry', $inquiry);
 		$this->template->set ( 'offer', $offer);
@@ -187,6 +188,7 @@ class Alerts extends MX_Controller
 		$html = $this->template->build ('station/pages/subpages/offer','',true);
 		echo $html;
 	}
+	
 	public function request() 
 	{
 		$data = array();	
@@ -194,7 +196,7 @@ class Alerts extends MX_Controller
 		$sendcommunityrequest = array();
 		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($this->busiId);
 		$mycommunityrequest = $this->communitylib->getSendCommunityRequest($this->busiId);
-		$totalAlertCount = $this->getTotalAddToCommunityCount();
+		$totalAlertCount = $this->common->getTotalAddToCommunityCount();
 		$data['busi_id'] = $this->busiId;
 		$data['alert_viewed'] = 1;
 		$this->communitylib->updateCommunityRequest($data);
@@ -1046,7 +1048,7 @@ class Alerts extends MX_Controller
     	    
     	    $categoryId = $this->session->userdata('tsuser')['category_id'];
     	    //new request for add to community alerts
-    	    $checkNewCommunityAlert = $this->getTotalAddToCommunityCount();
+    	    $checkNewCommunityAlert = $this->communitylib->getInvitationCommunityRequest($this->busiId);
     
     		// get new alerts for inquiry and offer alerts
     	    if(in_array($categoryId,array(SELLER_ID,SHIPPER_ID))){
@@ -1057,25 +1059,28 @@ class Alerts extends MX_Controller
     			$getMyOffers = $this->offerlib->getBuyerOfferByBusiId($this->busiId);
     		}
 			// get new order alerts
-    		$order = $this->orderlib->getOrderByBusiId($this->busiId);
+    		//$order = $this->orderlib->getOrderByBusiId($this->busiId);
 
     	    $this->template->set ( 'newCommunity', $checkNewCommunityAlert);
     	    $this->template->set ( 'newInquiry', $inquiry);
     	    $this->template->set ( 'newOffers', $getMyOffers);
-    	    $this->template->set ( 'busi_id',$this->busiId );
+    	    $this->template->set ( 'busi_id',$this->busiId);
     	    $this->template->set_layout (false);
     	    $html = $this->template->build ('default/alerts_popup','',true);
-    	    
-    	    $totalcount = count($inquiry) + count($getMyOffers) + count($order) + count($checkNewCommunityAlert);
+    	    //get alert count
+    	    $totalAddRequestAlertCount   = $this->common->getTotalAddToCommunityCount();
+		    $totalInquiryAlertCount      = $this->common->getTotalInquiryCount();
+		    $totalOfferAlertCount        = $this->common->getTotalOfferCount();
+    	    $totalcount = $totalOfferAlertCount + $totalInquiryAlertCount + $totalAddRequestAlertCount;//count($order) 
     	    //check alert count
             $getTotalUsersAlertCount = $this->myalert->getMyAlertCount($this->busiId);
-
+ 
             if(empty($getTotalUsersAlertCount)) {
                 //save alert count to table
                 $this->myalert->saveAlertCount($this->busiId, $totalcount);
             }
 
-            if(!empty($getTotalUsersAlertCount) && $totalcount > $getTotalUsersAlertCount[0]['alert_count']) {
+            if($totalcount > $getTotalUsersAlertCount) {
                 die(json_encode(array('dataHTML'=> $html,'totalCount'=>$totalcount)));
             } else {
                 die(json_encode(array('dataHTML'=> '','totalCount'=>$totalcount)));
@@ -1157,53 +1162,4 @@ class Alerts extends MX_Controller
 			break;
 		}
 	}
-
-	public function getTotalAddToCommunityCount() {
-		$this->load->library('mylib/CommunityLib');
-        $sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($this->busiId);
-        $totalAlertCount = 0;
-		foreach($sendcommunityrequest as $key => $value) {
-			if($value['alert_viewed'] == 0){
-				$totalAlertCount++;
-			}
-		}
-		return $totalAlertCount;
-    }
-
-    public function getTotalInquiryCount() {
-    	$this->load->library('mylib/InquiryLib');
-    	echo $category_id = $this->session->userdata('tsuser')['category_id'];
-		if($category_id == 1 || $category_id == 2) {echo 'how';
-			$inquiry = $this->inquirylib->getInquiryByBusiId($this->busiId);
-		} else {echo 'why';
-			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($this->busiId);
-		}
-
-		 $totalAlertCount = 0;
-		foreach($inquiry as $key => $value) {// print_r($value['alert_viewed']);
-			if($value['alert_viewed'] == 0){
-				$totalAlertCount++;
-			}
-		}
-		return $totalAlertCount;
-    }
-
-    public function getTotalOfferCount() {
-    	$this->load->library('mylib/OfferLib');
-		$category_id = $this->session->userdata('tsuser')['category_id'];
-		if($category_id == 1 || $category_id == 2) {
-			$offer = $this->offerlib->getOfferByBusiId($this->busiId);
-		} else {
-			$offer = $this->offerlib->getBuyerOfferByBusiId($this->busiId);
-		}
-
-		$totalAlertCount = 0;
-		foreach($offer as $key => $value) {
-			if($value['alert_viewed'] == 0){
-				$totalAlertCount++;
-			}
-		}
-		return $totalAlertCount;
-    }
-
 }

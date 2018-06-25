@@ -13,7 +13,7 @@ class InquiryLib {
 	public  function getInquiryByBusiId($busi_id)
 	{
 		$this->CI->load->model ( 'Inquiry_model', 'inquiry' );
-		return $res = $this->CI->inquiry->getBuyerInquiryByBusiId($busi_id);
+		return $res = $this->CI->inquiry->getInquiryByBusiId($busi_id);
 	}
 	public  function updateInquiry($data)
 	{

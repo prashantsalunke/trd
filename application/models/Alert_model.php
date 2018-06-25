@@ -84,10 +84,10 @@ class Alert_model extends CI_Model {
 
         $row = $query->result_array();
 
-        if(!empty($row)) {
+        if(!empty($row[0]['alert_count'])) {
             return $row;
         } else {
-            return array();
+            return 0;
         }
     }
 }

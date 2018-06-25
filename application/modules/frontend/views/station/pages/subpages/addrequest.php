@@ -14,7 +14,7 @@
 		</div>
 	</div>		
 	</div>
-<div class="panel-body panel-body-custom" style="padding-top: 15px;" id="request_to_me"><br>
+<div class="panel-body panel-body-custom" style="padding-top: 15px;height:650px;" id="request_to_me"><br>
 <div class="row">
 	<div class="col-md-12" style="text-align: left">
 		<span style="color:#F05539;font-family:Arial;font-size:32px;" id="req"><?php echo count($sendcommunityrequest);?>   </span>
@@ -187,7 +187,7 @@ foreach($sendcommunityrequest as $key=>$seller) { ?>
 		<?php $i++; } ?>
 	</div>	
 		
-	<div class="panel-body panel-body-custom" style="padding-top: 15px;display:none;" id="request_by_me"><br>
+	<div class="panel-body panel-body-custom" style="padding-top: 15px;display:none;height:650px;" id="request_by_me"><br>
 		<div class="row">
 			<div class="col-md-12" style="text-align: left">
 				<span style="color:#F05539;font-family:Arial;font-size:32px;" id="vreq"><?php echo count($mycommunityrequest);?>   </span>
