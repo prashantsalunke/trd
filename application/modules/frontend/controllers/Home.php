@@ -1429,7 +1429,7 @@ class Home extends MX_Controller {
         $map['user_id'] = $busi_id ;
         $this->load->model('Myudtalk_model','myudtalk');
         $Desksites= $this->product->getShipperDesksiteByBusiId($map);
-        $images = $this->myudtalk->getUdFiles($busi_id);
+        $images = $this->myudtalk->getUdFiles($id);
         $branches = $this->product->getBusinessBranchesByBusiId($map);
         $countries = $this->product->getAllCountries();
         $this->template->set ( 'countries', $countries );

@@ -184,6 +184,7 @@ function submitContactForm() {
 
 
 $(document).ready(function() {
+    $('.loader').removeClass('loader');
     $("#Layer27").stickylayer({
         orientation: 1,
         position: [0, 0],
