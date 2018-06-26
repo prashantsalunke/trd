@@ -4938,7 +4938,7 @@
 				</a>
 			</div>
 			<div id="wb_Text20"
-				style="position: absolute; left: 262px; top: 91px; width: 295px; height: 24px; z-index: 109; text-align: left;">
+				style="position: absolute; left: 262px; top: 91px; width: 500px; height: 24px; z-index: 109; text-align: left;">
 				<span style="color: #3C3C3C; font-family: Georgia; font-size: 20px;"><strong>Thanks
 						<?php echo $tsprefix;?> <?php echo $tsusername;?></strong></span>
 			</div>
@@ -5029,7 +5029,7 @@
 				<table style="border:0px;border-collapse: collapse;background:#fff;color: #3C3C3C; font-family: Georgia; font-size: 12px;" border="0" bgcolor="#fff" cellpadding="0" cellspacing="0">
 					<tr style="border:0px;background:#fff;" bgcolor="white">
 						<td style="border:0px;background:#fff;" bgcolor="white">Item</td>
-						<td style="border:0px;background:#fff;" bgcolor="white">Trade Station Membership Subscription</td>
+						<td style="border:0px;background:#fff;" bgcolor="white">VCommers Membership Subscription</td>
 					</tr>
 					<tr>
 						<td>Plan</td>
