@@ -96,12 +96,14 @@
                                         break;
                                     }
                                  ?>
+
                                  <?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
-									<a href="javascript:login_message()">
+									<a href="javascript:login_message()" style="opacity: 1 !important;position: relative;z-index: 11;">
 								<?php }else{ ?>
 									<a href="<?php echo $myStationUrl; ?>" style="opacity: 1 !important;position: relative;z-index: 11;">
 								<?php } ?>
 								<!--  data-toggle="modal" data-target="#myalertModal" onclick="getAlerts();" -->
+								<a href="<?php echo $myStationUrl; ?>" style="opacity: 1 !important;position: relative;z-index: 11;"><!--  data-toggle="modal" data-target="#myalertModal" onclick="getAlerts();" -->
 									<img src="<?php echo asset_url(); ?>/images/ts/Alerts1.png" style="width: 50px;">
 									<h5>My Alerts</h5>
 								</a><span style="background: red none repeat scroll 0 0;border: 1px solid #fff;border-radius: 100px;box-shadow: 0 0 6px #aaa;left: -3px;position: absolute;text-align: left;top: 20px;width: 50px;z-index: 1;" class="badge"><?php echo $totalcount; ?></span>

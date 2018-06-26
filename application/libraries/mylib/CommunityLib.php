@@ -25,5 +25,9 @@ class CommunityLib {
 		$this->CI->load->model ( 'Community_Model', 'community' );
 		return $res = $this->CI->community->updateCommunity($data);
 	}
-	
+	public  function updateCommunityRequest($data)
+	{
+		$this->CI->load->model ( 'Community_Model', 'community' );
+		return $res = $this->CI->community->updateCommunityRequest($data);
+	}
 }

@@ -55,7 +55,7 @@ div.panel1 {
 		</div>
   		
   	</div>
-  	<div class="panel-body panel-body-custom" id="" style="padding-top: 15px;">		
+  	<div class="panel-body panel-body-custom" id="" style="padding-top: 15px;height: 650px;">		
   		<div id="offer_div" ><br><br>
   		<?php if($tscategory_id == 3 ) {?>
 			<div class="row">
@@ -140,7 +140,7 @@ div.panel1 {
 								<span style="color:#1E90FF;font-family:Arial;font-size:13px;"><?php echo $row['offer_type'];?></span>
 							</div>
 							<div class="col-md-1" style="padding:5px 0px;">
-								<span style="color:#1E90FF;font-family:Arial;font-size:13px;"><?php echo date('l', strtotime($row['created_date']));?><br><?php echo date("j M Y",strtotime($row['created_date']));?></span>
+								<span style="color:#1E90FF;font-family:Arial;font-size:13px;"><?php echo date('l', strtotime($row['actual_date']));?><br><?php echo date("j M Y",strtotime($row['actual_date']));?></span>
 							</div>
 						</div>
 					</div>

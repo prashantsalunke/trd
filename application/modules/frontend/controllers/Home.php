@@ -61,20 +61,12 @@ class Home extends MX_Controller {
             $this->load->library('mylib/orderLib');
             $this->load->library('mylib/CommunityLib');
 
-            if($category_id == 1 || $category_id == 2) {
-                $inquiry = $this->inquirylib->getInquiryByBusiId($busi_id);
-                $offer = $this->offerlib->getOfferByBusiId($busi_id);
-            } else {
-                $inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busi_id);
-                $offer = $this->offerlib->getBuyerOfferByBusiId($busi_id);
-            }
-            $sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
-            if(isset($sendcommunityrequest[0]['community_id']) == "" ) {
-                $sendcommunityrequest = array();
-            }
             $order = $this->orderlib->getOrderByBusiId($busi_id);
-            $totalcount = count($inquiry) + count($offer) + count($order) + count($sendcommunityrequest);
-
+            $totalAddRequestAlertCount   = $this->common->getTotalAddToCommunityCount();
+            $totalInquiryAlertCount      = $this->common->getTotalInquiryCount();
+            $totalOfferAlertCount        = $this->common->getTotalOfferCount();
+            
+            $totalcount = $totalAddRequestAlertCount + $totalInquiryAlertCount + count($order) + $totalOfferAlertCount;
         }
         $this->template->set ( 'totalcount', $totalcount);
         /**/
@@ -2069,7 +2061,6 @@ class Home extends MX_Controller {
         $product_id = 0;
         $post_type = 0;
         $post_id = 0;
-
         if(!empty($this->input->post('product_id'))) {
             $product_id = $this->input->post('product_id');
         }
@@ -2106,7 +2097,6 @@ class Home extends MX_Controller {
         $params['attachment4'] = "";
         $params['attachment4_size'] = 0;
         $params['alert_viewed'] = 0;
-
         $config = array(
             'upload_path'   => "assets/images/user_images/$userId/selleroffer",
             'allowed_types' => 'gif|jpg|png|PNG|JPEG|pdf|doc|docx|xls|xlsx',

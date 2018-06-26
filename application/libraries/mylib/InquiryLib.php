@@ -40,5 +40,10 @@ class InquiryLib {
 		$this->CI->load->model ( 'Inquiry_model', 'inquiry' );
 		return $res = $this->CI->inquiry->saveInquiry($data);
 	}
+	public  function updateInquiryRequest($data)
+	{
+		$this->CI->load->model ( 'Inquiry_model', 'inquiry' );
+		return $res = $this->CI->inquiry->updateInquiryRequest($data);
+	}
 	
 }

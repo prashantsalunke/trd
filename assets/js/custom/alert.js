@@ -45,7 +45,7 @@ function openFavoriteInfo(type)
 		$("#alertbodypanel").html(data);
 		$(".alerts-btn-selected").removeClass('alerts-btn-selected');
 		$("#alert-fab-"+type).addClass('alerts-btn-selected');
-		alertajaxindicatorstop();
+		
 		if(type == 1)
 		{
 			$("#seller_div").show();
@@ -166,8 +166,8 @@ function openFavoriteInfo(type)
 			$("#ads_div").hide();
 			$("#post_div").show();
 		}
-	
 	});
+	alertajaxindicatorstop();
 }
 function openMycart()
 {
@@ -182,7 +182,7 @@ function openInquiry()
 	$.get(base_url+"mystation/inquiry",{},function(data){
 		$("#alertbodypanel").html("");
 		$("#alertbodypanel").html(data);
-		
+		$("#totalinquiry").html(0);
 	});
 }
 function openOffer()
@@ -190,17 +190,17 @@ function openOffer()
 	$.get(base_url+"mystation/offer",{},function(data){
 		$("#alertbodypanel").html("");
 		$("#alertbodypanel").html(data);
-		
+		$("#totaloffer").html(0);
 	});
 }
 function openRequest()
 {
-	$.get(base_url+"mystation/request",{},function(data){
+	$.getJSON(base_url+"mystation/request",function(data){ 
 		$("#alertbodypanel").html("");
-		$("#alertbodypanel").html(data);
+		$("#alertbodypanel").html(data.dataHTML);
 		$(".alerts-btn-selected").removeClass('alerts-btn-selected');
 		$("#addcominityrequest_btn").addClass('alerts-btn-selected');
-		
+		$("#totalrequest").html(0);
 	});
 }
 function openAddedRequest()
