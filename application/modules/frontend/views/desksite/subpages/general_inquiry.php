@@ -199,9 +199,10 @@ function showAddResponse(resp, statusText, xhr, $form){
 	if(resp.status == '0') {
 		ajaxindicatorstop();
   	} else {
+      window.close();
   		ajaxindicatorstop();
   		alert("Inquiry added successfully.");
-  		window.close();
+  		
   	}
 }
 </script>
