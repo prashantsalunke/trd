@@ -5135,7 +5135,7 @@ function openMyStation() {
 	<?php if($tscategory_id == 1) { ?>
 		window.location.href="<?php echo base_url();?>desksite/<?php echo $busi_id;?>";
 	<?php } else if($tscategory_id == 2) { ?>
-		window.location.href="<?php echo base_url();?>shipper/profile/<?php echo $busi_id;?>";
+		window.location.href="<?php echo base_url();?>shipper_mystation";
 	<?php } else if($tscategory_id == 3) { ?>
 		window.location.href="<?php echo base_url();?>buyer/profile/<?php echo $busi_id;?>";
 	<?php } ?>
