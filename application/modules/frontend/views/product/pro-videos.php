@@ -37,7 +37,11 @@
 				<div id="Layer6" onmouseenter="showMenu('Layer8_<?php echo $key;?>');" onmouseleave="hideMenu('Layer8_<?php echo $key;?>');" style="z-index: 434;padding:20px;background-color: #FAFAFA;border: 1px #D3D3D3 solid;">
 					<div>
 						<span class="video-title">
+							<?php if($video['user_category_id'] == 1) { ?>
 							<strong><a href="<?php echo base_url();?>video/details/<?php echo $video['vid'];?>" target="_blank" class="style16"><?php echo substr($video['name'],0,28);?></a></strong>
+							<?php } else { ?>
+							<strong><a href="<?php echo base_url();?>desksite/<?php echo $video['id'];?>"  target="_blank" class="style16"><?php echo substr($video['name'],0,28);?></a></strong>
+							<?php } ?>
 						</span>
 						<label class="text-muted pull-right" style="margin-top:-5px;"><img src="<?php echo asset_url(); ?>images/items_like0.png" id="Image21" alt="Like" style="width:25px;height:25px;margin-bottom: 5px;"> <span id="likeid-<?php echo $video['vid'];?>-<?php echo $video['type'];?>"><?php echo $video['video_likes'];?></span></label>
 					</div>
