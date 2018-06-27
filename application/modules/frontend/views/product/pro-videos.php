@@ -44,15 +44,7 @@
 					<div class="padding-top-5">
 						<span class="text-muted"><?php echo substr($video['description'], 0,35);?><?php if(strlen($video['description']) > 35) { ?> ...<?php } ?></span>
 					</div>
-					<div class="text-center">
-						<span class="spanusd">USD</span>
-						<span class="spanusd"> </span>
-						<span class="spanprice"><?php if($video['type'] == 0) { echo $video['unit_price'];} else { echo $video['unit_price']." - ".$video['end_price']; } ?></span>
-					</div>
-					<div class="text-center">
-						<span class="text-muted">Min. Order : <?php echo $video['quantity'].' '. $video['unit']; ?> </span>
-					</div>
-					<br>
+					
 					<div>
 						<div class="video-area">
 							<video src="<?php echo asset_url(); ?><?php echo $video['vedio_file'];?>" controls="controls" controlsList="nodownload" style="max-height:164px;"></video>
@@ -73,11 +65,6 @@
 						        <?php }else {?>
 						        <img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15;width:25px;height:25px;" />
 						        <?php } ?>
-					        </span>
-						    <span id="wb_Image2" class="img-style">
-						    	<?php if($video['plan_id'] > 1 && $video['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="width:34px;height:28px;"/> <?php } else {?>
-						    	<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="opacity :0.15;width:34px;height:28px;" >
-						    	<?php }?>
 					        </span>
 						    <span id="wb_Image1" class="img-style">
 						        <?php if($video['plan_id'] > 1 && $video['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="width:25px;height:25px;" /> <?php } else { ?>

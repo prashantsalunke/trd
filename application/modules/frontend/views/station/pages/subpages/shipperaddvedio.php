@@ -156,6 +156,7 @@
 <script src="<?php echo asset_url();?>js/bootstrap-typeahead.min.js"></script>
 <script>
 $('#frmshipperaddvedio').bootstrapValidator({
+
 	container: function($field, validator) {
 		return $field.parent().next('.messageContainer');
    	},
@@ -193,6 +194,7 @@ $('#frmshipperaddvedio').bootstrapValidator({
 	savevedio();
 });
 function savevedio() {
+	ajaxindicatorstart("Please wait .. while we save query...");
 	var options = {
 		target : '#response', 
 		beforeSubmit : showVedioRequest,
@@ -222,6 +224,7 @@ function showVedioResponse(resp, statusText, xhr, $form){
 		$("#response").show();
 		//alert(resp.msg);
 		$("#myvideo_edit").trigger("click");
+		ajaxindicatorstop();
 		openAddvedio();
 	}
 }
