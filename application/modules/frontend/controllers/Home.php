@@ -7,6 +7,10 @@ class Home extends MX_Controller {
 
     public function __construct() {
         parent::__construct ();
+		header("Last-Modified: " . gmdate( "D, j M Y H:i:s" ) . " GMT");
+		header("Cache-Control: no-store, no-cache, must-revalidate");
+		header("Cache-Control: post-check=0, pre-check=0");
+		header("Pragma: no-cache");
         $current_lang = $this->session->userdata('my_lang');
         if(!$current_lang) {
             $current_lang = 'english';
@@ -434,15 +438,16 @@ class Home extends MX_Controller {
 		$params['main_prod'] = $this->input->post('main_prod');
 		$params['sub_prod'] = $this->input->post('sub_prod');
 		$params['keyword'] = $this->input->post('keyword');
+		$params['service'] = isset($_POST['service'])?$_POST['service']:'';
+		
         $country = explode('_', $newcountry);
         $procategories = $this->general->getProductCategories();
         $this->template->set ( 'procategories', $procategories);
         $prosubcategories = $this->general->getProductSubCategories();
         $this->template->set ( 'prosubcategories', $prosubcategories);
 		if(isset($params['main_prod']) && $params['main_prod']!=''){
-			$productMainCat = $this->product->getProductCatSubcat($_POST['main_cat_id'],$_POST['cat_id']);
+			$productMainCat = $this->product->getProductCatSubcat($params['main_cat_id'],$params['cat_id']);
 		}
-		//echo '<pre>';print_r($params);
 		$subproducts = $this->product->getSubProdBySubCat($params['main_prod']);
 		$this->template->set ( 'subproducts', $subproducts);
 		$this->template->set ( 'productMainCat', $productMainCat);
@@ -526,17 +531,17 @@ class Home extends MX_Controller {
             }else{
                 $this->load->model('Sellers_Model', 'shipper' );
                 $services = $this->shipper->getAllShipperCategories();
-                $this->template->set ( 'services', $services);
-                $search = $this->search->searchBusinessCountry($type, $keyword);
-                $this->template->set ( 'Shippers', $search);
-                $Country= $this->account->getCountry();
-                $this->template->set ( 'Country', $Country);
-                $featuredShippers = $this->shipper->getFeaturedWorldShippers();
-                $this->template->set ( 'featuredShippers', $featuredShippers);
-                $featuredProductVideo= $this->shipper->getFeaturedProductVideo();
-                $this->template->set ( 'featuredProductVideo', $featuredProductVideo);
-                $featuredProduct= $this->shipper->getFeaturedProduct();
-                $this->template->set ( 'featuredProduct', $featuredProduct);
+				$this->template->set ( 'services', $services);
+				$Shippers = $this->shipper->searchShippers($params);
+				$total_pages = $this->shipper->countShippers($params);
+				$this->template->set ( 'Shippers', $Shippers);
+				$Country= $this->account->getCountry();
+				$this->template->set ( 'Country', $Country);
+				$featuredShippers = $this->shipper->getFeaturedWorldShippers();
+				$this->template->set ( 'featuredShippers', $featuredShippers);
+				$featuredProductVideo= $this->account->getFeaturedProductVideo();
+				$this->template->set ( 'featuredProductVideo', $featuredProductVideo);
+				$featuredProducts= $this->shipper->getFeaturedProduct();
                 $this->template->set ( 'page', 'shippers' );
                 $this->template->set ( 'userId', '' );
                 $this->template->set ( 'url', $url );
@@ -639,6 +644,7 @@ class Home extends MX_Controller {
                 $this->template->set ( 'params', $params );
                 $this->template->set ( 'userId', '' );
                 $this->template->set_theme('default_theme');
+				$this->template->set ( 'browser_icon', 'products.ico' );
                 $this->template->set_layout ('default')
                 ->title ( 'Find Product' )
                 ->set_partial ( 'header', 'default/inner-header' )
