@@ -33,7 +33,7 @@
 </td>
 </tr>
 <tr>
- <td style="padding:10px 50px 20px;"><img src="<?php echo asset_url();?>images/img0001.png" style="position: relative; top: 10px; margin-right:10px; width:50px"><span style="color:#3C3C3C;font-family:Impact;font-size:19px;letter-spacing:0.07px;">VCommers Membership Subscription </span></td>
+ <td style="padding:10px 50px 20px;"><img src="<?php echo asset_url();?>images/black-horse.png" style="position: relative; top: 10px; margin-right:10px; width:50px"><span style="color:#3C3C3C;font-family:Impact;font-size:19px;letter-spacing:0.07px;">VCommers Membership Subscription </span></td>
 </tr>
 <tr>
 <td style="padding-left:120px; padding-bottom:50px;">
