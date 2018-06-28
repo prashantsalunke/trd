@@ -66,7 +66,7 @@ div.panel1 {
 							</div>
 						</div>
 						<div class="col-md-2" >
-							<button type="button" style="color:white;background-color:#1e90ff;border:none;height: 28px; width: 140px;" onclick="javascript:inquiryreplay();" value="">Replay With Offer</button>
+							<button type="button" style="color:white;background-color:#1e90ff;border:none;height: 28px; width: 140px;" onclick="javascript:inquiryreplay();" value="">Reply With Offer</button>
 						</div>
 						<div class="col-md-2">
 							<button type="button" style="color:white;background-color:#1e90ff;border:none;height: 28px; width: 141px;"  onclick="javascript:deleteinquiry();" value="">Delete</button>
@@ -286,7 +286,7 @@ function markAsread(id) {
  		//
  	},'json');
 }
- document.getElementById('totalinquiry').innerHTML = <?php echo count($inquiry);?>;
+
  var inquiry = document.getElementById('totalinquiry').innerHTML ;
  var offer = document.getElementById('totaloffer').innerHTML ;
  var request = document.getElementById('totalrequest').innerHTML ;
