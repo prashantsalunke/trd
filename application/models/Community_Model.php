@@ -26,8 +26,9 @@ class Community_Model extends CI_Model {
         $start_date = date('Y-m-d',strtotime("-15 days"));
     	$this->db->select('a.id as community_id,a.created_date as added_date,b.*,c.info_img1,c.info_img2,d.name_prefix,d.name,d.user_category_id,e.company_introduction,e.hot_presentation,f.profile_image,
 		g.sub_category,(select GROUP_CONCAT(j.name SEPARATOR ", ") from tbl_main_product as j where j.busi_id=b.id AND j.status != 0 group by j.busi_id) as mainproducts,
-    			(select GROUP_CONCAT(k.name SEPARATOR ", ") from tbl_shipper_service as k where k.busi_id=b.id AND k.status != 0 group by k.busi_id) as mainservices,
-    			(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
+    	(select GROUP_CONCAT(k.name SEPARATOR ", ") from tbl_shipper_service as k where k.busi_id=b.id AND k.status != 0 group by k.busi_id) as mainservices,
+        (select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and inq.is_deleted = 0) as have_request,
+    	(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER . ' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESSINFOIMAGE. ' AS c','a.busi_id=c.busi_id','inner');
@@ -54,9 +55,10 @@ class Community_Model extends CI_Model {
     	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$this->db->select('a.id as community_id,a.created_date as added_date,b.*,c.info_img1,c.info_img2,d.name_prefix,d.user_category_id,d.name,e.company_introduction,e.hot_presentation,f.profile_image,
 		g.sub_category,(select GROUP_CONCAT(j.name SEPARATOR ", ") from tbl_main_product as j where j.busi_id=b.id AND j.status != 0 group by j.busi_id) as mainproducts,
-        (select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and is_deleted = 0) as have_request,
-    			(select GROUP_CONCAT(k.name SEPARATOR ", ") from tbl_shipper_service as k where k.busi_id=b.id AND k.status != 0 group by k.busi_id) as mainservices,
-    			(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count,a.my_busi_id,d.name,f.profile_image,h.user_category,f.country,a.alert_viewed,d.id as user_id');
+        (select count(id) from tbl_inquiry as inq where inq.busi_id = b.id and inq.is_deleted = 0) as have_request,
+    	(select GROUP_CONCAT(k.name SEPARATOR ", ") from tbl_shipper_service as k where k.busi_id=b.id AND k.status != 0 group by k.busi_id) as mainservices,
+    	(select count(l.id) from  tbl_stocks_goods as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,
+        (select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count,a.my_busi_id,d.name,f.profile_image,h.user_category,f.country,a.alert_viewed,d.id as user_id');
     	$this->db->from(TABLES::$COMMUNITY_MEMBER . ' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS b','a.my_busi_id=b.id','inner');
     	$this->db->join(TABLES::$BUSINESSINFOIMAGE. ' AS c','a.my_busi_id=c.busi_id','inner');

@@ -206,12 +206,9 @@ for (i = 0; i < acc.length; i++) {
   }
 }
 
-
-document.getElementById('totaloffer').innerHTML = <?php echo count($offer);?>;
 var inquiry = document.getElementById('totalinquiry').innerHTML ;
 var offer = document.getElementById('totaloffer').innerHTML ;
 var request = document.getElementById('totalrequest').innerHTML ;
 var order = document.getElementById('totalorder').innerHTML ;
 document.getElementById('totalalert').textContent = parseInt(inquiry) + parseInt(offer) + parseInt(request) +parseInt(order);
 </script>
-			

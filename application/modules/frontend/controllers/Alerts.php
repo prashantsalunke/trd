@@ -73,6 +73,8 @@ class Alerts extends MX_Controller
 		$html = $this->template->build ('station/pages/alerts','',true);
 		echo $html;
 	}
+
+
 	public function favoriteInfo() {
 		$type = $this->input->post('type');
 		$this->load->library('mylib/MyfavoriteLib');
@@ -1059,7 +1061,7 @@ class Alerts extends MX_Controller
     			$getMyOffers = $this->offerlib->getBuyerOfferByBusiId($this->busiId);
     		}
 			// get new order alerts
-    		//$order = $this->orderlib->getOrderByBusiId($this->busiId);
+    		$order = $this->orderlib->getOrderByBusiId($this->busiId);
 
     	    $this->template->set ( 'newCommunity', $checkNewCommunityAlert);
     	    $this->template->set ( 'newInquiry', $inquiry);
@@ -1071,7 +1073,7 @@ class Alerts extends MX_Controller
     	    $totalAddRequestAlertCount   = $this->common->getTotalAddToCommunityCount();
 		    $totalInquiryAlertCount      = $this->common->getTotalInquiryCount();
 		    $totalOfferAlertCount        = $this->common->getTotalOfferCount();
-    	    $totalcount = $totalOfferAlertCount + $totalInquiryAlertCount + $totalAddRequestAlertCount;//count($order) 
+    	    $totalcount = $totalOfferAlertCount + $totalInquiryAlertCount + $totalAddRequestAlertCount + count($order) ;
     	    //check alert count
             $getTotalUsersAlertCount = $this->myalert->getMyAlertCount($this->busiId);
  

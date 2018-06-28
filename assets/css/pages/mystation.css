@@ -443,8 +443,8 @@
     overflow: hidden;
     text-align: center !important;
     color: #FFFFFF !important;
-    font-family: 'MS Shell Dlg';
-    font-size: 11px !important;
+   /* font-family: 'MS Shell Dlg';
+    font-size: 11px !important;*/
 }
 .btn-custom_active {
     background-color: #FF6347 !important;
