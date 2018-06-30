@@ -4929,7 +4929,7 @@
 			</div>
 			<div id="wb_Shape7"
 				style="position: absolute; left: 451px; top: 472px; width: 107px; height: 33px; z-index: 108;">
-				<a href="javascript:saveInvoice();" id="cmd">
+				<a id="cmd" style="cursor: pointer;">
 					<div id="Shape7">
 						<div id="Shape7_text">
 							<span style="color: #FF6347; font-family: Arial; font-size: 16px;">Save</span>
@@ -4986,8 +4986,8 @@
 			<br><br>
 		</div>
 	</div>
-	<div style="display:none;">
-		<div id="content">
+	<div style="display: none;">
+		<div id="contentforpdf">
 			<style>
 				table, th, td {
 				   border: 0px solid #ccc;
@@ -5006,25 +5006,44 @@
 					margin-top:25px;
 				}
 			</style>
-			<div style="width: 100%; height: 14px; text-align: center;">
-				<span style="color: #FA5C43; font-family: Arial; font-size: 11px;">TRADE</span>
-			</div>
-			<div style="text-align: center;width: 100%; height: 25px; z-index: 117;">
-				<span style="color: #FA5C43; font-family: Impact; font-size: 20px; letter-spacing: 0.07px;">STATION</span>
+			<div style="width:100%; height: 20px; z-index: 115; text-align: left;">
+				<span style="color: #FA5C43; font-family: Impact; font-size: 20px; letter-spacing: 0.07px;">VCommers</span>
 			</div>
 			<br><br>
-			<div style="width:100%; height: 24px;;text-align: center;">
-					<span style="color: #3C3C3C; font-family: Georgia; font-size: 20px;">
-						<strong>Thanks <?php echo $tsprefix;?> <?php echo $tsusername;?></strong>
-					</span>
+			<div style="width:100%; height: 5px; z-index: 115; text-align: left;" class="idetail">
+				<span style="color: #3C3C3C; font-family: Georgia; font-size: 18px;border-bottom:1px solid #000;">
+					<strong>Bill To: <?php echo $tsprefix;?> <?php echo $tsusername;?></strong>
+				</span>
 			</div>
-			<br><br><br>
-			<div style="width:100%; height: 20px; z-index: 115; text-align: left;" class="idetail">
-				<span style="color: #3C3C3C; font-family: Georgia; font-size: 20px;border-bottom:1px solid #000;">
-					<b>Invoice Details</b>
+			<div style="width:100%; height: 5px; z-index: 115; text-align: left;" class="idetail">
+				<span style="color: #3C3C3C; font-family: Georgia; font-size: 18px;border-bottom:1px solid #000;">&nbsp;&nbsp;<?php echo $invoice['company_name'];?>
+				</span>
+			</div>
+			<div style="width:100%; height: 5px; z-index: 115; text-align: left;" class="idetail">
+				<span style="color: #3C3C3C; font-family: Georgia; font-size: 18px;border-bottom:1px solid #000;"><?php echo $invoice['company_country'];?>
+				</span>
+			</div>
+			<div style="width:100%; height: 5px; z-index: 115; text-align: left;" class="idetail">
+				<span style="color: #3C3C3C; font-family: Georgia; font-size: 18px;border-bottom:1px solid #000;"><?php echo $invoice['telephone_number'];?>
+				</span>
+			</div>
+			<br>
+			<div style="width:100%; height: 10px; z-index: 115; text-align: left;" class="idetail">
+				<span style="color: #3C3C3C; font-family: Georgia; font-size: 18px;border-bottom:1px solid #000;"><strong>Invoice Number : <?php echo $invoice['invoice_id'];?>
 				</span>
 			</div>
 			<br><br>
+			<div style="width:100%; height: 20px; z-index: 115; text-align: left;" class="idetail">
+				<span style="color: #3C3C3C; font-family: Georgia; font-size: 18px;border-bottom:1px solid #000;">
+					<strong>Thanks for your order <?php echo $tsprefix;?> <?php echo $tsusername;?></strong>
+				</span>
+			</div>
+			<br><br>
+			<div style="width:100%; height: 5px; z-index: 115; text-align: left;" class="idetail">
+				<span style="color: #3C3C3C; font-family: Georgia; font-size: 18px;border-bottom:1px solid #000;">
+					<b>Here is the invoice Details for order no <?php echo $invoice['invoice_id'];?></b>
+				</span>
+			</div>
 			<div>
 				<table style="border:0px;border-collapse: collapse;background:#fff;color: #3C3C3C; font-family: Georgia; font-size: 12px;" border="0" bgcolor="#fff" cellpadding="0" cellspacing="0">
 					<tr style="border:0px;background:#fff;" bgcolor="white">
@@ -5032,8 +5051,12 @@
 						<td style="border:0px;background:#fff;" bgcolor="white">VCommers Membership Subscription</td>
 					</tr>
 					<tr>
+						<td>Subscription Category</td>
+						<td>1 Subscription (<?php echo $invoice['ucategory'];?> | <?php echo $invoice['usubcategory'];?>)</td>
+					</tr>
+					<tr>
 						<td>Plan</td>
-						<td><?php echo $msad[0]['name'];?></td>
+						<td><?php echo $invoice['plan_name'];?></td>
 					</tr>
 					<tr>
 						<td>Details</td>
@@ -5041,26 +5064,87 @@
 					</tr>
 					<tr>
 						<td>Terms</td>
-						<td>12 Months</td>
+						<td>12 Months | 366 Days</td>
 					</tr>
 					<tr>
-						<td>Start</td>
-						<td><?php echo date('jS M Y');?></td>
+						<td>Starting On</td>
+						<td><?php echo $invoice['starting_on'];?></td>
 					</tr>
-					<tr>
-						<td>Expired on</td>
-						<td><?php echo date('jS M Y',strtotime('+12 months'));?></td>
-					</tr>
+					
 				</table>
 			</div>
 			<div class="paydiv">
 				<hr style="border-bottom:1px solid #000000;">
 				<span style="color:#000;">
-					Payment is done successfully at USD <?php echo $sprice;?>.00
+					Total amount : USD <?php echo $invoice['amount'];?>.00
 				</span>			
 			</div>
 		</div>
-	</div>
+
+		<div id="content">
+			<table style="width:500px; height:auto; margin:50px auto; border:1px solid #aaa;" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+					<img src="<?php echo asset_url();?>images/invoice-header.png">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						 <table>
+						 <tr>
+						 <td style="padding:10px 50px;"><img src="<?php echo asset_url();?>images/vlogo.png" style="position: relative; top: 10px; margin-right:10px;"><span style="color:#FF6347;font-family:Impact;font-size:21px;">V</span><span style="color:#3C3C3C;font-family:Impact;font-size:21px;">Commers</span></td>
+						 <td style="padding-left:100px; padding-top:20px;">
+						 <span style="color:#3C3C3C;font-family:Arial;font-size:13px;">Bill To:<br><strong><?php echo $tsprefix;?> <?php echo $tsusername;?><br></strong><?php echo $invoice['company_name'];?><br><?php echo $invoice['company_country'];?><br><?php echo $invoice['telephone_number'];?></span><br><br>
+						 <span style="color:#3C3C3C;font-family:Arial;font-size:13px;"><strong>Invoice Number : <?php echo $invoice['invoice_id'];?><br></strong></span>
+						 </td>
+						 </tr>
+						 </table>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding:50px 50px;">
+					  <span style="color:#3C3C3C;font-family:Impact;font-size:35px;"><strong>Thanks for your order<br><?php echo $invoice['uname'];?><br></strong></span>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding:0px 50px;">
+					  <span style="color:#000000;font-family:Arial;font-size:13px;">Here's invoice details for order number <?php echo $invoice['invoice_id'];?>.</span>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding:50px 50px 0px;">
+					 <hr style="height:2px; width:100%; background:#FF6347; border:0px;">
+					</td>
+				</tr>
+				<tr>
+					 <td style="padding:10px 50px 20px;"><img src="<?php echo asset_url();?>images/img0001.png" style="position: relative; top: 10px; margin-right:10px; width:50px"><span style="color:#3C3C3C;font-family:Impact;font-size:19px;letter-spacing:0.07px;">VCommers Membership Subscription </span></td>
+				</tr>
+				<tr>
+					<td style="padding-left:120px; padding-bottom:50px;">
+						<span style="color:#000000;font-family:Arial;font-size:13px;">1 Subscription ( <?php echo $invoice['ucategory'];?> | <?php echo $invoice['usubcategory'];?> )</span><br>
+						<span style="color:#000000;font-family:Arial;font-size:13px;">Black Horse Membership</span><br>
+						<span style="color:#000000;font-family:Arial;font-size:13px;"><?php echo $invoice['plan_name'];?> Plan</span><br>
+						<span style="color:#000000;font-family:Arial;font-size:13px;">12 Months | 366 Days</span><br>
+						<span style="color:#000000;font-family:Arial;font-size:13px;">Starting On <?php echo $invoice['starting_on'];?></span>
+
+
+					</td>
+				</tr>
+				<tr>
+					<td style="padding:10px 50px;">
+					 <div style="border-bottom:1px solid #ddd; border-top:1px solid #ddd; height:40px; line-height:40px; text-align:right;">
+					 <span style="color:#2D2D2D;font-family:Arial;font-size:17px;">Total amount</span>
+					 <span style="color:#FFFFFF;font-family:Arial;font-size:16px; display:inline-block; height:38px; padding:0 20px; background:#FF6347; margin-top:1px;"><strong>USD <?php echo $invoice['amount'];?>.00</strong></span>
+					 </div>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding:10px 50px 150px;">
+					<span style="color:#000000;font-family:Arial;font-size:13px;">Thanks for using vCommers<br></span>
+					</td>
+				</tr>
+			</table>
+		</div>
 	<div id="editor"></div>
 </body>
 </html>
@@ -5145,11 +5229,14 @@ var specialElementHandlers = {
 };
 
 $('#cmd').click(function () {
-    doc.fromHTML($('#content').html(), 15, 15, {
-        'width': 170,
+    doc.fromHTML($('#contentforpdf').html(), 15, 15, {
+        'width': 1000,
             'elementHandlers': specialElementHandlers
+    },
+    function(){
+        doc.save('sample-file.pdf');
     });
-    doc.save('sample-file.pdf');
+    //doc.save('sample-file.pdf');
 });
 function openMyStation() {
 	<?php if($tscategory_id == 1) { ?>

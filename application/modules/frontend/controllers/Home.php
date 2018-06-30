@@ -1488,6 +1488,8 @@ class Home extends MX_Controller {
     }
 
     public function getSubscriptionCheckout($plan_id) {
+        $this->load->model('Payment_model','payment');
+        $busi_id = $this->session->userdata('tsuser')['busi_id'];
         $cust_type = $this->session->userdata('tsuser')['category_id'];
         $this->load->model('Package_model','adsmodel');
         $msad = $this->adsmodel->getSubscriptionPackageById($plan_id);
@@ -1497,8 +1499,30 @@ class Home extends MX_Controller {
         } else if($cust_type == 2) {
             $sprice = $msad[0]['shipper_price'];
         }
+        $pdata = array();
+
+        $udetails = $this->payment->getMemberDetails($busi_id);
+        $pdata['uname'] = $udetails[0]['name_prefix']." ".$udetails[0]['user_name']; 
+        $pdata['ucategory'] = $udetails[0]['user_category'];
+        $pdata['usubcategory'] = $udetails[0]['sub_category'];
+        $pdata['plan_name'] = $udetails[0]['plan_name'];
+        $pdata['starting_on'] = date('d/m/Y');
+        if($udetails[0]['cat_id'] == 1) {
+                $pdata['amount'] = $udetails[0]['price'];
+        } else {
+                $pdata['amount'] = $udetails[0]['shipper_price'];
+        }
+        $pdata['company_name'] = $udetails[0]['company_name'];
+        $pdata['company_country'] = $udetails[0]['company_country'];
+        $pdata['telephone_number'] = $udetails[0]['telephone_number'];
+        $payment_data = $this->payment->getPaymentInfo($busi_id);
+        if(!empty($payment_data))
+            $pdata['invoice_id'] = getInvoiceCode($payment_data[0]['payment_id']);   
+        $this->template->set ( 'invoice', $pdata );
+        $this->template->set ( 'payment_data', $payment_data );
         $this->template->set ( 'msad', $msad);
         $this->template->set ( 'sprice', $sprice);
+        $this->template->set ( 'page', 'msads' );
         $this->template->set ( 'page', 'msads' );
         $this->template->set_theme('default_theme');
         $this->template->set_layout (false);
