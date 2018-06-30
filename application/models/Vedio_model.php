@@ -108,8 +108,9 @@ class Vedio_model extends CI_Model {
     public function searchProductsInVideos($params)
     {
     	$this->db->select('a.name,a.description,a.unit_price,0 as end_price,a.quantity,a.unit,b.vedio_file,b.vedio_size,b.video_likes,b.created_date as added_date,c.*,a.id as product_id,b.id as vid,d.email as useremail,d.name as username,d.name_prefix as prefix,d.user_category_id,e.country as country, e.province as province, f.user_category as category, g.sub_category as subcategory,h.id as community_id,0 as type');
-    	$this->db->from(TABLES::$PRODUCT_ITEM.' as a');
-    	$this->db->join(TABLES::$PRODUCT_VIDEO.' as b', 'b.product_item_id = a.id ', 'inner');
+        $this->db->from(TABLES::$PRODUCT_VIDEO.' as b');
+    	$this->db->from(TABLES::$PRODUCT_ITEM.' as a', 'b.product_item_id = a.id ', 'left');
+    	//$this->db->join(TABLES::$PRODUCT_VIDEO.' as b', 'b.product_item_id = a.id ', 'inner');
     	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = a.busi_id', 'left');
     	$this->db->join(TABLES::$USER.' as d ', 'd.busi_id = c.id', 'left');
     	$this->db->join(TABLES::$USER_INFO.' AS e','d.id=e.user_id','left');
