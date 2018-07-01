@@ -182,7 +182,9 @@ function openInquiry()
 	$.get(base_url+"mystation/inquiry",{},function(data){
 		$("#alertbodypanel").html("");
 		$("#alertbodypanel").html(data);
+		var getCurrentRequestCount = parseInt($("#totalinquiry").html());
 		$("#totalinquiry").html(0);
+		$("#totalalert").html(parseInt($("#totalalert").html()-getCurrentRequestCount));
 	});
 }
 function openOffer()
@@ -190,17 +192,21 @@ function openOffer()
 	$.get(base_url+"mystation/offer",{},function(data){
 		$("#alertbodypanel").html("");
 		$("#alertbodypanel").html(data);
+		var getCurrentRequestCount = parseInt($("#totaloffer").html());
 		$("#totaloffer").html(0);
+		$("#totalalert").html(parseInt($("#totalalert").html()-getCurrentRequestCount));
 	});
 }
 function openRequest()
 {
-	$.getJSON(base_url+"mystation/request",function(data){ 
+	$.getJSON(base_url+"mystation/request",function(data){
 		$("#alertbodypanel").html("");
 		$("#alertbodypanel").html(data.dataHTML);
 		$(".alerts-btn-selected").removeClass('alerts-btn-selected');
 		$("#addcominityrequest_btn").addClass('alerts-btn-selected');
+		var getCurrentRequestCount = parseInt($("#totalrequest").html());
 		$("#totalrequest").html(0);
+		$("#totalalert").html(parseInt($("#totalalert").html()-getCurrentRequestCount));
 	});
 }
 function openAddedRequest()
