@@ -801,6 +801,7 @@ class Account_Model extends CI_Model {
 	}
 
 	public function getBstationPostOffer(){
+			$start_date = date('Y-m-d',strtotime("-15 days"));
 			$this->db->select('b.*,d.flag,c.company_country, c.company_province,e.main_image');
 			$this->db->from(TABLES::$BSTATION_POST_OFFER.' as a');
 			$this->db->join(TABLES::$BSTATION_POST.' AS b', 'a.post_id = b.id', 'left');
@@ -809,7 +810,8 @@ class Account_Model extends CI_Model {
 			$this->db->join(TABLES::$PRODUCT_ITEM.' as e', 'b.product_item_id = e.id', 'left');
 			$this->db->where('c.is_disable', 0);
 			$this->db->where('c.is_deleted', 0);
-			$this->db->where('b.created_date = (SELECT MAX(t2.created_date) FROM tbl_bstation_post as t2 WHERE t2.busi_id = c.id)', NULL, FALSE);
+			/*$this->db->where('b.created_date = (SELECT MAX(t2.created_date) FROM tbl_bstation_post as t2 WHERE t2.busi_id = c.id)', NULL, FALSE);*/
+			$this->db->where("DATE(b.created_date) > '".$start_date."'",'',false);
 			$this->db->order_by ( "b.created_date", "desc" );
 			$this->db->group_by('b.id');
 			$query = $this->db->get();
@@ -818,6 +820,7 @@ class Account_Model extends CI_Model {
 
 	}
 	public function getBstationPostRequest(){
+			$start_date = date('Y-m-d',strtotime("-15 days"));
 			$this->db->select('b.*,d.flag,c.company_country, c.company_province,e.main_image');
 			$this->db->from(TABLES::$BSTATION_POST_REQUEST.' as a');
 			$this->db->join(TABLES::$BSTATION_POST.' AS b', 'a.post_id = b.id', 'left');
@@ -826,7 +829,8 @@ class Account_Model extends CI_Model {
 			$this->db->join(TABLES::$PRODUCT_ITEM.' as e', 'b.product_item_id = e.id', 'left');
 			$this->db->where('c.is_disable', 0);
 			$this->db->where('c.is_deleted', 0);
-			$this->db->where('b.created_date = (SELECT MAX(t2.created_date) FROM tbl_bstation_post as t2 WHERE t2.busi_id = c.id)', NULL, FALSE);
+			/*$this->db->where('b.created_date = (SELECT MAX(t2.created_date) FROM tbl_bstation_post as t2 WHERE t2.busi_id = c.id)', NULL, FALSE);*/
+			$this->db->where("DATE(b.created_date) > '".$start_date."'",'',false);
 			$this->db->order_by ( "b.created_date", "desc" );
 			$this->db->group_by('b.id');
 			$query = $this->db->get();
