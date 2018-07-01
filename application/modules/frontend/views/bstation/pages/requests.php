@@ -183,7 +183,7 @@ if(count($bposts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver2" class="img45">
-						<a href="javascript:openChatWithBuyer(<?php echo $product['busi_id'];?>,<?php echo $product['accept_chat'];?>);" target="_self"> 
+						<a href="javascript:chat_with(<?php echo $product['user_id'];?>,<?php echo $product['accept_chat'];?>);" target="_self"> 
 							<img class="hover" alt="Chat" src="<?php echo asset_url(); ?>images/Active/chat_button2.png" /> <span>
 							<img alt="Chat" src="<?php echo asset_url(); ?>images/Link/chat_button2.png" /></span>
 						</a>
