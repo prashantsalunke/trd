@@ -180,7 +180,7 @@ if(count($bposts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver2" class="img45">
-						<a href="javascript:popupwnd('./chat_window.php','no','no','no','no','no','no','750','50','430','720')" target="_self"> 
+						<a href="javascript:chat_with(<?php echo $product['user_id'];?>,<?php echo $contact_details[0]['accept_chat'];?>);" target="_self"> 
 							<img class="hover" alt="Chat" src="<?php echo asset_url(); ?>images/Active/chat_button2.png" /> <span>
 							<img alt="Chat" src="<?php echo asset_url(); ?>images/Link/chat_button2.png" /></span>
 						</a>
