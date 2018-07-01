@@ -948,8 +948,35 @@ foreach ($NewArrivals as $NewArrival) {
 	            </div>
 	        </div>
 	    </div>
-	<?php } } ?>
-    </div><?php } } ?>
+	<?php } } } ?>
+    </div><?php  }
+    if(count($NewArrivals) == 0){
+        $pending = 3;
+        for($i=0;$i<$pending;$i++){ ?>
+            <div class="col-sm-12 margins">
+                <div class="sectionrow">
+                    <div class="row" style="margin: 0px;">
+                        <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
+                                                                        
+                            <img src="<?php echo asset_url();?>images/no-posts-logo.png"
+                                                                             class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                        </div>
+                        <div class="col-xs-9 text-left">
+                            <h5>
+                                <div style="color:#303030;font-family:Georgia;font-size:13px;">
+                                    <strong>&nbsp;</strong>
+                                </div>
+                            </h5>
+                            <p style="text-indent: 0px;">
+                                <div style="color:#787878;font-family:Arial;font-size:12px;">
+                                    No more posts available at the moment.Please try again later.
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php }} ?>
 
                                     </div></div>
                             </div>
@@ -1031,10 +1058,37 @@ foreach ($NewOrders as $NewOrder) {
 	            </div>
 	        </div>
 	    </div>
-	<?php } } ?>
+	<?php } } } ?>
                                                 </div>
     <?php }
-} ?>
+    if(count($NewOrders) == 0){
+        $pending = 3;
+        for($i=0;$i<$pending;$i++){ ?>
+
+            <div class="col-sm-12 margins">
+                <div class="sectionrow">
+                    <div class="row" style="margin: 0px;">
+                        <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
+                                                                        
+                            <img src="<?php echo asset_url();?>images/no-posts-logo.png"
+                                                                             class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                        </div>
+                        <div class="col-xs-9 text-left">
+                            <h5>
+                                <div style="color:#303030;font-family:Georgia;font-size:13px;">
+                                    <strong>&nbsp;</strong>
+                                </div>
+                            </h5>
+                            <p style="text-indent: 0px;">
+                                <div style="color:#787878;font-family:Arial;font-size:12px;">
+                                    No more posts available at the moment.Please try again later.
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <?php } } ?>
 
                                     </div>
                                 </div>
@@ -1257,7 +1311,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
    	var template = {
                     html: 'application/modules/frontend/views/default/default-book-view.html',
                     styles: [
-                               	'<?php echo asset_url(); ?>css/font-awesome.min.css',
+                                   '<?php echo asset_url(); ?>css/font-awesome.min.css',
                               	'<?php echo asset_url(); ?>css/short-white-book-view.css'
                             ],
                     script: '<?php echo asset_url(); ?>js/default-book-view.js'
