@@ -66,7 +66,7 @@ class Vedio_model extends CI_Model {
     
     public function getOneproductvedioById($id)
     {
-    	$this->db->select('a.id as vedio_id, a.vedio_file,a.vedio_size, b.name as product_name, b.description, b.likes as video_likes, b.visit, c.*, d.*, e.name as plan, l.id as community_id, i.flag, u.user_category');
+    	$this->db->select('a.id as vedio_id, a.vedio_file,a.vedio_size, b.name as product_name, b.description, a.video_likes, a.visit, c.*, d.*, e.name as plan, l.id as community_id, i.flag, u.user_category');
     	$this->db->from(TABLES::$PRODUCTVEDIO.' AS a');
     	$this->db->join(TABLES::$PRODUCT_ITEM . ' AS b','a.product_item_id=b.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO. '  AS c','b.busi_id=c.id','left');
@@ -492,7 +492,7 @@ class Vedio_model extends CI_Model {
     	$result = $query->result_array();
     	if(count($result) <= 0) {
     		$this->db->insert(TABLES::$PRODUCTVEDIO_LIKES,$data);
-    		if($data['type'] == 0) {
+    		if($data['type'] == 0 || $data['type'] == "") {
     			$this->likeVideo($data['video_id']);
     		} else {
     			$this->likeMVideo($data['video_id']);

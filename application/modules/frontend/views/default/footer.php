@@ -862,9 +862,14 @@ function addToMyFavourite(fav_id,type) {
 		ShowObject('Layer99', 1);
 	},'json');
 }
-function likeVideo(id) {
+function likeVideo(id,counter=null) {
     $.get(base_url+"likevideo/"+id,{},function(data) {
         $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
+        if(counter != null && data.status == 1)
+        {
+           counter=parseInt(counter)+1;
+           $("#like_counter").html(counter); 
+        }
         ShowObject('Layer99', 1);
     },'json');
 }
