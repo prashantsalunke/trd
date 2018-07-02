@@ -631,7 +631,7 @@ ul.share{
                            				<div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_holder2<?php echo $i; ?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_holder2<?php echo $i; ?>', 0, 'fade', 500, 'swing');return false;">
 			                                <div id="wb_Image226" >
 			                                	<?php if ($featuredSeller['picture'] != "" && file_exists("assets/".$featuredSeller['picture'])){ ?>
-			                                    <img src="<?php echo asset_url().''.$featuredSeller['picture']; ?>" id="Image226" alt=""  class="style86" style="width:210px;height:246px;">
+			                                    <img src="<?php echo asset_url().''.$featuredSeller['picture']; ?>" id="Image226" alt=""  class="style86" style="width:210px !important;height:246px !important;">
 			                                    <?php }else{ ?>
 			                                    <img src="<?php echo asset_url().'images/img1004.png'?>" id="Shape24" alt="" style="width:210px;height:246px;">
 			                                    <?php } ?>
