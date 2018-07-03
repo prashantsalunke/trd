@@ -4908,7 +4908,7 @@
 			</div>
 			<hr id="Line44" style="position: absolute; left: 117px; top: 443px; width: 533px; height: 1px; z-index: 105;border-top: 1px solid #eee;">
 			<div id="wb_Shape5"
-				style="position: absolute; left: 209px; top: 472px; width: 107px; height: 33px; z-index: 106;">
+				style="position: absolute; left: 250px; top: 472px; width: 107px; height: 33px; z-index: 106;">
 				<a href="javascript:openMyStation();">
 					<div id="Shape5">
 						<div id="Shape5_text">
@@ -4918,16 +4918,16 @@
 				</a>
 			</div>
 			<div id="wb_Shape6"
-				style="position: absolute; left: 330px; top: 472px; width: 107px; height: 33px; z-index: 107;">
+				style="position: absolute; left: 400px; top: 472px; width: 107px; height: 33px; z-index: 107;">
 				<a href="javascript:printInvoice();">
 					<div id="Shape6">
 						<div id="Shape6_text">
-							<span style="color: #FF6347; font-family: Arial; font-size: 16px;">Print</span>
+							<span style="color: #FF6347; font-family: Arial; font-size: 16px;">Print / Save</span>
 						</div>
 					</div>
 				</a>
 			</div>
-			<div id="wb_Shape7"
+			<!--<div id="wb_Shape7"
 				style="position: absolute; left: 451px; top: 472px; width: 107px; height: 33px; z-index: 108;">
 				<a id="cmd" style="cursor: pointer;">
 					<div id="Shape7">
@@ -4936,7 +4936,7 @@
 						</div>
 					</div>
 				</a>
-			</div>
+			</div>-->
 			<div id="wb_Text20"
 				style="position: absolute; left: 262px; top: 91px; width: 500px; height: 24px; z-index: 109; text-align: left;">
 				<span style="color: #3C3C3C; font-family: Georgia; font-size: 20px;"><strong>Thanks
