@@ -995,7 +995,7 @@ ul.hover-red-menu li.open a.firstmain{
 											<div class="col-md-2" style="padding-top:25px 10px 0px 10px;" onclick="filter_by_subcat('<?php echo $service['id'];?>','','')">
 												<a href="javascript:void(0)" id="tab<?php echo $i; ?>" style="text-decoration:none !important">
 													<div class="tumb-slide cat_slide" alt="cat_slider_<?php echo $i; ?>" style="height:106px;width:106px;margin: 0 auto;">
-														<img src="<?php echo asset_url(); ?>images/category-images/Agriculture.png" height="106" width="106">
+														<img src="<?php echo asset_url(); ?>images/shipping-category-images/<?php echo $service['cat_image'];?>" height="106" width="106">
 													</div>
 													<h4 class="text-center " style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo ucfirst($service['name']); ?></h4>
 												</a>

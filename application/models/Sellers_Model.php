@@ -1134,7 +1134,7 @@ class Sellers_Model extends CI_Model {
     }
     
     public function getAllShipperCategories() {
-    	$this->db->select('id,name',false);
+    	$this->db->select('id,name,cat_image',false);
     	$this->db->from(TABLES::$SHIPPING_CATEGORIES);
     	$this->db->where('status', 1);
     	$query = $this->db->get();
