@@ -381,6 +381,7 @@ function getCurrentRequest(id) {
 }
 
 function submitContactForm() {
+	resetForm();
     <?php if(empty($tsuserid)) { ?>
              $("#msg_cont").html("Please login to contact this Buyer.");
              ShowObject('Layer99', 1);
@@ -409,7 +410,7 @@ function openGeneralOffer(id) {
       <?php } ?>
     <?php } ?>
   <?php } else { ?>
-    $("#msg_cont").html("Please login to send Offer.");
+    $("#msg_cont").html("Please login to send offer.");
     ShowObject('Layer99', 1);
   <?php } ?>
 }
@@ -1524,9 +1525,10 @@ function showContactUsRequest(formData, jqForm, options){
 function showContactUsResponse(resp, statusText, xhr, $form){
     ajaxindicatorstop();
     if(resp.status == 1) {
-        $("#msg_cont").html("Your offer has been sent successfully to the buyer.");
+        $("#msg_cont").html("Your message has been sent to the buyer.");
         ShowObject('Layer99', 1);
         ShowObjectWithEffect('Layer216', 0, 'slideleft', 500, 'swing');
+         
     }
 }
 function resetForm() {
