@@ -14,7 +14,17 @@
 	.btn-user-custom:hover {
 		color:#fff;
 	}
+	.list-group{
+		max-height: 292px;
+		margin-bottom: 10px;
+		overflow:scroll;
+		-webkit-overflow-scrolling: touch;
+	}
+	.list-group-hover .list-group-item:hover {
+		background-color: #f5f5f5;
+	}
 </style>
+<?php //echo '<pre>';print_r($mcats);?>
 <div class="panel-heading custom-panel-heading" style="text-align:center;padding-top: 15px !important;">
 	<a href="javascript:editOldMainProduct();" class="btn-custom-product" id="product_edit_btn">
 		<img src="<?php echo asset_url();?>images/img1290.png" id="Image6" alt="" style="width:16px;height:16px;">
@@ -99,10 +109,11 @@
 	        					<div class="control-label label-text-form col-sm-4">Main Category </div>
 								<div class="label-text-input col-sm-8">
 	                            	<div class="">
-									  	<button class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown" data-animations="" id="ds_main_cat_label">
+									  	<button class="btn btn-default btn-main-cat dropdown-toggle" type="button" data-toggle="modal" data-target="#cat_sub_cat" id="ds_main_cat_label">
 									   		Select The Main Category <span class="caret" style="color:#d9574d;"></span>
 									  	</button>
-									  	<ul class="dropdown-menu">
+										
+									  	<!--<ul class="dropdown-menu">
 									  		<?php foreach ($mcats as $mcat) { ?>
 									    	<li class="dropdown">
 									      		<a href="#"><?php echo $mcat['name'];?></a>
@@ -113,7 +124,7 @@
 									       		</ul>
 									    	</li>
 									    	<?php } ?>
-									  	</ul>
+									  	</ul>-->
 									</div>
 								</div>
 								<div class="form-group" >
@@ -169,6 +180,33 @@
       		</div>
     	</div>
   	</div>
+</div>
+<div class="modal fade" id="cat_sub_cat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Add Category</h4>
+			</div>
+			<div class="modal-body" style="height:330px;">
+				<ul class="list-group pull-left" style="width:248px;overflow-x:hidden;">
+					<?php foreach ($mcats as $mcat) { ?>
+						<li class="list-group-item">
+							<a href="javascript:void(0);" onclick="get_subcat('<?php echo $mcat['id'];?>')" style="color:#000 !important;"><?php echo $mcat['name'];?></a>
+							
+						</li>
+					<?php } ?>
+				</ul>
+				<?php foreach ($mcats as $mcat) { ?>
+					<ul class="sub_category list-group pull-right main_cat_<?php echo $mcat['id'];?>" style="width:300px;overflow-x:hidden;display:none;">
+						<?php foreach ($mcat['subcats'] as $scat) { ?>
+							<li class="list-group-item"><a style="color:#000 !important;" href="javascript:void(0);" onclick="selectScat('<?php echo $scat['id'];?>','1','<?php echo $scat['name'];?>');"><?php echo $scat['name'];?></a></li>
+						<?php } ?>
+					</ul>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
 </div>
 <div id="editMainPModal" class="modal fade" role="dialog">
   	<div class="modal-dialog" style="width:431px;padding-top:15%;">
@@ -241,12 +279,13 @@ function addOldMainProduct() {
 	$("#addMainPModal").modal('show');
 }
 
-function selectScat(scat_id,input,name) {
+function selectScat(scat_id,input,name) { 
 	$("#ds_main_cat").val(scat_id);
 	$("#ds_main_cat_label").html(name+' <span class="caret" style="color:#d9574d;"></span>');
+	$('#cat_sub_cat').modal('toggle');
 }
 
-function selecteditScat(scat_id,input,name) {
+function selecteditScat(scat_id,input,name) { 
 	$("#old_ds_main_cat").val(scat_id);
 	$("#ds_old_main_cat_label").html(name+' <span class="caret" style="color:#d9574d;"></span>');
 }
@@ -424,7 +463,19 @@ function moveDownProduct() {
 		},'json');
 	}
 }
+$(function(){
+    $('.list-group li').click(function(e) {
+        e.preventDefault()
 
+        $that = $(this);
 
+        $that.parent().find('li').removeClass('active');
+        $that.addClass('active');
+    });
+})
+function get_subcat(id){
+	$(".sub_category").hide();
+	$(".main_cat_"+id).show();
+}
 
 </script>
