@@ -916,8 +916,7 @@ class Product_Model extends CI_Model {
     c.timezone,e.sub_category as user_subcategory,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
     (select GROUP_CONCAT(f.name) from tbl_main_product as f where f.busi_id=a.busi_id AND f.status != 0 group by a.busi_id) as mainproducts,
     h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,h.fact_province,h.fact_city,
-    h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag,l.id as community_id,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post
-             as l where l.busi_id=b.id) as bstation_post_count');
+    h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag,l.id as community_id,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id) as bstation_post_count');
     $this->db->from(TABLES::$USER.' AS a');
     $this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     $this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -2079,7 +2078,7 @@ class Product_Model extends CI_Model {
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
     			f.name as contact_name,f.name_prefix as contact_prefix,f.id as user_id,
-    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag');
+    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=d.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=d.id) as bstation_post_count');
     	$this->db->from(TABLES::$BSTATION_POST.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
@@ -2277,7 +2276,7 @@ class Product_Model extends CI_Model {
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
     			f.name as contact_name,f.name_prefix as contact_prefix,
-    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag');
+    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id) as bstation_post_count');
     	$this->db->from(TABLES::$STOCK_GOODS.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
