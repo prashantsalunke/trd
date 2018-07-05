@@ -93,7 +93,7 @@ class CCAuth{
 		return $sql;
 	}
 
-	function fetchLink($link) {
+	function fetchLink($link,$user_type) {
 	   return $link;
 	}
 
