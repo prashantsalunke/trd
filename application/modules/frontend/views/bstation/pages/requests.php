@@ -198,9 +198,9 @@ if(count($bposts) > 0) {
 						<?php if($product['catid'] == 1) { ?>
 						<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" target="_blank"> 
 						<?php } else if($product['catid'] == 2) { ?>
-							<a href="<?php echo base_url();?>shipper/profile/<?php echo $busi_id;?>" target="_blank">
+							<a href="<?php echo base_url();?>shipper/profile/<?php echo $product['busi_id'];?>" target="_blank">
 						<?php } else { ?>
-							<a href="<?php echo base_url();?>buyer/profile/<?php echo $busi_id;?>" target="_blank">
+							<a href="<?php echo base_url();?>buyer/profile/<?php echo $product['busi_id'];?>" target="_blank">
 						<?php } ?>
 							<img class="hover" alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Active/randbuyercherry.png" /> 
 							<span><img alt="Visit Home Page" src="<?php echo asset_url(); ?>images/Link/randbuyerblack.png" /></span>
