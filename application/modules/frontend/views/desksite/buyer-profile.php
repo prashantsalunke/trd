@@ -381,16 +381,21 @@ function getCurrentRequest(id) {
 }
 
 function submitContactForm() {
-    <?php if(!empty($tsuserid)) { ?>
-       
-    <?php } else { ?>
-        $("#msg_cont").html("Please login to contact this Buyer.");
-        ShowObject('Layer99', 1);
+    <?php if(empty($tsuserid)) { ?>
+             $("#msg_cont").html("Please login to contact this Buyer.");
+             ShowObject('Layer99', 1);
+             return false;
+        <?php } else if($contact_details[0]['accept_email'] == 0) { ?>
+              $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that buyer have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF..');
+            ShowObject('Layer99', 1);
+         // return false;
+           
     <?php } ?>
 }
 function openGeneralOffer(id) {
+  
   <?php if(!empty($tsuserid)) { ?>
-    <?php if($tscategory_id != 3) { ?>
+    <?php if($tscategory_id == 3) { ?>
       popupwnd('<?php echo base_url();?>desksite/general_offer/'+id,'no','no','no','no','no','no','200','50','1055','680');
     <?php } else { ?>
       <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['step'] == 2) { ?>
@@ -398,13 +403,13 @@ function openGeneralOffer(id) {
       <?php } else if($contact_details[0]['step'] < 2) { ?>
         $("#msg_cont").html("Sorry.. You have to create you Desksite to send posts or communicate with our members.. It\'s so easy .. just follow the steps shown here-under:<br> 1. Login and click on your profile image, then select Continue.<br> 2. Complete your registration till we create your Station.<br> 3. In " My Station" click on " My Desksite" and follow the steps to build it.");
         ShowObject('Layer99', 1);
-      <?php } else if($contact_details[0]['accept_offer'] == 0) { ?>
-        $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Pannel", then Turn these features ON.');
+      <?php } else if($contact_details[0]['accept_offer'] != 1) { ?>
+        $("#msg_cont").html('Oops.. You are not able to sent a post.. It seems that you have turned the features (Receive Elite Manufactures Offers & Members contact request) OFF.');
         ShowObject('Layer99', 1);
       <?php } ?>
     <?php } ?>
   <?php } else { ?>
-    $("#msg_cont").html("Please login to send enquiry.");
+    $("#msg_cont").html("Please login to send Offer.");
     ShowObject('Layer99', 1);
   <?php } ?>
 }
@@ -1117,7 +1122,7 @@ function stopWiggle(input) {
 
 
 
-  <?php if(!empty($tsuserid)) { ?>
+  <?php if(!empty($tsuserid) and $contact_details[0]['accept_email'] != 0) { ?>
     <?php if($tscategory_id != 3) { ?>
 
 
