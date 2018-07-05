@@ -314,7 +314,7 @@ class Integration{
   * @param - (string) $link
   * @return ''
   */
-	function fetchLink($link) { //http://localhost/trd/desksite/52
+	function fetchLink($link,$user_type) { //http://localhost/trd/desksite/52
 		return BASE_URL.'../desksite/'.$link;
 		//return '';
 	}
