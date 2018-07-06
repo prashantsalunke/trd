@@ -1,5 +1,5 @@
 					<?php foreach($Posts as $key=>$post){
-						$converted = date('d M Y h.i.s A', strtotime($post['created_date']));
+						$converted = date('d M Y h.i.s A', strtotime($post['request_created']));
 						
 						$posted =  date("j M", strtotime($converted));
 						?>

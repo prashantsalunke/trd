@@ -1192,7 +1192,7 @@ class Product_Model extends CI_Model {
     public function getCurrentRequest($busi_id){
     	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$end_date = date('Y-m-d H:i:s');
-    	$this->db->select('b.*, c.*');
+    	$this->db->select('b.*, c.*,b.created_date as request_created');
     	//$this->db->from(TABLES::$STOCK_REQUEST.' as a');
     	$this->db->from(TABLES::$BSTATION_POST.' as b' /*, 'b.id = a.post_id', 'inner'*/);
     	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = b.busi_id', 'left');
@@ -1206,7 +1206,7 @@ class Product_Model extends CI_Model {
     	$query = $this->db->get();
     	$result1 = $query->result_array();
 
-        $this->db->select('a.*,b.*, c.*');
+        $this->db->select('a.*,b.*, c.*,a.created_date as request_created');
         $this->db->from(TABLES::$STOCK_REQUEST.' as a');
         $this->db->from(TABLES::$BSTATION_POST.' as b' , 'b.id = a.post_id', 'inner');
         $this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = b.busi_id', 'left');
