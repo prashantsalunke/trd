@@ -909,6 +909,7 @@ class Product_Model extends CI_Model {
     	return $result;
     }
     public function getDesksiteByBusiId($map) {
+        $start_date = date('Y-m-d',strtotime("-15 days"));
     $this->db->select('a.id as user_id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs,(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax,
     b.company_name, b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,
     b.telephone_city_code,b.telephone_number,b.telephone_number1,b.company_street,b.company_email, b.business_logo,
@@ -917,7 +918,7 @@ class Product_Model extends CI_Model {
     c.timezone,e.sub_category as user_subcategory,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
     (select GROUP_CONCAT(f.name) from tbl_main_product as f where f.busi_id=a.busi_id AND f.status != 0 group by a.busi_id) as mainproducts,
     h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,h.fact_province,h.fact_city,
-    h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag,l.id as community_id,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id) as bstation_post_count');
+    h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag,l.id as community_id,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     $this->db->from(TABLES::$USER.' AS a');
     $this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     $this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
@@ -1191,18 +1192,34 @@ class Product_Model extends CI_Model {
     public function getCurrentRequest($busi_id){
     	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$end_date = date('Y-m-d H:i:s');
-    	$this->db->select('a.*,b.*, c.*');
-    	$this->db->from(TABLES::$STOCK_REQUEST.' as a');
-    	$this->db->join(TABLES::$BSTATION_POST.' as b' , 'b.id = a.post_id', 'inner');
-    	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = a.buyer_id', 'left');
-    	$this->db->where('b.status',1);
-    	$this->db->where('b.is_deleted',0);
-    	$this->db->where('a.created_date >',$start_date);
-    	$this->db->where('a.buyer_id',$busi_id);
-    	$this->db->where("DATE(a.created_date) > '".$start_date."'",'',false);
-    	$this->db->order_by('a.created_date','DESC');
+    	$this->db->select('b.*, c.*');
+    	//$this->db->from(TABLES::$STOCK_REQUEST.' as a');
+    	$this->db->from(TABLES::$BSTATION_POST.' as b' /*, 'b.id = a.post_id', 'inner'*/);
+    	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = b.busi_id', 'left');
+    	//$this->db->where('b.status',1);
+    	//$this->db->where('b.is_deleted',0);
+    	//$this->db->where('a.created_date >',$start_date);
+    	$this->db->where('b.busi_id',$busi_id);
+    	$this->db->where("DATE(b.created_date) > '".$start_date."'",'',false);
+    	$this->db->order_by('b.created_date','DESC');
+        $this->db->group_by('b.id');
     	$query = $this->db->get();
-    	$result = $query->result_array();
+    	$result1 = $query->result_array();
+
+        $this->db->select('a.*,b.*, c.*');
+        $this->db->from(TABLES::$STOCK_REQUEST.' as a');
+        $this->db->from(TABLES::$BSTATION_POST.' as b' , 'b.id = a.post_id', 'inner');
+        $this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = b.busi_id', 'left');
+        $this->db->where('a.status',1);
+        $this->db->where('b.is_deleted',0);
+        //$this->db->where('a.created_date >',$start_date);
+        $this->db->where('a.buyer_id',$busi_id);
+        $this->db->where("DATE(a.created_date) > '".$start_date."'",'',false);
+        $this->db->order_by('a.created_date','DESC');
+        $this->db->group_by('a.id');
+        $query = $this->db->get();
+        $result2 = $query->result_array();
+        $result = array_merge($result1,$result2);
     	return $result;
     }
     public function addFavourite($params){
@@ -2079,7 +2096,7 @@ class Product_Model extends CI_Model {
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
     			f.name as contact_name,f.name_prefix as contact_prefix,f.id as user_id,
-    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=d.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=d.id) as bstation_post_count');
+    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=d.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=d.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     	$this->db->from(TABLES::$BSTATION_POST.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
@@ -2277,7 +2294,7 @@ class Product_Model extends CI_Model {
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
     			f.name as contact_name,f.name_prefix as contact_prefix,
-    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id) as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id) as bstation_post_count');
+    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     	$this->db->from(TABLES::$STOCK_GOODS.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
