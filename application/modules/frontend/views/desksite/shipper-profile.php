@@ -1304,10 +1304,12 @@ function stopWiggle(input) {
             ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/company/about/"+id,{},function(data) {
             ajaxindicatorstop();
+
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect('Layer23', 1, 'slidedown', 500, 'swing');
                 $("#about-us").html(data);
             },'html');
+
         }
 
         function getComapnyCertificate(id) {
