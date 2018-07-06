@@ -36,22 +36,22 @@
    width: 100%;
    height: 100%;
 }
-#Carousel1
+#Carousel2
 {
    position: absolute;
 }
-#wb_Carousel1
+#wb_Carousel2
 {
    background-color: transparent;
 }
-#Carousel1 .frame
+#Carousel2 .frame
 {
    width: 455px;
    display: inline-block;
    float: left;
    height: 357px;
 }
-#wb_Carousel1 .pagination
+#wb_Carousel2 .pagination
 {
    bottom: 0;
    left: 0;
@@ -61,7 +61,7 @@
    width: 100%;
    z-index: 999;
 }
-#wb_Carousel1 .pagination img
+#wb_Carousel2 .pagination img
 {
    border-style: none;
    padding: 5px 5px 5px 5px;
@@ -75,7 +75,7 @@
    height: 320px;
    z-index: 55;
 }
-#wb_Carousel1
+#wb_Carousel2
 {
    position: absolute;
    width: 455px;
@@ -128,8 +128,8 @@
 </style>
 <div style="height: 540px;width: 470px;overflow-y:scroll;overflow-x:hidden;position: absolute;left:15px;">
 <?php foreach($Company as $company){?>
-	<div id="wb_Carousel1">
-		<div id="Carousel1">
+	<div id="wb_Carousel2">
+		<div id="Carousel2">
 			<div class="frame">
 				<div id="wb_Image6">
 				<img src="<?php echo asset_url().$company['company_info_img1']; ?>" id="Image6" alt=""></div>
@@ -164,7 +164,7 @@
 $(document).ready(function(){
     //$("#myCarouselAbout").carousel();
 
-	var Carousel1Opts =
+	var Carousel2Opts =
    	{
       	delay: 3000,
       	duration: 500,
@@ -177,6 +177,6 @@ $(document).ready(function(){
       	pagination_img_active: '<?php echo asset_url();?>images/page_active.png',
       	start: 0
    	};
-   	$("#Carousel1").carousel(Carousel1Opts);
+   	$("#Carousel2").carousel(Carousel2Opts);
 });
 </script>
