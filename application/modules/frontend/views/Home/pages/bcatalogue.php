@@ -7,10 +7,12 @@
 	<div id="loading" class="loading">Loading pages...</div>
 	<a id="next_page_button"></a>
 	<a id="prev_page_button"></a>-->
+	<input type="hidden" value="<?php echo count($products);?>" id="product_count" name="product_count">
 	<div id="flip-book-window" tabindex="-1" aria-labelledby="headerLabel" style="height: 700px !important;width: 750px !important;">
   		<div class="modal-dialog" role="document">
     		<div class="modal-content">
       			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+
       			<div class="modal-body">
         			<div class="mount-node">
         			</div>
