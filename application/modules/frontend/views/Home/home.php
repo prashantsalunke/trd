@@ -1407,6 +1407,8 @@ foreach ($FWBuyers as $key => $FWBuyer) {
          	//$("#pcatalogue_id").val(id);
             $("#catalogue_page_content").html(data);
             $("#vcatalogue_overlay_home").modal('show');
+            var page_count = parseInt($("#product_count").val());
+            booksOptions.pages = parseInt(page_count*2);
             var instance = {
                 scene: undefined,
                 options: undefined,
