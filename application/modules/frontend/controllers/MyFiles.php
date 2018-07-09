@@ -353,8 +353,8 @@ class MyFiles extends MX_Controller {
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
         header('Content-Length: ' . filesize($path));
-        flush(); // Flush system output buffer
         readfile($path);
+        flush(); // Flush system output buffer
         exit;
 	}
 	
