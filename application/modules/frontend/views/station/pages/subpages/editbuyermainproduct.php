@@ -27,6 +27,9 @@
 		background-color: #B0B0B0 !important;
 		border-color: #B0B0B0 !important;
 	}
+	.list-group-item {
+		padding:2px 15px !important;
+	}
 </style>
 <div class="panel-heading custom-panel-heading" style="text-align:center;padding-top: 15px !important;">
 	<a href="javascript:editOldMainProduct();" class="btn-custom-product" id="product_edit_btn">
@@ -171,14 +174,14 @@
   	</div>
 </div>
 <div class="modal fade" id="cat_sub_cat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog" role="document" style="width:785px !important;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel" style="font-family:Georgia;font-size:21px;font-style:normal;">Add New</h4>
+				<h4 class="modal-title" id="myModalLabel" style="font-family:Georgia;font-size:21px;font-style:normal;">Select Categories</h4>
 			</div>
 			<div class="modal-body" style="height:330px;">
-				<ul class="list-group pull-left" style="width:248px;overflow-x:hidden;">
+				<ul class="list-group pull-left" style="width:350px;overflow-x:hidden;">
 					<?php foreach ($mcats as $mcat) { ?>
 						<li class="list-group-item">
 							<a href="javascript:void(0);" onclick="get_subcat('<?php echo $mcat['id'];?>')" style="color:#000 !important;"><?php echo $mcat['name'];?></a>
@@ -187,7 +190,7 @@
 					<?php } ?>
 				</ul>
 				<?php foreach ($mcats as $mcat) { ?>
-					<ul class="sub_category list-group pull-right main_cat_<?php echo $mcat['id'];?>" style="width:300px;overflow-x:hidden;display:none;">
+					<ul class="sub_category list-group pull-right main_cat_<?php echo $mcat['id'];?>" style="width:350px;overflow-x:hidden;display:none;">
 						<?php foreach ($mcat['subcats'] as $scat) { ?>
 							<li class="list-group-item"><a style="color:#000 !important;" href="javascript:void(0);" onclick="selectScat('<?php echo $scat['id'];?>','1','<?php echo $scat['name'];?>');"><?php echo $scat['name'];?></a></li>
 						<?php } ?>
@@ -251,14 +254,14 @@
   	</div>
 </div>
 <div class="modal fade" id="edit_cat_sub_cat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog" role="document" style="width:785px !important;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel" style="font-family:Georgia;font-size:21px;font-style:normal;">Add New</h4>
+				<h4 class="modal-title" id="myModalLabel" style="font-family:Georgia;font-size:21px;font-style:normal;">Select Categories</h4>
 			</div>
 			<div class="modal-body" style="height:330px;">
-				<ul class="list-group pull-left" style="width:248px;overflow-x:hidden;">
+				<ul class="list-group pull-left" style="width:350px;overflow-x:hidden;">
 					<?php foreach ($mcats as $mcat) { ?>
 						<li class="list-group-item">
 							<a href="javascript:void(0);" onclick="get_subcat('<?php echo $mcat['id'];?>')" style="color:#000 !important;"><?php echo $mcat['name'];?></a>
@@ -267,7 +270,7 @@
 					<?php } ?>
 				</ul>
 				<?php foreach ($mcats as $mcat) { ?>
-					<ul class="sub_category list-group pull-right main_cat_<?php echo $mcat['id'];?>" style="width:300px;overflow-x:hidden;display:none;">
+					<ul class="sub_category list-group pull-right main_cat_<?php echo $mcat['id'];?>" style="width:350px;overflow-x:hidden;display:none;">
 						<?php foreach ($mcat['subcats'] as $scat) { ?>
 							<li class="list-group-item"><a style="color:#000 !important;" href="javascript:void(0);" onclick="selecteditScat('<?php echo $scat['id'];?>','1','<?php echo $scat['name'];?>');"><?php echo $scat['name'];?></a></li>
 						<?php } ?>
