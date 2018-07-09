@@ -32,6 +32,7 @@
 		<?php  if(count($videos) > 0 && $videos[0]['id'] !='') { 
 		 foreach($videos as $key=>$video){ 
 		  ?>	
+
 			<div class="col-lg-4 colpadbottom" style="padding:0px;padding-right:28px;margin-bottom: 15px;">
 		
 				<div id="Layer6" onmouseenter="showMenu('Layer8_<?php echo $key;?>');" onmouseleave="hideMenu('Layer8_<?php echo $key;?>');" style="z-index: 434;padding:20px;background-color: #FAFAFA;border: 1px #D3D3D3 solid;">
@@ -45,15 +46,40 @@
 						</span>
 						<label class="text-muted pull-right" style="margin-top:-5px;"><img src="<?php echo asset_url(); ?>images/items_like0.png" id="Image21" alt="Like" style="width:25px;height:25px;margin-bottom: 5px;"> <span id="likeid-<?php echo $video['vid'];?>-<?php echo $video['type'];?>"><?php echo $video['video_likes'];?></span></label>
 					</div>
+					 <?php if ($video['user_category_id'] != "3"){
+					  ?>
 					<div class="padding-top-5">
 						<span class="text-muted"><?php echo substr($video['description'], 0,35);?><?php if(strlen($video['description']) > 35) { ?> ...<?php } ?></span>
 					</div>
-					
+					<?php }else{ ?>
+							<div class="padding-top-5">
+						<span class="text-muted"><?php echo substr($video['description'], 0,200);?><?php if(strlen($video['description']) > 200) { ?> ...<?php } ?></span>
+					</div>
+
+						<?php } ?>
+					 <?php if ($video['user_category_id'] != "3"){ ?>
+					}
+					<div class="text-center">
+						<span class="spanusd">USD</span>
+						<span class="spanusd"> </span>
+						<span class="spanprice"><?php if($video['type'] == 0) { echo $video['unit_price'];} else { echo $video['unit_price']." - ".$video['end_price']; } ?></span>
+					</div>
+					<div class="text-center">
+						<span class="text-muted">Min. Order : <?php echo $video['quantity'].' '. $video['unit']; ?> </span>
+					</div>
+					<br>
 					<div>
 						<div class="video-area">
 							<video src="<?php echo asset_url(); ?><?php echo $video['vedio_file'];?>" controls="controls" controlsList="nodownload" style="max-height:164px;"></video>
 						</div>
 						<br>
+
+					<div>
+						<div class="video-area">
+							<video src="<?php echo asset_url(); ?><?php echo $video['vedio_file'];?>" controls="controls" controlsList="nodownload" style="max-height:164px;"></video>
+						</div>
+						<br>
+						<?php } ?>
 						<div class="text-center">
 							<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php echo $video['company_name'];?></strong></span>
 						</div>
@@ -99,7 +125,7 @@
 								<?php if($video['user_category_id'] == 1) { ?>
 									<a href="<?php echo base_url();?>video/details/<?php echo $video['vid'];?>" target="_blank">
 								<?php }else{ ?>
-									<a href="<?php echo base_url();?>desksite/<?php echo $video['id'];?>" target="_blank">
+									<a href="<?php echo base_url();?>shipper/profile/<?php echo $video['busi_id'];?>" target="_blank">
 								<?php } ?>
 								    <img class="hover" alt="" src="<?php echo asset_url(); ?>images/view-detailsc.png" style="width:45px;"> 
 								    <span><img alt=""	src="<?php echo asset_url(); ?>images/view-detailsb.png" style="width:45px;"></span>
