@@ -656,8 +656,8 @@ a.main_prod:hover{
 <script>
 $(document).ready(function() {
 	var sub_prod=$(".sub_products").height();
-	if(sub_prod > 156){ 
-		$(".sub_products").css('overflow-y','scroll');
+	if(sub_prod > 155){ 
+		$(".sub_products").css('overflow-y','auto');
 	}else{
 		$(".sub_products").css('overflow-y','hidden');
 	}
