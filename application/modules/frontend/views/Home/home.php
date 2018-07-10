@@ -56,9 +56,12 @@
         color: #FF7F50;
         text-decoration: underline;
     } 
+	a.style261:hover {
+        color: #FF6347 !important;
+        text-decoration: underline;
+    } 
 	a.main_prod:hover {
-        color: orange !important;
-        text-decoration: none !important;
+        color: #FF6347 !important;
     }
     a.style16 {
         color: #4169E1;
@@ -81,8 +84,8 @@ $locale = localeconv();
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-md-2 text-center" style="padding-left:0;">
             <div class="panel categary-list" style="background-color: #f1f1f1 !important;box-shadow: none !important;">
-                <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width:28px;height:28px;">
-                <span style="color:#303030;font-family:Georgia;font-size:17px;"><a href="#" class="style261" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a></span>
+                <img src="<?php echo asset_url(); ?>images/Main-Category-icon.png" id="Image216" alt="" style="width: 28px; vertical-align: bottom;">
+                <a href="javascript:void(0);" style="color:#303030;font-family:Georgia;font-size:17px;" class="style261" onclick="ShowObjectWithEffect('Cat_main_layer', 1, 'slideup', 500, 'swing');return false;">Categories</a>
             </div>
         </div>
         <div class="col-md-10" style="padding-right:0;padding-left:0;">
@@ -121,118 +124,119 @@ $locale = localeconv();
 			</div>
 		</div>
 					 
-	
-        <div id="Cat_main_layer" style="position: absolute; text-align: left; visibility: hidden; height: 758px; z-index: 1762; left: 8px; width: 93.1%; top: 369px;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
-            <div class="row">
-                <div id="myCarousel" class="carousel slide" style="height: 197px; border: medium none ! important; background-color: #fafafa; left: 3.1%; width: 100%;">
-                    <div class="carousel-inner" >
-                        <?php
-                        $i = 1;
-                        foreach ($procategories as $product) {
-                            if ($i % 6 == 1) {
-                                ?>
-                                <div class="item <?php echo($i == 1) ? 'active' : ''; ?>">
-                                <?php } ?>
-                                <div class="col-md-2" style="padding-top:25px 10px 0px 10px;">
-                                    <a href="#" id="tab<?php echo $i; ?>" style="text-decoration:none !important">
-                                        <div class="tumb-slide cat_slide" alt="cat_slider_<?php echo $i; ?>" style="height:106px;width:106px;margin: 0 auto;">
-                                            <img src="<?php echo asset_url(); ?>images/category-images/<?php echo $product['cat_image'];?>" height="106" width="106">
-                                        </div>
-                                        <h4 class="text-center " style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo ucfirst($product['name']); ?></h4>
-                                    </a>
-                                    <div class="panel-heading text-center slide-details cat_slider_<?php echo $i; ?>" style="background-color: #fafafa;display:none;">
-                                        <div class="col-xs-11">
-                                            <img src="<?php echo asset_url(); ?>images/img3681.png" style="width:25px;">
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php if ($i % 6 == 0) { ?>
-                                </div>
-                            <?php } ?>    
-
-                            <?php
-                            $i++;
-                        }
-                        ?>
-                    </div>
-                </div>
-														
-                <a style="position: absolute; height: 61px; z-index: 999; background-image: none ! important; top: 20%; width: 30px; left: 3px;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img height="53px;" alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
-                <a style="position: absolute; z-index: 999; background-image: none ! important; top: 20%; height: 61px; width: 30px;" class="right carousel-control" href="#myCarousel" data-slide="next"><img height="53px;" alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
-                <form method="post" action="filter_by_category" id="filter_by_category">
-                    <input type="hidden" name="main_cat_id" id="filter_cat" value="">
-                    <input type="hidden" name="cat_id" id="filter_sub_cat" value="">
-                    <input type="hidden" name="main_prod" id="main_prod" value="">
-                </form>
-            </div>
-            <div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
-                <div class="panel categary-detials" style="position:absolute;width: 100%;margin: auto;left: 3.1%;z-index: 1;top:-10px;">
-						
-						<?php
-                    $i = 1;
-                    foreach ($procategories as $product) {
-                        ?>
-                        <div class="panel-body panel slide-details" id="cat_slider_<?php echo $i; ?>" style="background-color: rgb(255, 255, 255); box-shadow: none ! important; padding-top: 60px; margin-left: 0px ! important; margin-right: 0px ! important;">
-                            <div class="row" style="padding-bottom:50px;z-index: 200;">
-								<div class="col-md-offset-1">
-									<?php
-									$j = 1;
-									foreach ($prosubcategories as $res) {
-										if ($res['mcat_id'] == $product['id']) {
-											?>
-											<div class="col-md-3">
-												<ul style="list-style:none;margin-bottom: -5px;">
-													<li>
-														<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
-													</li>
-												</ul>    
-											</div>
-											<?php
-										}
-									}
+		<div class="col-md-12">
+			<div id="Cat_main_layer" style="position: absolute; text-align: left; visibility: hidden; height: 758px; z-index: 1762; left: -39px; width: 100%; top: 20px;"  onmouseleave="ShowObjectWithEffect('Cat_main_layer', 0, 'fade', 5, 'swing');return false;">
+				<div class="row">
+					<div id="myCarousel" class="carousel slide" style="height: 197px; border: medium none ! important; background-color: #fafafa; left: 3.1%; width: 100%;">
+						<div class="carousel-inner" >
+							<?php
+							$i = 1;
+							foreach ($procategories as $product) {
+								if ($i % 6 == 1) {
 									?>
+									<div class="item <?php echo($i == 1) ? 'active' : ''; ?>">
+									<?php } ?>
+									<div class="col-md-2" style="padding-top:25px 10px 0px 10px;">
+										<a href="#" id="tab<?php echo $i; ?>" style="text-decoration:none !important">
+											<div class="tumb-slide cat_slide" alt="cat_slider_<?php echo $i; ?>" style="height:106px;width:106px;margin: 0 auto;">
+												<img src="<?php echo asset_url(); ?>images/category-images/<?php echo $product['cat_image'];?>" height="106" width="106">
+											</div>
+											<h4 class="text-center " style="color:#2D2D2D;font-family:Arial;font-size:16px;"><?php echo ucfirst($product['name']); ?></h4>
+										</a>
+										<div class="panel-heading text-center slide-details cat_slider_<?php echo $i; ?>" style="background-color: #fafafa;display:none;">
+											<div class="col-xs-11">
+												<img src="<?php echo asset_url(); ?>images/img3681.png" style="width:25px;">
+											</div>
+										</div>
+									</div>
+									<?php if ($i % 6 == 0) { ?>
+									</div>
+								<?php } ?>    
+
+								<?php
+								$i++;
+							}
+							?>
+						</div>
+					</div>								
+					<a style="position: absolute; height: 61px; z-index: 999; background-image: none ! important; top: 20%; width: 30px; left: 3px;" class="left carousel-control" href="#myCarousel" data-slide="prev"><img height="53px;" alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previ.png"></a>
+					<a style="position: absolute; z-index: 999; background-image: none ! important; top: 20%; height: 61px; width: 30px;" class="right carousel-control" href="#myCarousel" data-slide="next"><img height="53px;" alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nex.png"></a>
+					<form method="post" action="search" id="filter_by_category">
+						<input type="hidden" name="main_cat_id" id="filter_cat" value="">
+						<input type="hidden" name="cat_id" id="filter_sub_cat" value="">
+						<input type="hidden" name="main_prod" id="main_prod" value="">
+						<input type="hidden" name="type" id="type" value="4">
+					</form>
+				</div>
+				<div class="col-xs-12" style="position:relative;display:none;padding:0 !important;z-index: 300;" id="Details">
+					<div class="panel categary-detials" style="position:absolute;width: 100%;margin: auto;left: 3.1%;z-index: 1;top:-10px;">
+							
+							<?php
+						$i = 1;
+						foreach ($procategories as $product) {
+							?>
+							<div class="panel-body panel slide-details" id="cat_slider_<?php echo $i; ?>" style="background-color: rgb(255, 255, 255); box-shadow: none ! important; padding-top: 60px; margin-left: 0px ! important; margin-right: 0px ! important;">
+								<div class="row" style="padding-bottom:50px;z-index: 200;">
+									<div class="col-md-offset-1">
+										<?php
+										$j = 1;
+										foreach ($prosubcategories as $res) {
+											if ($res['mcat_id'] == $product['id']) {
+												?>
+												<div class="col-md-3">
+													<ul style="list-style:none;margin-bottom: -5px;">
+														<li>
+															<a class="btn btn-link sub_cat <?php echo strtolower(substr($res['name'], 0, 1)); ?>" href="javascript:void(0);" onclick="get_main_products('<?php echo $res['mcat_id'];?>','<?php echo $res['id'];?>','<?php echo $res['name']; ?>')" style="color:#337ab7;"><?php echo $res['name']; ?></a>
+														</li>
+													</ul>    
+												</div>
+												<?php
+											}
+										}
+										?>
+									</div>
 								</div>
-                            </div>
-                            <div class="row" style="padding-bottom:30px;">
-                                <div class="col-sm-12 text-center bottom_cat">
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('a');" class="btn btn-default ">A</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('b');" class="btn btn-default">B</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('c');" class="btn btn-default">C</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('d');" class="btn btn-default">D</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('e');" class="btn btn-default">E</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('f');" class="btn btn-default">F</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('g');" class="btn btn-default">G</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('h');" class="btn btn-default">H</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('i');" class="btn btn-default">I</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('j');" class="btn btn-default">J</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('k');" class="btn btn-default">K</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('l');" class="btn btn-default">L</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('m');" class="btn btn-default">M</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('n');" class="btn btn-default">N</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('o');" class="btn btn-default">O</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('p');" class="btn btn-default">P</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('q');" class="btn btn-default">Q</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('r');" class="btn btn-default">R</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('s');" class="btn btn-default">S</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('t');" class="btn btn-default">T</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('u');" class="btn btn-default">U</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('v');" class="btn btn-default">V</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('w');" class="btn btn-default">W</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('x');" class="btn btn-default">X</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('y');" class="btn btn-default">Y</a>
-                                    <a href="javascript:void(0)" onclick="highlight_keywords('z');" class="btn btn-default">Z</a>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                        $i++;
-                    }
-                    ?>
-					<div id="sub_cat_main_prod">
+								<div class="row" style="padding-bottom:30px;">
+									<div class="col-sm-12 text-center bottom_cat">
+										<a href="javascript:void(0)" onclick="highlight_keywords('a');" class="btn btn-default ">A</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('b');" class="btn btn-default">B</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('c');" class="btn btn-default">C</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('d');" class="btn btn-default">D</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('e');" class="btn btn-default">E</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('f');" class="btn btn-default">F</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('g');" class="btn btn-default">G</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('h');" class="btn btn-default">H</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('i');" class="btn btn-default">I</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('j');" class="btn btn-default">J</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('k');" class="btn btn-default">K</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('l');" class="btn btn-default">L</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('m');" class="btn btn-default">M</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('n');" class="btn btn-default">N</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('o');" class="btn btn-default">O</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('p');" class="btn btn-default">P</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('q');" class="btn btn-default">Q</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('r');" class="btn btn-default">R</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('s');" class="btn btn-default">S</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('t');" class="btn btn-default">T</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('u');" class="btn btn-default">U</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('v');" class="btn btn-default">V</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('w');" class="btn btn-default">W</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('x');" class="btn btn-default">X</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('y');" class="btn btn-default">Y</a>
+										<a href="javascript:void(0)" onclick="highlight_keywords('z');" class="btn btn-default">Z</a>
+									</div>
+								</div>
+							</div>
+							<?php
+							$i++;
+						}
+						?>
+						<div id="sub_cat_main_prod">
+						</div>
 					</div>
-                </div>
-            </div>
-        </div><!-- End Carousel --> 
+				</div>
+			</div><!-- End Carousel --> 
+		</div>
     </div>
 </div>
 <div class="col-lg-13">
@@ -753,7 +757,7 @@ foreach ($FeaturedVideos as $FeaturedVideo) {
                     </h3>
                     <div class="text-center displaydesktop">
                         <img src="<?php echo asset_url(); ?>images/ts/Fsellersok.png"
-                             class="img-responsive" style="height: 220px;padding-bottom: 0px !important;">
+                             class="img-responsive" style="height: 200px;padding-bottom: 0px !important;">
                     </div>
                 </div>
             </div>
@@ -891,14 +895,19 @@ foreach ($NewArrivals as $NewArrival) {
                                                     <div class="sectionrow">
                                                         <div class="row" style="margin: 0px;">
                                                             <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
-                                                                <img src="<?php echo asset_url() . $NewArrival['main_image']; ?>"
+                                                            	<?php if($NewArrival['image1'] != "") { ?>
+                                                                <img src="<?php echo asset_url() . $NewArrival['image1']; ?>"
                                                                      class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                                                                <?php }else if($NewArrival['product_item_id'] == 0){ ?>
+                                                                	<img src="<?php echo asset_url() . $NewArrival['main_image']; ?>"
+                                                                     class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                                                                <?php } ?>
                                                                 <img src="<?php echo asset_url();?>images/flags/<?php echo $NewArrival['flag'];?>" class="roundflag">
 
                                                             </div>
                                                             <div class="col-xs-9 text-left">
                                                                 <h5>
-                                                                    <div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewArrival['name'] ?></strong></div>
+                                                                    <div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewArrival['title'] ?></strong></div>
                                                                 </h5>
                                                                 <p style="text-indent: 0px;">
                                                                 <div style="color:#696969;font-family:Arial;font-size:12px;"><?php echo substr($NewArrival['description'], 0, 115);
@@ -916,10 +925,63 @@ foreach ($NewArrivals as $NewArrival) {
                                                         </div>
                                                     </div>
                                                 </div>
-    <?php if ($frame + 3 == $i || count($NewArrivals) == $i) { ?>
-                                                </div>
-    <?php }
-} ?>
+    <?php if ($frame + 3 == $i || count($NewArrivals) == $i) { 
+    		if(count($NewArrivals) < 3) {
+	$pending = 3 - count($NewArrivals);
+	for($i=0;$i<$pending;$i++){ ?>
+		<div class="col-sm-12 margins">
+	        <div class="sectionrow">
+	            <div class="row" style="margin: 0px;">
+	                <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
+	                                                            	
+	                  	<img src="<?php echo asset_url();?>images/no-posts-logo.png"
+	                                                                     class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+	                </div>
+	                <div class="col-xs-9 text-left">
+	                    <h5>
+	                        <div style="color:#303030;font-family:Georgia;font-size:13px;">
+	                        	<strong>&nbsp;</strong>
+	                        </div>
+	                    </h5>
+	                    <p style="text-indent: 0px;">
+	                        <div style="color:#787878;font-family:Arial;font-size:12px;">
+	                        	No more posts available at the moment.Please try again later.
+	                        </div>
+	                    </p>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	<?php } } } ?>
+    </div><?php  }
+    if(count($NewArrivals) == 0){
+        $pending = 3;
+        for($i=0;$i<$pending;$i++){ ?>
+            <div class="col-sm-12 margins">
+                <div class="sectionrow">
+                    <div class="row" style="margin: 0px;">
+                        <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
+                                                                        
+                            <img src="<?php echo asset_url();?>images/no-posts-logo.png"
+                                                                             class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                        </div>
+                        <div class="col-xs-9 text-left">
+                            <h5>
+                                <div style="color:#303030;font-family:Georgia;font-size:13px;">
+                                    <strong>&nbsp;</strong>
+                                </div>
+                            </h5>
+                            <p style="text-indent: 0px;">
+                                <div style="color:#787878;font-family:Arial;font-size:12px;">
+                                    No more posts available at the moment.Please try again later.
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php }} ?>
+
                                     </div></div>
                             </div>
                         </div>
@@ -932,8 +994,11 @@ foreach ($NewArrivals as $NewArrival) {
                                 </div>
                                 <br/>
                                 <div id="wb_Carousel5" style="position: absolute;top:60px;">
+                                	<?php if (count($NewOrders) > 3) { ?>
                                     <div id="Carousel5" style="max-width: 530px !important;">
-<?php
+									<?php } else { ?>
+                                        <div id="Carousel15">
+									<?php }
 $i = 0;
 foreach ($NewOrders as $NewOrder) {
     if ($i % 3 == 0) {
@@ -945,13 +1010,13 @@ foreach ($NewOrders as $NewOrder) {
                                                 <div class="col-sm-12 margins">
                                                     <div class="sectionrow"><div class="row" style="margin: 0px;">
                                                             <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
-                                                                <img src="<?php echo asset_url() . $NewOrder['main_image']; ?>"
+                                                                <img src="<?php echo asset_url() . $NewOrder['image1']; ?>"
                                                                      class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
                                                                 <img src="<?php echo asset_url();?>images/flags/<?php echo $NewOrder['flag'];?>" class="roundflag">
                                                             </div>
                                                             <div class="col-xs-9 text-left">
                                                                 <h5>
-                                                                    <div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewOrder['name'] ?></strong></div>
+                                                                    <div style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $NewOrder['title'] ?></strong></div>
                                                                 </h5>
                                                                 <p style="text-indent: 0px;">
                                                                 <div style="color:#696969;font-family:Arial;font-size:12px;"><?php
@@ -969,10 +1034,66 @@ foreach ($NewOrders as $NewOrder) {
                                                     </div>
 
                                                 </div>
-    <?php if ($frame + 3 == $i || count($NewOrders) == $i) { ?>
+    <?php if ($frame + 3 == $i || count($NewOrders) == $i) { 
+    		if(count($NewOrders) < 3) {
+	$pending = 3 - count($NewOrders);
+	for($i=0;$i<$pending;$i++){ ?>
+
+		<div class="col-sm-12 margins">
+	        <div class="sectionrow">
+	            <div class="row" style="margin: 0px;">
+	                <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
+	                                                            	
+	                  	<img src="<?php echo asset_url();?>images/no-posts-logo.png"
+	                                                                     class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+	                </div>
+	                <div class="col-xs-9 text-left">
+	                    <h5>
+	                        <div style="color:#303030;font-family:Georgia;font-size:13px;">
+	                        	<strong>&nbsp;</strong>
+	                        </div>
+	                    </h5>
+	                    <p style="text-indent: 0px;">
+	                        <div style="color:#787878;font-family:Arial;font-size:12px;">
+	                        	No more posts available at the moment.Please try again later.
+	                        </div>
+	                    </p>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	<?php } } } ?>
                                                 </div>
     <?php }
-} ?>
+    if(count($NewOrders) == 0){
+        $pending = 3;
+        for($i=0;$i<$pending;$i++){ ?>
+
+            <div class="col-sm-12 margins">
+                <div class="sectionrow">
+                    <div class="row" style="margin: 0px;">
+                        <div class="col-xs-2" style="padding: 1% 0px" style="height: 90px;">
+                                                                        
+                            <img src="<?php echo asset_url();?>images/no-posts-logo.png"
+                                                                             class="img-responsive" style="padding: 0px !important;max-height: 85px;max-width: 85px !important;">
+                        </div>
+                        <div class="col-xs-9 text-left">
+                            <h5>
+                                <div style="color:#303030;font-family:Georgia;font-size:13px;">
+                                    <strong>&nbsp;</strong>
+                                </div>
+                            </h5>
+                            <p style="text-indent: 0px;">
+                                <div style="color:#787878;font-family:Arial;font-size:12px;">
+                                    No more posts available at the moment.Please try again later.
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <?php } } ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -1047,12 +1168,15 @@ foreach ($FWBuyers as $key => $FWBuyer) {
                                                         <div id="Layer146-<?php echo $key; ?>" style="position: absolute; text-align: left; visibility: visible; left: 30px; top: 48px; width: 156px; height: 136px; z-index: 512; display: none;">
                                                             <div id="wb_Image96" style="position:absolute;left:34px;top:55px;width:35px;height:35px;z-index:507;">
                                                                 <a href="javascript:openBuyer(<?php echo $FWBuyer['id']; ?>,'<?php echo $FWBuyer['contact_person']; ?>')">
-                                                                    <img src="<?php echo asset_url(); ?>images/window-layer.png" style="width: 40px;" onmouseover="hover(this, 'window');" onmouseout="unhover(this, 'window');">
+                                                                    <!--<img src="<?php echo asset_url(); ?>images/window-layer.png" style="width: 40px;" onmouseover="hover(this, 'window');" onmouseout="unhover(this, 'window');">-->
+                                                                    <img src="<?php echo asset_url(); ?>images/window-layer.png" id="Image96" alt="" onmouseover="hover(this, 'window');" onmouseout="unhover(this, 'window');">
+
                                                                 </a>
                                                             </div>
-                                                            <div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:42px;height:35px;z-index:508">
+                                                            <div id="RollOver87" style="position:absolute;left:86px;top:55px;overflow:hidden;width:35px;height:35px;z-index:508">
                                                                 <a href="<?php echo base_url(); ?>buyer/profile/<?php echo $FWBuyer['busi_id']; ?>" target="_blank">
-                                                                    <img src="<?php echo asset_url(); ?>images/buyer-desksite1.png" style="width: 42px;" onmouseover="hover(this, 'buyer_desksite');" onmouseout="unhover(this, 'buyer_desksite');">
+                                                                    <!--<img src="<?php echo asset_url(); ?>images/buyer-desksite1.png" style="width: 42px;" onmouseover="hover(this, 'buyer_desksite');" onmouseout="unhover(this, 'buyer_desksite');">-->
+                                                                    <span><img alt="" src="<?php echo asset_url(); ?>images/desksite1.png" onmouseover="hover(this, 'desksite1');" onmouseout="unhover(this, 'desksite1');"></span>
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -1191,7 +1315,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
    	var template = {
                     html: 'application/modules/frontend/views/default/default-book-view.html',
                     styles: [
-                               	'<?php echo asset_url(); ?>css/font-awesome.min.css',
+                                   '<?php echo asset_url(); ?>css/font-awesome.min.css',
                               	'<?php echo asset_url(); ?>css/short-white-book-view.css'
                             ],
                     script: '<?php echo asset_url(); ?>js/default-book-view.js'
@@ -1283,6 +1407,8 @@ foreach ($FWBuyers as $key => $FWBuyer) {
          	//$("#pcatalogue_id").val(id);
             $("#catalogue_page_content").html(data);
             $("#vcatalogue_overlay_home").modal('show');
+            var page_count = parseInt($("#product_count").val());
+            booksOptions.pages = parseInt(page_count*2);
             var instance = {
                 scene: undefined,
                 options: undefined,
@@ -1524,7 +1650,7 @@ foreach ($FWBuyers as $key => $FWBuyer) {
     
     function addToMyFavourite(fav_id, type) {
         $.get(base_url + "addtofavourite/" + fav_id + "/" + type, {}, function (data) {
-            $("#msg_cont").html(data.msg);
+            $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
             ShowObject('Layer99', 1);
         }, 'json');
     }
@@ -1536,14 +1662,13 @@ foreach ($FWBuyers as $key => $FWBuyer) {
     }
     function addToItemToCart(id) {
         $.post(base_url + "additemtocart", {product_id: id}, function (data) {
-            //alert(data.msg);
-            $("#msg_cont").html(data.msg);
+            $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html(data.msg);
             ShowObject('Layer99', 1);
         }, 'json');
     }
     function gotonewarrival_request(keyword, country, type, busi_id) {
         if (busi_id == "" || busi_id == undefined) {
-            $("#msg_cont").html("PLEASE LOGIN TO ACCESS MEMBER AREA.");
+            $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html("PLEASE LOGIN TO ACCESS MEMBER AREA.");
             ShowObject('Layer99', 1);
         } else {
             $.cookie('bstation-landing', '1', {expires: 365});

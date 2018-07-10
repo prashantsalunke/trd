@@ -155,17 +155,6 @@
 </div>
 <script src="<?php echo asset_url();?>js/bootstrap-typeahead.min.js"></script>
 <script>
-<?php if($total_videos >= $max_videos) { ?>
-$('#accessDeniedModal5').modal({show:true,backdrop: 'static',keyboard: false});
-function upgradeMyBusinessPlan() {
-	ShowObjectWithEffect('Layer149', 0, 'dropup', 500, 'easeInBounce');
-	getMyPackages();
-}
-function cancelAccessDeniedPopup() {
-	ShowObjectWithEffect('Layer149', 0, 'dropup', 500, 'easeInBounce');
-	ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');
-}
-<?php } ?>
 $('#frmshipperaddvedio').bootstrapValidator({
 
 	container: function($field, validator) {
@@ -240,7 +229,19 @@ function showVedioResponse(resp, statusText, xhr, $form){
 	}
 }
 function openFileInput() {
-	 $("#uploadonepvedio:hidden").trigger('click');
+	<?php if($total_videos < $max_videos) { ?>
+	 	$("#uploadonepvedio:hidden").trigger('click');
+	<?php }else{ ?>
+		$('#accessDeniedModal5').modal({show:true,backdrop: 'static',keyboard: false});
+		function upgradeMyBusinessPlan() {
+			ShowObjectWithEffect('Layer149', 0, 'dropup', 500, 'easeInBounce');
+			getMyPackages();
+		}
+		function cancelAccessDeniedPopup() {
+			ShowObjectWithEffect('Layer149', 0, 'dropup', 500, 'easeInBounce');
+			ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');
+		}
+	<?php } ?>
 }
 $(function(){
     $("#oneproductupload").unbind().on('click', function(e){

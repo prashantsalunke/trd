@@ -2354,7 +2354,7 @@ function getActivechatboxdetails($userids) {
 	return $integration->getActivechatboxdetails($userids);
 }
 
-function fetchLink($link) {
+function fetchLink($link,$user_type) {
 	global $integration;
 	return $integration->fetchLink($link);
 }

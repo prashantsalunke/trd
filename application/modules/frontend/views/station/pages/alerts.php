@@ -135,7 +135,7 @@
 					<img class="hover" alt="" src="<?php echo asset_url();?>images/addrequescolort.png" style="width:40px;"> 
 					<span><img alt="" src="<?php echo asset_url();?>images/addrequest.png" style="width:40px;"></span>
 				</a>
-				<div id="totalrequest" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($sendcommunityrequest) ?></div>
+				<div id="totalrequest" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo $addRequestCount; ?></div>
 			</div><br><br>
 			<div style="position:absolute;top:345px;text-align:center;width: 160px;">
 				<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">Add Requests</span>
@@ -154,7 +154,7 @@
 				<a href="javascript:openInquiry();"> <img class="hover" alt="" src="<?php echo asset_url();?>images/inquiryoffwhite.png" style="width:40px;"> <span>
 					<img alt="" src="<?php echo asset_url();?>images/inquiry.png" style="width:40px;"></span>
 				</a>
-				<div id="totalinquiry" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($inquiry);?></div>
+				<div id="totalinquiry" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo $inquiryCount; ?></div>
 			</div>
 			<br><br>
 			<div style="position:absolute;top:509px;text-align:center;width: 160px;">
@@ -166,7 +166,7 @@
 					<img class="hover" alt="" src="<?php echo asset_url();?>images/offer-tool2.png" style="width:40px;"> 
 					<span><img alt="" src="<?php echo asset_url();?>images/offer-tool1.png" style="width:40px;"></span>
 				</a>
-				<div id="totaloffer" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo count($offer);?></div>
+				<div id="totaloffer" style="position:absolute;top:13px;left:35px;width:32px;height:16px;padding:1px;background-color:#ff0017;color:#fff;border-radius:2px;text-align:center;z-index:2;font-size:11px;"><?php echo $offerCount;?></div>
 			</div>
 			<div style="position:absolute;top:591px;text-align:center;width: 160px;">
 				<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">Offers</span>

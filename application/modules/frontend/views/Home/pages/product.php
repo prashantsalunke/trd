@@ -36,7 +36,7 @@ foreach($productdetail as $productBox) {?>
 		<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>By</strong></span>
 	</div>
 	<div id="wb_Text163" style="position:absolute;left:122px;top:83px;width:63px;height:16px;z-index:1282;text-align:left;">
-		<span style="color:#3C3C3C;font-family:Georgia;font-size:12px;">Supplier&nbsp;&nbsp; </span>
+		<span style="color:#3C3C3C;font-family:Georgia;font-size:12px;"><?php echo $productBox['user_category']; ?>&nbsp;&nbsp; </span>
 	</div>
 	<div id="wb_Text165" style="position:absolute;left:70px;top:64px;width:187px;height:16px;z-index:1283;text-align:left;">
 		<span style="color:#4169E1;font-family:Arial;font-size:12px;"><?php echo $productBox['company_name']; ?> </span>

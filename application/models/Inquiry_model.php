@@ -8,7 +8,7 @@ class Inquiry_model extends CI_Model {
 
     public  function getInquiryByBusiId($busi_id)
     {
-    	$this->db->select('a.id as inqury_id,a.requester_busi_id,a.inquiry_subject,a.inquiry_body,a.product_id,a.created_date,'.
+    	$this->db->select('a.id as inqury_id,a.requester_busi_id,a.inquiry_subject,a.inquiry_body,a.product_id,a.created_date as actual_date,'.
     			'a.pin_unpin,a.unreadmark,b.inqury_type,a.attachment1,a.attachment2,a.attachment3,a.attachment4,'.
     			'd.*,e.name_prefix,e.name,f.profile_image,uc.user_category,a.alert_viewed');
     	$this->db->from(TABLES::$INQUIRY. ' AS a');
@@ -20,18 +20,17 @@ class Inquiry_model extends CI_Model {
         $this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','e.user_category_id=uc.id','inner');
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('e.is_contactperson', 1);
-    	$this->db->where('a.is_deleted', 0);
+        $this->db->where('a.is_deleted', 0);
     	$this->db->group_by('a.id');
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;
-    	
     }
     
     public function getBuyerInquiryByBusiId($busi_id)
     {
-    	$this->db->select('a.id as inqury_id,a.requester_busi_id,a.inquiry_subject,a.inquiry_body,a.product_id,a.created_date,'.
+    	$this->db->select('a.id as inqury_id,a.requester_busi_id,a.inquiry_subject,a.inquiry_body,a.product_id,a.created_date as actual_date,'.
     			'a.pin_unpin,a.unreadmark,b.inqury_type,a.attachment1,a.attachment2,a.attachment3,a.attachment4,'.
     			'd.*,e.name_prefix,e.name,f.profile_image,uc.user_category,a.alert_viewed');
     	$this->db->from(TABLES::$INQUIRY. ' AS a');
@@ -43,7 +42,7 @@ class Inquiry_model extends CI_Model {
         $this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','e.user_category_id=uc.id','inner');
     	$this->db->where('a.requester_busi_id', $busi_id);
     	$this->db->where('e.is_contactperson', 1);
-    	$this->db->where('a.is_deleted', 0);
+        $this->db->where('a.is_deleted', 0);
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -53,7 +52,6 @@ class Inquiry_model extends CI_Model {
     {
     	$this->db->where('id', $data['id']);
     	$this->db->update(TABLES::$INQUIRY, $data);
-        
     	return $this->db->affected_rows();
     }
     public function updateToggelpinInquiry($data)
@@ -119,7 +117,6 @@ class Inquiry_model extends CI_Model {
          $this->db->where('inq.alert_viewed', 0);
         $this->db->order_by('inq.id', 'desc');
         $query = $this->db->get();
-        //echo $this->db->last_query();
         $row = $query->result_array();
         if ($row > 0) {
             return true;
@@ -127,5 +124,10 @@ class Inquiry_model extends CI_Model {
             return false;
         }
     }
-
+    public function updateInquiryAlert($id,$data)
+    {
+        $this->db->where('busi_id', $id);
+        $this->db->update(TABLES::$INQUIRY,$data);
+        return $this->db->affected_rows();
+    }
 }

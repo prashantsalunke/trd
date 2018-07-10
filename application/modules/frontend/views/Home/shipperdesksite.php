@@ -226,6 +226,37 @@ a.style5:hover
     </div>
     <div class="row" style="margin:0px;">
 	    <div class="col-lg-10 section11 seller-list">
+			<?php if(isset($params['main_prod']) && $params['main_prod']!=''){ ?>
+				<div class="row sub_products" style="border: 1px solid rgb(211, 211, 211);background-color: rgb(255, 255, 255);max-height: 176px;height: 95px;margin: 0px 0px 20px;">
+					<div class="col-md-12">
+						<div class="col-md-1 text-center" style="position: absolute; top: 25%; vertical-align: middle;">
+							<img src="<?php echo asset_url(); ?>images/blank_folder.png" width="40">
+							<span class="text-center"><?php echo ucwords($params['main_prod']);?></span>
+						</div>
+						<div class="col-md-11" style="padding-bottom:10px;padding-left:80px;">
+							<div class="col-md-12" style="margin-top:7px;margin-bottom:10px">
+								<span style="padding-left: 54px; font-size:13px">Categories/ <?php echo $productMainCat->cat_name;?> / <?php echo $productMainCat->sub_cat;?> / <span style="color:#1e90ff;"><?php echo ucwords($params['main_prod']);?></span></span>
+							
+							</div>
+							<div style="padding-left:0;padding-right:0;" class="col-md-12">
+								<?php if(!empty($subproducts)){ 
+									foreach($subproducts as $res){ ?>
+										<div class="col-md-3">
+											<ul style="list-style:none;margin-bottom: -5px;">
+												<li>
+													<a class="btn btn-link main_prod" style="color:#808080;text-decoration:none;" href="javascript:void(0);" onclick="filter_by_subprod('<?php echo $params['main_cat_id'];?>','<?php echo $params['cat_id'];?>','<?php echo $params['main_prod'];?>','<?php echo $res['name'];?>')"><?php echo $res['name']; ?></a>
+												</li>
+											</ul>    
+										</div>
+										
+									<?php }
+								
+								} ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
 			<?php
 			if(count($Sellers) > 0 && $Sellers[0]['id'] !='') { 
     		foreach ($Sellers as $key=>$seller) {?>
@@ -609,7 +640,14 @@ a.style5:hover
         </div>
     </div>
 <script>
+
 $(document).ready(function() {
+	var sub_prod=$(".sub_products").height();
+	if(sub_prod > 175){ 
+		$(".sub_products").css('overflow-y','scroll');
+	}else{
+		$(".sub_products").css('overflow-y','hidden');
+	}
     $(".mysellercarousel").slideshow({
         interval: 3000,
         type: 'sequence',
@@ -810,5 +848,65 @@ function changeCountry(a){
 	},'html');
 	
 }
+var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
+    $(document).on('mouseenter', '.cat_slide', function () {
+        clearTimeout(hoverTimeout);
+        var curr_slide = $(this).attr("alt");
+        $(".sub_cat").css('color', '#337ab7');
+        $(".slide-details").hide();
+		$("#sub_cat_main_prod").hide();
+        $("#" + curr_slide).show();
+        $("." + curr_slide).show();
+        stayOpen.addClass('show');
+    }).on('mouseleave', '.slide', function () {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(function () {
+            if (!keepOpen) {
+                $(".slide-details").hide();
+                stayOpen.removeClass('show');
+            }
+        }, 1000);
+    });
 
+    $(document).on('mouseenter', '#Details', function () {
+        keepOpen = true;
+        setTimeout(function () {
+            keepOpen = false;
+        }, 1500);
+    }).on('mouseleave', '#Details', function () {
+        keepOpen = false;
+        $(".slide-details").hide();
+        stayOpen.removeClass('show');
+    });
+    function highlight_keywords(str) {
+        $(".sub_cat").css('color', '#337ab7');
+        $("." + str).css('color', 'orange');
+    }
+    function filter_by_subcat(cat_id, cat_sub_id,main_prod) {
+        $("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#filter_by_category").submit();
+    }
+	function filter_by_subprod(cat_id, cat_sub_id,main_prod,sub_prod){
+		$("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#sub_prod").val(sub_prod);
+        $("#filter_by_category").submit();
+	}
+	function get_main_products(main_cat,id,sub_cat_name){
+		$.ajax({
+			url: base_url + "home/get_main_products",
+			type: "post",
+			data : { id : id,name:sub_cat_name,main_cat:main_cat },
+			success: function (response) {
+				$("#sub_cat_main_prod").html('');
+				$("#sub_cat_main_prod").append(response);
+				$("#sub_cat_main_prod").show();
+				
+			}
+		})
+    }
+	
 </script>

@@ -1,5 +1,5 @@
 <?php 
-foreach($videodetail as $videoBox) {?>
+foreach($videodetail as $videoBox) { ?>
 <div id="Layer18" class="class3">
 	<div id="wb_Text63" class="class4">
 		<span class="class-font1"><strong><?php echo $videoBox['company_country'];?> | <?php echo $videoBox['company_province'];?></strong></span>
@@ -16,11 +16,11 @@ foreach($videodetail as $videoBox) {?>
 		<img src="<?php echo asset_url();?>images/items_like0.png" id="Image59" alt="">
 	</div>
 	<div id="wb_Text168" style="position:absolute;left:179px;top:235px;width:63px;height:16px;z-index:1294;text-align:left;">
-		<span style="color:#3C3C3C;font-family:Arial;font-size:11px;"><?php echo $videoBox['video_likes']; ?></span>
+		<span style="color:#3C3C3C;font-family:Arial;font-size:11px;" id="like_counter"><?php echo $videoBox['video_likes']; ?></span>
 	</div>
 
 	<div id="wb_MediaPlayer8" class="class7">
-		<video src="<?php echo asset_url().''.$videoBox['vedio_file']; ?>" id="MediaPlayer<?php echo $videoBox['vedio_id'];?>" controls="controls">
+		<video src="<?php echo asset_url().''.$videoBox['vedio_file']; ?>" id="MediaPlayerid<?php echo $videoBox['vedio_id'];?>" controls="controls">
 		</video>
 	</div>
 </div>
@@ -44,13 +44,16 @@ foreach($videodetail as $videoBox) {?>
 	<div id="wb_Text162" style="position:absolute;left:27px;top:63px;width:38px;height:16px;z-index:1281;text-align:left;">
 		<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>By</strong></span>
 	</div>
+	<div id="wb_Text163" style="position:absolute;left:122px;top:83px;width:63px;height:16px;z-index:1282;text-align:left;">
+		<span style="color:#3C3C3C;font-family:Georgia;font-size:12px;"><?php echo $videoBox['user_category']; ?>&nbsp;&nbsp; </span>
+	</div>
 	<div id="wb_Text165" style="position:absolute;left:70px;top:64px;width:187px;height:16px;z-index:1283;text-align:left;">
 		<span style="color:#4169E1;font-family:Arial;font-size:12px;"><?php echo $videoBox['company_name']; ?> </span>
 	</div>
 	<div id="wb_Text166" style="position:absolute;left:27px;top:11px;width:271px;height:16px;z-index:1284;text-align:left;">
 		<span style="color:#303030;font-family:Arial;font-size:12px;"><?php echo substr($videoBox['description'], '0', '125');?> <?php if(strlen($videoBox['description']) > 125) { ?>....<?php }?><br></span>
 	</div>
-	<div id="wb_Image20" class="class21" style="left: 90px;top:85px;width:25px;height:25px;">
+	<div id="wb_Image20" class="class21" style="left: 90px;top:100px;width:25px;height:25px;">
 		<?php if(!empty($videoBox['community_id']) && $videoBox['community_id'] != ""){?>
 					<img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image147">
 				<?php }else { ?>
@@ -58,7 +61,7 @@ foreach($videodetail as $videoBox) {?>
 				<?php } ?>
 		
 	</div>
-	<div id="wb_Image20" class="class21" style="left:150px;top:85px;width:25px;height:25px;">
+	<div id="wb_Image20" class="class21" style="left:150px;top:100px;width:25px;height:25px;">
 		<?php if($videoBox['is_logo_verified'] !=''){?>
 					<img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" >
 				<?php }else { ?>
@@ -66,14 +69,14 @@ foreach($videodetail as $videoBox) {?>
 				<?php } ?>
 		
 	</div>
-	<div id="wb_Image21" class="class22" style="left:120px;top:85px;width:34px;height:26px;">
+	<div id="wb_Image21" class="class22" style="left:120px;top:100px;width:34px;height:26px;">
 		 <?php if($videoBox['gaurantee_period'] !=''){?>
 					<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1">
 		<?php }else { ?>
 					<img src="<?php echo asset_url(); ?>images/ts/guarantee.png"  id="Image1" style="opacity: 0.15;">
 		<?php } ?>
 	</div>
-	<div id="wb_Image84"  class="class22" style="position:absolute;left:180px;top:85px;width:25px;height:25px;z-index:1148;"">
+	<div id="wb_Image84"  class="class22" style="position:absolute;left:180px;top:100px;width:25px;height:25px;z-index:1148;"">
 		<?php if($videoBox['plan_id'] > 1){?>
 			<img src="<?php echo asset_url(); ?>images/member-logo.png" id="Image1" ></div>
 		<?php }else { ?>
@@ -81,7 +84,7 @@ foreach($videodetail as $videoBox) {?>
 		<?php } ?>
 	</div>
 <div id="wb_Image43" class="class23" style="left:272px;top:0px;height: 35px;width: 35px;">
-	<a href="#" onclick="StopAudio('MediaPlayer<?php echo $videoBox['vedio_id'];?>');ShowObject('Layer_details3', 0);ShowObject('Layer_details', 0);return false;">
+	<a href="#" onclick="StopAudio('MediaPlayerid<?php echo $videoBox['vedio_id'];?>');ShowObject('Layer_details3', 0);ShowObject('Layer_details', 0);return false;">
 		<img src="<?php echo asset_url(); ?>images/close.png" id="Image43" alt="" style="height: 35px;width: 35px;">
 	</a>
 </div>
@@ -99,7 +102,7 @@ foreach($videodetail as $videoBox) {?>
 </div>
 <div id="RollOver70" class="class26" style="position: absolute;top:520px;left:171px;">
 	<a href="javascript:addToMyFavourite(<?php echo $videoBox['vedio_id'];?>,5);" target="_blank"> <img class="hover" alt=""
-		title="Add to watch later"
+		title="Add to favourite"
 		src="<?php echo asset_url(); ?>images/videoaddtofav.png" style="width:35px;height:35px"> <span><img
 			alt="" title="Add to watch later"
 			src="<?php echo asset_url(); ?>images/addtofav.png" style="width:35px;height:35px"></span>
@@ -107,14 +110,14 @@ foreach($videodetail as $videoBox) {?>
 </div>
 <div id="RollOver71" class="class27" style="position: absolute;top:520px;left: 229px;">
 	<a
-		href="javascript:likeVideo(<?php echo $videoBox['vedio_id'];?>)"
-		target="_self"> <img class="hover" alt="" title="Add to my cart"
+		href="javascript:likeVideo(<?php echo $videoBox['vedio_id'];?>,<?php echo $videoBox['video_likes'];?>)"
+		target="_self"> <img class="hover" alt="" title="Like Video"
 		src="<?php echo asset_url(); ?>images/likeblue.png" style="width:35px;height:35px"> <span><img alt=""
 			title="Add to my cart"
 			src="<?php echo asset_url(); ?>images/likewhite.png" style="width:35px;height:35px"></span>
 	</a>
 </div>
-<div id="wb_Text93" class="class28">
+<!--<div id="wb_Text93" class="class28">
 	<span class="class29">Likes</span>
 </div>
 <div id="wb_Image44" class="class30">
@@ -123,5 +126,5 @@ foreach($videodetail as $videoBox) {?>
 </div>
 <div id="wb_Text94" class="class31">
 	<span class="class32"><?php echo $videoBox['likes']; ?></span>
-</div>
+</div>-->
 <?php }?>

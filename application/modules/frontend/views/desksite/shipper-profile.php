@@ -987,7 +987,7 @@ function stopWiggle(input) {
                     </div>
                     <div class="inline box5">
                         <img src="<?php echo asset_url(); ?>images/img0908.png" id="Image19" alt="" class="img32">
-                        <a href="javascript:shareToWorld('<?php echo base_url();?>buyer/profile/<?php echo $Desksites[0]['busi_id']?>','<?php echo $Desksites[0]['company_name']?> @ TRDSTATION',1,<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
+                        <a href="javascript:shareToWorld('<?php echo base_url();?>shipper/profile/<?php echo $Desksites[0]['busi_id']?>','<?php echo $Desksites[0]['company_name']?> @ TRDSTATION',1,<?php echo $Desksites[0]['busi_id']?>);" target="_self" class="antag">
                         Share
                         </a>
                     </div>
@@ -1400,13 +1400,15 @@ function stopWiggle(input) {
             <?php if(!empty($tsuserid)) { ?>
                 <?php if($tscategory_id == 3) { ?>
                     <?php if($contact_details[0]['accept_chat'] == 1) { ?>
-                        popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+                        jqcc.cometchat.chatWith(seller_id);
+                        document.getElementById('cometchat_chatboxes').style.right='0px';
                     <?php } else { ?>
                         $("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
                         ShowObject('Layer99', 1);
                     <?php } ?>
                 <?php } else { ?>
-                    popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+                    jqcc.cometchat.chatWith(seller_id);
+                    document.getElementById('cometchat_chatboxes').style.right='0px';
                 <?php } ?>
             <?php } else { ?>
                 $("#msg_cont").html('LOGIN TO CAHT');

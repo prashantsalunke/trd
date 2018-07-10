@@ -400,7 +400,7 @@ function getBuddyList() {
 						$contact['message'] = $language['status_'.$contact['status']];
 					}
 
-					$link = fetchLink($contact['link']);
+					$link = fetchLink($contact['link'],$contact['user_type']);
 					$avatar = getAvatar($contact['avatar']);
 
 					if (function_exists('processName')) {

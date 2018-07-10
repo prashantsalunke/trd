@@ -54,7 +54,7 @@ while($chat = sql_fetch_assoc($query)){
 		$chat['message'] = $status[$chat['status']];
 	}
 
-	$link = fetchLink($chat['link']);
+	$link = fetchLink($chat['link'],$chat['user_type']);
 	$avatar = getAvatar($chat['avatar']);
 
 	if(empty($chat['ch'])) {

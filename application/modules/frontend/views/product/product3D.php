@@ -383,9 +383,52 @@ function open3DProduct(id) {
 		init3D('my3dimg');
 	},'html');
  }
-$(document).ready(function() {
-    $("body").on("contextmenu",function(){
-       return false;
-    }); 
-});
-</script>			
+var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
+    $(document).on('mouseenter', '.cat_slide', function () {
+        clearTimeout(hoverTimeout);
+        var curr_slide = $(this).attr("alt");
+        $(".sub_cat").css('color', '#337ab7');
+        $(".slide-details").hide();
+		$("#sub_cat_main_prod").hide();
+        $("#" + curr_slide).show();
+        $("." + curr_slide).show();
+        stayOpen.addClass('show');
+    }).on('mouseleave', '.slide', function () {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(function () {
+            if (!keepOpen) {
+                $(".slide-details").hide();
+                stayOpen.removeClass('show');
+            }
+        }, 1000);
+    });
+
+    $(document).on('mouseenter', '#Details', function () {
+        keepOpen = true;
+        setTimeout(function () {
+            keepOpen = false;
+        }, 1500);
+    }).on('mouseleave', '#Details', function () {
+        keepOpen = false;
+        $(".slide-details").hide();
+        stayOpen.removeClass('show');
+    });
+    function highlight_keywords(str) {
+        $(".sub_cat").css('color', '#337ab7');
+        $("." + str).css('color', 'orange');
+    }
+    function filter_by_subcat(cat_id, cat_sub_id,main_prod) {
+        $("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#filter_by_category").submit();
+    }
+	function filter_by_subprod(cat_id, cat_sub_id,main_prod,sub_prod){
+		$("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#sub_prod").val(sub_prod);
+        $("#filter_by_category").submit();
+	}
+	
+</script>	

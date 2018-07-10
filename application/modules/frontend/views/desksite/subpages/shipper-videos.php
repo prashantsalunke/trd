@@ -1,4 +1,4 @@
-	<?php
+	<?php 
 	$i =0 ;
 	foreach($Videos as $video){
 	$i++;
@@ -50,6 +50,14 @@
 						<br><br>
 					</div>
 	<?php } ?>
+	<div style="position: relative;top: -30px;width: 345px;left: 35px;">
+                        <a class="left carousel-control control" href="#vcarousel" role="button" data-slide="prev">
+                            <img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previoustxt0.png">
+                        </a> 
+                        <a class="right carousel-control control" href="#vcarousel" role="button" data-slide="next">
+                            <img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nexttxt0.png">
+                        </a>
+    </div>
 	<?php if(count($Videos) <= 0) { ?>
 		This <?php //if($bcatinfo[0]['user_category_id'] == 1) { ?><!-- seller --><?php //} elseif ($bcatinfo[0]['user_category_id'] == 2) { ?>shipper<?php //} else { ?><!-- buyer --><?php //} ?> has not uploaded videos yet.
 	<?php } ?>

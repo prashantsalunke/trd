@@ -79,16 +79,18 @@ function Validatecontact()
    	var theForm = document.getElementById('Form4');
    	var regexp;
    	var extension = theForm.FileUpload1.value.substr(theForm.FileUpload1.value.lastIndexOf('.'));
-   	if ((extension.toLowerCase() != ".gif") &&
+   	/*if ((extension.toLowerCase() != ".gif") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
-       (extension.toLowerCase() != ".png") &&
+       (extension.toLowerCase() != ".png") && 
+       (extension.toLowerCase() != ".docx") &&
        (extension != ""))
    	{
-      	alert("The \"FileUpload1\" field contains an unapproved filename.");
+      	alert("The \"FileUpload1\" field1 contains an unapproved filename.");
       	theForm.FileUpload1.focus();
       	return false;
-   	}
+   	}*/
+    
    	if (theForm.Editbox5.value == "")
     {
        alert("Please Enter The Contact Name");
@@ -214,7 +216,7 @@ function showAddResponse(resp, statusText, xhr, $form){
 <input type="hidden" name="offer_type_id" id="offer_type_id" value="1" />
 <input type="hidden" name="title" id="title" value="General Offer" />
 <input type="text" id="Editbox5" style="position:absolute;left:0px;top:157px;width:327px;height:46px;line-height:46px;z-index:0;" name="name" value="<?php if(!empty($mydesksite[0]['name'])) { echo $mydesksite[0]['name']; }?>" maxlength="50" placeholder="Name">
-<textarea name="message" id="TextArea2" style="position:absolute;left:0px;top:328px;width:682px;height:232px;z-index:1;" rows="16" cols="95" maxlength="500" placeholder="Message"></textarea>
+<textarea name="message" id="TextArea2" style="position:absolute;left:0px;top:328px;width:682px;height:232px;z-index:1;" rows="16" cols="95" maxlength="800" placeholder="Message"></textarea>
 <input type="button" id="Button5" name="" value="Send" style="position:absolute;left:600px;top:588px;width:96px;height:25px;z-index:2;" onclick="saveRequest();">
 <input type="number" id="Editbox11" style="position:absolute;left:353px;top:218px;width:327px;height:46px;line-height:46px;z-index:3;" name="phone" value="<?php if(!empty($mydesksite[0]['telephone_code'])) { echo $mydesksite[0]['telephone_code']; }?><?php if(!empty($mydesksite[0]['telephone_number'])) { echo $mydesksite[0]['telephone_number']; }?>" maxlength="15" placeholder="Phone">
 <input type="text" id="Editbox12" style="position:absolute;left:354px;top:157px;width:327px;height:46px;line-height:46px;z-index:4;" name="company" value="<?php if(!empty($mydesksite[0]['company_name'])) { echo $mydesksite[0]['company_name']; }?>" maxlength="50" placeholder="Company">

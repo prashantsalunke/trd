@@ -45,7 +45,7 @@ function openFavoriteInfo(type)
 		$("#alertbodypanel").html(data);
 		$(".alerts-btn-selected").removeClass('alerts-btn-selected');
 		$("#alert-fab-"+type).addClass('alerts-btn-selected');
-		alertajaxindicatorstop();
+		
 		if(type == 1)
 		{
 			$("#seller_div").show();
@@ -166,8 +166,8 @@ function openFavoriteInfo(type)
 			$("#ads_div").hide();
 			$("#post_div").show();
 		}
-	
 	});
+	alertajaxindicatorstop();
 }
 function openMycart()
 {
@@ -182,7 +182,9 @@ function openInquiry()
 	$.get(base_url+"mystation/inquiry",{},function(data){
 		$("#alertbodypanel").html("");
 		$("#alertbodypanel").html(data);
-		
+		var getCurrentRequestCount = parseInt($("#totalinquiry").html());
+		$("#totalinquiry").html(0);
+		$("#totalalert").html(parseInt($("#totalalert").html()-getCurrentRequestCount));
 	});
 }
 function openOffer()
@@ -190,17 +192,21 @@ function openOffer()
 	$.get(base_url+"mystation/offer",{},function(data){
 		$("#alertbodypanel").html("");
 		$("#alertbodypanel").html(data);
-		
+		var getCurrentRequestCount = parseInt($("#totaloffer").html());
+		$("#totaloffer").html(0);
+		$("#totalalert").html(parseInt($("#totalalert").html()-getCurrentRequestCount));
 	});
 }
 function openRequest()
 {
-	$.get(base_url+"mystation/request",{},function(data){
+	$.getJSON(base_url+"mystation/request",function(data){
 		$("#alertbodypanel").html("");
-		$("#alertbodypanel").html(data);
+		$("#alertbodypanel").html(data.dataHTML);
 		$(".alerts-btn-selected").removeClass('alerts-btn-selected');
 		$("#addcominityrequest_btn").addClass('alerts-btn-selected');
-		
+		var getCurrentRequestCount = parseInt($("#totalrequest").html());
+		$("#totalrequest").html(0);
+		$("#totalalert").html(parseInt($("#totalalert").html()-getCurrentRequestCount));
 	});
 }
 function openAddedRequest()
@@ -330,3 +336,12 @@ function pinoffer()
 		alert('Please select offer.');
 	}
 }
+$(window).on("load", function() {
+	var url = window.location.href;
+    var parameter = url.lastIndexOf('/')+1;
+    setTimeout(function() {
+    	if(url.substring(parameter).indexOf("homeAlert") != -1) {
+            $(".triggerClick").trigger("click");
+        }
+    },10);
+});
