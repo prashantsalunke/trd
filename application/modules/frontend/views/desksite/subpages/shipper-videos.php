@@ -13,7 +13,7 @@
 							<p>
 								<span style="color:#4B4B4B;font-family:Georgia;font-size:13px;">
 									<strong>
-										<a href="<?php echo base_url();?>video/details/<?php echo $video['id'];?>" class="style16" >
+										<a href="#" class="style16" >
 											<?php echo $video['vedio_title']?>
 										</a>
 									</strong>
@@ -24,7 +24,7 @@
 						<div class="row" style="margin:0px;">
 							<div class="col-sm-12">
 								<p class="c14">
-									<?php echo substr($video['vedio_description'],0,70); ?><?php if(strlen($video['vedio_description']) > 70) { ?> ...<?php } ?>
+									<?php echo substr($video['vedio_description'],0,400); ?><?php if(strlen($video['vedio_description']) > 400) { ?> ...<?php } ?>
 								</p>
 							</div>
 						</div>

@@ -1,7 +1,17 @@
 <?php
-class Alerts extends MX_Controller {
+class Alerts extends MX_Controller 
+{
+	private $busiId ='';
+
+	/**
+	 * Constructor
+	 *
+	 * return void
+	 */
 	public function __construct() {
+		
 		parent::__construct ();
+
 		$current_lang = $this->session->userdata('my_lang');
 		if(!$current_lang) {
 			$current_lang = 'english';
@@ -12,6 +22,8 @@ class Alerts extends MX_Controller {
 		$this->load->helper('mylang');
 		$this->lang->load($current_lang.'_home_page_lang', $current_lang);
 		$fb_config = parse_ini_file ( APPPATH . "config/FB.ini" );
+
+		$this->busiId = $this->session->userdata('busi_id');
 	}
 	
 	public function index() {
@@ -22,80 +34,88 @@ class Alerts extends MX_Controller {
 		->title ( 'My Station' );
 		$this->template->build ('station/mystation');
 	}
+
 	public function alert() {
-		$busi_id = $this->session->userdata('busi_id');
 		$category_id = $this->session->userdata('tsuser')['category_id'];
 		$this->load->library('mylib/CommunityLib');
 		$this->load->library('mylib/MyfavoriteLib');
 		$this->load->library('mylib/InquiryLib');
 		$this->load->library('mylib/OfferLib');
 		$this->load->library('mylib/orderLib');
+		$this->load->library('common');
 		$this->load->model('Product_Model','product');
 		if($category_id == 1 || $category_id == 2) {
-			$inquiry = $this->inquirylib->getInquiryByBusiId($busi_id);
-			$offer = $this->offerlib->getOfferByBusiId($busi_id);
+			$inquiry = $this->inquirylib->getInquiryByBusiId($this->busiId);
+			$offer = $this->offerlib->getOfferByBusiId($this->busiId);
 		} else {
-			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busi_id);
-			$offer = $this->offerlib->getBuyerOfferByBusiId($busi_id);
+			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($this->busiId);
+			$offer = $this->offerlib->getBuyerOfferByBusiId($this->busiId);
 		}
 
-		$order = $this->orderlib->getOrderByBusiId($busi_id);
-		$favoritearray= $this->myfavoritelib->getMyfavoriteseller($busi_id,1);
+		$order = $this->orderlib->getOrderByBusiId($this->busiId);
+		$favoritearray= $this->myfavoritelib->getMyfavoriteseller($this->busiId,1);
 		$sendcommunityrequest = array();
-		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
+		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($this->busiId);
+		$totalAddRequestAlertCount   = $this->common->getTotalAddToCommunityCount();
+		$totalInquiryAlertCount      = $this->common->getTotalInquiryCount();
+		$totalOfferAlertCount        = $this->common->getTotalOfferCount();
 		$this->template->set ( 'favoritearray', $favoritearray);
 		$this->template->set ( 'inquiry', $inquiry);
 		$this->template->set ( 'offer', $offer);
 		$this->template->set ( 'order', $order);
 		$this->template->set ( 'sendcommunityrequest', $sendcommunityrequest);
+		$this->template->set ( 'addRequestCount', $totalAddRequestAlertCount);
+		$this->template->set ( 'inquiryCount', $totalInquiryAlertCount);
+		$this->template->set ( 'offerCount', $totalOfferAlertCount);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html = $this->template->build ('station/pages/alerts','',true);
 		echo $html;
 	}
+
+
 	public function favoriteInfo() {
 		$type = $this->input->post('type');
 		$this->load->library('mylib/MyfavoriteLib');
 		$this->load->model('Product_Model','product');
-		
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		if(!empty($busi_id)) {
+
+		if(!empty($this->busiId)) {
 			switch($type) {
 				case 1:
-				$favoriteseller = $this->myfavoritelib->getMyfavoriteseller($busi_id,1);
+				$favoriteseller = $this->myfavoritelib->getMyfavoriteseller($this->busiId,1);
 				$this->template->set ( 'favoriteseller', $favoriteseller);
 				break;
 				case 2:
-				$favoriteshipper = $this->myfavoritelib->getMyfavoritesShipper($busi_id,2);
+				$favoriteshipper = $this->myfavoritelib->getMyfavoritesShipper($this->busiId,2);
 				$this->template->set ( 'favoriteshipper', $favoriteshipper);
 				break;
 				case 3:
-				$favoritebuyer = $this->myfavoritelib->getMyfavoritesBuyer($busi_id,3);
+				$favoritebuyer = $this->myfavoritelib->getMyfavoritesBuyer($this->busiId,3);
 				$this->template->set ( 'favoritebuyer', $favoritebuyer);
 				break;
 				case 4:
-				$favoriteproduct = $this->myfavoritelib->getMyfavoriteProduct($busi_id,4);
+				$favoriteproduct = $this->myfavoritelib->getMyfavoriteProduct($this->busiId,4);
 				$this->template->set ( 'favoriteproduct', $favoriteproduct);
 				break;
 				case 5:
-				$favoritevedio = $this->myfavoritelib->getMyfavoriteVedio($busi_id,5);
+				$favoritevedio = $this->myfavoritelib->getMyfavoriteVedio($this->busiId,5);
 				$this->template->set ( 'favoritevedio', $favoritevedio);
 				break;
 				case 6:
-				$favoritedproduct = $this->myfavoritelib->getMyfavoriteDProduct($busi_id,6);
+				$favoritedproduct = $this->myfavoritelib->getMyfavoriteDProduct($this->busiId,6);
 				$this->template->set ( 'favoritedproduct', $favoritedproduct);
 				break;
 				case 7:
-				$favoritecatalouge = $this->myfavoritelib->getMyfavoriteCatalouge($busi_id,7);
+				$favoritecatalouge = $this->myfavoritelib->getMyfavoriteCatalouge($this->busiId,7);
 				$this->template->set ( 'favoritecatalouge', $favoritecatalouge);
 				break;
 				case 8:
-				$favoriteads = $this->myfavoritelib->getMyfavoriteAds($busi_id,8);
+				$favoriteads = $this->myfavoritelib->getMyfavoriteAds($this->busiId,8);
 				$this->template->set ( 'favoriteads', $favoriteads);
 				break;
 				case 9:
-				$favoritepost = $this->myfavoritelib->getMyfavoritePost($busi_id,9);
+				$favoritepost = $this->myfavoritelib->getMyfavoritePost($this->busiId,9);
 				$this->template->set ( 'favoritepost', $favoritepost);
 				break;
 			}
@@ -122,10 +142,9 @@ class Alerts extends MX_Controller {
 	public function myCart() {
 		$this->load->library('mylib/MycartLib');
 		$this->load->model('Product_Model','product');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		$cartdataseller = $this->mycartlib->getMyCartSeller($busi_id);
+		$cartdataseller = $this->mycartlib->getMyCartSeller($this->busiId);
 		$this->template->set ( 'cartdataseller', $cartdataseller);
-		$cartdata = $this->mycartlib->getMyCart($busi_id);
+		$cartdata = $this->mycartlib->getMyCart($this->busiId);
 		$this->template->set ( 'cartdata', $cartdata);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
@@ -136,13 +155,15 @@ class Alerts extends MX_Controller {
 	public function inquiry() {
 		
 		$this->load->library('mylib/InquiryLib');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
+		$this->load->model('Inquiry_model', 'inquiry');
 		$category_id = $this->session->userdata('tsuser')['category_id'];
 		if($category_id == 1 || $category_id == 2) {
-			$inquiry = $this->inquirylib->getInquiryByBusiId($busi_id);
+			$inquiry = $this->inquirylib->getInquiryByBusiId($this->busiId);
 		} else {
-			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busi_id);
+			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($this->busiId);
 		}
+		$data['alert_viewed'] = 1;
+		$this->inquiry->updateInquiryAlert($this->busiId,$data);
 		$this->template->set ( 'inquiry', $inquiry);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
@@ -154,13 +175,14 @@ class Alerts extends MX_Controller {
 	public function offer() {
 		
 		$this->load->library('mylib/OfferLib');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$category_id = $this->session->userdata('tsuser')['category_id'];
 		if($category_id == 1 || $category_id == 2) {
-			$offer = $this->offerlib->getOfferByBusiId($busi_id);
+			$offer = $this->offerlib->getOfferByBusiId($this->busiId);
 		} else {
-			$offer = $this->offerlib->getBuyerOfferByBusiId($busi_id);
+			$offer = $this->offerlib->getBuyerOfferByBusiId($this->busiId);
 		}
+		$data['alert_viewed'] = 1;
+		$this->offerlib->updateOfferAlert($this->busiId,$data);
 		$this->template->set ( 'offer', $offer);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
@@ -168,26 +190,30 @@ class Alerts extends MX_Controller {
 		$html = $this->template->build ('station/pages/subpages/offer','',true);
 		echo $html;
 	}
-	public function request() {
-		
+	
+	public function request() 
+	{
+		$data = array();	
 		$this->load->library('mylib/CommunityLib');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$sendcommunityrequest = array();
-		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
-		$mycommunityrequest = $this->communitylib->getSendCommunityRequest($busi_id);
+		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($this->busiId);
+		$mycommunityrequest = $this->communitylib->getSendCommunityRequest($this->busiId);
+		$totalAlertCount = $this->common->getTotalAddToCommunityCount();
+		$data['busi_id'] = $this->busiId;
+		$data['alert_viewed'] = 1;
+		$this->communitylib->updateCommunityRequest($data);
 		$this->template->set ( 'sendcommunityrequest', $sendcommunityrequest);
 		$this->template->set ( 'mycommunityrequest', $mycommunityrequest);
+		$this->template->set ( 'totalAlertCount', $totalAlertCount);
 		$this->template->set ( 'page', 'home' );
-		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
 		$html = $this->template->build ('station/pages/subpages/addrequest','',true);
-		echo $html;
+		die(json_encode(array('dataHTML'=> $html,'totalCount'=>count($mycommunityrequest))));
 	}
 	public function addedRequest() {
 		
 		$this->load->library('mylib/CommunityLib');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
+		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($this->busiId);
 		if($sendcommunityrequest[0]['community_id'] == "" ) {
 			$sendcommunityrequest = array();
 		}
@@ -202,8 +228,7 @@ class Alerts extends MX_Controller {
 	public function invitationRequest() {
 		
 		$this->load->library('mylib/CommunityLib');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		$sendcommunityrequest = $this->communitylib->getSendCommunityRequest($busi_id);
+		$sendcommunityrequest = $this->communitylib->getSendCommunityRequest($this->busiId);
 		if($sendcommunityrequest[0]['community_id'] == "" ) {
 			$sendcommunityrequest = array();
 		}
@@ -218,10 +243,9 @@ class Alerts extends MX_Controller {
 	public function sellerOrder()
 	{
 		$this->load->library('mylib/orderLib');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		$order = $this->orderlib->getOrderByBusiId($busi_id);
+		$order = $this->orderlib->getOrderByBusiId($this->busiId);
 		$this->template->set ( 'order', $order);
-		$orderitem = $this->orderlib->getOrderItemByBusiId($busi_id);
+		$orderitem = $this->orderlib->getOrderItemByBusiId($this->busiId);
 		$this->template->set ( 'orderitem', $orderitem);
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
@@ -231,11 +255,10 @@ class Alerts extends MX_Controller {
 	}
 	public function inquiryReplay() {
 		$this->load->model ( 'Account_Model', 'account' );
-		$busi_id = $this->session->userdata('busi_id');
 		$this->load->library('mylib/InquiryLib');
 		$inquiryid = $this->input->post('inquiryid');
 		$inquirydata = $this->inquirylib->getInquiryById($inquiryid);
-		$contact_details = $this->account->getBusinessContactDetails($busi_id);
+		$contact_details = $this->account->getBusinessContactDetails($this->busiId);
 		$this->template->set ( 'inquirydata', $inquirydata);
 		$this->template->set('contact_details',$contact_details);
 		$this->template->set ( 'page', 'home' );
@@ -312,8 +335,7 @@ class Alerts extends MX_Controller {
 	{
 		$this->load->library('mylib/MycartLib');
 		$seller_busi_id = $this->input->post('seller_busi_id');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
-		$cartdata = $this->mycartlib->getMyCart($busi_id);
+		$cartdata = $this->mycartlib->getMyCart($this->busiId);
 		$proid = array();
 		$i=0;
 		foreach($cartdata as $row) {
@@ -343,11 +365,10 @@ class Alerts extends MX_Controller {
 		$map = array();
 		$this->load->library('mylib/MycartLib');
 		$product = $this->input->post('values');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$cart = array();
 		$cartdata = array();
 		for ($i=0;$i<count($product);$i++){
-			$cart['busi_id'] = $busi_id;
+			$cart['busi_id'] = $this->busiId;
 			$cart['product_item_id'] = $product[$i];
 			$cart['created_date'] = date('Y-m-d H:i:s');
 			$cart['is_deleted'] = 0;
@@ -370,13 +391,12 @@ class Alerts extends MX_Controller {
 		$this->load->model('Product_Model','product');
 		$this->load->library('mylib/OrderLib');
 		$product = $this->input->post('values');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$orderitem = array();
 		$orderitemdata = array();
 		$order = array();
 		$unit_price = 0;
 		
-		$order['buyer_id'] = $busi_id;
+		$order['buyer_id'] = $this->busiId;
 		$order['buyer_name'] = $this->session->userdata('tsuser')['prefix']." ".$this->session->userdata('tsuser')['name'];
 		for ($i=0;$i<count($product);$i++) {
 			$data = $this->product->getProductItemById($product[$i]);
@@ -526,24 +546,23 @@ class Alerts extends MX_Controller {
 		$product_item_id = $this->input->post('product_id');
 		$message = $this->input->post('messagebody');
 		$inquiry_id = $this->input->post('inquiry_id');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		
 		$param['offer_subject'] = $subject;
 		$param['offer_body'] = $message;
 		$param['offer_product_item_id'] = $product_item_id;
 		$param['offer_type_id'] = 4;
-		$param['offer_sender_id'] = $busi_id;
+		$param['offer_sender_id'] = $this->busiId;
 		$param['busi_id'] = $this->input->post('requester_busi_id');
 		
 		if (!empty($_FILES['inquiryreplay']['name'])) {
 			
-			$path = getcwd() . "/assets/images/business_images/$busi_id";
+			$path = getcwd() . "/assets/images/business_images/$this->busiId";
 			if (!file_exists($path)) {
 				
 				mkdir($path, 0777, true);
 				chmod($path, 0777);
 			}
-			$userPath = FCPATH. "assets/images/business_images/$busi_id/inquiry/";
+			$userPath = FCPATH. "assets/images/business_images/$this->busiId/inquiry/";
 			if (!file_exists($userPath)) {
 				mkdir($userPath, 0777, true);
 				chmod($userPath, 0777);
@@ -557,7 +576,7 @@ class Alerts extends MX_Controller {
 				if ($tmpFilePath != "") {
 					$size = $_FILES['inquiryreplay']['size'][$i];
 					$newFilePath = $userPath. $_FILES['inquiryreplay']['name'][$i];
-					$param['attachment'.$j] = "images/business_images/$busi_id/inquiry/".$_FILES['inquiryreplay']['name'][$i];
+					$param['attachment'.$j] = "images/business_images/$this->busiId/inquiry/".$_FILES['inquiryreplay']['name'][$i];
 					$param['attachment'.$j.'_size'] = $size;
 					
 					if(move_uploaded_file($tmpFilePath, $newFilePath)) {
@@ -586,11 +605,10 @@ class Alerts extends MX_Controller {
 	public  function  offerReplay()
 	{
 		$this->load->model ( 'Account_Model', 'account' );
-		$busi_id = $this->session->userdata('busi_id');
 		$this->load->library('mylib/OfferLib');
 		$offerid = $this->input->post('offerid');
 		$offerdata = $this->offerlib->getOfferById($offerid);
-		$contact_details = $this->account->getBusinessContactDetails($busi_id);
+		$contact_details = $this->account->getBusinessContactDetails($this->busiId);
 		$this->template->set ( 'offerdata', $offerdata);
 		$this->template->set ( 'contact_details', $contact_details);
 		$this->template->set ( 'page', 'home' );
@@ -606,24 +624,23 @@ class Alerts extends MX_Controller {
 		$product_item_id = $this->input->post('product_id');
 		$message = $this->input->post('messagebody');
 		$inquiry_id = $this->input->post('inquiry_id');
-		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		
 		$param['inquiry_subject'] = $subject;
 		$param['inquiry_body'] = $message;
 		$param['product_item_id'] = $product_item_id;
 		$param['inquiry_type_id'] = 4;
-		$param['requester_busi_id'] = $busi_id;
+		$param['requester_busi_id'] = $this->busiId;
 		$param['busi_id'] = $this->input->post('receiver_busi_id');
 		
 		if (!empty($_FILES['offerreplay']['name'])) {
 			
-			$path = getcwd() . "/assets/images/business_images/$busi_id";
+			$path = getcwd() . "/assets/images/business_images/$this->busiId";
 			if (!file_exists($path)) {
 				
 				mkdir($path, 0777, true);
 				chmod($path, 0777);
 			}
-			$userPath = FCPATH. "assets/images/business_images/$busi_id/offer/";
+			$userPath = FCPATH. "assets/images/business_images/$this->busiId/offer/";
 			if (!file_exists($userPath)) {
 				mkdir($userPath, 0777, true);
 				chmod($userPath, 0777);
@@ -637,7 +654,7 @@ class Alerts extends MX_Controller {
 				if ($tmpFilePath != "") {
 					$size = $_FILES['offerreplay']['size'][$i];
 					$newFilePath = $userPath. $_FILES['offerreplay']['name'][$i];
-					$param['attachment'.$j] = "images/business_images/$busi_id/offer/".$_FILES['offerreplay']['name'][$i];
+					$param['attachment'.$j] = "images/business_images/$this->busiId/offer/".$_FILES['offerreplay']['name'][$i];
 					$param['attachment'.$j.'_size'] = $size;
 					
 					if(move_uploaded_file($tmpFilePath, $newFilePath)) {
@@ -1013,14 +1030,15 @@ class Alerts extends MX_Controller {
 	}
 
 	/**
-	* function to get new alerts
-	*/
+     * get all alerts per busi id
+     *
+     * @return json|string
+     */
 	public function getNewAlerts () {
 	    
-	    $busiId = $this->session->userdata('busi_id');
     	$userId = $this->session->userdata('tsuserid'); 
 
-	    if(!empty($busiId) && !empty($userId)) {
+	    if(!empty($this->busiId) && !empty($userId)) {
 
 	    	$checkNewCommunityAlert = array();
 
@@ -1032,33 +1050,36 @@ class Alerts extends MX_Controller {
     	    
     	    $categoryId = $this->session->userdata('tsuser')['category_id'];
     	    //new request for add to community alerts
-    	    $checkNewCommunityAlert = $this->communitylib->getInvitationCommunityRequest($busiId);
+    	    $checkNewCommunityAlert = $this->communitylib->getInvitationCommunityRequest($this->busiId);
     
     		// get new alerts for inquiry and offer alerts
     	    if(in_array($categoryId,array(SELLER_ID,SHIPPER_ID))){
-    			$inquiry = $this->inquirylib->getInquiryByBusiId($busiId);
-    			$getMyOffers = $this->offerlib->getOfferByBusiId($busiId);
+    			$inquiry = $this->inquirylib->getInquiryByBusiId($this->busiId);
+    			$getMyOffers = $this->offerlib->getOfferByBusiId($this->busiId);
     		} else {
-    			$inquiry = $this->inquirylib->getBuyerInquiryByUBusiId($busiId);
-    			$getMyOffers = $this->offerlib->getBuyerOfferByBusiId($busiId);
+    			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($this->busiId);
+    			$getMyOffers = $this->offerlib->getBuyerOfferByBusiId($this->busiId);
     		}
 			// get new order alerts
-    		$order = $this->orderlib->getOrderByBusiId($busiId);
+    		$order = $this->orderlib->getOrderByBusiId($this->busiId);
 
     	    $this->template->set ( 'newCommunity', $checkNewCommunityAlert);
     	    $this->template->set ( 'newInquiry', $inquiry);
     	    $this->template->set ( 'newOffers', $getMyOffers);
-    	    $this->template->set ( 'busi_id',$busiId );
+    	    $this->template->set ( 'busi_id',$this->busiId);
     	    $this->template->set_layout (false);
     	    $html = $this->template->build ('default/alerts_popup','',true);
-    	    
-    	    $totalcount = count($inquiry) + count($getMyOffers) + count($order) + count($checkNewCommunityAlert);
+    	    //get alert count
+    	    $totalAddRequestAlertCount   = $this->common->getTotalAddToCommunityCount();
+		    $totalInquiryAlertCount      = $this->common->getTotalInquiryCount();
+		    $totalOfferAlertCount        = $this->common->getTotalOfferCount();
+    	    $totalcount = $totalOfferAlertCount + $totalInquiryAlertCount + $totalAddRequestAlertCount + count($order) ;
     	    //check alert count
-            $getTotalUsersAlertCount = $this->myalert->getMyAlertCount($busiId);
-
+            $getTotalUsersAlertCount = $this->myalert->getMyAlertCount($this->busiId);
+ 
             if(empty($getTotalUsersAlertCount)) {
                 //save alert count to table
-                $this->myalert->saveAlertCount($busiId, $totalcount);
+                $this->myalert->saveAlertCount($this->busiId, $totalcount);
             }
 
             if($totalcount > $getTotalUsersAlertCount) {
@@ -1070,9 +1091,12 @@ class Alerts extends MX_Controller {
 	        die(json_encode(array('dataHTML'=> '','totalCount'=>0)));
 	    }	    
 	}
+
 	/**
-	function to accept add to community request
-	*/
+     * update community after added.
+     *
+     * @return int
+     */
 	public function alertAddToCommunity() {
 
 		$this->load->model('Community_Model', 'mycommunity' );
@@ -1096,8 +1120,10 @@ class Alerts extends MX_Controller {
 	}
 
 	/**
-	* function to clear alert
-	*/
+     * clear alert when viewed.
+     *
+     * @return string 
+     */
 	public function clearAlert() {
 
 		$this->load->library('mylib/OfferLib');

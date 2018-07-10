@@ -27,20 +27,13 @@ class Station extends MX_Controller {
 		$this->load->library('mylib/OfferLib');
 		$this->load->library('mylib/orderLib');
 		$this->load->model('Product_Model','product');
-		if($category_id == 1 || $category_id == 2) {
-			$inquiry = $this->inquirylib->getInquiryByBusiId($busi_id);
-			$offer = $this->offerlib->getOfferByBusiId($busi_id);
-		} else {
-			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busi_id);
-			$offer = $this->offerlib->getBuyerOfferByBusiId($busi_id);
-		}
 		
 		$order = $this->orderlib->getOrderByBusiId($busi_id);
-		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
-		if(isset($sendcommunityrequest[0]['community_id']) == "" ) {
-			$sendcommunityrequest = array();
-		}
-		$totalcount = count($inquiry) + count($offer) + count($order) + count($sendcommunityrequest);
+		$totalAddRequestAlertCount   = $this->common->getTotalAddToCommunityCount();
+		$totalInquiryAlertCount      = $this->common->getTotalInquiryCount();
+		$totalOfferAlertCount        = $this->common->getTotalOfferCount();
+
+		$totalcount = $totalAddRequestAlertCount + $totalInquiryAlertCount + count($order) + $totalOfferAlertCount;
 		$this->template->set ( 'totalcount', $totalcount);
 		$this->template->set('cust_type',$cust_type);
 		$this->template->set ( 'page', 'home' );
@@ -62,20 +55,12 @@ class Station extends MX_Controller {
 		$this->load->library('mylib/OfferLib');
 		$this->load->library('mylib/orderLib');
 		$this->load->model('Product_Model','product');
-		if($category_id == 1 || $category_id == 2) {
-			$inquiry = $this->inquirylib->getInquiryByBusiId($busi_id);
-			$offer = $this->offerlib->getOfferByBusiId($busi_id);
-		} else {
-			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busi_id);
-			$offer = $this->offerlib->getBuyerOfferByBusiId($busi_id);
-		}
-		
 		$order = $this->orderlib->getOrderByBusiId($busi_id);
-		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
-		if(isset($sendcommunityrequest[0]['community_id']) == "" ) {
-			$sendcommunityrequest = array();
-		}
-		$totalcount = count($inquiry) + count($offer) + count($order) + count($sendcommunityrequest);
+		$totalAddRequestAlertCount   = $this->common->getTotalAddToCommunityCount();
+		$totalInquiryAlertCount      = $this->common->getTotalInquiryCount();
+		$totalOfferAlertCount        = $this->common->getTotalOfferCount();
+
+		$totalcount = $totalAddRequestAlertCount + $totalInquiryAlertCount + count($order) + $totalOfferAlertCount;
 		$this->template->set ( 'totalcount', $totalcount);
 		$this->template->set('cust_type',$cust_type);
 		$this->template->set ( 'page', 'home' );
@@ -97,20 +82,12 @@ class Station extends MX_Controller {
 		$this->load->library('mylib/OfferLib');
 		$this->load->library('mylib/orderLib');
 		$this->load->model('Product_Model','product');
-		if($category_id == 1 || $category_id == 2) {
-			$inquiry = $this->inquirylib->getInquiryByBusiId($busi_id);
-			$offer = $this->offerlib->getOfferByBusiId($busi_id);
-		} else {
-			$inquiry = $this->inquirylib->getBuyerInquiryByBusiId($busi_id);
-			$offer = $this->offerlib->getBuyerOfferByBusiId($busi_id);
-		}
-		
 		$order = $this->orderlib->getOrderByBusiId($busi_id);
-		$sendcommunityrequest = $this->communitylib->getInvitationCommunityRequest($busi_id);
-		if(isset($sendcommunityrequest[0]['community_id']) == "" ) {
-			$sendcommunityrequest = array();
-		}
-		$totalcount = count($inquiry) + count($offer) + count($order) + count($sendcommunityrequest);
+		$totalAddRequestAlertCount   = $this->common->getTotalAddToCommunityCount();
+		$totalInquiryAlertCount      = $this->common->getTotalInquiryCount();
+		$totalOfferAlertCount        = $this->common->getTotalOfferCount();
+
+		$totalcount = $totalAddRequestAlertCount + $totalInquiryAlertCount + count($order) + $totalOfferAlertCount;
 		$this->template->set ( 'totalcount', $totalcount);
 		$this->template->set('cust_type',$cust_type);
 		$this->template->set ( 'page', 'home' );

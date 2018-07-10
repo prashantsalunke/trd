@@ -32,6 +32,7 @@
 		<?php  if(count($videos) > 0 && $videos[0]['id'] !='') { 
 		 foreach($videos as $key=>$video){ 
 		  ?>	
+
 			<div class="col-lg-4 colpadbottom" style="padding:0px;padding-right:28px;margin-bottom: 15px;">
 		
 				<div id="Layer6" onmouseenter="showMenu('Layer8_<?php echo $key;?>');" onmouseleave="hideMenu('Layer8_<?php echo $key;?>');" style="z-index: 434;padding:20px;background-color: #FAFAFA;border: 1px #D3D3D3 solid;">
@@ -45,9 +46,19 @@
 						</span>
 						<label class="text-muted pull-right" style="margin-top:-5px;"><img src="<?php echo asset_url(); ?>images/items_like0.png" id="Image21" alt="Like" style="width:25px;height:25px;margin-bottom: 5px;"> <span id="likeid-<?php echo $video['vid'];?>-<?php echo $video['type'];?>"><?php echo $video['video_likes'];?></span></label>
 					</div>
+					 <?php if ($video['user_category_id'] != "3"){
+					  ?>
 					<div class="padding-top-5">
 						<span class="text-muted"><?php echo substr($video['description'], 0,35);?><?php if(strlen($video['description']) > 35) { ?> ...<?php } ?></span>
 					</div>
+					<?php }else{ ?>
+							<div class="padding-top-5">
+						<span class="text-muted"><?php echo substr($video['description'], 0,200);?><?php if(strlen($video['description']) > 200) { ?> ...<?php } ?></span>
+					</div>
+
+						<?php } ?>
+					 <?php if ($video['user_category_id'] != "3"){ ?>
+					}
 					<div class="text-center">
 						<span class="spanusd">USD</span>
 						<span class="spanusd"> </span>
@@ -62,6 +73,13 @@
 							<video src="<?php echo asset_url(); ?><?php echo $video['vedio_file'];?>" controls="controls" controlsList="nodownload" style="max-height:164px;"></video>
 						</div>
 						<br>
+
+					<div>
+						<div class="video-area">
+							<video src="<?php echo asset_url(); ?><?php echo $video['vedio_file'];?>" controls="controls" controlsList="nodownload" style="max-height:164px;"></video>
+						</div>
+						<br>
+						<?php } ?>
 						<div class="text-center">
 							<span style="color:#303030;font-family:Georgia;font-size:12px;"><strong><?php echo $video['company_name'];?></strong></span>
 						</div>
@@ -77,11 +95,6 @@
 						        <?php }else {?>
 						        <img src="<?php echo asset_url(); ?>images/ts/community.png"  id="Image1" style="opacity :0.15;width:25px;height:25px;" />
 						        <?php } ?>
-					        </span>
-						    <span id="wb_Image2" class="img-style">
-						    	<?php if($video['plan_id'] > 1 && $video['gaurantee_period'] !=''){?><img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="width:34px;height:28px;"/> <?php } else {?>
-						    	<img src="<?php echo asset_url(); ?>images/ts/guarantee.png" id="Image1" style="opacity :0.15;width:34px;height:28px;" >
-						    	<?php }?>
 					        </span>
 						    <span id="wb_Image1" class="img-style">
 						        <?php if($video['plan_id'] > 1 && $video['is_logo_verified'] > 1){?><img src="<?php echo asset_url(); ?>images/ts/trusted.png" id="Image1" style="width:25px;height:25px;" /> <?php } else { ?>
@@ -112,7 +125,7 @@
 								<?php if($video['user_category_id'] == 1) { ?>
 									<a href="<?php echo base_url();?>video/details/<?php echo $video['vid'];?>" target="_blank">
 								<?php }else{ ?>
-									<a href="<?php echo base_url();?>desksite/<?php echo $video['id'];?>" target="_blank">
+									<a href="<?php echo base_url();?>shipper/profile/<?php echo $video['busi_id'];?>" target="_blank">
 								<?php } ?>
 								    <img class="hover" alt="" src="<?php echo asset_url(); ?>images/view-detailsc.png" style="width:45px;"> 
 								    <span><img alt=""	src="<?php echo asset_url(); ?>images/view-detailsb.png" style="width:45px;"></span>
@@ -666,5 +679,11 @@ function likeMyVideo(id,type,likeid) {
 jQuery(document).ready(function(){
     jQuery('video').bind('contextmenu',function() { return false; });
 });
-
+function filter_by_subcat(cat_id, cat_sub_id,main_prod) {
+	$("#filter_cat").val(cat_id);
+	$("#filter_sub_cat").val(cat_sub_id);
+	$("#main_prod").val(main_prod);
+	$("#filter_by_category").submit();
+}
+	
 </script>

@@ -196,7 +196,6 @@
     font-weight: normal;
     font-size: 13px;
 }
-
 </style>  
 <div>
 	<div class="col-sm-12" style="padding:0px;padding-top: 40px;">
@@ -749,4 +748,10 @@ function openShipper(id) {
 			ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
 		},'html');
 	}
+	function filter_by_subcat(cat_id, cat_sub_id,main_prod) {
+        $("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#filter_by_category").submit();
+    }
 </script>

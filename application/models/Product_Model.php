@@ -1089,8 +1089,6 @@ class Product_Model extends CI_Model {
     	$this->db->select('*');
     	$this->db->from(TABLES::$MYFILE);
     	$this->db->where('busi_id', $id);
-        if($id != $loggedin_user_busiid)
-    	       $this->db->where('file_access_type', 1);
     	$this->db->where('	is_deleted', 0);
     	$query = $this->db->get();
     	$result = $query->result_array();
@@ -2730,7 +2728,6 @@ class Product_Model extends CI_Model {
     	if(isset($params['sub_prod']) && $params['sub_prod']!='') {
 			$this->db->where("(c.name like '%".trim($params['sub_prod'])."%')",'',false);
 		}
-    	
     	$this->db->group_by('a.id');
     	if(isset($params['page']) && !empty($params['page'])) {
     		$start = $params['page']*25 - 25;

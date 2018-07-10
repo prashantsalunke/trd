@@ -175,7 +175,15 @@ line-height:4px;
 </style>
 <script>
 function submitContactForm() {
+	<?php 
+		$id1 = $this->session->userdata('tsuser')['busi_id'];
+		$id2 = $Desksites[0]['busi_id'];
+		 ?>
     <?php if(!empty($tsuserid)) { ?>
+    	 <?php  if($id1 == $id2) { ?>
+            $("#msg_cont").html("Oops. You can not Contact to yourself");
+        	ShowObject('Layer99', 1);
+        <?php } ?>
     <?php } else { ?>
         $("#msg_cont").html("Please login to contact this shipper.");
         ShowObject('Layer99', 1);
@@ -184,6 +192,7 @@ function submitContactForm() {
 
 
 $(document).ready(function() {
+    $('.loader').removeClass('loader');
     $("#Layer27").stickylayer({
         orientation: 1,
         position: [0, 0],
@@ -999,7 +1008,7 @@ function stopWiggle(input) {
             <!-- contact add ends -->
             <!-- contact us form -->
             <div id="Layer216" style="position:absolute;text-align:right;visibility:hidden;left:224px;top:18px;width:55%;height:627px;z-index:3851;">
-    <?php if(!empty($tsuserid)) { ?>
+    <?php if(!empty($tsuserid) and ($id1 != $id2) ) { ?>
 
                 <div id="Layer216_Container" style="width:607px;position:relative;margin-left:auto;margin-right:0;text-align:left;">
                     <div id="Layer217" class="a1" style="height:534px;">
@@ -1295,10 +1304,12 @@ function stopWiggle(input) {
             ajaxindicatorstart('Loading...');
             $.get(base_url+"desksite/company/about/"+id,{},function(data) {
             ajaxindicatorstop();
+
                 ShowObjectWithEffect('Layer5', 0, 'slidedown', 500, 'swing');
                 ShowObjectWithEffect('Layer23', 1, 'slidedown', 500, 'swing');
                 $("#about-us").html(data);
             },'html');
+
         }
 
         function getComapnyCertificate(id) {
@@ -1517,8 +1528,16 @@ function likeMyDesksite(busi_id) {
     },'json');
 }
 function openGeneralEnquiry(id) {
+	<?php 
+		$id1 = $this->session->userdata('tsuser')['busi_id'];
+		$id2 = $Desksites[0]['busi_id'];
+		 ?>
+
     <?php if(!empty($tsuserid)) { ?>
-        <?php if($tscategory_id != 3) { ?>
+        <?php  if($id1 == $id2) { ?>
+            $("#msg_cont").html("Oops. You can not send offer to yourself");
+        	ShowObject('Layer99', 1);
+        <?php } else if($tscategory_id != 3) { ?>
             popupwnd('<?php echo base_url();?>desksite/general_enquiry/'+id,'no','no','no','no','no','no','200','50','1055','680');
         <?php } else { ?>
             <?php if($contact_details[0]['accept_offer'] == 1 && $contact_details[0]['accept_email'] == 1 && $contact_details[0]['step'] == 2) { ?>

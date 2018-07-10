@@ -120,44 +120,48 @@ class Vedio_model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS sp','sp.id=a.sproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS i ','a.mproduct_id = i.id ','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','i.subcat_id = k.id ','left');
+		$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY.' AS l ','l.id = k.mcat_id ','left');
     	$this->db->where('a.status', 1);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
-    	if(!empty($params['keyword'])) {
-    		if(!empty($params['country'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
+    		if(isset($params['country']) && !empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['city'])) {
+    		if(isset($params['city']) && !empty($params['city'])) {
     			$this->db->where("c.company_city like '%".trim($params['city'])."%'",'',false);
     		}
-    		if(!empty($params['type'])) {
+    		if(isset($params['type']) && !empty($params['type'])) {
     			if($params['type'] ==1) {
     				$this->db->order_by('c.is_logo_verified', 'DESC');
     			}
     		}
-    		if(!empty($params['keyword'])) {
+    		if(isset($params['keyword']) && !empty($params['keyword'])) {
     			$this->db->where("(c.company_name like '%".trim($params['keyword'])."%' OR a.name like'%".trim($params['keyword'])."%' OR a.model_no like '%".trim($params['keyword'])."%')",'',false);
     		}
     	} else {
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('i.subcat_id', $params['cat_id']);
     		}
     	}
-    	if(!empty($params['busi_id'])) {
-    		if(!empty($params['community_only'])) {
+    	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
+    		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->where("h.my_busi_id",$params['busi_id']);
     		}
-    		if(!empty($params['community_hide'])) {
+    		if(isset($params['community_hide']) && !empty($params['community_hide'])) {
     			$this->db->where("h.my_busi_id !=",$params['busi_id']);
     		}
     	}
-    	if(!empty($params['plan_id'])) {
+    	if(isset($params['plan_id']) && !empty($params['plan_id'])) {
     		if($params['plan_id'] > 1) {
     			$this->db->order_by('c.plan_id', 'DESC');
     		}
     	}
+		if(isset($params['main_cat_id']) && !empty($params['main_cat_id'])) {
+			$this->db->where('l.id', $params['main_cat_id']);
+		}
     	$this->db->group_by('b.id');
     	$sql1 = $this->db->get_compiled_select ();
     	
@@ -172,44 +176,48 @@ class Vedio_model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS sp','sp.id=b.subproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS i ','b.mainproduct_id = i.id ','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','i.subcat_id = k.id ','left');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY.' AS l ','l.id = k.mcat_id ','left');
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
-    	if(!empty($params['keyword'])) {
-    		if(!empty($params['country'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
+    		if(isset($params['country']) && !empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['city'])) {
+    		if(isset($params['city']) && !empty($params['city'])) {
     			$this->db->where("c.company_city like '%".trim($params['city'])."%'",'',false);
     		}
-    		if(!empty($params['type'])) {
+    		if(isset($params['type']) && !empty($params['type'])) {
     			if($params['type'] ==1) {
     				$this->db->order_by('c.is_logo_verified', 'DESC');
     			}
     		}
-    		if(!empty($params['keyword'])) {
+    		if(isset($params['keyword']) && !empty($params['keyword'])) {
     			$this->db->where("(c.company_name like '%".trim($params['keyword'])."%' OR b.vedio_title like'%".trim($params['keyword'])."%')",'',false);
     		}
     	} else {
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('i.subcat_id', $params['cat_id']);
     		}
     	}
-    	if(!empty($params['busi_id'])) {
-    		if(!empty($params['community_only'])) {
+    	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
+    		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->where("h.my_busi_id",$params['busi_id']);
     		}
-    		if(!empty($params['community_hide'])) {
+    		if(isset($params['community_hide']) && !empty($params['community_hide'])) {
     			$this->db->where("h.my_busi_id !=",$params['busi_id']);
     		}
     	}
-    	if(!empty($params['plan_id'])) {
+    	if(isset($params['plan_id']) && !empty($params['plan_id'])) {
     		if($params['plan_id'] > 1) {
     			$this->db->order_by('c.plan_id', 'DESC');
     		}
     	}
+		if(isset($params['main_cat_id']) && !empty($params['main_cat_id'])) {
+			$this->db->where('l.id', $params['main_cat_id']);
+		}
     	$this->db->group_by('b.id');
     	$sql2 = $this->db->get_compiled_select ();
     	$sql = "SELECT fq.* from (".$sql1." UNION ".$sql2.") as fq order by fq.created_date DESC";
@@ -237,45 +245,49 @@ class Vedio_model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS sp','sp.id=a.sproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS i ','sp.mproduct_id = i.id ','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','i.subcat_id = k.id ','left');
+		$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY.' AS l ','l.id = k.mcat_id ','left');
     	$this->db->where('a.status', 1);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
-    	if(!empty($params['keyword'])) {
-    		if(!empty($params['country'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
+    		if(isset($params['country']) && !empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['city'])) {
+    		if(isset($params['city']) && !empty($params['city'])) {
     			$this->db->where("c.company_city like '%".trim($params['city'])."%'",'',false);
     		}
-    		if(!empty($params['type'])) {
+    		if(isset($params['type']) && !empty($params['type'])) {
     			if($params['type'] ==1) {
     				$this->db->order_by('c.is_logo_verified', 'DESC');
     			}
     		}
-    		if(!empty($params['keyword'])) {
+    		if(isset($params['keyword']) && !empty($params['keyword'])) {
     			$this->db->where("(c.company_name like '%".trim($params['keyword'])."%' OR a.name like'%".trim($params['keyword'])."%' OR a.model_no like '%".trim($params['keyword'])."%')",'',false);
     		}
     	} else {
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('i.subcat_id', $params['cat_id']);
     		}
     	}
-    	if(!empty($params['busi_id'])) {
-    		if(!empty($params['community_only'])) {
+    	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
+    		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->where("h.my_busi_id",$params['busi_id']);
     		}
-    		if(!empty($params['community_hide'])) {
+    		if(isset($params['community_hide']) && !empty($params['community_hide'])) {
     			$this->db->where("h.my_busi_id !=",$params['busi_id']);
     		}
     	}
-    	if(!empty($params['plan_id'])) {
+    	if(isset($params['plan_id']) && !empty($params['plan_id'])) {
     		if($params['plan_id'] > 1) {
     			$this->db->order_by('c.plan_id', 'DESC');
     		}
     	}
+		if(isset($params['main_cat_id']) && !empty($params['main_cat_id'])) {
+			$this->db->where('l.id', $params['main_cat_id']);
+		}
     	$this->db->group_by('b.id');
     	$sql1 = $this->db->get_compiled_select ();
     	$this->db->select('count(b.id) as videos');
@@ -289,44 +301,48 @@ class Vedio_model extends CI_Model {
     	$this->db->join(TABLES::$SUB_PRODUCT.' AS sp','sp.id=b.subproduct_id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS i ','b.mainproduct_id = i.id ','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS k ','i.subcat_id = k.id ','left');
+		$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY.' AS l ','l.id = k.mcat_id ','left');
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('d.is_suspend', 0);
     	$this->db->where('d.is_deleted', 0);
     	$this->db->where('c.is_disable', 0);
     	$this->db->where('c.is_deleted', 0);
-    	if(!empty($params['keyword'])) {
-    		if(!empty($params['country'])) {
+    	if(isset($params['keyword']) && !empty($params['keyword'])) {
+    		if(isset($params['country']) && !empty($params['country'])) {
     			$this->db->where("c.company_country like '%".trim($params['country'])."%'",'',false);
     		}
-    		if(!empty($params['city'])) {
+    		if(isset($params['city']) && !empty($params['city'])) {
     			$this->db->where("c.company_city like '%".trim($params['city'])."%'",'',false);
     		}
-    		if(!empty($params['type'])) {
+    		if(isset($params['type']) && !empty($params['type'])) {
     			if($params['type'] ==1) {
     				$this->db->order_by('c.is_logo_verified', 'DESC');
     			}
     		}
-    		if(!empty($params['keyword'])) {
+    		if(isset($params['keyword']) && !empty($params['keyword'])) {
     			$this->db->where("(c.company_name like '%".trim($params['keyword'])."%' OR b.vedio_title like'%".trim($params['keyword'])."%')",'',false);
     		}
     	} else {
-    		if(!empty($params['cat_id'])) {
+    		if(isset($params['cat_id']) && !empty($params['cat_id'])) {
     			$this->db->where('i.subcat_id', $params['cat_id']);
     		}
     	}
-    	if(!empty($params['busi_id'])) {
-    		if(!empty($params['community_only'])) {
+    	if(isset($params['busi_id']) && !empty($params['busi_id'])) {
+    		if(isset($params['community_only']) && !empty($params['community_only'])) {
     			$this->db->where("h.my_busi_id",$params['busi_id']);
     		}
-    		if(!empty($params['community_hide'])) {
+    		if(isset($params['community_hide']) && !empty($params['community_hide'])) {
     			$this->db->where("h.my_busi_id !=",$params['busi_id']);
     		}
     	}
-    	if(!empty($params['plan_id'])) {
+    	if(isset($params['plan_id']) && !empty($params['plan_id'])) {
     		if($params['plan_id'] > 1) {
     			$this->db->order_by('c.plan_id', 'DESC');
     		}
     	}
+		if(isset($params['main_cat_id']) && !empty($params['main_cat_id'])) {
+			$this->db->where('l.id', $params['main_cat_id']);
+		}
     	$this->db->group_by('b.id');
     	$sql2 = $this->db->get_compiled_select ();
     	$sql = "SELECT sum(fq.videos) as videos from (".$sql1." UNION ".$sql2.") as fq where 1";

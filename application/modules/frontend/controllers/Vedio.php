@@ -352,12 +352,17 @@ class Vedio extends MX_Controller {
 		if(empty($params['page'])) {
 			$params['page'] = 1;
 		}
+		$this->load->library('mylib/General');
 		$this->load->model('Sellers_Model', 'sellers' );
 		$this->load->model('Account_Model', 'account' );
 		$this->load->model('Product_Model','product');
 		$this->load->model('Vedio_model', 'videos' );
 		$videos = $this->videos->searchProductsInVideos($params);
 		$total_pages = $this->videos->countProductsInVideos($params);
+		$procategories = $this->general->getProductCategories();
+		$this->template->set ( 'procategories', $procategories);
+		$prosubcategories = $this->general->getProductSubCategories();
+		$this->template->set ( 'prosubcategories', $prosubcategories);
 		$this->template->set ( 'videos', $videos);
 		$Country= $this->account->getCountry();
 		$this->template->set ( 'Country', $Country);
@@ -394,7 +399,7 @@ class Vedio extends MX_Controller {
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout ('default')
 		->title ( 'Product In Videos' )
-		->set_partial ( 'header', 'default/inner-header' )
+		->set_partial ('header', 'default/inner-header' )
 		->set_partial ( 'footer', 'default/footer' );
 		$this->template->build ('product/pro-videos');
 	}
