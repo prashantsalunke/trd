@@ -6,7 +6,7 @@
  	height:235px;
  }
 </style>
-<div id="Layer106" style="position: absolute; text-align: right; visibility: visible; top: 49px; width: 1280px; height: 235px; z-index:4000; background-color:transparent; display: none;" onmouseleave="ShowObjectWithEffect('Layer106', 0, 'fold', 500);return false;">
+<div id="Layer106" style="position: absolute; text-align: right; visibility: visible; top: 49px; width: 100%; height: 235px; z-index:4000; background-color:transparent; display: none;" onmouseleave="ShowObjectWithEffect('Layer106', 0, 'fold', 500);return false;">
 	<div id="Layer106_Container" style="width: 1280px; position: relative; margin: auto;height: 235px; text-align: left;background-color:#fff;background-color: #FFFFFF; -moz-box-shadow: 0px 6px 15px #000000; -webkit-box-shadow: 0px 6px 15px #000000; box-shadow: 0px 6px 15px #000000;">
 		<div id="Layer54"
 			style="position: absolute; text-align: center; left: 0%; top: 0px; width: 215px; height: 235px; z-index: 363;background: #F05235;">

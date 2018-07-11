@@ -681,13 +681,15 @@ class Product_Model extends CI_Model {
     }
     
     public function getProductdetailsById($id) {
-    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id');
+    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id,u.id as user_id,bi.accept_chat');
     	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
     	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
-    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
-    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','left');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','left');
+        $this->db->join(TABLES::$USER.' AS u','a.busi_id=u.busi_id','left');
+        $this->db->join(TABLES::$BUSINESS_INFO.' AS bi','a.busi_id=bi.id','left');
     	$this->db->where('a.id',$id);
     	$this->db->where('a.status',1);
     	$this->db->order_by('a.id','ASC');
@@ -699,14 +701,15 @@ class Product_Model extends CI_Model {
     	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id');
     	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
-    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+    	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','left');
     	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
-    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
-    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','left');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','left');
     	$this->db->where('a.busi_id',$busi_id);
     	$this->db->where('a.model_no',$product_no);
     	$this->db->where('a.status',1);
     	$this->db->order_by('a.id','ASC');
+        $this->db->group_by('a.id');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -863,13 +866,13 @@ class Product_Model extends CI_Model {
     	
     }
     public function getVideodetailsById($id) {
-    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id, g.vedio_file as video_file,h.company_name');
+    	$this->db->select('a.*, b.name as subproduct, b.id as subproduct_id, c.name as mainproduct ,c.id as mainproduct_id, d.name as country,  f.name as subcategory,f.id as subcategory_id, e.name as maincategory, e.id as maincategory_id, g.vedio_file as video_file,g.id as vid,h.company_name');
     	$this->db->from(TABLES::$PRODUCT_ITEM. ' AS a');
     	$this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
     	$this->db->join(TABLES::$COUNTRY. ' AS d','a.country_id=d.id','left');
     	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY. ' AS f','f.id=c.subcat_id','inner');
-    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','inner');
+    	$this->db->join(TABLES::$PRODUCT_MAIN_CATEGORY. ' AS e','e.id=f.mcat_id','left');
     	$this->db->join(TABLES::$PRODUCT_VIDEO. ' AS g','g.product_item_id=a.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS h','h.id=a.busi_id','inner');
     	$this->db->where('g.id',$id);
@@ -905,52 +908,53 @@ class Product_Model extends CI_Model {
     	$result = $query->result_array();
     	return $result;
     }
-    
     public function getDesksiteByBusiId($map) {
-    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, 
-    			d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, 
-    			b.company_name, b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,
-    			b.telephone_city_code,b.telephone_number,b.telephone_number1,b.company_street,b.company_email, b.business_logo, 
-    			b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank,
-    			b.verification_id,g.*, c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image,
-    			c.timezone,e.sub_category as user_subcategory,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
-    			(select GROUP_CONCAT(f.name) from tbl_main_product as f where f.busi_id=a.busi_id AND f.status != 0 group by a.busi_id) as mainproducts,
-    			h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,h.fact_province,h.fact_city,
-    			h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag');
-    	$this->db->from(TABLES::$USER.' AS a');
-    	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
-    	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
-    	$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
-    	$this->db->join(TABLES::$COMPANY_INFO.' AS d','a.id=d.busi_id','left');
-    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','e.id=a.user_subcategory_id','inner');
-    	$this->db->join(TABLES::$PRODUCT_STAGE.' AS j','j.busi_id=a.busi_id','left');
-    	$this->db->join(TABLES::$FACTORY_INFO.' AS h','h.busi_id=a.busi_id','left');
-    	$this->db->join(TABLES::$COUNTRY.' AS i','i.name=b.company_country','left');
-    	$this->db->where('a.account_activated', 1);
-    	$this->db->where('a.is_suspend', 0);
-    	$this->db->where('a.is_deleted', 0);
-    	$this->db->where('b.is_disable', 0);
-    	$this->db->where('a.is_contactperson',1);
-    	$this->db->where('b.is_deleted', 0);
-    	$this->db->where('b.id', $map['id']);
-    	//$this->db->where("(f.status != 0)",'',false);
-    	$this->db->order_by('a.created_date','DESC');
-    	$this->db->group_by('b.id');
-    	//echo $this->db->last_query();
-    	$query = $this->db->get();
-    	$result = $query->result_array();
-    	return $result;
-    }
+        $start_date = date('Y-m-d',strtotime("-15 days"));
+    $this->db->select('a.id as user_id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs,(b.accept_chat+b.accept_offer+b.accept_community+b.accept_email) as is_active,d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax,
+    b.company_name, b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,
+    b.telephone_city_code,b.telephone_number,b.telephone_number1,b.company_street,b.company_email, b.business_logo,
+    b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank,
+    b.verification_id,g.*, c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image,
+    c.timezone,e.sub_category as user_subcategory,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
+    (select GROUP_CONCAT(f.name) from tbl_main_product as f where f.busi_id=a.busi_id AND f.status != 0 group by a.busi_id) as mainproducts,
+    h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,h.fact_province,h.fact_city,
+    h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag,l.id as community_id,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
+    $this->db->from(TABLES::$USER.' AS a');
+    $this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
+    $this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
+    $this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
+    $this->db->join(TABLES::$COMPANY_INFO.' AS d','a.busi_id=d.busi_id','left');
+    $this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','e.id=a.user_subcategory_id','inner');
+    $this->db->join(TABLES::$PRODUCT_STAGE.' AS j','j.busi_id=a.busi_id','left');
+    $this->db->join(TABLES::$FACTORY_INFO.' AS h','h.busi_id=a.busi_id','left');
+    $this->db->join(TABLES::$COUNTRY.' AS i','i.name=b.company_country','left');
+    $this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l ','b.id = l.busi_id ','left');
+        $this->db->join(TABLES::$STOCK_REQUEST.' AS m ','b.id = m.buyer_id ','left');
+    $this->db->where('a.account_activated', 1);
+    $this->db->where('a.is_suspend', 0);
+    $this->db->where('a.is_deleted', 0);
+    $this->db->where('b.is_disable', 0);
+    $this->db->where('a.is_contactperson',1);
+    $this->db->where('b.is_deleted', 0);
+    $this->db->where('b.id', $map['id']);
+    //$this->db->where("(f.status != 0)",'',false);
+    $this->db->order_by('a.created_date','DESC');
+    $this->db->group_by('b.id');
+    //echo $this->db->last_query();
+    $query = $this->db->get();
+    $result = $query->result_array();
+    return $result;
+   }
     
     public function getShipperDesksiteByBusiId($map) {
-    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, b.company_name,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
+    	$this->db->select('a.id as user_id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,b.product_certs, d.company_introduction,d.hot_presentation, d.year_of_registration, d.total_no_of_emp, d.company_size,b.fax, b.company_name,b.accept_chat,b.accept_offer,b.accept_community,b.accept_email,j.step,
 		b.company_country, b.company_province, b.company_city,b.telephone_code,b.website,b.company_email,b.telephone_city_code,b.telephone_number,b.telephone_number1,b.company_street,b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified,b.verification_id, b.likes, b.rank,  g.*,
 		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image,c.timezone,e.sub_category as user_subcategory,(select GROUP_CONCAT(f.name) from tbl_shipper_service as f where f.busi_id=a.busi_id and f.status = 1 and f.is_special = 0) as mainservices,h.no_of_production_line,h.fact_size,h.rnd_capacity,h.id as factory_id,h.fact_province,h.fact_city,h.fact_street,h.telephone_code as ftelephone_code,h.telephone_city_code as ftelephone_city_code,h.telephone as ftelephone,i.flag');
     	$this->db->from(TABLES::$USER.' AS a');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
     	$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
-    	$this->db->join(TABLES::$COMPANY_INFO.' AS d','a.id=d.busi_id','left');
+    	$this->db->join(TABLES::$COMPANY_INFO.' AS d','a.busi_id=d.busi_id','left');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS e','e.id=a.user_subcategory_id','inner');
     	$this->db->join(TABLES::$FACTORY_INFO.' AS h','h.busi_id=a.busi_id','left');
     	$this->db->join(TABLES::$COUNTRY.' AS i','i.name=b.company_country','left');
@@ -979,7 +983,7 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
     	$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
-    	$this->db->join(TABLES::$COMPANY_INFO.' AS d','a.id=d.busi_id','left');
+    	$this->db->join(TABLES::$COMPANY_INFO.' AS d','a.busi_id=d.busi_id','left');
     	$this->db->join(TABLES::$USER_CATEGORIES.' AS e','a.user_category_id=e.id','left');
     	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS f','a.user_subcategory_id=f.id','left');
     	$this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
@@ -992,17 +996,32 @@ class Product_Model extends CI_Model {
     	$this->db->where('b.is_deleted', 0);
     	$this->db->where('b.id', $id);
     	$this->db->order_by('a.created_date','DESC');
-    	$this->db->group_by('a.id');
+    	//$this->db->group_by('a.id');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
     }
     public function getComapnyAbout($id) {
-    	$this->db->select('a.*');
-    	$this->db->from(TABLES::$MORE_CERTIFICATE.' AS a');
-    	$this->db->where('a.busi_id', $id);
+    	$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role, d.company_introduction, b.company_name,
+		b.company_country, b.company_province, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank, b.visit, b.likes,  g.*,
+		c.user_id, c.alternative_email, c.mobile_number,c.position, c.profile_image, d.*, e.user_category, f.sub_category, GROUP_CONCAT(h.name SEPARATOR ",") as main_product, i.id as factory_id,i.fact_size, i.no_of_production_line, i.rnd_capacity');
+    	$this->db->from(TABLES::$USER.' AS a');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
+    	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
+    	$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','left');
+    	$this->db->join(TABLES::$COMPANY_INFO.' AS d','a.busi_id=d.busi_id','left');
+    	$this->db->join(TABLES::$USER_CATEGORIES.' AS e','a.user_category_id=e.id','left');
+    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS f','a.user_subcategory_id=f.id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS h ','b.id = h.busi_id ','left');
+    	$this->db->join(TABLES::$FACTORY_INFO.' AS i ','b.id = i.busi_id ','left');
+    	$this->db->where('a.account_activated', 1);
+    	$this->db->where('a.is_contactperson', 1);
+    	$this->db->where('a.is_suspend', 0);
+    	$this->db->where('a.is_deleted', 0);
+    	$this->db->where('b.is_disable', 0);
+    	$this->db->where('b.is_deleted', 0);
+    	$this->db->where('b.id', $id);
     	$this->db->order_by('a.created_date','DESC');
-    	$this->db->group_by('a.id');
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -1066,11 +1085,10 @@ class Product_Model extends CI_Model {
     	return $result;
     }
     
-    public function getMyFiles($id){
+    public function getMyFiles($id,$loggedin_user_busiid){
     	$this->db->select('*');
     	$this->db->from(TABLES::$MYFILE);
     	$this->db->where('busi_id', $id);
-    	$this->db->where('file_access_type', 1);
     	$this->db->where('	is_deleted', 0);
     	$query = $this->db->get();
     	$result = $query->result_array();
@@ -1099,11 +1117,10 @@ class Product_Model extends CI_Model {
     	//echo $this->db->last_query();
     	$row = $query->result_array();
     	return $row;
-    	
     }
     public function getProductVideosByBusiId($id)
     {
-    	$this->db->select('b.*,c.id as product_id,c.name,c.quantity,c.unit,c.unit_price,c.description,d.email as useremail,d.name as username,d.name_prefix as prefix,e.country as country, e.province as province, f.user_category as category, g.sub_category as subcategory');
+    	$this->db->select('b.*,b.id as vid,c.id as product_id,c.name,c.quantity,c.unit,c.unit_price,c.description,d.email as useremail,d.name as username,d.name_prefix as prefix,e.country as country, e.province as province, f.user_category as category, g.sub_category as subcategory');
     	$this->db->from(TABLES::$PRODUCT_VIDEO.' as b', 'b.product_item_id = a.id ', 'inner');
     	$this->db->join(TABLES::$PRODUCT_ITEM.' as c','b.product_item_id=c.id','inner');
     	$this->db->join(TABLES::$USER.' as d ', 'd.busi_id = b.busi_id', 'left');
@@ -1173,18 +1190,34 @@ class Product_Model extends CI_Model {
     public function getCurrentRequest($busi_id){
     	$start_date = date('Y-m-d',strtotime("-15 days"));
     	$end_date = date('Y-m-d H:i:s');
-    	$this->db->select('a.*, c.*');
-    	$this->db->from(TABLES::$STOCK_REQUEST.' as a');
-    	$this->db->join(TABLES::$BSTATION_POST.' as b' , 'b.id = a.post_id', 'inner');
-    	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = a.buyer_id', 'left');
-    	$this->db->where('b.status',1);
-    	$this->db->where('b.is_deleted',0);
-    	$this->db->where('b.created_date >',$start_date);
-    	$this->db->where('a.buyer_id',$busi_id);
+    	$this->db->select('b.*, c.*,b.created_date as request_created');
+    	//$this->db->from(TABLES::$STOCK_REQUEST.' as a');
+    	$this->db->from(TABLES::$BSTATION_POST.' as b' /*, 'b.id = a.post_id', 'inner'*/);
+    	$this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = b.busi_id', 'left');
+    	//$this->db->where('b.status',1);
+    	//$this->db->where('b.is_deleted',0);
+    	//$this->db->where('a.created_date >',$start_date);
+    	$this->db->where('b.busi_id',$busi_id);
     	$this->db->where("DATE(b.created_date) > '".$start_date."'",'',false);
-    	$this->db->order_by('a.created_date','DESC');
+    	$this->db->order_by('b.created_date','DESC');
+        $this->db->group_by('b.id');
     	$query = $this->db->get();
-    	$result = $query->result_array();
+    	$result1 = $query->result_array();
+
+        $this->db->select('a.*,b.*, c.*,a.created_date as request_created');
+        $this->db->from(TABLES::$STOCK_REQUEST.' as a');
+        $this->db->from(TABLES::$BSTATION_POST.' as b' , 'b.id = a.post_id', 'inner');
+        $this->db->join(TABLES::$BUSINESS_INFO.' as c' , 'c.id = b.busi_id', 'left');
+        $this->db->where('a.status',1);
+        $this->db->where('b.is_deleted',0);
+        //$this->db->where('a.created_date >',$start_date);
+        $this->db->where('a.buyer_id',$busi_id);
+        $this->db->where("DATE(a.created_date) > '".$start_date."'",'',false);
+        $this->db->order_by('a.created_date','DESC');
+        $this->db->group_by('a.id');
+        $query = $this->db->get();
+        $result2 = $query->result_array();
+        $result = array_merge($result1,$result2);
     	return $result;
     }
     public function addFavourite($params){
@@ -1862,7 +1895,7 @@ class Product_Model extends CI_Model {
     	$this->db->from(TABLES::$SHIPPER_SERVICES);
     	$this->db->where('busi_id', $busi_id);
     	$this->db->where('status', 1);
-    	$this->db->where('is_special', 0);
+    	// $this->db->where('is_special', 0);
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -1941,6 +1974,7 @@ class Product_Model extends CI_Model {
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
     	$this->db->join(TABLES::$USER.' AS c','b.id=c.busi_id','inner');
     	$this->db->where('a.id', $id);
+        $this->db->where('c.user_role',3);
     	$query = $this->db->get();
     	$result = $query->result_array();
     	return $result;
@@ -1986,7 +2020,8 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+    		/*$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);*/
+            $this->db->where('(MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'") OR MATCH (h.description) AGAINST ("'. trim($params['keyword']) .'"))', NULL, false);
     	}
     	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
@@ -2058,8 +2093,8 @@ class Product_Model extends CI_Model {
     			g.profile_image as profile_image,f.user_category_id as catid,
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
-    			f.name as contact_name,f.name_prefix as contact_prefix,
-    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag');
+    			f.name as contact_name,f.name_prefix as contact_prefix,f.id as user_id,
+    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=d.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=d.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     	$this->db->from(TABLES::$BSTATION_POST.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
@@ -2074,7 +2109,9 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+    		/*$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+            $this->db->where('MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'") OR MATCH (h.description) AGAINST ("'. trim($params['keyword']) .'")', NULL, false);*/
+            $this->db->where('(MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'") OR MATCH (h.description) AGAINST ("'. trim($params['keyword']) .'"))', NULL, false);
     	}
     	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
@@ -2182,7 +2219,8 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+    		/*$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);*/
+            $this->db->where('(MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'") OR MATCH (h.description) AGAINST ("'. trim($params['keyword']) .'"))', NULL, false);
     	}
     	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
@@ -2254,7 +2292,7 @@ class Product_Model extends CI_Model {
     			g.*,h.title as title,h.description as stockdesc,h.usd_price as stockprice,h.quantity as stockqty,
     			h.created_date as create,h.image1,h.image2,h.image3,h.image4,h.is_locked,h.id as post_id,
     			f.name as contact_name,f.name_prefix as contact_prefix,
-    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag');
+    			(d.accept_chat+d.accept_offer+d.accept_community+d.accept_email) as is_active,i.flag,(select count(l.id) from  tbl_stocks_buyer_request as l where l.buyer_id=b.id and DATE(l.created_date) > "'.$start_date.'") as stock_buyer_count,(select count(l.id) from tbl_bstation_post as l where l.busi_id=b.id and DATE(l.created_date) > "'.$start_date.'") as bstation_post_count');
     	$this->db->from(TABLES::$STOCK_GOODS.' AS h');
     	$this->db->join(TABLES::$BUSINESS_INFO.' AS d','h.busi_id=d.id','inner');
     	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS e','e.busi_id=d.id','inner');
@@ -2269,7 +2307,8 @@ class Product_Model extends CI_Model {
     		$this->db->where("d.company_country like '%".trim($params['country'])."%'",'',false);
     	}
     	if(!empty($params['keyword'])) {
-    		$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);
+    		/*$this->db->where("(h.title like '%".trim($params['keyword'])."%' OR h.description like '%".trim($params['keyword'])."%')",'',false);*/
+            $this->db->where('(MATCH (h.title) AGAINST ("'. trim($params['keyword']) .'") OR MATCH (h.description) AGAINST ("'. trim($params['keyword']) .'"))', NULL, false);
     	}
     	$this->db->where("DATE(h.created_date) > '".$start_date."'",'',false);
     	$this->db->order_by('h.created_date','DESC');
@@ -2400,7 +2439,8 @@ class Product_Model extends CI_Model {
    		$this->db->select('*');
    		$this->db->from(TABLES::$SHIPPER_SERVICES);
    		$this->db->where('status',1);
-   		$this->db->where('is_special',0);
+        $this->db->where('is_special',0);
+        $this->db->where('busi_id',$busi_id);
    		$this->db->order_by('name','ASC');
    		$query = $this->db->get();
    		$result = $query->result_array();
@@ -2412,23 +2452,29 @@ class Product_Model extends CI_Model {
    		$this->db->from(TABLES::$SHIPPER_SERVICES);
    		$this->db->where('status',1);
    		$this->db->where('is_special',1);
-   		$this->db->order_by('name','ASC');
+        $this->db->where('busi_id',$busi_id);
+   		$this->db->order_by('name','DESC');
    		$query = $this->db->get();
    		$result = $query->result_array();
    		return $result;
    	}
    	
    	public function getBusinessBranchesByBusiId($busi_id) {
+
+        // print_r($busi_id);
+        // echo $busi_id['id'];
+        // exit();
    		$this->db->select('a.*,b.flag');
    		$this->db->from(TABLES::$BUSINESS_BRANCHES.' AS a');
    		$this->db->join(TABLES::$COUNTRY.' AS b','b.name=a.country','left');
    		$this->db->where('a.is_deleted',0);
+        $this->db->where('a.busi_id',$busi_id['id']);
    		$this->db->order_by('a.id','ASC');
    		$query = $this->db->get();
    		$result = $query->result_array();
    		return $result;
    	}
-   	
+
    	public function getInCommunity($my_busi_id,$busi_id) {
    		$this->db->select('*');
    		$this->db->from(TABLES::$COMMUNITY_MEMBER);
@@ -2571,30 +2617,30 @@ class Product_Model extends CI_Model {
    		return $result;
    	}
    	
-   	public function getBusinessContactInfo($map) {
-   		$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,
-    			b.id as busi_id,b.company_name, b.company_country, b.company_province, b.company_city,c.mobile_code as telephone_code,
-    			b.telephone_city_code,c.mobile_number as telephone_number,b.company_street,b.company_email, b.business_logo,
-    			b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank');
-   		$this->db->from(TABLES::$USER.' AS a');
-   		$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
-   		$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','inner');
-   		$this->db->where('a.account_activated', 1);
-   		$this->db->where('a.is_suspend', 0);
-   		$this->db->where('a.is_deleted', 0);
-   		$this->db->where('b.is_disable', 0);
-   		$this->db->where('a.is_contactperson',1);
-   		$this->db->where('b.is_deleted', 0);
-   		$this->db->where('b.id', $map['id']);
-   		//$this->db->where("(f.status != 0)",'',false);
-   		$this->db->order_by('a.created_date','DESC');
-   		$this->db->group_by('a.id');
-   		//echo $this->db->last_query();
-   		$query = $this->db->get();
-   		$result = $query->result_array();
-   		return $result;
-   	}
-   	
+       	public function getBusinessContactInfo($map) {
+       		$this->db->select('a.id, a.busi_id, a.email, a.name_prefix, a.name, a.user_category_id, a.user_role,
+        			b.id as busi_id,b.company_name, b.company_country, b.company_province, b.company_city,c.mobile_code as telephone_code,
+        			b.telephone_city_code,c.mobile_number as telephone_number,b.company_street,b.company_email, b.business_logo,
+        			b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.likes, b.rank');
+       		$this->db->from(TABLES::$USER.' AS a');
+       		$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','left');
+       		$this->db->join(TABLES::$USER_INFO.' AS c','a.id=c.user_id','inner');
+       		$this->db->where('a.account_activated', 1);
+       		$this->db->where('a.is_suspend', 0);
+       		$this->db->where('a.is_deleted', 0);
+       		$this->db->where('b.is_disable', 0);
+       		$this->db->where('a.is_contactperson',1);
+       		$this->db->where('b.is_deleted', 0);
+       		$this->db->where('b.id', $map['id']);
+       		//$this->db->where("(f.status != 0)",'',false);
+       		$this->db->order_by('a.created_date','DESC');
+       		$this->db->group_by('a.id');
+       		//echo $this->db->last_query();
+       		$query = $this->db->get();
+       		$result = $query->result_array();
+       		return $result;
+       	}
+       	
    	public function addGeneralEnquiry($params) {
    		$this->db->insert(TABLES::$INQUIRY, $params);
    		return $this->db->insert_id();
@@ -2622,7 +2668,92 @@ class Product_Model extends CI_Model {
    		$result = $query->result_array();
    		return $result;
    	}
-    
+
+    public function getSelectedProductsByIds($product_ids)
+    {
+        $this->db->select('a.*,b.name as sub_product,c.name as main_product');
+        $this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
+        $this->db->join(TABLES::$SUB_PRODUCT. ' AS b','a.sproduct_id = b.id','left');
+        $this->db->join(TABLES::$MAIN_PRODUCT. ' AS c','a.mproduct_id=c.id','inner');
+        $this->db->where_in('a.id',$product_ids);
+        $this->db->order_by('a.id','ASC');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+    public function getMainProdBySubCat($id) {
+    	$this->db->select('a.name');
+    	$this->db->from(TABLES::$MAIN_PRODUCT.' AS a');
+    	$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS b','a.subcat_id=b.id');
+    	$this->db->where('a.status',1);
+    	$this->db->where('a.subcat_id',$id);
+    	$this->db->order_by('a.sortorder','DESC');
+    	$this->db->group_by('a.name');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+    }
+	public function getSubProdBySubCat($name){ 
+		$this->db->select('a.name,a.mproduct_id');
+    	$this->db->from(TABLES::$SUB_PRODUCT.' AS a');
+		$this->db->join(TABLES::$MAIN_PRODUCT.' AS b','a.mproduct_id=b.id');
+    	$this->db->where('a.status',1);
+    	$this->db->where('b.name',$name);
+    	$this->db->order_by('a.sortorder','DESC');
+    	$this->db->group_by('a.name');
+    	$query = $this->db->get();
+    	$result = $query->result_array();
+    	return $result;
+	}
+	public function filterProducts($params){ 
+    	$this->db->select('a.*, b.company_name, b.company_country, b.company_province,b.company_city, b.company_email, b.business_logo, b.annual_trad_volume, b.plan_id, b.gaurantee_period, b.is_logo_verified, b.rank,b.accept_chat,e.id as user_id, e.name_prefix,e.name as user_name, h.sub_category, g.*, d.name as main_category_name,  d.id as main_category_id, l.id as community_id,IFNULL(n.picture,f.profile_image) as profile_image,n.name as contact_name,n.name_prefix as contact_prefix ');
+    	$this->db->from(TABLES::$PRODUCT_ITEM.' AS a');
+    	$this->db->join(TABLES::$BUSINESS_INFO.' AS b','a.busi_id=b.id','inner');
+    	$this->db->join(TABLES::$USER.' AS e','a.busi_id=e.busi_id','inner');
+    	$this->db->join(TABLES::$USER_INFO.' AS f','e.id=f.user_id','inner');
+    	$this->db->join(TABLES::$USER_SUBCATEGORIES.' AS h','e.user_subcategory_id=h.id','left');
+    	$this->db->join(TABLES::$BUSINESS_INFO_IMAGE.' AS g','g.busi_id=b.id','left');
+    	$this->db->join(TABLES::$SUB_PRODUCT.' AS c','c.id=a.sproduct_id','left');
+    	$this->db->join(TABLES::$MAIN_PRODUCT.' AS d','a.mproduct_id=d.id','left');
+    	$this->db->join(TABLES::$COMMUNITY_MEMBER.' AS l','a.busi_id=l.my_busi_id','left');
+    	$this->db->join(TABLES::$CONTACTPERSON.' AS n ','b.id = n.busi_id ','left');
+    	$this->db->where('a.status', 1);
+    	$this->db->where('b.is_disable', 0);
+    	$this->db->where('b.is_deleted', 0);
+    	$this->db->where('d.status', 1);
+    	$this->db->where('(c.status = 1 OR c.status IS NULL)', '',false);
+    	if(isset($params['main_prod']) && $params['main_prod']!='') {
+			$this->db->where("(d.name like '%".trim($params['main_prod'])."%')",'',false);
+		}
+    	if(isset($params['sub_prod']) && $params['sub_prod']!='') {
+			$this->db->where("(c.name like '%".trim($params['sub_prod'])."%')",'',false);
+		}
+    	$this->db->group_by('a.id');
+    	if(isset($params['page']) && !empty($params['page'])) {
+    		$start = $params['page']*25 - 25;
+    		$this->db->limit($start,25);
+    	}
+    	$this->db->order_by('b.rank','DESC');
+    	$this->db->order_by('b.plan_id','DESC');
+    	$this->db->order_by('b.is_logo_verified','DESC');
+    	$this->db->order_by('b.gaurantee_period','DESC');
+    	$query = $this->db->get();
+    	//echo $this->db->last_query();
+    	$result = $query->result_array();
+    	return $result;
+    	
+    }
+	public function getProductCatSubcat($cat_id,$sub_cat_id) {
+    	$this->db->select('a.name as cat_name,b.name as sub_cat');
+    	$this->db->from(TABLES::$PRODUCT_MAIN_CATEGORY.' AS a ');
+		$this->db->join(TABLES::$PRODUCT_SUB_CATEGORY.' AS b ','a.id = b.mcat_id ','inner');
+    	$this->db->where('a.status', 1);
+    	$this->db->where('a.id', $cat_id);
+    	$this->db->where('b.id', $sub_cat_id);
+		$query = $this->db->get();
+    	$result = $query->row();
+    	return $result;
+    }
 }
     
     

@@ -129,7 +129,7 @@ a.style5_99:hover
 								<span style="color:#FFFFFF;font-family:Arial;font-size:12px;">Offers</span>
 							</div>
 							<div id="RollOver56" style="position: absolute; left: 63px; top: 602px; overflow: hidden; width: 50%; height: 40px; z-index: 1699;">
-								<a href="javascript:sellerOrder();" target="_blank"> 
+								<a onclick="javascript:sellerOrder();" target="_blank">
 									<img class="hover" alt="" src="<?php echo asset_url();?>images/My-order-color.png" style="width:40px;"> 
 									<span>
 										<img alt="" src="<?php echo asset_url();?>images/My-order.png" style="width:40px;">
@@ -321,7 +321,7 @@ function addToCommunity(id) {
 }
 function likeVideo(id) {
 	$.get(base_url+"likevideo/"+id,{},function(data) {
-		alert(data.msg);
+		$("#msg_cont").html(data.msg);
 	},'json');
 }
 function likeBusiness(id) {

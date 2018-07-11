@@ -1,4 +1,26 @@
+<!-- new alert popup Starts -->
+<div id="new-alert-popup"></div>
+<div id="popupAddToCommunity" style="position: fixed; left: 0px; top: 0px; text-align: center; visibility: visible; margin: 20% 36%; width: 380px; height: 110px; float: left; display: none; z-index: 1000000; background-color: rgb(75, 75, 75); border: 1px solid rgb(169, 169, 169); border-radius: 2px; box-shadow: rgb(0, 0, 0) 2px 2px 12px;">
+    <div id="Layer99_Container" style="width:332px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
+        <div id="wb_Text145" style="padding-top: 15px;width:332px;position:relative;margin-left:auto;margin-right:auto;text-align:left;z-index:3529;text-align: center;">
+        <span style="color:#C0C0C0;font-family:Georgia;font-size:12px;" id="msg_cont">Added to community successfully.</span></div>
+        <div id="Layer282" style="position:absolute;text-align:left;left:100px;top:75px;width:133px;height:24px;z-index:3530;background-color: #787878;" onclick="ShowObject('popupAddToCommunity', 0);return false;">
+        <div id="wb_Text146" style="position:absolute;left:45px;top:4px;width:49px;height:16px;text-align:center;z-index:3528;">
+        <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><a href="#" class="style5_99" onclick="ShowObject('popupAddToCommunity', 0);return false;">OK</a></span></div>
+        </div>
+    </div>
+</div>
 <style>
+.alert-popup {
+  background: #2d2d2d none repeat scroll 0 0 !important;
+  bottom: 0;
+  box-shadow: 0 0 5px #000;
+  margin-bottom: 14px;
+  position: fixed;
+  right: 15px;
+  width: 300px;
+  z-index: 1000;
+}
 a.headerMenu:hover {
 	color:#F05235 !important;
 }
@@ -22,6 +44,10 @@ a.style5:hover
 {
    color: #FF6347;
    text-decoration: underline;
+}
+.termpolicy{
+	font-size:10pt !important;
+	text-indent:14px !important;
 }
 </style>
 <!--my alert-->
@@ -367,10 +393,10 @@ a.style5:hover
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" style="margin-bottom:12px;">
                                         <div class="col-xs-12">
-                                            <h2 class="text-center"  style="line-height:0.7;"><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">TRADE</span><br>
-                                                <b style="color:#F05235;"><span style="color:#FA5C43;font-family:Impact;font-size:20px;letter-spacing:0.07px;">STATION</span></b></h2>
+                                            <!--<h2 class="text-center"  style="line-height:0.7;"><span style="color:#3C3C3C;font-family:Arial;font-size:11px;">TRADE</span><br>
+                                                <b style="color:#F05235;"><span style="color:#FA5C43;font-family:Impact;font-size:20px;letter-spacing:0.07px;">STATION</span></b></h2>-->
                                             <p class="text-center termpolicy">Press next to Agree & Accept our<a href="javascript:termscondition(1);" > Terms of use & Privacy policy.</a></p>
                                         </div>
                                         <div class="col-xs-12 col-sm-4 col-sm-offset-3 text-center"><input type="button" id="Button2" onclick="registerStepOne();" value="Next" style="color:white;width:182px;height:31px;background-image:none;"></div>
@@ -469,7 +495,7 @@ a.style5:hover
 		</div>
 		<?php } else { ?>
 		<div class="container-fluid top-div">
-			<div class="navbar-header"> <a href="#" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
+			<div class="navbar-header"> <a href="<?php echo base_url()?>" class="navbar-brand"><span style="color:#A9A9A9;font-family:Arial;font-size:16px;">TRD</span><span style="color:#F05539;font-family:Impact;font-size:16px;">STATION</span></a> </div>
 			<ul class="nav navbar-nav pull-right top-nav login-user-nav">
 				<li style="padding-top:20px;">
 					<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;">
@@ -500,17 +526,17 @@ a.style5:hover
 	            </li>
 	            <li class="dropdown " style="margin-top:5px;"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language 
 	                    <img src="<?php echo asset_url(); ?>images/img1188.png" id="Shape17" alt="" style="width:14px;height:7px;"></a>
-	                <ul class="dropdown-menu" role="menu" style="min-width:100px;left:0px;">
-	                    <li class="firstmain"><a href="#" target="_self">English</a> </li>
-	                    <li><a href="#" target="_self">中文</a> </li>
-	                    <li><a href="#" target="_self">العربية</a> </li>
-	                    <li><a href="#" target="_self">Türk</a> </li>
-	                    <li><a href="#" target="_self">日本語</a> </li>
-	                    <li><a href="#" target="_self">한국어</a> </li>
-	                    <li><a href="#" target="_self">भारतीय</a> </li>
-	                    <li><a href="#" target="_self">русский</a> </li>
-	                    <li><a href="#" target="_self">Dutch</a> </li>
-	                </ul>
+	                <ul class="dropdown-menu" role="menu">
+                        <li class="firstmain"><a href="#" target="_self">English</a> </li>
+                        <li><a href="#" target="_self">中文</a> </li>
+                        <li><a href="#" target="_self">العربية</a> </li>
+                        <li><a href="#" target="_self">Türk</a> </li>
+                        <li><a href="#" target="_self">日本語</a> </li>
+                        <li><a href="#" target="_self">한국어</a> </li>
+                        <li><a href="#" target="_self">भारतीय</a> </li>
+                        <li><a href="#" target="_self">русский</a> </li>
+                        <li><a href="#" target="_self">Dutch</a> </li>
+                    </ul>
 	            </li>
 	        </ul>
 	    </div>
@@ -521,6 +547,9 @@ a.style5:hover
 					//
 				});
 			}
-
+            $(".close-alert").click(function(){
+              $(".alert-popup").toggle("drop", { direction: "down" }, 1000);
+            });
+    
 		</script>
 		<?php include 'main-nav.php';?>

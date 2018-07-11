@@ -1,6 +1,54 @@
-	<?php 
+	<?php
+	if(isset($favoritepost)) { 
 if(count($favoritepost) > 0 && $favoritepost[0]['id'] !='') {
 	$i =1; foreach($favoritepost as $seller) { ?>
+<style>
+#Layer179
+{
+   background-color: #FAFAFA;
+   border: 1px #D3D3D3 solid;
+}
+#wb_Text656 
+{
+   background-color: transparent;
+   border: 0px #000000 solid;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+#SlideShow2 .image
+{
+   border-width: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#Image119
+{
+   border: 0px #000000 solid;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_Text653 
+{
+   background-color: transparent;
+   border: 0px #000000 solid;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+#wb_Text654 
+{
+   background-color: transparent;
+   border: 0px #000000 solid;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+</style>	
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-1" style="padding-top: 66px;text-align:center;">
@@ -19,7 +67,7 @@ if(count($favoritepost) > 0 && $favoritepost[0]['id'] !='') {
 							<span
 								style="color: #696969; font-family: Arial; font-size: 12px;"><?php $string1 = (strlen($seller['description']) > 13) ? substr($seller['description'],0,250).'...' : $seller['description']; echo $string1;?><br>
 							<br>
-							</span><br>								
+							</span> 							
 							<span style="color: #4B4B4B; font-family: Arial; font-size: 12px;">Post Views :
 							<?php echo $seller['postviews'];?></span> &nbsp; &nbsp; &nbsp; &nbsp;
 							<span style="color: #4B4B4B; font-family: Arial; font-size: 12px;">    Likes :
@@ -45,4 +93,4 @@ if(count($favoritepost) > 0 && $favoritepost[0]['id'] !='') {
   <div class="row" style="margin:0px;">
  	<h4 class="center"> No Videos Found!</h4>
  </div>
-<?php } ?>
+<?php } } ?>

@@ -36,13 +36,13 @@ class Favourite extends MX_Controller {
 			$map = array();
 			if($is_added) {
 				$map['status'] = 1;
-				$map['msg'] = 'ADDED SUCCESFULLY TO YOUR FAVORITE';
+				$map['msg'] = 'Added successfully to your favourite';
 			} else {
 				$map['status'] = 0;
-				$map['msg'] = 'ALREADY ADDED TO YOUR FAVORITE.';
+				$map['msg'] = 'Already added to your favourite.';
 			}
 		} else {
-			$map['msg'] = 'PLEASE LOGIN TO ADD TO FAVOURITE.';
+			$map['msg'] = 'Please login to add to favourite.';
 		}
 		echo json_encode($map);
 	}

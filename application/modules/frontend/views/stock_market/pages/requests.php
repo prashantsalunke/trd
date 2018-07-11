@@ -1,3 +1,9 @@
+<style>
+p {
+	 word-wrap: break-word;
+	 text-align:left;
+  }
+</style>
 <?php 
 if(count($bposts) > 0) {
 	foreach ($bposts as $key=>$product) {
@@ -66,7 +72,8 @@ if(count($bposts) > 0) {
 					<?php } else { ?>
 						<img src="<?php echo asset_url(); ?>images/CommMember.png" id="Image49" alt="" class="img25" style="opacity: 0.15;" /> 
 					<?php } ?>
-					<?php if(!empty($product['have_request'])) { ?>
+					<<?php $buyer_request = $product['stock_buyer_count']+$product['bstation_post_count']; ?>
+					<?php if(!empty($buyer_request)) { ?>
 						<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image49" alt="" class="img25" />
 					<?php } else { ?>
 						<img src="<?php echo asset_url(); ?>images/buyer-request.png" id="Image49" alt="" class="img25" style="opacity: 0.15;" />
@@ -96,7 +103,7 @@ if(count($bposts) > 0) {
 						<?php if($product['is_locked'] && $product['catid'] == $tscategory_id) { ?>
 						<img src="<?php echo asset_url(); ?>images/img1706.png" id="Shape3" alt="" style="width:92px; height:68px;margin-left:30px;">
 						<?php } else { ?>
-						<a href="#" onclick="ShowObjectWithEffect('BLayer_sell_post_<?php echo $key;?>', 1, 'slideup', 500, 'swing');return false;">
+						<a onclick="ShowObjectWithEffect('BLayer_sell_post_<?php echo $key;?>', 1, 'slideup', 500, 'swing');return false;">
 							<img src="<?php echo asset_url(); ?>images/img0156.png" id="Shape3" alt="" style="width: 48px; height: 48px;">
 						</a>
 						<?php } ?>
@@ -105,7 +112,7 @@ if(count($bposts) > 0) {
 			</div>
 		</div>
 		<div class="col-md-10 col-md-offset-2" id="BLayer_sell_post_<?php echo $key;?>" style="position: absolute; width: 835px; height: 385px; display: none; top: <?php echo (29+$key*204);?>px; padding: 0px;background-color: #FFFFFF;border: 1px #D3D3D3 solid;z-index:1;">
-			<a href="#" onclick="ShowObjectWithEffect('BLayer_sell_post_<?php echo $key;?>',0,'slideup',500);return false;" class="pull-right"> 
+			<a onclick="ShowObjectWithEffect('BLayer_sell_post_<?php echo $key;?>',0,'slideup',500);return false;" class="pull-right"> 
 				<img src="<?php echo asset_url();?>images/close.png" id="Image16" alt="" style="width: 33px; height: 33px; float: right;">
 			</a>
 			<div class="row" style="margin: 0px; padding: 25px 0px;">
@@ -174,7 +181,7 @@ if(count($bposts) > 0) {
 						</a>
 					</div>
 					<div id="RollOver2" class="img45">
-						<a href="javascript:popupwnd('./chat_window.php','no','no','no','no','no','no','750','50','430','720')" target="_self"> 
+						<a href="javascript:chat_with(<?php echo $product['user_id'];?>,<?php echo $contact_details[0]['accept_chat'];?>);" target="_self"> 
 							<img class="hover" alt="Chat" src="<?php echo asset_url(); ?>images/Active/chat_button2.png" /> <span>
 							<img alt="Chat" src="<?php echo asset_url(); ?>images/Link/chat_button2.png" /></span>
 						</a>
@@ -243,9 +250,10 @@ function openSellerOfferForm(postid,plan_id) {
 	<?php } ?>
 }
 
-function openChatWithBuyer(postid,buyer_id,accept_chat) {
+function openChatWithBuyer(buyer_id,accept_chat) {
 	if(accept_chat == 1) {
-		popupwnd('<?php echo base_url();?>global/chat/'+buyer_id,'no','no','no','no','no','no','750','50','430','720');
+		jqcc.cometchat.chatWith(buyer_id);
+        document.getElementById('cometchat_chatboxes').style.right='0px';
 	} else {
 		customAlert('Sorry.. Buyer status is " Don\'t Disturb".. Please try again on other time, status may be changed soon.');
 	}

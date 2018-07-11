@@ -62,7 +62,7 @@ body {
 					</a>
 					<div id="Layer252" style="visibility:hidden">
 						<div id="Layer252_Container">
-							<a href="javascript:openChatWithBuyer(<?php echo $business[0]['busi_id'];?>);" target="_self">
+							<a onclick="chat_with(<?php echo $business['user_id'];?>,<?php echo $business['accept_chat'];?>)">
 								<img class="hover" alt=""  src="<?php echo asset_url();?>images/chat_button2.png">
 								<span>
 									<img alt=""  src="<?php echo asset_url();?>images/chat_button1.png">
@@ -622,17 +622,19 @@ function submitContactForm() {
 		ShowObject('Layer99', 1);
 	<?php } ?>
 }
-function openChatWithBuyer(seller_id) {
+function openChatWithBuyer(seller_id,accept_chat=true) {
 	<?php if(!empty($tsuserid)) { ?>
 		<?php if($tscategory_id == 3) { ?>
 			<?php if($contact_details[0]['accept_chat'] == 1) { ?>
-				popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+				jqcc.cometchat.chatWith(seller_id);
+        		document.getElementById('cometchat_chatboxes').style.right='0px';
 			<?php } else { ?>
 				$("#msg_cont").html('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
 				ShowObject('Layer99', 1);
 			<?php } ?>
 		<?php } else { ?>
-			popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
+			jqcc.cometchat.chatWith(seller_id);
+        	document.getElementById('cometchat_chatboxes').style.right='0px';
 		<?php } ?>
 	<?php } else { ?>
 		$("#msg_cont").html('LOGIN TO CAHT');

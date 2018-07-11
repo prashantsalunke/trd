@@ -1,4 +1,4 @@
-    <style>
+<style>
 #RollOver26 a
 {
    display: block;
@@ -11,6 +11,9 @@
    position: absolute;
    /* z-index: 1; */
    border-width: 0;
+}
+a.main_prod:hover{
+	color: #FF6347 !important;
 }
 #RollOver26 span
 {
@@ -190,6 +193,7 @@
     font-weight: normal;
     font-size: 13px;
 }
+
 </style>
 <div>
     <div class="col-sm-12" style="padding:0px;padding-top:40px;">
@@ -198,7 +202,39 @@
    		 <br>
     </div>
     <div class="row" style="margin:0px;">
-	    <div class="col-lg-10 section11 products-list"  id="Layer6"  >
+		<div class="col-lg-10 section11 products-list"  id="Layer6"  >
+		<?php if(isset($params['main_prod']) && $params['main_prod']!=''){ ?>
+				<div class="row sub_products" style="border: 1px solid rgb(211, 211, 211);background-color: rgb(255, 255, 255);height: 158px;margin:0 0 20px;">
+					<div class="col-md-12">
+						<div class="col-md-1 text-center" style="position: absolute; top: 25%; vertical-align: middle;">
+							<img src="<?php echo asset_url(); ?>images/blank_folder.png" width="40">
+							<span class="text-center"><?php echo ucwords($params['main_prod']);?></span>
+						</div>
+						<div class="col-md-11" style="padding-bottom:10px;padding-left:80px;">
+							<div class="col-md-12" style="margin-top:7px;margin-bottom:10px">
+								<span style="padding-left: 54px; font-size:13px">Categories/ <?php echo $productMainCat->cat_name;?> / <?php echo $productMainCat->sub_cat;?> / <span style="color:#1e90ff;"><?php echo ucwords($params['main_prod']);?></span></span>
+							
+							</div>
+							<div style="padding-left:0;padding-right:0;" class="col-md-12">
+								<?php if(!empty($subproducts)){ 
+									foreach($subproducts as $res){ ?>
+										<div class="col-md-3">
+											<ul style="list-style:none;margin-bottom: -5px;">
+												<li>
+													<a class="btn btn-link main_prod" style="color:#808080;text-decoration:none;" href="javascript:void(0);" onclick="filter_by_subprod('<?php echo $params['main_cat_id'];?>','<?php echo $params['cat_id'];?>','<?php echo $params['main_prod'];?>','<?php echo $res['name'];?>')"><?php echo $res['name']; ?></a>
+												</li>
+											</ul>    
+										</div>
+										
+									<?php }
+								
+								} ?>
+							</div>
+						</div>
+					</div>
+				</div>
+		<?php } ?>
+	    
 		<?php  if(count($products) > 0 && $products[0]['id'] !='') { 
     	      foreach ($products as $key=>$product) { ?>
 			<div class="row" id="Layer4" style="margin:0px;margin-bottom:15px;" onmouseenter="ShowObjectWithEffect('Layer8_<?php echo $key;?>', 1, 'slideright', 300, 'swing');return false;" onmouseleave="ShowObject('Layer5_<?php echo $key;?>', 0);ShowObject('Layer8_<?php echo $key;?>', 0);return false;">
@@ -272,8 +308,8 @@
 							    </div>
 							</div>
 							<div class="col-md-2" style="width:20%;padding: 5px;">
-							  	<div id="RollOver6" class="box4">
-							        <a href="javascript:popupwnd('chat_window.html','no','no','no','no','no','no','750','50','440','750');">
+							  	<div id="RollOver6" class="box4" onclick="chat_with(<?php echo $product['user_id'];?>,<?php echo $product['accept_chat']; ?>);">
+							        <a>
 							            <img class="hover" alt="" src="<?php echo asset_url() ?>images/chatorange.png">
 							            <span><img alt="" src="<?php echo asset_url() ?>images/chaTBLACK.png"></span>
 							        </a>
@@ -285,7 +321,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 col-sm-12" style="width:311px;">
+					<div class="col-md-3 col-sm-12" style="float: right;">
 						<div id="Layer8_<?php echo $key;?>" class="section9 seller_Layer8" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');return false;">
 						    <div id="wb_Shape1" class="stylebox">
 						        <a href="#" onclick="ShowObjectWithEffect('Layer5_<?php echo $key;?>', 1, 'slideright', 500, 'swing');$('.carousel').carousel();return false;"><img src="<?php echo asset_url() ?>images/img0013.png" id="Shape1" alt="" style="width:11px;height:48px;"></a>
@@ -357,7 +393,7 @@
 	     	<h4 class="center"> No Product Found!</h4>
 	     </div>
      <?php }  ?>
-     <?php if($total_pages > 1) { ?>
+     <?php if(isset($total_pages) && $total_pages > 1) { ?>
 	     	<div class="row" style="margin:0px;">
 				<div id="wb_Text396" style="text-align:center;height:31px;padding:7px;padding-right:0px;background-color:#FF8C00;" class="col-sm-1">
 					<span style="color:#FFFFFF;font-family:Georgia;font-size:12px;">Page&nbsp;&nbsp; </span>
@@ -367,7 +403,7 @@
 						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"><?php echo $params['page'];?> of <?php echo $total_pages;?>&nbsp;&nbsp; </span>
 					</div>
 					<div style="text-align:center;padding-top:7px;" class="col-sm-8">
-						<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><a href="<?php if($total_pages >= ($params['page']+1)){ echo $wpsellerurl."page=".($params['page']+1);}?>" class="style5">VIEW MORE</a></strong></span>
+						<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><a href="<?php if($total_pages >= ($params['page']+1)){ echo $wpproducturl."page=".($params['page']+1);}?>" class="style5">VIEW MORE</a></strong></span>
 					</div>
 					<div class="col-sm-2" style="padding:0px;padding-top:7px;">
 						<span style="color:#3C3C3C;font-family:Arial;font-size:12px;"> Page No</span>&nbsp;
@@ -431,10 +467,12 @@
 		                    <div id="Carousel1" style="position:absolute">
 		                    <?php $i =0;
 		                    foreach ( $featuredProducts as $key=>$featuredProduct) {
-		                    	if($key%2 == 0) {
+		                    	if($i%2 == 0) {
+		                    		$frame = $i;
 			                    	?>
-		                        <div class="frame" <?php if($i > 0) { ?>style="display:none;"<?php } ?>>
-		                            <div id="Layer134" style="border: 1px #D3D3D3 solid;" class="product111" onmouseenter="ShowObjectWithEffect('holder7-<?php echo $key;?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder7-<?php echo $key;?>', 0, 'fade', 500, 'swing');return false;">
+		                        <div class="frame">
+		                        	<?php } $i++; ?>
+		                            <div id="Layer134" style="border: 1px #D3D3D3 solid; position: relative;" class="product111" onmouseenter="ShowObjectWithEffect('holder7-<?php echo $key;?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder7-<?php echo $key;?>', 0, 'fade', 500, 'swing');return false;">
 		                                <div id="wb_Text417" class="product212">
 		                                    <span class="product313"><strong><?php echo $featuredProduct['name'];?></strong></span></div>
 		                                <div id="wb_Text418" class="product414">
@@ -454,49 +492,20 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                        </div>
-		                        <?php $i++; } ?>
-		                        <?php }?>
+		                        <?php if(count($featuredProducts) == 1 || $frame+2 == $i){ ?>
+                            	</div>
+		                        <?php } } ?>
 		                    </div>
-		                    <div id="Carousel11" style="position:absolute;top:275px;">
-		                    <?php $i =0;
-		                    foreach ( $featuredProducts as $key=>$featuredProduct) {
-		                    	if($key%2 == 1) {
-			                    	?>
-		                        <div class="frame" <?php if($i > 0) { ?>style="display:none;"<?php } ?>>
-		                            <div id="Layer134" style="border: 1px #D3D3D3 solid;" class="product111" onmouseenter="ShowObjectWithEffect('holder7-<?php echo $key;?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder7-<?php echo $key;?>', 0, 'fade', 500, 'swing');return false;">
-		                                <div id="wb_Text417" class="product212">
-		                                    <span class="product313"><strong><?php echo $featuredProduct['name'];?></strong></span></div>
-		                                <div id="wb_Text418" class="product414">
-		                                    <span class="product5"><?php echo substr($featuredProduct['description'], '0', '35');?>...</span></div>
-		                                <div id="wb_Image128" class="product6">
-		                                    <img src="<?php echo asset_url().''.$featuredProduct['main_image']; ?>" id="Image128" alt="" style="width:190px;height:155px;"></div>
-		                                <div id="wb_Text419" class="product7">
-		                                    <span class="product8"><strong><?php echo $featuredProduct['unit_price'];?> / Pc</strong></span></div>
-		                                <div id="wb_Text420" class="product9">
-		                                    <span class="product10"><strong>Min. Qty. <?php echo $featuredProduct['quantity'].' '.$featuredProduct['unit'];?> </strong></span></div>
-		                                <div id="holder7-<?php echo $key;?>" class="product25" style="display:none;">
-		                                    <div id="wb_Image138" class="product24">
-		                                        <a href="javascript:openProduct(<?php echo $featuredProduct['id'];?>)" ><img src="<?php echo asset_url(); ?>images/view.png" id="Image138" alt=""></a>
-		                                    </div>
-		                                    <div id="wb_Image139" class="product26">
-		                                        <a href="<?php echo base_url();?>desksite/<?php echo $featuredProduct['busi_id'];?>" target="_blank"><img src="<?php echo asset_url(); ?>images/window.png" id="Image139" alt=""></a>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-		                        <?php $i++; }?>
-		                        <?php } ?>
-		                    </div>
-		                </div>
-		                <div id="Carousel1_back" class="fs18" style="top:37%;padding-top:15px;">
+		                    
+		                <div id="Carousel1_back" class="fs18">
 	                        <a style="cursor:pointer"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previoustxt0blk.png"></a>
 	                    </div>
-	                    <div id="Carousel1_next" class="fs17" style="top:37%;padding-top:15px;">
+	                    <div id="Carousel1_next" class="fs17">
 	                        <a style="cursor:pointer"><img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nexttxt0blk.png"></a>
 	                    </div>
 		            </div>
 		       </div>
+		   </div>
     			<div class="maxheight1 bg2" style="margin-top:20px;">
                 	<div class="row" style="margin: 0px">
 	                    <h3 style="color: #fff; text-align: center;">
@@ -513,10 +522,12 @@
 	                    <div id="Carousel2" style="position:absolute">
 	                    <?php $i =0;
 	                    foreach ($featuredProductVideo as $featuredVideo) {
-	                    $i++;
-	                    	?>
-	                        <div class="frame" class="style5" <?php if(($i ==1) || ($i ==2)){ echo ""; } else{ echo 'style="z-index: 0; position: absolute; top: 0px; left: 0px; display: none;"'; } ?>>
-	                            <div id="Layer39" class="fs11" onmouseenter="ShowObjectWithEffect('holder', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder', 0, 'fade', 500, 'swing');return false;">
+	                    if($i%2 == 0){
+									$frame = $i; 
+										?>
+	                        <div class="frame" class="style5">
+	                        <?php } $i++; ?>
+	                            <div id="Layer39" class="fs11" onmouseenter="ShowObjectWithEffect('holder<?php echo $i;?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('holder<?php echo $i;?>', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
 	                                <div id="wb_Text78" class="fs1">
 	                                    <span><strong><?php echo $featuredVideo['name'];?></strong></span></div>
 	                                <div id="wb_Text77" class="fs2">
@@ -531,17 +542,18 @@
 	                                </div>
 	                                <div id="Layer29" class="fs13">
 	                                </div>
-	                                <div id="holder" class="fs14">
+	                                <div id="holder<?php echo $i;?>" class="fs14">
 	                                    <div id="wb_Image33" class="fs15">
 	                                        <a href="javascript:openVideo(<?php echo $featuredVideo['id'];?>)"><img src="<?php echo asset_url(); ?>images/play.png" id="Image33" alt="" width="35px" height="35px"></a>
 	                                    </div>
 	                                    <div id="wb_Image34" class="fs16">
-	                                        <a href="./video_details.php" target="_blank"><img src="<?php echo asset_url(); ?>images/view2.png" id="Image34" alt="" width="35px" height="35px"></a>
+	                                        <a href="./video/details/<?php echo $featuredVideo['id'];?>" target="_blank"><img src="<?php echo asset_url(); ?>images/view2.png" id="Image34" alt="" width="35px" height="35px"></a>
 	                                    </div>
 	                                </div>
 	                            </div>
-	                        </div>
-	                        <?php }?>
+	                        <?php if(count($featuredVideo) == 1 || $frame+2 == $i){ ?>
+                            </div>
+                            <?php } } ?>
 	                    </div>
 	                    <div id="Carousel2_back" class="fs18">
 	                        <a style="cursor:pointer"><img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previoustxt0.png"></a>
@@ -569,14 +581,19 @@
 			                    <div id="Carousel4" style="position:absolute">
 			                      <?php 
 			                      $i= 0;
-			                     //   print_r($featuredSellers);
 			                        foreach($featuredSellers as $featuredSeller){
-			                        $i++;
-			                        	?>
-			                        <div class="frame" <?php if(($i ==1) || ($i ==2)){ echo ""; } else{ echo 'style="display:none"'; } ?>>
-			                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1', 0, 'fade', 500, 'swing');return false;">
-			                                <div id="wb_Image226" >
-			                                    <img src="<?php echo asset_url().''.$featuredSeller['picture']; ?>" id="Image226" alt=""  class="style86">
+			                        if($i%2 == 0){
+									$frame = $i; 
+										?>
+                        			<div class="frame">
+                        			<?php } $i++; ?>
+			                            <div id="Layer147" onmouseenter="ShowObjectWithEffect('Buyer_Holder1<?php echo $i; ?>', 1, 'dropup', 300, 'swing');return false;" onmouseleave="ShowObjectWithEffect('Buyer_Holder1<?php echo $i; ?>', 0, 'fade', 500, 'swing');return false;" style="position: relative;">
+			                                <div id="wb_Image226" style="position: relative;" >
+			                                	<?php if ($featuredSeller['picture'] != "" && file_exists("assets/".$featuredSeller['picture'])){ ?>
+			                                    	<img src="<?php echo asset_url().''.$featuredSeller['picture']; ?>" id="Image226" alt=""  class="style86" style="width:210px;height:246px;">
+			                                    <?php } else{ ?>
+			                            			<img src="<?php echo asset_url().'images/img1004.png'?>" id="Shape24" alt="" style="width:210px !important;height:246px !important;">
+			                        			<?php } ?>
 			                                </div>
 			                              
 			                                <div id="Layer144" class="style15">
@@ -592,24 +609,25 @@
 			                                    </div>
 			                                    <div id="Layer150" class="style20">
 			                                        <div id="wb_Text440" class="style21">
-			                                            <span class="fontstyle-6"><strong>Men Garments</strong></span></div>
+			                                            <span class="fontstyle-6"><strong><?php echo $featuredSeller['product_name'];?></strong></span></div>
 			                                    </div>
 			                                </div>
 			                                
-			                                <div id="Buyer_holder2" class="style22">
+			                                <div id="Buyer_Holder1<?php echo $i; ?>" class="style22">
 			                                    <div id="wb_Image521" class="style23">
-			                                        <a href="#" onclick="ShowObjectWithEffect('Layer_buyer', 1, 'scale', 500, 'swing');return false;"><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
+			                                        <a href="javascript:openSeller(<?php echo $featuredSeller['id']; ?>);" ><img src="<?php echo asset_url(); ?>images/window.png" id="Image5" alt=""></a>
 			                                    </div>
 			                                    <div id="RollOver12" class="style24">
-			                                        <a href="./buyer_profile.php" target="_blank">
+			                                        <a href="./desksite/<?php echo $featuredSeller['busi_id'];?>" target="_blank">
 			                                            <img class="hover" alt="" src="<?php echo asset_url(); ?>images/desktoporange.gif">
 			                                            <span><img alt="" src="<?php echo asset_url(); ?>images/desktopblack.png"></span>
 			                                        </a>
 			                                    </div>
 			                                </div>
 			                            </div>
-			                            </div>
-			                            <?php }?>
+			                        <?php if(count($featuredSeller) == 1 || $frame+2 == $i){ ?>
+                            		</div>
+                            		<?php } } ?>
 			                    </div>
 			                    <div id="Carousel4_back" class="style51">
 			                        <a href=""><img alt="Back" src="<?php echo asset_url(); ?>images/previoustxt0blk.png"></a>
@@ -621,6 +639,10 @@
 			            </div>
 			        </div>        
     			</div>
+    			<div id="Layer_sellers" class="class1">
+				        <div id="Layer_details_Container4" class="class2">
+				        </div>
+				    </div>
 		</div>
 	</div>
 	<div id="Layer_details" class="class1">
@@ -632,41 +654,63 @@
         </div>
     </div>
 <script>
-$(document).ready(function() {		
-	var Carousel4Opts =
-    {
-       delay: 5000,
-       duration: 400,
-       easing: 'easeInOutBounce',
-       mode: 'forward',
-       direction: '',
-       pagination: false,
-       start: 0
+$(document).ready(function() {
+	var sub_prod=$(".sub_products").height();
+	if(sub_prod > 155){ 
+		$(".sub_products").css('overflow-y','auto');
+	}else{
+		$(".sub_products").css('overflow-y','hidden');
+	}
+	var Carousel1Opts = {
+        delay: 4000,
+        duration: 500,
+        easing: 'easeInOutBounce',
+        mode: 'fade',
+        direction: '',
+        pagination: false,
+        start: 0
     };
-    $("#Carousel4").carousel(Carousel4Opts);
+    $("#Carousel1").carouseleffects(Carousel1Opts);
+    $("#Carousel1_back a").click(function() {
+        $('#Carousel1').carouseleffects('prev');
+    });
+    $("#Carousel1_next a").click(function() {
+        $('#Carousel1').carouseleffects('next');
+    });
+    var Carousel2Opts = {
+        delay: 4000,
+        duration: 500,
+        easing: 'easeInOutBounce',
+        mode: 'fade',
+        direction: '',
+        pagination: false,
+        start: 0
+    };
+    $("#Carousel2").carouseleffects(Carousel2Opts);
+    $("#Carousel2_back a").click(function() {
+        $('#Carousel2').carouseleffects('prev');
+    });
+    $("#Carousel2_next a").click(function() {
+        $('#Carousel2').carouseleffects('next');
+    });
+
+	var Carousel4Opts = {
+        delay: 4000,
+        duration: 500,
+        easing: 'easeInOutBounce',
+        mode: 'fade',
+        direction: '',
+        pagination: false,
+        start: 0
+    };
+    $("#Carousel4").carouseleffects(Carousel4Opts);
     $("#Carousel4_back a").click(function(){
-       $('#Carousel4').carousel('prev');
+       $('#Carousel4').carouseleffects('prev');
     });
     $("#Carousel4_next a").click(function(){
-       $('#Carousel4').carousel('next');
+       $('#Carousel4').carouseleffects('next');
     });
-    var Carousel1Opts =
-    {
-       delay: 5000,
-       duration: 400,
-       easing: 'easeInOutBounce',
-       mode: 'forward',
-       direction: '',
-       pagination: false,
-       start: 0
-    };
-    $("#Carousel1").carousel(Carousel4Opts);
-    $("#Carousel1_back a").click(function(){
-       $('#Carousel1').carousel('prev');
-    });
-    $("#Carousel1_next a").click(function(){
-       $('#Carousel1').carousel('next');
-    });
+    
 });
 $(document).ready(function() {
     $(".SlideShow1").slideshow({
@@ -836,6 +880,12 @@ function openProduct(id) {
 		ShowObjectWithEffect('Layer_details2', 1, 'scale', 500, 'swing');
 	},'html');
 }
+function openSeller(id) {
+		$.get(base_url+"seller/popup/"+id,{},function(data) {
+			$("#Layer_details_Container4").html(data);
+			ShowObjectWithEffect('Layer_sellers', 1, 'scale', 500, 'swing');
+		},'html');
+}
 function showVerifiedFirst() {
 	$.get(base_url+"product/verified/",{},function(data) {
 		$(".products-list").html(data);
@@ -880,5 +930,64 @@ function showRelatedImages(product_id,layer) {
 		});
 	},'html');
 }
+var hoverTimeout, keepOpen = false, stayOpen = $('#Details');
+    $(document).on('mouseenter', '.cat_slide', function () {
+        clearTimeout(hoverTimeout);
+        var curr_slide = $(this).attr("alt");
+        $(".sub_cat").css('color', '#337ab7');
+        $(".slide-details").hide();
+		$("#sub_cat_main_prod").hide();
+        $("#" + curr_slide).show();
+        $("." + curr_slide).show();
+        stayOpen.addClass('show');
+    }).on('mouseleave', '.slide', function () {
+        clearTimeout(hoverTimeout);
+        hoverTimeout = setTimeout(function () {
+            if (!keepOpen) {
+                $(".slide-details").hide();
+                stayOpen.removeClass('show');
+            }
+        }, 1000);
+    });
 
+    $(document).on('mouseenter', '#Details', function () {
+        keepOpen = true;
+        setTimeout(function () {
+            keepOpen = false;
+        }, 1500);
+    }).on('mouseleave', '#Details', function () {
+        keepOpen = false;
+        $(".slide-details").hide();
+        stayOpen.removeClass('show');
+    });
+    function highlight_keywords(str) {
+        $(".sub_cat").css('color', '#337ab7');
+        $("." + str).css('color', 'orange');
+    }
+    function filter_by_subcat(cat_id, cat_sub_id,main_prod) {
+        $("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#filter_by_category").submit();
+    }
+	function filter_by_subprod(cat_id, cat_sub_id,main_prod,sub_prod){
+		$("#filter_cat").val(cat_id);
+        $("#filter_sub_cat").val(cat_sub_id);
+        $("#main_prod").val(main_prod);
+        $("#sub_prod").val(sub_prod);
+        $("#filter_by_category").submit();
+	}
+	function get_main_products(main_cat,id,sub_cat_name){
+		$.ajax({
+			url: base_url + "home/get_main_products",
+			type: "post",
+			data : { id : id,name:sub_cat_name,main_cat:main_cat },
+			success: function (response) {
+				$("#sub_cat_main_prod").html('');
+				$("#sub_cat_main_prod").append(response);
+				$("#sub_cat_main_prod").show();
+				
+			}
+		})
+    }
 </script>

@@ -42,7 +42,7 @@
 			</div>
 			<div class="row inline m1 text-center" style="margin-left:40%;padding-bottom:25px;">
 				<div id="RollOver6" style="overflow:hidden;width:35px;height:35px;margin-right:10px;z-index:3543">
-					<a href="javascript:viewProductDetails(<?php echo $video['product_id']?>);" >
+					<a href="<?php echo base_url(); ?>video/details/saller/<?php echo $video['vid']?>" target="_blank" >
 						<img src="<?php echo asset_url(); ?>images/view-detailsc.png" id="Image136" alt="" width="35px">
 						<span><img alt="" src="<?php echo asset_url(); ?>images/view-detailsb.png" width="35px"></span>
 					</a>

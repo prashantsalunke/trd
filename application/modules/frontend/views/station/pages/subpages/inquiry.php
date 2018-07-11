@@ -49,7 +49,7 @@ div.panel1 {
 					
 				</div>
 				<div class="col-md-1" style="text-align: right">
-					<span class="pull-right-close" style="text-align: right"><a href="javascript:ShowObjectWithEffect('Layer180', 0, 'dropup', 500, 'easeInBounce');ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');" class="btn-custom-close">X</a></span>
+					<span class="pull-right-close" style="text-align: right"><a href="javascript:closeAlert();" class="btn-custom-close">X</a></span>
 				</div>
 			</div>
 		</div>
@@ -66,7 +66,7 @@ div.panel1 {
 							</div>
 						</div>
 						<div class="col-md-2" >
-							<button type="button" style="color:white;background-color:#1e90ff;border:none;height: 28px; width: 140px;" onclick="javascript:inquiryreplay();" value="">Replay With Offer</button>
+							<button type="button" style="color:white;background-color:#1e90ff;border:none;height: 28px; width: 140px;" onclick="javascript:inquiryreplay();" value="">Reply With Offer</button>
 						</div>
 						<div class="col-md-2">
 							<button type="button" style="color:white;background-color:#1e90ff;border:none;height: 28px; width: 141px;"  onclick="javascript:deleteinquiry();" value="">Delete</button>
@@ -140,7 +140,7 @@ div.panel1 {
 								<span style="color:#1E90FF;font-family:Arial;font-size:13px;"><?php echo $row['inqury_type'];?></span>
 							</div>
 							<div class="col-md-1" style="padding:5px 0px;">
-								<span style="color:#1E90FF;font-family:Arial;font-size:13px;"><?php echo date('l', strtotime($row['created_date']));?><br><?php echo date("j M Y",strtotime($row['created_date']));?></span>
+								<span style="color:#1E90FF;font-family:Arial;font-size:13px;"><?php echo date('l', strtotime($row['actual_date']));?><br><?php echo date("j M Y",strtotime($row['actual_date']));?></span>
 							</div>
 						</div>
 					</div>
@@ -286,7 +286,7 @@ function markAsread(id) {
  		//
  	},'json');
 }
- document.getElementById('totalinquiry').innerHTML = <?php echo count($inquiry);?>;
+
  var inquiry = document.getElementById('totalinquiry').innerHTML ;
  var offer = document.getElementById('totaloffer').innerHTML ;
  var request = document.getElementById('totalrequest').innerHTML ;

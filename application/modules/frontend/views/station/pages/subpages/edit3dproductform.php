@@ -12,7 +12,7 @@
   		<div class="row">
 	  		<div class="col-md-12">
 	  			<span style="color:#3C3C3C;font-family:'Arial Black';font-size:16px;">STEP 1</span>
-	  			<span style="padding-left:22px;color:#2D2D2D;font-family:Arial;font-size:11px;">The following product has beeb linked successfully</span>
+	  			<span style="padding-left:22px;color:#2D2D2D;font-family:Arial;font-size:11px;">The following product has been linked successfully</span>
 	  		</div>
 	  	</div><br><br>
 	  	<input type="hidden" name="did" value="<?php echo $productdata[0]['did'];?>" id="did" />
@@ -33,10 +33,10 @@
 						</div>
 					</div>
 				</div>
-				<!--<div class="col-md-2">
+				<div class="col-md-2">
 					<img src="<?php echo asset_url();?>images/tick-big.png" style=""><br><br><br>
 					<a href="#" data-toggle="modal"  onclick="getproductlist();" data-target="#editdproduct_modal" backdrop='static'><span style="color:#1E90FF;font-family:'Arial Black';font-size:12px;"><u>Change</u></span></a>
-				</div>-->
+				</div>
 	  		</div>
 	  	</div><br><br>
 	  	<div class="row">
@@ -69,7 +69,7 @@
 	  				<button type="button" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;" onclick="open3DProduct(<?php echo $productdata[0]['did'];?>);"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Test</span></button>
 	  			</div>
 	  			<div class="col-md-2" >
-	  				<button type="button"  onclick="createlink();" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Link Product</span></button>
+	  				<button type="button"  onclick="createlink();" style="border:none;background-color: rgb(67, 69, 70);width: 142px;height: 33px;"><span style="color:#A9A9A9;font-family:Arial;font-size:13px;">Update</span></button>
 	  			</div>
 			</div>
 	  	</div><br><br>
@@ -98,10 +98,12 @@
     	</div>
   	</div>
 </div>
+<div id="promodal_edit">
+</div>
  <script>
  function open3DProduct(id) {
 	$.get(base_url+"mystation/3dpro/show/"+id, {}, function(data){
-		$("#promodal").html(data);
+		$("#promodal_edit").html(data);
 		$("#my3DModal").modal('show');
 		init3D('my3dimg');
 	},'html');

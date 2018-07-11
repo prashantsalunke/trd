@@ -54,6 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE; 
 
 $route['intro'] = 'frontend/home/intro';
+$route['home/get_main_products'] = 'frontend/Home/getMainProductsBySubcat';
+
+
 $route['stationhome'] = 'frontend/SellerStation';
 $route['sellerstation/my_account'] = 'frontend/SellerStation/myAccount';
 $route['homepage/setcookie'] = 'frontend/Home/setHomePageCookie';
@@ -77,7 +80,6 @@ $route['account/save_certificate_info'] = 'frontend/Account/save_certificate_inf
 $route['account/login'] = 'frontend/Account/login';
 $route['login/home'] = 'frontend/home/afterloginHome';
 $route['refresh/create_captcha']= 'frontend/home/create_captcha';
-//$route['account/kk'] = 'frontend/Account/captcha';//'frontent/Account/continueRegistration';
 $route['continueregistration'] = 'frontend/Account/continueRegistration';
 $route['signin'] = 'frontend/Home/signin';
 $route['account/forgotemail'] = 'frontend/Account/forgetsendMail';
@@ -97,8 +99,11 @@ $route['account/termscondition'] = 'frontend/Account/termsCondition';
 
 /* My station */
 $route['mystation'] = 'frontend/Station';
+$route['mystation/homeAlert'] = 'frontend/Station';
 $route['shipper_mystation'] = 'frontend/Station/shipperStation';
+$route['shipper_mystation/homeAlert'] = 'frontend/Station/shipperStation';
 $route['buyer_mystation'] = 'frontend/Station/buyerStation';
+$route['buyer_mystation/homeAlert'] = 'frontend/Station/buyerStation';
 $route['mystation/buyermessage'] = 'frontend/Station/buyerMessage';
 $route['mystation/myaccount'] = 'frontend/Station/myaccount';
 $route['mystation/changepassword'] = 'frontend/Station/changepassword';
@@ -137,6 +142,8 @@ $route['mystation/gaurantee/cancel'] = 'frontend/Station/cancelGaurantee';
 $route['mystation/gaurantee/confirm'] = 'frontend/Station/confirmGaurantee';
 $route['mystation/product/certs/confirm'] = 'frontend/Station/confirmProductCerts';
 $route['mystation/license/confirm'] = 'frontend/Station/confirmProductLicense';
+$route['mystation/license/cancel'] = 'frontend/Station/cancelLicense';
+$route['mystation/certificate/cancel'] = 'frontend/Station/cancelCerti';
 
 /*My deskside */
 $route['mystation/mydeskside'] = 'frontend/Deskside/myDeskside';
@@ -246,7 +253,8 @@ $route['mystation/publish3dimages'] = 'frontend/Dproduct/publish3dImages';
 $route['mystation/change3dimages'] = 'frontend/Dproduct/change3dimages';
 
 $route['mystation/getproductlist'] = 'frontend/Dproduct/getProductList'; 
-$route['mystation/getproductbyid'] = 'frontend/Dproduct/getProductById'; 
+$route['mystation/getproductbyid'] = 'frontend/Dproduct/getProductById';
+$route['mystation/getselectedproductlists'] = 'frontend/Dproduct/getSelectedProductLists';
 $route['mystation/changimage'] = 'frontend/Dproduct/changImage'; 
 $route['mystation/changelinkproduct'] = 'frontend/Dproduct/changeLinkProduct'; 
 $route['mystation/messagedproduct'] = 'frontend/Dproduct/messageDproduct'; 
@@ -322,6 +330,9 @@ $route['mystation/deleteinvoice'] = 'frontend/Alerts/deleteInvoice';
 $route['mystation/addinvoiceproduct'] = 'frontend/Alerts/addInvoiceProduct';
 $route['mystation/firstpartyconfirm'] = 'frontend/Alerts/firstPartyConfirm';
 $route['mystation/secondpartyconfirm'] = 'frontend/Alerts/secondPartyConfirm';
+$route['home/alert'] = 'frontend/Alerts/getNewAlerts';
+$route['home/addToCommunity'] = 'frontend/Alerts/alertAddToCommunity';
+$route['home/clearAlert'] = 'frontend/Alerts/clearAlert';
 
 /* Language */
 $route['mystation/language'] = 'frontend/Language/language';
@@ -350,10 +361,12 @@ $route['shipper/desksites'] = 'frontend/Product/getAllShipperDesksites';
 $route['buyer'] = 'frontend/Home/buyersList';
 $route['shipper'] = 'frontend/Home/shippersList';
 $route['search'] = 'frontend/Home/search';
-
+$route['filter_by_category'] = 'frontend/Home/filter_by_cat';
 $route['products'] = 'frontend/Product';
 $route['products/list'] = 'frontend/Product/productList';
 $route['products/details/([0-9]+)'] = 'frontend/Product/productDetails/$1';
+$route['deskdetails/([0-9]+)'] = 'frontend/Product/productDetails/$1';
+// $route['deskdetails/([0-9]+)'] = 'frontend/Home/DesksiteByBusiId/$1';
 $route['product/detail/([0-9]+)'] = 'frontend/Product/productDetailById/$1';
 $route['seller/product/([0-9]+)'] = 'frontend/Product/productListBySellerId/$1';
 $route['product/subcategory/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListBySubCategory/$1/$2';
@@ -362,6 +375,7 @@ $route['product/subproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListBy
 $route['product/csmproduct/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)'] = 'frontend/Product/productListByCat/$1/$2/$3/$4';
 $route['product/spproduct/([0-9]+)/([0-9]+)'] = 'frontend/Product/specialProductList/$1/$2';
 $route['product/details/page/([0-9]+)'] = 'frontend/Product/productDetailsPage/$1';
+$route['product/details/page2/([0-9]+)/([0-9]+)'] = 'frontend/Product/productDetailsPage2/$1/$2';
 $route['seller/video/view/([0-9]+)'] = 'frontend/Home/getSellerVideo/$1';
 $route['seller/product/view/([0-9]+)'] = 'frontend/Home/getSellerProduct/$1';
 $route['product/verified'] = 'frontend/Product/productVerifiedFirst';
@@ -378,11 +392,13 @@ $route['catalogue/business/([0-9]+)'] = 'frontend/Home/getCatalogueByBusiId/$1';
 $route['catalogue/business/next/([0-9]+)'] = 'frontend/Home/getNextCatalogueById/$1';
 $route['seller/popup/([0-9]+)'] = 'frontend/Home/getSellerById/$1';
 $route['buyer/popup/([0-9]+)'] = 'frontend/Home/getBuyerById/$1';
+$route['shipper/popup/([0-9]+)'] = 'frontend/Home/getShipperById/$1';
 $route['item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/itemDetailById/$1/$2';
 $route['video/item/details/([0-9]+)/([0-9]+)'] = 'frontend/Product/videoItemDetailById/$1/$2';
 
 $route['pro-video'] = 'frontend/Vedio/productVideoList';
 $route['video/details/([0-9]+)'] = 'frontend/Product/videoDetailById/$1';
+$route['video/details/seller/([0-9]+)'] = 'frontend/Product/videoDetailByIdSeller/$1';
 $route['seller/video/([0-9]+)'] = 'frontend/Vedio/productVideoListBySellerId/$1';
 $route['video/verifieduser/memberlist'] = 'frontend/Vedio/getVedioByVerifiedUser';
 $route['video/community/memberlist/([0-9]+)'] = 'frontend/Vedio/getVedioByCommunityMember/$1';
@@ -441,7 +457,7 @@ $route['desksite/saveoffer'] = 'frontend/Home/saveGeneralOffer';
 $route['desksite/product/like/([0-9]+)'] = 'frontend/Product/likeProduct/$1';
 $route['desksite/share'] = 'frontend/Product/shareWithWorld';
 $route['desksite/savecontactus'] = 'frontend/Home/saveContactUs';
-
+$route['desksite/general_offer/([0-9]+)'] = 'frontend/Home/getGeneralOffer/$1';
 
 /********************  Community **************/
 
@@ -513,6 +529,8 @@ $route['product/item/search'] = "frontend/Product/getMyProductList";
 /* *********************************  22-12-2017 ***************************/
 $route['3dproducts'] = 'frontend/Product/get3DPrducts';
 $route['vcatalogues'] = 'frontend/Product/getAllVCatalogues';
+
+$route['catalogue/pages/([0-9]+)/([0-9]+)'] = 'frontend/Home/getCataloguePages/$1/$2';
 
 // Admin ROutes
 $route['admin'] = 'backend/index';

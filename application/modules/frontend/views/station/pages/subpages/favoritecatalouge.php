@@ -1,4 +1,5 @@
 <?php 
+if(isset($favoritecatalouge)) {
 if(count($favoritecatalouge) > 0 && $favoritecatalouge[0]['id'] !='') { 
 
 	$i = 0;
@@ -103,4 +104,4 @@ if(count($favoritecatalouge) > 0 && $favoritecatalouge[0]['id'] !='') {
   <div class="row" style="margin:0px;">
  	<h4 class="center"> No Videos Found!</h4>
  </div>
-<?php } ?>
+<?php } } ?>

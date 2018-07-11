@@ -1,12 +1,12 @@
 function openHomePage() {
 	$("#main-page-lock").slideUp("slow");
 	$("#main-page").show();
-	$('.slider').slick('unslick'); /* ONLY remove the classes and handlers added on initialize */
-    $('.slider').slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1
-    });
+//	$('.slider').slick('unslick'); /* ONLY remove the classes and handlers added on initialize */
+//    $('.slider').slick({
+//        infinite: true,
+//        slidesToShow: 4,
+//        slidesToScroll: 1
+//    });
 }
 
 function termscondition(type)
@@ -69,4 +69,100 @@ function closeterms()
 		$('#myModal').modal('show');
 	}
  	
+}
+/**
+ * function added for loading when click on alert tab
+ * @param text
+ * @returns
+ */
+function alertajaxindicatorstart(text)
+{
+	if(jQuery('.editaccount_outer').find('#alertresultLoading').attr('id') != 'alertresultLoading'){
+		jQuery('.editaccount_outer').append('<div id="alertresultLoading" style="display:none"><div><img src="'+base_url+'assets/images/loading.gif" alt=""><div></div></div><div class="bg"></div></div>');
+	}
+
+	jQuery('#alertresultLoading').css({
+		'width':'100%',
+		'height':'100%',
+		'position':'fixed',
+		'z-index':'10000000',
+		'top':'0',
+		'left':'0',
+		'right':'0',
+		'bottom':'0',
+		'margin':'auto'
+	});
+
+	jQuery('#alertresultLoading .bg').css({
+		'background':'#000000',
+		'opacity':'0.7',
+		'width':'100%',
+		'height':'100%',
+		'position':'absolute',
+		'top':'0'
+	});
+
+	jQuery('#alertresultLoading>div:first').css({
+		'width': '250px',
+		'height':'75px',
+		'text-align': 'center',
+		'position': 'fixed',
+		'top':'0',
+		'left':'0',
+		'right':'0',
+		'bottom':'0',
+		'margin':'auto',
+		'font-size':'16px',
+		'z-index':'10',
+		'color':'#ffffff'
+
+	});
+
+    jQuery('#alertresultLoading .bg').height('100%');
+    jQuery('#alertresultLoading').fadeIn(300);
+    jQuery('body').css('cursor', 'wait');
+}
+
+/**
+ * function to stop ajax loader
+ * @returns
+ */
+function alertajaxindicatorstop()
+{
+    jQuery('#alertresultLoading .bg').height('100%');
+    jQuery('#alertresultLoading').fadeOut(300);
+    jQuery('body').css('cursor', 'default');
+}
+setInterval(getNewAlerts, 9000); //300000 MS == 5 minutes
+function getNewAlerts() {
+	$.ajax({
+        url: base_url + "home/alert",
+        type: "post",
+        dataType:'json',
+        success: function (response) {
+        	if(response.dataHTML != '') {
+                $("#new-alert-popup").html(response.dataHTML);
+            }
+    		$(".badge").html(response.totalCount);
+        }
+    })
+}
+//getNewAlerts();
+function accept_community_request(id) {
+	$.ajax({
+        url: base_url + "home/addToCommunity",
+        type: "post",
+        data : { id : id },
+        success: function (response) {
+        	if(response ==1) {
+        		$("#popupAddToCommunity").show();
+        		$("#new-alert-popup").hide();
+        	}
+        	
+        }
+    })
+}
+function closePopup(element) {
+    $('#'+element).hide();
+    $('.modal-backdrop').remove();
 }

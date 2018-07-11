@@ -26,6 +26,9 @@ class Catalouge extends MX_Controller {
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$this->load->model('Product_Model','product');
 		$mproducts = $this->product->getActiveProductAndSubProduct($busi_id);
+		$this->load->model('Catalogue_model','catalogue');
+		$catalogues = $this->catalogue->getProductCatalogues($busi_id);
+		$this->template->set ( 'catalogues', $catalogues );
 		$this->template->set ( 'mproducts', $mproducts );
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
@@ -37,7 +40,10 @@ class Catalouge extends MX_Controller {
 		$busi_id = $this->session->userdata('tsuser')['busi_id'];
 		$this->load->model('Product_Model','product');
 		$mproducts = $this->product->getActiveProductAndSubProduct($busi_id);
+		$this->load->model('Catalogue_model','catalogue');
+		$catalogues = $this->catalogue->getProductCatalogues($busi_id);
 		$this->template->set ( 'mproducts', $mproducts );
+		$this->template->set ( 'catalogues', $catalogues );
 		$this->template->set ( 'page', 'home' );
 		$this->template->set_theme('default_theme');
 		$this->template->set_layout (false);
@@ -192,7 +198,7 @@ class Catalouge extends MX_Controller {
 		$params['catalogue_title'] = $this->input->post('catalogue_title');
 		$params['catalogue_cover'] = $this->input->post('catalogue_img');
 		$params['status'] = 0;
-		$params['pages'] = ceil(count($items)/2*3);
+		$params['pages'] = count($items)*2;//ceil(count($items)/2*3);
 		$params['created_date'] = date('Y-m-d H:i:s');
 		$this->load->model('Catalogue_model','catalogue');
 		$catalogue_id = $this->catalogue->addProductCatalogue($params);

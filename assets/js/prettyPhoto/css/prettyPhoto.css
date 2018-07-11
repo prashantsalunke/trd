@@ -118,7 +118,7 @@ div.pp_overlay{background:#000;display:none;left:0;position:absolute;top:0;width
 div.pp_pic_holder{display:none;position:absolute;width:100px;z-index:10000}
 .pp_content{height:40px;min-width:40px}
 * html .pp_content{width:40px}
-.pp_content_container{position:relative;text-align:left;width:100%}
+.pp_content_container{position:relative;text-align:left;width:100%;overflow: auto;height: auto;}
 .pp_content_container .pp_left{padding-left:20px}
 .pp_content_container .pp_right{padding-right:20px}
 .pp_content_container .pp_details{float:left;margin:10px 0 2px}

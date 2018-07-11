@@ -71,7 +71,7 @@ div.pp_pic_holder {
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10">
+                    <div class="col-lg-10 col-sm-3" style="padding-right:0px;padding-left:0px;">
 	                        <ul class="nav nav-tabs">
 	                            <li class="active nav121"><a data-toggle="tab" href="#home" class="stock-navtab">I Have This</a></li>
 	                            <li class="nav122"><a data-toggle="tab" href="#menu1" class="stock-navtab2">I Need This</a></li>
@@ -120,8 +120,8 @@ div.pp_pic_holder {
 				    		<div class="tab-content">
 				        		<div id="home" class="tab-pane fade in active content121">
 				        			<?php if($tscategory_id == 1 || $tscategory_id == 2) { ?>
-				            		<div class="tab1">
-						                <h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Sellers</strong></span></h3>
+				            		<div class="tab1" style="padding-left:16px;">
+						                <h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Sellers</strong></span></h3>
 						                <p class="leftbox2">Send " I Have This" Stock Post And Manage Your Previous Ones.</p>
 						                <div id="Layer9">
 						                    <img src="<?php echo asset_url(); ?>images/img0208.png" id="Image54" alt="" class="img46" style="width:30px !important;height:30px;"/>
@@ -130,39 +130,40 @@ div.pp_pic_holder {
 						                    	<a href="javascript:openNewPostForm();" class="bststyle6">Add New Post</a>
 						                    </span>
 						                    <?php } else { ?>
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="#" class="bststyle6">Add New Post</a>
 						                    </span>
 						                    <?php } ?>
 						                </div>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/Stockpostgre.png" id="Image54" alt="" class="img46 mp1">
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="javascript:viewMyPosts();" class="bststyle10">View My Posts</a>
 						                    </span>
 						                </div>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/closebuygre.png" id="Image54" alt="" class="img46 mp1">
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="#" onclick="ShowObjectWithEffect('Layer32', 0, 'fade', 500);ShowObjectWithEffect('Layer28', 1, 'fade', 500);return false;" class="bststyle10">Close My Posts</a>
 						                    </span>
 						              	</div>
 						            </div>
 						            <?php } ?>
-						            <div id="Layer28">
-					           		</div>
-									<div id="Layer32" style="width:1000px;">
-					             	</div>
+						            <div id="Layer28" style="width: 1029px;height:625px;overflow-x: auto;">
+				                
+				           		</div>
+									<div id="Layer32" style="width: 1029px;height:625px;overflow-x: auto;">
+				             	</div>
 					             	<br><br><br><br>
 				        		</div>
 				        		<div id="menu1" class="tab-pane fade content122">
-						            <div id="Layer288">
+						            <div id="Layer288" style="width: 1029px;height:625px;overflow-x: auto;">
 						            </div>
-									<div id="Layer322" style="width:1000px;">
+									<div id="Layer322" style="width: 1029px;height:625px; overflow-x: auto;">
 						            </div>
 						            <?php if($tscategory_id == 3) { ?>
-						            <div class="tab1">
-						                <h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Buyers</strong></span></h3>
+						            <div class="tab1" style="padding-left:16px;">
+						                <h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Buyers</strong></span></h3>
 						                <p class="leftbox2">Send " I Have This" Stock Post And Manage Your Previous Ones.</p>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/img0205.png" id="Image54" alt="" class="img46" style="width:30px !important;height:30px;">
@@ -171,20 +172,20 @@ div.pp_pic_holder {
 						                    	<a href="javascript:openNewBuyerPostForm();" class="bststyle7">Add New Post</a>
 						                    </span>
 						                	<?php } else { ?>
-						                	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+						                	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                		<a href="#" class="bststyle7">Add New Post</a>
 						                	</span>
 						                	<?php } ?>
 						                </div>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/viewmysellposts.png" id="Image54" alt="" class="img46 mp1">
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="javascript:viewBuyerPosts();" class="bststyle10">View My Posts</a>
 						                    </span>
 						                </div>
 						                <div class="whitebox">
 						                    <img src="<?php echo asset_url(); ?>images/closesellposts.png" id="Image54" alt="" class="img46 mp1">
-						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+						                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 						                    	<a href="#" onclick="ShowObjectWithEffect('Layer322', 0, 'fade', 500);ShowObjectWithEffect('Layer288', 1, 'fade', 500);return false;" class="bststyle10">Close My Posts</a>
 						                    </span>
 						              	</div>
@@ -495,7 +496,7 @@ function setBackgroundSize(id,input,size) {
 function searchBusinessStation() {
 	var keyword = $("#SiteSearch3").val();
 	var country = $("#top_country_id").val();
-	if(keyword != "" && country != "") {
+	if(keyword.trim() != "" || country.trim() != " ") {
 		ajaxindicatorstart("");
 		$.post(base_url+"stockmarket/search/posts",{keyword: keyword, country: country},function(data){
 			ajaxindicatorstop();
@@ -514,22 +515,23 @@ function searchBusinessStation() {
 		    $.cookie('smarket-country', country, { expires: 365 });
 		},'json');
 	} else {
-		if(keyword == "" && country == "") {
+		//if(keyword == "" && country == "") {
 			alert("Please enter search keyword and select country");
-		} else {
+		/*} else {
 			if(keyword == "") {
 				alert("Please enter search keyword");
 			}
 			if(country == "") {
 				alert("Please select country");
 			}
-		}
+		}*/
 	}
 }
 function filterBusinessStation() {
+	
 	var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
-	if(keyword != "" && country != "") {
+	if(keyword.trim() != "" || country.trim() != "") {
 		ajaxindicatorstart("");
 		$.post(base_url+"stockmarket/search/posts",{keyword: keyword, country: country},function(data){
 			ajaxindicatorstop();
@@ -549,16 +551,16 @@ function filterBusinessStation() {
 		    $.cookie('smarket-country', country, { expires: 365 });
 		},'json');
 	} else {
-		if(keyword == "" && country == "") {
-			alert("Please enter search keyword and select country");
-		} else {
+		//if(keyword == "" && country == "") {
+			alert("Please enter search keyword or select country");
+		/*} else {
 			if(keyword == "") {
 				alert("Please enter search keyword");
 			}
 			if(country == "") {
 				alert("Please select country");
 			}
-		}
+		}*/
 	}
 }
 function selectProductImage() {

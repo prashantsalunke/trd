@@ -5,7 +5,6 @@ class Alert_model extends CI_Model {
     function __construct() {
         parent::__construct();
     }
-
     
     public function getMyOfferAlerts($busi_id) {
     	$this->db->select('count(a.id) as offers');
@@ -53,8 +52,7 @@ class Alert_model extends CI_Model {
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;
-    }
-    
+    }    
     
     public function saveContactUs($params) {
     	if ($this->db->insert(TABLES::$CONTACT_US, $params)) {
@@ -62,5 +60,34 @@ class Alert_model extends CI_Model {
     	}
     }
     
-    
+    public function saveAlertCount($busiId, $totalcount) {
+        if(!is_numeric($busiId)) {
+            return false;
+        }
+        if(!is_numeric($totalcount)) {
+            return false;
+        }
+        $params = array();
+        $params['busi_id'] = $busiId;
+        $params['alert_count'] = $totalcount;
+        $params['date'] = date('Y-m-d H:i:s');
+        if ($this->db->insert(TABLES::$MANAGE_ALERT, $params)) {
+            return $this->db->insert_id();
+        }
+    }
+
+    public function getMyAlertCount($busiId) {
+        $this->db->select('alert_count');
+        $this->db->from(TABLES::$MANAGE_ALERT . ' AS ma');
+        $this->db->where('ma.busi_id',$busiId);
+        $query = $this->db->get();
+
+        $row = $query->result_array();
+
+        if(!empty($row[0]['alert_count'])) {
+            return $row;
+        } else {
+            return 0;
+        }
+    }
 }

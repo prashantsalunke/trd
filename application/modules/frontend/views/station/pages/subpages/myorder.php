@@ -393,7 +393,6 @@ function deleteorder(id)
 	}
 }
 
-document.getElementById('totalorder').innerHTML = <?php echo count($order);?>;
 var inquiry = document.getElementById('totalinquiry').innerHTML ;
 var offer = document.getElementById('totaloffer').innerHTML ;
 var request = document.getElementById('totalrequest').innerHTML ;

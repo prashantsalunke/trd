@@ -111,6 +111,7 @@ function delteUploadedFiles()
 {
 	var r = confirm("Are you sure, you want to delete files?");
 	if (r == true) {
+		ajaxindicatorstart('Loading...');
 	var options = {
  			target : '#response', // target element(s) to be updated with server response 
  			beforeSubmit : showfileDeleteRequest, // pre-submit callback 
@@ -120,6 +121,8 @@ function delteUploadedFiles()
  			dataType : 'json'
  		};
 		$('#frmfileupload').ajaxSubmit(options);
+		ajaxindicatorstop();
+		getMyFiles();
 	}
 }
 function showfileDeleteRequest(formData, jqForm, options){

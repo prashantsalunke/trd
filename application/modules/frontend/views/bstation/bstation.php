@@ -29,17 +29,19 @@ div.pp_pic_holder {
 <div>
 	<div id="Layer2" style="visibility: hidden;">
 		<div id="Layer2_Container">
-			<div class="container" style="width: 1280px;padding-left:0px;">
+			<div class="container" style="width: 1280px;">
 				<div class="row space121" style="margin:0px;">
-					<div class="col-lg-2 col-md-2 col-sm-2" style="padding: 0px;">
+				
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-sm-2" style="padding-right: 0px; padding-left: 0px;">
 						<form class="displaymobile">
 							<div class="row">
-								<div class=" col-md-offset-1 col-md-4 col-sm-4 col-xs-6"
-									style="padding-right: 1px; padding-left: 1px;">
+								<div class=" col-md-offset-1 col-md-4 col-sm-4 col-xs-6" style="padding-right: 1px; padding-left: 1px;">
 									<input type="text" class="search-box" required="required" name="keyword" id="key-search-box" placeholder="Type the product name to seach...">
 								</div>
-								<div class="col-md-1 col-sm-2 col-xs-4"
-									style="padding-right: 1px; padding-left: 1px;">
+								<div class="col-md-1 col-sm-2 col-xs-4" style="padding-right: 1px; padding-left: 1px;">
 									<div class="dropdown">
 										<select class="search-box" name='country'>
 											<option value="0">Country</option>
@@ -50,10 +52,9 @@ div.pp_pic_holder {
 										</select>
 									</div>
 								</div>
-								<div class="col-md-1 col-sm-1 col-xs-2 bluebg"
-									style="padding-right: 1px; padding-left: 1px;">
-									<button type="button ">GO</button>
-								</div>
+								<div class="col-md-1 col-sm-1 col-xs-2 bluebg" style="padding-right: 1px;padding-left: 1px;">
+                               		<button type="button" onclick="filterBusinessStation1();">GO</button>
+                               	</div>
 							</div>
 							<br>
 						</form>
@@ -70,16 +71,16 @@ div.pp_pic_holder {
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-10 col-md-10 col-sm-10" style="padding-right:0px;">
+					<div class="col-lg-10 col-sm-3" style="padding-right:0px;padding-left:0px">
 						<ul class="nav nav-tabs">
 							<li class="active nav121" style="width: 190px;">
 								<a data-toggle="tab" href="#home" style="background: #FF6347; border: 0px;">Sellers/Shippers Offers</a>
 							</li>
 							<li class="nav122" style="width: 160px;">
-								<a data-toggle="tab" href="#menu1" style="background: #1E90FF; border: 0px;">Buyers Requests</a>
+								<a data-toggle="tab" href="#menu1" style="background: #1E90FF; border: 0px;" onclick="current_view = 'filterBusinessStation'">Buyers Requests</a>
 							</li>
 							<!-- form class="displaydesktop" -->
-								<div class="row" style="padding-top:5px;">
+								<div class="row" style="padding-top:4px;">
 									<div class=" col-md-offset-1 col-md-4 col-sm-4 col-xs-6" style="padding-right: 1px; padding-left: 1px;">
 										<input type="text" class="search-box" required="required" name="keyword" id="keyword" placeholder="Please type product Keyword…">
 									</div>
@@ -125,27 +126,28 @@ div.pp_pic_holder {
 							<!-- content-tab-1 -->
 							<div id="home" class="tab-pane fade in active content121">
 								<!-- view past close post add new post buttons -->
-								<div class="tab1">
+								<div class="tab1" style="padding-left:16px;">
 									<?php if($tscategory_id == 1 || $tscategory_id == 2) { ?>
-									<h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Sellers & Shippers</strong></span></h3>
+									<h3 class="leftbox1"><span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Sellers & Shippers</strong></span></h3>
 									<p class="leftbox2">Send Your Sell Post And Manage The Previous Ones. </p>
 									<div id="Layer9">
 										<img src="<?php echo asset_url(); ?>images/img0143.png" id="Image54" alt="" class="img46" style="width:30px !important;">
 				                    <?php if($usertype[0]['user_category_id'] =='1' || $usertype[0]['user_category_id'] =='2' ) { ?>
-					                    <span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+					                    <span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 						                    <a href="javascript:openNewPostForm();" class="bststyle6">
 						                    	Add New Post
 						                    </a>
 					                    </span>
 				                    <?php } else { ?>
-				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 				                    	<a href="#">Add New Post</a>
 				                    	</span>
+										
 				                    <?php } ?>
 				                	</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/viewmybuyposts.png" id="Image54" alt="" class="img46 mp1" style="margin-top:3px;"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="javascript:viewMyPosts();" class="bststyle9">
 												View My Posts
 											</a>
@@ -153,7 +155,7 @@ div.pp_pic_holder {
 									</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/closebuyposts.png" id="Image54" alt="" class="img46 mp1" style="margin-top:3px;"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="#" onclick="ShowObjectWithEffect('Layer32', 0, 'fade', 500);ShowObjectWithEffect('Layer28', 1, 'fade', 500);return false;" class="bststyle9">
 												Close My Posts
 											</a>
@@ -164,12 +166,12 @@ div.pp_pic_holder {
 								<!-- view past close post add new post buttons end-->
 								<!-- close my post 1 -->
 
-								<div id="Layer28" style="width: 1029px;height:616px;overflow-x: hidden;">
+								<div id="Layer28" style="width: 1029px;height:625px;overflow-x: hidden;">
 				                
 				           		</div>
 
 
-								<div id="Layer32" style="width: 1029px;height:616px;overflow-x: hidden;">
+								<div id="Layer32" style="width: 1029px;height:625px;overflow-x: hidden;">
 				             	</div>
 				             	<br><br><br><br>
 							</div>
@@ -177,34 +179,35 @@ div.pp_pic_holder {
 
 							<!-- content-tab-1 end -->
 							<div id="menu1" class="tab-pane fade content122">
-								<div id="Layer288" style="width: 1029px;height:616px;overflow-x: hidden;">
+							
+
+							<div id="Layer288" style="width: 1029px;height:625px;overflow-x: hidden;"></div>
 								
-				            	</div>
-							<div id="Layer322" style="height:616px;width: 1029px;overflow-x: hidden;">
-				            </div>
+							<div id="Layer322" style="height:625px;width: 1029px;overflow-x: hidden;"></div>
 								<!-- view my post end -->
 								<!-- view past close post add new post buttons -->
-								<div class="tab1">
+								<div class="tab1" style="padding-left:16px;">
 									<?php if($tscategory_id == 3) { ?>
-									<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>For Buyers</strong></span><br>
+									<span style="color:#303030;font-family:Georgia;font-size:14px;"><strong>For Buyers</strong></span><br>
 									<p class="leftbox2">Send Your Buy Post And Manage The Previous Ones..</p>
 									<div class="bluebox">
 										<img src="<?php echo asset_url(); ?>images/barsendpost.png" id="Image54" alt="" class="img46" style="width:30px !important;">
 				                    	<?php if($usertype[0]['user_category_id'] =='3' ) { ?>
-				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                    	<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 					                    	<a href="javascript:openNewBuyerPostForm();" class="bststyle6">
 					                    		Add New Post
 					                    	</a>
 				                    	</span>
 				                		<?php } else { ?>
-				                		<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:8px;">
+				                		<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:9px;">
 				                		<a href="#">Add New Post</a>
 				                		</span>
+
 				                		<?php } ?>
 				                	</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/viewmysellposts.png" id="Image54" alt="" class="img46 mp1"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="javascript:viewBuyerPosts();" class="bststyle10">
 												View My Posts
 											</a>
@@ -212,7 +215,7 @@ div.pp_pic_holder {
 									</div>
 									<div class="whitebox">
 										<img src="<?php echo asset_url(); ?>images/closesellposts.png" id="Image54" alt="" class="img46 mp1"> 
-										<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;padding-top:4px;">
+										<span style="color:#FFFFFF;font-family:Georgia;font-size:14px;padding-top:5px;">
 											<a href="#" onclick="ShowObjectWithEffect('Layer322', 0, 'fade', 500);ShowObjectWithEffect('Layer288', 1, 'fade', 500);return false;" class="bststyle10">
 												Close My Posts
 											</a>
@@ -319,6 +322,7 @@ var is_contact_accepts = <?php echo $contact_details[0]['accept_email'];?>;
 var plan_id = <?php echo $contact_details[0]['plan_id'];?>;
 var desk_step = <?php echo $contact_details[0]['step'];?>;
 var usr_cat_id = <?php echo $tscategory_id;?>;
+
 $("#SiteSearch3").change(function() {
   	$('[name=keyword]').val($(this).val());
 });
@@ -573,13 +577,17 @@ function setBackgroundSize(id,input,size) {
 <script src="<?php echo asset_url();?>js/bootstrap-typeahead.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
 <script>
-function searchBusinessStation() {
+var current_view = "filterBusinessStation";
+function searchBusinessStation(loader = true) {
+	current_view = "searchBusinessStation";
 	var keyword = $("#SiteSearch3").val();
 	var country = $("#top_country_id").val();
-	if(keyword != "" && country != "") {
-		ajaxindicatorstart("");
+	if(keyword != "" || country != "") {
+		if(loader)
+			ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
-			ajaxindicatorstop();
+			if(loader)
+				ajaxindicatorstop();
 			$("#Layer28").html(data.posts);
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
@@ -595,25 +603,28 @@ function searchBusinessStation() {
 		    $.cookie('bstation-country', country, { expires: 365 });
 		},'json');
 	} else {
-		if(keyword == "" && country == "") {
-			alert("Please enter search keyword and select country");
-		} else {
+		//if(keyword == "" && country == "") {
+			alert("Please enter search keyword or select country");
+		/*} else {
 			if(keyword == "") {
 				alert("Please enter search keyword");
 			}
 			if(country == "") {
 				alert("Please select country");
 			}
-		}
+		}*/
 	}
 }
-function filterBusinessStation() {
+function filterBusinessStation(loader = true) {
+	current_view = "filterBusinessStation";
 	var keyword = $("#keyword").val();
 	var country = $("#country_name").val();
-	if(keyword != "" && country != "") {
-		ajaxindicatorstart("");
+	if(keyword != "" || country != "") {
+		if(loader)
+			ajaxindicatorstart("");
 		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
-			ajaxindicatorstop();
+			if(loader)
+				ajaxindicatorstop();
 			$("#Layer28").html(data.posts);
 			$("#Layer288").html(data.requests);
 			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
@@ -630,18 +641,19 @@ function filterBusinessStation() {
 		    $.cookie('bstation-country', country, { expires: 365 });
 		},'json');
 	} else {
-		if(keyword == "" && country == "") {
-			alert("Please enter search keyword and select country");
-		} else {
+		//if(keyword == "" && country == "") {
+			alert("Please enter search keyword or select country");
+		/*} else {
 			if(keyword == "") {
 				alert("Please enter search keyword");
 			}
 			if(country == "") {
 				alert("Please select country");
 			}
-		}
+		}*/
 	}
 }
+
 function selectProductImage() {
 	if($('input[name="cimgchk[]"]:checked').length > 0) {
 	    $('#postdatacontent').show();
@@ -675,6 +687,7 @@ function closeNewPostResult() {
 }
 
 function viewMyPosts() {
+	current_view = "viewMyPosts";
 	ajaxindicatorstart("");
 	$.get(base_url+"bstation/seller/myposts",{},function(data){
 		ajaxindicatorstop();
@@ -682,6 +695,7 @@ function viewMyPosts() {
 		ShowObjectWithEffect('Layer32', 1, 'fade', 500);
 		$("#Layer32").html(data);
 	},'html');
+	
 }
 
 function deleteMyPost(id) {
@@ -695,6 +709,7 @@ function deleteMyPost(id) {
 }
 
 function closeMyPost(key) {
+	current_view = "closeMyPost";
 	ShowObject('Layer5_'+key, 0);
 	/*$.get(base_url+"bstation/seller/post/close/"+id,{},function(){
 		viewMyPosts();
@@ -741,8 +756,32 @@ function viewBuyerPosts() {
 		$("#Layer322").html(data);
 	},'html');
 }
+function loadRealtimebstationPosts(){
+	var keyword = $("#keyword").val();
+	var country = $("#country_name").val();
+	if(keyword != "" && country != "") {
+		//ajaxindicatorstart("");
+		$.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},function(data){
+			//ajaxindicatorstop();
+			$("#Layer28").html(data.posts);
+			$("#Layer288").html(data.requests);
+			ShowObjectWithEffect('Layer46', 0, 'slideup', 500, 'swing');
+			ShowObjectWithEffect('Layer2', 1, 'slidedown', 500, 'swing');
+			ShowObjectWithEffect('Layer28', 1, 'fade', 500);ShowObjectWithEffect('Layer32', 0, 'fade', 500);
+		    $.cookie('bstation-landing', '1', { expires: 365 });
+		    $.cookie('bstation-keyword', keyword, { expires: 365 });
+		    $.cookie('bstation-country', country, { expires: 365 });
+		},'json');
+	}
 
+	if(current_view == "searchBusinessStation"){
+		searchBusinessStation(false);
+	}else if(current_view == "filterBusinessStation"){
+		filterBusinessStation(false);
+	}
+}
 $(document).ready(function() {
+	setInterval(loadRealtimebstationPosts,10000);
 	$('#SiteSearch3').keydown(function(event) {
 	   	if (event.keyCode == 13) {
 	   		searchBusinessStation();
@@ -773,6 +812,10 @@ $.post(base_url+"bstation/search/posts",{keyword: keyword, country: country},fun
     $('[name=keyword]').val(keyword);
     $('[name=country]').val(country);
 },'json');
-<?php } ?>
 
+<?php if(!empty($_COOKIE['bstation-buyer-request']) && $_COOKIE['bstation-buyer-request'] == 1){ ?>
+
+	$('.nav-tabs > .active').next('li').find('a').trigger('click');
+	$.cookie('bstation-buyer-request', '0', { expires: 365 });
+<?php } } ?>
 </script>

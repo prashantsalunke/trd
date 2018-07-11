@@ -280,7 +280,7 @@
 														</div>
 														<div id="RollOver2" class="img45">
 															<a
-																href="javascript:popupwnd('./chat_window.php','no','no','no','no','no','no','750','50','430','720')"
+																href="javascript:chat_with(<?php echo $product['user_id'];?>,1);"
 																target="_self"> <img class="hover" alt="Chat"
 																src="<?php echo asset_url(); ?>images/chat_button2.png">
 																<span><img alt="Chat"

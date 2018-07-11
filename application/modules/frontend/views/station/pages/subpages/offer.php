@@ -49,13 +49,13 @@ div.panel1 {
 					
 				</div>
 				<div class="col-md-1" style="text-align: right">
-					<span class="pull-right-close" style="text-align: right"><a href="javascript:ShowObjectWithEffect('Layer180', 0, 'dropup', 500, 'easeInBounce');ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');" class="btn-custom-close">X</a></span>
+					<span class="pull-right-close" style="text-align: right"><a href="javascript:closeAlert();" class="btn-custom-close">X</a></span>
 				</div>
 			</div>
 		</div>
   		
   	</div>
-  	<div class="panel-body panel-body-custom" id="" style="padding-top: 15px;">		
+  	<div class="panel-body panel-body-custom" id="" style="padding-top: 15px;height: 650px;">		
   		<div id="offer_div" ><br><br>
   		<?php if($tscategory_id == 3 ) {?>
 			<div class="row">
@@ -140,7 +140,7 @@ div.panel1 {
 								<span style="color:#1E90FF;font-family:Arial;font-size:13px;"><?php echo $row['offer_type'];?></span>
 							</div>
 							<div class="col-md-1" style="padding:5px 0px;">
-								<span style="color:#1E90FF;font-family:Arial;font-size:13px;"><?php echo date('l', strtotime($row['created_date']));?><br><?php echo date("j M Y",strtotime($row['created_date']));?></span>
+								<span style="color:#1E90FF;font-family:Arial;font-size:13px;"><?php echo date('l', strtotime($row['actual_date']));?><br><?php echo date("j M Y",strtotime($row['actual_date']));?></span>
 							</div>
 						</div>
 					</div>
@@ -206,12 +206,9 @@ for (i = 0; i < acc.length; i++) {
   }
 }
 
-
-document.getElementById('totaloffer').innerHTML = <?php echo count($offer);?>;
 var inquiry = document.getElementById('totalinquiry').innerHTML ;
 var offer = document.getElementById('totaloffer').innerHTML ;
 var request = document.getElementById('totalrequest').innerHTML ;
 var order = document.getElementById('totalorder').innerHTML ;
 document.getElementById('totalalert').textContent = parseInt(inquiry) + parseInt(offer) + parseInt(request) +parseInt(order);
 </script>
-			

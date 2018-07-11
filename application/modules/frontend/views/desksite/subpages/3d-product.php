@@ -4,7 +4,7 @@
 }
 .menu3d {
 	width: 325px;
-	border: 2px solid #ccc;
+	/*border: 2px solid #ccc;*/
 	margin: 10px auto 10px;
 	max-height:371px;
 	overflow:hidden;
@@ -32,13 +32,13 @@
 		   	<p class="c20 text-center" style="margin:0px;">
 	        	<a href="javascript:productDetail(<?php echo $product['id'];?>);" class="style16"><?php echo $product['name']; ?></a>
 	        </p>
-	        <div class="menu3d text-center" onclick="open3DProduct(<?php echo $product['did'];?>);">
+	        <div class="menu3d text-center" onmouseenter="init3D('my3dimg-<?php echo $product['did'];?>');"><!--onclick="open3DProduct(<?php echo $product['did'];?>);"-->
 	        	<?php 
 	        		$images = explode(",",$product['pro_images']);
 	        	?>		
 	        	<ul id="my3dimg-<?php echo $product['did'];?>">
 	        		<?php foreach ($images as $image) { ?>
-					<li><img src="<?php echo asset_url();?><?php echo $image;?>"/></li>
+					<li><img src="<?php echo asset_url();?><?php echo $image;?>" class="withloader"/></li>
 					<?php } ?>
 				</ul>
 	        </div>
@@ -62,3 +62,4 @@
 	<strong>The seller has not created products in 3D yet.</strong>
 </div>
 <?php } ?>
+<script src="<?php echo asset_url();?>js/custom/3dlib.js"></script>

@@ -1,3 +1,9 @@
+<style>
+p {
+	 word-wrap: break-word;
+	 text-align:left;
+  }
+</style>
 <?php 
 if(count($posts) > 0) {
 	foreach ($posts as $key=>$product) {
@@ -42,7 +48,7 @@ if(count($posts) > 0) {
 							<span class="style5"><?php echo $product['title'];?></span>
 						</strong>
 					</span>
-					<p class="font5">  <?php echo substr($product['stockdesc'],0,270);?> <?php if(strlen($product['stockdesc']) > 270) { ?>...<?php } ?></p>
+					<p class="font5" align="center">  <?php echo substr($product['stockdesc'],0,270);?> <?php if(strlen($product['stockdesc']) > 270) { ?>...<?php } ?></p>
 					<div class="inline">
 					<?php if($product['catid'] == 1) { ?>
 						<span class="usd">&nbsp; USD <?php echo $product['unit_price'];?>&nbsp;&nbsp;&nbsp; </span>
@@ -187,9 +193,9 @@ if(count($posts) > 0) {
 							<img class="hover" alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Active/inquirytomato.png" /> <span>
 							<img alt="Send Inquiry" src="<?php echo asset_url(); ?>images/Link/inquirytomato.png"></span>
 						</a>
-					</div>
+					</div><?php //print_r($product);?>
 					<div id="RollOver2" class="img45">
-						<a href="javascript:openChat(<?php echo $product['post_id'];?>,<?php echo $product['busi_id'];?>);" target="_self"> 
+						<a href="javascript:chat_with(<?php echo $product['user_id'];?>,<?php echo $contact_details[0]['accept_chat']; ?>);" target="_self"> 
 							<img class="hover" alt="Chat" src="<?php echo asset_url(); ?>images/Active/chat_button2.png" /> <span>
 							<img alt="Chat" src="<?php echo asset_url(); ?>images/Link/chat_button2.png" /></span>
 						</a>
@@ -256,12 +262,13 @@ function openBuyerRequestForm(postid) {
 	<?php } ?>
 }
 
-function openChat(postid,seller_id) {
-	<?php if($contact_details[0]['accept_chat'] == 1) { ?>
-		popupwnd('<?php echo base_url();?>global/chat/'+seller_id,'no','no','no','no','no','no','750','50','430','720');
-	<?php } else { ?>
+function openChat(seller_id,accept_chat=true) {
+	if(accept_chat == 1) {
+		jqcc.cometchat.chatWith(seller_id);
+        document.getElementById('cometchat_chatboxes').style.right='0px';
+	} else {
 		customAlert('Oops.. It seems that you have turned this feature OFF.. Please go to “ My Station”, then click on “Tools” icon, and select “ Control Panel”, then Turn it ON….');
-	<?php } ?>
+	}
 }
 function addToMyCommunityAlert() {
 	customAlert('Oops.. It seems that you have turned this feature OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Panel", then Turn it ON.');

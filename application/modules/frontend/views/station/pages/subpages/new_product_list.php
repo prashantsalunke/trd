@@ -17,10 +17,15 @@
 }
 </style>
 <?php  foreach ($products as $product) { ?>
-<div id="Layer976" style="text-align:left;width:540px;height:136px;z-index:16825;"><!--style="position:absolute;text-align:left;left:10px;top:166px;width:540px;height:136px;z-index:16825;"-->
+<div id="Layer976" style="text-align:left;width:540px;height:136px;z-index:16825;">
 			<table style="width:100%">
 				<tr><td rowspan="2" style="width: 10%;text-align: center;">
-					<input type="checkbox" name="chkproduct_id"  id="chkproduct_id" style="z-index:16799;" value="<?php echo $product['id'];?>"></td>
+          <?php if(!empty($selected_products) && in_array($product['id'],$selected_products)){  ?>
+                <input type="checkbox" name="chkproduct_id"  id="chkproduct_id<?php echo $product['id'];?>" style="z-index:16799;" value="<?php echo $product['id'];?>" checked>
+            <?php } else { ?>
+					      <input type="checkbox" name="chkproduct_id"  id="chkproduct_id<?php echo $product['id'];?>" style="z-index:16799;" value="<?php echo $product['id'];?>">
+          <?php } ?>
+        </td>
 					<td>
 						<div class="wrapper">
                      		<div id="wb_Image238" class="first" style="width:73px;height:57px;z-index:16800;" ><!-- style="position:absolute;left:62px;top:12px;width:70px;height:54px;z-index:16800;"-->

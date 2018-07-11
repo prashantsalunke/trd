@@ -68,7 +68,12 @@
 			                                   <a href="<?php echo base_url();?>products"><img src="assets/images/ts/products.png " style="width: 50px; "><h5>Products</h5></a>
 										</li>
 										<li class="col-sm-2 col-xs-6 ">
-											   <a href="<?php echo base_url();?>b-station"><img src="assets/images/ts/trade.png" style="width: 50px;"><h5>B-Station</h5></a>
+											   <?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+											   		<a href="javascript:login_message()">
+											   <?php }else{ ?>
+											   		<a href="<?php echo base_url();?>b-station">
+											   <?php } ?>
+											   <img src="assets/images/ts/trade.png" style="width: 50px;"><h5>B-Station</h5></a>
 			                             </li>
 			                             <li class="col-sm-2 col-xs-6">
 			                                   <a href="<?php echo base_url();?>pro-video"><img src="assets/images/ts/vidtube0.png" style="width: 50px;"><h5>Pro-Videos</h5></a>
@@ -80,13 +85,28 @@
 			                                    <a href="<?php echo base_url();?>shipper"><img src="assets/images/ts/shipper.png " style="width: 50px;"><h5>Shippers</h5></a>
 			                               </li>
 										   <li class="col-sm-2 col-xs-6 ">
-												<a href="<?php echo base_url();?>stock-goods"><img src="assets/images/ts/stock.png" style="width: 50px;"><h5>Stock Goods</h5></a>
+										   	<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+											   		<a href="javascript:login_message()">
+											   <?php }else{ ?>
+											   		<a href="<?php echo base_url();?>stock-goods">
+											   <?php } ?>
+												<img src="assets/images/ts/stock.png" style="width: 50px;"><h5>Stock Goods</h5></a>
 			                                </li>
 			                                <li class="col-sm-2 col-xs-6">
-			                                    <a href="<?php echo base_url();?>community"><img src="assets/images/ts/CommMember.png " style="width: 50px; "><h5>Community</h5></a>
+			                                	<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+											   		<a href="javascript:login_message()">
+											   <?php }else{ ?>
+											   		<a href="<?php echo base_url();?>community">
+											   <?php } ?>
+			                                    <img src="assets/images/ts/CommMember.png " style="width: 50px; "><h5>Community</h5></a>
 			                                </li>
 											<li class="col-sm-2 col-xs-6 ">
-												<a href="<?php echo base_url();?>my-alert" data-toggle="modal" data-target=".bs-example-modal-lg"><img src="assets/images/ts/Alerts1.png" style="width: 50px;"><h5>My Alerts</h5></a>
+												<?php if(empty($this->session->userdata('tsuserid')) && $this->session->userdata('tsuserid') <= 0) { ?>
+											   		<a href="javascript:login_message()">
+											   <?php }else{ ?>
+											   		<a href="<?php echo base_url();?>my-alert" data-toggle="modal" data-target=".bs-example-modal-lg">
+											   <?php } ?>
+												<img src="assets/images/ts/Alerts1.png" style="width: 50px;"><h5>My Alerts</h5></a>
 			                                </li>
                                     </ul>
                                 </div>
@@ -1096,4 +1116,8 @@ $(document).ready(function()
    };
    $("#wb_Image40").tooltip(jQueryToolTip9Opts);
 });
+function login_message(){
+            $("#Layer99 > #Layer99_Container > #wb_Text145 > #msg_cont").html("PLEASE LOGIN TO ACCESS MEMBER AREA.");
+            ShowObject('Layer99', 1);
+}
 </script>

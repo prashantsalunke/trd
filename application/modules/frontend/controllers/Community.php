@@ -419,11 +419,16 @@ class Community extends MX_Controller {
 	
 	public function addToCommunity($id) {
 		$this->load->model('Community_Model', 'mycommunity' );
+		$this->load->model('Account_model', 'accountmodel');
 		$params = array();
 		$params['my_busi_id'] = $this->session->userdata('tsuser')['busi_id'];
 		$params['busi_id'] = $id;
 		$this->load->model('Product_Model','product');
 		$tscat_id = $this->session->userdata('tsuser')['category_id'];
+		$getUserInfo = $this->accountmodel->getUserDataByBusiId($id);
+		$params['user_id'] = $getUserInfo['id'];
+		$getMyUserInfo = $this->accountmodel->getUserDataByBusiId($params['my_busi_id']);
+		$params['my_user_id'] = $getMyUserInfo['id'];
 		$resp = array();
 		if(!empty($this->session->userdata('tsuser')['busi_id'])) { 
 			$mydetails = $this->product->getCommunicationInfo($params['my_busi_id']);
@@ -450,7 +455,9 @@ class Community extends MX_Controller {
 							}
 						} else {
 							$resp['status'] = 0;
-							$resp['msg'] = 'Oops.. It seems that you have turned this feature OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Panel", then Turn it ON.';
+							// $resp['msg'] = 'Oops.. It seems that you have turned this feature OFF.. Please go to " My Station", then click on "Tools" icon, and select " Control Panel", then Turn it ON.';
+							$resp['msg'] = 'This buyer in not allow adding to community..';
+							
 						}
 					}
 				} else {

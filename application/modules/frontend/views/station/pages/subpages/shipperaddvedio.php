@@ -123,7 +123,7 @@
 		</div>
 	</div>
 </div>
-<div id="accessDeniedModal1" class="modal fade" role="dialog">
+<div id="accessDeniedModal5" class="modal fade" role="dialog">
   	<div class="modal-dialog" style="width:525px;">
     	<div class="modal-content" style="border-radius:0px;margin-top:25%;">
       		<div class="modal-body">
@@ -138,7 +138,7 @@
 							<img src="<?php echo asset_url();?>images/padlock-154684_640.png" width="100px;"/>
 						</div>
 						<div style="text-align: center;">
-							Opps.. Your subscription plan not allow you to use this services
+							Opps.. Your subscription plan not allow you to use this services 
 						</div>
 					</div>
 					<div class="col-sm-2"></div>
@@ -156,6 +156,7 @@
 <script src="<?php echo asset_url();?>js/bootstrap-typeahead.min.js"></script>
 <script>
 $('#frmshipperaddvedio').bootstrapValidator({
+
 	container: function($field, validator) {
 		return $field.parent().next('.messageContainer');
    	},
@@ -193,6 +194,7 @@ $('#frmshipperaddvedio').bootstrapValidator({
 	savevedio();
 });
 function savevedio() {
+	ajaxindicatorstart("Please wait .. while we save query...");
 	var options = {
 		target : '#response', 
 		beforeSubmit : showVedioRequest,
@@ -222,11 +224,24 @@ function showVedioResponse(resp, statusText, xhr, $form){
 		$("#response").show();
 		//alert(resp.msg);
 		$("#myvideo_edit").trigger("click");
+		ajaxindicatorstop();
 		openAddvedio();
 	}
 }
 function openFileInput() {
-	 $("#uploadonepvedio:hidden").trigger('click');
+	<?php if($total_videos < $max_videos) { ?>
+	 	$("#uploadonepvedio:hidden").trigger('click');
+	<?php }else{ ?>
+		$('#accessDeniedModal5').modal({show:true,backdrop: 'static',keyboard: false});
+		function upgradeMyBusinessPlan() {
+			ShowObjectWithEffect('Layer149', 0, 'dropup', 500, 'easeInBounce');
+			getMyPackages();
+		}
+		function cancelAccessDeniedPopup() {
+			ShowObjectWithEffect('Layer149', 0, 'dropup', 500, 'easeInBounce');
+			ShowObjectWithEffect('Layer1', 1, 'dropdown', 500, 'easeInBounce');
+		}
+	<?php } ?>
 }
 $(function(){
     $("#oneproductupload").unbind().on('click', function(e){

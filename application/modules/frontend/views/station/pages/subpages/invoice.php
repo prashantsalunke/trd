@@ -9,7 +9,7 @@
 <script src="<?php echo asset_url();?>js/bootstrap.js"></script>
 <script src="<?php echo asset_url();?>js/bootstrapValidator.min.js"></script>
 <script src="<?php echo asset_url();?>js/custom/alert.js"></script>
-
+<script src="<?php echo asset_url();?>js/html2pdf.bundle.min.js"></script>
 	<div class="invoice" >
 		<div class="row">
 			<div class="col-md-12">
@@ -137,7 +137,7 @@
 												<?php  //for($p=0;$p< count($orderitemspecdata);$p++) {
 // 																		if($orderitemspecdata[$p]['orderid'] == $orderitemdata[$i]['orderid']) { ?>
 <!-- 																			<br> -->
-																			<span><stong><?php //echo $orderitemspecdata[$p]['spec_name'].": ";?></strong></span>
+																			<span><strong><?php //echo $orderitemspecdata[$p]['spec_name'].": ";?></strong></span>
 																			<span><?php //echo $orderitemspecdata[$p]['spec_value'];?></span>
 												
 																<?php //} 
@@ -461,11 +461,11 @@
 							</div>
 							<div class="row" style="padding-bottom:6px;">
 								<div class="col-md-12">
-									<div class="col-md-6" style="text-align: right;">
+									<div class="col-md-6" style="text-align: right;" onclick="window.print();">
 										<img src="<?php echo asset_url();?>images/print.png" style="width: 64px;" id="Image259" alt="">
 									</div>
 									<div class="col-md-6" style="text-align: left;">
-										<img src="<?php echo asset_url();?>images/i_145.gif" style="padding-top: 12px;"  id="Image260" alt="">
+										<img src="<?php echo asset_url();?>images/i_145.gif" style="padding-top: 12px;"  id="Image260" alt="" onclick="saveToPdf()">
 									</div>
 								</div>
 							</div>
@@ -672,6 +672,16 @@ function deleteinvoice(order_id,buyerstatus)
 function closepopup()
 {
 	$('#example_modal').modal('hide');
+}
+function saveToPdf() {
+	var element = document.getElementById('body');
+	html2pdf(element, {
+	  margin:       0,
+	  filename:     'invoice.pdf',
+	  image:        { type: 'jpeg', quality: 0.98 },
+	  html2canvas:  { dpi: 192, letterRendering: true },
+	  jsPDF:        { unit: 'in', format: 'A4', orientation: 'portrait' }
+	});
 }
 </script>
 <style>

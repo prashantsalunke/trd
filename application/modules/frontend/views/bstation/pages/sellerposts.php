@@ -1,3 +1,10 @@
+<style>
+p {
+	 word-wrap: break-word;
+	 text-align:left;
+  }
+</style>
+
 <?php if (count ( $posts ) > 0 && $posts [0] ['id'] != '') {
 	$exp_date = date('Y-m-d',strtotime('-15 days'));
 	foreach ( $posts as $key=>$product ) {
@@ -33,12 +40,16 @@
 					</span><br>
 					<span style="color:#303030;font-family:Georgia;font-size:12px;">
 						<strong>
+							<!--snehal changes-->
+							
 							<?php if($tscategory_id == 1) { ?>
-							<a href="<?php echo base_url();?>seller/website/<?php echo $product['busi_id'];?>" target="_blank" class="style5">
+					
+							<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" target="_blank" class="style5"><?php echo $product['company_name']?></a>
 							<?php } else { ?>
-							<a href="<?php echo base_url();?>shipper/website/<?php echo $product['busi_id'];?>" target="_blank" class="style5">
+							
+							<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" target="_blank" class="style5"><?php echo $product['company_name']?>
 							<?php } ?>
-								<?php echo $product['company_name'];?>
+							
 							</a>
 						</strong>
 					</span>

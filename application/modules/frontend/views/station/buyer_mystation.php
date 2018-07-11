@@ -1363,16 +1363,17 @@ function Validatecontact(theForm)
 {
    var regexp;
    var extension = theForm.FileUpload1.value.substr(theForm.FileUpload1.value.lastIndexOf('.'));
-   if ((extension.toLowerCase() != ".gif") &&
+   /*if ((extension.toLowerCase() != ".gif") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
        (extension.toLowerCase() != ".png") &&
        (extension != ""))
    {
-      alert("The \"FileUpload1\" field contains an unapproved filename.");
+      alert("The \"FileUpload1\" fieldxx contains an unapproved filename.");
       theForm.FileUpload1.focus();
       return false;
-   }
+   }*/
+   
    if (theForm.Editbox47.value == "")
    {
       alert("Please enter a value for the \"Subject\" field.");
@@ -1399,16 +1400,17 @@ function Validatecontact(theForm)
 {
    var regexp;
    var extension = theForm.FileUpload2.value.substr(theForm.FileUpload2.value.lastIndexOf('.'));
-   if ((extension.toLowerCase() != ".gif") &&
+   /*if ((extension.toLowerCase() != ".gif") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
        (extension.toLowerCase() != ".png") &&
        (extension != ""))
    {
-      alert("The \"FileUpload1\" field contains an unapproved filename.");
+      alert("The \"FileUpload1\" fieldyy contains an unapproved filename.");
       theForm.FileUpload2.focus();
       return false;
-   }
+   }*/
+   
    if (theForm.Editbox46.value == "")
    {
       alert("Please enter a value for the \"Subject\" field.");
@@ -3766,7 +3768,7 @@ function confirmbox(msg, yesCallback, noCallback) {
 						</a>
 					</div>
 					<div id="wb_Image45" class="wb_img_45">
-						<a href="#" onclick="getAlerts();"> 
+						<a href="#" class="triggerClick" onclick="getAlerts();">
 							<img src="<?php echo asset_url();?>images/Alerts1_new.png" id="Image45" alt="" onmouseover="startWiggle(this);" onmouseleave="stopWiggle(this);">
 						</a>
 					</div>

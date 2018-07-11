@@ -125,14 +125,16 @@ a.style5:hover
 
 </style>
 <?php 
+if(isset($favoriteshipper)) {
   if(count($favoriteshipper) > 0 && $favoriteshipper[0]['id'] !='') { 
 	$i =1;
 	foreach($favoriteshipper as $key=>$shipper) { 
+		 
 ?>
 <div class="row row-custom margin-bottom-20">
-	<div class="col-sm-1 chkbox-div text-center" style="width:45px;">
-		<input type="checkbox" id="chkshippr-<?php echo $i;?>" onclick="toggleDeleteDive('btnshdelete-<?php echo $shipper['favorite_id'];?>','chkshippr-<?php echo $i;?>');" name="chkseller-<?php echo $i;?>"  value="on" />
-		<div id="btnshdelete-<?php echo $shipper['favorite_id'];?>" style="width: 24px; height: 34px;padding-top:10px; display:none;">
+	<div class="col-sm-1 chkbox-div text-center" style="width:35px;">
+		<input type="checkbox" id="chkshippr-<?php echo $i;?>" onclick="toggleDeleteDive('btnshdelete-<?php echo $shipper['favorite_id'];?>','chkshippr-<?php echo $i;?>');" name="chkshipper-<?php echo $i;?>"  value="on" />
+		<div id="btnshdelete-<?php echo $shipper['favorite_id'];?>" style="width: 24px; height: 34px;padding-top:10px; display:none;margin-left: -4px;">
 			<a href="#" onclick="delete_favorite(<?php echo $shipper['favorite_id'];?>,1);"><img src="<?php echo asset_url();?>images/delete.png" id="Image160" alt=""></a>
 		</div>
 	</div>
@@ -157,7 +159,7 @@ a.style5:hover
 				<div class="busi-title-div">
 					<div>
 						<span class="busi-name-link">
-							<strong><a href="<?php echo base_url();?>shipper/profile/<?php echo $seller['id'];?>" target="_blank" class="style5"><?php echo $shipper['company_name'];?></a></strong>
+							<strong><a href="<?php echo base_url();?>shipper/profile/<?php echo $shipper['id'];?>" target="_blank" class="style5"><?php echo $shipper['company_name'];?></a></strong>
 						</span>
 					</div>
 					<div class="padding-top-2">
@@ -238,11 +240,11 @@ a.style5:hover
 				</div>
 				<div>
 					<div id="Layer280" style="position:absolute;text-align:left;left:20px;top:145px;width:181px;height:3px;">
-						<div class="ranking-percent-line" style="position:absolute;text-align:left;left:0px;top:0px;width:<?php echo $seller['rank'];?>%;height:3px;">
+						<div class="ranking-percent-line" style="position:absolute;text-align:left;left:0px;top:0px;width:<?php echo $shipper['rank'];?>%;height:3px;">
 						</div>
 					</div>
 					<div id="wb_Text620" style="position: absolute; left: 123px; top: 152px; width: 40px; height: 14px; z-index: 1242; text-align: left;">
-						<span style="color: #FF6347; font-family: Arial; font-size: 11px;"><strong>% <?php echo $seller['rank'];?></strong></span>
+						<span style="color: #FF6347; font-family: Arial; font-size: 11px;"><strong>% <?php echo $shipper['rank'];?></strong></span>
 					</div>
 					<div id="wb_Text651" style="position: absolute; left: 20px; top: 130px; width: 41px; height: 12px; z-index: 1243; text-align: left;">
 						<span style="color: #3C3C3C; font-family: Arial; font-size: 9.3px;">Rank</span>
@@ -262,4 +264,4 @@ a.style5:hover
   <div class="row" style="margin:0px;">
  	<h4 class="center"> No Videos Found!</h4>
  </div>
-<?php } ?>
+<?php } } ?>

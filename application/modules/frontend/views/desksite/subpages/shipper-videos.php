@@ -1,4 +1,4 @@
-	<?php
+	<?php 
 	$i =0 ;
 	foreach($Videos as $video){
 	$i++;
@@ -13,7 +13,7 @@
 							<p>
 								<span style="color:#4B4B4B;font-family:Georgia;font-size:13px;">
 									<strong>
-										<a href="<?php echo base_url();?>video/details/<?php echo $video['id'];?>" class="style16" >
+										<a href="#" class="style16" >
 											<?php echo $video['vedio_title']?>
 										</a>
 									</strong>
@@ -24,7 +24,7 @@
 						<div class="row" style="margin:0px;">
 							<div class="col-sm-12">
 								<p class="c14">
-									<?php echo substr($video['vedio_description'],0,70); ?><?php if(strlen($video['vedio_description']) > 70) { ?> ...<?php } ?>
+									<?php echo substr($video['vedio_description'],0,400); ?><?php if(strlen($video['vedio_description']) > 400) { ?> ...<?php } ?>
 								</p>
 							</div>
 						</div>
@@ -50,8 +50,16 @@
 						<br><br>
 					</div>
 	<?php } ?>
+	<div style="position: relative;top: -30px;width: 345px;left: 35px;">
+                        <a class="left carousel-control control" href="#vcarousel" role="button" data-slide="prev">
+                            <img alt="Back" style="border-width:0" src="<?php echo asset_url(); ?>images/previoustxt0.png">
+                        </a> 
+                        <a class="right carousel-control control" href="#vcarousel" role="button" data-slide="next">
+                            <img alt="Next" style="border-width:0" src="<?php echo asset_url(); ?>images/nexttxt0.png">
+                        </a>
+    </div>
 	<?php if(count($Videos) <= 0) { ?>
-		This <?php if($bcatinfo[0]['user_category_id'] == 1) { ?>seller<?php } elseif ($bcatinfo[0]['user_category_id'] == 2) { ?>shipper<?php } else { ?>buyer<?php } ?> has not uploaded videos yet.
+		This <?php //if($bcatinfo[0]['user_category_id'] == 1) { ?><!-- seller --><?php //} elseif ($bcatinfo[0]['user_category_id'] == 2) { ?>shipper<?php //} else { ?><!-- buyer --><?php //} ?> has not uploaded videos yet.
 	<?php } ?>
 
 <script>

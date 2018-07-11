@@ -271,8 +271,8 @@
 
 .roundflag {
 	position: absolute;
-	top: 42px;
-	left: 53px;
+	top: 48px;
+	left: 72px;
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
@@ -390,7 +390,9 @@
     -webkit-box-shadow: 3px 3px 10px #000000;
     box-shadow: 3px 3px 10px #000000;
 }
-
+.class1_bottom {
+		top:250px !important;
+}
 .class2 {
 	width: 308px;
 	position: relative;
@@ -8154,7 +8156,13 @@ a:visited {
 	background-size: cover;
 	background-repeat: no-repeat;
 }
-
+.layer_details {
+	background-image: url(../../images/windowphoto.png);
+	background-color: #FAFAFA;
+	background-position: left top;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
 #Layer264 {
 	background-color: #E1E1E1;
 }
@@ -8642,7 +8650,7 @@ a:visited {
 	display: inline-block;
 	width: 50px;
 	height: 6px;
-	margin: 0px;
+	margin-left: 10px;
 	text-indent: -999px;
 	cursor: pointer;
 	background-color: #000 \9;
@@ -8654,7 +8662,7 @@ a:visited {
 .carousel-indicators .active {
 	width: 50px;
 	height: 6px;
-	margin: 0;
+	margin-left: 10px;
 	background-color: #1E90FF;
 }
 
@@ -8690,6 +8698,12 @@ a:visited {
 	font-family: Georgia;
 	font-size: 13px;
 	margin: 0px;
+	white-space: nowrap;
+	width: 17em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	/*padding: 10px;*/
+	text-transform: capitalize;
 }
 
 .product-money-symbol {
@@ -8837,8 +8851,8 @@ a:visited {
 }
 
 .sectionrow {
-	width: 92%;
-	min-height: 122px;
+	width: 97%;
+	min-height: 90px;
 	background: #fff;
 	text-align: center;
 	border: 1px solid #ccc;
@@ -8959,9 +8973,9 @@ a:visited {
 }
 
 .carousel-indicators .active {
-	width: 80px;
-	height: 7px;
-	margin: 0;
+	width: 50px;
+	height: 6px;
+	margin-left: 10px;
 	background-color: #fff;
 }
 
@@ -9154,8 +9168,8 @@ a:focus, .btn:active {
 	.orange {
 		background: #FF8C00;
 		color: white;
-		padding: 45px 8px;
-		height: 120px;
+		padding: 36px 8px;
+		height: 95px;
 		font-size: 17px;
 	}
 	.author {
@@ -9169,8 +9183,8 @@ a:focus, .btn:active {
 	.blue1 {
 		background: #1E90FF;
 		color: white;
-		padding: 45px 8px;
-		height: 120px;
+		padding: 36px 8px;
+		height: 95px;
 		font-size: 17px;
 	}
 	.blue1 a {
@@ -9688,7 +9702,7 @@ a.hstyle19:hover
    position: absolute;
    z-index: 2;
 }
-#RollOver87 a .hover
+/*#RollOver87 a .hover
 {
    visibility: hidden;
 }
@@ -9699,7 +9713,7 @@ a.hstyle19:hover
 #RollOver87 a:hover span
 {
    visibility: hidden;
-}
+}*/
 #RollOver87 img
 {
    border-width: 0;
@@ -9729,3 +9743,119 @@ a.hstyle19:hover
     text-align: center;
 }
 
+#Layer367{
+	background-color: #000000;
+    border: 1px #000000 solid;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    filter: alpha(opacity=60);
+    opacity: 0.60;
+}
+#wb_Text499 {
+    background-color: transparent;
+    border: 0px #000000 solid;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+#Layer354
+{
+   background-color: transparent;
+}
+#Layer356
+{
+   background-color: #000000;
+   border: 1px #000000 solid;
+   -moz-border-radius: 50px;
+   -webkit-border-radius: 50px;
+   border-radius: 50px;
+   filter: alpha(opacity=60);
+   opacity: 0.60;
+}
+#wb_Text494 
+{
+   background-color: transparent;
+   border: 0px #000000 solid;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+#wb_Text494 div
+{
+   text-align: left;
+}
+#Image262
+{
+   border: 0px #000000 solid;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#Layer357
+{
+   background-color: #000000;
+   border: 1px #000000 solid;
+   -moz-border-radius: 50px;
+   -webkit-border-radius: 50px;
+   border-radius: 50px;
+   filter: alpha(opacity=60);
+   opacity: 0.60;
+}
+#Image263
+{
+   border: 0px #000000 solid;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+}
+#wb_Text495 
+{
+   background-color: transparent;
+   border: 0px #000000 solid;
+   padding: 0;
+   margin: 0;
+   text-align: left;
+}
+#wb_Text495 div
+{
+   text-align: left;
+}
+
+#wb_Text120 {
+    background-color: transparent;
+    border: 0px #000000 solid;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+a.style261:visited {
+    color: #303030;
+    text-decoration: none;
+}
+a.style261 {
+    color: #303030;
+    text-decoration: none;
+}
+#Image216 {
+    border: 0px #000000 solid;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+#wb_Text2 
+{
+   background-color: transparent;
+   border: 0px #000000 solid;
+   padding: 0;
+   margin: 0;
+   text-align: center;
+}
+#wb_Text2 div
+{
+   text-align: center;
+}

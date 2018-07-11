@@ -152,7 +152,7 @@ function ValidateOffer_for_you_post_in_RT_Business()
       return false;
    }
    var extension = theForm.FileUpload1.value.substr(theForm.FileUpload1.value.lastIndexOf('.'));
-   if ((extension.toLowerCase() != ".doc") &&
+   /*if ((extension.toLowerCase() != ".doc") &&
        (extension.toLowerCase() != ".docx") &&
        (extension.toLowerCase() != ".jpg") &&
        (extension.toLowerCase() != ".pdf") &&
@@ -162,11 +162,8 @@ function ValidateOffer_for_you_post_in_RT_Business()
       alert("The \"FileUpload3\" field contains an unapproved filename.");
       theForm.FileUpload1.focus();
       return false;
-   }
-   if(theForm.FileUpload1.value == "") {
-		alert("Please select file");
-		return false;
-   }
+   }*/
+   
    if (theForm.TextArea1.value == "")
    {
       alert("Please Enter Enough Description");
@@ -238,32 +235,36 @@ function showAddResponse(resp, statusText, xhr, $form){
 </script>
 </head>
 <body>
-<div id="Layer77" style="position:absolute;text-align:center;left:1%;top:0px;width:96%;height:722px;z-index:46;">
+<div id="Layer77" style="position:absolute;text-align:center;left:1%;top:0px;width:96%;height:722px;z-index:56;">
 <div id="Layer77_Container" style="width:525px;position:relative;margin-left:auto;margin-right:auto;text-align:left;">
-<div id="Layer78" style="position:absolute;text-align:left;left:1px;top:462px;width:524px;height:239px;z-index:19;">
+<div id="Layer78" style="position:absolute;text-align:left;left:1px;top:465px;width:524px;height:236px;z-index:19;">
 </div>
 <div id="wb_Text138" style="position:absolute;left:38px;top:83px;width:43px;height:16px;z-index:20;text-align:left;">
 <span style="color:#303030;font-family:Georgia;font-size:13px;"><strong>Dear </strong></span></div>
 <div id="wb_Text139" style="position:absolute;left:36px;top:141px;width:118px;height:14px;z-index:21;text-align:left;">
 <span style="color:#696969;font-family:Arial;font-size:11px;">Ref. to your post titled : </span></div>
 <div id="wb_Text140" style="position:absolute;left:89px;top:83px;height:16px;z-index:22;text-align:left;">
-<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $post[0]['name_prefix'];?> <?php echo $post[0]['name'];?> </strong></span></div>
+<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $post[0]['name_prefix'];?> <?php echo $post[0]['name'];?></strong></span></div>
 <div id="wb_Text142" style="position:absolute;left:90px;top:105px;width:400px;height:16px;z-index:23;text-align:left;">
-<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $post[0]['company_name'];?> </strong></span></div>
+<span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $post[0]['company_name'];?></strong></span></div>
 <div id="wb_Text143" style="position:absolute;left:166px;top:141px;width:330px;height:16px;z-index:24;text-align:left;">
 <span style="color:#303030;font-family:Georgia;font-size:13px;"><strong><?php echo $post[0]['title'];?></strong></span></div>
+<div id="Layer79" style="position:absolute;text-align:left;left:0px;top:15px;width:525px;height:47px;z-index:30;">
+<div id="wb_Text152" style="position:absolute;left:36px;top:20px;width:173px;height:16px;z-index:0;text-align:left;">
+<span style="color:#FFFFFF;font-family:Georgia;font-size:13px;"><strong>RT BUSINESS OFFER</strong></span>
+</div>
 <div id="wb_Form1" style="position:absolute;left:7px;top:194px;width:509px;height:504px;z-index:25;">
-<form name="Offer_for_you_post_in_RT_Business" method="post" action="" enctype="multipart/form-data" id="bstbuyerrequest" onsubmit="return ValidateOffer_for_you_post_in_RT_Business(this);">
+<form name="Offer_for_you_post_in_RT_Business" method="post" action="" enctype="multipart/form-data" id="bstbuyerrequest" onsubmit="return ValidateOffer_for_you_post_in_RT_Business(this)">
 <input type="hidden" name="post_id" value="<?php echo $post[0]['id'];?>" />
 <input type="hidden" name="post_type" id="post_type" value="1" />
 <input type="hidden" name="product_id" id="product_id" value="0" />
-<input type="hidden" name="busi_id" value="<?php echo $seller_id;?>" />
+<input type="hidden" name="busi_id" value="<?php echo $post[0]['busi_id'];?>" />
 <input type="hidden" name="my_busi_id" value="<?php echo $busi_id;?>" />
 <input type="hidden" name="inquiry_type_id" id="inquiry_type_id" value="3" />
-<input type="text" id="Editbox1" style="position:absolute;left:230px;top:288px;width:252px;height:19px;line-height:19px;z-index:0;" name="name" value="<?php echo isset($contact_details[0]['name']);?>" maxlength="20">
-<input type="text" id="Editbox2" style="position:absolute;left:230px;top:318px;width:252px;height:19px;line-height:19px;z-index:1;" name="company" value="<?php echo isset($contact_details[0]['company_name']);?>" maxlength="20">
-<input type="number" id="Editbox6" style="position:absolute;left:230px;top:380px;width:252px;height:19px;line-height:19px;z-index:2;" name="phone" value="<?php echo isset($contact_details[0]['mobile_number']);?>" maxlength="20">
-<input type="email" id="Editbox7" style="position:absolute;left:230px;top:349px;width:252px;height:19px;line-height:19px;z-index:3;" name="email" value="<?php echo isset($contact_details[0]['email']);?>" maxlength="30">
+<input type="text" id="Editbox1" style="position:absolute;left:230px;top:288px;width:252px;height:19px;line-height:19px;z-index:0;" name="name" value="<?php echo $contact_details[0]['name'];?>" maxlength="20">
+<input type="text" id="Editbox2" style="position:absolute;left:230px;top:318px;width:252px;height:19px;line-height:19px;z-index:1;" name="company" value="<?php echo $contact_details[0]['company_name'];?>" maxlength="20">
+<input type="number" id="Editbox6" style="position:absolute;left:230px;top:380px;width:252px;height:19px;line-height:19px;z-index:2;" name="phone" value="<?php echo $contact_details[0]['mobile_number'];?>" maxlength="20">
+<input type="email" id="Editbox7" style="position:absolute;left:230px;top:349px;width:252px;height:19px;line-height:19px;z-index:3;" name="email" value="<?php echo $contact_details[0]['email'];?>" maxlength="30">
 <select name="country" size="1" id="Combobox2" style="position:absolute;left:230px;top:411px;width:258px;height:25px;z-index:4;">
 <option selected value="Select">Select your country</option>
 <?php foreach ($Country as $country){?>

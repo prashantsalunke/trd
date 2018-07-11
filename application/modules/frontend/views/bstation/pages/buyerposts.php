@@ -1,3 +1,9 @@
+<style>
+p {
+	 word-wrap: break-word;
+	 text-align:left;
+  }
+</style>
 <?php if (count ( $posts ) > 0 && $posts [0] ['id'] != '') {
 	foreach ( $posts as $key=>$product ) {
 ?>
@@ -31,9 +37,9 @@
 					</span><br>
 					<span style="color:#303030;font-family:Georgia;font-size:12px;">
 						<strong>
-							<a href="<?php echo base_url();?>buyer/website/<?php echo $product['busi_id'];?>" target="_blank" class="style5">
-								<?php echo $product['company_name'];?>
-							</a>
+							
+							<a href="<?php echo base_url();?>desksite/<?php echo $product['busi_id'];?>" target="_blank" class="style5"><?php echo $product['company_name']?></a>
+							
 						</strong>
 					</span>
 				</div>

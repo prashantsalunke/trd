@@ -8,39 +8,41 @@ class Inquiry_model extends CI_Model {
 
     public  function getInquiryByBusiId($busi_id)
     {
-    	$this->db->select('a.id as inqury_id,a.requester_busi_id,a.inquiry_subject,a.inquiry_body,a.product_id,a.created_date,'.
+    	$this->db->select('a.id as inqury_id,a.requester_busi_id,a.inquiry_subject,a.inquiry_body,a.product_id,a.created_date as actual_date,'.
     			'a.pin_unpin,a.unreadmark,b.inqury_type,a.attachment1,a.attachment2,a.attachment3,a.attachment4,'.
-    			'd.*,e.name_prefix,e.name,f.profile_image');
+    			'd.*,e.name_prefix,e.name,f.profile_image,uc.user_category,a.alert_viewed');
     	$this->db->from(TABLES::$INQUIRY. ' AS a');
     	$this->db->join(TABLES::$INQUIRY_TYPE. ' AS b','a.inquiry_type_id=b.id','inner');
     	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS c','a.product_id=c.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS d','a.requester_busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER. ' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS f','e.id=f.user_id','inner');
+        $this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','e.user_category_id=uc.id','inner');
     	$this->db->where('a.busi_id', $busi_id);
     	$this->db->where('e.is_contactperson', 1);
-    	$this->db->where('a.is_deleted', 0);
+        $this->db->where('a.is_deleted', 0);
+    	$this->db->group_by('a.id');
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
     	return $row;
-    	
     }
     
     public function getBuyerInquiryByBusiId($busi_id)
     {
-    	$this->db->select('a.id as inqury_id,a.requester_busi_id,a.inquiry_subject,a.inquiry_body,a.product_id,a.created_date,'.
+    	$this->db->select('a.id as inqury_id,a.requester_busi_id,a.inquiry_subject,a.inquiry_body,a.product_id,a.created_date as actual_date,'.
     			'a.pin_unpin,a.unreadmark,b.inqury_type,a.attachment1,a.attachment2,a.attachment3,a.attachment4,'.
-    			'd.*,e.name_prefix,e.name,f.profile_image');
+    			'd.*,e.name_prefix,e.name,f.profile_image,uc.user_category,a.alert_viewed');
     	$this->db->from(TABLES::$INQUIRY. ' AS a');
     	$this->db->join(TABLES::$INQUIRY_TYPE. ' AS b','a.inquiry_type_id=b.id','inner');
     	$this->db->join(TABLES::$PRODUCT_ITEM. ' AS c','a.product_id=c.id','left');
     	$this->db->join(TABLES::$BUSINESS_INFO. ' AS d','a.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER. ' AS e','e.busi_id=d.id','inner');
     	$this->db->join(TABLES::$USER_INFO. ' AS f','e.id=f.user_id','inner');
+        $this->db->join(TABLES::$USER_CATEGORIES. ' AS uc','e.user_category_id=uc.id','inner');
     	$this->db->where('a.requester_busi_id', $busi_id);
     	$this->db->where('e.is_contactperson', 1);
-    	$this->db->where('a.is_deleted', 0);
+        $this->db->where('a.is_deleted', 0);
     	$this->db->order_by('a.id', 'desc');
     	$query = $this->db->get();
     	$row = $query->result_array();
@@ -95,12 +97,37 @@ class Inquiry_model extends CI_Model {
     	$row = $query->result_array();
     	return $row;
     }
+
     public function saveInquiry($param)
     {
     	if ($this->db->insert(TABLES::$INQUIRY, $param)) {
     		return $this->db->insert_id();
     	}
     }
-    
 
+    public function getNewInquiryAlert($busiId,$userId)
+    {
+        $this->db->select('inq.id,u.profile_image,usr.name,c.user_category,u.country');
+        $this->db->from(TABLES::$INQUIRY. ' AS inq');
+        $this->db->join(TABLES::$USER. ' AS usr','inq.user_id=usr.id','inner');
+        $this->db->join(TABLES::$USER_INFO. ' AS u','inq.user_id=u.user_id','inner');
+        $this->db->join(TABLES::$USER_CATEGORIES. ' AS c','usr.user_category_id=c.id','inner');
+        $this->db->where('inq.busi_id', $busiId);
+        $this->db->where('inq.user_id', $userId);
+         $this->db->where('inq.alert_viewed', 0);
+        $this->db->order_by('inq.id', 'desc');
+        $query = $this->db->get();
+        $row = $query->result_array();
+        if ($row > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function updateInquiryAlert($id,$data)
+    {
+        $this->db->where('busi_id', $id);
+        $this->db->update(TABLES::$INQUIRY,$data);
+        return $this->db->affected_rows();
+    }
 }
